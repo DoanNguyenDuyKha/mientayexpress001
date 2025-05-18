@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý dịch vụ - Mien Tay Express</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/service-management.css">
+    <link rel="stylesheet" href="../css/package_manager.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../images/logo-removebg.png" alt="Mien Tay Express Logo" class="logo">
+        </div>
+        <nav class="menu-items" aria-label="Main Navigation">
+             <ul>
+                <li><a href="../index.html" class="active"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
+                 <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
+                     <div class="submenu">
+                         <ul>
+                             <li><a href="package_manager.html"><i class="fa-solid fa-box-archive icon"></i><span class="menu-text">Quản lý đơn hàng</span></a></li>
+                             <li><a href="straking-bill-of-lading-status.html"><i class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng thái</span></a></li>
+                             <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận chuyển</span></a></li>
+                             <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản lý chi nhánh</span></a></li>
+                             <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
+                 <li><a href="service-management.html" class="active"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
+                 <li><a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span></a></li>
+                  <li>
+                      <a href="#" class="submenu-parent"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN LÝ NHÂN SỰ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                            <li><a href="#"><span class="menu-text">Danh sách NV</span></a></li>
+                            <li><a href="#"><span class="menu-text">Phân quyền</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
+                  <li>
+                      <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                       <div class="submenu">
+                          <ul>
+                            <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ DỤNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                            <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+             </ul>
+         </nav>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <main class="main-content">
+        <header class="header">
+            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu" aria-controls="sidebar" aria-expanded="false"> <i class="fa-solid fa-bars"></i> </button>
+            <div class="header-left">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" class="header-search-input" placeholder="Mã vận đơn / Tracking ID...">
+                </div>
+            </div>
+            <div class="header-actions" style="display: flex; align-items: center; gap: 1.2rem; margin-left: auto;">
+                <div class="notification-wrapper">
+                    <button class="notification-button" id="notification-button" title="Thông báo">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div class="notification-dropdown" id="notification-dropdown">
+                        <div class="dropdown-header">Thông báo</div>
+                        <ul class="notification-list" id="notification-list">
+                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024" data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada." data-timestamp="2024-07-25 13:53:27">
+                                <div class="item-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Dời Cut off Canada 24/08/2024</div>
+                                    <div class="item-time">25 Jul 2024</div>
+                                </div>
+                            </li>
+                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống" data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này." data-timestamp="2024-07-28 10:00:00">
+                                <div class="item-icon"><i class="fa-solid fa-wrench"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Cập nhật hệ thống 30/07</div>
+                                    <div class="item-time">28 Jul 2024</div>
+                                </div>
+                            </li>
+                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới" data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ." data-timestamp="2024-07-20 09:00:00">
+                                <div class="item-icon"><i class="fa-solid fa-tags"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Khuyến mãi hè 2024!</div>
+                                    <div class="item-time">20 Jul 2024</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="dropdown-footer"><a href="#">Xem tất cả</a></div>
+                    </div>
+                </div>
+                <div class="user-container" style="position: relative;">
+                    <div class="user-dropdown-toggle" id="user-dropdown-toggle" style="display: flex; align-items: center; gap: 6px; background: #6366f1; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
+                        <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
+                </div>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <a href="#" class="user-dropdown-item" id="profile-link"><i class="fa-regular fa-user"></i> Profile</a>
+                        <a href="#" class="user-dropdown-item" id="login-link"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>
+                        <a href="#" class="user-dropdown-item" id="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <section class="page-header"><div class="page-header-left"><h1 class="page-title">DANH SÁCH DỊCH VỤ</h1><nav class="breadcrumb" aria-label="breadcrumb"><a href="#">Quản lý</a> / <span>Quản lý dịch vụ</span></nav></div></section>
+            <div style="display:flex; justify-content:flex-end; margin-bottom:1.2rem;">
+              <button id="addServiceBtn" style="display:flex; align-items:center; gap:8px; background:#6366f1; color:#fff; border:none; border-radius:8px; padding:10px 22px; font-size:1.08em; font-weight:600; box-shadow:0 2px 8px #6366f122; cursor:pointer;">
+                <i class="fa-solid fa-plus" style="font-size:1.2em;"></i> Thêm dịch vụ
+              </button>
+            </div>
+            <section class="table-area card" aria-labelledby="service-table-heading"><div class="card-header"><h2 id="service-table-heading">Danh sách Dịch vụ</h2></div><div class="table-container"><div class="table-wrapper"><table id="serviceTable"><thead><tr><th scope="col" class="col-center"><input type="checkbox" id="select-all-checkbox" title="Chọn tất cả"></th><th scope="col" class="col-center">STT</th><th scope="col">Mã dịch vụ</th><th scope="col">Tên dịch vụ</th><th scope="col">Ngày cập nhật</th><th scope="col" class="col-center">Hiển thị</th><th scope="col" class="col-center">Thao tác</th></tr></thead><tbody id="service-table-body"><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 1"></td><td class="col-center">1</td><td>MTE-AUS</td><td>Chuyên tuyến Úc</td><td>12-08-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 2"></td><td class="col-center">2</td><td>MTE-USA</td><td>Chuyên tuyến Mỹ</td><td>10-08-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 3"></td><td class="col-center">3</td><td>MTE-CAD</td><td>Chuyên tuyến Canada</td><td>25-07-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 4"></td><td class="col-center">4</td><td>MTE-EUR</td><td>Chuyên tuyến Châu Âu</td><td>11-08-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 5"></td><td class="col-center">5</td><td>MTE-ASIA</td><td>Chuyên tuyến Châu Á</td><td>09-08-2024</td><td class="col-center"><input type="checkbox" title="Dịch vụ này đang ẩn"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 6"></td><td class="col-center">6</td><td>MTE-DOM</td><td>Chuyển phát nhanh Nội địa</td><td>01-07-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr></tbody></table></div></div><div class="card-footer"><nav class="pagination" aria-label="Table navigation"><span class="pagination-info">Hiển thị <b>1</b> đến <b>6</b> của <b>15</b> mục</span><div class="pagination-buttons"><button class="button" disabled>Trước</button><button class="button active" aria-current="page">1</button><button class="button">2</button><button class="button">3</button><button class="button">Sau</button></div></nav><div class="footer-actions"><button class="button danger"><i class="fa-solid fa-trash-can"></i> Xóa đã chọn</button><button class="button primary"><i class="fa-solid fa-plus"></i> Thêm dịch vụ mới</button></div></div></section>
+            <footer class="site-footer">Miền Tây Express © <span id="current-year">2025</span>. All rights reserved. Design by Nina Co.,Ltd</footer>
+        </div>
+
+        <div class="announcement-overlay" id="announcement-overlay">
+             <div class="announcement-box" id="announcement-box">
+                <div class="announcement-header">
+                    <h3 id="announcement-title"></h3>
+                    <button class="announcement-close-btn" id="announcement-close-btn" title="Đóng thông báo">×</button>
+                </div>
+                <div class="announcement-body" id="announcement-body">
+                </div>
+                <div class="announcement-footer">
+                    <span id="announcement-timestamp"></span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Sửa Dịch Vụ -->
+    <div id="editServiceModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(30,41,59,0.25); align-items:center; justify-content:center;">
+      <form id="editServiceForm" style="background:#fff; border-radius:12px; box-shadow:0 4px 32px #0002; padding:2rem; min-width:320px; max-width:95vw; margin:auto; display:flex; flex-direction:column; gap:1rem;">
+        <h3 style="margin:0 0 1rem 0; color:#6366f1;">Sửa thông tin dịch vụ</h3>
+        <label>Mã dịch vụ <input type="text" id="editMaDV" required style="width:100%; padding:6px 10px; border-radius:6px; border:1px solid #ccc;"></label>
+        <label>Tên dịch vụ <input type="text" id="editTenDV" required style="width:100%; padding:6px 10px; border-radius:6px; border:1px solid #ccc;"></label>
+        <label>Ngày cập nhật <input type="date" id="editNgayCapNhat" required style="width:100%; padding:6px 10px; border-radius:6px; border:1px solid #ccc;"></label>
+        <label style="display:flex; align-items:center; gap:8px;">Hiển thị <input type="checkbox" id="editHienThi"></label>
+        <div style="display:flex; gap:1rem; justify-content:flex-end;">
+          <button type="button" id="cancelEditService" style="padding:7px 18px; border-radius:6px; border:none; background:#e5e7eb; color:#222;">Hủy</button>
+          <button type="submit" style="padding:7px 18px; border-radius:6px; border:none; background:#6366f1; color:#fff;">Lưu</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Modal Xác nhận Xóa Dịch Vụ -->
+    <div id="deleteServiceModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(30,41,59,0.25); align-items:center; justify-content:center;">
+      <div style="background:#fff; border-radius:12px; box-shadow:0 4px 32px #0002; padding:2rem; min-width:320px; max-width:95vw; margin:auto; display:flex; flex-direction:column; gap:1.2rem; align-items:center;">
+        <h3 style="margin:0 0 0.5rem 0; color:#dc2626;">Xác nhận xóa dịch vụ</h3>
+        <div id="deleteServiceInfo" style="color:#222; font-size:1.08em; text-align:center;"></div>
+        <div style="display:flex; gap:1rem; justify-content:center;">
+          <button type="button" id="cancelDeleteService" style="padding:7px 18px; border-radius:6px; border:none; background:#e5e7eb; color:#222;">Hủy</button>
+          <button type="button" id="confirmDeleteService" style="padding:7px 18px; border-radius:6px; border:none; background:#dc2626; color:#fff;">Xác nhận</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        const body = document.body;
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mobileSidebarToggleBtn = document.getElementById('mobile-sidebar-toggle');
+        const desktopSidebarToggleBtn = document.querySelector('.sidebar-toggle-desktop');
+        const serviceTableBody = document.getElementById('service-table-body');
+        const selectAllCheckbox = document.getElementById('select-all-checkbox');
+        const currentDateSpan = document.getElementById('current-date');
+        const currentTimeSpan = document.getElementById('current-time');
+        const currentYearSpan = document.getElementById('current-year');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const notificationButton = document.getElementById('notification-button');
+        const notificationDropdown = document.getElementById('notification-dropdown');
+        const notificationList = document.getElementById('notification-list');
+        const announcementOverlay = document.getElementById('announcement-overlay');
+        const announcementBox = document.getElementById('announcement-box');
+        const announcementCloseBtn = document.getElementById('announcement-close-btn');
+        const announcementTitle = document.getElementById('announcement-title');
+        const announcementBody = document.getElementById('announcement-body');
+        const announcementTimestamp = document.getElementById('announcement-timestamp');
+
+        const manageBodyScroll = () => {
+            const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
+            const isAnnounceVisible = announcementOverlay && announcementOverlay.classList.contains('visible');
+            const isAnyOtherModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
+            if (isSidebarOpen || isAnnounceVisible || isAnyOtherModalVisible) {
+                body.classList.add('overflow-hidden');
+            } else {
+                body.classList.remove('overflow-hidden');
+            }
+        };
+
+        function toggleSidebarMobile() { body.classList.toggle('sidebar-mobile-open'); const isOpen = body.classList.contains('sidebar-mobile-open'); if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen)); manageBodyScroll(); }
+        function toggleSidebarDesktop() { body.classList.toggle('sidebar-collapsed'); const isCollapsed = body.classList.contains('sidebar-collapsed'); if (desktopSidebarToggleBtn) { desktopSidebarToggleBtn.title = isCollapsed ? "Phóng Sidebar" : "Thu Sidebar"; desktopSidebarToggleBtn.querySelector('i').style.transform = isCollapsed ? 'rotate(180deg)' : ''; } if (isCollapsed) { document.querySelectorAll('.menu-items .submenu.active').forEach(submenu => { submenu.classList.remove('active'); submenu.previousElementSibling?.classList.remove('active'); }); } }
+        function toggleSubmenu(event) { event.preventDefault(); const parentLink = event.currentTarget; const submenuWrapper = parentLink.nextElementSibling; if (!submenuWrapper || !submenuWrapper.classList.contains('submenu')) return; if (!parentLink.classList.contains('active')) { document.querySelectorAll('.menu-items .submenu-parent.active').forEach(activeParent => { if (activeParent !== parentLink) { activeParent.classList.remove('active'); activeParent.nextElementSibling?.classList.remove('active'); } }); } submenuWrapper.classList.toggle('active'); parentLink.classList.toggle('active'); }
+        function initializeActiveSubmenu() { const activeLink = document.querySelector('.sidebar .menu-items > li > a.active'); const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active'); if (activeSubmenuLink) { const submenuDiv = activeSubmenuLink.closest('.submenu'); const parentLink = submenuDiv?.previousElementSibling; if (submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) { if (!activeLink || activeLink !== parentLink) { submenuDiv.classList.add('active'); parentLink.classList.add('active'); } } } }
+        function updateDateTime() { const now = new Date(); const optionsDate = { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' }; const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }; try { let dayOfWeek; switch (now.getDay()) { case 0: dayOfWeek = "Sun"; break; case 1: dayOfWeek = "Mon"; break; case 2: dayOfWeek = "Tue"; break; case 3: dayOfWeek = "Wed"; break; case 4: dayOfWeek = "Thu"; break; case 5: dayOfWeek = "Fri"; break; case 6: dayOfWeek = "Sat"; break; default: dayOfWeek = ""; } const dateString = `${dayOfWeek} ${now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}`; if (currentDateSpan) currentDateSpan.textContent = dateString; if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString('en-US', optionsTime); } catch (e) { if (currentDateSpan) currentDateSpan.textContent = now.toLocaleDateString(); if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString(); } if (currentYearSpan) currentYearSpan.textContent = now.getFullYear(); }
+        function toggleFullscreen() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(err => console.error(`Fullscreen error: ${err.message}`)); } else if (document.exitFullscreen) { document.exitFullscreen(); } }
+        function handleFullscreenChange() { const isFullscreen = !!document.fullscreenElement; const icon = fullscreenBtn?.querySelector('i'); if(icon){ icon.classList.toggle('fa-expand', !isFullscreen); icon.classList.toggle('fa-compress', isFullscreen); } if(fullscreenBtn) { fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'); } }
+
+        function showAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.add('visible');
+                manageBodyScroll();
+            }
+        }
+        function closeAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.remove('visible');
+                manageBodyScroll();
+            }
+        }
+
+        function toggleNotificationDropdown() {
+            if (notificationDropdown) {
+                notificationDropdown.classList.toggle('visible');
+            }
+        }
+
+        function closeNotificationDropdown() {
+             if (notificationDropdown) {
+                notificationDropdown.classList.remove('visible');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeActiveSubmenu();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', function() {
+                if (window.innerWidth > 768) {
+                    body.classList.toggle('sidebar-collapsed');
+                } else {
+                    body.classList.toggle('sidebar-mobile-open');
+                }
+                const isOpen = body.classList.contains('sidebar-mobile-open') || !body.classList.contains('sidebar-collapsed');
+                mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen));
+            });
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobile);
+            if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarDesktop);
+            document.querySelectorAll('.menu-items .submenu-parent').forEach(link => link.addEventListener('click', toggleSubmenu));
+            if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+            if (notificationButton) {
+                notificationButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    toggleNotificationDropdown();
+                });
+            }
+
+            if (notificationList) {
+                notificationList.addEventListener('click', (event) => {
+                    const clickedItem = event.target.closest('.notification-item');
+                    if (clickedItem && announcementTitle && announcementBody && announcementTimestamp) {
+                        const title = clickedItem.dataset.title || 'Thông báo';
+                        const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
+                        const timestamp = clickedItem.dataset.timestamp || '';
+
+                        announcementTitle.textContent = title;
+
+                        announcementBody.innerHTML = '';
+                        bodyText.split('||').forEach(paragraphText => {
+                            if(paragraphText.trim()) {
+                                const p = document.createElement('p');
+                                p.textContent = paragraphText.trim();
+                                announcementBody.appendChild(p);
+                            }
+                        });
+
+                        announcementTimestamp.textContent = timestamp;
+
+                        showAnnouncement();
+
+                        closeNotificationDropdown();
+                    }
+                });
+            }
+
+            document.addEventListener('click', (event) => {
+                if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
+                    if (!notificationDropdown.contains(event.target) && event.target !== notificationButton && !notificationButton.contains(event.target)) {
+                        closeNotificationDropdown();
+                    }
+                }
+            });
+
+            if (announcementCloseBtn) announcementCloseBtn.addEventListener('click', closeAnnouncement);
+            if (announcementOverlay) announcementOverlay.addEventListener('click', (event) => { if (event.target === announcementOverlay) closeAnnouncement(); });
+
+            document.querySelector('.footer-actions .button.danger')?.addEventListener('click', () => { alert("Xóa đã chọn clicked!"); });
+            document.querySelector('.footer-actions .button.primary')?.addEventListener('click', () => { alert("Thêm dịch vụ mới clicked!"); });
+        });
+
+        // --- Dropdown user & đăng nhập/đăng xuất ---
+        document.addEventListener('DOMContentLoaded', function() {
+            function renderUserDropdown() {
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                const userToggle = document.getElementById('user-dropdown-toggle');
+                const userDropdown = document.getElementById('user-dropdown');
+                if (!userToggle || !userDropdown) return;
+                if (!isLoggedIn) {
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                    userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
+                } else {
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                    userDropdown.innerHTML = `
+                        <div class="user-info">
+                            <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
+                            <div class="user-details"><h4>Phạm Hoàng Đình</h4><span class="user-role">Quản trị viên</span></div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                    `;
+                }
+                setTimeout(() => {
+                    const loginItem = document.getElementById('login-menu-item');
+                    if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
+                    const logoutItem = document.getElementById('logout-menu-item');
+                    if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+                }, 100);
+            }
+            renderUserDropdown();
+            window.addEventListener('storage', renderUserDropdown);
+            // Dropdown show/hide
+            const userToggle = document.getElementById('user-dropdown-toggle');
+            const userDropdown = document.getElementById('user-dropdown');
+            if(userToggle && userDropdown){
+                userToggle.addEventListener('click', function(e){
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('show');
+                });
+                document.addEventListener('click', function(e){
+                    if(!userDropdown.contains(e.target) && e.target !== userToggle){
+                        userDropdown.classList.remove('show');
+                    }
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sự kiện cho nút cập nhật và xóa trong bảng dịch vụ
+            document.querySelectorAll('#serviceTable .icon-edit').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const row = btn.closest('tr');
+                    const maDV = row ? row.children[2].textContent.trim() : '';
+                    const tenDV = row ? row.children[3].textContent.trim() : '';
+                });
+            });
+            document.querySelectorAll('#serviceTable .icon-danger').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const row = btn.closest('tr');
+                    const maDV = row ? row.children[2].textContent.trim() : '';
+                    const tenDV = row ? row.children[3].textContent.trim() : '';
+
+                });
+            });
+        });
+
+        (function(){
+          // Modal elements
+          const modal = document.getElementById('editServiceModal');
+          const form = document.getElementById('editServiceForm');
+          const maDV = document.getElementById('editMaDV');
+          const tenDV = document.getElementById('editTenDV');
+          const ngayCapNhat = document.getElementById('editNgayCapNhat');
+          const hienThi = document.getElementById('editHienThi');
+          let editingRow = null;
+          // Open modal and fill data
+          document.querySelectorAll('#serviceTable .icon-edit').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              editingRow = btn.closest('tr');
+              if (!editingRow) return;
+              maDV.value = editingRow.children[2].textContent.trim();
+              tenDV.value = editingRow.children[3].textContent.trim();
+              // Convert dd-mm-yyyy to yyyy-mm-dd for input type=date
+              const dateText = editingRow.children[4].textContent.trim();
+              const [d,m,y] = dateText.split('-');
+              ngayCapNhat.value = y+'-'+m+'-'+d;
+              hienThi.checked = !!editingRow.children[5].querySelector('input[type="checkbox"]:checked');
+              modal.style.display = 'flex';
+              setTimeout(()=>{maDV.focus();},100);
+            });
+          });
+          // Close modal
+          document.getElementById('cancelEditService').onclick = function(){ modal.style.display = 'none'; editingRow = null; };
+          modal.onclick = function(e){ if(e.target===modal){ modal.style.display='none'; editingRow=null; } };
+          // Save changes
+          form.onsubmit = function(e){
+            e.preventDefault();
+            if (!editingRow) return;
+            editingRow.children[2].textContent = maDV.value;
+            editingRow.children[3].textContent = tenDV.value;
+            // Convert yyyy-mm-dd to dd-mm-yyyy
+            const [y,m,d] = ngayCapNhat.value.split('-');
+            editingRow.children[4].textContent = [d,m,y].join('-');
+            const cb = editingRow.children[5].querySelector('input[type="checkbox"]');
+            if(cb) cb.checked = hienThi.checked;
+            modal.style.display = 'none';
+            editingRow = null;
+          };
+        })();
+
+        (function(){
+          const modal = document.getElementById('deleteServiceModal');
+          const info = document.getElementById('deleteServiceInfo');
+          const btnCancel = document.getElementById('cancelDeleteService');
+          const btnConfirm = document.getElementById('confirmDeleteService');
+          let deletingRow = null;
+          document.querySelectorAll('#serviceTable .icon-danger').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              deletingRow = btn.closest('tr');
+              if (!deletingRow) return;
+              const maDV = deletingRow.children[2].textContent.trim();
+              const tenDV = deletingRow.children[3].textContent.trim();
+              info.textContent = `Bạn có chắc muốn xóa dịch vụ: ${maDV} - ${tenDV} không?`;
+              modal.style.display = 'flex';
+            });
+          });
+          btnCancel.onclick = function(){ modal.style.display = 'none'; deletingRow = null; };
+          btnConfirm.onclick = function(){
+            if (deletingRow) {
+              deletingRow.remove();
+            }
+            modal.style.display = 'none';
+            deletingRow = null;
+          };
+          modal.onclick = function(e){ if(e.target===modal){ modal.style.display='none'; deletingRow=null; } };
+        })();
+
+        (function(){
+          // Thêm dịch vụ mới
+          const addBtn = document.getElementById('addServiceBtn');
+          const modal = document.getElementById('editServiceModal');
+          const form = document.getElementById('editServiceForm');
+          const maDV = document.getElementById('editMaDV');
+          const tenDV = document.getElementById('editTenDV');
+          const ngayCapNhat = document.getElementById('editNgayCapNhat');
+          const hienThi = document.getElementById('editHienThi');
+          let isAddMode = false;
+          if(addBtn){
+            addBtn.onclick = function(){
+              isAddMode = true;
+              maDV.value = '';
+              tenDV.value = '';
+              ngayCapNhat.value = '';
+              hienThi.checked = true;
+              modal.style.display = 'flex';
+              setTimeout(()=>{maDV.focus();},100);
+            };
+          }
+          form.onsubmit = function(e){
+            e.preventDefault();
+            if(isAddMode){
+              // Thêm mới dịch vụ vào đầu bảng
+              const tbody = document.getElementById('service-table-body');
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td class="col-center"><input type="checkbox" title="Chọn dòng mới"></td>
+                <td class="col-center">Mới</td>
+                <td>${maDV.value}</td>
+                <td>${tenDV.value}</td>
+                <td>${ngayCapNhat.value.split('-').reverse().join('-')}</td>
+                <td class="col-center"><input type="checkbox" ${hienThi.checked ? 'checked' : ''} title="Hiển thị dịch vụ này"></td>
+                <td class="col-center action-icons">
+                  <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
+                  <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
+                </td>`;
+              tbody.prepend(tr);
+              // Gắn lại sự kiện cho nút sửa/xóa mới
+              tr.querySelector('.icon-edit').addEventListener('click', function(e){
+                e.preventDefault();
+                isAddMode = false;
+                maDV.value = tr.children[2].textContent.trim();
+                tenDV.value = tr.children[3].textContent.trim();
+                const dateText = tr.children[4].textContent.trim();
+                const [d,m,y] = dateText.split('-');
+                ngayCapNhat.value = y+'-'+m+'-'+d;
+                hienThi.checked = !!tr.children[5].querySelector('input[type="checkbox"]:checked');
+                modal.style.display = 'flex';
+                setTimeout(()=>{maDV.focus();},100);
+                editingRow = tr;
+              });
+              tr.querySelector('.icon-danger').addEventListener('click', function(e){
+                e.preventDefault();
+                deletingRow = tr;
+                const ma = tr.children[2].textContent.trim();
+                const ten = tr.children[3].textContent.trim();
+                document.getElementById('deleteServiceInfo').textContent = `Bạn có chắc muốn xóa dịch vụ: ${ma} - ${ten} không?`;
+                document.getElementById('deleteServiceModal').style.display = 'flex';
+              });
+              modal.style.display = 'none';
+              isAddMode = false;
+              return;
+            }
+            // ... giữ nguyên logic cập nhật cũ ...
+          };
+        })();
+    </script>
+
+</body>
+</html>

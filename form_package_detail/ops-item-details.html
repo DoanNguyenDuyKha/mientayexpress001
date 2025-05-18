@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết hàng hóa Đại lý</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        :root {
+            --form-primary-color: #FFD600;
+            --form-primary-hover: #FFB300;
+            --form-primary-light: #FFF9C4;
+            --form-secondary-color: #181818;
+            --form-success-color: #FFD600;
+            --form-danger-color: #FFD600;
+            --form-warning-color: #FFD600;
+            --form-light-gray: #f8f9fa;
+            --form-medium-gray: #e9ecef;
+            --form-dark-gray: #181818;
+            --form-border-color: rgba(255, 214, 0, 0.2);
+            --form-text-color: #181818;
+            --form-text-muted: #64748b;
+            --form-border-radius: 8px;
+            --form-spacing-unit: 8px;
+            --form-control-padding-y: 8px;
+            --form-control-padding-x: 12px;
+            --form-font-size-base: 14px;
+            --form-font-size-sm: 13px;
+            --form-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --form-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --form-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --form-transition: all 0.3s ease;
+        }
+
+        .agent-item-details-form {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: var(--form-font-size-base);
+            color: var(--form-text-color);
+            background-color: #fff;
+            border: 1px solid var(--form-border-color);
+            border-radius: var(--form-border-radius);
+            box-shadow: var(--form-shadow-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .agent-item-details-form .form-header {
+            background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%);
+            color: var(--form-primary-color);
+            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            border-bottom: 1px solid rgba(255, 214, 0, 0.1);
+        }
+
+        .agent-item-details-form .form-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: black;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .agent-item-details-form .form-header h2::before {
+            content: '\f0d6';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1.4em;
+            color: black;
+        }
+
+        .agent-item-details-form .header-controls {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--form-spacing-unit) * 1.5);
+        }
+
+        .agent-item-details-form .header-controls label {
+            color: black;
+            font-size: var(--form-font-size-sm);
+            font-weight: 500;
+        }
+
+        .agent-item-details-form .form-body {
+            padding: calc(var(--form-spacing-unit) * 2.5);
+            overflow-y: auto;
+            overflow-x: auto;
+            flex-grow: 1;
+            background-color: #fff;
+        }
+
+        .agent-item-details-form .modal-item-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: var(--form-font-size-sm);
+            min-width: 650px;
+        }
+
+        .agent-item-details-form .modal-item-table th,
+        .agent-item-details-form .modal-item-table td {
+            border: 1px solid var(--form-border-color);
+            padding: calc(var(--form-spacing-unit) * 1.25) var(--form-spacing-unit);
+            vertical-align: middle;
+            text-align: left;
+            transition: var(--form-transition);
+        }
+
+        .agent-item-details-form .modal-item-table thead th {
+            background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%);
+            color: black;
+            font-weight: 600;
+            white-space: nowrap;
+            border-bottom: 2px solid var(--form-primary-color);
+        }
+
+        .agent-item-details-form .modal-item-table tbody tr {
+            transition: var(--form-transition);
+        }
+
+        .agent-item-details-form .modal-item-table tbody tr:hover {
+            background-color: var(--form-primary-light);
+            transform: translateY(-1px);
+            box-shadow: var(--form-shadow-sm);
+        }
+
+        .agent-item-details-form .modal-item-table tfoot td {
+            border-top: 2px solid var(--form-primary-color);
+            font-weight: 600;
+            background: linear-gradient(90deg, #181818 0%, #2d2d2d 100%);
+            color: var(--form-primary-color);
+            font-size: var(--form-font-size-base);
+        }
+
+        .agent-item-details-form .form-control,
+        .agent-item-details-form .form-select {
+            display: block;
+            width: 100%;
+            padding: var(--form-control-padding-y) var(--form-control-padding-x);
+            font-size: var(--form-font-size-sm);
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--form-text-color);
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid var(--form-border-color);
+            border-radius: var(--form-border-radius);
+            transition: var(--form-transition);
+            min-height: 36px;
+        }
+
+        .agent-item-details-form .form-control:focus,
+        .agent-item-details-form .form-select:focus {
+            border-color: var(--form-primary-color);
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15);
+        }
+
+        .agent-item-details-form .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23FFD600' stroke='%23FFD600' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right var(--form-control-padding-x) center;
+            background-size: 16px 12px;
+            padding-right: calc(var(--form-control-padding-x) * 2.5);
+        }
+
+        .agent-item-details-form textarea.form-control {
+            min-height: 60px;
+            resize: vertical;
+            line-height: 1.4;
+        }
+
+        .agent-item-details-form .form-control[readonly] {
+            background-color: var(--form-light-gray);
+            opacity: 0.9;
+            cursor: default;
+        }
+
+        .agent-item-details-form .btn-add-row,
+        .agent-item-details-form .btn-delete-row {
+            background: black;
+            border: none;
+            padding: 6px;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+            border-radius: var(--form-border-radius);
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .agent-item-details-form .btn-add-row i {
+            color: #FFD600;
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        .agent-item-details-form .btn-add-row:hover i {
+            color: #FFB300;
+        }
+
+        .agent-item-details-form .btn-delete-row i {
+            color: #EF4444;
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        .agent-item-details-form .btn-delete-row:hover i {
+            color: #b91c1c;
+        }
+
+        .agent-item-details-form .btn-add-row:focus,
+        .agent-item-details-form .btn-delete-row:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #FFD60033;
+        }
+
+        .agent-item-details-form .btn-add-row:hover,
+        .agent-item-details-form .btn-delete-row:hover {
+            background: none;
+        }
+
+        .agent-item-details-form .form-actions {
+            padding: calc(var(--form-spacing-unit) * 2);
+            background: white;
+            border-top: 1px solid rgba(255, 214, 0, 0.1);
+            display: flex;
+            justify-content: flex-end;
+            gap: calc(var(--form-spacing-unit) * 1.5);
+            flex-shrink: 0;
+        }
+
+        .agent-item-details-form .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: calc(var(--form-spacing-unit) * 0.75);
+            padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5);
+            font-size: var(--form-font-size-base);
+            font-weight: 500;
+            border-radius: var(--form-border-radius);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: var(--form-transition);
+            min-width: 100px;
+        }
+
+        .agent-item-details-form .btn-cancel {
+            background-color: transparent;
+            color: var(--form-primary-color);
+            border-color: var(--form-primary-color);
+        }
+
+        .agent-item-details-form .btn-cancel:hover {
+            background-color: var(--form-primary-color);
+            color: var(--form-secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+        }
+
+        .agent-item-details-form .btn-confirm {
+            background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%);
+            color: var(--form-secondary-color);
+            border: none;
+            box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15);
+        }
+
+        .agent-item-details-form .btn-confirm:hover {
+            background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .agent-item-details-form {
+            animation: fadeIn 0.4s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container agent-item-details-form">
+    <div class="form-header">
+        <h2>Nhập chi tiết hàng hóa Đại lý</h2>
+        <div class="header-controls">
+             <label for="packageSelectModal">Kiện</label>
+             <select id="packageSelectModal" class="form-select">
+                 <option value="1" selected>01</option>
+                 <option value="2">02</option>
+                 <option value="3">03</option>
+             </select>
+        </div>
+    </div>
+    <div class="form-body">
+        <table class="data-table modal-item-table">
+            <thead>
+                <tr>
+                    <th>
+                        <button type="button" class="btn-add-row" title="Thêm dòng mới"><i class="fa-solid fa-plus"></i></button>
+                    </th>
+                    <th>Tên hàng hóa</th>
+                    <th>Số lượng</th>
+                    <th>Loại</th>
+                    <th>Đơn giá (USD)</th>
+                    <th>Tổng giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><button type="button" class="btn-delete-row" title="Xóa dòng này"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><input type="text" value="wooden Buddha Statue" class="form-control item-name"></td>
+                    <td><input type="number" value="10" class="form-control item-qty"></td>
+                    <td>
+                        <select class="form-select item-unit">
+                            <option value="PCE" selected>PCE</option>
+                            <option value="PCS">PCS</option>
+                            <option value="PKG">PKG</option>
+                            <option value="Rolls">Rolls</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="500" step="0.01" class="form-control item-price"></td>
+                    <td><input type="text" value="5000.00" class="form-control item-total" readonly></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="btn-delete-row" title="Xóa dòng này"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><input type="text" value="Dried shrimp" class="form-control item-name"></td>
+                    <td><input type="number" value="20" class="form-control item-qty"></td>
+                    <td>
+                        <select class="form-select item-unit">
+                             <option value="PCE">PCE</option>
+                             <option value="PCS" selected>PCS</option>
+                             <option value="PKG">PKG</option>
+                             <option value="Rolls">Rolls</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="10" step="0.01" class="form-control item-price"></td>
+                    <td><input type="text" value="200.00" class="form-control item-total" readonly></td>
+                </tr>
+                 <tr>
+                    <td><button type="button" class="btn-delete-row" title="Xóa dòng này"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><input type="text" value="Khô heo từ nhà SatraFood ngon hết xẩy" class="form-control item-name"></td>
+                    <td><input type="number" value="5" class="form-control item-qty"></td>
+                    <td>
+                        <select class="form-select item-unit">
+                             <option value="PCE">PCE</option>
+                             <option value="PCS">PCS</option>
+                             <option value="PKG" selected>PKG</option>
+                             <option value="Rolls">Rolls</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="3" step="0.01" class="form-control item-price"></td>
+                    <td><input type="text" value="15.00" class="form-control item-total" readonly></td>
+                 </tr>
+                 <tr>
+                    <td><button type="button" class="btn-delete-row" title="Xóa dòng này"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><textarea class="form-control item-name" rows="3">Cuộn nhãn sea food - Seafood sticker roll
+Manufacturer: 533/6 National Highway 1A, Quarter 1, An Phu Dong Ward, District 12, Ho Chi Minh City</textarea></td>
+                    <td><input type="number" value="6" class="form-control item-qty"></td>
+                    <td>
+                        <select class="form-select item-unit">
+                             <option value="PCE">PCE</option>
+                             <option value="PCS">PCS</option>
+                             <option value="PKG">PKG</option>
+                             <option value="Rolls" selected>Rolls</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="10" step="0.01" class="form-control item-price"></td>
+                    <td><input type="text" value="60.00" class="form-control item-total" readonly></td>
+                 </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">Tổng trị giá đơn hàng (USD):</td>
+                    <td id="modalGrandTotal">5275.00</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="form-actions">
+        <button type="button" class="btn btn-cancel modal-cancel-button">
+            <span class="icon-placeholder">❌</span> Hủy
+        </button>
+        <button type="button" class="btn btn-confirm modal-confirm-button">
+             <span class="icon-placeholder">✔️</span> Xác nhận
+        </button>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const formContainer = document.querySelector('.agent-item-details-form');
+        if (!formContainer) return;
+
+        const modalTableBody = formContainer.querySelector('.modal-item-table tbody');
+        const modalGrandTotalEl = formContainer.querySelector('#modalGrandTotal');
+        const addRowButton = formContainer.querySelector('.btn-add-row');
+
+        function formatCurrencyValue(value) {
+            const num = parseFloat(value) || 0;
+            return num.toFixed(2);
+        }
+
+        function calculateRowTotal(row) {
+            const qtyInput = row.querySelector('.item-qty');
+            const priceInput = row.querySelector('.item-price');
+            const totalInput = row.querySelector('.item-total');
+            const qty = parseFloat(qtyInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+            totalInput.value = formatCurrencyValue(qty * price);
+            calculateGrandTotal();
+        }
+
+        function calculateGrandTotal() {
+            let grandTotal = 0;
+            modalTableBody.querySelectorAll('tr').forEach(row => {
+                const totalInput = row.querySelector('.item-total');
+                grandTotal += parseFloat(totalInput.value) || 0;
+            });
+            modalGrandTotalEl.textContent = formatCurrencyValue(grandTotal);
+        }
+
+        function addRowListeners(row) {
+            const qtyInput = row.querySelector('.item-qty');
+            const priceInput = row.querySelector('.item-price');
+            const deleteButton = row.querySelector('.btn-delete-row');
+
+            if(qtyInput) qtyInput.addEventListener('input', () => calculateRowTotal(row));
+            if(priceInput) priceInput.addEventListener('input', () => calculateRowTotal(row));
+
+            if(deleteButton) {
+                deleteButton.addEventListener('click', () => {
+                    if (modalTableBody.querySelectorAll('tr').length > 1) {
+                       row.remove();
+                       calculateGrandTotal();
+                    } else {
+                       alert("Không thể xóa dòng cuối cùng.");
+                    }
+                });
+            }
+        }
+
+        modalTableBody.querySelectorAll('tr').forEach(addRowListeners);
+
+        if (addRowButton) {
+            addRowButton.addEventListener('click', () => {
+                const templateRow = modalTableBody.querySelector('tr:first-child');
+                if (templateRow) {
+                    const newRow = templateRow.cloneNode(true);
+
+                    newRow.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(input => input.value = '');
+                    newRow.querySelector('select.item-unit').selectedIndex = 0;
+                    const totalInput = newRow.querySelector('.item-total');
+                    if(totalInput) totalInput.value = formatCurrencyValue(0);
+
+                    modalTableBody.appendChild(newRow);
+                    addRowListeners(newRow);
+                    newRow.querySelector('input.item-name')?.focus();
+                } else {
+                    console.error("Không tìm thấy dòng mẫu để sao chép.");
+                    alert("Lỗi: Không thể thêm dòng mới.");
+                }
+            });
+        }
+
+        calculateGrandTotal();
+
+    })();
+</script>
+
+</body>
+</html>

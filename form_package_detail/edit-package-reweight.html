@@ -1,0 +1,376 @@
+<style>
+    .edit-package-params-form-correct-id {
+        --form-primary-color: #FFD600;
+        --form-primary-hover: #FFB300;
+        --form-secondary-color: #181818;
+        --form-success-color: #FFD600;
+        --form-danger-color: #EF4444;
+        --form-light-gray: #f8f9fa;
+        --form-border-color: rgba(255, 214, 0, 0.2);
+        --form-border-color-light: #eee;
+        --form-text-color: #181818;
+        --form-text-muted: #64748b;
+        --form-border-radius: 12px;
+        --form-spacing-unit: 10px;
+        --form-control-padding-y: 10px;
+        --form-control-padding-x: 16px;
+        --form-font-size-base: 15px;
+        --form-label-width: 130px;
+        --form-shadow-lg: 0 10px 15px rgba(0,0,0,0.10);
+        --form-transition: all 0.3s ease;
+    }
+
+    .edit-package-params-form-correct-id {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: var(--form-font-size-base);
+        color: var(--form-text-color);
+        background-color: #fff;
+        border: 1.5px solid var(--form-border-color);
+        border-radius: var(--form-border-radius);
+        box-shadow: var(--form-shadow-lg);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+        max-width: 650px;
+        width: 100%;
+        animation: fadeIn 0.4s ease-out;
+    }
+
+    .edit-package-params-form-correct-id .form-header {
+        background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%);
+        color: var(--form-primary-color);
+        padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5);
+        flex-shrink: 0;
+        border-bottom: 1.5px solid var(--form-primary-color);
+        display: flex;
+        align-items: center;
+        border-top-left-radius: var(--form-border-radius);
+        border-top-right-radius: var(--form-border-radius);
+    }
+    .edit-package-params-form-correct-id .form-header h2 {
+        margin: 0;
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: var(--form-secondary-color);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .edit-package-params-form-correct-id .form-header h2::before {
+        content: '\f496';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 1.4em;
+        color: var(--form-secondary-color);
+    }
+
+    .edit-package-params-form-correct-id #formPackageParamsModal {
+         display: flex;
+         flex-direction: column;
+         flex-grow: 1;
+         overflow: hidden;
+    }
+
+    .edit-package-params-form-correct-id .form-body {
+        padding: calc(var(--form-spacing-unit) * 2.5) calc(var(--form-spacing-unit) * 2.5);
+        flex-grow: 1;
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: var(--form-label-width) 1fr 1fr 1fr 1fr auto;
+        gap: calc(var(--form-spacing-unit) * 1.5) calc(var(--form-spacing-unit) * 1.2);
+        align-items: center;
+        background: #fff;
+    }
+
+    .edit-package-params-form-correct-id .grid-label,
+    .edit-package-params-form-correct-id .label-col3,
+    .edit-package-params-form-correct-id .dim-label {
+        grid-column: 1 / 2;
+        font-weight: 600;
+        color: var(--form-secondary-color);
+        text-align: right;
+        padding-right: var(--form-spacing-unit);
+        white-space: nowrap;
+        align-self: center;
+        font-size: 1em;
+    }
+    .edit-package-params-form-correct-id .label-col3 { grid-column: 1 / 2; }
+    .edit-package-params-form-correct-id .dim-label { font-size: var(--form-font-size-sm); color: var(--form-text-muted); align-self: center; font-weight: 500; }
+
+    .edit-package-params-form-correct-id .control-product-name { grid-column: 2 / 6; }
+    .edit-package-params-form-correct-id .control-dim-divisor { grid-column: 2 / 3; }
+
+    .edit-package-params-form-correct-id hr { border: none; border-top: 1.5px solid var(--form-border-color-light); margin: calc(var(--form-spacing-unit) * 0.8) 0; grid-column: 1 / -1; }
+
+    .edit-package-params-form-correct-id .dimension-headers { grid-column: 2 / 6; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: calc(var(--form-spacing-unit) * 1); margin-bottom: 2px; padding-left: 0; }
+    .edit-package-params-form-correct-id .dim-header-label { font-size: var(--form-font-size-sm); font-weight: 600; color: var(--form-primary-color); border: 1.5px solid var(--form-primary-color); padding: 2px 4px; text-align: center; border-radius: var(--form-border-radius); line-height: 1.2; background: #FFF9C4; }
+
+    .edit-package-params-form-correct-id .dim-input.col2 { grid-column: 2 / 3; }
+    .edit-package-params-form-correct-id .dim-input.col3 { grid-column: 3 / 4; }
+    .edit-package-params-form-correct-id .dim-input.col4 { grid-column: 4 / 5; }
+    .edit-package-params-form-correct-id .dim-input.col5 { grid-column: 5 / 6; }
+
+    .edit-package-params-form-correct-id .dimension-row-actions { grid-column: 6 / 7; display: flex; flex-direction: column; justify-content: flex-start; gap: calc(var(--form-spacing-unit) * 0.7); grid-row: 4 / span var(--dynamic-row-count, 3); margin-left: calc(var(--form-spacing-unit) * 0.5); }
+    .edit-package-params-form-correct-id .btn-dim-action {
+        background: none;
+        border: none;
+        color: #FFD600;
+        cursor: pointer;
+        font-size: 22px;
+        line-height: 1;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--form-border-radius);
+        transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .edit-package-params-form-correct-id .btn-dim-action.btn-add-dim-row {
+        color: #FFD600;
+    }
+    .edit-package-params-form-correct-id .btn-dim-action.btn-add-dim-row:hover {
+        color: #FFB300;
+        background: #FFF9C4;
+    }
+    .edit-package-params-form-correct-id .btn-dim-action.btn-remove-dim-row {
+        color: #EF4444;
+    }
+    .edit-package-params-form-correct-id .btn-dim-action.btn-remove-dim-row:hover {
+        color: #b91c1c;
+        background: #FFF0F0;
+    }
+
+    .edit-package-params-form-correct-id .control-item {
+        min-height: 38px;
+        padding: var(--form-control-padding-y) var(--form-control-padding-x);
+        font-size: var(--form-font-size-base);
+        line-height: 1.5;
+        color: var(--form-text-color);
+        background-color: #fff;
+        border: 1.5px solid #ffd600;
+        border-radius: var(--form-border-radius);
+        transition: var(--form-transition);
+        box-sizing: border-box;
+        width: 100%;
+        box-shadow: none;
+    }
+    .edit-package-params-form-correct-id .dim-input { font-size: var(--form-font-size-sm); text-align: right; }
+    .edit-package-params-form-correct-id input[type="number"]::-webkit-inner-spin-button, .edit-package-params-form-correct-id input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    .edit-package-params-form-correct-id input[type="number"] { -moz-appearance: textfield; }
+    .edit-package-params-form-correct-id .control-item:focus { border-color: var(--form-primary-color); outline: 0; box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15); }
+
+    .edit-package-params-form-correct-id .form-actions {
+        padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5);
+        background: white;
+        border-top: 1.5px solid var(--form-primary-color);
+        display: flex;
+        justify-content: flex-end;
+        gap: calc(var(--form-spacing-unit) * 1.5);
+        flex-shrink: 0;
+        border-bottom-left-radius: var(--form-border-radius);
+        border-bottom-right-radius: var(--form-border-radius);
+    }
+    .edit-package-params-form-correct-id .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: calc(var(--form-spacing-unit) * 0.8);
+        padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5);
+        font-size: var(--form-font-size-base);
+        font-weight: 600;
+        border-radius: var(--form-border-radius);
+        border: 1.5px solid transparent;
+        cursor: pointer;
+        transition: var(--form-transition);
+        min-width: 100px;
+    }
+    .edit-package-params-form-correct-id .btn-cancel {
+        background-color: transparent;
+        color: var(--form-primary-color);
+        border-color: var(--form-primary-color);
+    }
+    .edit-package-params-form-correct-id .btn-cancel:hover {
+        background-color: var(--form-primary-color);
+        color: var(--form-secondary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+    }
+    .edit-package-params-form-correct-id .btn-confirm {
+        background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%);
+        color: var(--form-secondary-color);
+        border: none;
+        box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15);
+    }
+    .edit-package-params-form-correct-id .btn-confirm:hover {
+        background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+    }
+    .edit-package-params-form-correct-id .btn:focus-visible {
+        outline: 1.5px solid var(--form-primary-color);
+        outline-offset: 1px;
+        box-shadow: none;
+    }
+    .edit-package-params-form-correct-id .btn:active {
+        transform: scale(0.98);
+    }
+    .edit-package-params-form-correct-id .btn .icon-placeholder {
+        font-size: 1.1em;
+        line-height: 1;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<div class="form-container edit-package-params-form-correct-id">
+    <div class="form-header">
+        <h2>Chỉnh sửa thông số Kiện hàng (Re-Weight)</h2>
+    </div>
+
+    <form id="formPackageParamsModal">
+
+        <div class="form-body form-grid">
+
+            <label for="productNameModalCorrectId" class="grid-label">Tên sản phẩm:</label>
+            <input type="text" id="productNameModalCorrectId" name="product_name" class="control-item control-product-name">
+
+            <label for="dimDivisorModalCorrectId" class="grid-label">DIM kiện hàng:</label>
+            <input type="number" id="dimDivisorModalCorrectId" name="dim_divisor" class="control-item control-dim-divisor" value="5000">
+
+            <hr>
+
+            <div class="dimension-headers">
+                <span class="dim-header-label">Dài</span>
+                <span class="dim-header-label">Rộng</span>
+                <span class="dim-header-label">Cao</span>
+                <span class="dim-header-label">Cân nặng</span>
+            </div>
+
+            <label class="dim-label">Kích thước (Cm):</label>
+            <input type="number" step="any" name="length[]" placeholder="" class="control-item dim-input col2" value="30.51">
+            <input type="number" step="any" name="width[]" placeholder="" class="control-item dim-input col3" value="">
+            <input type="number" step="any" name="height[]" placeholder="" class="control-item dim-input col4" value="">
+            <input type="number" step="any" name="weight[]" placeholder="" class="control-item dim-input col5" value="">
+
+             <label class="dim-label">Kích thước (Cm):</label>
+             <input type="number" step="any" name="length[]" placeholder="" class="control-item dim-input col2" value="12.51">
+             <input type="number" step="any" name="width[]" placeholder="" class="control-item dim-input col3" value="30.51">
+             <input type="number" step="any" name="height[]" placeholder="" class="control-item dim-input col4" value="42">
+             <input type="number" step="any" name="weight[]" placeholder="" class="control-item dim-input col5" value="13.21">
+
+             <label class="dim-label">Kích thước (Cm):</label>
+             <input type="number" step="any" name="length[]" placeholder="" class="control-item dim-input col2" value="12">
+             <input type="number" step="any" name="width[]" placeholder="" class="control-item dim-input col3" value="30.51">
+             <input type="number" step="any" name="height[]" placeholder="" class="control-item dim-input col4" value="23">
+             <input type="number" step="any" name="weight[]" placeholder="" class="control-item dim-input col5" value="8.5">
+
+            <div class="dimension-row-actions">
+                 <button type="button" class="btn-dim-action btn-add-dim-row" title="Thêm dòng">+</button>
+                 <button type="button" class="btn-dim-action btn-remove-dim-row" title="Xóa dòng cuối">×</button>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn btn-cancel modal-cancel-button"> <span class="icon-placeholder">ⓧ</span> Hủy</button>
+            <button type="button" class="btn btn-confirm modal-confirm-button"> <span class="icon-placeholder">✓</span> Xác nhận</button>
+        </div>
+
+    </form>
+
+    <script>
+        (function() {
+            const form = document.getElementById('formPackageParamsModal');
+            if (!form) {
+                console.error("Lỗi script con: Không tìm thấy thẻ form#formPackageParamsModal");
+                return;
+            }
+
+            const formBody = form.querySelector('.form-body');
+            const addButton = form.querySelector('.btn-add-dim-row');
+            const removeButton = form.querySelector('.btn-remove-dim-row');
+            const actionsContainer = form.querySelector('.dimension-row-actions');
+            const headerRow = form.querySelector('.dimension-headers');
+
+            if (!formBody || !addButton || !removeButton || !actionsContainer || !headerRow) {
+                console.error("Không tìm thấy các thành phần cần thiết cho script thêm/xóa dòng v3.");
+                return;
+            }
+
+            const referenceNodeForInsert = actionsContainer;
+
+            function createDimensionRowElements() {
+                const label = document.createElement('label');
+                label.className = 'dim-label';
+                label.textContent = 'Kích thước (Cm):';
+
+                const inputLength = document.createElement('input');
+                inputLength.type = 'number'; inputLength.step = 'any'; inputLength.name = 'length[]';
+                inputLength.className = 'control-item dim-input col2';
+
+                const inputWidth = document.createElement('input');
+                inputWidth.type = 'number'; inputWidth.step = 'any'; inputWidth.name = 'width[]';
+                inputWidth.className = 'control-item dim-input col3';
+
+                const inputHeight = document.createElement('input');
+                inputHeight.type = 'number'; inputHeight.step = 'any'; inputHeight.name = 'height[]';
+                inputHeight.className = 'control-item dim-input col4';
+
+                const inputWeight = document.createElement('input');
+                inputWeight.type = 'number'; inputWeight.step = 'any'; inputWeight.name = 'weight[]';
+                inputWeight.className = 'control-item dim-input col5';
+
+                return [label, inputLength, inputWidth, inputHeight, inputWeight];
+            }
+
+            function removeLastRow() {
+                 const dimLabels = formBody.querySelectorAll('.dim-label');
+                 const dimInputs = formBody.querySelectorAll('.dim-input');
+
+                 if (dimLabels.length > 1) {
+                     const elementsToRemove = [
+                         dimLabels[dimLabels.length - 1],
+                         ...Array.from(dimInputs).slice(-4)
+                     ];
+                     elementsToRemove.forEach(el => {
+                         if (el && el.parentNode === formBody) {
+                             formBody.removeChild(el);
+                         }
+                     });
+                     updateActionsRowSpan();
+                 } else {
+                     alert("Phải có ít nhất một dòng kích thước.");
+                 }
+            }
+
+            function addRow() {
+                const newRowElements = createDimensionRowElements();
+                newRowElements.forEach(el => {
+                    formBody.insertBefore(el, referenceNodeForInsert);
+                });
+                updateActionsRowSpan();
+                const firstInputNewRow = newRowElements[1];
+                if(firstInputNewRow) firstInputNewRow.focus();
+            }
+
+             function updateActionsRowSpan() {
+                const dimensionRowCount = formBody.querySelectorAll('.dim-label').length;
+                const startRow = 4;
+                actionsContainer.style.gridRow = `${startRow} / span ${dimensionRowCount}`;
+            }
+
+            removeButton.addEventListener('click', removeLastRow);
+            addButton.addEventListener('click', addRow);
+            updateActionsRowSpan();
+
+            console.log("Đã gắn listener thêm/xóa dòng kích thước - ID form OK.");
+
+        })();
+    </script>
+
+</div>

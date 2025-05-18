@@ -1,0 +1,56 @@
+@import url('customer-list.css');
+
+/* Chỉ giữ lại override cho modal nhân viên nếu muốn nét riêng, KHÔNG override notification, announcement, dropdown... */
+:root {
+    --employee-accent: #2563eb;
+    --employee-accent-hover: #1d4ed8;
+}
+
+/* Đổi màu nhận diện cho modal nhân viên */
+#addEmployeeModal .modal-header,
+#editEmployeeModal .modal-header,
+#deleteEmployeeModal .modal-header,
+#employeeDetailModal .modal-header {
+    background: var(--employee-accent);
+}
+#addEmployeeModal .modal-header h3,
+#editEmployeeModal .modal-header h3,
+#deleteEmployeeModal .modal-header h3,
+#employeeDetailModal .modal-header h3,
+#addEmployeeModal .modal-close,
+#editEmployeeModal .modal-close,
+#deleteEmployeeModal .modal-close,
+#employeeDetailModal .modal-close {
+    color: #fff;
+}
+#addEmployeeModal .btn-primary,
+#editEmployeeModal .btn-primary,
+#employeeDetailModal .btn-primary {
+    background: var(--employee-accent);
+}
+#addEmployeeModal .btn-primary:hover,
+#editEmployeeModal .btn-primary:hover,
+#employeeDetailModal .btn-primary:hover {
+    background: var(--employee-accent-hover);
+}
+#deleteEmployeeModal .btn-danger {
+    background: #ef4444;
+}
+#deleteEmployeeModal .btn-danger:hover {
+    background: #b91c1c;
+}
+
+/* Đổi màu nút thêm nhân viên */
+.btn-add-employee {
+    background: var(--employee-accent);
+    color: #fff;
+}
+.btn-add-employee:hover {
+    background: var(--employee-accent-hover);
+}
+
+/* Table header màu xanh dương */
+.card-header {
+    background: linear-gradient(90deg, var(--employee-accent) 0%, var(--employee-accent-light) 100%);
+    color: #fff;
+} 

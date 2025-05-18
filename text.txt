@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - Mien Tay Express</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/package_manager.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../images/logo-removebg.png" alt="Mien Tay Express Logo" class="logo">
+        </div>
+        <nav class="menu-items" aria-label="Main Navigation">
+             <ul>
+                 <li><a href="home.html" class="active"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
+                 <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
+                     <div class="submenu">
+                         <ul>
+                             <li><a href="package_manager.html"><i class="fa-solid fa-box-archive icon"></i><span class="menu-text">Quản lý đơn hàng</span></a></li>
+                             <li><a href="straking-bill-of-lading-status.html"><i class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng thái</span></a></li>
+                             <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận chuyển</span></a></li>
+                             <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản lý chi nhánh</span></a></li>
+                             <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
+                 <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                              <li><a href="#"><span class="menu-text">Danh sách KH</span></a></li>
+                              <li><a href="#"><span class="menu-text">Thêm mới KH</span></a></li>
+                          </ul>
+                      </div>
+                 </li>
+                  <li>
+                      <a href="#" class="submenu-parent"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QL NHÂN SỰ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                              <li><a href="#"><span class="menu-text">Danh sách NV</span></a></li>
+                              <li><a href="#"><span class="menu-text">Phân quyền</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
+                  <li>
+                      <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                       <div class="submenu">
+                          <ul>
+                              <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
+                              <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ DỤNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                             <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
+                             <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+             </ul>
+         </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <main class="main-content">
+        <header class="header">
+            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu" aria-controls="sidebar" aria-expanded="false" style="display: inline-flex;"><i class="fa-solid fa-bars"></i></button>
+            <div class="header-left">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon" id="mobile-search-toggle"></i>
+                    <input type="text" class="header-search-input" placeholder="Mã vận đơn / Tracking ID...">
+                    <div class="mobile-search-overlay" id="mobile-search-overlay" style="display:none;">
+                        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Tìm kiếm...">
+                        <button id="mobile-search-close" class="icon-button" type="button" aria-label="Đóng tìm kiếm"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions" style="display: flex; align-items: center; gap: 1.2rem; margin-left: auto;">
+                <div class="notification-wrapper">
+                    <button class="notification-button" id="notification-button" title="Thông báo">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div class="notification-dropdown" id="notification-dropdown">
+                        <div class="dropdown-header">Thông báo</div>
+                        <ul class="notification-list" id="notification-list">
+                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024" data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada." data-timestamp="2024-07-25 13:53:27">
+                                <div class="item-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Dời Cut off Canada 24/08/2024</div>
+                                    <div class="item-time">25 Jul 2024</div>
+                                </div>
+                            </li>
+                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống" data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này." data-timestamp="2024-07-28 10:00:00">
+                                <div class="item-icon"><i class="fa-solid fa-wrench"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Cập nhật hệ thống 30/07</div>
+                                    <div class="item-time">28 Jul 2024</div>
+                                </div>
+                            </li>
+                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới" data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ." data-timestamp="2024-07-20 09:00:00">
+                                <div class="item-icon"><i class="fa-solid fa-tags"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Khuyến mãi hè 2024!</div>
+                                    <div class="item-time">20 Jul 2024</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="dropdown-footer"><a href="#">Xem tất cả</a></div>
+                    </div>
+                </div>
+                <div class="user-container" style="position: relative;">
+                    <div class="user-dropdown-toggle" id="user-dropdown-toggle" style="display: flex; align-items: center; gap: 6px; background: #6366f1; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
+                        <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
+                        <i class="fa-solid fa-chevron-down user-arrow" style="color: #fff; font-size: 1em;"></i>
+                </div>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </div>
+                            <div class="user-details">
+                                <h4>Nguyễn Văn A</h4>
+                                <span class="user-role">Quản trị viên</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+            </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper dashboard-wrapper">
+            <section class="welcome-header">
+                <h1 id="welcome-message">Chào mừng trở lại, Phạm Hoàng Đình!</h1>
+                <p>Tổng quan nhanh về hoạt động hôm nay của bạn.</p>
+            </section>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon icon-orders"><i class="fa-solid fa-box-open"></i></div>
+                    <div class="stat-content">
+                        <div class="stat-value">125</div>
+                        <div class="stat-label">Đơn hàng mới (hôm nay)</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-pending"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div class="stat-content">
+                        <div class="stat-value">42</div>
+                        <div class="stat-label">Đang vận chuyển</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-revenue"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div class="stat-content">
+                        <div class="stat-value">15.6M</div>
+                        <div class="stat-label">Doanh thu (tháng này)</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-issues"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="stat-content">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Cần chú ý</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="quick-actions">
+                <h2>Truy cập nhanh</h2>
+                <div class="action-buttons-group">
+                    <a href="create-package.html" class="button primary"><i class="fa-solid fa-plus"></i> Tạo đơn hàng</a>
+                    <a href="package_manager.html" class="button secondary"><i class="fa-solid fa-list-check"></i> Xem đơn hàng</a>
+                    <a href="#" class="button"><i class="fa-solid fa-magnifying-glass-chart"></i> Theo dõi vận đơn</a>
+                    <a href="service-management.html" class="button"><i class="fa-solid fa-chart-line"></i> Xem báo cáo</a>
+                </div>
+            </section>
+
+            <section class="charts-section">
+                <div class="chart-container card">
+                    <h3>Đơn hàng theo trạng thái</h3>
+                    <div class="chart-placeholder">
+                        <canvas id="orderStatusChart"></canvas>
+                        <p class="chart-fallback" style="display: none;">Biểu đồ không khả dụng.</p>
+                    </div>
+                </div>
+                <div class="chart-container card">
+                    <h3>Doanh thu 6 tháng gần nhất</h3>
+                    <div class="chart-placeholder">
+                         <canvas id="revenueChart"></canvas>
+                         <p class="chart-fallback" style="display: none;">Biểu đồ không khả dụng.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recent-activity card">
+                <h2>Hoạt động gần đây</h2>
+                <ul id="activity-list">
+                    <li><span class="activity-icon icon-new"><i class="fa-solid fa-plus"></i></span><span class="activity-desc">Đơn hàng <strong>MTE240815712</strong> vừa được tạo bởi <em>Alice H.B</em>.</span><span class="activity-time">2 phút trước</span></li>
+                    <li><span class="activity-icon icon-update"><i class="fa-solid fa-truck"></i></span><span class="activity-desc">Đơn hàng <strong>MTE240814998</strong> đã cập nhật trạng thái: <strong>Đang phát hàng</strong>.</span><span class="activity-time">15 phút trước</span></li>
+                    <li><span class="activity-icon icon-complete"><i class="fa-solid fa-check-double"></i></span><span class="activity-desc">Đơn hàng <strong>MTE240813015</strong> đã <strong>Hoàn tất</strong>.</span><span class="activity-time">1 giờ trước</span></li>
+                    <li><span class="activity-icon icon-new"><i class="fa-solid fa-plus"></i></span><span class="activity-desc">Đơn hàng <strong>MTE240815616</strong> vừa được tạo bởi <em>Trần Q.Đ</em>.</span><span class="activity-time">3 giờ trước</span></li>
+                    <li><span class="activity-icon icon-alert"><i class="fa-solid fa-flag"></i></span><span class="activity-desc">Đơn hàng <strong>MTE240812550</strong> cần kiểm tra thông tin người nhận.</span><span class="activity-time">Hôm qua</span></li>
+                </ul>
+                <div class="card-footer-link">
+                    <a href="package_manager.html">Xem tất cả hoạt động →</a>
+                </div>
+            </section>
+
+             <footer class="site-footer">
+                 Miền Tây Express © <span id="current-year">2025</span>. All rights reserved. Design by Nina Co.,Ltd
+             </footer>
+
+        </div>
+
+        <div class="announcement-overlay" id="announcement-overlay">
+             <div class="announcement-box" id="announcement-box">
+                <div class="announcement-header"><h3 id="announcement-title"></h3><button class="announcement-close-btn" id="announcement-close-btn" title="Đóng thông báo">×</button></div>
+                <div class="announcement-body" id="announcement-body"></div>
+                <div class="announcement-footer"><span id="announcement-timestamp"></span></div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const body = document.body;
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mobileSidebarToggleBtn = document.getElementById('mobile-sidebar-toggle');
+        const desktopSidebarToggleBtn = document.querySelector('.sidebar-toggle-desktop');
+        const usernameDisplay = document.getElementById('username-display');
+        const welcomeMessageElement = document.getElementById('welcome-message');
+        const currentDateSpan = document.getElementById('current-date');
+        const currentTimeSpan = document.getElementById('current-time');
+        const currentYearSpan = document.getElementById('current-year');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const notificationButton = document.getElementById('notification-button');
+        const notificationDropdown = document.getElementById('notification-dropdown');
+        const notificationList = document.getElementById('notification-list');
+        const announcementOverlay = document.getElementById('announcement-overlay');
+        const announcementBox = document.getElementById('announcement-box');
+        const announcementCloseBtn = document.getElementById('announcement-close-btn');
+        const announcementTitle = document.getElementById('announcement-title');
+        const announcementBody = document.getElementById('announcement-body');
+        const announcementTimestamp = document.getElementById('announcement-timestamp');
+        const serviceTableBody = document.getElementById('service-table-body');
+        const selectAllCheckbox = document.getElementById('select-all-checkbox');
+
+
+        const manageBodyScroll = () => {
+            const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
+            const isAnnounceVisible = announcementOverlay && announcementOverlay.classList.contains('visible');
+            const isAnyOtherModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
+            if (isSidebarOpen || isAnnounceVisible || isAnyOtherModalVisible) {
+                body.classList.add('overflow-hidden');
+            } else {
+                body.classList.remove('overflow-hidden');
+            }
+        };
+
+        function toggleSidebarMobileOrDesktop() {
+            if (window.innerWidth > 768) {
+                // Desktop: thu/phóng sidebar
+                body.classList.toggle('sidebar-collapsed');
+            } else {
+                // Mobile: mở/đóng sidebar
+                body.classList.toggle('sidebar-mobile-open');
+                const isOpen = body.classList.contains('sidebar-mobile-open');
+                if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen));
+            }
+        }
+        function toggleSidebarDesktop() {
+            body.classList.toggle('sidebar-collapsed');
+            const isCollapsed = body.classList.contains('sidebar-collapsed');
+            if (desktopSidebarToggleBtn) {
+                desktopSidebarToggleBtn.title = isCollapsed ? "Phóng Sidebar" : "Thu Sidebar";
+                 desktopSidebarToggleBtn.querySelector('i').style.transform = isCollapsed ? 'rotate(180deg)' : '';
+            }
+            if (isCollapsed) {
+                document.querySelectorAll('.menu-items .submenu.active').forEach(submenu => {
+                    submenu.classList.remove('active');
+                    submenu.previousElementSibling?.classList.remove('active');
+                });
+            }
+        }
+        function toggleSubmenu(event) {
+            event.preventDefault();
+            const parentLink = event.currentTarget;
+            const submenuWrapper = parentLink.nextElementSibling;
+            if (!submenuWrapper || !submenuWrapper.classList.contains('submenu')) return;
+            if (!parentLink.classList.contains('active')) {
+                document.querySelectorAll('.menu-items .submenu-parent.active').forEach(activeParent => {
+                    if (activeParent !== parentLink) {
+                        activeParent.classList.remove('active');
+                        activeParent.nextElementSibling?.classList.remove('active');
+                    }
+                });
+            }
+            submenuWrapper.classList.toggle('active');
+            parentLink.classList.toggle('active');
+        }
+        function initializeActiveSubmenu() {
+             const activeLink = document.querySelector('.sidebar .menu-items > li > a.active');
+             const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
+             if (activeSubmenuLink) {
+                 const submenuDiv = activeSubmenuLink.closest('.submenu');
+                 const parentLink = submenuDiv?.previousElementSibling;
+                 if (submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
+                      if (!activeLink || activeLink !== parentLink) {
+                           submenuDiv.classList.add('active');
+                           parentLink.classList.add('active');
+                      }
+                 }
+             }
+        }
+
+        function updateDateTime() {
+             const now = new Date();
+             const optionsDate = { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' };
+             const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+             try {
+                 let dayOfWeek; switch (now.getDay()) { case 0: dayOfWeek = "Sun"; break; case 1: dayOfWeek = "Mon"; break; case 2: dayOfWeek = "Tue"; break; case 3: dayOfWeek = "Wed"; break; case 4: dayOfWeek = "Thu"; break; case 5: dayOfWeek = "Fri"; break; case 6: dayOfWeek = "Sat"; break; default: dayOfWeek = ""; }
+                 const dateString = `${dayOfWeek} ${now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+                 if (currentDateSpan) currentDateSpan.textContent = dateString;
+                 if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString('en-US', optionsTime);
+             } catch (e) { if (currentDateSpan) currentDateSpan.textContent = now.toLocaleDateString(); if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString(); }
+             if (currentYearSpan) currentYearSpan.textContent = now.getFullYear();
+        }
+        function toggleFullscreen() {
+             if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(err => console.error(`Fullscreen error: ${err.message}`)); } else if (document.exitFullscreen) { document.exitFullscreen(); }
+        }
+        function handleFullscreenChange() {
+            const isFullscreen = !!document.fullscreenElement; const icon = fullscreenBtn?.querySelector('i'); if(icon){ icon.classList.toggle('fa-expand', !isFullscreen); icon.classList.toggle('fa-compress', isFullscreen); } if(fullscreenBtn) { fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'); }
+        }
+
+        function toggleNotificationDropdown() {
+            if (notificationDropdown) notificationDropdown.classList.toggle('visible');
+        }
+        function closeNotificationDropdown() {
+             if (notificationDropdown) notificationDropdown.classList.remove('visible');
+        }
+
+        function showAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.add('visible');
+                manageBodyScroll();
+            }
+        }
+        function closeAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.remove('visible');
+                manageBodyScroll();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM loaded - Initializing Dashboard...");
+            initializeActiveSubmenu();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobileOrDesktop);
+            if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarDesktop);
+            else { console.error("Desktop sidebar toggle button not found!"); }
+            document.querySelectorAll('.menu-items .submenu-parent').forEach(link => link.addEventListener('click', toggleSubmenu));
+            if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+            if (notificationButton) notificationButton.addEventListener('click', (event) => { event.stopPropagation(); toggleNotificationDropdown(); });
+            if (notificationList) {
+                notificationList.addEventListener('click', (event) => {
+                    const clickedItem = event.target.closest('.notification-item');
+                    if (clickedItem && announcementTitle && announcementBody && announcementTimestamp) {
+                        const title = clickedItem.dataset.title || 'Thông báo';
+                        const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
+                        const timestamp = clickedItem.dataset.timestamp || '';
+                        announcementTitle.textContent = title;
+                        announcementBody.innerHTML = '';
+                        bodyText.split('||').forEach(paragraphText => {
+                            if(paragraphText.trim()) {
+                                const p = document.createElement('p');
+                                p.textContent = paragraphText.trim();
+                                announcementBody.appendChild(p);
+                            }
+                        });
+                        announcementTimestamp.textContent = timestamp;
+                        showAnnouncement();
+                        closeNotificationDropdown();
+                    }
+                });
+            }
+            document.addEventListener('click', (event) => {
+                if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
+                    if (!notificationDropdown.contains(event.target) && event.target !== notificationButton && !notificationButton.contains(event.target)) {
+                        closeNotificationDropdown();
+                    }
+                }
+            });
+
+            if (announcementCloseBtn) announcementCloseBtn.addEventListener('click', closeAnnouncement);
+            if (announcementOverlay) announcementOverlay.addEventListener('click', (event) => { if (event.target === announcementOverlay) closeAnnouncement(); });
+
+            if (usernameDisplay && welcomeMessageElement) {
+                 welcomeMessageElement.textContent = `Chào mừng trở lại, ${usernameDisplay.textContent}!`;
+             }
+
+             const setupCharts = () => {
+                 const showFallback = (canvasId) => {
+                      const canvas = document.getElementById(canvasId);
+                      const fallback = canvas?.parentElement?.querySelector('.chart-fallback');
+                      if (fallback) fallback.style.display = 'block';
+                 };
+
+                 if (typeof Chart === 'undefined') {
+                      console.warn("Chart.js library not loaded.");
+                      showFallback('orderStatusChart');
+                      showFallback('revenueChart');
+                      return;
+                 }
+
+                 const orderStatusCtx = document.getElementById('orderStatusChart')?.getContext('2d');
+                 if (orderStatusCtx) {
+                      new Chart(orderStatusCtx, { type: 'doughnut', data: { labels: ['Mới tạo', 'Đang xử lý', 'Đang giao', 'Hoàn tất', 'Hủy'], datasets: [{ label: 'Trạng thái đơn hàng', data: [15, 42, 35, 210, 8], backgroundColor: ['#3b82f6', '#f97316', '#facc15', '#16a34a', '#64748b'], borderColor: '#ffffff', borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 15 } } } } });
+                 } else { showFallback('orderStatusChart'); }
+
+                 const revenueCtx = document.getElementById('revenueChart')?.getContext('2d');
+                 if (revenueCtx) {
+                      new Chart(revenueCtx, { type: 'line', data: { labels: ['Thg 2', 'Thg 3', 'Thg 4', 'Thg 5', 'Thg 6', 'Thg 7'], datasets: [{ label: 'Doanh thu (Triệu VND)', data: [8.5, 10.2, 9.8, 12.1, 14.5, 15.6], borderColor: '#0891b2', backgroundColor: 'rgba(8, 145, 178, 0.1)', fill: true, tension: 0.3 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } } });
+                 } else { showFallback('revenueChart'); }
+             };
+             setTimeout(setupCharts, 100);
+
+            console.log("Full Initialization complete.");
+        });
+
+        // --- Dropdown user ---
+        const userToggle = document.getElementById('user-dropdown-toggle');
+        const userDropdown = document.getElementById('user-dropdown');
+        if(userToggle && userDropdown){
+            userToggle.addEventListener('click', function(e){
+                e.stopPropagation();
+                userDropdown.classList.toggle('show');
+            });
+            document.addEventListener('click', function(e){
+                if(!userDropdown.contains(e.target) && e.target !== userToggle){
+                    userDropdown.classList.remove('show');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+trên màn hình mobile tôi muốn phần trên ảnh tôi chụp trở thành 1 combobox với đầy đủ các tiêu đề phân loại ở trong combobox đó và vẫn giữ được tính năng phân loại đơn hàng như trên màn hình lớn  

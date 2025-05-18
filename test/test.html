@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - Mien Tay Express</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/customer-list.css">
+    <link rel="stylesheet" href="../css/package_manager.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../images/logo-removebg.png" alt="Mien Tay Express Logo" class="logo">
+        </div>
+        <nav class="menu-items" aria-label="Main Navigation">
+             <ul>
+                 <li><a href="home.html" class="active"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
+                 <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
+                     <div class="submenu">
+                         <ul>
+                             <li><a href="package_manager.html"><i class="fa-solid fa-box-archive icon"></i><span class="menu-text">Quản lý đơn hàng</span></a></li>
+                             <li><a href="straking-bill-of-lading-status.html"><i class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng thái</span></a></li>
+                             <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận chuyển</span></a></li>
+                             <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản lý chi nhánh</span></a></li>
+                             <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
+                 <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                              <li><a href="#"><span class="menu-text">Danh sách KH</span></a></li>
+                              <li><a href="#"><span class="menu-text">Thêm mới KH</span></a></li>
+                          </ul>
+                      </div>
+                 </li>
+                  <li>
+                      <a href="#" class="submenu-parent"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QL NHÂN SỰ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                              <li><a href="#"><span class="menu-text">Danh sách NV</span></a></li>
+                              <li><a href="#"><span class="menu-text">Phân quyền</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
+                  <li>
+                      <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                       <div class="submenu">
+                          <ul>
+                              <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
+                              <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ DỤNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                             <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
+                             <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+             </ul>
+         </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Danh sách khách hàng</h1>
+            <nav class="breadcrumb"><a href="#">Quản lý</a> / <span>Danh sách khách hàng</span></nav>
+        </header>
+        <div class="content-wrapper">
+            <div class="customer-actions-bar">
+                <div class="search-wrapper" style="flex: 1; position: relative;">
+                    <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); color: #6366f1;"></i>
+                    <input type="text" class="customer-search" placeholder="Tìm kiếm theo tên, SĐT, email..." style="padding-left: 3rem;">
+                </div>
+                <select class="customer-filter">
+                    <option value="">Tất cả loại khách hàng</option>
+                    <option value="personal">Cá nhân</option>
+                    <option value="business">Doanh nghiệp</option>
+                </select>
+                <button class="btn-add-customer">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>Thêm khách hàng</span>
+                </button>
+            </div>
+            <div class="customer-table-area card">
+                <table class="customer-table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã KH</th>
+                            <th>Họ tên</th>
+                            <th>SĐT</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Loại KH</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customer-table-body">
+                        <!-- Dữ liệu mẫu -->
+                        <tr>
+                            <td>1</td>
+                            <td>KH001</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>0909123456</td>
+                            <td>vana@gmail.com</td>
+                            <td>123 Lê Lợi, Q.1</td>
+                            <td>Cá nhân</td>
+                            <td><span class="status-active">Đang hoạt động</span></td>
+                            <td>
+                                <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
+                                <button class="icon-button icon-view" title="Xem chi tiết"><i class="fa-solid fa-eye"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>KH002</td>
+                            <td>Trần Thị B</td>
+                            <td>0912345678</td>
+                            <td>tranb@gmail.com</td>
+                            <td>456 Nguyễn Trãi, Q.5</td>
+                            <td>Doanh nghiệp</td>
+                            <td><span class="status-inactive">Ngừng</span></td>
+                            <td>
+                                <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
+                                <button class="icon-button icon-view" title="Xem chi tiết"><i class="fa-solid fa-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer class="site-footer">
+                Miền Tây Express © <span id="current-year"></span>. All rights reserved. Design by Nina Co.,Ltd
+            </footer>
+        </div>
+        <!-- Modal thêm/sửa/xem chi tiết sẽ bổ sung sau -->
+    </main>
+
+    <!-- Modal Thêm/Sửa Khách Hàng -->
+    <div id="customerModal">
+        <form id="customerForm">
+            <h3 id="customerModalTitle">Thêm khách hàng mới</h3>
+            
+            <div class="form-group">
+                <label>
+                    Họ tên khách hàng <span class="required">*</span>
+                    <input type="text" id="modalCustomerName" required placeholder="Nhập họ tên đầy đủ">
+                </label>
+            </div>
+            
+            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="form-group">
+                    <label>
+                        Số điện thoại <span class="required">*</span>
+                        <input type="tel" id="modalCustomerPhone" required pattern="0[0-9]{9}" placeholder="0xxxxxxxxx">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Email
+                        <input type="email" id="modalCustomerEmail" placeholder="example@email.com">
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    Địa chỉ liên hệ <span class="required">*</span>
+                    <input type="text" id="modalCustomerAddress" required placeholder="Nhập địa chỉ đầy đủ">
+                </label>
+            </div>
+            
+            <div class="form-row" style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: end;">
+                <div class="form-group">
+                    <label>
+                        Loại khách hàng
+                        <select id="modalCustomerType">
+                            <option value="">Chọn loại khách hàng</option>
+                            <option value="personal">Cá nhân</option>
+                            <option value="business">Doanh nghiệp</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <label class="checkbox-wrapper" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" id="modalCustomerActive" checked style="width: auto;">
+                        <span>Đang hoạt động</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    Ghi chú
+                    <textarea id="modalCustomerNote" rows="3" placeholder="Nhập ghi chú nếu có"></textarea>
+                </label>
+            </div>
+            
+            <div class="modal-actions">
+                <button type="button" id="cancelCustomerModal">Hủy</button>
+                <button type="submit">Lưu thông tin</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal Xem Chi Tiết Khách Hàng -->
+    <div id="customerDetailModal">
+        <div class="modal-content">
+            <h3>Chi tiết khách hàng</h3>
+            <div id="customerDetailContent" style="display: grid; gap: 1.2rem;"></div>
+            <div class="modal-actions">
+                <button type="button" id="closeCustomerDetail">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Xác nhận Xóa Khách Hàng -->
+    <div id="customerDeleteModal">
+        <div class="modal-content">
+            <h3>Xác nhận xóa</h3>
+            <div id="deleteCustomerInfo" style="text-align: center; color: #475569; font-size: 1.1rem;"></div>
+            <div class="modal-actions">
+                <button type="button" id="cancelDeleteCustomer">Hủy</button>
+                <button type="button" id="confirmDeleteCustomer">Xác nhận xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal elements
+        const customerModal = document.getElementById('customerModal');
+        const customerForm = document.getElementById('customerForm');
+        const customerModalTitle = document.getElementById('customerModalTitle');
+        const customerDetailModal = document.getElementById('customerDetailModal');
+        const customerDetailContent = document.getElementById('customerDetailContent');
+        const customerDeleteModal = document.getElementById('customerDeleteModal');
+        const deleteCustomerInfo = document.getElementById('deleteCustomerInfo');
+
+        // Form fields
+        const modalCustomerName = document.getElementById('modalCustomerName');
+        const modalCustomerPhone = document.getElementById('modalCustomerPhone');
+        const modalCustomerEmail = document.getElementById('modalCustomerEmail');
+        const modalCustomerAddress = document.getElementById('modalCustomerAddress');
+        const modalCustomerType = document.getElementById('modalCustomerType');
+        const modalCustomerActive = document.getElementById('modalCustomerActive');
+        const modalCustomerNote = document.getElementById('modalCustomerNote');
+
+        let editingRow = null;
+        let isAddMode = false;
+
+        // Thêm khách hàng mới
+        document.querySelector('.btn-add-customer').addEventListener('click', () => {
+            isAddMode = true;
+            customerModalTitle.textContent = 'Thêm khách hàng mới';
+            customerForm.reset();
+            modalCustomerActive.checked = true;
+            customerModal.style.display = 'flex';
+            setTimeout(() => modalCustomerName.focus(), 100);
+        });
+
+        // Sửa khách hàng
+        document.querySelectorAll('.icon-edit').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                isAddMode = false;
+                editingRow = btn.closest('tr');
+                if (!editingRow) return;
+
+                customerModalTitle.textContent = 'Sửa thông tin khách hàng';
+                
+                // Lấy dữ liệu từ row
+                const cells = editingRow.cells;
+                modalCustomerName.value = cells[2].textContent;
+                modalCustomerPhone.value = cells[3].textContent;
+                modalCustomerEmail.value = cells[4].textContent;
+                modalCustomerAddress.value = cells[5].textContent;
+                modalCustomerType.value = cells[6].textContent;
+                modalCustomerActive.checked = cells[7].querySelector('.status-active') !== null;
+                
+                customerModal.style.display = 'flex';
+                setTimeout(() => modalCustomerName.focus(), 100);
+            });
+        });
+
+        // Xem chi tiết khách hàng
+        document.querySelectorAll('.icon-view').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const row = btn.closest('tr');
+                if (!row) return;
+
+                const cells = row.cells;
+                const customerData = {
+                    'Mã khách hàng': cells[1].textContent,
+                    'Họ tên': cells[2].textContent,
+                    'Số điện thoại': cells[3].textContent,
+                    'Email': cells[4].textContent,
+                    'Địa chỉ': cells[5].textContent,
+                    'Loại khách hàng': cells[6].textContent,
+                    'Trạng thái': cells[7].textContent
+                };
+
+                // Tạo HTML cho nội dung chi tiết
+                let detailHTML = '<div style="display:grid; gap:1rem;">';
+                for (const [key, value] of Object.entries(customerData)) {
+                    detailHTML += `
+                        <div style="display:grid; grid-template-columns:120px 1fr; gap:0.5rem;">
+                            <strong style="color:#64748b;">${key}:</strong>
+                            <span>${value}</span>
+                        </div>
+                    `;
+                }
+                detailHTML += '</div>';
+
+                customerDetailContent.innerHTML = detailHTML;
+                customerDetailModal.style.display = 'flex';
+            });
+        });
+
+        // Xóa khách hàng
+        document.querySelectorAll('.icon-danger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const row = btn.closest('tr');
+                if (!row) return;
+
+                const customerCode = row.cells[1].textContent;
+                const customerName = row.cells[2].textContent;
+                deleteCustomerInfo.textContent = `Bạn có chắc muốn xóa khách hàng ${customerCode} - ${customerName} không?`;
+                customerDeleteModal.style.display = 'flex';
+            });
+        });
+
+        // Đóng modal thêm/sửa
+        document.getElementById('cancelCustomerModal').addEventListener('click', () => {
+            customerModal.style.display = 'none';
+            editingRow = null;
+        });
+
+        // Đóng modal chi tiết
+        document.getElementById('closeCustomerDetail').addEventListener('click', () => {
+            customerDetailModal.style.display = 'none';
+        });
+
+        // Đóng modal xóa
+        document.getElementById('cancelDeleteCustomer').addEventListener('click', () => {
+            customerDeleteModal.style.display = 'none';
+        });
+
+        // Xác nhận xóa
+        document.getElementById('confirmDeleteCustomer').addEventListener('click', () => {
+            const row = document.querySelector('.icon-danger').closest('tr');
+            if (row) {
+                row.remove();
+            }
+            customerDeleteModal.style.display = 'none';
+        });
+
+        // Xử lý form submit
+        customerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (isAddMode) {
+                // Thêm mới khách hàng
+                const tbody = document.getElementById('customer-table-body');
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${tbody.children.length + 1}</td>
+                    <td>KH${String(tbody.children.length + 1).padStart(3, '0')}</td>
+                    <td>${modalCustomerName.value}</td>
+                    <td>${modalCustomerPhone.value}</td>
+                    <td>${modalCustomerEmail.value}</td>
+                    <td>${modalCustomerAddress.value}</td>
+                    <td>${modalCustomerType.value}</td>
+                    <td><span class="status-${modalCustomerActive.checked ? 'active' : 'inactive'}">${modalCustomerActive.checked ? 'Đang hoạt động' : 'Ngừng'}</span></td>
+                    <td>
+                        <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
+                        <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="icon-button icon-view" title="Xem chi tiết"><i class="fa-solid fa-eye"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(newRow);
+            } else if (editingRow) {
+                // Cập nhật thông tin khách hàng
+                const cells = editingRow.cells;
+                cells[2].textContent = modalCustomerName.value;
+                cells[3].textContent = modalCustomerPhone.value;
+                cells[4].textContent = modalCustomerEmail.value;
+                cells[5].textContent = modalCustomerAddress.value;
+                cells[6].textContent = modalCustomerType.value;
+                cells[7].innerHTML = `<span class="status-${modalCustomerActive.checked ? 'active' : 'inactive'}">${modalCustomerActive.checked ? 'Đang hoạt động' : 'Ngừng'}</span>`;
+            }
+
+            customerModal.style.display = 'none';
+            editingRow = null;
+        });
+
+        // Đóng modal khi click bên ngoài
+        window.addEventListener('click', (e) => {
+            if (e.target === customerModal) {
+                customerModal.style.display = 'none';
+                editingRow = null;
+            }
+            if (e.target === customerDetailModal) {
+                customerDetailModal.style.display = 'none';
+            }
+            if (e.target === customerDeleteModal) {
+                customerDeleteModal.style.display = 'none';
+            }
+        });
+
+        // --- Sidebar thu/phóng ---
+        const body = document.body;
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mobileSidebarToggleBtn = document.getElementById('mobile-sidebar-toggle');
+        function toggleSidebarMobile() {
+            body.classList.toggle('sidebar-mobile-open');
+            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.setAttribute('aria-expanded', String(body.classList.contains('sidebar-mobile-open')));
+        }
+        if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', function() {
+            if (window.innerWidth > 768) {
+                body.classList.toggle('sidebar-collapsed');
+            } else {
+                toggleSidebarMobile();
+            }
+        });
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobile);
+        // --- Dropdown thông báo ---
+        const notificationButton = document.getElementById('notification-button');
+        const notificationDropdown = document.getElementById('notification-dropdown');
+        if (notificationButton) {
+            notificationButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                notificationDropdown.classList.toggle('visible');
+            });
+        }
+        document.addEventListener('click', (event) => {
+            if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
+                if (!notificationDropdown.contains(event.target) && event.target !== notificationButton && !notificationButton.contains(event.target)) {
+                    notificationDropdown.classList.remove('visible');
+                }
+            }
+        });
+        // --- Dropdown user & đăng nhập/đăng xuất ---
+        function renderUserDropdown() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userToggle = document.getElementById('user-dropdown-toggle');
+            const userDropdown = document.getElementById('user-dropdown');
+            if (!userToggle || !userDropdown) return;
+            if (!isLoggedIn) {
+                userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
+            } else {
+                userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                userDropdown.innerHTML = `
+                    <div class="user-info">
+                        <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
+                        <div class="user-details"><h4>Nguyễn Văn A</h4><span class="user-role">Quản trị viên</span></div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
+                    <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
+                    <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                    <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                `;
+            }
+            setTimeout(() => {
+                const loginItem = document.getElementById('login-menu-item');
+                if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); localStorage.setItem('isLoggedIn', 'true'); window.location.reload(); };
+                const logoutItem = document.getElementById('logout-menu-item');
+                if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+            }, 100);
+        }
+        renderUserDropdown();
+        window.addEventListener('storage', renderUserDropdown);
+        // Dropdown show/hide
+        const userToggle = document.getElementById('user-dropdown-toggle');
+        const userDropdown = document.getElementById('user-dropdown');
+        if(userToggle && userDropdown){
+            userToggle.addEventListener('click', function(e){
+                e.stopPropagation();
+                userDropdown.classList.toggle('show');
+            });
+            document.addEventListener('click', function(e){
+                if(!userDropdown.contains(e.target) && e.target !== userToggle){
+                    userDropdown.classList.remove('show');
+                }
+            });
+        }
+        const desktopSidebarToggleBtn = document.querySelector('.sidebar-toggle-desktop');
+        const usernameDisplay = document.getElementById('username-display');
+        const welcomeMessageElement = document.getElementById('welcome-message');
+        const currentDateSpan = document.getElementById('current-date');
+        const currentTimeSpan = document.getElementById('current-time');
+        const currentYearSpan = document.getElementById('current-year');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const notificationList = document.getElementById('notification-list');
+        const announcementOverlay = document.getElementById('announcement-overlay');
+        const announcementBox = document.getElementById('announcement-box');
+        const announcementCloseBtn = document.getElementById('announcement-close-btn');
+        const announcementTitle = document.getElementById('announcement-title');
+        const announcementBody = document.getElementById('announcement-body');
+        const announcementTimestamp = document.getElementById('announcement-timestamp');
+        const serviceTableBody = document.getElementById('service-table-body');
+        const selectAllCheckbox = document.getElementById('select-all-checkbox');
+
+
+        const manageBodyScroll = () => {
+            const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
+            const isAnnounceVisible = announcementOverlay && announcementOverlay.classList.contains('visible');
+            const isAnyOtherModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
+            if (isSidebarOpen || isAnnounceVisible || isAnyOtherModalVisible) {
+                body.classList.add('overflow-hidden');
+            } else {
+                body.classList.remove('overflow-hidden');
+            }
+        };
+
+        function toggleSidebarMobileOrDesktop() {
+            if (window.innerWidth > 768) {
+                // Desktop: thu/phóng sidebar
+                body.classList.toggle('sidebar-collapsed');
+            } else {
+                // Mobile: mở/đóng sidebar
+                body.classList.toggle('sidebar-mobile-open');
+                const isOpen = body.classList.contains('sidebar-mobile-open');
+                if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen));
+            }
+        }
+        function toggleSidebarDesktop() {
+            body.classList.toggle('sidebar-collapsed');
+            const isCollapsed = body.classList.contains('sidebar-collapsed');
+            if (desktopSidebarToggleBtn) {
+                desktopSidebarToggleBtn.title = isCollapsed ? "Phóng Sidebar" : "Thu Sidebar";
+                 desktopSidebarToggleBtn.querySelector('i').style.transform = isCollapsed ? 'rotate(180deg)' : '';
+            }
+            if (isCollapsed) {
+                document.querySelectorAll('.menu-items .submenu.active').forEach(submenu => {
+                    submenu.classList.remove('active');
+                    submenu.previousElementSibling?.classList.remove('active');
+                });
+            }
+        }
+        function toggleSubmenu(event) {
+            event.preventDefault();
+            const parentLink = event.currentTarget;
+            const submenuWrapper = parentLink.nextElementSibling;
+            if (!submenuWrapper || !submenuWrapper.classList.contains('submenu')) return;
+            if (!parentLink.classList.contains('active')) {
+                document.querySelectorAll('.menu-items .submenu-parent.active').forEach(activeParent => {
+                    if (activeParent !== parentLink) {
+                        activeParent.classList.remove('active');
+                        activeParent.nextElementSibling?.classList.remove('active');
+                    }
+                });
+            }
+            submenuWrapper.classList.toggle('active');
+            parentLink.classList.toggle('active');
+        }
+        function initializeActiveSubmenu() {
+             const activeLink = document.querySelector('.sidebar .menu-items > li > a.active');
+             const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
+             if (activeSubmenuLink) {
+                 const submenuDiv = activeSubmenuLink.closest('.submenu');
+                 const parentLink = submenuDiv?.previousElementSibling;
+                 if (submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
+                      if (!activeLink || activeLink !== parentLink) {
+                           submenuDiv.classList.add('active');
+                           parentLink.classList.add('active');
+                      }
+                 }
+             }
+        }
+
+        function updateDateTime() {
+             const now = new Date();
+             const optionsDate = { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' };
+             const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+             try {
+                 let dayOfWeek; switch (now.getDay()) { case 0: dayOfWeek = "Sun"; break; case 1: dayOfWeek = "Mon"; break; case 2: dayOfWeek = "Tue"; break; case 3: dayOfWeek = "Wed"; break; case 4: dayOfWeek = "Thu"; break; case 5: dayOfWeek = "Fri"; break; case 6: dayOfWeek = "Sat"; break; default: dayOfWeek = ""; }
+                 const dateString = `${dayOfWeek} ${now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+                 if (currentDateSpan) currentDateSpan.textContent = dateString;
+                 if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString('en-US', optionsTime);
+             } catch (e) { if (currentDateSpan) currentDateSpan.textContent = now.toLocaleDateString(); if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString(); }
+             if (currentYearSpan) currentYearSpan.textContent = now.getFullYear();
+        }
+        function toggleFullscreen() {
+             if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(err => console.error(`Fullscreen error: ${err.message}`)); } else if (document.exitFullscreen) { document.exitFullscreen(); }
+        }
+        function handleFullscreenChange() {
+            const isFullscreen = !!document.fullscreenElement; const icon = fullscreenBtn?.querySelector('i'); if(icon){ icon.classList.toggle('fa-expand', !isFullscreen); icon.classList.toggle('fa-compress', isFullscreen); } if(fullscreenBtn) { fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'); }
+        }
+
+        function toggleNotificationDropdown() {
+            if (notificationDropdown) notificationDropdown.classList.toggle('visible');
+        }
+        function closeNotificationDropdown() {
+             if (notificationDropdown) notificationDropdown.classList.remove('visible');
+        }
+
+        function showAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.add('visible');
+                manageBodyScroll();
+            }
+        }
+        function closeAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.remove('visible');
+                manageBodyScroll();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM loaded - Initializing Dashboard...");
+            initializeActiveSubmenu();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobileOrDesktop);
+            if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarDesktop);
+            else { console.error("Desktop sidebar toggle button not found!"); }
+            document.querySelectorAll('.menu-items .submenu-parent').forEach(link => link.addEventListener('click', toggleSubmenu));
+            if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+            if (notificationButton) notificationButton.addEventListener('click', (event) => { event.stopPropagation(); toggleNotificationDropdown(); });
+            if (notificationList) {
+                notificationList.addEventListener('click', (event) => {
+                    const clickedItem = event.target.closest('.notification-item');
+                    if (clickedItem && announcementTitle && announcementBody && announcementTimestamp) {
+                        const title = clickedItem.dataset.title || 'Thông báo';
+                        const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
+                        const timestamp = clickedItem.dataset.timestamp || '';
+                        announcementTitle.textContent = title;
+                        announcementBody.innerHTML = '';
+                        bodyText.split('||').forEach(paragraphText => {
+                            if(paragraphText.trim()) {
+                                const p = document.createElement('p');
+                                p.textContent = paragraphText.trim();
+                                announcementBody.appendChild(p);
+                            }
+                        });
+                        announcementTimestamp.textContent = timestamp;
+                        showAnnouncement();
+                        closeNotificationDropdown();
+                    }
+                });
+            }
+            document.addEventListener('click', (event) => {
+                if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
+                    if (!notificationDropdown.contains(event.target) && event.target !== notificationButton && !notificationButton.contains(event.target)) {
+                        closeNotificationDropdown();
+                    }
+                }
+            });
+
+            if (announcementCloseBtn) announcementCloseBtn.addEventListener('click', closeAnnouncement);
+            if (announcementOverlay) announcementOverlay.addEventListener('click', (event) => { if (event.target === announcementOverlay) closeAnnouncement(); });
+
+            if (usernameDisplay && welcomeMessageElement) {
+                 welcomeMessageElement.textContent = `Chào mừng trở lại, ${usernameDisplay.textContent}!`;
+             }
+
+             const setupCharts = () => {
+                 const showFallback = (canvasId) => {
+                      const canvas = document.getElementById(canvasId);
+                      const fallback = canvas?.parentElement?.querySelector('.chart-fallback');
+                      if (fallback) fallback.style.display = 'block';
+                 };
+
+                 if (typeof Chart === 'undefined') {
+                      console.warn("Chart.js library not loaded.");
+                      showFallback('orderStatusChart');
+                      showFallback('revenueChart');
+                      return;
+                 }
+
+                 const orderStatusCtx = document.getElementById('orderStatusChart')?.getContext('2d');
+                 if (orderStatusCtx) {
+                      new Chart(orderStatusCtx, { type: 'doughnut', data: { labels: ['Mới tạo', 'Đang xử lý', 'Đang giao', 'Hoàn tất', 'Hủy'], datasets: [{ label: 'Trạng thái đơn hàng', data: [15, 42, 35, 210, 8], backgroundColor: ['#3b82f6', '#f97316', '#facc15', '#16a34a', '#64748b'], borderColor: '#ffffff', borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 15 } } } } });
+                 } else { showFallback('orderStatusChart'); }
+
+                 const revenueCtx = document.getElementById('revenueChart')?.getContext('2d');
+                 if (revenueCtx) {
+                      new Chart(revenueCtx, { type: 'line', data: { labels: ['Thg 2', 'Thg 3', 'Thg 4', 'Thg 5', 'Thg 6', 'Thg 7'], datasets: [{ label: 'Doanh thu (Triệu VND)', data: [8.5, 10.2, 9.8, 12.1, 14.5, 15.6], borderColor: '#0891b2', backgroundColor: 'rgba(8, 145, 178, 0.1)', fill: true, tension: 0.3 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } } });
+                 } else { showFallback('revenueChart'); }
+             };
+             setTimeout(setupCharts, 100);
+
+            console.log("Full Initialization complete.");
+        });
+
+        if(userToggle && userDropdown){
+            userToggle.addEventListener('click', function(e){
+                e.stopPropagation();
+                userDropdown.classList.toggle('show');
+            });
+            document.addEventListener('click', function(e){
+                if(!userDropdown.contains(e.target) && e.target !== userToggle){
+                    userDropdown.classList.remove('show');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
