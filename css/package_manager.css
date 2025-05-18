@@ -1034,9 +1034,6 @@ button:disabled {
   gap: 0.5rem;
 }
 
-.page-header-left {
-}
-
 .page-title {
   font-size: 1.8rem;
   font-weight: 600;
@@ -1555,10 +1552,6 @@ button:disabled {
 @keyframes modal-pop {
   from { opacity: 0; transform: translate(-50%, -40%) scale(0.92); }
   to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-.filter-modal.visible .filter-modal-content {
-  /* transform: scale(1); */
 }
 
 .filter-modal-header {
