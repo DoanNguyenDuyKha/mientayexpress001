@@ -213,11 +213,6 @@
     color: var(--accent-color);
 }
 
-.pagination-buttons .button.active {
-    background: linear-gradient(90deg, var(--primary-color) 60%, var(--accent-color) 100%);
-    color: var(--text-on-primary);
-    border: none;
-}
 
 
 /* Responsive Design */
@@ -261,10 +256,27 @@
         font-size: 0.92rem;
     }
     .footer-actions {
-        flex-direction: column;
-        gap: 0.3rem;
-        align-items: stretch;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        gap: 0.5rem;
+        flex-wrap: nowrap;
     }
+    .footer-actions .action-buttons .button {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+
+
+
+
+
+
+
+
+
     .pagination {
         flex-direction: column;
         gap: 0.3rem;
@@ -324,5 +336,22 @@
     #serviceTable {
         min-width: 600px;
     }
+}
+
+.footer-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-actions .action-buttons {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 

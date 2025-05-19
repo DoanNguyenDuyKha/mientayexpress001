@@ -280,14 +280,14 @@ body, .straking-content-screenshot {
     font-size: 1.13em;
     text-shadow: 0 2px 8px #6366f122, 0 1px 0 #fff;
     background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
-    -webkit-background-clip: text;
+    background-clip: text; 
     -webkit-text-fill-color: transparent;
 }
 
 .progress-step-ss.active ~ .step-labels-ss span:nth-child(3) {
     color: #f59e0b;
     background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 2px 8px #f59e0b22, 0 1px 0 #fff;
 }
@@ -1337,7 +1337,7 @@ label {
     margin-bottom: 0;
     white-space: nowrap;
     background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     display: flex;
     align-items: center;

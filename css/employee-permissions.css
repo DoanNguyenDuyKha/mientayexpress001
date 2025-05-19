@@ -1,0 +1,209 @@
+/* Styles specific to the employee permissions page */
+
+/* Refined Card Body Layout */
+.permissions-area .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Increased space between sections */
+    padding: 2rem; /* More padding inside card body */
+}
+
+/* Refined Filter Section */
+.permissions-area .filter-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.permissions-area .filter-section input[type="text"] {
+    flex-grow: 1;
+    padding: 0.85rem 1.2rem; /* Increased padding */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm); /* 8px */
+    font-size: 1rem;
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.permissions-area .filter-section input[type="text"]:focus {
+    border-color: var(--employee-primary); /* Blue border on focus */
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25); /* Subtle blue shadow on focus */
+}
+
+.permissions-area .filter-section button {
+    background-color: var(--employee-primary); /* Blue button for actions */
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: 0.85rem 1.8rem; /* Increased padding */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: var(--shadow-sm); /* Subtle shadow */
+}
+
+.permissions-area .filter-section button:hover {
+    background-color: var(--employee-primary-hover); /* Darker blue on hover */
+    transform: translateY(-1px); /* Slight lift effect */
+    box-shadow: var(--shadow-md); /* More pronounced shadow on hover */
+}
+
+/* Refined Table Styles */
+.permissions-area table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem; /* Space above table */
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden; /* Needed for border-radius on table */
+}
+
+.permissions-area th,
+.permissions-area td {
+    padding: 14px 15px; /* Increased padding */
+    text-align: left;
+    border-bottom: 1px solid var(--border-light); /* Lighter border */
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.permissions-area th {
+    background-color: var(--primary-light); /* Light background for header */
+    color: var(--text-secondary); /* Secondary text color */
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color); /* More prominent border below header */
+    text-transform: uppercase; /* Uppercase header text */
+    font-size: 0.9rem;
+}
+
+.permissions-area tbody tr:hover {
+    background-color: #f1f5f9; /* Light gray background on hover */
+}
+
+.permissions-area td:last-child {
+     text-align: center; /* Center action icons */
+}
+
+/* Refined Icon Buttons */
+.permissions-area .icon-button {
+     background: none;
+     border: none;
+     padding: 0.5rem; /* Increased padding */
+     color: var(--employee-primary); /* Blue color for icons */
+     border-radius: 50%; /* Circular buttons */
+     width: 36px; /* Increased size */
+     height: 36px; /* Increased size */
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     line-height: 1;
+     cursor: pointer;
+     transition: background-color 0.2s ease, color 0.2s ease;
+     font-size: 1.2rem; /* Increased icon size */
+     margin: 0 4px; /* Space between icons */
+}
+
+.permissions-area .icon-button:hover {
+    background-color: rgba(37, 99, 235, 0.1); /* Very light blue background on hover */
+    color: var(--employee-primary-hover); /* Darker blue on hover */
+}
+
+/* Styles for Role Definition section */
+.permissions-area h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem; /* Larger heading */
+    font-weight: 700;
+    margin-top: 2.5rem; /* More space above */
+    margin-bottom: 1.2rem; /* More space below */
+    border-bottom: 2px solid var(--accent); /* Accent colored underline */
+    padding-bottom: 0.5rem; /* Space below underline */
+    display: inline-block; /* Contain underline to text width */
+}
+
+/* Button for 'Thêm Vai trò Mới' */
+.permissions-area .card-body > .btn-add-employee {
+     background-color: var(--accent); /* Accent color button */
+     color: var(--text-on-accent); /* Text color on accent */
+     border: none;
+     border-radius: var(--border-radius-sm);
+     padding: 0.85rem 1.8rem;
+     font-size: 1rem;
+     font-weight: 600;
+     cursor: pointer;
+     transition: background-color 0.2s ease, transform 0.1s ease;
+     box-shadow: var(--shadow-sm);
+     margin-bottom: 1.5rem; /* Space below the button */
+}
+
+.permissions-area .card-body > .btn-add-employee:hover {
+     background-color: var(--accent-hover);
+     transform: translateY(-1px);
+     box-shadow: var(--shadow-md);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .permissions-area .card-body {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    .permissions-area .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .permissions-area .filter-section input[type="text"],
+     .permissions-area .filter-section button {
+        width: 100%;
+        box-sizing: border-box; /* Include padding and border in element's total width */
+     }
+
+    .permissions-area th,
+    .permissions-area td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+    .permissions-area h3 {
+        font-size: 1.3rem;
+        margin-top: 2rem;
+    }
+     .permissions-area .icon-button {
+         width: 32px;
+         height: 32px;
+         font-size: 1.1rem;
+         padding: 0.4rem;
+     }
+}
+
+@media (max-width: 500px) {
+    .permissions-area .card-body {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    .permissions-area h3 {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+    .permissions-area th,
+    .permissions-area td {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+    }
+     .permissions-area .icon-button {
+         width: 28px;
+         height: 28px;
+         font-size: 1rem;
+         padding: 0.3rem;
+         margin: 0 2px;
+     }
+     .permissions-area .filter-section input[type="text"],
+      .permissions-area .filter-section button,
+      .permissions-area .card-body > .btn-add-employee {
+          padding: 0.75rem 1rem;
+          font-size: 0.9rem;
+      }
+} 

@@ -548,12 +548,25 @@
        .section-header-original, .section-content-original { padding: 0.7rem; }
        .order-value-summary-original, .payment-history-table-wrapper, .content-actions-original { padding: 0.7rem; }
        .page-title { font-size: 1.3rem; }
+
+    .action-buttons-original {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        gap: 0.5rem;
+        flex-wrap: nowrap;
+    }
+    .action-buttons-original button {
+        flex: 1 1 auto;
+        text-align: center;
+        padding: 0.5rem;
+        min-width: 0;
+    }
 }
 
 @media (max-width: 576px) {
     .order-value-summary-original .summary-item .value { font-size: 1.1rem; }
-    .action-buttons-original { flex-direction: column; gap: 8px; }
-    .action-buttons-original button { width: 100%; justify-content: center; }
     .confirmation-check-original label { font-size: 0.85em; }
     .payment-history-table-original { font-size: 0.75rem;}
     .section-header-original, .section-content-original { padding: 10px; }

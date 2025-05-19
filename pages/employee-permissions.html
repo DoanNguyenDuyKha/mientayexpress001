@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân quyền nhân viên - Mien Tay Express</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../css/package_manager.css"> <!-- Lấy style chung từ package_manager.css -->
+    <!-- Có thể thêm CSS riêng cho trang phân quyền nếu cần -->
+    <link rel="stylesheet" href="../css/employee-permissions.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../images/logo-removebg.png" alt="Mien Tay Express Logo" class="logo">
+        </div>
+        <nav class="menu-items" aria-label="Main Navigation">
+             <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
+                 <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
+                     <div class="submenu">
+                         <ul>
+                             <li><a href="package_manager.html"><i class="fa-solid fa-box-archive icon"></i><span class="menu-text">Quản lý đơn hàng</span></a></li>
+                             <li><a href="straking-bill-of-lading-status.html"><i class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng thái</span></a></li>
+                             <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận chuyển</span></a></li>
+                             <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản lý chi nhánh</span></a></li>
+                             <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
+                 <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                            <li><a href="customer-list.html"><span class="menu-text">Danh sách KH</span></a></li>
+                            <li><a href="customer-add.html"><span class="menu-text">Thêm mới KH</span></a></li>
+                          </ul>
+                      </div>
+                 </li>
+                  <li>
+                      <a href="#" class="submenu-parent active"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN LÝ NHÂN SỰ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu active">
+                          <ul>
+                            <li><a href="employee-list.html"><span class="menu-text">Danh sách NV</span></a></li>
+                            <li><a href="employee-permissions.html" class="active"><span class="menu-text">Phân quyền</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
+                  <li>
+                      <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                       <div class="submenu">
+                          <ul>
+                            <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ DỤNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                            <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+             </ul>
+         </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <main class="main-content">
+        <header class="header">
+            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu" aria-controls="sidebar" aria-expanded="false"> <i class="fa-solid fa-bars"></i> </button>
+            <div class="header-left">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" class="header-search-input" placeholder="Tìm kiếm...">
+                </div>
+            </div>
+            <div class="header-actions" style="display: flex; align-items: center; gap: 1.2rem; margin-left: auto;">
+                <!-- Nội dung header actions (thông báo, user) có thể giữ nguyên -->
+                 <div class="notification-wrapper">
+                    <button class="notification-button" id="notification-button" title="Thông báo">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div class="notification-dropdown" id="notification-dropdown">
+                        <div class="dropdown-header">Thông báo</div>
+                        <ul class="notification-list" id="notification-list">
+                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024" data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada." data-timestamp="2024-07-25 13:53:27">
+                                <div class="item-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Dời Cut off Canada 24/08/2024</div>
+                                    <div class="item-time">25 Jul 2024</div>
+                                </div>
+                            </li>
+                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống" data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này." data-timestamp="2024-07-28 10:00:00">
+                                <div class="item-icon"><i class="fa-solid fa-wrench"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Cập nhật hệ thống 30/07</div>
+                                    <div class="item-time">28 Jul 2024</div>
+                                </div>
+                            </li>
+                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới" data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ." data-timestamp="2024-07-20 09:00:00">
+                                <div class="item-icon"><i class="fa-solid fa-tags"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Khuyến mãi hè 2024!</div>
+                                    <div class="item-time">20 Jul 2024</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="dropdown-footer"><a href="#">Xem tất cả</a></div>
+                    </div>
+                </div>
+                <div class="user-container" style="position: relative;">
+                    <div class="user-dropdown-toggle" id="user-dropdown-toggle" style="display: flex; align-items: center; gap: 6px; background: #2563eb; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
+                        <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
+                </div>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <a href="#" class="user-dropdown-item" id="profile-link"><i class="fa-regular fa-user"></i> Profile</a>
+                        <a href="#" class="user-dropdown-item" id="login-link"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>
+                        <a href="#" class="user-dropdown-item" id="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+            </div>
+                </div>
+            </div>
+        </header>
+        <div class="content-wrapper">
+            <section class="page-header">
+                <div class="page-header-left">
+                    <h1 class="page-title">PHÂN QUYỀN NHÂN VIÊN</h1>
+                    <nav class="breadcrumb" aria-label="breadcrumb">
+                        <a href="#">Quản lý</a> / <span>Quản lý nhân sự</span> / <span>Phân quyền</span>
+                    </nav>
+                </div>
+            </section>
+
+            <!-- Khu vực nội dung Phân quyền nhân viên -->
+            <div class="permissions-area card">
+                <div class="card-header">
+                    <h2>Quản lý Vai trò và Quyền hạn</h2>
+                </div>
+                <div class="card-body" style="padding: 1.5rem;">
+                    <p>Nội dung quản lý phân quyền sẽ được đặt tại đây.</p>
+                    <p>Có thể bao gồm:</p>
+                    <ul>
+                        <li>Danh sách nhân viên với vai trò hiện tại</li>
+                        <li>Form/Modal để thay đổi vai trò cho nhân viên</li>
+                        <li>Bảng định nghĩa các vai trò và quyền hạn tương ứng</li>
+                        <li>Form/Modal để chỉnh sửa quyền hạn của từng vai trò</li>
+                    </ul>
+                    <!-- Placeholder: Ví dụ về một khu vực tìm kiếm nhân viên -->
+                    <div class="filter-section" style="margin-bottom: 1rem;">
+                         <input type="text" class="header-search-input" placeholder="Tìm kiếm nhân viên theo tên hoặc mã">
+                         <button class="btn-add-employee">Tìm kiếm</button>
+                    </div>
+
+                    <!-- Placeholder: Ví dụ về bảng hiển thị nhân viên và vai trò -->
+                    <div class="table-container">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: left; padding: 8px;">Mã NV</th>
+                                    <th style="text-align: left; padding: 8px;">Họ và tên</th>
+                                    <th style="text-align: left; padding: 8px;">Vai trò</th>
+                                    <th style="text-align: center; padding: 8px;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 8px;">NV001</td>
+                                    <td style="padding: 8px;">Nguyễn Văn A</td>
+                                    <td style="padding: 8px;">Nhân viên</td>
+                                    <td style="text-align: center; padding: 8px;">
+                                        <button class="icon-button icon-edit" title="Chỉnh sửa vai trò"><i class="fa-solid fa-user-check"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px;">NV002</td>
+                                    <td style="padding: 8px;">Trần Thị B</td>
+                                    <td style="padding: 8px;">Quản lý</td>
+                                    <td style="text-align: center; padding: 8px;">
+                                         <button class="icon-button icon-edit" title="Chỉnh sửa vai trò"><i class="fa-solid fa-user-check"></i></button>
+                                    </td>
+                                </tr>
+                                <!-- Thêm các hàng dữ liệu nhân viên khác tại đây -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Placeholder: Ví dụ về khu vực quản lý vai trò/quyền -->
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Định nghĩa Vai trò</h3>
+                    <p>Nội dung quản lý định nghĩa các vai trò (Admin, Quản lý, Nhân viên,...) và các quyền hạn cụ thể của từng vai trò sẽ được đặt tại đây.</p>
+                     <button class="btn-add-employee">Thêm Vai trò Mới</button>
+                     <!-- Bảng danh sách vai trò và quyền hạn -->
+
+                </div>
+            </div>
+
+            <footer class="site-footer">
+                Miền Tây Express © <span id="current-year">2024</span>. All rights reserved. Design by Nina Co.,Ltd
+            </footer>
+        </div>
+    </main>
+
+    <!-- Link đến file JavaScript cho trang này -->
+    <script src="../js/employee-list.js"></script> <!-- Tái sử dụng JS chung cho sidebar, header... -->
+    <!-- Có thể thêm script riêng cho trang phân quyền nếu cần -->
+    <!-- <script src="../js/employee-permissions.js"></script> -->
+
+    <script>
+        // Script chỉ cho trang này, nếu nhiều nên chuyển ra file js riêng
+        document.addEventListener('DOMContentLoaded', function() {
+            // Logic JavaScript cho trang phân quyền tại đây
+            // Ví dụ: xử lý tìm kiếm, hiển thị danh sách nhân viên, mở modal phân quyền...
+             // Cần đảm bảo các hàm dùng chung (như toggle sidebar, handle notifications) đã được load từ employee-list.js
+             console.log('Trang phân quyền nhân viên đã tải.');
+
+              // Lấy năm hiện tại cho footer
+              document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+
+         // Hàm blur header khi modal mở (có thể đã có trong employee-list.js) -> đảm bảo đã load
+        // Nếu không, cần định nghĩa lại hoặc gọi từ employee-list.js
+         if (typeof updateHeaderBlur === 'function') {
+              var observer = new MutationObserver(updateHeaderBlur);
+              document.querySelectorAll('.modal').forEach(function(modal){
+                  observer.observe(modal, {attributes:true, attributeFilter:['class','style']});
+              });
+          } else {
+              console.warn('updateHeaderBlur function not found. Header blur might not work.');
+          }
+
+    </script>
+
+</body>
+</html> 

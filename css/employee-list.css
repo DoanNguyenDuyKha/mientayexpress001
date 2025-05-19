@@ -2,16 +2,366 @@
 
 /* Chỉ giữ lại override cho modal nhân viên nếu muốn nét riêng, KHÔNG override notification, announcement, dropdown... */
 :root {
-    --employee-accent: #2563eb;
-    --employee-accent-hover: #1d4ed8;
+    /* Kế thừa các biến màu chính từ home.css hoặc định nghĩa lại nếu cần */
+    --primary-color: #000000;
+    --primary-hover: #1a1a1a;
+    --primary-light: #f8f9fa;
+    --accent: #FFD600; /* Màu vàng làm điểm nhấn */
+    --accent-color: #FFCC00;
+    --accent-hover: #e6b800;
+    --danger-color: #dc2626;
+    --danger-hover: #b91c1c;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-on-accent: #000000; /* Chữ đen trên nền vàng */
+    --card-bg: #ffffff; /* Nền card trắng */
+    --bg-color: #f0f2f5; /* Nền trang tổng thể hơi xám */
+    --border-color: #e2e8f0; /* Viền xám nhạt */
+    --border-light: #f1f5f9;
+    --base-padding: 1rem;
+    --card-padding: 1.5rem;
+    --header-height: 65px;
+    --sidebar-width: 260px;
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.2s;
+    --transition-speed-fast: 0.15s;
+    --font-family: 'Inter', sans-serif;
+
+    /* Màu đặc trưng cho trang nhân viên - giữ lại xanh dương nhưng dùng có chọn lọc */
+    --employee-primary: #2563eb;
+    --employee-primary-hover: #1d4ed8;
+    --employee-primary-light: #bfdbfe; /* Xanh dương nhạt */
 }
 
-/* Đổi màu nhận diện cho modal nhân viên */
+/* Apply general background color */
+body {
+    background-color: var(--bg-color);
+}
+
+/* Page Header Adjustments */
+.page-header {
+    margin-bottom: 1.5rem;
+    padding: 0 1rem; /* Add some horizontal padding */
+}
+
+.page-title {
+    color: var(--text-primary); /* Tiêu đề chính màu đen */
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.breadcrumb {
+    font-size: 0.95rem;
+    color: var(--text-secondary); /* Breadcrumb màu xám */
+}
+
+.breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-color); /* Hover đổi màu đen */
+    text-decoration: underline;
+}
+
+/* Customer Actions & Filters */
+.customer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 1rem; /* Add horizontal padding */
+}
+
+.customer-actions .action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.customer-actions .filter-section {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.customer-actions .filter-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Style for Add Employee Button */
+.btn-add-employee {
+    background: var(--accent); /* Nền vàng */
+    color: var(--text-on-accent); /* Chữ đen */
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: var(--shadow-sm); /* Thêm bóng nhẹ */
+}
+
+.btn-add-employee:hover {
+    background: var(--accent-hover); /* Vàng đậm hơn khi hover */
+    box-shadow: var(--shadow-md); /* Bóng rõ hơn khi hover */
+}
+
+.btn-add-employee i {
+    margin-right: 0.5rem;
+}
+
+/* Style for Filter Selects */
+.filter-section .filter-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color); /* Viền xám */
+    border-radius: var(--border-radius-sm);
+    background-color: var(--card-bg); /* Nền trắng */
+    color: var(--text-primary); /* Chữ đen */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
+    outline: none;
+}
+
+.filter-section .filter-select:focus {
+    border-color: var(--employee-primary); /* Viền xanh khi focus */
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25); /* Bóng xanh khi focus */
+}
+
+
+/* Table Styling - Refined */
+.table-area.card {
+    background: var(--card-bg); /* Nền trắng */
+    border: 1px solid var(--border-color); /* Viền xám */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md); /* Bóng trung bình */
+    overflow: hidden;
+    margin: 0 1rem 2rem 1rem; /* Khoảng cách quanh card, canh lề với padding của content-wrapper */
+}
+
+.card-header {
+    background: var(--primary-light); /* Nền xám nhạt */
+    color: var(--text-primary); /* Chữ đen */
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    padding: 1.2rem 1.5rem 1rem 1.5rem; /* Padding cho header */
+    border-bottom: 1px solid var(--border-color); /* Viền dưới xám */
+    /* box-shadow: none; Bỏ bóng cũ */
+}
+
+.card-header h2 {
+    color: inherit; /* Kế thừa màu chữ từ card-header */
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.table-container {
+    padding: 0 1.5rem 1.5rem 1.5rem; /* Padding cho container bảng */
+    overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá rộng */
+}
+
+#employeeTable {
+    width: 100%;
+    border-collapse: collapse; /* Dùng collapse để quản lý border dễ hơn */
+    border-spacing: 0;
+    font-size: 0.95rem;
+    background: var(--card-bg);
+    font-family: var(--font-family);
+    table-layout: auto;
+    min-width: 700px; /* Đảm bảo độ rộng tối thiểu cho bảng trên mobile */
+}
+
+#employeeTable th,
+#employeeTable td {
+    padding: 1rem 0.8rem; /* Tăng padding */
+    word-break: break-word;
+    white-space: normal;
+    text-align: left; /* Căn trái cho mặc định */
+}
+
+#employeeTable th {
+    background: var(--primary-light); /* Nền header cột */
+    color: var(--text-secondary); /* Chữ xám */
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color); /* Viền dưới đậm hơn */
+    font-size: 0.95rem;
+    letter-spacing: 0.1px;
+    text-align: left; /* Căn trái */
+}
+
+#employeeTable td {
+    border-bottom: 1px solid var(--border-light); /* Viền nhẹ giữa các hàng */
+    color: var(--text-primary); /* Chữ đen */
+    vertical-align: middle;
+    font-size: 0.95rem;
+    transition: background-color 0.18s;
+}
+
+#employeeTable tbody tr:last-child td {
+    border-bottom: none; /* Bỏ viền dưới hàng cuối */
+}
+
+#employeeTable tbody tr:hover {
+    background-color: #f8f9fa; /* Nền hơi xám khi hover */
+}
+
+/* Column Specific Styles */
+#employeeTable th.col-center, #employeeTable td.col-center {
+    text-align: center; /* Căn giữa cột STT và Thao tác */
+}
+
+#employeeTable td.action-icons {
+    text-align: center;
+}
+
+/* Custom Checkbox - Tinh chỉnh lại nếu cần, giữ nguyên cho đơn giản */
+/* Using default appearance for simplicity */
+#employeeTable input[type="checkbox"] {
+     appearance: checkbox !important;
+     width: auto !important;
+     height: auto !important;
+     border: 1px solid var(--border-color) !important;
+     border-radius: 4px !important;
+     background-color: var(--card-bg) !important;
+     box-shadow: none !important;
+     outline: none !important;
+     position: static !important;
+     vertical-align: middle !important;
+     accent-color: var(--employee-primary) !important; /* Màu xanh dương khi checked */
+     margin: 0;
+     cursor: pointer;
+}
+
+/* Icon Buttons - Refined */
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0.4rem; /* Tăng padding */
+    color: var(--text-secondary); /* Icon màu xám */
+    border-radius: var(--border-radius-sm);
+    width: 32px; /* Kích thước icon */
+    height: 32px; /* Kích thước icon */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+    font-size: 1.1rem; /* Kích thước icon */
+    margin: 0 2px; /* Khoảng cách giữa các icon */
+}
+.icon-button:hover {
+    background-color: #f0f0f0; /* Nền xám nhạt khi hover */
+    color: var(--primary-color); /* Chữ đen khi hover */
+}
+.icon-button.icon-view:hover {
+    color: #2563eb; /* Màu xanh dương cho View */
+    background-color: #e0f2fe; /* Nền xanh nhạt */
+}
+.icon-button.icon-edit:hover {
+    color: #f59e0b; /* Màu vàng cam cho Edit */
+    background-color: #fffbeb; /* Nền vàng nhạt */
+}
+.icon-button.icon-danger:hover {
+    color: var(--danger-color); /* Màu đỏ cho Delete */
+    background-color: #fee2e2; /* Nền đỏ nhạt */
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    border-radius: 12px; /* Bo tròn */
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff; /* Chữ trắng */
+    min-width: 70px; /* Độ rộng tối thiểu */
+    text-align: center;
+}
+
+.status-badge.active {
+    background-color: #10b981; /* Xanh lá */
+}
+
+.status-badge.inactive {
+    background-color: #ef4444; /* Đỏ */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 900px) {
+    .page-title { font-size: 1.6rem; }
+    .breadcrumb { font-size: 0.9rem; }
+    .customer-actions { padding: 0 0.5rem; }
+    .btn-add-employee { padding: 0.6rem 1.2rem; font-size: 0.95rem; }
+    .filter-section .filter-select { padding: 0.6rem 0.8rem; font-size: 0.95rem; }
+    .table-area.card { margin: 0 0.5rem 1.5rem 0.5rem; }
+    .card-header { padding: 1rem 1rem 0.8rem 1rem; font-size: 1rem; }
+    .card-header h2 { font-size: 1.2rem; }
+    .table-container { padding: 0 1rem 1rem 1rem; }
+    #employeeTable th, #employeeTable td { padding: 0.8rem 0.5rem; font-size: 0.9rem; }
+    .icon-button { width: 28px; height: 28px; font-size: 1rem; padding: 0.3rem; margin: 0 1px; }
+    .status-badge { font-size: 0.8rem; padding: 0.2em 0.6em; min-width: 60px; }
+}
+
+@media (max-width: 768px) {
+    .customer-actions {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 0.5rem; /* Adjust padding */
+    }
+    .customer-actions .action-buttons,
+    .customer-actions .filter-section,
+    .customer-actions .filter-group {
+        width: 100%;
+        justify-content: stretch;
+    }
+    .customer-actions .filter-group select {
+        flex-grow: 1;
+    }
+    .table-area.card { margin: 0 0.5rem 1rem 0.5rem; }
+}
+
+@media (max-width: 500px) {
+    .page-header { padding: 0 0.2rem; margin-bottom: 1rem; }
+    .page-title { font-size: 1.4rem; }
+    .breadcrumb { font-size: 0.85rem; }
+    .customer-actions { padding: 0 0.2rem; gap: 0.5rem; }
+    .btn-add-employee { padding: 0.5rem 1rem; font-size: 0.9rem; }
+    .filter-section .filter-select { padding: 0.5rem 0.6rem; font-size: 0.9rem; }
+    .table-area.card { margin: 0 0.2rem 0.8rem 0.2rem; border-radius: 8px; }
+    .card-header { padding: 0.8rem 0.5rem 0.6rem 0.5rem; font-size: 0.95rem; border-radius: 8px 8px 0 0; }
+    .card-header h2 { font-size: 1.1rem; }
+    .table-container { padding: 0 0.5rem 0.8rem 0.5rem; }
+    #employeeTable th, #employeeTable td { padding: 0.6rem 0.3rem; font-size: 0.88rem; }
+    .icon-button { width: 24px; height: 24px; font-size: 0.9rem; padding: 0.2rem; margin: 0 0.5px; }
+    .status-badge { font-size: 0.75rem; padding: 0.15em 0.5em; min-width: 50px; }
+    #employeeTable {
+         min-width: 550px; /* Adjust min-width for smaller screens */
+    }
+
+}
+
+
+/* Modal Styles - Keep blue accent for modals */
 #addEmployeeModal .modal-header,
 #editEmployeeModal .modal-header,
 #deleteEmployeeModal .modal-header,
 #employeeDetailModal .modal-header {
-    background: var(--employee-accent);
+    background: var(--employee-primary); /* Màu xanh dương cho header modal */
 }
 #addEmployeeModal .modal-header h3,
 #editEmployeeModal .modal-header h3,
@@ -21,36 +371,142 @@
 #editEmployeeModal .modal-close,
 #deleteEmployeeModal .modal-close,
 #employeeDetailModal .modal-close {
-    color: #fff;
+    color: #fff; /* Chữ trắng trên nền xanh */
 }
 #addEmployeeModal .btn-primary,
 #editEmployeeModal .btn-primary,
 #employeeDetailModal .btn-primary {
-    background: var(--employee-accent);
+    background: var(--employee-primary); /* Nút chính trong modal màu xanh */
 }
 #addEmployeeModal .btn-primary:hover,
 #editEmployeeModal .btn-primary:hover,
 #employeeDetailModal .btn-primary:hover {
-    background: var(--employee-accent-hover);
+    background: var(--employee-primary-hover); /* Hover xanh đậm hơn */
 }
 #deleteEmployeeModal .btn-danger {
-    background: #ef4444;
+    background: var(--danger-color); /* Nút xóa trong modal màu đỏ */
 }
 #deleteEmployeeModal .btn-danger:hover {
-    background: #b91c1c;
+    background: var(--danger-hover); /* Hover đỏ đậm hơn */
 }
 
-/* Đổi màu nút thêm nhân viên */
-.btn-add-employee {
-    background: var(--employee-accent);
-    color: #fff;
-}
-.btn-add-employee:hover {
-    background: var(--employee-accent-hover);
+/* Styles for Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-/* Table header màu xanh dương */
-.card-header {
-    background: linear-gradient(90deg, var(--employee-accent) 0%, var(--employee-accent-light) 100%);
+.pagination-info {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-right: auto; /* Thay đổi margin-right thành auto để đẩy sang trái */
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.pagination-buttons .button {
+    min-width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.pagination-buttons .button:hover:not(:disabled):not(.active) {
+    background-color: #f8fafc;
+    border-color: var(--employee-primary);
+    color: var(--employee-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-buttons .button.active {
+    background: linear-gradient(135deg, var(--employee-primary) 0%, #4f46e5 100%);
+    border-color: transparent;
     color: #fff;
+    font-weight: 600;
+    cursor: default;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.pagination-buttons .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f1f5f9;
+    border-color: #e2e8f0;
+    color: #94a3b8;
+}
+
+/* Responsive Adjustments for Pagination */
+@media (max-width: 768px) {
+    .pagination-container {
+        flex-direction: column;
+        align-items: flex-start; /* Thay đổi từ center thành flex-start */
+        padding: 0 0.5rem;
+        gap: 0.8rem;
+    }
+    
+    .pagination-info {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+        text-align: left; /* Thay đổi từ center thành left */
+    }
+    
+    .pagination-buttons {
+        justify-content: center;
+        gap: 0.4rem;
+    }
+    
+    .pagination-buttons .button {
+        min-width: 34px;
+        height: 34px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .pagination-container {
+        padding: 0 0.2rem;
+        gap: 0.6rem;
+        align-items: flex-start; /* Thêm align-items flex-start */
+    }
+    
+    .pagination-info {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .pagination-buttons {
+        gap: 0.3rem;
+    }
+    
+    .pagination-buttons .button {
+        min-width: 30px;
+        height: 30px;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
 } 

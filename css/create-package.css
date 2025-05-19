@@ -638,7 +638,7 @@ input[readonly], textarea[readonly] { background-color: var(--input-readonly-bg)
 }
 
 .form-section .card-header .card-title {
-    color: var(--primary-color);
+    color: var(--sidebar-bg);
     font-size: 1.2rem;
     font-weight: 600;
     display: flex;
@@ -1846,7 +1846,7 @@ body.overflow-hidden { overflow: hidden; }
 
 .form-section .card-header .card-title i.icon {
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--sidebar-bg);
 }
 
 .form-section .card-body {
