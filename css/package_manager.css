@@ -471,7 +471,7 @@ button:disabled {
   background: rgba(20,20,20,0.92);
   border-left: 3px solid #FFD700;
   border-radius: 0 0 18px 18px;
-  margin-left: 1.5rem;
+  margin-left: 1.3rem; /* Adjust margin based on sidebar padding */
   box-shadow: 0 2px 12px #FFD70022;
 }
 .submenu.active {
@@ -484,7 +484,7 @@ button:disabled {
 }
 .submenu li a {
   padding: 0.6rem 1.5rem;
-  font-size: 0.98em;
+  font-size: 1.05em; /* Further increased font size for submenu items */
   color: #FFD700;
   border-radius: 0 12px 12px 0;
 }
@@ -2086,7 +2086,7 @@ button:disabled {
     pointer-events: auto;
   }
   .sidebar .submenu {
-    padding-left: 1.5rem;
+    padding-left: 0; /* Remove left padding on mobile submenu itself */
   }
 
   body.sidebar-mobile-open .sidebar {
@@ -2583,13 +2583,13 @@ button:disabled {
 }
 @media (max-width: 576px) {
   .sidebar .menu-items li a .menu-text {
-    font-size: 0.9em;
+    font-size: 1.15em; /* Further increased font size for smaller mobile screens */
   }
   .sidebar .menu-items li a .icon {
     font-size: 0.95em;
   }
   .sidebar .submenu li a {
-    font-size: 0.85em;
+    font-size: 0.95em;
   }
 }
 
