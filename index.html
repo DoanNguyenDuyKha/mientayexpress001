@@ -32,15 +32,9 @@
                  <li><a href="pages/statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
                  <li><a href="pages/service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
                  <li>
-                     <a href="#" class="submenu-parent"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
-                      <div class="submenu">
-                          <ul>
-                              <li><a href="#"><span class="menu-text">Danh sách KH</span></a></li>
-                              <li><a href="#"><span class="menu-text">Thêm mới KH</span></a></li>
-                          </ul>
-                      </div>
+                     <a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span></a>
                  </li>
-                  <li><a href="pages/employee-list.html" class="submenu-parent"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QL NHÂN SỰ</span></a></li>
+                  <li><a href="pages/employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QL NHÂN SỰ</span></a></li>
                  <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
                   <li>
                       <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
@@ -179,10 +173,10 @@
             <section class="quick-actions">
                 <h2>Truy cập nhanh</h2>
                 <div class="action-buttons-group">
-                    <a href="create-package.html" class="button primary"><i class="fa-solid fa-plus"></i> Tạo đơn hàng</a>
-                    <a href="package_manager.html" class="button secondary"><i class="fa-solid fa-list-check"></i> Xem đơn hàng</a>
-                    <a href="#" class="button"><i class="fa-solid fa-magnifying-glass-chart"></i> Theo dõi vận đơn</a>
-                    <a href="service-management.html" class="button"><i class="fa-solid fa-chart-line"></i> Xem báo cáo</a>
+                    <a href="../pages/create-package.html" class="button primary"><i class="fa-solid fa-plus"></i> Tạo đơn hàng</a>
+                    <a href="../pages/package_manager.html" class="button secondary"><i class="fa-solid fa-list-check"></i> Xem đơn hàng</a>
+                    <a href="../pages/order-tracking.html" class="button"><i class="fa-solid fa-magnifying-glass-chart"></i> Theo dõi vận đơn</a>
+                    <a href="../pages/service-management.html" class="button"><i class="fa-solid fa-chart-line"></i> Xem báo cáo</a>
                 </div>
             </section>
 
@@ -468,7 +462,7 @@
                 if (!userToggle || !userDropdown) return;
                 if (!isLoggedIn) {
                     // Chưa đăng nhập: chỉ hiện icon user và 1 mục Đăng nhập
-                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i> <i class="fa-solid fa-chevron-down user-arrow" style="color: #64748b; font-size: 1em;"></i>';
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
                     userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
                     document.getElementById('username-display')?.classList.add('d-none');
                 } else {
