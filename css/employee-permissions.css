@@ -4,130 +4,184 @@
 .permissions-area .card-body {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* Increased space between sections */
+    gap: 1.8rem; /* Slightly adjusted gap */
     padding: 2rem; /* More padding inside card body */
+}
+
+.permissions-area .card-body p {
+    line-height: 1.6; /* Improved readability for paragraphs */
+    color: var(--text-primary); /* Ensure text color is primary */
+    margin-bottom: 1rem; /* Space below paragraphs */
+}
+
+.permissions-area .card-body ul {
+    list-style: disc inside; /* Use disc style for lists */
+    margin-bottom: 1.5rem; /* Space below lists */
+    padding-left: 1.2rem; /* Indent list items */
+}
+
+.permissions-area .card-body li {
+    line-height: 1.6; /* Improved readability for list items */
+    color: var(--text-secondary); /* Secondary text color for list items */
+    margin-bottom: 0.5rem; /* Space between list items */
 }
 
 /* Refined Filter Section */
 .permissions-area .filter-section {
     display: flex;
-    gap: 1rem;
+    gap: 15px; /* Increased gap for better spacing */
     align-items: center;
-    flex-wrap: wrap;
+    margin-bottom: 20px;
+    /* Added subtle shadow for depth */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Light background for the filter section */
 }
 
 .permissions-area .filter-section input[type="text"] {
     flex-grow: 1;
-    padding: 0.85rem 1.2rem; /* Increased padding */
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-sm); /* 8px */
+    padding: 10px 15px;
+    border: 1px solid #ccc; /* Subtle border */
+    border-radius: 5px;
     font-size: 1rem;
-    color: var(--text-primary);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .permissions-area .filter-section input[type="text"]:focus {
-    border-color: var(--employee-primary); /* Blue border on focus */
-    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25); /* Subtle blue shadow on focus */
+    border-color: #007bff; /* Highlight on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none;
 }
 
 .permissions-area .filter-section button {
-    background-color: var(--employee-primary); /* Blue button for actions */
-    color: #fff;
+    padding: 10px 20px;
+    background-color: #007bff; /* Primary button color */
+    color: white;
     border: none;
-    border-radius: var(--border-radius-sm);
-    padding: 0.85rem 1.8rem; /* Increased padding */
-    font-size: 1rem;
-    font-weight: 600;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    box-shadow: var(--shadow-sm); /* Subtle shadow */
+    font-size: 1rem;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
 .permissions-area .filter-section button:hover {
-    background-color: var(--employee-primary-hover); /* Darker blue on hover */
-    transform: translateY(-1px); /* Slight lift effect */
-    box-shadow: var(--shadow-md); /* More pronounced shadow on hover */
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.permissions-area .filter-section button:active {
+    opacity: 0.8;
 }
 
 /* Refined Table Styles */
 .permissions-area table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 1.5rem; /* Space above table */
+    border-collapse: separate; /* Use separate for rounded corners with border-spacing */
+    border-spacing: 0 8px; /* Space between rows */
+    margin-top: 1.5rem;
     background-color: var(--card-bg);
     box-shadow: var(--shadow-sm);
     border-radius: var(--border-radius-sm);
-    overflow: hidden; /* Needed for border-radius on table */
+    overflow: hidden;
 }
 
 .permissions-area th,
 .permissions-area td {
-    padding: 14px 15px; /* Increased padding */
+    padding: 14px 15px;
     text-align: left;
-    border-bottom: 1px solid var(--border-light); /* Lighter border */
+    /* border-bottom: 1px solid var(--border-light); /* Remove individual row border if using space */
     font-size: 0.95rem;
     color: var(--text-primary);
+    background-color: #fff; /* Explicit white background for cells */
 }
 
 .permissions-area th {
-    background-color: var(--primary-light); /* Light background for header */
-    color: var(--text-secondary); /* Secondary text color */
+    background-color: var(--primary-light);
+    color: var(--text-secondary);
     font-weight: 600;
-    border-bottom: 2px solid var(--border-color); /* More prominent border below header */
-    text-transform: uppercase; /* Uppercase header text */
+    border-bottom: 2px solid var(--border-color);
+    text-transform: uppercase;
     font-size: 0.9rem;
 }
 
-.permissions-area tbody tr:hover {
-    background-color: #f1f5f9; /* Light gray background on hover */
+/* Add rounded corners to first/last cells of the first/last rows */
+.permissions-area table thead tr:first-child th:first-child {
+    border-top-left-radius: var(--border-radius-sm);
+}
+
+.permissions-area table thead tr:first-child th:last-child {
+    border-top-right-radius: var(--border-radius-sm);
+}
+
+.permissions-area table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: var(--border-radius-sm);
+}
+
+.permissions-area table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: var(--border-radius-sm);
+}
+
+/* Add subtle border to table cells for definition */
+.permissions-area td {
+     border-right: 1px solid var(--border-light); /* Right border for cells */
+}
+.permissions-area td:first-child {
+     border-left: 1px solid var(--border-light); /* Left border for first cell */
+}
+.permissions-area tbody tr:first-child td { /* Top border for first row in tbody */
+     border-top: 1px solid var(--border-light);
 }
 
 .permissions-area td:last-child {
-     text-align: center; /* Center action icons */
+     text-align: center;
+     border-right: 1px solid var(--border-light); /* Ensure last cell also has right border */
+}
+
+
+.permissions-area tbody tr:hover td {
+    background-color: #f1f5f9; /* Highlight cells on row hover */
 }
 
 /* Refined Icon Buttons */
 .permissions-area .icon-button {
      background: none;
      border: none;
-     padding: 0.5rem; /* Increased padding */
+     padding: 0.5rem;
      color: var(--employee-primary); /* Blue color for icons */
-     border-radius: 50%; /* Circular buttons */
-     width: 36px; /* Increased size */
-     height: 36px; /* Increased size */
+     border-radius: 50%;
+     width: 36px;
+     height: 36px;
      display: inline-flex;
      align-items: center;
      justify-content: center;
      line-height: 1;
      cursor: pointer;
      transition: background-color 0.2s ease, color 0.2s ease;
-     font-size: 1.2rem; /* Increased icon size */
-     margin: 0 4px; /* Space between icons */
+     font-size: 1.2rem;
+     margin: 0 4px;
 }
 
 .permissions-area .icon-button:hover {
-    background-color: rgba(37, 99, 235, 0.1); /* Very light blue background on hover */
-    color: var(--employee-primary-hover); /* Darker blue on hover */
+    background-color: rgba(37, 99, 235, 0.1);
+    color: var(--employee-primary-hover);
 }
 
 /* Styles for Role Definition section */
 .permissions-area h3 {
     color: var(--text-primary);
-    font-size: 1.5rem; /* Larger heading */
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-top: 2.5rem; /* More space above */
-    margin-bottom: 1.2rem; /* More space below */
-    border-bottom: 2px solid var(--accent); /* Accent colored underline */
-    padding-bottom: 0.5rem; /* Space below underline */
-    display: inline-block; /* Contain underline to text width */
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.5rem;
+    display: inline-block;
 }
 
 /* Button for 'Thêm Vai trò Mới' */
 .permissions-area .card-body > .btn-add-employee {
-     background-color: var(--accent); /* Accent color button */
-     color: var(--text-on-accent); /* Text color on accent */
+     background-color: var(--accent);
+     color: var(--text-on-accent);
      border: none;
      border-radius: var(--border-radius-sm);
      padding: 0.85rem 1.8rem;
@@ -136,7 +190,7 @@
      cursor: pointer;
      transition: background-color 0.2s ease, transform 0.1s ease;
      box-shadow: var(--shadow-sm);
-     margin-bottom: 1.5rem; /* Space below the button */
+     margin-bottom: 1.5rem;
 }
 
 .permissions-area .card-body > .btn-add-employee:hover {
@@ -154,16 +208,22 @@
     .permissions-area .filter-section {
         flex-direction: column;
         align-items: stretch;
+        padding: 1rem; /* Adjusted padding */
+        gap: 0.6rem; /* Adjusted gap */
     }
     .permissions-area .filter-section input[type="text"],
      .permissions-area .filter-section button {
         width: 100%;
-        box-sizing: border-box; /* Include padding and border in element's total width */
+        box-sizing: border-box;
      }
+
+    .permissions-area table {
+        border-spacing: 0 6px; /* Adjusted space between rows */
+    }
 
     .permissions-area th,
     .permissions-area td {
-        padding: 12px 10px;
+        padding: 10px 8px; /* Adjusted padding */
         font-size: 0.9rem;
     }
     .permissions-area h3 {
@@ -181,7 +241,7 @@
 @media (max-width: 500px) {
     .permissions-area .card-body {
         padding: 1rem;
-        gap: 1rem;
+        gap: 1.2rem; /* Adjusted gap */
     }
     .permissions-area h3 {
         font-size: 1.2rem;
@@ -190,9 +250,12 @@
     }
     .permissions-area th,
     .permissions-area td {
-        padding: 10px 8px;
+        padding: 8px 5px; /* Adjusted padding */
         font-size: 0.85rem;
     }
+     .permissions-area table {
+         border-spacing: 0 4px; /* Adjusted space between rows */
+     }
      .permissions-area .icon-button {
          width: 28px;
          height: 28px;
@@ -200,10 +263,14 @@
          padding: 0.3rem;
          margin: 0 2px;
      }
+     .permissions-area .filter-section {
+          padding: 0.8rem; /* Adjusted padding */
+          gap: 0.5rem; /* Adjusted gap */
+     }
      .permissions-area .filter-section input[type="text"],
       .permissions-area .filter-section button,
       .permissions-area .card-body > .btn-add-employee {
-          padding: 0.75rem 1rem;
+          padding: 0.6rem 1rem;
           font-size: 0.9rem;
       }
 } 

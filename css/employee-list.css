@@ -181,14 +181,14 @@ body {
     background: var(--card-bg);
     font-family: var(--font-family);
     table-layout: auto;
-    min-width: 700px; /* Đảm bảo độ rộng tối thiểu cho bảng trên mobile */
+    /* min-width: 700px; */ /* Default min-width, adjust in media queries */
 }
 
 #employeeTable th,
 #employeeTable td {
     padding: 1rem 0.8rem; /* Tăng padding */
     word-break: break-word;
-    white-space: normal;
+    white-space: nowrap; /* Prevent text from wrapping */
     text-align: left; /* Căn trái cho mặc định */
 }
 
@@ -295,10 +295,12 @@ body {
 
 .status-badge.active {
     background-color: #10b981; /* Xanh lá */
+    color: var(--accent); /* Đổi màu chữ sang màu vàng */
 }
 
 .status-badge.inactive {
     background-color: #ef4444; /* Đỏ */
+    color: var(--accent); /* Đổi màu chữ sang màu vàng */
 }
 
 /* Responsive Design Adjustments */
@@ -312,27 +314,33 @@ body {
     .card-header { padding: 1rem 1rem 0.8rem 1rem; font-size: 1rem; }
     .card-header h2 { font-size: 1.2rem; }
     .table-container { padding: 0 1rem 1rem 1rem; }
-    #employeeTable th, #employeeTable td { padding: 0.8rem 0.5rem; font-size: 0.9rem; }
     .icon-button { width: 28px; height: 28px; font-size: 1rem; padding: 0.3rem; margin: 0 1px; }
     .status-badge { font-size: 0.8rem; padding: 0.2em 0.6em; min-width: 60px; }
+    #employeeTable {
+        min-width: 650px; /* Adjusted min-width for 900px breakpoint */
+    }
 }
 
 @media (max-width: 768px) {
     .customer-actions {
         flex-direction: column;
         align-items: stretch;
-        padding: 0 0.5rem; /* Adjust padding */
+        padding: 0 0.5rem;
     }
     .customer-actions .action-buttons,
     .customer-actions .filter-section,
     .customer-actions .filter-group {
         width: 100%;
-        justify-content: stretch;
+        justify-content: space-between;
+        gap: 0.8rem;
     }
     .customer-actions .filter-group select {
         flex-grow: 1;
     }
     .table-area.card { margin: 0 0.5rem 1rem 0.5rem; }
+    #employeeTable {
+        min-width: 600px; /* Adjusted min-width for 768px breakpoint */
+    }
 }
 
 @media (max-width: 500px) {
@@ -346,15 +354,31 @@ body {
     .card-header { padding: 0.8rem 0.5rem 0.6rem 0.5rem; font-size: 0.95rem; border-radius: 8px 8px 0 0; }
     .card-header h2 { font-size: 1.1rem; }
     .table-container { padding: 0 0.5rem 0.8rem 0.5rem; }
-    #employeeTable th, #employeeTable td { padding: 0.6rem 0.3rem; font-size: 0.88rem; }
     .icon-button { width: 24px; height: 24px; font-size: 0.9rem; padding: 0.2rem; margin: 0 0.5px; }
     .status-badge { font-size: 0.75rem; padding: 0.15em 0.5em; min-width: 50px; }
     #employeeTable {
-         min-width: 550px; /* Adjust min-width for smaller screens */
+        min-width: 550px; /* Adjusted min-width for 500px breakpoint, still allows scrolling */
     }
-
 }
 
+@media (max-width: 480px) {
+    .modal-footer {
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+    }
+    .modal-footer .btn-secondary,
+    .modal-footer .btn-primary {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        flex-basis: auto;
+        flex-grow: 0;
+        flex-shrink: 1;
+        width: auto;
+        min-width: 80px;
+    }
+}
 
 /* Modal Styles - Keep blue accent for modals */
 #addEmployeeModal .modal-header,
@@ -508,5 +532,166 @@ body {
         padding: 0.3rem 0.5rem;
         font-size: 0.85rem;
         border-radius: 6px;
+    }
+}
+
+/* Ensure modals are displayed above header */
+.modal {
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Add a dimming background */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    width: 90%; /* Adjust width as needed */
+    max-width: 600px; /* Max width for larger screens */
+    display: flex;
+    flex-direction: column;
+    max-height: 95vh; /* Limit total modal content height */
+    overflow: hidden; /* Hide overflow from header/footer if any */
+}
+
+/* Ensure header dark overlay is below modals but above header */
+.header-dark-overlay {
+    z-index: 9998; /* Should be less than modal z-index */
+}
+
+/* Adjust modal content size for scrolling */
+.modal-content {
+    max-height: 80vh; /* Adjust as needed, e.g., 80% of viewport height */
+    overflow-y: auto; /* Add vertical scrolling if content exceeds max-height */
+    border-radius: 28px;
+}
+
+/* Ensure modal body is scrollable if content overflows */
+.modal-body {
+    max-height: calc(80vh - var(--header-height, 65px) - 60px); /* Adjust max-height based on header/footer height */
+    overflow-y: auto; /* Add vertical scrolling */
+    padding: 1.5rem;
+    flex-grow: 1; /* Allow modal body to grow */
+}
+
+.modal-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--employee-primary);
+    color: white;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.modal-footer .btn-secondary {
+     background-color: #e2e8f0;
+     color: var(--text-primary);
+     border: none;
+     border-radius: var(--border-radius-sm);
+     padding: 0.75rem 1.5rem;
+     font-size: 1rem;
+     font-weight: 600;
+     cursor: pointer;
+     transition: background-color 0.2s ease;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #cbd5e1;
+}
+
+.modal-footer .btn-primary {
+    background-color: var(--employee-primary);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: var(--employee-primary-hover);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    color: var(--text-primary);
+    background-color: var(--card-bg);
+}
+
+@media (max-width: 480px) {
+    .modal-footer {
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+    }
+    .modal-footer .btn-secondary,
+    .modal-footer .btn-primary {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        flex-basis: auto;
+        flex-grow: 0;
+        flex-shrink: 1;
+        width: auto;
+        min-width: 80px;
     }
 } 

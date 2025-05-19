@@ -209,9 +209,9 @@
     </main>
 
     <!-- Link đến file JavaScript cho trang này -->
-    <script src="../js/employee-list.js"></script> <!-- Tái sử dụng JS chung cho sidebar, header... -->
-    <!-- Có thể thêm script riêng cho trang phân quyền nếu cần -->
-    <!-- <script src="../js/employee-permissions.js"></script> -->
+    <script src="../js/package_manager.js"></script>
+    <script src="../js/employee-list.js"></script>
+    <script src="../js/employee-permissions.js"></script>
 
     <script>
         // Script chỉ cho trang này, nếu nhiều nên chuyển ra file js riêng
@@ -223,6 +223,45 @@
 
               // Lấy năm hiện tại cho footer
               document.getElementById('current-year').textContent = new Date().getFullYear();
+
+             // Hàm hiển thị danh sách nhân viên trên trang phân quyền
+            function renderPermissionsTable(employeeList) {
+                const tbody = document.querySelector('.permissions-area table tbody');
+                tbody.innerHTML = ''; // Clear existing rows
+
+                if (!employeeList || employeeList.length === 0) {
+                    // Display a message if no employees
+                    const noDataRow = document.createElement('tr');
+                    noDataRow.innerHTML = `<td colspan="4" style="text-align: center; padding: 20px;">Không có dữ liệu nhân viên</td>`;
+                    tbody.appendChild(noDataRow);
+                    return;
+                }
+
+                employeeList.forEach(employee => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td style="padding: 8px;">${employee.id}</td>
+                        <td style="padding: 8px;">${employee.name}</td>
+                        <td style="padding: 8px;">${employee.role}</td>
+                        <td style="text-align: center; padding: 8px;">
+                            <button class="icon-button icon-edit" title="Chỉnh sửa vai trò"><i class="fa-solid fa-user-check"></i></button>
+                        </td>
+                    `;
+                    // Add event listeners for the edit button here if needed later
+                    tbody.appendChild(tr);
+                });
+            }
+
+            // Gọi hàm render khi trang tải xong, sử dụng mảng employees từ employee-list.js
+            // Cần đảm bảo employees đã được load. Do employee-list.js được load trước script này,
+            // mảng employees global nên đã có.
+            if (typeof employees !== 'undefined') {
+                renderPermissionsTable(employees);
+            } else {
+                console.error('Mảng employees không tồn tại. Đảm bảo employee-list.js đã được tải.');
+            }
+
+
         });
 
          // Hàm blur header khi modal mở (có thể đã có trong employee-list.js) -> đảm bảo đã load
