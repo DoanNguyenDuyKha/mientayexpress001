@@ -464,19 +464,6 @@ input[readonly], textarea[readonly] {
     margin-bottom: 0;
 }
 
-/* Header styles inherited from .summary-header-like */
-
-.data-section .card-header .card-title {
-    /* Styles inherited from .summary-header-left */
-}
-
-.data-section .card-header .card-title i.icon {
-     /* Styles inherited */
-}
-
-.data-section .card-body {
-    /* Styles inherited from .summary-body-like */
-}
 
 .data-section .header-note {
     font-size: 0.45rem; /* Keep small */

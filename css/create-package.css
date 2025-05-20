@@ -458,23 +458,6 @@ input[readonly], textarea[readonly] {
     vertical-align: middle; /* Align with text */
 }
 
-.checkbox-group input[type="checkbox"] {
-    /* Revert to default shape */
-}
-
-.radio-group input[type="radio"]:checked,
-.checkbox-group input[type="checkbox"]:checked {
-    /* Default checked appearance */
-}
-
-.radio-group input[type="radio"]:checked::after {
-    /* Remove custom checked indicator */
-}
-
-.checkbox-group input[type="checkbox"]:checked::after {
-    /* Remove custom checked indicator */
-}
-
 .helper-text {
     font-size: 0.6em;
     color: var(--text-secondary);
