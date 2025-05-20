@@ -172,297 +172,285 @@
             <section class="page-header">
                  <div class="page-header-left">
                      <h1 class="page-title">Tạo đơn hàng</h1>
-                     <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Tạo đơn hàng</a> / <span>Chi tiết</span> </nav>
+                     <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Tạo đơn hàng</a> / <span>Step 1</span> </nav>
                  </div>
              </section>
 
              <form id="create-order-form" novalidate autocomplete="off">
-                <div class="form-layout">
-                    <div class="form-column-left">
-                        <!-- SENDER Section -->
-                        <section class="card form-section">
-                            <div class="card-header">
-                                <h2 class="card-title"><i class="fas fa-user icon"></i> Người gửi (SENDER)</h2>
-                                <div class="address-book-select">
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="sender_name_input">Người gửi<span class="required">*</span></label>
-                                    <input type="text" id="sender_name_input" name="sender_name_display" required autocomplete="off" placeholder="Nhập tên hoặc SĐT người gửi">
+               <div class="wizard-steps-container">
+                 <div class="wizard-step-content step-1 active">
+                   <section class="card form-section">
+                       <div class="card-header">
+                           <h2 class="card-title"><i class="fas fa-user icon"></i> Người gửi (SENDER)</h2>
+                       </div>
+                       <div class="card-body">
+                           <div class="form-group">
+                               <label for="sender_preset">Người gửi<span class="required">*</span></label>
+                               <select id="sender_preset" name="sender_preset" required>
+                                   <option value="" selected>Chọn người gửi</option>
+                                   <option value="tpd">TRẦN PHÚC ĐƯỜNG - Công ty TNHH Thương Mại và Dịch Vụ Nina - 0909951549</option>
+                                   <option value="nina">NINA CO.,LTD - 028 1234 5678</option>
+                                   <option value="other">Khác...</option>
+                               </select>
+                               <span class="error-message"></span>
+                           </div>
+                           <div class="form-group">
+                               <label for="sender_company">Tên công ty</label>
+                               <input type="text" id="sender_company" name="sender_company" value="" autocomplete="off">
+                               <span class="error-message"></span>
+                           </div>
+                           <div class="form-group inline-group multi-input" aria-labelledby="sender_contact_label">
+                                 <span id="sender_contact_label" class="visually-hidden">Sender Name and Contact</span>
+                                <div class="input-group">
+                                    <label for="sender_name">Tên người gửi<span class="required">*</span></label>
+                                    <input type="text" id="sender_name" name="sender_name" value="" autocomplete="off">
                                     <span class="error-message"></span>
                                 </div>
-                                <div class="form-group">
-                                    <label for="sender_company">Tên công ty</label>
-                                    <input type="text" id="sender_company" name="sender_company" value="" autocomplete="off">
+                                <div class="input-group">
+                                    <label for="sender_phone">Số liên hệ<span class="required">*</span></label>
+                                    <input type="tel" id="sender_phone" name="sender_phone" value="" autocomplete="off">
                                     <span class="error-message"></span>
                                 </div>
-                                <div class="form-group inline-group multi-input" aria-labelledby="sender_contact_label">
-                                      <span id="sender_contact_label" class="visually-hidden">Sender Name and Contact</span>
-                                     <div class="input-group">
-                                         <label for="sender_name">Tên người gửi<span class="required">*</span></label>
-                                         <input type="text" id="sender_name" name="sender_name" value="" autocomplete="off">
-                                         <span class="error-message"></span>
-                                     </div>
-                                     <div class="input-group">
-                                         <label for="sender_phone">Số liên hệ<span class="required">*</span></label>
-                                         <input type="tel" id="sender_phone" name="sender_phone" value="" autocomplete="off">
-                                         <span class="error-message"></span>
-                                     </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="sender_city">Chọn địa chỉ<span class="required">*</span></label>
-                                       <div class="input-group-3">
-                                           <select id="sender_city" name="sender_city" required title="Chọn Tỉnh/Thành phố">
-                                               <option value="" selected>Chọn Tỉnh/Thành phố</option>
-                                               <option value="hcm">TP.HCM</option>
-                                               <option value="hn">Hà Nội</option>
-                                               <option value="ct">Cần Thơ</option>
-                                           </select>
-                                           <select id="sender_district" name="sender_district" required title="Chọn Quận/Huyện">
-                                               <option value="" selected>Chọn Quận / Huyện</option>
-                                               <option value="q1">Quận 1</option>
-                                               <option value="q12">Quận 12</option>
-                                               <option value="tp">Tân Phú</option>
-                                           </select>
-                                           <select id="sender_ward" name="sender_ward" required title="Chọn Phường/Xã">
-                                               <option value="" selected>Chọn Phường / Xã</option>
-                                               <option value="tch">Tân Chánh Hiệp</option>
-                                               <option value="tth">Tân Thới Hiệp</option>
-                                           </select>
-                                       </div>
-                                       <span class="error-message group-error"></span>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="sender_address">Địa chỉ<span class="required">*</span></label>
-                                       <textarea id="sender_address" name="sender_address" required autocomplete="off"></textarea>
-                                       <span class="error-message"></span>
-                                   </div>
-                               </div>
-                           </section>
-
-                           <!-- SERVICES Section -->
-                           <section class="card form-section">
-                                <div class="card-header">
-                                    <h2 class="card-title"><i class="fas fa-concierge-bell icon"></i> Chọn dịch vụ (SERVICES)</h2>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <span class="form-label">Lý do gửi hàng<span class="required">*</span></span>
-                                        <div class="radio-group" role="radiogroup" aria-labelledby="send_reason_label">
-                                          <span id="send_reason_label" class="visually-hidden">Lý do gửi hàng</span>
-                                            <label> <input type="radio" name="send_reason" value="gift" required> Gift (no commercial value) </label>
-                                            <label> <input type="radio" name="send_reason" value="sample" required> Sample </label>
-                                        </div>
-                                         <span class="error-message group-error"></span>
-                                    </div>
-                                         <div class="form-group">
-                                             <span class="form-label">Loại bưu gửi<span class="required">*</span></span>
-                                            <div class="radio-group" role="radiogroup" aria-labelledby="package_type_label">
-                                                <span id="package_type_label" class="visually-hidden">Loại bưu gửi</span>
-                                                <label> <input type="radio" name="package_type" value="goods" required> Hàng hóa </label>
-                                                <label> <input type="radio" name="package_type" value="document" required> Tài liệu </label>
-                                            </div>
-                                             <span class="error-message group-error"></span>
-                                        </div>
-                                        <div class="form-grid-2col">
-                                            <div class="form-group">
-                                                <label for="service_type">Chọn dịch vụ<span class="required">*</span></label>
-                                                <select id="service_type" name="service_type" required>
-                                                    <option value="MTE_DHL_SIN" selected>MTE DHL SIN</option>
-                                                    <option value="MTE_FEDEX_SIN">MTE FEDEX SIN</option>
-                                                 </select>
-                                                 <span class="error-message"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="branch">Chi nhánh<span class="required">*</span></label>
-                                                <select id="branch" name="branch" required>
-                                                    <option value="TanPhu" selected>Tân Phú - HCM</option>
-                                                    <option value="BinhTan">Bình Tân</option>
-                                                 </select>
-                                                 <span class="error-message"></span>
-                                            </div>
-                                        </div>
-                                         <span class="warning-note">Lưu ý*: Một số dịch vụ chỉ nhận từ 20kg trở lên</span>
-                                         <div class="form-group">
-                                             <span class="form-label">Dịch vụ đi kèm</span>
-                                            <div class="checkbox-group">
-                                                <label><input type="checkbox" name="add_service[]" value="signature"> Chữ Ký</label>
-                                                <label><input type="checkbox" name="add_service[]" value="fumigation"> FUMIGATION</label>
-                                                <label><input type="checkbox" name="add_service[]" value="packing"> Đóng kiện gỗ</label>
-                                                <label><input type="checkbox" name="add_service[]" value="insurance" checked> Bảo hiểm hàng hóa</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                             <span class="form-label">Hình thức gửi hàng<span class="required">*</span></span>
-                                            <div class="radio-group" role="radiogroup" aria-labelledby="pickup_method_label">
-                                              <span id="pickup_method_label" class="visually-hidden">Hình thức gửi hàng</span>
-                                                <label> <input type="radio" name="pickup_method" value="pickup" required> Thu gom tận nơi </label>
-                                                <label> <input type="radio" name="pickup_method" value="dropoff" required> Gửi hàng tại bưu cục </label>
-                                            </div>
-                                             <span class="error-message group-error"></span>
-                                        </div>
-                                    </div>
-                                </section>
-                    </div>
-                    <div class="form-column-right">
-                        <!-- RECEIVER Section -->
-                        <section class="card form-section">
-                            <div class="card-header">
-                                <h2 class="card-title"><i class="fas fa-box-open icon"></i> Người nhận (RECEIVER)</h2>
-                                <div class="address-book-select">
-                                    <label for="receiver_address_book" class="visually-hidden">Chọn từ danh bạ</label>
-                                     <select id="receiver_address_book" name="receiver_address_book" title="Chọn từ danh bạ">
-                                     <option value="" selected>Danh sách người nhận</option>
-                                     <option value="saved1">HIEP THANH RUBBER...
-                                 </select>
-                              </div>
-                          </div>
-                          <div class="card-body">
-                               <div class="form-group">
-                                  <label for="receiver_company">Tên công ty</label>
-                                  <input type="text" id="receiver_company" name="receiver_company" value="" autocomplete="off">
-                                  <span class="error-message"></span>
                               </div>
                               <div class="form-group">
-                                  <label for="receiver_name">Tên người nhận<span class="required">*</span></label>
-                                  <input type="text" id="receiver_name" name="receiver_name" value="" required autocomplete="off">
+                                  <label for="sender_city">Chọn địa chỉ<span class="required">*</span></label>
+                                  <div class="input-group-3">
+                                      <select id="sender_city" name="sender_city" required title="Chọn Tỉnh/Thành phố">
+                                          <option value="" selected>Chọn Tỉnh/Thành phố</option>
+                                          <option value="hcm">TP.HCM</option>
+                                          <option value="hn">Hà Nội</option>
+                                          <option value="ct">Cần Thơ</option>
+                                      </select>
+                                      <select id="sender_district" name="sender_district" required title="Chọn Quận/Huyện">
+                                          <option value="" selected>Chọn Quận / Huyện</option>
+                                          <option value="q1">Quận 1</option>
+                                          <option value="q12">Quận 12</option>
+                                          <option value="tp">Tân Phú</option>
+                                      </select>
+                                      <select id="sender_ward" name="sender_ward" required title="Chọn Phường/Xã">
+                                          <option value="" selected>Chọn Phường / Xã</option>
+                                          <option value="tch">Tân Chánh Hiệp</option>
+                                          <option value="tth">Tân Thới Hiệp</option>
+                                      </select>
+                                  </div>
+                                  <span class="error-message group-error"></span>
+                              </div>
+                              <div class="form-group">
+                                  <label for="sender_address">Địa chỉ<span class="required">*</span></label>
+                                  <textarea id="sender_address" name="sender_address" required autocomplete="off"></textarea>
                                   <span class="error-message"></span>
                               </div>
-                               <div class="form-group inline-group multi-input" aria-labelledby="receiver_phone_label">
-                                   <span id="receiver_phone_label" class="visually-hidden">Receiver Contact Numbers</span>
-                                   <div class="input-group">
-                                       <label for="receiver_phone1">Số điện thoại 1<span class="required">*</span></label>
+                          </div>
+                      </section>
+                      <div class="wizard-actions"><button type="button" class="button primary next-step">Tiếp tục</button></div>
+                   </div>
+                   <div class="wizard-step-content step-2">
+                     <section class="card form-section">
+                         <div class="card-header">
+                             <h2 class="card-title"><i class="fas fa-box-open icon"></i> Người nhận (RECEIVER)</h2>
+                             <div class="address-book-select">
+                                 <label for="receiver_address_book" class="visually-hidden">Chọn từ danh bạ</label>
+                                 <select id="receiver_address_book" name="receiver_address_book" title="Chọn từ danh bạ">
+                                      <option value="" selected>Danh sách người nhận</option>
+                                      <option value="saved1">HIEP THANH RUBBER...</option>
+                                 </select>
+                             </div>
+                         </div>
+                         <div class="card-body">
+                              <div class="form-group">
+                                 <label for="receiver_company">Tên công ty</label>
+                                 <input type="text" id="receiver_company" name="receiver_company" value="" autocomplete="off">
+                                 <span class="error-message"></span>
+                             </div>
+                             <div class="form-group">
+                                 <label for="receiver_name">Tên người nhận<span class="required">*</span></label>
+                                 <input type="text" id="receiver_name" name="receiver_name" value="" required autocomplete="off">
+                                 <span class="error-message"></span>
+                             </div>
+                              <div class="form-group inline-group multi-input" aria-labelledby="receiver_phone_label">
+                                  <span id="receiver_phone_label" class="visually-hidden">Receiver Contact Numbers</span>
+                                  <div class="input-group">
+                                      <label for="receiver_phone1">Số điện thoại 1<span class="required">*</span></label>
+                                      <div class="phone-input-group">
+                                          <select id="receiver_phone1_code" name="receiver_phone1_code" title="Mã quốc gia SĐT 1">
+                                              <option value="+84" selected>+84</option>
+                                              <option value="+1">+1</option>
+                                              <option value="+44">+44</option>
+                                          </select>
+                                          <input type="tel" id="receiver_phone1" name="receiver_phone1" value="" required autocomplete="off">
+                                      </div>
+                                      <span class="error-message"></span>
+                                  </div>
+                                  <div class="input-group">
+                                       <label for="receiver_phone2">Số điện thoại 2</label>
                                        <div class="phone-input-group">
-                                           <select id="receiver_phone1_code" name="receiver_phone1_code" title="Mã quốc gia SĐT 1">
-                                               <option value="+84" selected>+84</option>
-                                               <option value="+1">+1</option>
-                                               <option value="+44">+44</option>
-                                           </select>
-                                           <input type="tel" id="receiver_phone1" name="receiver_phone1" value="" required autocomplete="off">
+                                          <select id="receiver_phone2_code" name="receiver_phone2_code" title="Mã quốc gia SĐT 2">
+                                              <option value="+84" selected>+84</option>
+                                              <option value="+1">+1</option>
+                                              <option value="+44">+44</option>
+                                          </select>
+                                          <input type="tel" id="receiver_phone2" name="receiver_phone2" value="" autocomplete="off">
                                        </div>
-                                       <span class="error-message"></span>
-                                   </div>
-                                   <div class="input-group">
-                                        <label for="receiver_phone2">Số điện thoại 2</label>
-                                        <div class="phone-input-group">
-                                           <select id="receiver_phone2_code" name="receiver_phone2_code" title="Mã quốc gia SĐT 2">
-                                               <option value="+84" selected>+84</option>
-                                               <option value="+1">+1</option>
-                                               <option value="+44">+44</option>
-                                           </select>
-                                           <input type="tel" id="receiver_phone2" name="receiver_phone2" value="" autocomplete="off">
-                                        </div>
-                                       <span class="error-message"></span>
-                                   </div>
-                               </div>
-                               <div class="form-grid-2col">
-                                   <div class="form-group">
-                                       <label for="receiver_country">Quốc gia<span class="required">*</span></label>
-                                       <select id="receiver_country" name="receiver_country" required>
-                                           <option value="US" selected>UNITED STATES</option>
-                                           <option value="GB">UNITED KINGDOM</option>
-                                        </select>
-                                        <span class="error-message"></span>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="receiver_postcode">Postcode</label>
-                                       <input type="text" id="receiver_postcode" name="receiver_postcode" value="" autocomplete="off">
-                                        <span class="error-message"></span>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="receiver_city">Thành phố<span class="required">*</span></label>
-                                       <input type="text" id="receiver_city" name="receiver_city" value="" required placeholder="Nhập tên thành phố" autocomplete="off">
-                                        <span class="error-message"></span>
-                                   </div>
-                                   <div class="form-group">
-                                       <label for="receiver_state">Tỉnh/Bang<span class="required">*</span></label>
-                                       <input type="text" id="receiver_state" name="receiver_state" value="" required autocomplete="off">
-                                        <span class="error-message"></span>
-                                   </div>
-                               </div>
-                               <div class="form-group">
-                                   <label for="receiver_address">Địa chỉ chi tiết<span class="required">*</span></label>
-                                   <textarea id="receiver_address" name="receiver_address" required autocomplete="off"></textarea>
-                                   <span class="helper-text">(Không nhập POST CODE,STATE,CITY)</span>
-                                   <span class="error-message"></span>
-                               </div>
-                               <div class="form-group">
-                                   <label for="receiver_notes">Ghi chú</label>
-                                   <textarea id="receiver_notes" name="receiver_notes" autocomplete="off"></textarea>
-                                    <span class="error-message"></span>
-                               </div>
-                               <div class="checkbox-group">
-                                   <label> <input type="checkbox" name="save_receiver" value="1" checked> Lưu thông tin người nhận cho lần nhập tiếp theo </label>
-                               </div>
-                           </div>
-                       </section>
-                       <section class="card form-section">
-                           <div class="card-header">
-                               <h2 class="card-title"><i class="fas fa-file-invoice-dollar icon"></i> Yêu cầu đơn hàng (BILL REQUIREMENT)</h2>
-                           </div>
-                           <div class="card-body">
-                               <div class="form-group">
-                                   <span class="form-label">Tình trạng đơn<span class="required">*</span></span>
-                                   <div class="radio-group" role="radiogroup" aria-labelledby="bill_status_label">
-                                     <span id="bill_status_label" class="visually-hidden">Tình trạng đơn</span>
-                                       <label> <input type="radio" name="bill_status" value="remote" required> Vùng sâu vùng xa </label>
-                                       <label> <input type="radio" name="bill_status" value="vat" required> VAT (8%) </label>
-                                        <label> <input type="radio" name="bill_status" value="no_invoice" required> Không xuất Hóa Đơn </label>
-                                   </div>
-                                    <span class="error-message group-error"></span>
-                               </div>
-                                    <div class="form-grid-2col">
-                                        <div class="form-group">
-                                            <label for="agent">Chọn Đại lý<span class="required">*</span></label>
-                                            <select id="agent" name="agent" required>
-                                                <option value="quynam" selected>Quý Nam</option>
-                                             </select>
-                                             <span class="error-message"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="invoice_code">Mã INV</label>
-                                            <input type="text" id="invoice_code" name="invoice_code" value="">
-                                             <span class="error-message"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ops_coord">OPS điều phối</label>
-                                            <select id="ops_coord" name="ops_coord">
-                                                <option value="dangvancuong" selected>Đặng Văn Cường - OP...</option>
-                                             </select>
-                                             <span class="error-message"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cs_handler">CS xử lý</label>
-                                            <select id="cs_handler" name="cs_handler">
-                                                <option value="alice" selected>Alice in the Wonder L...</option>
-                                             </select>
-                                             <span class="error-message"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                       <footer class="form-actions">
-                          <div class="terms-agreement">
-                              <input type="checkbox" id="terms_agree" name="terms_agree" required>
-                              <label for="terms_agree">Tôi đã đọc và đồng ý với <a href="#" class="modal-link-underline" id="open-terms-modal-footer">Điều khoản quy định</a></label>
-                              <span class="error-message"></span>
-                          </div>
-                          <div class="action-buttons">
-                              <button type="button" class="button danger" id="exit-btn">
-                                  <i class="fa-solid fa-right-from-bracket"></i> Thoát
-                              </button>
-                               <button type="button" class="button warning" id="reset-btn">
-                                  <i class="fa-solid fa-arrows-rotate"></i> Làm mới
-                              </button>
-                              <button type="submit" class="button confirm">
-                                   <i class="fa-solid fa-check"></i> Tạo đơn
-                              </button>
-                          </div>
-                      </footer>
-                 </div>
+                                      <span class="error-message"></span>
+                                  </div>
+                             </div>
+                             <div class="form-grid-2col">
+                                 <div class="form-group">
+                                     <label for="receiver_country">Quốc gia<span class="required">*</span></label>
+                                     <select id="receiver_country" name="receiver_country" required>
+                                         <option value="US" selected>UNITED STATES</option>
+                                         <option value="GB">UNITED KINGDOM</option>
+                                      </select>
+                                      <span class="error-message"></span>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="receiver_postcode">Postcode</label>
+                                     <input type="text" id="receiver_postcode" name="receiver_postcode" value="" autocomplete="off">
+                                      <span class="error-message"></span>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="receiver_city">Thành phố<span class="required">*</span></label>
+                                     <input type="text" id="receiver_city" name="receiver_city" value="" required placeholder="Nhập tên thành phố" autocomplete="off">
+                                      <span class="error-message"></span>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="receiver_state">Tỉnh/Bang<span class="required">*</span></label>
+                                     <input type="text" id="receiver_state" name="receiver_state" value="" required autocomplete="off">
+                                      <span class="error-message"></span>
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                                 <label for="receiver_address">Địa chỉ chi tiết<span class="required">*</span></label>
+                                 <textarea id="receiver_address" name="receiver_address" required autocomplete="off"></textarea>
+                                 <span class="helper-text">(Không nhập POST CODE,STATE,CITY)</span>
+                                 <span class="error-message"></span>
+                             </div>
+                             <div class="form-group">
+                                 <label for="receiver_notes">Ghi chú</label>
+                                 <textarea id="receiver_notes" name="receiver_notes" autocomplete="off"></textarea>
+                                  <span class="error-message"></span>
+                             </div>
+                             <div class="checkbox-group">
+                                 <label> <input type="checkbox" name="save_receiver" value="1" checked> Lưu thông tin người nhận cho lần nhập tiếp theo </label>
+                             </div>
+                         </div>
+                     </section>
+                     <div class="wizard-actions"><button type="button" class="button secondary prev-step">Quay lại</button><button type="button" class="button primary next-step">Tiếp tục</button></div>
+                   </div>
+                   <div class="wizard-step-content step-3">
+                     <section class="card form-section">
+                         <div class="card-header">
+                             <h2 class="card-title"><i class="fas fa-concierge-bell icon"></i> Chọn dịch vụ (SERVICES)</h2>
+                         </div>
+                         <div class="card-body">
+                             <div class="form-group">
+                                 <span class="form-label">Lý do gửi hàng<span class="required">*</span></span>
+                                 <div class="radio-group" role="radiogroup" aria-labelledby="send_reason_label">
+                                   <span id="send_reason_label" class="visually-hidden">Lý do gửi hàng</span>
+                                     <label> <input type="radio" name="send_reason" value="gift" required> Gift (no commercial value) </label>
+                                     <label> <input type="radio" name="send_reason" value="sample" required> Sample </label>
+                                 </div>
+                                  <span class="error-message group-error"></span>
+                             </div>
+                                  <div class="form-group">
+                                      <span class="form-label">Loại bưu gửi<span class="required">*</span></span>
+                                     <div class="radio-group" role="radiogroup" aria-labelledby="package_type_label">
+                                         <span id="package_type_label" class="visually-hidden">Loại bưu gửi</span>
+                                         <label> <input type="radio" name="package_type" value="goods" required> Hàng hóa </label>
+                                         <label> <input type="radio" name="package_type" value="document" required> Tài liệu </label>
+                                     </div>
+                                      <span class="error-message group-error"></span>
+                                 </div>
+                                 <div class="form-grid-2col">
+                                     <div class="form-group">
+                                         <label for="service_type">Chọn dịch vụ<span class="required">*</span></label>
+                                         <select id="service_type" name="service_type" required>
+                                             <option value="MTE_DHL_SIN" selected>MTE DHL SIN</option>
+                                             <option value="MTE_FEDEX_SIN">MTE FEDEX SIN</option>
+                                          </select>
+                                          <span class="error-message"></span>
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="branch">Chi nhánh<span class="required">*</span></label>
+                                         <select id="branch" name="branch" required>
+                                             <option value="TanPhu" selected>Tân Phú - HCM</option>
+                                             <option value="BinhTan">Bình Tân</option>
+                                          </select>
+                                          <span class="error-message"></span>
+                                     </div>
+                                 </div>
+                                  <span class="warning-note">Lưu ý*: Một số dịch vụ chỉ nhận từ 20kg trở lên</span>
+                                  <div class="form-group">
+                                      <span class="form-label">Dịch vụ đi kèm</span>
+                                     <div class="checkbox-group">
+                                         <label><input type="checkbox" name="add_service[]" value="signature"> Chữ Ký</label>
+                                         <label><input type="checkbox" name="add_service[]" value="fumigation"> FUMIGATION</label>
+                                         <label><input type="checkbox" name="add_service[]" value="packing"> Đóng kiện gỗ</label>
+                                         <label><input type="checkbox" name="add_service[]" value="insurance" checked> Bảo hiểm hàng hóa</label>
+                                     </div>
+                                 </div>
+                                 <div class="form-group">
+                                      <span class="form-label">Hình thức gửi hàng<span class="required">*</span></span>
+                                     <div class="radio-group" role="radiogroup" aria-labelledby="pickup_method_label">
+                                       <span id="pickup_method_label" class="visually-hidden">Hình thức gửi hàng</span>
+                                         <label> <input type="radio" name="pickup_method" value="pickup" required> Thu gom tận nơi </label>
+                                         <label> <input type="radio" name="pickup_method" value="dropoff" required> Gửi hàng tại bưu cục </label>
+                                     </div>
+                                      <span class="error-message group-error"></span>
+                                 </div>
+                             </div>
+                         </section>
+                         <div class="wizard-actions"><button type="button" class="button secondary prev-step">Quay lại</button><button type="button" class="button primary next-step">Tiếp tục</button></div>
+                   </div>
+                   <div class="wizard-step-content step-4">
+                     <section class="card form-section">
+                         <div class="card-header">
+                             <h2 class="card-title"><i class="fas fa-file-invoice-dollar icon"></i> Yêu cầu đơn hàng (BILL REQUIREMENT)</h2>
+                         </div>
+                         <div class="card-body">
+                             <div class="form-group">
+                                 <span class="form-label">Tình trạng đơn<span class="required">*</span></span>
+                                 <div class="radio-group" role="radiogroup" aria-labelledby="bill_status_label">
+                                   <span id="bill_status_label" class="visually-hidden">Tình trạng đơn</span>
+                                     <label> <input type="radio" name="bill_status" value="remote" required> Vùng sâu vùng xa </label>
+                                     <label> <input type="radio" name="bill_status" value="vat" required> VAT (8%) </label>
+                                      <label> <input type="radio" name="bill_status" value="no_invoice" required> Không xuất Hóa Đơn </label>
+                                 </div>
+                                  <span class="error-message group-error"></span>
+                             </div>
+                                 <div class="form-grid-2col">
+                                     <div class="form-group">
+                                         <label for="agent">Chọn Đại lý<span class="required">*</span></label>
+                                         <select id="agent" name="agent" required>
+                                             <option value="quynam" selected>Quý Nam</option>
+                                          </select>
+                                          <span class="error-message"></span>
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="invoice_code">Mã INV</label>
+                                         <input type="text" id="invoice_code" name="invoice_code" value="">
+                                          <span class="error-message"></span>
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="ops_coord">OPS điều phối</label>
+                                         <select id="ops_coord" name="ops_coord">
+                                             <option value="dangvancuong" selected>Đặng Văn Cường - OP...</option>
+                                          </select>
+                                          <span class="error-message"></span>
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="cs_handler">CS xử lý</label>
+                                         <select id="cs_handler" name="cs_handler">
+                                             <option value="alice" selected>Alice in the Wonder L...</option>
+                                          </select>
+                                          <span class="error-message"></span>
+                                     </div>
+                                 </div>
+                             </div>
+                         </section>
+                         <div class="wizard-actions"><button type="button" class="button secondary prev-step">Quay lại</button><button type="submit" class="button confirm">Tạo đơn</button></div>
+                   </div>
+               </div>
              </form>
 
              <footer class="site-footer">
@@ -730,6 +718,91 @@
                 }
             }
 
+            let currentStep = 1;
+            const totalSteps = 4;
+            const wizardData = JSON.parse(localStorage.getItem('wizardData') || '{}');
+
+            function showStep(step) {
+              document.querySelectorAll('.wizard-step-content').forEach((el, idx) => {
+                el.classList.toggle('active', idx === step - 1);
+              });
+              document.querySelectorAll('.wizard-step').forEach((el, idx) => {
+                el.classList.toggle('active', idx === step - 1);
+                el.classList.toggle('completed', idx < step - 1);
+              });
+              currentStep = step;
+              updateProgressBar();
+            }
+
+            function saveStepData(step) {
+              const stepContent = document.querySelector('.wizard-step-content.step-' + step);
+              if (!stepContent) return;
+              const inputs = stepContent.querySelectorAll('input, select, textarea');
+              wizardData['step' + step] = {};
+              inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                  wizardData['step' + step][input.name] = input.checked;
+                } else if (input.type === 'radio') {
+                  if (input.checked) wizardData['step' + step][input.name] = input.value;
+                } else {
+                  wizardData['step' + step][input.name] = input.value;
+                }
+              });
+              localStorage.setItem('wizardData', JSON.stringify(wizardData));
+            }
+
+            function restoreStepData(step) {
+              const data = wizardData['step' + step] || {};
+              const stepContent = document.querySelector('.wizard-step-content.step-' + step);
+              if (!stepContent) return;
+              const inputs = stepContent.querySelectorAll('input, select, textarea');
+              inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                  input.checked = !!data[input.name];
+                } else if (input.type === 'radio') {
+                  input.checked = (data[input.name] === input.value);
+                } else if (data[input.name] !== undefined) {
+                  input.value = data[input.name];
+                }
+              });
+            }
+
+            function updateProgressBar() {
+              const steps = document.querySelectorAll('.wizard-step');
+              steps.forEach((el, idx) => {
+                el.classList.toggle('active', idx === currentStep - 1);
+                el.classList.toggle('completed', idx < currentStep - 1);
+              });
+              const progress = document.querySelector('.wizard-progress');
+              if (progress) {
+                const percent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+                progress.style.background = 'linear-gradient(90deg, #FFD700 0%, #FFD700 ' + percent + '%, #1a1a1a ' + percent + '%, #1a1a1a 100%)';
+              }
+            }
+
+            document.getElementById('create-order-form').addEventListener('click', function(e) {
+              if (e.target.classList.contains('next-step')) {
+                e.preventDefault();
+                saveStepData(currentStep);
+                if (currentStep < totalSteps) {
+                  showStep(currentStep + 1);
+                  restoreStepData(currentStep);
+                }
+              }
+              if (e.target.classList.contains('prev-step')) {
+                e.preventDefault();
+                saveStepData(currentStep);
+                if (currentStep > 1) {
+                  showStep(currentStep - 1);
+                  restoreStepData(currentStep);
+                }
+              }
+            });
+
+            initializeActiveSubmenu();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
             if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
             if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobileOrDesktop);
             if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
@@ -744,115 +817,93 @@
             const closeHandler = () => closeModal();
             if (exitButtonX) exitButtonX.addEventListener('click', closeHandler);
             if (exitButtonFooter) exitButtonFooter.addEventListener('click', closeHandler);
-            document.getElementById('open-terms-modal-footer')?.addEventListener('click', function(e) {
-                e.preventDefault();
-                openModal();
-            });
-            document.getElementById('exit-btn')?.addEventListener('click', function() {
-                window.location.href = '../index.html'; // Or wherever you want to navigate on exit
-            });
-            document.getElementById('reset-btn')?.addEventListener('click', function() {
-                form.reset();
-                localStorage.removeItem('createPackageStep1');
-                localStorage.removeItem('wizardData'); // Remove old wizard data
-            });
 
-            if (form) {
-                form.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    if (termsModal && termsModal.classList.contains('active')) {
-                        alert('Vui lòng đóng cửa sổ Điều khoản Quy định trước khi tiếp tục.');
-                        termsModal.focus();
-                        return;
+           if (form) {
+               form.addEventListener('submit', function(event) {
+                   event.preventDefault();
+                   if (termsModal && termsModal.classList.contains('active')) {
+                       alert('Vui lòng đóng cửa sổ Điều khoản Quy định trước khi tiếp tục.');
+                       termsModal.focus();
+                       return;
+                   }
+                   let isFormValid = true;
+                    form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+                    form.querySelectorAll('.error-message').forEach(el => el.remove());
+                    form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
+                    const termsCheckbox = document.getElementById('terms_agree');
+                    if (termsCheckbox && !termsCheckbox.checked) {
+                        isFormValid = false;
+                        addErrorMessage(termsCheckbox, 'Bạn phải đồng ý với Điều khoản quy định của đơn hàng.');
+                    } else if (termsCheckbox) {
+                        removeErrorMessage(termsCheckbox);
                     }
-                    let isFormValid = true;
-                     form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-                     form.querySelectorAll('.error-message').forEach(el => el.remove());
-                     form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
-                     const termsCheckbox = document.getElementById('terms_agree');
-                     if (termsCheckbox && !termsCheckbox.checked) {
-                         isFormValid = false;
-                         addErrorMessage(termsCheckbox, 'Bạn phải đồng ý với Điều khoản quy định của đơn hàng.');
-                     } else if (termsCheckbox) {
-                         removeErrorMessage(termsCheckbox);
-                     }
-                     const requiredFields = form.querySelectorAll('[required]');
-                     const radioGroupsValidated = {};
-                     requiredFields.forEach(input => {
-                         if (input.id === 'terms_agree') return;
-                         if (input.type === 'radio') {
-                             const groupName = input.name;
-                             if (!radioGroupsValidated[groupName]) {
-                                 const checkedRadio = form.querySelector(`input[name="${groupName}"]:checked`);
-                                 if (!checkedRadio) {
-                                     isFormValid = false;
-                                     addErrorMessage(input, 'Vui lòng chọn một tùy chọn.');
-                                 } else {
-                                     form.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => removeErrorMessage(radio));
-                                 }
-                                 radioGroupsValidated[groupName] = true;
-                             }
-                         } else if (input.type === 'checkbox' && input.required) {
-                             if (!input.checked) {
-                                 isFormValid = false;
-                                 addErrorMessage(input, 'Tùy chọn này là bắt buộc.');
-                             } else {
-                                 removeErrorMessage(input);
-                             }
-                         } else if (
-                             (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') &&
-                             !input.value.trim() && input.type !== 'radio' && input.type !== 'checkbox'
-                         ) {
-                             isFormValid = false;
-                             addErrorMessage(input, 'Trường này là bắt buộc.');
-                         } else if (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') {
-                             removeErrorMessage(input);
-                         }
-                     });
-                     if (isFormValid) {
-                         const formData = {};
-                         form.querySelectorAll('input, select, textarea').forEach(input => {
-                             if (input.type === 'checkbox' && input.name === 'add_service[]') {
-                                 if (!formData['add_service[]']) formData['add_service[]'] = [];
-                                 if (input.checked) formData['add_service[]'].push(input.value);
-                             } else if (input.type === 'checkbox') {
-                                 formData[input.name] = input.checked;
-                             } else if (input.type === 'radio') {
-                                 if (input.checked) formData[input.name] = input.value;
-                             } else {
-                                 // Exclude the old sender_preset select, take value from new input
-                                 if (input.id === 'sender_name_input') {
-                                     formData['sender_name_display'] = input.value; // Use a new key or replace an old one if needed
-                                 } else if (input.tagName === 'SELECT' && (input.id === 'sender_city' || input.id === 'sender_district' || input.id === 'sender_ward' || input.id === 'receiver_country' || input.id === 'service_type' || input.id === 'branch' || input.id === 'agent' || input.id === 'ops_coord' || input.id === 'cs_handler' || input.id === 'receiver_phone1_code' || input.id === 'receiver_phone2_code' || input.id === 'package_select')) {
-                                     formData[input.name] = input.options[input.selectedIndex].text; // Get text instead of value
-                                 } else if (input.name !== 'sender_preset') { // Exclude the old sender_preset name
-                                     formData[input.name] = input.value;
-                                 }
-                             }
-                         });
+                    const requiredFields = form.querySelectorAll('[required]');
+                    const radioGroupsValidated = {};
+                    requiredFields.forEach(input => {
+                        if (input.id === 'terms_agree') return;
+                        if (input.type === 'radio') {
+                            const groupName = input.name;
+                            if (!radioGroupsValidated[groupName]) {
+                                const checkedRadio = form.querySelector(`input[name="${groupName}"]:checked`);
+                                if (!checkedRadio) {
+                                    isFormValid = false;
+                                    addErrorMessage(input, 'Vui lòng chọn một tùy chọn.');
+                                } else {
+                                    form.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => removeErrorMessage(radio));
+                                }
+                                radioGroupsValidated[groupName] = true;
+                            }
+                        } else if (input.type === 'checkbox' && input.required) {
+                            if (!input.checked) {
+                                isFormValid = false;
+                                addErrorMessage(input, 'Tùy chọn này là bắt buộc.');
+                            } else {
+                                removeErrorMessage(input);
+                            }
+                        } else if (
+                            (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') &&
+                            !input.value.trim() && input.type !== 'radio' && input.type !== 'checkbox'
+                        ) {
+                            isFormValid = false;
+                            addErrorMessage(input, 'Trường này là bắt buộc.');
+                        } else if (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') {
+                            removeErrorMessage(input);
+                        }
+                    });
+                    if (isFormValid) {
+                        const formData = {};
+                        form.querySelectorAll('input, select, textarea').forEach(input => {
+                            if (input.type === 'checkbox' && input.name === 'add_service[]') {
+                                if (!formData['add_service[]']) formData['add_service[]'] = [];
+                                if (input.checked) formData['add_service[]'].push(input.value);
+                            } else if (input.type === 'checkbox') {
+                                formData[input.name] = input.checked;
+                            } else if (input.type === 'radio') {
+                                if (input.checked) formData[input.name] = input.value;
+                            } else {
+                                formData[input.name] = input.value;
+                            }
+                        });
+                        localStorage.setItem('createPackageStep1', JSON.stringify(formData));
+                        window.location.href = 'create-package-step2.html';
+                        setTimeout(function(){ localStorage.removeItem('createPackageStep1'); }, 1000);
+                    } else {
+                        const firstErrorField = form.querySelector('.error');
+                        if (firstErrorField) {
+                            const elementToScroll = firstErrorField.closest('.form-group, .terms-agreement') || firstErrorField;
+                            elementToScroll.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+               });
 
-                         // Add sender country as always 'Việt Nam'
-                         formData['sender_country'] = 'Việt Nam';
+               form.addEventListener('reset', function() {
+                    form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+                    form.querySelectorAll('.error-message').forEach(el => el.remove());
+                    form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
+               });
+           }
 
-                         localStorage.setItem('createPackageStep1', JSON.stringify(formData));
-                         window.location.href = 'create-package-step2.html';
-                     } else {
-                         const firstErrorField = form.querySelector('.error');
-                         if (firstErrorField) {
-                             const elementToScroll = firstErrorField.closest('.form-group, .terms-agreement') || firstErrorField;
-                             elementToScroll.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                         }
-                     }
-                });
-
-                form.addEventListener('reset', function() {
-                     form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-                     form.querySelectorAll('.error-message').forEach(el => el.remove());
-                     form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
-                });
-            }
-
-            if (announcementOverlay && announcementOverlay.classList.contains('visible')) {
+             if (announcementOverlay && announcementOverlay.classList.contains('visible')) {
                 closeAnnouncement();
             }
             if (notificationButton) notificationButton.addEventListener('click', (event) => { event.stopPropagation(); toggleNotificationDropdown(); });
@@ -860,7 +911,6 @@
                 notificationList.addEventListener('click', (event) => {
                     const clickedItem = event.target.closest('.notification-item');
                     if (clickedItem && announcementTitle && announcementBodyEl && announcementTimestamp) {
-                        event.preventDefault(); // Prevent default link behavior if any
                         const title = clickedItem.dataset.title || 'Thông báo';
                         const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
                         const timestamp = clickedItem.dataset.timestamp || '';

@@ -1,0 +1,1340 @@
+/* General layout for Step 2 content */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Colors */
+    --primary-color: #0891b2; /* Blue */
+    --primary-hover: #0e7490;
+    --primary-light: #ecfeff; /* Light Blue */
+    --secondary-color: #64748b; /* Grey-blue */
+    --secondary-hover: #475569;
+    --confirm-color: #16a34a; /* Green */
+    --confirm-hover: #15803d;
+    --warning-color: #f97316; /* Orange */
+    --warning-hover: #ea580c;
+    --danger-color: #dc2626; /* Red */
+    --danger-hover: #b91c1c;
+    --info-color: #3b82f6;
+    --receive-color: #2563eb; /* Darker Blue */
+    --text-primary: #1e293b; /* Dark Grey */
+    --text-secondary: #64748b; /* Medium Grey */
+    --text-on-primary: #ffffff;
+    --bg-color: #f8fafc; /* Light Grey Background */
+    --card-bg: #ffffff; /* White */
+    --form-bg: #ffffff;
+    --border-color: #d1d5db; /* Tinh chỉnh màu border cho mềm mại hơn */
+    --border-light: #e5e7eb; /* Tinh chỉnh màu border nhẹ */
+    --input-border: #d1d5db; /* Tinh chỉnh màu input border */
+    --text-gray-label: #4b5563; /* Tinh chỉnh màu label */
+    --label-color: var(--text-gray-label);
+    --success-color: var(--confirm-color);
+    --text-read-only: #374151;
+    --input-readonly-bg: #e5e7eb; /* Tinh chỉnh màu readonly input */
+    --border-gold: #FFD700; /* Định nghĩa biến màu vàng cho border */
+
+    /* Typography */
+    --font-family: 'Inter', sans-serif;
+    --base-font-size: 0.55rem;
+    --form-font-size: 0.5rem;
+
+    /* Spacing */
+    --base-padding: 0.6rem;
+    --card-padding: 0.6rem;
+    --form-padding: 0.6rem;
+    --form-gap: 0.3rem;
+
+    /* Borders & Shadows */
+    --border-radius: 3px;
+    --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.04); /* Tinh chỉnh shadow nhẹ nhàng hơn */
+    --shadow-lg: 0 8px 12px -4px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06); /* Tinh chỉnh shadow nhẹ nhàng hơn */
+
+    /* Transitions */
+    --transition-speed: 0.25s; /* Tinh chỉnh tốc độ transition */
+}
+
+/* Base Styles (copied from create-package.css) */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%; /* Ensure html takes full height */
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    line-height: 1.4;
+    color: var(--text-primary);
+    background-color: var(--bg-color);
+    display: flex;
+    transition: padding-left var(--transition-speed) ease;
+    min-height: 100vh; /* Ensure body is at least full viewport height */
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
+    /* Let browser handle vertical scroll */
+    overflow-y: auto;
+}
+
+body.overflow-hidden {
+    overflow: hidden;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--primary-hover); /* Tinh chỉnh màu hover */
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Form Elements (copied from create-package.css) */
+input, select, button, textarea {
+    font-family: inherit;
+    font-size: var(--form-font-size);
+    border: 1px solid var(--input-border); /* Sử dụng input-border */
+    border-radius: var(--border-radius);
+    padding: 0.3rem 0.5rem; /* Tinh chỉnh padding input */
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Giữ transition */
+    color: var(--text-primary);
+    background-color: var(--form-bg);
+    line-height: 1.3; /* Tinh chỉnh line-height */
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.3); /* Tinh chỉnh focus shadow */
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); /* Giữ icon select */
+    background-position: right 0.5rem center; /* Tinh chỉnh vị trí icon */
+    background-repeat: no-repeat;
+    background-size: 1.2em 1.2em; /* Giảm kích thước icon select */
+    padding-right: 1.8rem; /* Điều chỉnh padding right */
+}
+
+textarea {
+    line-height: 1.4; /* Tinh chỉnh line-height textarea */
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color); /* Sử dụng border-color */
+    border-radius: var(--border-radius); /* Use variable */
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease; /* Thêm transition cho transform */
+    box-shadow: var(--shadow-md); /* Áp dụng shadow mặc định cho button */
+    font-size: var(--form-font-size); /* Use form font size */
+    padding: 0.3rem 0.5rem; /* Adjust padding */
+}
+
+button:hover {
+    border-color: var(--secondary-hover); /* Tinh chỉnh màu border hover */
+    background-color: var(--border-light); /* Tinh chỉnh màu background hover */
+    box-shadow: var(--shadow-lg); /* Tăng nhẹ shadow khi hover */
+}
+
+button:active {
+    transform: translateY(1px); /* Hiệu ứng nhấn nút nhẹ */
+    box-shadow: var(--shadow-md); /* Shadow về lại md khi active */
+ }
+
+button:disabled, button[disabled] {
+     cursor: not-allowed !important;
+     opacity: 0.7 !important; /* Tăng nhẹ opacity cho rõ hơn */
+     background-color: var(--border-light) !important; /* Tinh chỉnh màu disabled */
+     border-color: var(--border-light) !important; /* Tinh chỉnh màu border disabled */
+     color: var(--text-secondary) !important; /* Tinh chỉnh màu text disabled */
+     transform: none !important;
+     box-shadow: none !important;
+ }
+
+input[readonly], textarea[readonly] {
+    background-color: var(--input-readonly-bg); /* Sử dụng biến */
+    color: var(--text-read-only); /* Sử dụng biến */
+    cursor: default;
+    border-color: var(--border-light); /* Sử dụng biến */
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Layout (copied and adapted from create-package.css) */
+.content-wrapper {
+    padding: var(--base-padding);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100vh; /* Ensure content-wrapper is at least full viewport height */
+    position: relative;
+    overflow: visible; /* Allow content to overflow and be scrolled by body */
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--base-padding);
+    flex-wrap: wrap;
+    gap: 0.8rem; /* Tinh chỉnh gap */
+}
+
+.page-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem; /* Tinh chỉnh margin */
+}
+
+.breadcrumb {
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+}
+
+.breadcrumb a {
+    color: var(--text-secondary);
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-hover); /* Tinh chỉnh màu hover */
+}
+
+.breadcrumb span {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Specific layout for Step 2 content area */
+.content-area-step2 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Remove padding here, added in form layout */
+    margin-bottom: var(--base-padding); /* Add margin bottom */
+}
+
+#create-order-step2-form {
+    flex-grow: 0; /* Changed from 1 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-gap); /* Gap between form sections */
+    padding-bottom: var(--base-padding); /* Reduced padding bottom */
+}
+
+/* Layout for the main content columns (summary and data sections) */
+.main-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Keep your current column ratio */
+    gap: var(--form-gap); /* Use form gap */
+    flex-grow: 0; /* Changed from 1 */
+    margin-bottom: 0;
+}
+
+.summary-column, .data-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-gap); /* Gap between cards in a column */
+}
+
+/* Remove old layout classes (ensure they are not used) */
+.content-layout,
+.summary-flex-2col,
+.summary-col-left,
+.summary-col-right,
+.data-layout {
+    display: block;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling for the summary column content based on image (Adapted from form-section) */
+.summary-card-like, .data-section {
+    border: 1px solid var(--border-gold); /* Use gold border */
+    border-radius: var(--border-radius); /* Use variable */
+    overflow: hidden;
+    background-color: var(--card-bg); /* Use card bg */
+    box-shadow: var(--shadow-md); /* Use md shadow */
+    margin-bottom: 0; /* Gap handled by column */
+}
+
+.summary-header-like, .data-section .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem var(--form-padding); /* Use form padding */
+    border-bottom: 1px solid var(--border-color); /* Use border color */
+    background-color: var(--border-gold); /* Use gold background */
+    color: var(--text-primary); /* Use text primary color */
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    position: relative;
+    z-index: 2;
+}
+
+.summary-header-left, .data-section .card-header .card-title {
+    font-size: 0.8rem; /* Use size from create-package.css */
+    font-weight: 600;
+    color: var(--text-primary); /* Use text primary */
+    display: flex;
+    align-items: center;
+    gap: 0.3rem; /* Use gap from create-package.css */
+}
+
+.summary-header-left i.icon, .data-section .card-header .card-title i.icon {
+     color: var(--receive-color); /* Blue icon color */
+     font-size: 1em; /* Match parent font size */
+}
+
+.summary-header-right {
+     display: flex;
+     align-items: center;
+     gap: 0.08rem;
+}
+
+.summary-header-right input[type="text"] {
+     padding: 0.1rem 0.3rem; /* Adjusted padding */
+     font-size: var(--form-font-size); /* Use form font size */
+     border: 1px solid var(--input-border); /* Use input border */
+     border-radius: var(--border-radius); /* Use variable */
+}
+
+.summary-body-like, .data-section .card-body {
+    padding: var(--form-padding); /* Use form padding */
+}
+
+.summary-grid-2col {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.08rem var(--form-gap); /* Use form gap */
+    align-items: start;
+}
+
+.summary-label {
+    font-size: var(--form-font-size); /* Use form font size */
+    font-weight: 500;
+    color: var(--label-color); /* Use label color */
+    display: flex;
+    align-items: center;
+    gap: 0.03rem;
+}
+
+.summary-value {
+     font-size: var(--form-font-size); /* Use form font size */
+     color: var(--text-primary); /* Use text primary */
+     word-break: break-word;
+}
+
+/* Style for the boxed summary values */
+.summary-body-like .summary-value-box {
+    border: 1px solid var(--input-border); /* Add border like inputs */
+    border-radius: var(--border-radius); /* Add border radius */
+    background-color: var(--form-bg); /* Add background color */
+    padding: 0.2rem 0.4rem; /* Match padding of inputs */
+    font-size: var(--form-font-size); /* Match font size */
+    color: var(--text-primary); /* Ensure text color is correct */
+    line-height: 1.3; /* Ensure line height consistency */
+    box-sizing: border-box;
+    display: inline-block; /* Ensure it behaves like an inline block */
+    min-width: 50px; /* Ensure a minimum width */
+}
+
+.summary-separator {
+    border: none;
+    border-top: 1px dashed var(--border-light); /* Use light border */
+    margin: 0.3rem 0; /* Use form gap */
+}
+
+.summary-section-block {
+    margin-bottom: 0.3rem; /* Use form gap */
+}
+
+.summary-section-block:last-child {
+    margin-bottom: 0;
+}
+
+.summary-section-title {
+    font-size: 0.65rem; /* Keep slightly larger than summary value */
+    font-weight: 600;
+    color: var(--text-primary); /* Use text primary */
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.summary-section-title i.icon {
+     color: var(--info-color); /* Info color for icons */
+     font-size: 0.7em;
+}
+
+/* Style for the new editable sender info row (using grid) */
+.summary-body-like .editable-sender-row {
+     display: grid;
+     grid-template-columns: auto 1fr; /* Match summary grid columns */
+     gap: 0.5rem; /* Adjusted gap */
+     align-items: center; /* Vertically align items */
+     margin-bottom: var(--form-gap); /* Add some space below */
+     padding-left: 0; /* Ensure no extra padding on the left */
+     padding-right: 0; /* Ensure no extra padding on the right */
+     width: 100%; /* Ensure it takes full width of its container */
+}
+
+.summary-body-like .editable-sender-row .summary-label {
+     flex-shrink: 0;
+     font-size: var(--form-font-size); /* Match font size */
+     font-weight: 500;
+     color: var(--label-color);
+     line-height: 1.3;
+     text-align: left;
+     /* min-width handled by grid auto column */
+}
+
+.summary-body-like .editable-sender-row .input-with-icon {
+     flex-grow: 1;
+     position: relative;
+     display: flex;
+     align-items: center;
+     border: 1px solid var(--input-border);
+     border-radius: var(--border-radius);
+     background-color: var(--form-bg);
+     /* Padding controlled by input */
+     min-width: 0;
+}
+
+.summary-body-like .editable-sender-row .input-with-icon input[type="text"] {
+     width: 100%;
+     flex-grow: 1;
+     min-width: 0;
+     padding: 0.2rem 0.4rem; /* Adjusted padding slightly */
+     padding-right: 1.5em; /* Space for icon */
+     font-size: var(--form-font-size);
+     box-sizing: border-box;
+     border: none;
+     background: none;
+     line-height: 1.3;
+}
+
+.summary-body-like .editable-sender-row .input-with-icon .edit-icon {
+     position: absolute;
+     right: 0.4rem;
+     top: 50%;
+     transform: translateY(-50%);
+     pointer-events: auto;
+     z-index: 1;
+     color: var(--info-color);
+     cursor: pointer;
+     font-size: 0.8em;
+}
+
+/* Data Section Styling (restored and styled as cards - adapted) */
+.data-section {
+     /* Styles inherited from .summary-card-like */
+     margin-bottom: 0; /* Gap handled by column */
+}
+
+.data-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Header styles inherited from .summary-header-like */
+
+.data-section .card-header .card-title {
+    /* Styles inherited from .summary-header-left */
+}
+
+.data-section .card-header .card-title i.icon {
+     /* Styles inherited */
+}
+
+.data-section .card-body {
+    /* Styles inherited from .summary-body-like */
+}
+
+.data-section .header-note {
+    font-size: 0.45rem; /* Keep small */
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.03rem;
+}
+
+.data-section .header-note input[type="number"] {
+     width: 70px;
+     padding: 0.02rem 0.05rem;
+     font-size: 0.45rem;
+     text-align: center;
+     border: 1px solid var(--border-light); /* Use light border */
+     border-radius: var(--border-radius); /* Use variable */
+}
+
+/* Form Group styles inherited/adapted */
+.form-group {
+    margin-bottom: var(--form-gap); /* Use form gap */
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    position: relative;
+    z-index: 1;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label, .form-label {
+    font-size: var(--form-font-size); /* Use form font size */
+    font-weight: 500;
+    color: var(--label-color); /* Use label color */
+    display: block;
+    margin-bottom: 0.05rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.25rem 0.4rem; /* Use form padding for inputs */
+    border: 1px solid var(--input-border); /* Use input border */
+    border-radius: var(--border-radius); /* Use variable */
+    box-sizing: border-box;
+    font-size: var(--form-font-size); /* Use form font size */
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-group .input-with-icon {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--input-border); /* Use input border */
+    border-radius: var(--border-radius); /* Use variable */
+    padding-right: 0.4rem; /* Use form padding */
+    background-color: var(--form-bg); /* Use form bg */
+}
+
+.form-group .input-with-icon input {
+    flex-grow: 1;
+    border: none;
+    padding: 0.25rem 0.4rem; /* Use form padding */
+    font-size: var(--form-font-size); /* Use form font size */
+}
+
+.form-group .input-with-icon .edit-icon {
+    cursor: pointer;
+    color: var(--info-color); /* Use info color */
+    margin-left: 0.2rem;
+    font-size: 0.8em; /* Slightly smaller than text */
+}
+
+/* Dimension Group (adapted) */
+.dimension-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem; /* Use form gap for items */
+    margin-bottom: var(--form-gap); /* Use form gap */
+}
+
+.dimension-labels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) auto; /* Keep structure */
+    gap: 0.15rem 0.5rem; /* Use form gap */
+    font-size: 0.45rem; /* Keep small */
+    padding: 0 0.08rem;
+    font-weight: 500;
+    color: var(--text-gray-label); /* Use label color */
+}
+
+.dimension-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) auto; /* Keep structure */
+    gap: 0.15rem 0.5rem; /* Use form gap */
+    align-items: center;
+}
+
+.dimension-row input[type="number"] {
+    width: 100%;
+    font-size: var(--form-font-size); /* Use form font size */
+    padding: 0.25rem 0.4rem; /* Use form padding */
+    border: 1px solid var(--input-border); /* Use input border */
+    border-radius: var(--border-radius); /* Use variable */
+}
+
+.dim-actions {
+    display: flex;
+    gap: 0.1rem; /* Keep gap */
+    justify-content: flex-end;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.7rem; /* Keep size */
+    padding: 0;
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.icon-button.confirm i {
+    color: var(--confirm-color); /* Use confirm color */
+}
+
+.icon-button.confirm:hover i {
+    color: var(--confirm-hover); /* Use confirm hover */
+}
+
+.icon-button.danger i {
+    color: var(--danger-color); /* Use danger color */
+}
+
+.icon-button.danger:hover i {
+    color: var(--danger-hover); /* Use danger hover */
+}
+
+.icon-button.small {
+    font-size: 0.6rem; /* Keep small size */
+}
+
+/* Attachment Group (adapted) */
+.attachment-group {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem; /* Use form gap */
+    flex-wrap: wrap;
+    margin-bottom: 0.15rem; /* Use form gap */
+    justify-content: space-between; /* Add this to push items apart */
+}
+
+.attachment-button-note {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem; /* Space between button and note */
+    /* Ensure it doesn't grow unnecessarily */
+    flex-shrink: 0;
+}
+
+.file-type-note {
+    font-size: 0.5rem; /* Keep small */
+    color: var(--text-secondary);
+}
+
+.selected-files-container {
+    margin-top: 0.15rem; /* Use form gap */
+    border: 1px solid var(--border-light); /* Use light border */
+    border-radius: var(--border-radius); /* Use variable */
+    padding: 0.25rem; /* Use form padding */
+    background-color: var(--bg-color); /* Use bg color */
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.file-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--form-font-size); /* Use form font size */
+    color: var(--text-primary); /* Use text primary */
+    padding: 0.1rem 0; /* Adjusted padding */
+    border-bottom: 1px dashed var(--border-light); /* Use light border */
+}
+
+.file-list li:last-child {
+    border-bottom: none;
+}
+
+.file-list li span:first-child {
+    flex-grow: 1;
+    margin-right: 0.5rem;
+    word-break: break-all;
+}
+
+.file-list li .icon-button {
+     font-size: 0.5rem; /* Keep small */
+}
+
+.no-files-selected {
+    font-size: var(--form-font-size); /* Use form font size */
+    color: var(--text-secondary);
+    display: block;
+    text-align: center;
+    padding: 0.25rem; /* Use form padding */
+}
+
+/* Item Details Table (adapted) */
+.table-responsive-wrapper {
+    overflow-x: auto;
+    margin-bottom: var(--form-gap); /* Use form gap */
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--form-font-size); /* Use form font size */
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid var(--border-light); /* Use light border */
+    padding: 0.15rem 0.3rem; /* Adjusted padding */
+    text-align: left;
+    vertical-align: top;
+}
+
+.data-table th {
+    background-color: var(--bg-color); /* Use bg color */
+    font-weight: 600;
+    color: var(--text-primary); /* Use text primary */
+    white-space: nowrap;
+}
+
+.data-table td input[type="number"],
+.data-table td select,
+.data-table td textarea {
+    width: 100%;
+    border: 1px solid var(--input-border); /* Use input border */
+    border-radius: var(--border-radius); /* Use variable */
+    padding: 0.1rem 0.2rem; /* Adjusted padding */
+    font-size: var(--form-font-size); /* Use form font size */
+}
+
+.data-table td textarea {
+    resize: vertical;
+    min-height: 12px; /* Keep small */
+}
+
+.data-table td input[readonly] {
+    background-color: var(--input-readonly-bg); /* Use variable */
+    color: var(--text-read-only); /* Use variable */
+    cursor: default;
+    border-color: var(--border-light); /* Use light border */
+}
+
+.data-table td select {
+    padding-right: 1.2rem;
+    background-position: right 0.3rem center;
+    background-size: 1em 1em;
+}
+
+.data-table .col-action {
+    width: 25px;
+    text-align: center;
+    padding: 0.15rem 0.1rem; /* Adjusted padding */
+}
+
+.data-table .col-qty,
+.data-table .col-unit,
+.data-table .col-price,
+.data-table .col-total {
+    width: 45px;
+    white-space: nowrap;
+}
+
+.data-table .col-name {
+    width: auto;
+    min-width: 80px;
+}
+
+.data-table tfoot strong {
+    font-weight: 700;
+}
+
+.data-table tfoot td {
+     background-color: var(--bg-color); /* Use bg color */
+     font-size: var(--form-font-size); /* Use form font size */
+     padding: 0.15rem 0.3rem; /* Adjusted padding */
+}
+
+/* Form Actions Footer (adapted) */
+footer.content-actions {
+    padding: 0.3rem var(--base-padding); /* Use base padding */
+    background-color: var(--card-bg); /* Use card bg */
+    border-top: 1px solid var(--border-light); /* Use light border */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--form-gap); /* Use form gap */
+    margin-top: 0; /* Changed from auto to a fixed gap */
+    flex-shrink: 0;
+    box-shadow: 0 -2px 4px -1px rgba(0,0,0,0.05); /* Keep shadow */
+    position: relative;
+    z-index: 2;
+}
+
+/* Checkbox confirmation text (adapted) */
+.confirmation-check {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem; /* Use form gap */
+    font-size: 0.65rem; /* Matched font size from create-package.css */
+    color: var(--text-secondary); /* Use text secondary */
+    flex-grow: 1;
+    margin-right: 0; /* Remove specific right margin, rely on parent gap */
+}
+
+.confirmation-check input[type="checkbox"] {
+    margin: 0;
+    accent-color: var(--confirm-color); /* Use confirm color */
+    cursor: pointer;
+    width: 1em; /* Matched size from create-package.css */
+    height: 1em; /* Matched size from create-package.css */
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.confirmation-check label {
+    font-weight: normal;
+    cursor: pointer;
+    margin-bottom: 0;
+    line-height: 1.4;
+    font-size: 0.65rem; /* Ensure label font size matches parent */
+}
+
+.confirmation-check label strong {
+    color: var(--danger-color); /* Use danger color */
+    font-weight: 700;
+}
+
+.content-actions .action-buttons {
+    display: flex;
+    gap: 0.15rem; /* Use form gap */
+    flex-wrap: wrap;
+    justify-content: flex-end; /* Keep right alignment */
+    width: auto; /* Allow width to be determined by content */
+}
+
+/* Buttons in Form Actions (adapted) */
+.content-actions .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.08rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem; /* Adjusted padding */
+    font-size: var(--form-font-size); /* Use form font size */
+    white-space: nowrap;
+    border-radius: var(--border-radius); /* Use variable */
+    transition: all var(--transition-speed); /* Keep transition */
+    box-shadow: var(--shadow-md); /* Use md shadow */
+    border: none; /* Remove border */
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-right: 0;
+    flex-grow: 0; /* Prevent growth */
+}
+
+.content-actions .button.secondary {
+     background-color: var(--secondary-color); /* Use secondary color */
+     color: var(--text-on-primary); /* Use text on primary color */
+}
+.content-actions .button.secondary:hover {
+     background-color: var(--secondary-hover); /* Use secondary hover */
+     box-shadow: var(--shadow-lg); /* Use lg shadow */
+}
+
+.content-actions .button.warning {
+     background-color: var(--warning-color); /* Use warning color */
+     color: var(--text-on-primary); /* Use text on primary color */
+}
+.content-actions .button.warning:hover {
+     background-color: var(--warning-hover); /* Use warning hover */
+     box-shadow: var(--shadow-lg); /* Use lg shadow */
+}
+
+.content-actions .button.confirm {
+     background-color: var(--confirm-color); /* Use confirm color */
+    color: var(--text-on-primary); /* Use text on primary color */
+}
+.content-actions .button.confirm:hover {
+     background-color: var(--confirm-hover); /* Use confirm hover */
+     box-shadow: var(--shadow-lg); /* Use lg shadow */
+}
+
+/* Site Footer (copied) */
+.site-footer {
+    margin-top: 0; /* Changed from form-gap */
+    padding: var(--base-padding);
+    text-align: center;
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-light); /* Use light border */
+    flex-shrink: 0;
+}
+
+/* Responsive Adjustments (adapted from create-package.css) */
+@media (max-width: 992px) {
+    .main-content-grid {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: var(--form-gap); /* Use form gap */
+    }
+
+    .summary-column,
+    .data-column {
+        gap: var(--form-gap); /* Use form gap */
+    }
+
+    .summary-header-like, .data-section .card-header {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 0.4rem; /* Keep gap */
+    }
+
+     .data-section .header-note {
+         margin-top: 0.3rem; /* Keep margin */
+     }
+
+    .dimension-labels,
+    .dimension-row {
+        grid-template-columns: repeat(4, 1fr) 30px; /* Keep structure */
+        gap: 0.15rem; /* Use form gap */
+    }
+
+    .dim-actions {
+         justify-content: center;
+         gap: 0.02rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.15rem 0.3rem; /* Adjusted padding */
+    }
+
+     .data-table .col-action {
+        width: 20px;
+         padding: 0.15rem 0.1rem; /* Adjusted padding */
+    }
+
+     .data-table .col-qty,
+     .data-table .col-unit,
+     .data-table .col-price,
+     .data-table .col-total {
+         width: 70px;
+     }
+
+      .data-table .col-name {
+          min-width: 130px;
+      }
+
+    footer.content-actions {
+         flex-direction: column;
+         align-items: stretch;
+         gap: var(--form-gap); /* Use form gap */
+         padding: 0.3rem var(--base-padding); /* Use padding */
+    }
+
+     .confirmation-check {
+         justify-content: center;
+         margin-right: 0;
+         font-size: 0.6rem; /* Keep size */
+         gap: 0.15rem; /* Use form gap */
+     }
+
+      .confirmation-check input[type="checkbox"] {
+          width: 0.7em; /* Keep size */
+          height: 0.7em; /* Keep size */
+      }
+
+      .content-actions .action-buttons {
+          justify-content: center; /* Center buttons when stacked */
+          flex-direction: row; /* Keep row direction */
+          gap: 0.15rem; /* Use form gap */
+          width: 100%;
+      }
+
+      .content-actions .button {
+          flex-grow: 1; /* Allow buttons to grow */
+          text-align: center;
+          justify-content: center;
+          padding: 0.25rem 0.6rem; /* Keep padding */
+          font-size: var(--form-font-size); /* Use form font size */
+          gap: 0.08rem;
+     }
+}
+
+@media (max-width: 768px) {
+    .summary-header-like, .data-section .card-header,
+    .summary-body-like, .data-section .card-body {
+        padding: 0.4rem; /* Adjusted padding */
+    }
+
+     .summary-header-left, .data-section .card-header .card-title {
+         font-size: 0.75rem; /* Adjusted size */
+         gap: 0.2rem; /* Adjusted gap */
+     }
+
+     .summary-header-right input[type="text"] {
+         padding: 0.1rem 0.2rem; /* Adjusted padding */
+         font-size: 0.65rem; /* Adjusted size */
+     }
+
+     .summary-grid-2col {
+         gap: 0.15rem 0.3rem; /* Adjusted gap */
+     }
+
+    .summary-label,
+    .summary-value {
+        font-size: 0.65rem; /* Adjusted size */
+    }
+
+     .summary-separator {
+         margin: 0.4rem 0; /* Adjusted margin */
+     }
+
+     .summary-section-block {
+         margin-bottom: 0.4rem; /* Adjusted margin */
+     }
+
+     .summary-section-title {
+         font-size: 0.7rem; /* Adjusted size */
+         gap: 0.2rem; /* Adjusted gap */
+         margin-bottom: 0.3rem; /* Adjusted margin */
+     }
+
+     .data-section .header-note {
+         font-size: 0.55rem; /* Adjusted size */
+         gap: 0.15rem; /* Adjusted gap */
+     }
+
+    .dimension-labels,
+    .dimension-row {
+        grid-template-columns: repeat(4, 1fr) 45px; /* Adjusted structure */
+        gap: 0.1rem; /* Adjusted gap */
+    }
+
+    .dimension-row input[type="number"] {
+        font-size: 0.55rem; /* Adjusted size */
+        padding: 0.1rem 0.15rem; /* Adjusted padding */
+    }
+
+    .icon-button {
+        font-size: 0.8rem; /* Adjusted size */
+    }
+
+    .icon-button.small {
+        font-size: 0.7rem; /* Adjusted size */
+    }
+
+    .attachment-group {
+        gap: 0.2rem; /* Adjusted gap */
+        margin-bottom: 0.3rem; /* Adjusted margin */
+    }
+
+    .file-type-note {
+        font-size: 0.6rem; /* Adjusted size */
+    }
+
+    .selected-files-container {
+        padding: 0.2rem; /* Adjusted padding */
+    }
+
+     .file-list li,
+     .no-files-selected {
+         font-size: 0.6rem; /* Adjusted size */
+         padding: 0.1rem 0; /* Adjusted padding */
+     }
+
+    .data-table {
+        font-size: 0.6rem; /* Adjusted size */
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.15rem 0.2rem; /* Adjusted padding */
+    }
+
+     .data-table td input,
+     .data-table td select,
+     .data-table td textarea {
+         font-size: 0.6rem; /* Adjusted size */
+         padding: 0.05rem 0.1rem; /* Adjusted padding */
+     }
+
+    .data-table .col-action {
+        width: 25px;
+         padding: 0.2rem 0.15rem; /* Adjusted padding */
+    }
+
+    .data-table .col-qty,
+    .data-table .col-unit,
+    .data-table .col-price,
+    .data-table .col-total {
+        width: 50px; /* Adjusted width */
+    }
+
+    .data-table .col-name {
+        min-width: 80px; /* Adjusted width */
+    }
+
+     .data-table tfoot td {
+         font-size: 0.65rem; /* Adjusted size */
+         padding: 0.1rem 0.15rem; /* Adjusted padding */
+     }
+
+     footer.content-actions {
+         padding: 0.3rem 0.4rem; /* Adjusted padding */
+         gap: 0.3rem; /* Adjusted gap */
+     }
+
+     .confirmation-check {
+         font-size: 0.6rem; /* Adjusted size */
+         gap: 0.15rem; /* Adjusted gap */
+     }
+
+      .confirmation-check input[type="checkbox"] {
+          width: 0.7em; /* Keep size */
+          height: 0.7em; /* Keep size */
+      }
+
+      .content-actions .action-buttons {
+          gap: 0.15rem; /* Adjusted gap */
+      }
+
+      .content-actions .button {
+          padding: 0.2rem 0.4rem; /* Adjusted padding */
+          font-size: 0.65rem; /* Adjusted size */
+          gap: 0.05rem; /* Adjusted gap */
+     }
+}
+
+@media (max-width: 480px) {
+    .main-content-grid {
+        gap: 0.3rem; /* Adjusted gap */
+    }
+
+    .summary-column,
+    .data-column {
+        gap: 0.3rem; /* Adjusted gap */
+    }
+
+    .summary-header-like, .data-section .card-header,
+    .summary-body-like, .data-section .card-body {
+        padding: 0.3rem; /* Adjusted padding */
+    }
+
+    .summary-header-left, .data-section .card-header .card-title {
+        font-size: 0.7rem; /* Adjusted size */
+        gap: 0.15rem; /* Adjusted gap */
+    }
+
+     .summary-header-right input[type="text"] {
+         padding: 0.08rem 0.15rem; /* Adjusted padding */
+         font-size: 0.6rem; /* Adjusted size */
+     }
+
+     .summary-grid-2col {
+         gap: 0.1rem 0.2rem; /* Adjusted gap */
+     }
+
+    .summary-label,
+    .summary-value {
+        font-size: 0.6rem; /* Adjusted size */
+    }
+
+     .summary-separator {
+         margin: 0.3rem 0; /* Adjusted margin */
+     }
+
+     .summary-section-block {
+         margin-bottom: 0.3rem; /* Adjusted margin */
+     }
+
+     .summary-section-title {
+         font-size: 0.65rem; /* Adjusted size */
+         gap: 0.15rem; /* Adjusted gap */
+         margin-bottom: 0.2rem; /* Adjusted margin */
+     }
+
+     .data-section .header-note {
+         font-size: 0.5rem; /* Adjusted size */
+         gap: 0.1rem; /* Adjusted gap */
+     }
+
+    .dimension-labels,
+    .dimension-row {
+        grid-template-columns: repeat(4, 1fr) 40px; /* Adjusted structure */
+        gap: 0.08rem; /* Adjusted gap */
+    }
+
+    .dimension-row input[type="number"] {
+        font-size: 0.5rem; /* Adjusted size */
+        padding: 0.08rem 0.1rem; /* Adjusted padding */
+    }
+
+    .icon-button {
+        font-size: 0.7rem; /* Adjusted size */
+    }
+
+    .icon-button.small {
+        font-size: 0.6rem; /* Adjusted size */
+    }
+
+    .attachment-group {
+        gap: 0.15rem; /* Adjusted gap */
+        margin-bottom: 0.2rem; /* Adjusted margin */
+    }
+
+    .file-type-note {
+        font-size: 0.55rem; /* Adjusted size */
+    }
+
+    .selected-files-container {
+        padding: 0.15rem; /* Adjusted padding */
+    }
+
+     .file-list li,
+     .no-files-selected {
+         font-size: 0.55rem; /* Adjusted size */
+         padding: 0.08rem 0; /* Adjusted padding */
+     }
+
+    .data-table {
+        font-size: 0.55rem; /* Adjusted size */
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.1rem 0.15rem; /* Adjusted padding */
+    }
+
+     .data-table td input,
+     .data-table td select,
+     .data-table td textarea {
+         font-size: 0.55rem; /* Adjusted size */
+         padding: 0.05rem 0.08rem; /* Adjusted padding */
+     }
+
+    .data-table .col-action {
+        width: 20px; /* Adjusted width */
+         padding: 0.15rem 0.1rem; /* Adjusted padding */
+    }
+
+    .data-table .col-qty,
+    .data-table .col-unit,
+    .data-table .col-price,
+    .data-table .col-total {
+        width: 40px; /* Adjusted width */
+    }
+
+    .data-table .col-name {
+        min-width: 60px; /* Adjusted width */
+    }
+
+     .data-table tfoot td {
+         font-size: 0.6rem; /* Adjusted size */
+         padding: 0.1rem 0.15rem; /* Adjusted padding */
+     }
+
+     footer.content-actions {
+         padding: 0.2rem 0.3rem; /* Adjusted padding */
+         gap: 0.2rem; /* Adjusted gap */
+     }
+
+     .confirmation-check {
+         font-size: 0.55rem; /* Adjusted size */
+         gap: 0.1rem; /* Adjusted gap */
+     }
+
+      .confirmation-check input[type="checkbox"] {
+          width: 0.6em; /* Adjusted size */
+          height: 0.6em; /* Adjusted size */
+      }
+
+      .content-actions .action-buttons {
+          gap: 0.1rem; /* Adjusted gap */
+      }
+
+      .content-actions .button {
+          padding: 0.15rem 0.3rem; /* Adjusted padding */
+          font-size: 0.6rem; /* Adjusted size */
+          gap: 0.05rem; /* Adjusted gap */
+     }
+}
+
+/* Error States (copied) */
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 0 0 1px var(--danger-color); /* Tinh chỉnh error shadow */
+}
+
+.error-message {
+    font-size: 0.6em; /* Use smaller size */
+    color: var(--danger-color); /* Use danger color */
+    margin-top: 0.5px;
+    display: block;
+}
+
+.form-label.error, label.error {
+     color: var(--danger-color);
+}
+
+/* Additional styles based on step 1 */
+.card {
+     border: 1px solid var(--border-light); /* Use light border */
+     border-radius: var(--border-radius); /* Use variable */
+     overflow: hidden;
+     background-color: var(--card-bg); /* Use card bg */
+     box-shadow: var(--shadow-md); /* Use md shadow */
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem var(--card-padding); /* Use card padding */
+    border-bottom: 1px solid var(--border-light); /* Use light border */
+    background-color: var(--bg-color); /* Use bg color */
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.card-header .card-title {
+    font-size: 0.8rem; /* Use size from create-package.css */
+    font-weight: 600;
+    color: var(--text-primary); /* Use text primary */
+    margin: 0;
+}
+
+.card-body {
+    padding: var(--card-padding); /* Use card padding */
+}
+
+/* Ensure sidebar and header styles are not conflicting - if needed copy relevant styles from package_manager.css or create-package.css */
+/* For simplicity, assuming general layout/sidebar/header styles are handled by package_manager.css or a shared file */
