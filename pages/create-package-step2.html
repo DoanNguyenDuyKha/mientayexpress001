@@ -151,7 +151,7 @@
                                    <div class="summary-header-like">
                                        <div class="summary-header-left">
                                             <i class="fas fa-user icon"></i> Người gửi (SENDER)
-                                       </div>
+                                  </div>
                                    </div>
                                    <div class="summary-body-like">
                                        <!-- Editable Sender Info -->
@@ -164,10 +164,10 @@
                                            </div>
                                        </div>
 
-                                       <div class="summary-grid-2col">
+                                          <div class="summary-grid-2col">
                                            <div class="summary-label">Mã đơn hàng:</div> <div class="summary-value"><div class="summary-value-box" id="summary-order-code"></div></div>
                                            <div class="summary-label">REF Code:</div> <div class="summary-value"><div class="summary-value-box" id="summary-ref-code"></div></div>
-                                       </div>
+                                          </div>
 
                                        <hr class="summary-separator">
 
@@ -179,8 +179,8 @@
                                                 <div class="summary-label">Số điện thoại:</div> <div class="summary-value" id="summary-sender-phone"></div>
                                                 <div class="summary-label">Thành phố:</div> <div class="summary-value" id="summary-sender-city-details"></div>
                                                 <div class="summary-label">Quốc gia:</div> <div class="summary-value" id="summary-sender-country-zip"></div>
-                                           </div>
-                                       </div>
+                                      </div>
+                                  </div>
 
                                        <hr class="summary-separator">
 
@@ -193,8 +193,8 @@
                                                   <div class="summary-label">Số điện thoại:</div> <div class="summary-value" id="summary-receiver-phones"></div>
                                                   <div class="summary-label">Thành phố:</div> <div class="summary-value" id="summary-receiver-city-state"></div>
                                                   <div class="summary-label">Quốc gia:</div> <div class="summary-value" id="summary-receiver-country-zip"></div>
-                                             </div>
-                                        </div>
+                                  </div>
+                                  </div>
 
                                         <hr class="summary-separator">
 
@@ -206,8 +206,8 @@
                                                <div class="summary-label">Dịch vụ kèm:</div> <div class="summary-value" id="summary-add-service"></div>
                                                <div class="summary-label">Loại bưu gửi:</div> <div class="summary-value" id="summary-package-type"></div>
                                                <div class="summary-label">Hình thức gửi hàng:</div> <div class="summary-value" id="summary-pickup-method"></div>
-                                            </div>
-                                        </div>
+                                  </div>
+                                  </div>
 
                                         <hr class="summary-separator">
 
@@ -222,140 +222,140 @@
                                         </div>
                                    </div>
                                  </div>
-                            </div>
+                         </div>
 
-                           <div class="data-column">
-                                <section class="card form-section data-section">
-                                    <div class="card-header">
-                                        <h2 class="card-title"><i class="fa-solid fa-weight-hanging icon"></i> Thông tin kiện hàng<span class="required">*</span></h2>
-                                        <span class="header-note">DIM: <label for="dim_factor" class="visually-hidden">DIM Factor</label><input type="number" id="dim_factor" value="5000" title="DIM Factor"></span>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="product_name">Tên sản phẩm:</label>
-                                            <input type="text" id="product_name" name="product_name" value="Hàng cá nhân">
-                                            <span class="error-message"></span>
-                                        </div>
-                                        <div class="form-group dimension-group">
-                                            <div class="dimension-labels">
-                                                <span>Dài (cm)</span> <span>Rộng (cm)</span> <span>Cao (cm)</span> <span>Nặng (kg)</span>
-                                                <span class="visually-hidden">Hành động</span>
-                                            </div>
-                                            <div id="dimension-rows">
-                                                <div class="dimension-row">
-                                                    <label for="dim_length_1" class="visually-hidden">Dài kiện 1</label> <input type="number" step="any" id="dim_length_1" name="dim_length[]" value="12.51">
-                                                    <label for="dim_width_1" class="visually-hidden">Rộng kiện 1</label> <input type="number" step="any" id="dim_width_1" name="dim_width[]" value="30.51">
-                                                    <label for="dim_height_1" class="visually-hidden">Cao kiện 1</label> <input type="number" step="any" id="dim_height_1" name="dim_height[]" value="42">
-                                                    <label for="dim_weight_1" class="visually-hidden">Nặng kiện 1</label> <input type="number" step="any" id="dim_weight_1" name="dim_weight[]" value="13.21">
-                                                    <div class="dim-actions">
-                                                    </div>
-                                                </div>
-                                                <div class="dimension-row">
-                                                    <label for="dim_length_2" class="visually-hidden">Dài kiện 2</label> <input type="number" step="any" id="dim_length_2" name="dim_length[]" value="12">
-                                                    <label for="dim_width_2" class="visually-hidden">Rộng kiện 2</label> <input type="number" step="any" id="dim_width_2" name="dim_width[]" value="30.51">
-                                                    <label for="dim_height_2" class="visually-hidden">Cao kiện 2</label> <input type="number" step="any" id="dim_height_2" name="dim_height[]" value="23">
-                                                    <label for="dim_weight_2" class="visually-hidden">Nặng kiện 2</label> <input type="number" step="any" id="dim_weight_2" name="dim_weight[]" value="8.5">
-                                                    <div class="dim-actions">
-                                                        <button type="button" class="icon-button add-dim confirm small" title="Thêm kiện"><i class="fas fa-plus-circle"></i></button>
-                                                        <button type="button" class="icon-button remove-dim danger small" title="Xóa kiện"><i class="fas fa-times-circle"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="shipment_notes">Nội dung ghi chú:</label>
-                                            <textarea id="shipment_notes" name="shipment_notes"></textarea>
-                                             <span class="error-message"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <span class="form-label">Ảnh đính kèm:</span>
-                                            <div class="attachment-group">
-                                                <input type="file" id="shipment_images" name="shipment_images[]" multiple accept="image/jpeg, image/png" class="visually-hidden">
+                         <div class="data-column">
+                              <section class="card form-section data-section">
+                                  <div class="card-header">
+                                      <h2 class="card-title"><i class="fa-solid fa-weight-hanging icon"></i> Thông tin kiện hàng<span class="required">*</span></h2>
+                                      <span class="header-note">DIM: <label for="dim_factor" class="visually-hidden">DIM Factor</label><input type="number" id="dim_factor" value="5000" title="DIM Factor"></span>
+                                  </div>
+                                  <div class="card-body">
+                                      <div class="form-group">
+                                          <label for="product_name">Tên sản phẩm:</label>
+                                          <input type="text" id="product_name" name="product_name" value="Hàng cá nhân">
+                                          <span class="error-message"></span>
+                                      </div>
+                                      <div class="form-group dimension-group">
+                                          <div class="dimension-labels">
+                                              <span>Dài (cm)</span> <span>Rộng (cm)</span> <span>Cao (cm)</span> <span>Nặng (kg)</span>
+                                              <span class="visually-hidden">Hành động</span>
+                                          </div>
+                                          <div id="dimension-rows">
+                                              <div class="dimension-row">
+                                                  <label for="dim_length_1" class="visually-hidden">Dài kiện 1</label> <input type="number" step="any" id="dim_length_1" name="dim_length[]" value="12.51">
+                                                  <label for="dim_width_1" class="visually-hidden">Rộng kiện 1</label> <input type="number" step="any" id="dim_width_1" name="dim_width[]" value="30.51">
+                                                  <label for="dim_height_1" class="visually-hidden">Cao kiện 1</label> <input type="number" step="any" id="dim_height_1" name="dim_height[]" value="42">
+                                                  <label for="dim_weight_1" class="visually-hidden">Nặng kiện 1</label> <input type="number" step="any" id="dim_weight_1" name="dim_weight[]" value="13.21">
+                                                  <div class="dim-actions">
+                                                  </div>
+                                              </div>
+                                              <div class="dimension-row">
+                                                  <label for="dim_length_2" class="visually-hidden">Dài kiện 2</label> <input type="number" step="any" id="dim_length_2" name="dim_length[]" value="12">
+                                                  <label for="dim_width_2" class="visually-hidden">Rộng kiện 2</label> <input type="number" step="any" id="dim_width_2" name="dim_width[]" value="30.51">
+                                                  <label for="dim_height_2" class="visually-hidden">Cao kiện 2</label> <input type="number" step="any" id="dim_height_2" name="dim_height[]" value="23">
+                                                  <label for="dim_weight_2" class="visually-hidden">Nặng kiện 2</label> <input type="number" step="any" id="dim_weight_2" name="dim_weight[]" value="8.5">
+                                                  <div class="dim-actions">
+                                                      <button type="button" class="icon-button add-dim confirm small" title="Thêm kiện"><i class="fas fa-plus-circle"></i></button>
+                                                      <button type="button" class="icon-button remove-dim danger small" title="Xóa kiện"><i class="fas fa-times-circle"></i></button>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="shipment_notes">Nội dung ghi chú:</label>
+                                          <textarea id="shipment_notes" name="shipment_notes"></textarea>
+                                           <span class="error-message"></span>
+                                      </div>
+                                      <div class="form-group">
+                                          <span class="form-label">Ảnh đính kèm:</span>
+                                          <div class="attachment-group">
+                                              <input type="file" id="shipment_images" name="shipment_images[]" multiple accept="image/jpeg, image/png" class="visually-hidden">
                                                 <div class="attachment-button-note">
                                                     <button type="button" class="button warning small file-trigger-button" aria-controls="shipment_images"> <i class="fas fa-image"></i> Chọn ảnh </button>
-                                                    <span class="file-type-note">(.jpg/.png/.jpeg)</span>
+                                              <span class="file-type-note">(.jpg/.png/.jpeg)</span>
                                                 </div>
-                                                <div class="checkbox-group"> <label><input type="checkbox" name="is_fragile" value="1" checked> Hàng dễ vỡ</label> </div>
-                                            </div>
-                                            <div class="selected-files-container" id="selected_files_list"> <span class="no-files-selected"><i>Chưa chọn file nào.</i></span> </div>
-                                             <span class="error-message"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="image_link">Link ảnh kiện:</label>
-                                            <input type="text" id="image_link" name="image_link" value="https://drive.google.com/file/d/1mhqWcodHc3gPu40IrEp3cg8Mh7yYG9QY/view">
-                                             <span class="error-message"></span>
-                                        </div>
-                                    </div>
-                                </section>
-
-                                <section class="card form-section data-section">
-                                     <div class="card-header">
-                                        <h2 class="card-title"><i class="fa-solid fa-clipboard-list icon"></i> Chi tiết hàng hóa</h2>
-                                        <div class="header-action">
-                                            <label for="package_select" class="visually-hidden">Chọn kiện</label>
-                                            <select id="package_select" name="package_select"> <option value="1" selected>Kiện 01</option> <option value="2">Kiện 02</option> </select>
-                                        </div>
-                                     </div>
-                                     <div class="card-body">
-                                         <div class="table-responsive-wrapper">
-                                            <table class="shipment-details-table data-table" aria-describedby="shipment-details-legend">
-                                                <caption id="shipment-details-legend" class="visually-hidden">Bảng chi tiết hàng hóa trong kiện</caption>
-                                                <colgroup> <col class="col-action"> <col class="col-name"> <col class="col-qty"> <col class="col-unit"> <col class="col-price"> <col class="col-total"> </colgroup>
-                                                <thead> <tr> <th><span class="visually-hidden">Hành động</span></th> <th>Tên hàng hóa</th> <th>SL</th> <th>Loại</th> <th>Đơn giá (USD)</th> <th>Tổng</th> </tr> </thead>
-                                                <tbody id="shipment-items-tbody">
-                                                    <tr>
-                                                         <td><button type="button" class="icon-button remove-item danger small" title="Xóa dòng 1"><i class="fas fa-trash-alt"></i></button></td>
-                                                         <td><label for="item_name_1" class="visually-hidden">Tên hàng hóa dòng 1</label><textarea id="item_name_1" name="item_name[]" rows="1">wooden Buddha Statue</textarea></td>
-                                                         <td><label for="item_quantity_1" class="visually-hidden">Số lượng dòng 1</label><input type="number" id="item_quantity_1" name="item_quantity[]" value="10" min="1"></td>
-                                                         <td><label for="item_unit_1" class="visually-hidden">Loại dòng 1</label><select id="item_unit_1" name="item_unit[]"> <option value="PCE" selected>PCE</option> <option value="PCS">PCS</option> <option value="PKG">PKG</option> <option value="Rolls">Rolls</option> </select> </td>
-                                                         <td><label for="item_price_1" class="visually-hidden">Đơn giá dòng 1</label><input type="number" step="any" id="item_price_1" name="item_price[]" value="5000"></td>
-                                                         <td><label for="item_total_1" class="visually-hidden">Tổng giá dòng 1</label><input type="number" step="any" id="item_total_1" name="item_total[]" value="50000" readonly></td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td><button type="button" class="icon-button remove-item danger small" title="Xóa dòng 2"><i class="fas fa-trash-alt"></i></button></td>
-                                                         <td><label for="item_name_2" class="visually-hidden">Tên hàng hóa dòng 2</label><textarea id="item_name_2" name="item_name[]" rows="1">Dried shrimp</textarea></td>
-                                                         <td><label for="item_quantity_2" class="visually-hidden">Số lượng dòng 2</label><input type="number" id="item_quantity_2" name="item_quantity[]" value="20" min="1"></td>
-                                                         <td><label for="item_unit_2" class="visually-hidden">Loại dòng 2</label><select id="item_unit_2" name="item_unit[]"> <option value="PCE">PCE</option> <option value="PCS" selected>PCS</option> <option value="PKG">PKG</option> <option value="Rolls">Rolls</option> </select> </td>
-                                                         <td><label for="item_price_2" class="visually-hidden">Đơn giá dòng 2</label><input type="number" step="any" id="item_price_2" name="item_price[]" value="10"></td>
-                                                         <td><label for="item_total_2" class="visually-hidden">Tổng giá dòng 2</label><input type="number" step="any" id="item_total_2" name="item_total[]" value="200" readonly></td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td><button type="button" class="icon-button remove-item danger small" title="Xóa dòng 3"><i class="fas fa-trash-alt"></i></button></td>
-                                                         <td><label for="item_name_3" class="visually-hidden">Tên hàng hóa dòng 3</label><textarea id="item_name_3" name="item_name[]" rows="1">Khô heo từ nhà SatraFood ngon hết xẩy</textarea></td>
-                                                         <td><label for="item_quantity_3" class="visually-hidden">Số lượng dòng 3</label><input type="number" id="item_quantity_3" name="item_quantity[]" value="5" min="1"></td>
-                                                         <td><label for="item_unit_3" class="visually-hidden">Loại dòng 3</label><select id="item_unit_3" name="item_unit[]"> <option value="PCE">PCE</option> <option value="PCS">PCS</option> <option value="PKG" selected>PKG</option> <option value="Rolls">Rolls</option> </select> </td>
-                                                         <td><label for="item_price_3" class="visually-hidden">Đơn giá dòng 3</label><input type="number" step="any" id="item_price_3" name="item_price[]" value="3"></td>
-                                                         <td><label for="item_total_3" class="visually-hidden">Tổng giá dòng 3</label><input type="number" step="any" id="item_total_3" name="item_total[]" value="15" readonly></td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td><button type="button" class="icon-button remove-item danger small" title="Xóa dòng 4"><i class="fas fa-trash-alt"></i></button></td>
-                                                         <td><label for="item_name_4" class="visually-hidden">Tên hàng hóa dòng 4</label><textarea id="item_name_4" name="item_name[]" rows="3">Cuộn nhãn sea food - Seafood sticker roll Manufacturer: 533/6 National Highway 1A, Quarter 1, An Phu Dong Ward, District 12, Ho Chi Minh City</textarea></td>
-                                                         <td><label for="item_quantity_4" class="visually-hidden">Số lượng dòng 4</label><input type="number" id="item_quantity_4" name="item_quantity[]" value="6" min="1"></td>
-                                                         <td><label for="item_unit_4" class="visually-hidden">Loại dòng 4</label><select id="item_unit_4" name="item_unit[]"> <option value="PCE">PCE</option> <option value="PCS">PCS</option> <option value="PKG">PKG</option> <option value="Rolls" selected>Rolls</option> </select> </td>
-                                                         <td><label for="item_price_4" class="visually-hidden">Đơn giá dòng 4</label><input type="number" step="any" id="item_price_4" name="item_price[]" value="10"></td>
-                                                         <td><label for="item_total_4" class="visually-hidden">Tổng giá dòng 4</label><input type="number" step="any" id="item_total_4" name="item_total[]" value="60" readonly></td>
-                                                     </tr>
-                                                </tbody>
-                                                <tfoot> <tr> <td colspan="5"><strong>Tổng trị giá đơn hàng:</strong></td> <td><strong id="total-order-value">5275</strong></td> </tr> </tfoot>
-                                             </table>
-                                         </div>
-                                          <button type="button" class="button secondary small add-item-button" onclick="addItemRow(event)"> <i class="fas fa-plus"></i> Thêm dòng </button>
+                                              <div class="checkbox-group"> <label><input type="checkbox" name="is_fragile" value="1" checked> Hàng dễ vỡ</label> </div>
+                                          </div>
+                                          <div class="selected-files-container" id="selected_files_list"> <span class="no-files-selected"><i>Chưa chọn file nào.</i></span> </div>
+                                           <span class="error-message"></span>
                                       </div>
-                                 </section>
-                            </div>
+                                      <div class="form-group">
+                                          <label for="image_link">Link ảnh kiện:</label>
+                                          <input type="text" id="image_link" name="image_link" value="https://drive.google.com/file/d/1mhqWcodHc3gPu40IrEp3cg8Mh7yYG9QY/view">
+                                           <span class="error-message"></span>
+                                      </div>
+                                  </div>
+                              </section>
+
+                              <section class="card form-section data-section">
+                                   <div class="card-header">
+                                      <h2 class="card-title"><i class="fa-solid fa-clipboard-list icon"></i> Chi tiết hàng hóa</h2>
+                                      <div class="header-action">
+                                          <label for="package_select" class="visually-hidden">Chọn kiện</label>
+                                          <select id="package_select" name="package_select"> <option value="1" selected>Kiện 01</option> <option value="2">Kiện 02</option> </select>
+                                      </div>
+                                   </div>
+                                   <div class="card-body">
+                                       <div class="table-responsive-wrapper">
+                                          <table class="shipment-details-table data-table" aria-describedby="shipment-details-legend">
+                                              <caption id="shipment-details-legend" class="visually-hidden">Bảng chi tiết hàng hóa trong kiện</caption>
+                                              <colgroup> <col class="col-action"> <col class="col-name"> <col class="col-qty"> <col class="col-unit"> <col class="col-price"> <col class="col-total"> </colgroup>
+                                              <thead> <tr> <th><span class="visually-hidden">Hành động</span></th> <th>Tên hàng hóa</th> <th>SL</th> <th>Loại</th> <th>Đơn giá (USD)</th> <th>Tổng</th> </tr> </thead>
+                                              <tbody id="shipment-items-tbody">
+                                                  <tr>
+                                                       <td><button type="button" class="icon-button remove-item danger small" title="Xóa dòng 1"><i class="fas fa-trash-alt"></i></button></td>
+                                                       <td><label for="item_name_1" class="visually-hidden">Tên hàng hóa dòng 1</label><textarea id="item_name_1" name="item_name[]" rows="1">wooden Buddha Statue</textarea></td>
+                                                       <td><label for="item_quantity_1" class="visually-hidden">Số lượng dòng 1</label><input type="number" id="item_quantity_1" name="item_quantity[]" value="10" min="1"></td>
+                                                       <td><label for="item_unit_1" class="visually-hidden">Loại dòng 1</label><select id="item_unit_1" name="item_unit[]"> <option value="PCE" selected>PCE</option> <option value="PCS">PCS</option> <option value="PKG">PKG</option> <option value="Rolls">Rolls</option> </select> </td>
+                                                       <td><label for="item_price_1" class="visually-hidden">Đơn giá dòng 1</label><input type="number" step="any" id="item_price_1" name="item_price[]" value="5000"></td>
+                                                       <td><label for="item_total_1" class="visually-hidden">Tổng giá dòng 1</label><input type="number" step="any" id="item_total_1" name="item_total[]" value="50000" readonly></td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td><button type="button" class="icon-button remove-item danger small" title="Xóa dòng 2"><i class="fas fa-trash-alt"></i></button></td>
+                                                       <td><label for="item_name_2" class="visually-hidden">Tên hàng hóa dòng 2</label><textarea id="item_name_2" name="item_name[]" rows="1">Dried shrimp</textarea></td>
+                                                       <td><label for="item_quantity_2" class="visually-hidden">Số lượng dòng 2</label><input type="number" id="item_quantity_2" name="item_quantity[]" value="20" min="1"></td>
+                                                       <td><label for="item_unit_2" class="visually-hidden">Loại dòng 2</label><select id="item_unit_2" name="item_unit[]"> <option value="PCE">PCE</option> <option value="PCS" selected>PCS</option> <option value="PKG">PKG</option> <option value="Rolls">Rolls</option> </select> </td>
+                                                       <td><label for="item_price_2" class="visually-hidden">Đơn giá dòng 2</label><input type="number" step="any" id="item_price_2" name="item_price[]" value="10"></td>
+                                                       <td><label for="item_total_2" class="visually-hidden">Tổng giá dòng 2</label><input type="number" step="any" id="item_total_2" name="item_total[]" value="200" readonly></td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td><button type="button" class="icon-button remove-item danger small" title="Xóa dòng 3"><i class="fas fa-trash-alt"></i></button></td>
+                                                       <td><label for="item_name_3" class="visually-hidden">Tên hàng hóa dòng 3</label><textarea id="item_name_3" name="item_name[]" rows="1">Khô heo từ nhà SatraFood ngon hết xẩy</textarea></td>
+                                                       <td><label for="item_quantity_3" class="visually-hidden">Số lượng dòng 3</label><input type="number" id="item_quantity_3" name="item_quantity[]" value="5" min="1"></td>
+                                                       <td><label for="item_unit_3" class="visually-hidden">Loại dòng 3</label><select id="item_unit_3" name="item_unit[]"> <option value="PCE">PCE</option> <option value="PCS">PCS</option> <option value="PKG" selected>PKG</option> <option value="Rolls">Rolls</option> </select> </td>
+                                                       <td><label for="item_price_3" class="visually-hidden">Đơn giá dòng 3</label><input type="number" step="any" id="item_price_3" name="item_price[]" value="3"></td>
+                                                       <td><label for="item_total_3" class="visually-hidden">Tổng giá dòng 3</label><input type="number" step="any" id="item_total_3" name="item_total[]" value="15" readonly></td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td><button type="button" class="icon-button remove-item danger small" title="Xóa dòng 4"><i class="fas fa-trash-alt"></i></button></td>
+                                                       <td><label for="item_name_4" class="visually-hidden">Tên hàng hóa dòng 4</label><textarea id="item_name_4" name="item_name[]" rows="3">Cuộn nhãn sea food - Seafood sticker roll Manufacturer: 533/6 National Highway 1A, Quarter 1, An Phu Dong Ward, District 12, Ho Chi Minh City</textarea></td>
+                                                       <td><label for="item_quantity_4" class="visually-hidden">Số lượng dòng 4</label><input type="number" id="item_quantity_4" name="item_quantity[]" value="6" min="1"></td>
+                                                       <td><label for="item_unit_4" class="visually-hidden">Loại dòng 4</label><select id="item_unit_4" name="item_unit[]"> <option value="PCE">PCE</option> <option value="PCS">PCS</option> <option value="PKG">PKG</option> <option value="Rolls" selected>Rolls</option> </select> </td>
+                                                       <td><label for="item_price_4" class="visually-hidden">Đơn giá dòng 4</label><input type="number" step="any" id="item_price_4" name="item_price[]" value="10"></td>
+                                                       <td><label for="item_total_4" class="visually-hidden">Tổng giá dòng 4</label><input type="number" step="any" id="item_total_4" name="item_total[]" value="60" readonly></td>
+                                                   </tr>
+                                              </tbody>
+                                              <tfoot> <tr> <td colspan="5"><strong>Tổng trị giá đơn hàng:</strong></td> <td><strong id="total-order-value">5275</strong></td> </tr> </tfoot>
+                                          </table>
+                                      </div>
+                                       <button type="button" class="button secondary small add-item-button" onclick="addItemRow(event)"> <i class="fas fa-plus"></i> Thêm dòng </button>
+                                   </div>
+                              </section>
+                         </div>
                      </div>
 
                      <footer class="form-actions content-actions">
-                          <div class="confirmation-check terms-agreement">
-                                <input type="checkbox" id="confirm_info" name="confirm_info" required>
-                                <label for="confirm_info">Vui lòng kiểm tra và điền <strong>đầy đủ</strong> các thông tin</label>
-                                <span class="error-message"></span>
-                          </div>
-                          <div class="action-buttons">
-                              <button type="button" class="button secondary" onclick="window.location.href='create-package.html';"> <i class="fa-solid fa-arrow-left"></i> Quay lại </button>
-                              <button type="button" class="button warning" onclick="resetRightColumn()"> <i class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
-                              <button type="submit" class="button confirm" form="create-order-step2-form" onclick="window.location.href='order_detail.html';"> <i class="fa-solid fa-eye"></i> Xem chi tiết</button>
-                          </div>
+                         <div class="confirmation-check terms-agreement">
+                            <input type="checkbox" id="confirm_info" name="confirm_info" required>
+                            <label for="confirm_info">Vui lòng kiểm tra và điền <strong>đầy đủ</strong> các thông tin</label>
+                            <span class="error-message"></span>
+                         </div>
+                         <div class="action-buttons">
+                             <button type="button" class="button secondary" onclick="window.location.href='create-package.html';"> <i class="fa-solid fa-arrow-left"></i> Quay lại </button>
+                             <button type="button" class="button warning" onclick="resetRightColumn()"> <i class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
+                             <button type="submit" class="button confirm" form="create-order-step2-form" onclick="window.location.href='order_detail.html';"> <i class="fa-solid fa-eye"></i> Xem chi tiết</button>
+                         </div>
                      </footer>
                  </form>
              </section>
@@ -856,10 +856,10 @@
             document.getElementById('summary-service-type').textContent = data.service_type || '';
             document.getElementById('summary-branch').textContent = data.branch || '';
 
-            let addServiceArr = data['add_service[]'];
-            if (typeof addServiceArr === 'string') addServiceArr = [addServiceArr];
-            if (!Array.isArray(addServiceArr)) addServiceArr = [];
-            const addServiceText = addServiceArr.map(getServiceName).join(' / ');
+                let addServiceArr = data['add_service[]'];
+                if (typeof addServiceArr === 'string') addServiceArr = [addServiceArr];
+                if (!Array.isArray(addServiceArr)) addServiceArr = [];
+                const addServiceText = addServiceArr.map(getServiceName).join(' / ');
             document.getElementById('summary-add-service').textContent = addServiceText;
 
             document.getElementById('summary-package-type').textContent = data.package_type || '';
@@ -953,7 +953,7 @@
         });
 
         // --- Dropdown thông báo ---
-        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
             const notificationButton = document.getElementById('notification-button');
             const notificationDropdown = document.getElementById('notification-dropdown');
             const notificationList = document.getElementById('notification-list');
@@ -973,67 +973,67 @@
                  if (notificationDropdown) {
                     notificationDropdown.classList.remove('visible');
                  }
-             }
+            }
 
-             function showAnnouncement() {
-                 if (announcementOverlay) {
-                     announcementOverlay.classList.add('visible');
-             document.body.classList.add('overflow-hidden');
-                 }
-             }
+            function showAnnouncement() {
+                if (announcementOverlay) {
+                    announcementOverlay.classList.add('visible');
+            document.body.classList.add('overflow-hidden');
+                }
+            }
 
-             function closeAnnouncement() {
-                 if (announcementOverlay) {
-                     announcementOverlay.classList.remove('visible');
-             document.body.classList.remove('overflow-hidden');
-         }
-     }
+            function closeAnnouncement() {
+                if (announcementOverlay) {
+                    announcementOverlay.classList.remove('visible');
+            document.body.classList.remove('overflow-hidden');
+        }
+    }
 
-     if (notificationButton) notificationButton.addEventListener('click', (event) => { event.stopPropagation(); toggleNotificationDropdown(); });
-             if (notificationList) {
-                 notificationList.addEventListener('click', (event) => {
-                     const clickedItem = event.target.closest('.notification-item');
-                     if (clickedItem && announcementTitle && announcementBodyEl && announcementTimestamp) {
-                         const title = clickedItem.dataset.title || 'Thông báo';
-                         const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
-                         const timestamp = clickedItem.dataset.timestamp || '';
-                         announcementTitle.textContent = title;
-                         announcementBodyEl.innerHTML = '';
-                         bodyText.split('||').forEach(paragraphText => {
-                             if(paragraphText.trim()) {
-                                 const p = document.createElement('p');
-                                 p.textContent = paragraphText.trim();
-                                 announcementBodyEl.appendChild(p);
-                             }
-                         });
-                         announcementTimestamp.textContent = timestamp;
-                         showAnnouncement();
-                         closeNotificationDropdown();
-                     }
-                 });
-             }
-             document.addEventListener('click', (event) => {
-                 if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
-                     if (!notificationDropdown.contains(event.target) && event.target !== notificationButton && !notificationButton.contains(event.target)) {
-                         closeNotificationDropdown();
-                     }
-                 }
-             });
-     const announcementCloseBtn = document.getElementById('announcement-close-btn');
-     if (announcementCloseBtn) announcementCloseBtn.addEventListener('click', closeAnnouncement);
-             if (announcementOverlay) {
-         announcementOverlay.addEventListener('click', (event) => { if (event.target === announcementOverlay) closeAnnouncement(); });
-                     }
-             document.addEventListener('keydown', (event) => {
-                 if (event.key === 'Escape') {
-                     if (announcementOverlay && announcementOverlay.classList.contains('visible')) {
-                         closeAnnouncement();
-                     } else if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
-                         closeNotificationDropdown();
-                     }
-                 }
-             });
-         });
-     </script>
- </body>
- </html>
+    if (notificationButton) notificationButton.addEventListener('click', (event) => { event.stopPropagation(); toggleNotificationDropdown(); });
+            if (notificationList) {
+                notificationList.addEventListener('click', (event) => {
+                    const clickedItem = event.target.closest('.notification-item');
+                    if (clickedItem && announcementTitle && announcementBodyEl && announcementTimestamp) {
+                        const title = clickedItem.dataset.title || 'Thông báo';
+                        const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
+                        const timestamp = clickedItem.dataset.timestamp || '';
+                        announcementTitle.textContent = title;
+                        announcementBodyEl.innerHTML = '';
+                        bodyText.split('||').forEach(paragraphText => {
+                            if(paragraphText.trim()) {
+                                const p = document.createElement('p');
+                                p.textContent = paragraphText.trim();
+                                announcementBodyEl.appendChild(p);
+                            }
+                        });
+                        announcementTimestamp.textContent = timestamp;
+                        showAnnouncement();
+                        closeNotificationDropdown();
+                    }
+                });
+            }
+            document.addEventListener('click', (event) => {
+                if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
+                    if (!notificationDropdown.contains(event.target) && event.target !== notificationButton && !notificationButton.contains(event.target)) {
+                        closeNotificationDropdown();
+                    }
+                }
+            });
+    const announcementCloseBtn = document.getElementById('announcement-close-btn');
+    if (announcementCloseBtn) announcementCloseBtn.addEventListener('click', closeAnnouncement);
+            if (announcementOverlay) {
+        announcementOverlay.addEventListener('click', (event) => { if (event.target === announcementOverlay) closeAnnouncement(); });
+                    }
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    if (announcementOverlay && announcementOverlay.classList.contains('visible')) {
+                        closeAnnouncement();
+                    } else if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
+                        closeNotificationDropdown();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

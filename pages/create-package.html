@@ -826,7 +826,7 @@
                                  } else if (input.tagName === 'SELECT' && (input.id === 'sender_city' || input.id === 'sender_district' || input.id === 'sender_ward' || input.id === 'receiver_country' || input.id === 'service_type' || input.id === 'branch' || input.id === 'agent' || input.id === 'ops_coord' || input.id === 'cs_handler' || input.id === 'receiver_phone1_code' || input.id === 'receiver_phone2_code' || input.id === 'package_select')) {
                                      formData[input.name] = input.options[input.selectedIndex].text; // Get text instead of value
                                  } else if (input.name !== 'sender_preset') { // Exclude the old sender_preset name
-                                     formData[input.name] = input.value;
+                                 formData[input.name] = input.value;
                                  }
                              }
                          });
