@@ -354,7 +354,7 @@
                          <div class="action-buttons">
                              <button type="button" class="button secondary" onclick="window.location.href='create-package.html';"> <i class="fa-solid fa-arrow-left"></i> Quay lại </button>
                              <button type="button" class="button warning" onclick="resetRightColumn()"> <i class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
-                             <button type="submit" class="button confirm" form="create-order-step2-form" onclick="window.location.href='order_detail.html';"> <i class="fa-solid fa-eye"></i> Xem chi tiết</button>
+                             <button type="submit" class="button confirm" form="create-order-step2-form" onclick="handleViewDetails(event)"> <i class="fa-solid fa-eye"></i> Xem chi tiết</button>
                          </div>
                      </footer>
                  </form>
@@ -1034,6 +1034,105 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
+    function handleViewDetails(event) {
+        event.preventDefault();
+        
+        // Lấy dữ liệu từ localStorage (thông tin từ create-package.html)
+        const step1Data = JSON.parse(localStorage.getItem('createPackageStep1') || '{}');
+        
+        // Lấy dữ liệu từ form hiện tại
+        const form = document.getElementById('create-order-step2-form');
+        const formData = new FormData(form);
+        const step2Data = {};
+        
+        // Chuyển FormData thành object
+        for (let [key, value] of formData.entries()) {
+            step2Data[key] = value;
+        }
+
+        // Lấy thông tin kích thước và cân nặng
+        const dimensionRows = document.querySelectorAll('.dimension-row');
+        const dimensions = [];
+        let missingDimension = false;
+        dimensionRows.forEach((row, idx) => {
+            const length = row.querySelector('input[name="dim_length[]"]')?.value || '';
+            const width  = row.querySelector('input[name="dim_width[]"]')?.value || '';
+            const height = row.querySelector('input[name="dim_height[]"]')?.value || '';
+            const weight = row.querySelector('input[name="dim_weight[]"]')?.value || '';
+            if (length === '' || width === '' || height === '' || weight === '') {
+                missingDimension = true;
+            } else {
+                dimensions.push({
+                    length: parseFloat(length),
+                    width: parseFloat(width),
+                    height: parseFloat(height),
+                    weight: parseFloat(weight)
+                });
+            }
+        });
+        if (missingDimension || dimensions.length === 0) {
+            alert('Vui lòng nhập đầy đủ Dài, Rộng, Cao, Nặng cho tất cả các kiện!');
+            return;
+        }
+        step2Data.dimensions = dimensions;
+
+        // Lấy thông tin sản phẩm
+        const productName = document.getElementById('product_name').value;
+        step2Data.product_name = productName;
+
+        // Lấy danh sách hàng hóa từ bảng
+        const items = [];
+        document.querySelectorAll('#shipment-items-tbody tr').forEach(row => {
+            items.push({
+                name: row.querySelector('textarea[name="item_name[]"]').value,
+                quantity: row.querySelector('input[name="item_quantity[]"]').value,
+                unit: row.querySelector('select[name="item_unit[]"]').value,
+                price: row.querySelector('input[name="item_price[]"]').value,
+                total: row.querySelector('input[name="item_total[]"]').value
+            });
+        });
+        step2Data.items = items;
+
+        // Kết hợp dữ liệu từ cả 2 bước
+        const combinedData = {
+            ...step1Data,
+            ...step2Data,
+            // Thêm các trường cần thiết cho order_detail.html
+            bill_code: step1Data.order_code || 'MTE' + Math.floor(Math.random() * 1000000),
+            ref_code: step1Data.ref_code || Math.floor(Math.random() * 10000000).toString().padStart(7, '0'),
+            order_date: new Date().toISOString(),
+            order_status: 'processing',
+            sender_name: step1Data.sender_name,
+            sender_phone: step1Data.sender_phone,
+            sender_address: step1Data.sender_address,
+            sender_city: step1Data.sender_city,
+            sender_country: step1Data.sender_country,
+            receiver_name: step1Data.receiver_name,
+            receiver_phone1: step1Data.receiver_phone1,
+            receiver_phone2: step1Data.receiver_phone2,
+            receiver_address: step1Data.receiver_address,
+            receiver_city: step1Data.receiver_city,
+            receiver_country: step1Data.receiver_country,
+            service_type: step1Data.service_type,
+            branch: step1Data.branch,
+            add_service: step1Data['add_service[]'],
+            package_type: step1Data.package_type,
+            pickup_method: step1Data.pickup_method,
+            bill_status: step1Data.bill_status,
+            agent: step1Data.agent,
+            ops_coord: step1Data.ops_coord,
+            cs_handler: step1Data.cs_handler,
+            dimensions: dimensions,
+            product_name: productName
+        };
+
+        // Lưu vào localStorage
+        localStorage.setItem('currentOrderDetail', JSON.stringify(combinedData));
+
+        // Chuyển đến trang order_detail.html
+        window.location.href = 'order_detail.html';
+    }
     </script>
 </body>
 </html>

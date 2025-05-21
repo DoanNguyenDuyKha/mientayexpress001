@@ -603,4 +603,190 @@
     </div>
 
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Edit Receiver Info Modal - DOM Content Loaded");
+    // Lấy dữ liệu từ localStorage
+    const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+    console.log("Edit Receiver Info Modal - Loaded data from localStorage:", orderData);
+    
+    // Các trường input trong form
+    const form = document.getElementById('formReceiverInfoModal');
+    const nameInput = document.getElementById('receiverNameInputModal');
+    const phone1Input = document.getElementById('receiverPhone1NumberModal');
+    const phone2Input = document.getElementById('receiverPhone2NumberModal');
+    const countrySelect = document.getElementById('receiverCountryModal');
+    const postcodeInput = document.getElementById('receiverPostcodeModal');
+    const cityInput = document.getElementById('receiverCityModal');
+    const stateInput = document.getElementById('receiverStateModal');
+    const addressInput = document.getElementById('receiverAddressModal');
+    const notesInput = document.getElementById('receiverNotesModal');
+    
+    // Load dữ liệu từ localStorage vào form
+    if (orderData) {
+        console.log("Edit Receiver Info Modal - Populating form fields with data");
+        if (nameInput) {
+            nameInput.value = orderData.receiver_name || '';
+            console.log("Set receiver_name to:", orderData.receiver_name);
+        }
+        // Format số điện thoại khi load từ localStorage
+        if (phone1Input) {
+            const phone1 = orderData.receiver_phone1 || '';
+            phone1Input.value = formatPhoneNumberForDisplay(phone1);
+            console.log("Set receiver_phone1 to:", phone1);
+        }
+        if (phone2Input) {
+            const phone2 = orderData.receiver_phone2 || '';
+            phone2Input.value = formatPhoneNumberForDisplay(phone2);
+            console.log("Set receiver_phone2 to:", phone2);
+        }
+        if (countrySelect) {
+            countrySelect.value = orderData.receiver_country || 'US';
+            console.log("Set receiver_country to:", orderData.receiver_country);
+        }
+        if (postcodeInput) {
+            postcodeInput.value = orderData.receiver_postcode || '';
+            console.log("Set receiver_postcode to:", orderData.receiver_postcode);
+        }
+        if (cityInput) {
+            cityInput.value = orderData.receiver_city || '';
+            console.log("Set receiver_city to:", orderData.receiver_city);
+        }
+        if (stateInput) {
+            stateInput.value = orderData.receiver_state || '';
+            console.log("Set receiver_state to:", orderData.receiver_state);
+        }
+        if (addressInput) {
+            addressInput.value = orderData.receiver_address || '';
+            console.log("Set receiver_address to:", orderData.receiver_address);
+        }
+        if (notesInput) {
+            notesInput.value = orderData.receiver_notes || '';
+            console.log("Set receiver_notes to:", orderData.receiver_notes);
+        }
+    }
+
+    // Hàm format số điện thoại để hiển thị
+    function formatPhoneNumberForDisplay(phone) {
+        // Loại bỏ tất cả ký tự không phải số
+        const cleaned = phone.replace(/\D/g, '');
+        if (cleaned.length === 0) return '';
+        // Format: (XXX) XXX-XXXX
+        return `(${cleaned.substring(0, 3)}) ${cleaned.substring(3, 6)}-${cleaned.substring(6, 10)}`;
+    }
+
+    // Hàm chuyển số điện thoại về dạng số thuần túy
+    function cleanPhoneNumber(phone) {
+        return phone.replace(/\D/g, '');
+    }
+
+    // Xử lý sự kiện khi nhấn nút Xác nhận
+    const confirmButton = document.querySelector('.modal-confirm-button');
+    if (confirmButton) {
+        confirmButton.addEventListener('click', function() {
+            // Lấy dữ liệu từ form
+            const formData = new FormData(form);
+            const receiverData = Object.fromEntries(formData.entries());
+            
+            // Cập nhật dữ liệu vào orderData
+            const updatedOrderData = {
+                ...orderData,
+                receiver_name: receiverData.receiver_name,
+                // Lưu số điện thoại dưới dạng số thuần túy
+                receiver_phone1: cleanPhoneNumber(receiverData.phone1_number),
+                receiver_phone2: cleanPhoneNumber(receiverData.phone2_number),
+                receiver_country: receiverData.country_code,
+                receiver_postcode: receiverData.postal_code,
+                receiver_city: receiverData.city,
+                receiver_state: receiverData.state_province,
+                receiver_address: receiverData.address_line1,
+                receiver_notes: receiverData.notes
+            };
+            
+            // Lưu vào localStorage
+            localStorage.setItem('currentOrderDetail', JSON.stringify(updatedOrderData));
+            
+            // Cập nhật hiển thị trên trang chính
+            const receiverNameDisplay = document.getElementById('receiverNameValue');
+            const receiverPhonesDisplay = document.getElementById('receiverPhonesValue');
+            const receiverAddressDisplay = document.getElementById('receiverAddressValue');
+            
+            if (receiverNameDisplay) receiverNameDisplay.textContent = updatedOrderData.receiver_name;
+            if (receiverPhonesDisplay) {
+                let phoneStr = formatPhoneNumberForDisplay(updatedOrderData.receiver_phone1);
+                if (updatedOrderData.receiver_phone2) {
+                    phoneStr += ` / ${formatPhoneNumberForDisplay(updatedOrderData.receiver_phone2)}`;
+                }
+                receiverPhonesDisplay.textContent = phoneStr;
+            }
+            if (receiverAddressDisplay) receiverAddressDisplay.textContent = updatedOrderData.receiver_address;
+            
+            // Thông báo thành công
+            alert('Đã cập nhật thông tin người nhận thành công!');
+            
+            // Đóng modal
+            if (typeof window.closeEditModal === 'function') {
+                window.closeEditModal();
+            }
+        });
+    }
+
+    // Xử lý sự kiện khi nhấn nút Hủy
+    const cancelButton = document.querySelector('.modal-cancel-button');
+    if (cancelButton) {
+        cancelButton.addEventListener('click', function() {
+            if (typeof window.closeEditModal === 'function') {
+                window.closeEditModal();
+            }
+        });
+    }
+
+    // Xử lý format số điện thoại khi nhập
+    function formatPhoneNumber(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 0) {
+            value = formatPhoneNumberForDisplay(value);
+        }
+        input.value = value;
+    }
+
+    // Thêm sự kiện format cho các input số điện thoại
+    if (phone1Input) {
+        phone1Input.addEventListener('input', function() {
+            formatPhoneNumber(this);
+        });
+    }
+    if (phone2Input) {
+        phone2Input.addEventListener('input', function() {
+            formatPhoneNumber(this);
+        });
+    }
+
+    // Validate form trước khi submit
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!nameInput.value.trim()) {
+            alert('Vui lòng nhập tên người nhận');
+            nameInput.focus();
+            return false;
+        }
+        if (!phone1Input.value.trim()) {
+            alert('Vui lòng nhập số điện thoại');
+            phone1Input.focus();
+            return false;
+        }
+        if (!countrySelect.value) {
+            alert('Vui lòng chọn quốc gia');
+            countrySelect.focus();
+            return false;
+        }
+        if (!addressInput.value.trim()) {
+            alert('Vui lòng nhập địa chỉ chi tiết');
+            addressInput.focus();
+            return false;
+        }
+        return true;
+    });
+});
+</script>
 </html>

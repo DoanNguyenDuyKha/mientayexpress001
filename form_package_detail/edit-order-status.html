@@ -357,3 +357,98 @@
         <button type="button" class="form-btn form-btn-confirm modal-confirm-button"><i class="fa-solid fa-check"></i> Xác nhận</button>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load data from localStorage when modal opens
+    const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+    
+    // Populate form fields with data from localStorage
+    const form = document.getElementById('formTinhTrangModalExactMatch');
+    if (form) {
+        // Set radio button based on order status
+        const statusRadio = form.querySelector(`input[name="tinhTrangDonModalExactMatch"][value="${orderData.order_status || 'khd'}"]`);
+        if (statusRadio) statusRadio.checked = true;
+
+        // Set agent select
+        const agentSelect = document.getElementById('chonDaiLyModalExactMatch');
+        if (agentSelect && orderData.agent) {
+            agentSelect.value = orderData.agent;
+        }
+
+        // Set INV code
+        const invInput = document.getElementById('maInvModalExactMatch');
+        if (invInput && orderData.inv_code) {
+            invInput.value = orderData.inv_code;
+        }
+
+        // Set OPS coordinator
+        const opsInput = document.getElementById('opsDieuPhoiModalExactMatch');
+        if (opsInput && orderData.ops_coordinator) {
+            opsInput.value = orderData.ops_coordinator;
+        }
+
+        // Set CS processor
+        const csInput = document.getElementById('csXuLyModalExactMatch');
+        if (csInput && orderData.cs_processor) {
+            csInput.value = orderData.cs_processor;
+        }
+    }
+
+    // Handle form submission
+    const confirmButton = document.querySelector('.modal-confirm-button');
+    if (confirmButton) {
+        confirmButton.addEventListener('click', function() {
+            const form = document.getElementById('formTinhTrangModalExactMatch');
+            if (!form) return;
+
+            // Get form data
+            const formData = new FormData(form);
+            const selectedStatus = formData.get('tinhTrangDonModalExactMatch');
+            const selectedAgent = formData.get('chonDaiLyModalExactMatch');
+            const invCode = formData.get('maInvModalExactMatch');
+            const opsCoordinator = formData.get('opsDieuPhoiModalExactMatch');
+            const csProcessor = formData.get('csXuLyModalExactMatch');
+
+            // Update localStorage
+            const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+            orderData.order_status = selectedStatus;
+            orderData.agent = selectedAgent;
+            orderData.inv_code = invCode;
+            orderData.ops_coordinator = opsCoordinator;
+            orderData.cs_processor = csProcessor;
+            localStorage.setItem('currentOrderDetail', JSON.stringify(orderData));
+
+            // Update status display on main page
+            const statusBadge = document.querySelector('.status-badge');
+            if (statusBadge) {
+                let statusText = '';
+                switch(selectedStatus) {
+                    case 'vsxv':
+                        statusText = 'Vùng sâu vùng xa';
+                        break;
+                    case 'vat':
+                        statusText = 'VAT (8%)';
+                        break;
+                    case 'khd':
+                        statusText = 'Không xuất Hóa Đơn';
+                        break;
+                    default:
+                        statusText = selectedStatus;
+                }
+                statusBadge.textContent = statusText;
+                statusBadge.className = `status-badge status-${selectedStatus}`;
+            }
+
+            // Close modal
+            const modalOverlay = document.querySelector('.modal-overlay');
+            if (modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+
+            // Show success message
+            alert('Đã cập nhật thông tin tình trạng đơn hàng thành công!');
+        });
+    }
+});
+</script>

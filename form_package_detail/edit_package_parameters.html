@@ -405,84 +405,152 @@ Manufacturer: 533/6 National Highway 1A, Quarter 1, An Phu Dong Ward, District 1
 </div>
 
 <script>
-    (function() {
-        const formContainer = document.querySelector('.agent-item-details-form');
-        if (!formContainer) return;
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lấy dữ liệu từ localStorage
+        const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+        const items = Array.isArray(orderData.items) ? orderData.items : [];
 
-        const modalTableBody = formContainer.querySelector('.modal-item-table tbody');
-        const modalGrandTotalEl = formContainer.querySelector('#modalGrandTotal');
-        const addRowButton = formContainer.querySelector('.btn-add-row');
+        const modalTableBody = document.querySelector('.modal-item-table tbody');
+        const modalGrandTotalEl = document.getElementById('modalGrandTotal');
+        const addRowButton = document.querySelector('.btn-add-row');
 
-        function formatCurrencyValue(value) {
-            const num = parseFloat(value) || 0;
-            return num.toFixed(2);
+        // Xóa hết các dòng cũ
+        modalTableBody.innerHTML = '';
+
+        // Render lại các dòng từ localStorage
+        function renderRows() {
+            modalTableBody.innerHTML = '';
+            items.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><button type="button" class="btn-delete-row" title="Xóa dòng này"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><input type="text" value="${item.name || ''}" class="form-control item-name"></td>
+                    <td><input type="number" value="${item.quantity || ''}" class="form-control item-qty"></td>
+                    <td>
+                        <select class="form-select item-unit">
+                            <option value="PCE" ${item.unit === 'PCE' ? 'selected' : ''}>PCE</option>
+                            <option value="PCS" ${item.unit === 'PCS' ? 'selected' : ''}>PCS</option>
+                            <option value="PKG" ${item.unit === 'PKG' ? 'selected' : ''}>PKG</option>
+                            <option value="Rolls" ${item.unit === 'Rolls' ? 'selected' : ''}>Rolls</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="${item.price || ''}" step="0.01" class="form-control item-price"></td>
+                    <td><input type="text" value="${item.total || ''}" class="form-control item-total" readonly></td>
+                `;
+                modalTableBody.appendChild(row);
+            });
+            if (items.length === 0) {
+                // Nếu không có dữ liệu, thêm 1 dòng trống
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><button type="button" class="btn-delete-row" title="Xóa dòng này"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><input type="text" value="" class="form-control item-name"></td>
+                    <td><input type="number" value="" class="form-control item-qty"></td>
+                    <td>
+                        <select class="form-select item-unit">
+                            <option value="PCE">PCE</option>
+                            <option value="PCS">PCS</option>
+                            <option value="PKG">PKG</option>
+                            <option value="Rolls">Rolls</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="" step="0.01" class="form-control item-price"></td>
+                    <td><input type="text" value="" class="form-control item-total" readonly></td>
+                `;
+                modalTableBody.appendChild(row);
+            }
         }
 
-        function calculateRowTotal(row) {
-            const qtyInput = row.querySelector('.item-qty');
-            const priceInput = row.querySelector('.item-price');
-            const totalInput = row.querySelector('.item-total');
-            const qty = parseFloat(qtyInput.value) || 0;
-            const price = parseFloat(priceInput.value) || 0;
-            totalInput.value = formatCurrencyValue(qty * price);
-            calculateGrandTotal();
-        }
-
+        // Hàm tính tổng giá trị
         function calculateGrandTotal() {
             let grandTotal = 0;
             modalTableBody.querySelectorAll('tr').forEach(row => {
                 const totalInput = row.querySelector('.item-total');
                 grandTotal += parseFloat(totalInput.value) || 0;
             });
-            modalGrandTotalEl.textContent = formatCurrencyValue(grandTotal);
+            modalGrandTotalEl.textContent = grandTotal.toFixed(2);
         }
 
+        // Hàm tính tổng giá từng dòng
+        function calculateRowTotal(row) {
+            const qtyInput = row.querySelector('.item-qty');
+            const priceInput = row.querySelector('.item-price');
+            const totalInput = row.querySelector('.item-total');
+            const qty = parseFloat(qtyInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+            totalInput.value = (qty * price).toFixed(2);
+            calculateGrandTotal();
+        }
+
+        // Gắn sự kiện cho từng dòng
         function addRowListeners(row) {
             const qtyInput = row.querySelector('.item-qty');
             const priceInput = row.querySelector('.item-price');
             const deleteButton = row.querySelector('.btn-delete-row');
-
             if(qtyInput) qtyInput.addEventListener('input', () => calculateRowTotal(row));
             if(priceInput) priceInput.addEventListener('input', () => calculateRowTotal(row));
-
             if(deleteButton) {
                 deleteButton.addEventListener('click', () => {
                     if (modalTableBody.querySelectorAll('tr').length > 1) {
-                       row.remove();
-                       calculateGrandTotal();
+                        row.remove();
+                        calculateGrandTotal();
                     } else {
-                       alert("Không thể xóa dòng cuối cùng.");
+                        alert("Không thể xóa dòng cuối cùng.");
                     }
                 });
             }
         }
 
+        // Render ban đầu
+        renderRows();
         modalTableBody.querySelectorAll('tr').forEach(addRowListeners);
+        calculateGrandTotal();
 
+        // Thêm dòng mới
         if (addRowButton) {
             addRowButton.addEventListener('click', () => {
-                const templateRow = modalTableBody.querySelector('tr:first-child');
-                if (templateRow) {
-                    const newRow = templateRow.cloneNode(true);
-
-                    newRow.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(input => input.value = '');
-                    newRow.querySelector('select.item-unit').selectedIndex = 0;
-                    const totalInput = newRow.querySelector('.item-total');
-                    if(totalInput) totalInput.value = formatCurrencyValue(0);
-
-                    modalTableBody.appendChild(newRow);
-                    addRowListeners(newRow);
-                    newRow.querySelector('input.item-name')?.focus();
-                } else {
-                    console.error("Không tìm thấy dòng mẫu để sao chép.");
-                    alert("Lỗi: Không thể thêm dòng mới.");
-                }
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><button type="button" class="btn-delete-row" title="Xóa dòng này"><i class="fa-solid fa-trash"></i></button></td>
+                    <td><input type="text" value="" class="form-control item-name"></td>
+                    <td><input type="number" value="" class="form-control item-qty"></td>
+                    <td>
+                        <select class="form-select item-unit">
+                            <option value="PCE">PCE</option>
+                            <option value="PCS">PCS</option>
+                            <option value="PKG">PKG</option>
+                            <option value="Rolls">Rolls</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="" step="0.01" class="form-control item-price"></td>
+                    <td><input type="text" value="" class="form-control item-total" readonly></td>
+                `;
+                modalTableBody.appendChild(row);
+                addRowListeners(row);
             });
         }
 
-        calculateGrandTotal();
-
-    })();
+        // Xử lý nút xác nhận
+        document.querySelector('.modal-confirm-button').addEventListener('click', () => {
+            // Lấy dữ liệu từ bảng
+            const newItems = [];
+            modalTableBody.querySelectorAll('tr').forEach(row => {
+                const name = row.querySelector('.item-name')?.value?.trim() || '';
+                const quantity = parseInt(row.querySelector('.item-qty')?.value) || 0;
+                const unit = row.querySelector('.item-unit')?.value || '';
+                const price = parseFloat(row.querySelector('.item-price')?.value) || 0;
+                const total = parseFloat(row.querySelector('.item-total')?.value) || 0;
+                if (name && unit && quantity > 0) {
+                    newItems.push({ name, unit, quantity, price, total });
+                }
+            });
+            // Lưu vào localStorage
+            orderData.items = newItems;
+            localStorage.setItem('currentOrderDetail', JSON.stringify(orderData));
+            alert('Đã cập nhật chi tiết hàng hóa!');
+            window.close();
+        });
+    });
 </script>
 
 </body>

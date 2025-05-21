@@ -217,5 +217,95 @@
             </div>
         </form>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load dữ liệu từ localStorage khi mở modal
+            const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+            
+            // Điền dữ liệu vào form
+            const senderNameInput = document.getElementById('senderNameInputModal');
+            const senderPhoneInput = document.getElementById('senderPhoneInputModal');
+            const senderAddressInput = document.getElementById('senderAddressInputModal');
+
+            if (senderNameInput) senderNameInput.value = orderData.sender_name || '';
+            if (senderPhoneInput) senderPhoneInput.value = orderData.sender_phone || '';
+            if (senderAddressInput) {
+                // Kết hợp địa chỉ từ các trường riêng lẻ nếu có
+                const addressParts = [
+                    orderData.sender_address,
+                    orderData.sender_city,
+                    orderData.sender_country
+                ].filter(Boolean);
+                senderAddressInput.value = addressParts.join(', ');
+            }
+
+            // Xử lý sự kiện khi nhấn nút Xác nhận
+            const confirmButton = document.querySelector('.modal-confirm-button');
+            if (confirmButton) {
+                confirmButton.addEventListener('click', function() {
+                    // Lấy dữ liệu từ form
+                    const formData = {
+                        sender_name: senderNameInput.value.trim(),
+                        sender_phone: senderPhoneInput.value.trim(),
+                        sender_address: senderAddressInput.value.trim()
+                    };
+
+                    // Validate dữ liệu
+                    if (!formData.sender_name) {
+                        alert('Vui lòng nhập họ tên người gửi');
+                        senderNameInput.focus();
+                        return;
+                    }
+                    if (!formData.sender_phone) {
+                        alert('Vui lòng nhập số điện thoại người gửi');
+                        senderPhoneInput.focus();
+                        return;
+                    }
+                    if (!formData.sender_address) {
+                        alert('Vui lòng nhập địa chỉ người gửi');
+                        senderAddressInput.focus();
+                        return;
+                    }
+
+                    // Cập nhật dữ liệu vào localStorage
+                    const currentOrderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+                    const updatedOrderData = {
+                        ...currentOrderData,
+                        ...formData
+                    };
+                    localStorage.setItem('currentOrderDetail', JSON.stringify(updatedOrderData));
+
+                    // Thông báo thành công
+                    alert('Đã cập nhật thông tin người gửi thành công!');
+
+                    // Đóng modal (giả lập bằng cách gọi hàm closeEditModal từ trang cha)
+                    if (window.parent && typeof window.parent.closeEditModal === 'function') {
+                        window.parent.closeEditModal();
+                    }
+                });
+            }
+
+            // Xử lý sự kiện khi nhấn nút Hủy
+            const cancelButton = document.querySelector('.modal-cancel-button');
+            if (cancelButton) {
+                cancelButton.addEventListener('click', function() {
+                    if (window.parent && typeof window.parent.closeEditModal === 'function') {
+                        window.parent.closeEditModal();
+                    }
+                });
+            }
+
+            // Xử lý phím Enter và Escape
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    confirmButton.click();
+                } else if (event.key === 'Escape') {
+                    event.preventDefault();
+                    cancelButton.click();
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
