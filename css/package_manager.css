@@ -1552,7 +1552,7 @@ button:disabled {
 .site-footer {
   text-align: center;
   padding: var(--base-padding);
-  margin-top: auto;
+  margin-top: 0;
   color: var(--text-secondary);
   font-size: 0.85em;
   border-top: 1px solid var(--border-color);

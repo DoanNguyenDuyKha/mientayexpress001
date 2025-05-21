@@ -2,41 +2,41 @@
 
 :root {
     /* Colors */
-    --primary-color: #0891b2;
+    --primary-color: #0891b2; /* Blue */
     --primary-hover: #0e7490;
-    --primary-light: #ecfeff;
-    --secondary-color: #64748b;
+    --primary-light: #ecfeff; /* Light Blue */
+    --secondary-color: #64748b; /* Grey-blue */
     --secondary-hover: #475569;
-    --confirm-color: #16a34a;
+    --confirm-color: #16a34a; /* Green */
     --confirm-hover: #15803d;
-    --warning-color: #f97316;
+    --warning-color: #f97316; /* Orange */
     --warning-hover: #ea580c;
-    --danger-color: #dc2626;
+    --danger-color: #dc2626; /* Red */
     --danger-hover: #b91c1c;
     --info-color: #3b82f6;
-    --receive-color: #2563eb;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
+    --receive-color: #2563eb; /* Darker Blue */
+    --text-primary: #1e293b; /* Dark Grey */
+    --text-secondary: #64748b; /* Medium Grey */
     --text-on-primary: #ffffff;
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
+    --bg-color: #f8fafc; /* Light Grey Background */
+    --card-bg: #ffffff; /* White */
     --form-bg: #ffffff;
-    --border-color: #d1d5db;
-    --border-light: #e5e7eb;
-    --input-border: #d1d5db;
-    --text-gray-label: #4b5563;
+    --border-color: #d1d5db; /* Tinh chỉnh màu border cho mềm mại hơn */
+    --border-light: #e5e7eb; /* Tinh chỉnh màu border nhẹ */
+    --input-border: #d1d5db; /* Tinh chỉnh màu input border */
+    --text-gray-label: #4b5563; /* Tinh chỉnh màu label */
     --label-color: var(--text-gray-label);
     --success-color: var(--confirm-color);
     --text-read-only: #374151;
-    --input-readonly-bg: #e5e7eb;
-    --border-gold: #FFD700;
+    --input-readonly-bg: #e5e7eb; /* Tinh chỉnh màu readonly input */
+    --border-gold: #FFD700; /* Định nghĩa biến màu vàng cho border */
 
-    /* Typography */
+    /* Typography - Updated to match create-package.css */
     --font-family: 'Inter', sans-serif;
-    --base-font-size: 0.5rem;
+    --base-font-size: 0.55rem;
     --form-font-size: 0.5rem;
 
-    /* Spacing */
+    /* Spacing - Updated to match create-package.css */
     --base-padding: 0.6rem;
     --card-padding: 0.6rem;
     --form-padding: 0.6rem;
@@ -50,6 +50,9 @@
     /* Transitions */
     --transition-speed: 0.25s;
 }
+
+
+
 
 .order-detail-grid {
     display: grid;
@@ -80,12 +83,14 @@
 }
 
 .detail-section .card-header.section-header {
-    padding: var(--form-padding);
+    padding: 0;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--card-bg);
+    background-color: #FFD700; /* Correct gold color */
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 }
 
 .detail-section .card-header .card-title {
@@ -99,16 +104,22 @@
     padding: var(--form-padding);
     overflow-x: auto;
     background-color: var(--card-bg);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
 }
 
 .data-pair {
     display: flex;
-    align-items: baseline;
-    margin-bottom: var(--form-gap);
+    align-items: flex-start;
+    padding-bottom: var(--form-gap);
     font-family: var(--font-family);
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 0;
 }
 
-.data-pair .label {
+/* Style for labels within the main content */
+.order-detail-content .label {
     font-weight: 500;
     color: var(--text-gray-label);
     margin-right: var(--form-gap);
@@ -122,6 +133,7 @@
     flex-grow: 1;
     word-break: break-word;
     font-size: var(--base-font-size);
+    line-height: 1.4;
 }
 
 .data-pair .value.multiline {
@@ -142,7 +154,7 @@
 .detail-section .data-table,
 .detail-section .summary-table {
     width: 100%;
-    table-layout: auto;
+    table-layout: fixed;
     border-collapse: separate;
     border-spacing: 0;
 }
@@ -158,7 +170,9 @@
     font-size: var(--base-font-size);
     border-bottom: 1px solid var(--border-color);
     font-family: var(--font-family);
-    text-align: center
+    text-align: left;
+    display: table-cell !important;
+    vertical-align: top !important;
 }
 
 .detail-section .data-table th,
@@ -167,6 +181,16 @@
     font-weight: 600;
     color: var(--text-gray-label);
     background-color: var(--bg-color);
+}
+
+.detail-section .data-table td.text-center,
+.detail-section .data-table th.text-center {
+    text-align: center;
+}
+
+.detail-section .data-table td.text-right,
+.detail-section .data-table th.text-right {
+    text-align: right;
 }
 
 /* Grid styles */
@@ -185,7 +209,7 @@
     font-weight: 600;
     color: var(--text-gray-label);
     font-size: var(--base-font-size);
-    text-align: left;
+    text-align: right;
     padding-bottom: var(--form-gap);
     border-bottom: 1px solid var(--border-color);
     margin-bottom: var(--form-gap);
@@ -206,7 +230,7 @@
     font-size: var(--base-font-size);
     color: var(--text-primary);
     word-break: break-all;
-    text-align: left;
+    text-align: right;
     grid-column: 2;
     font-family: var(--font-family);
 }
@@ -264,7 +288,7 @@
 
 /* Section collapse/expand styles */
 .section-body {
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     max-height: 2000px;
     overflow: hidden;
 }
@@ -276,9 +300,254 @@
 }
 
 .toggle-arrow .arrow {
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed) ease;
 }
 
 .toggle-arrow .arrow.collapsed {
     transform: rotate(180deg);
+}
+
+/* Base Styles - Ensure body uses the base font size */
+body {
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    line-height: 1.4;
+    color: var(--text-primary);
+    background-color: var(--bg-color);
+    /* Other body styles */
+}
+
+/* Layout */
+.content-wrapper {
+    padding: var(--base-padding);
+    flex-grow: 1; /* Allow content-wrapper to grow */
+    display: flex;
+    flex-direction: column; /* Ensure vertical flex layout */
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: visible;
+}
+
+/* Footer styles */
+.detail-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--base-padding);
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-light);
+    margin-top: auto; /* Push footer to the bottom when there's extra space */
+    flex-wrap: wrap;
+    gap: var(--base-padding);
+}
+
+.detail-footer .footer-agreement {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.detail-footer .footer-actions {
+    display: flex;
+    gap: var(--form-gap);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.detail-footer .footer-agreement label {
+    font-size: var(--base-font-size);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+.site-footer {
+    text-align: center;
+    padding: var(--base-padding);
+    font-size: var(--base-font-size);
+    color: var(--text-secondary);
+    background-color: var(--bg-color);
+}
+
+/* Order Detail Content Styles */
+.order-detail-content {
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    background-color: var(--bg-color);
+    min-height: calc(100vh - 60px);
+    padding: var(--base-padding);
+    --base-font-size: 0.5rem; /* Giảm kích thước chữ cho nội dung */
+    --form-gap: 0.1rem; /* Giảm khoảng cách giữa các thành phần nội dung */
+}
+
+.order-detail-content .page-header {
+    margin-bottom: var(--form-gap);
+}
+
+.order-detail-content .page-title {
+    font-size: 1rem; /* Tăng kích thước tiêu đề trang */
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+}
+
+.order-detail-content .breadcrumb {
+    font-size: 0.7rem; /* Tăng kích thước breadcrumb */
+    color: var(--text-secondary);
+}
+
+.order-detail-content .breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.order-detail-content .breadcrumb a:hover {
+    color: var(--primary-hover);
+}
+
+/* Ensure status trigger text size matches base font size */
+.order-detail-content .status-trigger {
+    font-size: var(--base-font-size); /* Đồng bộ cỡ chữ với nội dung body card */
+}
+
+/* Adjust font size for status badge */
+.order-detail-content .status-badge {
+    font-size: var(--base-font-size); /* Đồng bộ cỡ chữ với nội dung body card */
+}
+
+/* Adjust font size for form elements and buttons in content */
+.order-detail-content select.form-select,
+.order-detail-content button.button {
+    font-size: var(--base-font-size); /* Đồng bộ cỡ chữ với nội dung body card */
+}
+
+/* Style for card titles within the main content */
+.order-detail-content .detail-section .card-header .card-title {
+    font-size: 0.8rem; 
+    margin-left: 10px;
+}
+
+/* Reduce padding for card bodies within the main content */
+.order-detail-content .detail-section .card-body.section-body {
+    padding: 0.3rem; /* Giảm padding body card */
+    /* Bạn có thể điều chỉnh giá trị này nếu cần */
+}
+
+/* Ensure icons are displayed and positioned correctly */
+.data-pair .edit-value-icon {
+    flex-shrink: 0; /* Ngăn icon bị co lại */
+    margin-left: auto; /* Đẩy icon về bên phải nếu có đủ không gian */
+    display: flex; /* Sử dụng flexbox để căn giữa icon nếu cần */
+    align-items: center; /* Căn giữa icon theo chiều dọc */
+    justify-content: center;
+}
+
+/* Adjust size for icons within the main content to match base font size */
+.order-detail-content .toggle-arrow i {
+    font-size: var(--base-font-size);
+    /* Existing icon styles */
+}
+
+/* Apply size and padding adjustments directly to the pencil icons */
+.order-detail-content .edit-value-icon {
+    font-size: var(--base-font-size); /* Đặt kích thước icon bằng kích thước chữ nội dung */
+    padding: 1px 2px; /* Thêm padding để tạo không gian xung quanh icon */
+    box-sizing: border-box; /* Bao gồm padding và border trong kích thước tổng */
+    color: var(--primary-color); /* Đặt màu xanh lam cho icon */
+    cursor: pointer; /* Thêm cursor pointer để biểu thị có thể click */
+}
+
+/* Add background to the specific 'Khối lượng đại lý (KG)' section */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')), /* Target the data-pair div */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) + .inline-buttons { /* Target the following inline-buttons span */
+    background-color: #fffacd; /* Light yellow color - Adjust as needed */
+    padding: 2px 5px; /* Add some padding around the content */
+    margin: 2px 0; /* Add some margin above/below the block */
+    border-radius: 3px; /* Optional: add slight border radius */
+}
+
+/* Specific style for the data-pair containing "Khối lượng đại lý (KG)" to match the design */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) {
+    flex-wrap: nowrap; /* Prevent wrapping */
+    gap: normal; /* Remove gap */
+    align-items: center; /* Vertically align items to center */
+}
+
+/* Adjust alignment and margin for inline buttons and icon within this specific data-pair */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .inline-buttons {
+    margin-left: auto; /* Push buttons to the right */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+    display: flex;
+    align-items: center;
+    gap: 2px; /* Adjust gap between buttons */
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .edit-value-icon {
+    margin-left: 5px; /* Add a small margin between buttons and icon */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Ensure line-height is applied to the value within this specific data-pair as well if needed */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value {
+    line-height: 1.4; /* Keep the desired line height */
+    flex-grow: 1; /* Allow value to take available space */
+    margin-right: 10px; /* Add a small gap between value and buttons/icon */
+}
+
+/* Add styles for the specific weight values within the 'Khối lượng đại lý (KG)' data-pair */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span {
+    display: inline-block; /* Make span act like a block for padding/margin */
+    padding: 2px 5px; /* Add padding around the value */
+    border-radius: 3px; /* Add slight border radius */
+    font-weight: 500; /* Optional: make the text bold */
+    color: var(--text-primary); /* Default text color */
+    margin-right: 5px; /* Add a small gap between the value spans */
+}
+
+/* Remove margin-right from the last value span */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:last-of-type {
+    margin-right: 0; 
+}
+
+/* Style the individual weight values with specific background colors */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(1) { /* First value */
+    background-color: var(--primary-light); /* Light blue */
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(2) { /* Second value */
+    background-color: #fed7aa; /* Light orange - Using a specific hex for closer match */
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(3) { /* Third value */
+    background-color: #dcfce7; /* Light green - Using a specific hex for closer match */
+}
+
+/* Ensure inline buttons within this specific data-pair are styled correctly */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-inline {
+    font-size: var(--base-font-size); /* Match base font size */
+    padding: 3px 6px; /* Adjust padding for inline buttons to match image */
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--text-on-primary); /* White text */
+    display: inline-block; /* Ensure proper sizing */
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-blue { background-color: var(--info-color); }
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-teal { background-color: var(--warning-color); } /* Use warning color for Orange */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-green { background-color: var(--confirm-color); }
+
+/* Adjust inv-mte-badge within this specific data-pair */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .inv-mte-badge {
+    font-size: var(--base-font-size); /* Match base font size */
+    margin-left: 10px; /* Small gap from value */
+    padding: 3px 8px;
+    border-radius: 15px; /* Make it pill shaped */
+    background-color: var(--confirm-color); /* Green background */
+    color: var(--text-on-primary); /* White text */
+    font-weight: 500;
+    flex-shrink: 0;
 }
