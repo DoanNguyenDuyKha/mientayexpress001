@@ -602,45 +602,5 @@
         </form>
     </div>
 
-    <script>
-         (function() {
-             const formContainer = document.currentScript.closest('.edit-receiver-info-form');
-             if (!formContainer) { console.error("Receiver Info Form Script Error: Cannot find parent '.edit-receiver-info-form'."); return; }
-             const form = formContainer.querySelector('#formReceiverInfoModal');
-             const cancelButton = formContainer.querySelector('.form-btn-cancel');
-             const confirmButton = formContainer.querySelector('.form-btn-confirm');
-
-             if (!form || !cancelButton || !confirmButton) { console.error("Receiver Info Form Script Error: Cannot find form or buttons (check button class names)."); return; }
-
-             function tryCloseModalFromInside() {
-                  if (typeof window.closeModal === 'function') {
-                     const modalContentWrapper = formContainer.closest('.modal-content-wrapper');
-                     const modalOverlay = modalContentWrapper ? modalContentWrapper.closest('.modal-overlay') : null;
-                     if (modalOverlay && modalContentWrapper) { window.closeModal(modalOverlay, modalContentWrapper); } else { attemptManualClose(); }
-                 } else { attemptManualClose(); }
-              }
-              function attemptManualClose() {
-                 const modalContentWrapper = formContainer.closest('.modal-content-wrapper');
-                 const modalOverlay = modalContentWrapper ? modalContentWrapper.closest('.modal-overlay') : null;
-                  if (modalOverlay) {
-                      modalOverlay.classList.remove('active');
-                      if(modalContentWrapper) modalContentWrapper.innerHTML = '';
-                  } else { console.error("Manual Close Failed: Could not find modal overlay."); }
-              }
-
-             cancelButton.addEventListener('click', () => { console.log("Hủy chỉnh sửa thông tin người nhận."); tryCloseModalFromInside(); });
-             confirmButton.addEventListener('click', () => {
-                 const formData = new FormData(form);
-                 const receiverData = Object.fromEntries(formData.entries());
-                 console.log('ĐÃ XÁC NHẬN - Thông tin người nhận:', receiverData);
-                  if (typeof window.updateReceiverInfoOnParentPage === 'function') {
-                      window.updateReceiverInfoOnParentPage(receiverData);
-                  } else { console.warn("Hàm updateReceiverInfoOnParentPage không tồn tại trên trang cha."); }
-                 tryCloseModalFromInside();
-             });
-             console.log("Script for Receiver Info Form initialized successfully (Scoped CSS v3).");
-         })();
-    </script>
-
 </body>
 </html>

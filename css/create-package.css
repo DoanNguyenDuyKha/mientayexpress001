@@ -310,7 +310,7 @@ input[readonly], textarea[readonly] {
     border-radius: var(--border-radius);
     height: auto;
     line-height: 1.5; /* Tăng nhẹ line-height */
-    max-width: 120px;
+    max-width: 150px;
     cursor: pointer;
     transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Giữ transition */
     appearance: none;
@@ -713,7 +713,7 @@ footer.form-actions {
     background-color: var(--card-bg); /* Đảm bảo màu nền body modal khớp với modal */
 }
 .modal-body p { margin-bottom: 0.5rem; } .modal-body p:last-child { margin-bottom: 0; }
-.modal-body strong { font-weight: 600; color: var(--text-primary); display: block; margin-bottom: 0.1rem; }
+.modal-body strong { font-weight: 600; color: var(--text-primary); display: block; margin-bottom: 0.1rem; text-align: left; }
 
 .modal-footer {
     padding: 0.5rem 0.6rem;

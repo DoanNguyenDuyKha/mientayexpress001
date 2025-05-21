@@ -19,7 +19,7 @@
             --form-border-color-light: #eee;
             --form-text-color: #181818;
             --form-text-muted: #64748b;
-            --form-border-radius: 12px;
+            --form-border-radius: 9px;
             --form-spacing-unit: 10px;
             --form-control-padding-y: 10px;
             --form-control-padding-x: 16px;
@@ -257,12 +257,12 @@
                       </div>
                  </div>
                 <div class="form-group">
-                    <label class="main-label">Dịch vụ đi kèm:</label>
+                    <label class="main-label">Dịch vụ cộng thêm:</label>
                     <div class="input-options-group checkbox-group">
-                        <label class="checkbox-option"><input type="checkbox" name="add_service_signature" value="1" checked> Chữ Ký</label>
-                        <label class="checkbox-option"><input type="checkbox" name="add_service_fumigation" value="1"> FUMIGATION</label>
-                        <label class="checkbox-option"><input type="checkbox" name="add_service_wood_crate" value="1"> Đóng kiện gỗ</label>
-                        <label class="checkbox-option"><input type="checkbox" name="add_service_insurance" value="1" checked> Bảo hiểm hàng hóa</label>
+                        <label class="checkbox-option"><input type="checkbox" name="add_service_signature" value="signature"> Chữ ký</label>
+                        <label class="checkbox-option"><input type="checkbox" name="add_service_insurance" value="insurance"> Bảo hiểm hàng hóa</label>
+                        <label class="checkbox-option"><input type="checkbox" name="add_service_fumigation" value="fumigation"> FUMIGATION</label>
+                        <label class="checkbox-option"><input type="checkbox" name="add_service_wood_crate" value="wood_crate"> Đóng kiện gỗ</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -279,65 +279,5 @@
             </div>
         </form>
     </div>
-
-    <script>
-        (function() {
-            const formContainer = document.currentScript.closest('.edit-service-info-form');
-            const form = formContainer?.querySelector('#formServiceInfoModal');
-            const cancelButton = formContainer?.querySelector('.form-btn-cancel');
-            const confirmButton = formContainer?.querySelector('.form-btn-confirm');
-
-            if (!form || !cancelButton || !confirmButton) { console.error("Service Info Script Error: Cannot find elements."); return; }
-
-            function tryCloseModalFromInside() {
-                 if (typeof window.closeEditModal === 'function') {
-                     console.log("Calling window.closeEditModal() from inside form.");
-                     window.closeEditModal();
-                 }
-                 else {
-                     console.warn("window.closeEditModal not found, attempting fallback close.");
-                     const modalOverlay = formContainer.closest('.modal-overlay');
-                     if(modalOverlay) {
-                         modalOverlay.classList.remove('active');
-                          if (typeof window.manageBodyScroll === 'function') {
-                               window.manageBodyScroll();
-                          }
-                     } else {
-                         console.error("Cannot find modal overlay for fallback close.");
-                     }
-                 }
-            }
-
-             cancelButton.onclick = () => { tryCloseModalFromInside(); };
-             confirmButton.onclick = () => {
-                 const formData = new FormData(form); const serviceData = {}; const additionalServices = [];
-                 formData.forEach((value, key) => { if (key.startsWith('add_service_') && value === '1') { additionalServices.push(key.replace('add_service_', '')); } else if (key !== 'reason_for_sending' && key !== 'parcel_type' && key !== 'sending_method' && !key.startsWith('add_service_')) { serviceData[key] = value; } else { serviceData[key] = value; } });
-                 serviceData.additional_services = additionalServices; console.log('ĐÃ XÁC NHẬN - Thông tin dịch vụ:', serviceData);
-                 if (typeof window.updateServiceInfoOnParentPage === 'function') {
-                      window.updateServiceInfoOnParentPage(serviceData);
-                  } else {
-                      console.warn("Update function 'updateServiceInfoOnParentPage' not found on parent page.");
-                      const serviceNameDisplay = window.parent.document.getElementById('serviceNameValue');
-                      const additionalServicesDisplay = window.parent.document.getElementById('additionalServicesValue');
-                      const selectedServiceOption = form.querySelector('#serviceSelectModal option:checked');
-                      if (serviceNameDisplay && selectedServiceOption) serviceNameDisplay.textContent = selectedServiceOption.text;
-                       if (additionalServicesDisplay) {
-                           const displayNames = additionalServices.map(s => {
-                               if (s === 'signature') return 'Chữ ký';
-                               if (s === 'insurance') return 'Bảo hiểm hàng hóa';
-                               if (s === 'fumigation') return 'FUMIGATION';
-                               if (s === 'wood_crate') return 'Đóng kiện gỗ';
-                               return s.toUpperCase(); }).join(' / ');
-                            additionalServicesDisplay.textContent = displayNames || 'Không có';
-                       }
-                       alert('Đã cập nhật thông tin dịch vụ (Fallback).');
-                  }
-                 tryCloseModalFromInside();
-             };
-
-            console.log("Script for Scoped Service Info Form initialized.");
-        })();
-    </script>
-
 </body>
 </html>

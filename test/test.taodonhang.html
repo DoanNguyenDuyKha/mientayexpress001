@@ -12,7 +12,7 @@
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="logo-bg">
-                <img src="../images/logo-removebg.png" alt="Mien Tay Express Logo" class="logo">
+                <img src="../images/newlogo2.png" alt="Mien Tay Express Logo" class="logo">
             </div>
         </div>
         <nav class="menu-items" aria-label="Main Navigation">
@@ -117,7 +117,7 @@
             <section class="page-header">
                 <div class="page-header-left">
                     <h1 class="page-title">Chi tiết đơn hàng - MTE192775</h1>
-                    <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Quản lý</a>/ <span>Quản lý đơn hàng</span> / <span>Chi tiết đơn hàng</span> </nav>
+                    <nav class="breadcrumb" aria-label="breadcrumb"> <a href="package_manager.html">Quản lý</a>/ <span>Quản lý đơn hàng</span> / <span>Chi tiết đơn hàng</span> </nav>
                 </div>
             </section>
 
@@ -337,16 +337,16 @@
                          <div class="card-body section-body address-block">
                              <div class="data-pair">
                                  <span class="label">Họ và Tên:</span>
-                                 <span class="value">Trần Phúc Đường</span>
-                                 <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa người gửi"></i>
+                                 <span class="value" id="senderNameValue">Trần Phúc Đường</span>
+                                 <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa người gửi" id="editSenderInfoTrigger"></i>
                             </div>
                              <div class="data-pair">
                                  <span class="label">Số điện thoại:</span>
-                                 <span class="value">0909951549 / 0909951559</span>
+                                 <span class="value" id="senderPhoneValue">0909951549 / 0909951559</span>
                              </div>
                              <div class="data-pair">
                                  <span class="label">Địa chỉ:</span>
-                                 <span class="value multiline">Tòa nhà Sài Gòn Tel, CVPM Quang Trung, P.Tân Chánh Hiệp, Q.12, TP.CHM</span>
+                                 <span class="value multiline" id="senderAddressValue">Tòa nhà Sài Gòn Tel, CVPM Quang Trung, P.Tân Chánh Hiệp, Q.12, TP.CHM</span>
                              </div>
                          </div>
                      </section>
@@ -1264,6 +1264,9 @@
                 } else if (title && title.includes('Chỉnh sửa ghi chú')) {
                     button.addEventListener('click', openNotesModal);
                     console.log("Added notes edit button listener");
+                } else if (title && title.includes('Chỉnh sửa người gửi') && button.id === 'editSenderInfoTrigger') {
+                    // Listener already added above, skip to prevent duplication
+                    console.log("Sender info edit button listener already handled.");
                 }
             });
 
@@ -1321,6 +1324,149 @@
             });
 
             console.log("All initializations complete for Unified Order Detail Page.");
+
+            // Function to open Sender Info Modal
+            async function openSenderInfoModal() {
+                console.log("Opening Sender Info Modal...");
+                await loadModalContent(
+                    '../form_package_detail/edit-sender-info.html',
+                    populateSenderInfoModalData,
+                    attachSenderInfoModalListeners
+                );
+            }
+
+            // Function to populate Sender Info Modal with current data
+            function populateSenderInfoModalData(container) {
+                console.log("Populating Sender Info modal form...");
+                const senderNameInput = container.querySelector('#senderNameInputModal');
+                const senderPhoneInput = container.querySelector('#senderPhoneInputModal');
+                const senderAddressInput = container.querySelector('#senderAddressInputModal');
+
+                const senderNameValue = document.getElementById('senderNameValue')?.textContent.trim();
+                const senderPhoneValue = document.getElementById('senderPhoneValue')?.textContent.trim();
+                const senderAddressValue = document.getElementById('senderAddressValue')?.textContent.trim();
+
+                if (senderNameInput && senderNameValue) senderNameInput.value = senderNameValue;
+                if (senderPhoneInput && senderPhoneValue) senderPhoneInput.value = senderPhoneValue;
+                if (senderAddressInput && senderAddressValue) senderAddressInput.value = senderAddressValue;
+
+                console.log("Sender Info modal populated.");
+            }
+
+            // Function to attach event listeners to Sender Info Modal
+            function attachSenderInfoModalListeners(container) {
+                console.log("Attaching listeners to Sender Info modal...");
+                const cancelButton = container.querySelector('.modal-cancel-button');
+                const confirmButton = container.querySelector('.modal-confirm-button');
+                const formElement = container.querySelector('#formSenderInfoModal'); // Make sure this ID matches your modal HTML
+
+                if (!formElement) {
+                    console.error("Cannot find #formSenderInfoModal for listeners.");
+                    return;
+                }
+
+                if (cancelButton) {
+                    const newBtn = cancelButton.cloneNode(true);
+                    cancelButton.parentNode.replaceChild(newBtn, cancelButton);
+                    newBtn.addEventListener('click', closeEditModal);
+                }
+                if (confirmButton) {
+                    const newBtn = confirmButton.cloneNode(true);
+                    confirmButton.parentNode.replaceChild(newBtn, confirmButton);
+                    newBtn.addEventListener('click', () => {
+                        console.log("Confirming Sender Info modal...");
+                        const formData = new FormData(formElement);
+                        const senderData = Object.fromEntries(formData.entries());
+                        console.log('Đã xác nhận thông tin người gửi (dữ liệu lấy từ modal):', senderData);
+
+                        // Update the main page content
+                        const senderNameDisplay = document.getElementById('senderNameValue');
+                        const senderPhoneDisplay = document.getElementById('senderPhoneValue');
+                        const senderAddressDisplay = document.getElementById('senderAddressValue');
+
+                        if (senderNameDisplay && senderData.sender_name) senderNameDisplay.textContent = senderData.sender_name;
+                        if (senderPhoneDisplay && senderData.sender_phone) senderPhoneDisplay.textContent = senderData.sender_phone;
+                        if (senderAddressDisplay && senderData.sender_address) senderAddressDisplay.textContent = senderData.sender_address;
+
+                        alert('Đã cập nhật thông tin Người gửi thành công! Xem Console (F12) để biết chi tiết.');
+                        closeEditModal();
+                    });
+                }
+            }
+
+            // Add event listener specifically for the Sender Info edit icon using its ID
+            const openSenderInfoTrigger = document.getElementById('editSenderInfoTrigger');
+            if (openSenderInfoTrigger) {
+                openSenderInfoTrigger.removeEventListener('click', openSenderInfoModal); // Remove previous listener if any
+                openSenderInfoTrigger.addEventListener('click', openSenderInfoModal);
+                console.log("Added sender info edit button listener via ID.");
+            }
+
+            async function openCompanyNameModal() {
+                console.log("Opening Company Name Modal...");
+                await loadModalContent(
+                    '../form_package_detail/edit-company-name.html',
+                    populateCompanyNameModalData,
+                    attachCompanyNameModalListeners
+                );
+            }
+
+            function populateCompanyNameModalData(container) {
+                console.log("Populating Company Name modal form...");
+                const companyNameInput = container.querySelector('#companyNameInputModal');
+                const companyNameDisplay = document.getElementById('receiverCompanyNameValue');
+
+                if (companyNameInput && companyNameDisplay) {
+                    companyNameInput.value = companyNameDisplay.textContent.trim();
+                }
+            }
+
+            function attachCompanyNameModalListeners(container) {
+                console.log("Attaching listeners to Company Name modal...");
+                const cancelButton = container.querySelector('.modal-cancel-button');
+                const confirmButton = container.querySelector('.modal-confirm-button');
+                const formElement = container.querySelector('#formCompanyNameModal');
+
+                if (!formElement) {
+                    console.error("Cannot find #formCompanyNameModal for listeners.");
+                    return;
+                }
+
+                if (cancelButton) {
+                    const newBtn = cancelButton.cloneNode(true);
+                    cancelButton.parentNode.replaceChild(newBtn, cancelButton);
+                    newBtn.addEventListener('click', closeEditModal);
+                }
+
+                if (confirmButton) {
+                    const newBtn = confirmButton.cloneNode(true);
+                    confirmButton.parentNode.replaceChild(newBtn, confirmButton);
+                    newBtn.addEventListener('click', () => {
+                        console.log("Confirming Company Name modal...");
+                        const formData = new FormData(formElement);
+                        const companyData = Object.fromEntries(formData.entries());
+                        console.log('Đã xác nhận tên công ty (dữ liệu lấy từ modal):', companyData);
+
+                        const companyNameDisplay = document.getElementById('receiverCompanyNameValue');
+                        if (companyNameDisplay && companyData.company_name) {
+                            companyNameDisplay.textContent = companyData.company_name;
+                        }
+
+                        alert('Đã cập nhật tên công ty thành công!');
+                        closeEditModal();
+                    });
+                }
+            }
+
+            // Add event listener for company name edit icon
+            document.querySelectorAll('.edit-value-icon').forEach(button => {
+                const title = button.getAttribute('title');
+                if (title && title.includes('Chỉnh sửa Tên công ty')) {
+                    button.addEventListener('click', openCompanyNameModal);
+                    console.log("Added company name edit button listener");
+                }
+            });
+
         });
 
         // --- Dropdown user đăng nhập/đăng xuất ---

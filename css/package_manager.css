@@ -393,7 +393,7 @@ button:disabled {
 }
 
 .sidebar-header .logo {
-  max-width: 100px; /* Further reduce max-width for the logo */
+  max-width: 200px; /* Further reduce max-width for the logo */
   width: auto;
   height: auto;
   margin: 0 auto; /* Keep centered */
