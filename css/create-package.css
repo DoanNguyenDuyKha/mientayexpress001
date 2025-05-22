@@ -1048,6 +1048,7 @@ body.modal-open {
 .form-section .card-body {
     position: relative;
     z-index: 1;
+    background: #f8fafc;
 }
 
 /* Fix for form groups */

@@ -85,7 +85,7 @@ body {
 }
 
 .section-header {
-    background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%);
+    background:#FFD700;
     color: #fff;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
@@ -692,14 +692,14 @@ body {
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     padding: var(--base-padding);
-    background-color: var(--bg-white);
+    background-color: #f8fafc;
 }
 
 .section-header {
-    font-size: 1.1rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--sidebar-active-text);
-    margin-bottom: var(--base-padding, 1rem);
+    margin-bottom: 0.1rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border-color);
     display: flex;

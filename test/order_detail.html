@@ -497,6 +497,7 @@
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             console.log("DOM loaded - Initializing Order Detail Page (Unified)...");
@@ -737,9 +738,6 @@
                 if (!modalContent || !modalOverlay) {
                     console.error("Modal container or overlay not found."); return;
                 }
-                console.log("Loading modal content from:", formUrl);
-                console.log("Current localStorage data:", JSON.parse(localStorage.getItem('currentOrderDetail') || '{}'));
-                
                 modalContent.innerHTML = '<div style="padding:20px;color:var(--text-secondary);text-align:center;">Đang tải...</div>';
                 modalOverlay.classList.add('active');
                 manageBodyScroll();
@@ -752,14 +750,8 @@
                     modalContent.innerHTML = htmlContent;
                     executeScriptFromHtml(htmlContent);
 
-                    if (typeof populationFunction === 'function') {
-                        console.log("Executing population function for modal");
-                        populationFunction(modalContent);
-                    }
-                    if (typeof attachListenerFunction === 'function') {
-                        console.log("Executing listener function for modal");
-                        attachListenerFunction(modalContent);
-                    }
+                    if (typeof populationFunction === 'function') populationFunction(modalContent);
+                    if (typeof attachListenerFunction === 'function') attachListenerFunction(modalContent);
                     else attachGenericModalListeners(modalContent);
 
                 } catch (error) {
@@ -912,7 +904,6 @@
             }
 
             async function openAgentItemsModal() { await loadModalContent('../form_package_detail/edit_package_parameters.html', null, attachAgentItemsModalListeners); }
-
             function attachAgentItemsModalListeners(container) {
                  const cancelButton = container.querySelector('.modal-cancel-button');
                  const confirmButton = container.querySelector('.modal-confirm-button');
@@ -926,9 +917,6 @@
             function populatePackageParamsModalData(container){
                 const productNameInputModal = container.querySelector('#productNameModal');
                 if (productNameInputModal && packageContentDisplay) { productNameInputModal.value = packageContentDisplay.textContent.trim(); }
-                const script = document.createElement('script');
-                script.src = '../js/thongsokienhang.js'; // chứa JS của modal
-                document.body.appendChild(script);
             }
             function attachPackageParamsModalListeners(container) {
                 const cancelButton = container.querySelector('.modal-cancel-button'); const confirmButton = container.querySelector('.modal-confirm-button');
@@ -1739,9 +1727,7 @@
                     allDimGrids[i*2+1].innerHTML = html2;
                 }
             }
-            
         });
-        
     </script>
 
 </body>

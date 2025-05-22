@@ -497,7 +497,6 @@
             </div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             console.log("DOM loaded - Initializing Order Detail Page (Unified)...");
@@ -913,6 +912,7 @@
             }
 
             async function openAgentItemsModal() { await loadModalContent('../form_package_detail/edit_package_parameters.html', null, attachAgentItemsModalListeners); }
+
             function attachAgentItemsModalListeners(container) {
                  const cancelButton = container.querySelector('.modal-cancel-button');
                  const confirmButton = container.querySelector('.modal-confirm-button');
@@ -926,6 +926,9 @@
             function populatePackageParamsModalData(container){
                 const productNameInputModal = container.querySelector('#productNameModal');
                 if (productNameInputModal && packageContentDisplay) { productNameInputModal.value = packageContentDisplay.textContent.trim(); }
+                const script = document.createElement('script');
+                script.src = '../js/thongsokienhang.js'; // chứa JS của modal
+                document.body.appendChild(script);
             }
             function attachPackageParamsModalListeners(container) {
                 const cancelButton = container.querySelector('.modal-cancel-button'); const confirmButton = container.querySelector('.modal-confirm-button');

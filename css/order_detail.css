@@ -57,21 +57,21 @@
 .order-detail-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--form-gap);
+    gap: 0.3rem;
     margin-top: var(--form-gap);
 }
 
 .detail-column-left {
     display: flex;
     flex-direction: column;
-    gap: var(--form-gap);
+    gap: 0;
     overflow: hidden;
 }
 
 .detail-column-right {
     display: flex;
     flex-direction: column;
-    gap: var(--form-gap);
+    gap: 0;
     overflow: hidden;
 }
 
@@ -80,6 +80,7 @@
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
     padding: 0;
+    margin-top: 0.5rem;
 }
 
 .detail-section .card-header.section-header {

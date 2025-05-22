@@ -480,3 +480,7 @@
 
 
 trên màn hình mobile tôi muốn phần trên ảnh tôi chụp trở thành 1 combobox với đầy đủ các tiêu đề phân loại ở trong combobox đó và vẫn giữ được tính năng phân loại đơn hàng như trên màn hình lớn  
+
+
+
+border: 1px solid rgb(0 0 0 / 0.1);

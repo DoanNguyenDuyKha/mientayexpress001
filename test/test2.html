@@ -3,73 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo đơn hàng - Miền Tây Express</title>
+    <title>Pickup Đơn Hàng - Miền Tây Express</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../css/create-package.css">
     <link rel="stylesheet" href="../css/package_manager.css">
-
+    <link rel="stylesheet" href="../css/pickup-package.css">
 </head>
 <body>
-    <script>
-        localStorage.removeItem('createPackageStep1');
-        localStorage.removeItem('wizardData');
-        function updateHeaderBlur() {
-            var header = document.querySelector('.header');
-            var anyModalOpen = false;
-            document.querySelectorAll('.modal').forEach(function(modal){
-                var style = window.getComputedStyle(modal);
-                if(style.display === 'flex' || style.display === 'block') anyModalOpen = true;
-            });
-            if(document.querySelector('.announcement-overlay.visible')) anyModalOpen = true;
-            if (header) {
-                if (anyModalOpen) {
-                    header.classList.add('blurred');
-                    if (!header.querySelector('.header-dark-overlay')) {
-                        var overlay = document.createElement('div');
-                        overlay.className = 'header-dark-overlay';
-                        header.appendChild(overlay);
-                    }
-                } else {
-                    header.classList.remove('blurred');
-                    var overlay = header.querySelector('.header-dark-overlay');
-                    if (overlay) overlay.remove();
-                }
-            }
-        }
-        </script>
-    <div class="modal-overlay" id="terms-modal-overlay"></div>
-    <div class="modal" id="terms-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" tabindex="-1">
-        <div class="modal-header">
-            <h2 class="modal-title" id="modal-title"><i class="fa-solid fa-file-contract icon"></i> Điều khoản Quy định</h2>
-            <button class="modal-close-btn" id="modal-exit-btn-x" aria-label="Đóng">×</button>
-        </div>
-        <div class="modal-body">
-            <p><strong>1. Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500, khi một họa sĩ vô danh ghép nhiều đoạn văn bản với nhau để tạo thành một bản mẫu văn bản. Đoạn văn bản này không những đã tồn tại năm thế kỉ, mà khi được áp dụng vào tin học văn phòng, nội dung của nó vẫn không hề bị thay đổi. Nó đã được phổ biến trong những năm 1960 nhờ việc bán những bản giấy Letraset in những đoạn Lorem Ipsum, và gần đây hơn, được sử dụng trong các ứng dụng dàn trang, như Aldus PageMaker.</strong></p>
-        </div>
-        <div class="modal-footer">
-            <div class="modal-terms-agreement">
-                <input type="checkbox" id="modal_terms_agree" name="modal_terms_agree">
-                <label for="modal_terms_agree">Tôi đã đọc và đồng ý với <a href="#" class="modal-link-underline">Điều khoản quy định</a></label>
-            </div>
-            <div class="modal-action-buttons">
-                 <button type="button" class="button secondary" id="modal-exit-btn">
-                     <i class="fa-solid fa-xmark"></i> Thoát
-                 </button>
-                 <button type="button" class="button confirm" id="modal-agree-btn" disabled>
-                     <i class="fa-solid fa-check"></i> Tạo đơn
-                 </button>
-            </div>
-        </div>
-    </div>
-
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="../images/logo-removebg.png" alt="Mien Tay Express Logo" class="logo">
+            <img src="../images/newlogo2.png" alt="Mien Tay Express Logo" class="logo">
         </div>
         <nav class="menu-items" aria-label="Main Navigation">
              <ul>
-                <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
-                 <li><a href="create-package.html" class="active"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
+                 <li><a href="../index.html" class="active"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
+                 <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
                  <li>
                      <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
                      <div class="submenu">
@@ -85,14 +32,14 @@
                  <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
                  <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
                  <li><a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span></a></li>
-                 <li><a href="employee-list.html"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
                  <li><a href="employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN LÝ NHÂN SỰ</span></a></li>
+                 <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
                   <li>
                       <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
                        <div class="submenu">
                           <ul>
-                            <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
-                            <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
+                              <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
+                              <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
                           </ul>
                       </div>
                   </li>
@@ -101,8 +48,8 @@
                      <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
                       <div class="submenu">
                           <ul>
-                            <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
-                            <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
+                             <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
+                             <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
                           </ul>
                       </div>
                   </li>
@@ -118,7 +65,7 @@
             <div class="header-left">
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" class="header-search-input" placeholder="Tìm kiếm...">
+                    <input type="text" class="header-search-input" placeholder="Mã vận đơn / Tracking ID...">
                 </div>
             </div>
             <div class="header-actions" style="display: flex; align-items: center; gap: 1.2rem; margin-left: auto;">
@@ -156,7 +103,7 @@
                     </div>
                 </div>
                 <div class="user-container" style="position: relative;">
-                    <div class="user-dropdown-toggle" id="user-dropdown-toggle" style="display: flex; align-items: center; gap: 6px; background: #2563eb; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
+                    <div class="user-dropdown-toggle" id="user-dropdown-toggle" style="display: flex; align-items: center; gap: 6px; background: #6366f1; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
                         <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
                     </div>
                     <div class="user-dropdown" id="user-dropdown">
@@ -170,294 +117,80 @@
 
         <div class="content-wrapper">
             <section class="page-header">
-                 <div class="page-header-left">
-                     <h1 class="page-title">Tạo đơn hàng</h1>
-                     <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Tạo đơn hàng</a> / <span>Step 1</span> </nav>
-                 </div>
-             </section>
+                <div class="page-header-left">
+                    <h1 class="page-title">PICKUP ĐƠN HÀNG</h1>
+                    <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Quản lý</a> / <span>Quản lý vận chuyển</span> / <span>Pickup Đơn Hàng</span> </nav>
+                </div>
+            </section>
 
-             <form id="create-order-form" novalidate autocomplete="off">
-               <div class="wizard-steps-container">
-                 <div class="wizard-step-content step-1 active">
-                   <section class="card form-section">
-                       <div class="card-header">
-                           <h2 class="card-title"><i class="fas fa-user icon"></i> Người gửi (SENDER)</h2>
-                       </div>
-                       <div class="card-body">
-                           <div class="form-group">
-                               <label for="sender_preset">Người gửi<span class="required">*</span></label>
-                               <select id="sender_preset" name="sender_preset" required>
-                                   <option value="" selected>Chọn người gửi</option>
-                                   <option value="tpd">TRẦN PHÚC ĐƯỜNG - Công ty TNHH Thương Mại và Dịch Vụ Nina - 0909951549</option>
-                                   <option value="nina">NINA CO.,LTD - 028 1234 5678</option>
-                                   <option value="other">Khác...</option>
-                               </select>
-                               <span class="error-message"></span>
-                           </div>
-                           <div class="form-group">
-                               <label for="sender_company">Tên công ty</label>
-                               <input type="text" id="sender_company" name="sender_company" value="" autocomplete="off">
-                               <span class="error-message"></span>
-                           </div>
-                           <div class="form-group inline-group multi-input" aria-labelledby="sender_contact_label">
-                                 <span id="sender_contact_label" class="visually-hidden">Sender Name and Contact</span>
-                                <div class="input-group">
-                                    <label for="sender_name">Tên người gửi<span class="required">*</span></label>
-                                    <input type="text" id="sender_name" name="sender_name" value="" autocomplete="off">
-                                    <span class="error-message"></span>
-                                </div>
-                                <div class="input-group">
-                                    <label for="sender_phone">Số liên hệ<span class="required">*</span></label>
-                                    <input type="tel" id="sender_phone" name="sender_phone" value="" autocomplete="off">
-                                    <span class="error-message"></span>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                  <label for="sender_city">Chọn địa chỉ<span class="required">*</span></label>
-                                  <div class="input-group-3">
-                                      <select id="sender_city" name="sender_city" required title="Chọn Tỉnh/Thành phố">
-                                          <option value="" selected>Chọn Tỉnh/Thành phố</option>
-                                          <option value="hcm">TP.HCM</option>
-                                          <option value="hn">Hà Nội</option>
-                                          <option value="ct">Cần Thơ</option>
-                                      </select>
-                                      <select id="sender_district" name="sender_district" required title="Chọn Quận/Huyện">
-                                          <option value="" selected>Chọn Quận / Huyện</option>
-                                          <option value="q1">Quận 1</option>
-                                          <option value="q12">Quận 12</option>
-                                          <option value="tp">Tân Phú</option>
-                                      </select>
-                                      <select id="sender_ward" name="sender_ward" required title="Chọn Phường/Xã">
-                                          <option value="" selected>Chọn Phường / Xã</option>
-                                          <option value="tch">Tân Chánh Hiệp</option>
-                                          <option value="tth">Tân Thới Hiệp</option>
-                                      </select>
-                                  </div>
-                                  <span class="error-message group-error"></span>
-                              </div>
-                              <div class="form-group">
-                                  <label for="sender_address">Địa chỉ<span class="required">*</span></label>
-                                  <textarea id="sender_address" name="sender_address" required autocomplete="off"></textarea>
-                                  <span class="error-message"></span>
-                              </div>
-                          </div>
-                      </section>
-                      <div class="wizard-actions"><button type="button" class="button primary next-step">Tiếp tục</button></div>
-                   </div>
-                   <div class="wizard-step-content step-2">
-                     <section class="card form-section">
-                         <div class="card-header">
-                             <h2 class="card-title"><i class="fas fa-box-open icon"></i> Người nhận (RECEIVER)</h2>
-                             <div class="address-book-select">
-                                 <label for="receiver_address_book" class="visually-hidden">Chọn từ danh bạ</label>
-                                 <select id="receiver_address_book" name="receiver_address_book" title="Chọn từ danh bạ">
-                                      <option value="" selected>Danh sách người nhận</option>
-                                      <option value="saved1">HIEP THANH RUBBER...</option>
-                                 </select>
-                             </div>
+            <form id="pickup-order-form">
+                <div class="content-layout card">
+                    <div class="content-column-left">
+                         <div class="data-section">
+                            <div class="section-header"><span><i class="fa-solid fa-truck"></i> Hình thức lấy hàng</span></div>
+                            <div class="form-group"> <label for="pickup_vehicle">Hình thức vận chuyển:</label> <select id="pickup_vehicle" name="pickup_vehicle"> <option value="minivan" selected>Xe bán tải / Minivan</option> <option value="motorbike">Xe máy</option> <option value="truck">Xe tải</option> </select> </div>
+                            <div class="form-group"> <label for="pickup_time">Thời gian Pickup:</label> <div class="input-with-icon"> <input type="datetime-local" id="pickup_time" name="pickup_time"> </div> </div>
+                            <div class="form-group"> <label for="pickup_address">Địa chỉ lấy hàng:</label> <textarea id="pickup_address" name="pickup_address" rows="3">Căn nhà số 4, Đường B4, Phường An Lợi Đông, Thành phố Thủ Đức, Thành phố Hồ Chí Minh</textarea> </div>
+                            <div class="form-group"> <label for="pickup_notes">Ghi chú lấy hàng:</label> <textarea id="pickup_notes" name="pickup_notes" rows="2">Nhờ chụp lại ảnh kiện nhé Alice</textarea> </div>
                          </div>
-                         <div class="card-body">
-                              <div class="form-group">
-                                 <label for="receiver_company">Tên công ty</label>
-                                 <input type="text" id="receiver_company" name="receiver_company" value="" autocomplete="off">
-                                 <span class="error-message"></span>
-                             </div>
-                             <div class="form-group">
-                                 <label for="receiver_name">Tên người nhận<span class="required">*</span></label>
-                                 <input type="text" id="receiver_name" name="receiver_name" value="" required autocomplete="off">
-                                 <span class="error-message"></span>
-                             </div>
-                              <div class="form-group inline-group multi-input" aria-labelledby="receiver_phone_label">
-                                  <span id="receiver_phone_label" class="visually-hidden">Receiver Contact Numbers</span>
-                                  <div class="input-group">
-                                      <label for="receiver_phone1">Số điện thoại 1<span class="required">*</span></label>
-                                      <div class="phone-input-group">
-                                          <select id="receiver_phone1_code" name="receiver_phone1_code" title="Mã quốc gia SĐT 1">
-                                              <option value="+84" selected>+84</option>
-                                              <option value="+1">+1</option>
-                                              <option value="+44">+44</option>
-                                          </select>
-                                          <input type="tel" id="receiver_phone1" name="receiver_phone1" value="" required autocomplete="off">
-                                      </div>
-                                      <span class="error-message"></span>
-                                  </div>
-                                  <div class="input-group">
-                                       <label for="receiver_phone2">Số điện thoại 2</label>
-                                       <div class="phone-input-group">
-                                          <select id="receiver_phone2_code" name="receiver_phone2_code" title="Mã quốc gia SĐT 2">
-                                              <option value="+84" selected>+84</option>
-                                              <option value="+1">+1</option>
-                                              <option value="+44">+44</option>
-                                          </select>
-                                          <input type="tel" id="receiver_phone2" name="receiver_phone2" value="" autocomplete="off">
-                                       </div>
-                                      <span class="error-message"></span>
-                                  </div>
-                             </div>
+                         <div class="data-section">
+                             <div class="section-header"><span><i class="fa-solid fa-clipboard-check"></i> Trạng thái lấy hàng</span></div>
                              <div class="form-grid-2col">
-                                 <div class="form-group">
-                                     <label for="receiver_country">Quốc gia<span class="required">*</span></label>
-                                     <select id="receiver_country" name="receiver_country" required>
-                                         <option value="US" selected>UNITED STATES</option>
-                                         <option value="GB">UNITED KINGDOM</option>
-                                      </select>
-                                      <span class="error-message"></span>
-                                 </div>
-                                 <div class="form-group">
-                                     <label for="receiver_postcode">Postcode</label>
-                                     <input type="text" id="receiver_postcode" name="receiver_postcode" value="" autocomplete="off">
-                                      <span class="error-message"></span>
-                                 </div>
-                                 <div class="form-group">
-                                     <label for="receiver_city">Thành phố<span class="required">*</span></label>
-                                     <input type="text" id="receiver_city" name="receiver_city" value="" required placeholder="Nhập tên thành phố" autocomplete="off">
-                                      <span class="error-message"></span>
-                                 </div>
-                                 <div class="form-group">
-                                     <label for="receiver_state">Tỉnh/Bang<span class="required">*</span></label>
-                                     <input type="text" id="receiver_state" name="receiver_state" value="" required autocomplete="off">
-                                      <span class="error-message"></span>
-                                 </div>
-                             </div>
-                             <div class="form-group">
-                                 <label for="receiver_address">Địa chỉ chi tiết<span class="required">*</span></label>
-                                 <textarea id="receiver_address" name="receiver_address" required autocomplete="off"></textarea>
-                                 <span class="helper-text">(Không nhập POST CODE,STATE,CITY)</span>
-                                 <span class="error-message"></span>
-                             </div>
-                             <div class="form-group">
-                                 <label for="receiver_notes">Ghi chú</label>
-                                 <textarea id="receiver_notes" name="receiver_notes" autocomplete="off"></textarea>
-                                  <span class="error-message"></span>
-                             </div>
-                             <div class="checkbox-group">
-                                 <label> <input type="checkbox" name="save_receiver" value="1" checked> Lưu thông tin người nhận cho lần nhập tiếp theo </label>
-                             </div>
+                                <div class="form-group"> <label for="pickup_status">Trạng thái lấy hàng:</label> <select id="pickup_status" name="pickup_status"> <option value="pending" selected>Chờ lấy hàng</option> <option value="picked_up">Đã lấy hàng</option> <option value="failed">Lấy thất bại</option> </select> </div>
+                                <div class="form-group"> <label for="pickup_cs">CS xử lý:</label> <select id="pickup_cs" name="pickup_cs"> <option value="alice" selected>Alice in the Wonder La...</option> </select> </div>
+                            </div>
+                            <div class="form-group"> <label for="received_time">Thời gian nhận hàng:</label> <div class="input-with-icon"> <input type="datetime-local" id="received_time" name="received_time"> </div> </div>
+                            <div class="form-group"> <label for="export_time">Thời gian xuất hàng:</label> <div class="input-with-icon"> <input type="datetime-local" id="export_time" name="export_time"> </div> </div>
+                            <div class="form-group"> <label for="status_notes">Ghi chú:</label> <textarea id="status_notes" name="status_notes" rows="2"></textarea> </div>
+                            <div class="form-group">
+                                <label>Ảnh đính kèm:</label>
+                                <div class="attachment-group">
+                                    <button type="button" class="file-trigger-button button secondary" id="select_images_btn"> <i class="fa-solid fa-image"></i> Chọn ảnh </button>
+                                    <input type="file" id="pickup_images" name="pickup_images[]" multiple accept="image/jpeg, image="image/png", image="image/gif" style="display: none;">
+                                    <span class="file-type-note">(.jpg/.png/.jpeg)</span>
+                                </div>
+                                <div id="selected_files_list"><i>Chưa chọn file nào.</i></div>
+                            </div>
                          </div>
-                     </section>
-                     <div class="wizard-actions"><button type="button" class="button secondary prev-step">Quay lại</button><button type="button" class="button primary next-step">Tiếp tục</button></div>
-                   </div>
-                   <div class="wizard-step-content step-3">
-                     <section class="card form-section">
-                         <div class="card-header">
-                             <h2 class="card-title"><i class="fas fa-concierge-bell icon"></i> Chọn dịch vụ (SERVICES)</h2>
-                         </div>
-                         <div class="card-body">
-                             <div class="form-group">
-                                 <span class="form-label">Lý do gửi hàng<span class="required">*</span></span>
-                                 <div class="radio-group" role="radiogroup" aria-labelledby="send_reason_label">
-                                   <span id="send_reason_label" class="visually-hidden">Lý do gửi hàng</span>
-                                     <label> <input type="radio" name="send_reason" value="gift" required> Gift (no commercial value) </label>
-                                     <label> <input type="radio" name="send_reason" value="sample" required> Sample </label>
-                                 </div>
-                                  <span class="error-message group-error"></span>
-                             </div>
-                                  <div class="form-group">
-                                      <span class="form-label">Loại bưu gửi<span class="required">*</span></span>
-                                     <div class="radio-group" role="radiogroup" aria-labelledby="package_type_label">
-                                         <span id="package_type_label" class="visually-hidden">Loại bưu gửi</span>
-                                         <label> <input type="radio" name="package_type" value="goods" required> Hàng hóa </label>
-                                         <label> <input type="radio" name="package_type" value="document" required> Tài liệu </label>
-                                     </div>
-                                      <span class="error-message group-error"></span>
-                                 </div>
-                                 <div class="form-grid-2col">
-                                     <div class="form-group">
-                                         <label for="service_type">Chọn dịch vụ<span class="required">*</span></label>
-                                         <select id="service_type" name="service_type" required>
-                                             <option value="MTE_DHL_SIN" selected>MTE DHL SIN</option>
-                                             <option value="MTE_FEDEX_SIN">MTE FEDEX SIN</option>
-                                          </select>
-                                          <span class="error-message"></span>
-                                     </div>
-                                     <div class="form-group">
-                                         <label for="branch">Chi nhánh<span class="required">*</span></label>
-                                         <select id="branch" name="branch" required>
-                                             <option value="TanPhu" selected>Tân Phú - HCM</option>
-                                             <option value="BinhTan">Bình Tân</option>
-                                          </select>
-                                          <span class="error-message"></span>
-                                     </div>
-                                 </div>
-                                  <span class="warning-note">Lưu ý*: Một số dịch vụ chỉ nhận từ 20kg trở lên</span>
-                                  <div class="form-group">
-                                      <span class="form-label">Dịch vụ đi kèm</span>
-                                     <div class="checkbox-group">
-                                         <label><input type="checkbox" name="add_service[]" value="signature"> Chữ Ký</label>
-                                         <label><input type="checkbox" name="add_service[]" value="fumigation"> FUMIGATION</label>
-                                         <label><input type="checkbox" name="add_service[]" value="packing"> Đóng kiện gỗ</label>
-                                         <label><input type="checkbox" name="add_service[]" value="insurance" checked> Bảo hiểm hàng hóa</label>
-                                     </div>
-                                 </div>
-                                 <div class="form-group">
-                                      <span class="form-label">Hình thức gửi hàng<span class="required">*</span></span>
-                                     <div class="radio-group" role="radiogroup" aria-labelledby="pickup_method_label">
-                                       <span id="pickup_method_label" class="visually-hidden">Hình thức gửi hàng</span>
-                                         <label> <input type="radio" name="pickup_method" value="pickup" required> Thu gom tận nơi </label>
-                                         <label> <input type="radio" name="pickup_method" value="dropoff" required> Gửi hàng tại bưu cục </label>
-                                     </div>
-                                      <span class="error-message group-error"></span>
-                                 </div>
-                             </div>
-                         </section>
-                         <div class="wizard-actions"><button type="button" class="button secondary prev-step">Quay lại</button><button type="button" class="button primary next-step">Tiếp tục</button></div>
-                   </div>
-                   <div class="wizard-step-content step-4">
-                     <section class="card form-section">
-                         <div class="card-header">
-                             <h2 class="card-title"><i class="fas fa-file-invoice-dollar icon"></i> Yêu cầu đơn hàng (BILL REQUIREMENT)</h2>
-                         </div>
-                         <div class="card-body">
-                             <div class="form-group">
-                                 <span class="form-label">Tình trạng đơn<span class="required">*</span></span>
-                                 <div class="radio-group" role="radiogroup" aria-labelledby="bill_status_label">
-                                   <span id="bill_status_label" class="visually-hidden">Tình trạng đơn</span>
-                                     <label> <input type="radio" name="bill_status" value="remote" required> Vùng sâu vùng xa </label>
-                                     <label> <input type="radio" name="bill_status" value="vat" required> VAT (8%) </label>
-                                      <label> <input type="radio" name="bill_status" value="no_invoice" required> Không xuất Hóa Đơn </label>
-                                 </div>
-                                  <span class="error-message group-error"></span>
-                             </div>
-                                 <div class="form-grid-2col">
-                                     <div class="form-group">
-                                         <label for="agent">Chọn Đại lý<span class="required">*</span></label>
-                                         <select id="agent" name="agent" required>
-                                             <option value="quynam" selected>Quý Nam</option>
-                                          </select>
-                                          <span class="error-message"></span>
-                                     </div>
-                                     <div class="form-group">
-                                         <label for="invoice_code">Mã INV</label>
-                                         <input type="text" id="invoice_code" name="invoice_code" value="">
-                                          <span class="error-message"></span>
-                                     </div>
-                                     <div class="form-group">
-                                         <label for="ops_coord">OPS điều phối</label>
-                                         <select id="ops_coord" name="ops_coord">
-                                             <option value="dangvancuong" selected>Đặng Văn Cường - OP...</option>
-                                          </select>
-                                          <span class="error-message"></span>
-                                     </div>
-                                     <div class="form-group">
-                                         <label for="cs_handler">CS xử lý</label>
-                                         <select id="cs_handler" name="cs_handler">
-                                             <option value="alice" selected>Alice in the Wonder L...</option>
-                                          </select>
-                                          <span class="error-message"></span>
-                                     </div>
-                                 </div>
-                             </div>
-                         </section>
-                         <div class="wizard-actions"><button type="button" class="button secondary prev-step">Quay lại</button><button type="submit" class="button confirm">Tạo đơn</button></div>
-                   </div>
-               </div>
-             </form>
+                    </div>
 
-             <footer class="site-footer">
+                    <div class="content-column-right">
+                        <div class="data-section">
+                            <div class="section-header">
+                                <span><i class="fa-solid fa-circle-info"></i> Thông tin đơn hàng</span>
+                                <div class="creator-info" id="order-creator-info">Người tạo: </div>
+                            </div>
+                            <div class="readonly-info-section" id="order-info-dynamic">
+                                <!-- Thông tin đơn hàng sẽ được render ở đây bằng JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-actions card">
+                    <div class="confirmation-check">
+                        <input type="checkbox" id="confirm_info_pickup" name="confirm_info_pickup" required checked>
+                        <label for="confirm_info_pickup">Tôi đã đọc kỹ và kiểm tra thông tin đầy đủ</label>
+                    </div>
+                    <div class="action-buttons">
+                        <button type="button" class="button secondary" onclick="window.history.back();"> <i class="fa-solid fa-xmark"></i> Thoát </button>
+                        <button type="reset" class="button warning" form="pickup-order-form"> <i class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
+                        <button type="button" class="button info btn-save-draft"> <i class="fa-solid fa-floppy-disk"></i> Lưu nháp </button>
+                        <button type="submit" class="button confirm btn-complete" form="pickup-order-form"> <i class="fa-solid fa-check"></i> Hoàn thành </button>
+                    </div>
+                </div>
+            </form>
+
+            <footer class="site-footer">
                  Miền Tây Express © <span id="current-year"></span>. All rights reserved. Design by Nina Co.,Ltd
-             </footer>
+            </footer>
         </div>
     </main>
+
+    <div class="confirmation-modal" id="complete-order-modal"></div>
+    <div class="confirmation-modal" id="cancel-order-modal"></div>
+    <div class="confirmation-modal" id="receive-order-modal"></div>
+    <div class="confirmation-modal" id="delete-order-modal"></div>
 
     <div class="announcement-overlay" id="announcement-overlay">
         <div class="announcement-box" id="announcement-box">
@@ -474,26 +207,277 @@
         </div>
     </div>
 
-    <script src="https://esgoo.net/scripts/jquery.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const body = document.body;
-            const sidebar = document.getElementById('sidebar');
-            const sidebarOverlay = document.getElementById('sidebar-overlay');
-            const mobileSidebarToggleBtn = document.getElementById('mobile-sidebar-toggle');
-            const desktopSidebarToggleBtn = document.querySelector('.sidebar-toggle-desktop');
-            const currentDateSpan = document.getElementById('current-date');
-            const currentTimeSpan = document.getElementById('current-time');
-            const currentYearSpan = document.getElementById('current-year');
-            const fullscreenBtn = document.getElementById('fullscreen-btn');
-            const termsModal = document.getElementById('terms-modal');
-            const termsOverlay = document.getElementById('terms-modal-overlay');
-            const agreeCheckbox = document.getElementById('modal_terms_agree');
-            const agreeButton = document.getElementById('modal-agree-btn');
-            const exitButtonX = document.getElementById('modal-exit-btn-x');
-            const exitButtonFooter = document.getElementById('modal-exit-btn');
-            const form = document.getElementById('create-order-form');
+        const body = document.body;
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mobileSidebarToggleBtn = document.getElementById('mobile-sidebar-toggle');
+        const desktopSidebarToggleBtn = document.querySelector('.sidebar-toggle-desktop');
+        const currentDateSpan = document.getElementById('current-date');
+        const currentTimeSpan = document.getElementById('current-time');
+        const currentYearSpan = document.getElementById('current-year');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
 
+        const isElementVisible = (el) => el && !el.hasAttribute('hidden') && el.offsetParent !== null;
+
+        const manageBodyScroll = () => {
+            const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
+            const isAnyModalVisible = document.querySelector('.confirmation-modal.visible, .announcement-overlay.visible');
+            if (isSidebarOpen || isAnyModalVisible) {
+                body.classList.add('overflow-hidden');
+            } else {
+                body.classList.remove('overflow-hidden');
+            }
+        };
+
+        function toggleSidebarMobileOrDesktop() {
+            if (window.innerWidth > 768) {
+                body.classList.toggle('sidebar-collapsed');
+            } else {
+                body.classList.toggle('sidebar-mobile-open');
+            }
+            const isOpen = body.classList.contains('sidebar-mobile-open') || !body.classList.contains('sidebar-collapsed');
+            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen));
+            manageBodyScroll();
+        }
+
+        function toggleSidebarDesktop() {
+            body.classList.toggle('sidebar-collapsed');
+            const isCollapsed = body.classList.contains('sidebar-collapsed');
+            if (desktopSidebarToggleBtn) {
+                desktopSidebarToggleBtn.title = isCollapsed ? "Phóng Sidebar" : "Thu Sidebar";
+                const icon = desktopSidebarToggleBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-arrow-left', !isCollapsed);
+                    icon.classList.toggle('fa-arrow-right', isCollapsed);
+                }
+            }
+            if (isCollapsed && window.innerWidth > 768) {
+                document.querySelectorAll('.menu-items .submenu.active').forEach(submenu => {
+                    submenu.classList.remove('active');
+                    const parentLink = submenu.previousElementSibling;
+                    if(parentLink && parentLink.classList.contains('submenu-parent')) {
+                        parentLink.classList.remove('active');
+                        parentLink.querySelector('.submenu-arrow')?.style.setProperty('transform', 'rotate(0deg)');
+                    }
+                });
+            } else {
+                 initializeActiveSubmenu();
+            }
+        }
+
+        function toggleSubmenu(event) {
+            event.preventDefault();
+            if (body.classList.contains('sidebar-collapsed') && window.innerWidth > 768) {
+                return;
+            }
+            const parentLink = event.currentTarget;
+            const submenuWrapper = parentLink.nextElementSibling;
+            const arrow = parentLink.querySelector('.submenu-arrow');
+            if (!submenuWrapper || !submenuWrapper.classList.contains('submenu')) return;
+            const isActive = submenuWrapper.classList.contains('active');
+
+            document.querySelectorAll('.menu-items .submenu-parent.active').forEach(activeParent => {
+                if (activeParent !== parentLink) {
+                    activeParent.classList.remove('active');
+                    const otherSubmenu = activeParent.nextElementSibling;
+                     if (otherSubmenu && otherSubmenu.classList.contains('submenu')) {
+                         otherSubmenu.classList.remove('active');
+                     }
+                     const otherArrow = activeParent.querySelector('.submenu-arrow');
+                     if (otherArrow) otherArrow.style.setProperty('transform', 'rotate(0deg)');
+                }
+            });
+
+            submenuWrapper.classList.toggle('active');
+            parentLink.classList.toggle('active', !isActive);
+             if (arrow) arrow.style.setProperty('transform', !isActive ? 'rotate(180deg)' : 'rotate(0deg)');
+        }
+
+        function initializeActiveSubmenu() {
+            document.querySelectorAll('.menu-items .submenu-parent').forEach(parentLink => {
+                 const submenuDiv = parentLink.nextElementSibling;
+                 const arrow = parentLink.querySelector('.submenu-arrow');
+                 if (submenuDiv?.classList.contains('submenu')) {
+                     const hasActiveChild = submenuDiv.querySelector('a.active');
+                     const shouldBeActive = hasActiveChild && (!body.classList.contains('sidebar-collapsed') || window.innerWidth <= 768);
+
+                     submenuDiv.classList.toggle('active', shouldBeActive);
+                     parentLink.classList.toggle('active', shouldBeActive);
+                     if (arrow) arrow.style.setProperty('transform', shouldBeActive ? 'rotate(180deg)' : 'rotate(0deg)');
+                 }
+            });
+        }
+
+        function showConfirmationModal(modalId, targetInfo = {}) {
+            const modal = document.getElementById(modalId);
+            if (!modal) { console.error("Modal not found:", modalId); return; }
+            modal.dataset.targetInfo = JSON.stringify(targetInfo);
+            modal.classList.add('visible');
+            manageBodyScroll();
+        }
+
+        function hideConfirmationModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                delete modal.dataset.targetInfo;
+                modal.classList.remove('visible');
+                manageBodyScroll();
+            }
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            const optionsDate = { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' };
+            const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            try {
+                if (currentDateSpan) currentDateSpan.textContent = now.toLocaleDateString('en-GB', optionsDate).replace(/,/g, '');
+                if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString('en-US', optionsTime);
+            } catch (e) {
+                if (currentDateSpan) currentDateSpan.textContent = now.toLocaleDateString();
+                if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString();
+            }
+            if (currentYearSpan) currentYearSpan.textContent = now.getFullYear();
+        }
+
+        function toggleFullscreen() {
+             if (!document.fullscreenElement) {
+                 document.documentElement.requestFullscreen().catch(err => console.error(`Fullscreen error: ${err.message} (${err.name})`));
+             } else if (document.exitFullscreen) {
+                 document.exitFullscreen();
+             }
+        }
+
+        function handleFullscreenChange() {
+             const isFullscreen = !!document.fullscreenElement;
+             const icon = fullscreenBtn?.querySelector('i');
+             if(icon){
+                 icon.classList.toggle('fa-expand', !isFullscreen);
+                 icon.classList.toggle('fa-compress', isFullscreen);
+             }
+              if(fullscreenBtn) {
+                  fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
+              }
+        }
+
+        function handleFormSubmit(event) {
+             event.preventDefault();
+             const form = document.getElementById('pickup-order-form');
+             const confirmCheckbox = document.getElementById('confirm_info_pickup');
+             if (!form.checkValidity()) { form.reportValidity(); return; }
+             if (!confirmCheckbox.checked) { alert('Vui lòng xác nhận đã đọc kỹ và kiểm tra thông tin.'); return false; }
+             const formData = new FormData(form);
+             const fileInput = document.getElementById('pickup_images');
+             const displayedFilesList = document.getElementById('selected_files_list');
+             const currentFiles = Array.from(fileInput.files);
+             const displayedFileNames = Array.from(displayedFilesList.querySelectorAll('li [data-file-name]')).map(btn => btn.dataset.fileName);
+             currentFiles.forEach(file => { if (displayedFileNames.includes(file.name)) { formData.append(fileInput.name, file); } });
+             console.log('Submitting form data:');
+             for (let [key, value] of formData.entries()) { if (value instanceof File) { console.log(`${key}: ${value.name}`); } else { console.log(`${key}: ${value}`); } }
+              alert('Thông tin Pickup đã được hoàn thành (demo)!');
+        }
+
+        function handleSaveDraft() {
+              console.log('Save Draft clicked');
+              const form = document.getElementById('pickup-order-form');
+              const formData = new FormData(form);
+              console.log('Saving draft data:', Object.fromEntries(formData));
+              alert('Đã lưu nháp thông tin (demo)!');
+        }
+
+        function handleFileSelection(event) {
+             const fileListDisplay = document.getElementById('selected_files_list');
+             const files = event.target.files;
+             let existingFileNames = [];
+             if (fileListDisplay.querySelector('ul')) { existingFileNames = Array.from(fileListDisplay.querySelectorAll('li [data-file-name]')).map(btn => btn.dataset.fileName); }
+             const uniqueFilesMap = new Map();
+             const originalFileInput = document.getElementById('pickup_images');
+             Array.from(originalFileInput.files).forEach(file => { if (existingFileNames.includes(file.name)) { uniqueFilesMap.set(file.name, file); } });
+             Array.from(files).forEach(file => { uniqueFilesMap.set(file.name, file); });
+             fileListDisplay.innerHTML = '';
+             if (uniqueFilesMap.size > 0) {
+                 const list = document.createElement('ul');
+                 uniqueFilesMap.forEach((file) => {
+                     const listItem = document.createElement('li');
+                     listItem.textContent = file.name;
+                     const removeBtn = document.createElement('button');
+                     removeBtn.type = 'button'; removeBtn.className = 'remove-file-btn'; removeBtn.innerHTML = '×'; removeBtn.title = 'Gỡ bỏ file này'; removeBtn.dataset.fileName = file.name; listItem.appendChild(removeBtn);
+                     list.appendChild(listItem);
+                 });
+                 fileListDisplay.appendChild(list);
+                 const dataTransfer = new DataTransfer();
+                 uniqueFilesMap.forEach(file => dataTransfer.items.add(file));
+                 originalFileInput.files = dataTransfer.files;
+             } else {
+                 fileListDisplay.innerHTML = '<i>Chưa chọn file nào.</i>';
+                 originalFileInput.value = '';
+             }
+        }
+
+        function handleRemoveFile(event) {
+              if (event.target.classList.contains('remove-file-btn')) {
+                  const fileNameToRemove = event.target.dataset.fileName;
+                  const fileInput = document.getElementById('pickup_images');
+                  const fileListDisplay = document.getElementById('selected_files_list');
+                  const currentFiles = Array.from(fileInput.files);
+                  const dataTransfer = new DataTransfer();
+                  let fileRemoved = false;
+                  currentFiles.forEach(file => { if (file.name !== fileNameToRemove) { dataTransfer.items.add(file); } else { fileRemoved = true; } });
+                  fileInput.files = dataTransfer.files;
+                  if (fileRemoved) { event.target.closest('li').remove(); }
+                  if (!fileListDisplay.querySelector('li')) { fileListDisplay.innerHTML = '<i>Chưa chọn file nào.</i>'; }
+                  console.log(`Removed ${fileNameToRemove}. Updated FileList:`, fileInput.files);
+              }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeActiveSubmenu();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobileOrDesktop);
+            if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarDesktop);
+            document.querySelectorAll('.menu-items .submenu-parent').forEach(link => link.addEventListener('click', toggleSubmenu));
+
+            document.querySelectorAll('.confirmation-modal').forEach(modal => {
+                const modalId = modal.id;
+                modal.querySelector('.confirm-yes')?.addEventListener('click', () => {
+                    const info = JSON.parse(modal.dataset.targetInfo || '{}');
+                    console.log(`CONFIRMED: ${modalId}`, info);
+                    hideConfirmationModal(modalId);
+                 });
+                modal.querySelector('.confirm-cancel')?.addEventListener('click', () => hideConfirmationModal(modalId));
+                modal.addEventListener('click', (event) => { if (event.target === modal) hideConfirmationModal(modalId); });
+            });
+
+             if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
+             document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+            const form = document.getElementById('pickup-order-form');
+            const saveDraftButton = document.querySelector('.btn-save-draft');
+            const selectImagesBtn = document.getElementById('select_images_btn');
+            const fileInput = document.getElementById('pickup_images');
+            const fileListDisplay = document.getElementById('selected_files_list');
+
+            if (form) form.addEventListener('submit', handleFormSubmit);
+            if (saveDraftButton) saveDraftButton.addEventListener('click', handleSaveDraft);
+            if (selectImagesBtn && fileInput) selectImagesBtn.addEventListener('click', () => fileInput.click() );
+            if (fileInput && fileListDisplay) fileInput.addEventListener('change', handleFileSelection);
+            if (fileListDisplay) fileListDisplay.addEventListener('click', handleRemoveFile);
+
+             if (window.innerWidth > 768 && desktopSidebarToggleBtn) {
+                  const isCollapsed = body.classList.contains('sidebar-collapsed');
+                  const icon = desktopSidebarToggleBtn.querySelector('i');
+                  if (icon) {
+                    icon.classList.toggle('fa-arrow-left', !isCollapsed);
+                    icon.classList.toggle('fa-arrow-right', isCollapsed);
+                  }
+             }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const notificationBody = document.body;
             const notificationButton = document.getElementById('notification-button');
             const notificationDropdown = document.getElementById('notification-dropdown');
             const notificationList = document.getElementById('notification-list');
@@ -504,195 +488,20 @@
             const announcementBodyEl = document.getElementById('announcement-body');
             const announcementTimestamp = document.getElementById('announcement-timestamp');
 
-            const manageBodyScroll = () => {
-                const isModalOpen = body.classList.contains('modal-open');
-                const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
+            const manageNotificationBodyScroll = () => {
                 const isAnnounceVisible = announcementOverlay && announcementOverlay.classList.contains('visible');
-                body.style.overflow = (isModalOpen || isSidebarOpen || isAnnounceVisible) ? 'hidden' : '';
+                const isAnyOtherModalVisible = false;
+
+                if (isAnnounceVisible || isAnyOtherModalVisible) {
+                    notificationBody.classList.add('overflow-hidden');
+                } else {
+                    if (!isAnyOtherModalVisible) {
+                         notificationBody.classList.remove('overflow-hidden');
+                    }
+                }
             };
 
-            function toggleSidebarMobileOrDesktop() {
-                if (window.innerWidth > 768) {
-                    body.classList.toggle('sidebar-collapsed');
-                    const isCollapsed = body.classList.contains('sidebar-collapsed');
-                    if (isCollapsed) {
-                        document.querySelectorAll('.menu-items .submenu.active').forEach(submenu => {
-                            submenu.classList.remove('active');
-                            submenu.previousElementSibling?.classList.remove('active');
-                        });
-                    }
-                } else {
-                    body.classList.toggle('sidebar-mobile-open');
-                }
-                const isOpen = body.classList.contains('sidebar-mobile-open') || !body.classList.contains('sidebar-collapsed');
-                if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen));
-                manageBodyScroll();
-            }
-
-            function toggleSubmenu(event) {
-                event.preventDefault();
-                if (body.classList.contains('sidebar-collapsed') && window.innerWidth > 768) return;
-                const parentLink = event.currentTarget;
-                const submenuWrapper = parentLink.nextElementSibling;
-                if (!submenuWrapper || !submenuWrapper.classList.contains('submenu')) return;
-                if (!parentLink.classList.contains('active')) {
-                    document.querySelectorAll('.menu-items .submenu-parent.active').forEach(activeParent => {
-                        if (activeParent !== parentLink) {
-                            activeParent.classList.remove('active');
-                            activeParent.nextElementSibling?.classList.remove('active');
-                        }
-                    });
-                }
-                submenuWrapper.classList.toggle('active');
-                parentLink.classList.toggle('active');
-            }
-
-            function initializeActiveSubmenu() {
-                const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
-                if (activeSubmenuLink) {
-                    const submenuDiv = activeSubmenuLink.closest('.submenu');
-                    const parentLink = submenuDiv?.previousElementSibling;
-                    if(submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
-                        submenuDiv.classList.add('active');
-                        parentLink.classList.add('active');
-                    }
-                }
-            }
-
-            function updateDateTime() {
-                const now = new Date();
-                const optionsDate = { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' };
-                const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-                if (currentDateSpan) currentDateSpan.textContent = now.toLocaleDateString('en-GB', optionsDate).replace(/,/g, '');
-                if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString('en-US', optionsTime);
-                if (currentYearSpan) currentYearSpan.textContent = now.getFullYear();
-            }
-
-            function toggleFullscreen() {
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen().catch(err => {});
-                } else if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-            function handleFullscreenChange() {
-                 const isFullscreen = !!document.fullscreenElement;
-                 const icon = fullscreenBtn?.querySelector('i');
-                 if(icon){
-                     icon.classList.toggle('fa-expand', !isFullscreen);
-                     icon.classList.toggle('fa-compress', isFullscreen);
-                 }
-                  if(fullscreenBtn) {
-                      fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
-                  }
-            }
-
-            function openModal() {
-                if (termsModal && termsOverlay) {
-                    termsOverlay.classList.add('active');
-                    termsModal.classList.add('active');
-                    body.classList.add('modal-open');
-                    manageBodyScroll();
-                    agreeCheckbox.checked = false;
-                    if (agreeButton) agreeButton.disabled = true;
-                    termsModal.focus();
-                }
-            }
-
-            function closeModal() {
-                if (termsModal && termsOverlay) {
-                    termsOverlay.classList.remove('active');
-                    termsModal.classList.remove('active');
-                    body.classList.remove('modal-open');
-                    manageBodyScroll();
-                }
-            }
-
-            function handleAgree() {
-                if (agreeCheckbox && agreeCheckbox.checked) {
-                    closeModal();
-                    document.getElementById('sender_preset')?.focus();
-                } else {
-                     if (agreeButton) agreeButton.disabled = true;
-                }
-            }
-
-            function addErrorMessage(field, message) {
-                const container = field.closest('.input-group') || field.closest('.form-group') || field.closest('.terms-agreement') || field.parentElement;
-                if (!container) return;
-                const fieldIdentifier = field.id || field.name;
-                if (!fieldIdentifier) return;
-
-                const existingError = container.querySelector(`.error-message[data-field="${fieldIdentifier}"]`) || container.parentNode.querySelector(`.error-message.group-error[data-group="${fieldIdentifier}"]`);
-                if (existingError) existingError.remove();
-
-                const errorSpan = document.createElement('span');
-                errorSpan.className = 'error-message';
-                errorSpan.dataset.field = fieldIdentifier;
-                errorSpan.textContent = message;
-                errorSpan.style.color = 'var(--danger-color)';
-                errorSpan.style.fontSize = '0.8em';
-                errorSpan.style.marginTop = '4px';
-                errorSpan.style.display = 'block';
-
-                if (field.type === 'radio' || field.type === 'checkbox') {
-                    const groupContainer = field.closest('.radio-group, .checkbox-group, .terms-agreement');
-                    if (groupContainer) {
-                        errorSpan.classList.add('group-error');
-                        errorSpan.dataset.group = field.name || field.id;
-                        if(groupContainer.classList.contains('terms-agreement')) {
-                            groupContainer.appendChild(errorSpan);
-                        } else {
-                            groupContainer.parentNode.appendChild(errorSpan);
-                        }
-                        const mainLabel = groupContainer.closest('.form-group')?.querySelector('.form-label');
-                        if (mainLabel) mainLabel.classList.add('error');
-                    }
-                } else {
-                    container.appendChild(errorSpan);
-                    const label = container.querySelector(`label[for="${field.id}"]`);
-                    if (label) label.classList.add('error');
-                }
-                field.classList.add('error');
-            }
-
-            function removeErrorMessage(field) {
-                const container = field.closest('.input-group') || field.closest('.form-group') || field.closest('.terms-agreement') || field.parentElement;
-                if (!container) return;
-
-                const fieldIdentifier = field.id || field.name;
-                if (!fieldIdentifier) return;
-
-                const errorMessages = container.querySelectorAll(`.error-message[data-field="${fieldIdentifier}"]`);
-                errorMessages.forEach(msg => msg.remove());
-                field.classList.remove('error');
-
-                if (field.type === 'radio' || field.type === 'checkbox') {
-                     const groupContainer = field.closest('.radio-group, .checkbox-group, .terms-agreement');
-                     if (groupContainer) {
-                          let isGroupValid = false;
-                          if (field.type === 'radio') {
-                              isGroupValid = !!form.querySelector(`input[name="${field.name}"]:checked`);
-                          } else {
-                              isGroupValid = field.checked || !field.required;
-                              if (field.id === 'terms_agree') isGroupValid = field.checked;
-                          }
-                          if (isGroupValid) {
-                              const groupError = container.parentNode.querySelector(`.error-message.group-error[data-group="${fieldIdentifier}"]`) || groupContainer.querySelector('.error-message');
-                              if (groupError) groupError.remove();
-                              const mainLabel = groupContainer.closest('.form-group')?.querySelector('.form-label');
-                              if (mainLabel) mainLabel.classList.remove('error');
-                               const termsLabel = groupContainer.querySelector('label[for="terms_agree"]');
-                               if(termsLabel) termsLabel.classList.remove('error');
-                          }
-                     }
-                } else {
-                      const label = container.querySelector(`label[for="${field.id}"]`);
-                      if (label) label.classList.remove('error');
-                }
-            }
-
-             function toggleNotificationDropdown() {
+            function toggleNotificationDropdown() {
                 if (notificationDropdown) {
                     notificationDropdown.classList.toggle('visible');
                 }
@@ -707,206 +516,28 @@
             function showAnnouncement() {
                 if (announcementOverlay) {
                     announcementOverlay.classList.add('visible');
-                    manageBodyScroll();
+                    manageNotificationBodyScroll();
                 }
             }
 
             function closeAnnouncement() {
                 if (announcementOverlay) {
                     announcementOverlay.classList.remove('visible');
-                    manageBodyScroll();
+                    manageNotificationBodyScroll();
                 }
             }
 
-            let currentStep = 1;
-            const totalSteps = 4;
-            const wizardData = JSON.parse(localStorage.getItem('wizardData') || '{}');
-
-            function showStep(step) {
-              document.querySelectorAll('.wizard-step-content').forEach((el, idx) => {
-                el.classList.toggle('active', idx === step - 1);
-              });
-              document.querySelectorAll('.wizard-step').forEach((el, idx) => {
-                el.classList.toggle('active', idx === step - 1);
-                el.classList.toggle('completed', idx < step - 1);
-              });
-              currentStep = step;
-              updateProgressBar();
-            }
-
-            function saveStepData(step) {
-              const stepContent = document.querySelector('.wizard-step-content.step-' + step);
-              if (!stepContent) return;
-              const inputs = stepContent.querySelectorAll('input, select, textarea');
-              wizardData['step' + step] = {};
-              inputs.forEach(input => {
-                if (input.type === 'checkbox') {
-                  wizardData['step' + step][input.name] = input.checked;
-                } else if (input.type === 'radio') {
-                  if (input.checked) wizardData['step' + step][input.name] = input.value;
-                } else {
-                  wizardData['step' + step][input.name] = input.value;
-                }
-              });
-              localStorage.setItem('wizardData', JSON.stringify(wizardData));
-            }
-
-            function restoreStepData(step) {
-              const data = wizardData['step' + step] || {};
-              const stepContent = document.querySelector('.wizard-step-content.step-' + step);
-              if (!stepContent) return;
-              const inputs = stepContent.querySelectorAll('input, select, textarea');
-              inputs.forEach(input => {
-                if (input.type === 'checkbox') {
-                  input.checked = !!data[input.name];
-                } else if (input.type === 'radio') {
-                  input.checked = (data[input.name] === input.value);
-                } else if (data[input.name] !== undefined) {
-                  input.value = data[input.name];
-                }
-              });
-            }
-
-            function updateProgressBar() {
-              const steps = document.querySelectorAll('.wizard-step');
-              steps.forEach((el, idx) => {
-                el.classList.toggle('active', idx === currentStep - 1);
-                el.classList.toggle('completed', idx < currentStep - 1);
-              });
-              const progress = document.querySelector('.wizard-progress');
-              if (progress) {
-                const percent = ((currentStep - 1) / (totalSteps - 1)) * 100;
-                progress.style.background = 'linear-gradient(90deg, #FFD700 0%, #FFD700 ' + percent + '%, #1a1a1a ' + percent + '%, #1a1a1a 100%)';
-              }
-            }
-
-            document.getElementById('create-order-form').addEventListener('click', function(e) {
-              if (e.target.classList.contains('next-step')) {
-                e.preventDefault();
-                saveStepData(currentStep);
-                if (currentStep < totalSteps) {
-                  showStep(currentStep + 1);
-                  restoreStepData(currentStep);
-                }
-              }
-              if (e.target.classList.contains('prev-step')) {
-                e.preventDefault();
-                saveStepData(currentStep);
-                if (currentStep > 1) {
-                  showStep(currentStep - 1);
-                  restoreStepData(currentStep);
-                }
-              }
-            });
-
-            initializeActiveSubmenu();
-            updateDateTime();
-            setInterval(updateDateTime, 1000);
-
-            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
-            if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobileOrDesktop);
-            if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
-            document.querySelectorAll('.menu-items .submenu-parent').forEach(link => link.addEventListener('click', toggleSubmenu));
-            if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
-            document.addEventListener('fullscreenchange', handleFullscreenChange);
-
-            if (agreeCheckbox && agreeButton) {
-                agreeCheckbox.addEventListener('change', () => { agreeButton.disabled = !agreeCheckbox.checked; });
-            }
-            if (agreeButton) agreeButton.addEventListener('click', handleAgree);
-            const closeHandler = () => closeModal();
-            if (exitButtonX) exitButtonX.addEventListener('click', closeHandler);
-            if (exitButtonFooter) exitButtonFooter.addEventListener('click', closeHandler);
-
-           if (form) {
-               form.addEventListener('submit', function(event) {
-                   event.preventDefault();
-                   if (termsModal && termsModal.classList.contains('active')) {
-                       alert('Vui lòng đóng cửa sổ Điều khoản Quy định trước khi tiếp tục.');
-                       termsModal.focus();
-                       return;
-                   }
-                   let isFormValid = true;
-                    form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-                    form.querySelectorAll('.error-message').forEach(el => el.remove());
-                    form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
-                    const termsCheckbox = document.getElementById('terms_agree');
-                    if (termsCheckbox && !termsCheckbox.checked) {
-                        isFormValid = false;
-                        addErrorMessage(termsCheckbox, 'Bạn phải đồng ý với Điều khoản quy định của đơn hàng.');
-                    } else if (termsCheckbox) {
-                        removeErrorMessage(termsCheckbox);
-                    }
-                    const requiredFields = form.querySelectorAll('[required]');
-                    const radioGroupsValidated = {};
-                    requiredFields.forEach(input => {
-                        if (input.id === 'terms_agree') return;
-                        if (input.type === 'radio') {
-                            const groupName = input.name;
-                            if (!radioGroupsValidated[groupName]) {
-                                const checkedRadio = form.querySelector(`input[name="${groupName}"]:checked`);
-                                if (!checkedRadio) {
-                                    isFormValid = false;
-                                    addErrorMessage(input, 'Vui lòng chọn một tùy chọn.');
-                                } else {
-                                    form.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => removeErrorMessage(radio));
-                                }
-                                radioGroupsValidated[groupName] = true;
-                            }
-                        } else if (input.type === 'checkbox' && input.required) {
-                            if (!input.checked) {
-                                isFormValid = false;
-                                addErrorMessage(input, 'Tùy chọn này là bắt buộc.');
-                            } else {
-                                removeErrorMessage(input);
-                            }
-                        } else if (
-                            (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') &&
-                            !input.value.trim() && input.type !== 'radio' && input.type !== 'checkbox'
-                        ) {
-                            isFormValid = false;
-                            addErrorMessage(input, 'Trường này là bắt buộc.');
-                        } else if (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') {
-                            removeErrorMessage(input);
-                        }
-                    });
-                    if (isFormValid) {
-                        const formData = {};
-                        form.querySelectorAll('input, select, textarea').forEach(input => {
-                            if (input.type === 'checkbox' && input.name === 'add_service[]') {
-                                if (!formData['add_service[]']) formData['add_service[]'] = [];
-                                if (input.checked) formData['add_service[]'].push(input.value);
-                            } else if (input.type === 'checkbox') {
-                                formData[input.name] = input.checked;
-                            } else if (input.type === 'radio') {
-                                if (input.checked) formData[input.name] = input.value;
-                            } else {
-                                formData[input.name] = input.value;
-                            }
-                        });
-                        localStorage.setItem('createPackageStep1', JSON.stringify(formData));
-                        window.location.href = 'create-package-step2.html';
-                        setTimeout(function(){ localStorage.removeItem('createPackageStep1'); }, 1000);
-                    } else {
-                        const firstErrorField = form.querySelector('.error');
-                        if (firstErrorField) {
-                            const elementToScroll = firstErrorField.closest('.form-group, .terms-agreement') || firstErrorField;
-                            elementToScroll.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    }
-               });
-
-               form.addEventListener('reset', function() {
-                    form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-                    form.querySelectorAll('.error-message').forEach(el => el.remove());
-                    form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
-               });
-           }
-
-             if (announcementOverlay && announcementOverlay.classList.contains('visible')) {
+            if (announcementOverlay && announcementOverlay.classList.contains('visible')) {
                 closeAnnouncement();
             }
-            if (notificationButton) notificationButton.addEventListener('click', (event) => { event.stopPropagation(); toggleNotificationDropdown(); });
+
+            if (notificationButton) {
+                notificationButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    toggleNotificationDropdown();
+                });
+            }
+
             if (notificationList) {
                 notificationList.addEventListener('click', (event) => {
                     const clickedItem = event.target.closest('.notification-item');
@@ -914,6 +545,7 @@
                         const title = clickedItem.dataset.title || 'Thông báo';
                         const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
                         const timestamp = clickedItem.dataset.timestamp || '';
+
                         announcementTitle.textContent = title;
                         announcementBodyEl.innerHTML = '';
                         bodyText.split('||').forEach(paragraphText => {
@@ -929,6 +561,7 @@
                     }
                 });
             }
+
             document.addEventListener('click', (event) => {
                 if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
                     if (!notificationDropdown.contains(event.target) && event.target !== notificationButton && !notificationButton.contains(event.target)) {
@@ -936,115 +569,66 @@
                     }
                 }
             });
-            if (announcementCloseBtn) announcementCloseBtn.addEventListener('click', closeAnnouncement);
-            if (announcementOverlay) {
-                announcementOverlay.addEventListener('click', (event) => { if (event.target === announcementOverlay) closeAnnouncement(); });
+
+            if (announcementCloseBtn) {
+                announcementCloseBtn.addEventListener('click', closeAnnouncement);
             }
+
+            if (announcementOverlay) {
+                announcementOverlay.addEventListener('click', (event) => {
+                    if (event.target === announcementOverlay) {
+                        closeAnnouncement();
+                    }
+                });
+            }
+
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape') {
-                    if (termsModal && termsModal.classList.contains('active')) {
-                         closeModal();
-                    } else if (announcementOverlay && announcementOverlay.classList.contains('visible')) {
+                    if (announcementOverlay && announcementOverlay.classList.contains('visible')) {
                         closeAnnouncement();
                     } else if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
                         closeNotificationDropdown();
                     }
                 }
             });
+        });
 
-            openModal();
-
-            // Address API functions
-            const senderCitySelect = $('#sender_city');
-            const senderDistrictSelect = $('#sender_district');
-            const senderWardSelect = $('#sender_ward');
-
-            // Fetch provinces
-            $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function(data_tinh) {
-                if (data_tinh.error == 0) {
-                    senderCitySelect.html('<option value="" selected>Chọn Tỉnh/Thành phố</option>');
-                    $.each(data_tinh.data, function(key_tinh, val_tinh) {
-                        senderCitySelect.append('<option value="' + val_tinh.id + '">' + val_tinh.full_name + '</option>');
-                    });
-
-                    // Handle province change
-                    senderCitySelect.on('change', function() {
-                        const provinceId = $(this).val();
-                        if (provinceId) {
-                            // Fetch districts
-                            $.getJSON('https://esgoo.net/api-tinhthanh/2/' + provinceId + '.htm', function(data_quan) {
-                                if (data_quan.error == 0) {
-                                    senderDistrictSelect.html('<option value="" selected>Chọn Quận / Huyện</option>');
-                                    senderWardSelect.html('<option value="" selected>Chọn Phường / Xã</option>');
-                                    $.each(data_quan.data, function(key_quan, val_quan) {
-                                        senderDistrictSelect.append('<option value="' + val_quan.id + '">' + val_quan.full_name + '</option>');
-                                    });
-                                }
-                            });
-                        } else {
-                            senderDistrictSelect.html('<option value="" selected>Chọn Quận / Huyện</option>');
-                            senderWardSelect.html('<option value="" selected>Chọn Phường / Xã</option>');
-                        }
-                    });
-
-                    // Handle district change
-                    senderDistrictSelect.on('change', function() {
-                        const districtId = $(this).val();
-                        if (districtId) {
-                            // Fetch wards
-                            $.getJSON('https://esgoo.net/api-tinhthanh/3/' + districtId + '.htm', function(data_phuong) {
-                                if (data_phuong.error == 0) {
-                                    senderWardSelect.html('<option value="" selected>Chọn Phường / Xã</option>');
-                                    $.each(data_phuong.data, function(key_phuong, val_phuong) {
-                                        senderWardSelect.append('<option value="' + val_phuong.id + '">' + val_phuong.full_name + '</option>');
-                                    });
-                                }
-                            });
-                        } else {
-                            senderWardSelect.html('<option value="" selected>Chọn Phường / Xã</option>');
-                        }
-                    });
+        // --- Dropdown user ---
+        const userToggle = document.getElementById('user-dropdown-toggle');
+        const userDropdown = document.getElementById('user-dropdown');
+        if(userToggle && userDropdown){
+            userToggle.addEventListener('click', function(e){
+                e.stopPropagation();
+                userDropdown.classList.toggle('show');
+            });
+            document.addEventListener('click', function(e){
+                if(!userDropdown.contains(e.target) && e.target !== userToggle){
+                    userDropdown.classList.remove('show');
                 }
             });
-
-
-             // render user dropdown
+        }
+        document.addEventListener('DOMContentLoaded', function() {
             function renderUserDropdown() {
                 const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
                 const userToggle = document.getElementById('user-dropdown-toggle');
                 const userDropdown = document.getElementById('user-dropdown');
                 if (!userToggle || !userDropdown) return;
                 if (!isLoggedIn) {
-                    userToggle.innerHTML = `
-                        <div style="background: linear-gradient(135deg, #ffe066 0%, #a78bfa 100%); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-regular fa-circle-user user-icon" style="color: #4F46E5; font-size: 1.5em;"></i>
-                        </div>
-                    `;
-                    userDropdown.innerHTML = `
-                        <a href="#" class="user-dropdown-item" id="login-menu-item">
-                            <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
-                        </a>
-                    `;
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                    userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
                 } else {
-                    userToggle.innerHTML = `
-                        <div >
-                            <i class="fa-regular fa-circle-user user-icon" style="color: #4F46E5; font-size: 1.5em;"></i>
-                        </div>
-                    `;
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
                     userDropdown.innerHTML = `
                         <div class="user-info">
                             <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
-                            <div class="user-details">
-                                <div>Phạm Hoàng Đình</div>
-                                <div>Quản trị viên</div>
-                            </div>
+                            <div class="user-details"><h4>Phạm Hoàng Đình</h4><span class="user-role">Quản trị viên</span></div>
                         </div>
-                        <hr>
+                        <div class="dropdown-divider"></div>
                         <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
                         <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
                         <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
                         <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
-                        <hr>
+                        <div class="dropdown-divider"></div>
                         <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                     `;
                 }
@@ -1057,23 +641,87 @@
             }
             renderUserDropdown();
             window.addEventListener('storage', renderUserDropdown);
+        });
 
-            // Dropdown show/hide
-            const userToggle = document.getElementById('user-dropdown-toggle');
-            const userDropdown = document.getElementById('user-dropdown');
-            if(userToggle && userDropdown){
-                userToggle.addEventListener('click', function(e){
-                    e.stopPropagation();
-                    userDropdown.classList.toggle('show');
-                });
-                document.addEventListener('click', function(e){
-                    if(!userDropdown.contains(e.target) && e.target !== userToggle){
-                        userDropdown.classList.remove('show');
-                    }
-                });
+        // --- Render thông tin đơn hàng động từ localStorage ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+            const infoSection = document.getElementById('order-info-dynamic');
+            const creatorInfo = document.getElementById('order-creator-info');
+            if (!data || Object.keys(data).length === 0) {
+                infoSection.innerHTML = '<div style="color:red;padding:12px 0;">Không có dữ liệu đơn hàng!</div>';
+                creatorInfo.textContent = 'Người tạo: ...';
+                return;
+            }
+            // Tính tổng cân nặng và số kiện
+            let totalWeight = '';
+            let soKien = '';
+            if (Array.isArray(data.dimensions) && data.dimensions.length > 0) {
+                totalWeight = data.dimensions.reduce((sum, d) => sum + (parseFloat(d.weight)||0), 0).toFixed(1) + ' Kg';
+                soKien = data.dimensions.length;
+            }
+            // Số điện thoại: chỉ lấy 1 số người gửi
+            let phones = data.sender_phone || '';
+            // Hàng dễ vỡ
+            let fragile = (data.is_fragile == '1' || data.is_fragile === true || data.is_fragile === 'true') ? 'Yes' : 'No';
+            // Render HTML
+            const html = `
+                <div class="info-pair"> <span class="info-label">Tên Công ty:</span> <span class="info-value">${data.sender_company || ''}</span> </div>
+                <div class="info-pair"> <span class="info-label">Tên người gửi:</span> <span class="info-value">${data.sender_name || ''}</span> </div>
+                <div class="info-pair"> <span class="info-label">Số điện thoại:</span> <span class="info-value">${phones}</span> </div>
+                <div class="info-pair"> <span class="info-label">Cân nặng:</span> <span class="info-value">${totalWeight}</span> </div>
+                <div class="info-pair"> <span class="info-label">Số lượng kiện:</span> <span class="info-value">${soKien}</span> </div>
+                <div class="info-pair"> <span class="info-label">Tên hàng hóa:</span> <span class="info-value">${data.product_name || ''}</span> </div>
+                <div class="info-pair-row">
+                    <div class="info-sub-pair"> <span class="info-label">Chi nhánh:</span> <span class="info-value">${data.branch || ''}</span> </div>
+                    <div class="info-sub-pair"> <span class="info-label">Hình thức gửi:</span> <span class="info-value">${data.pickup_method || ''}</span> </div>
+                </div>
+                <div class="info-pair"> <span class="info-label">Hàng dễ vỡ:</span> <span class="info-value">${fragile}</span> </div>
+                <div class="info-pair"> <span class="info-label">Dịch vụ:</span> <span class="info-value">${data.service_type || ''}</span> </div>
+                <div class="info-pair"> <span class="info-label">Đại lý:</span> <span class="info-value">${data.agent || ''}</span> </div>
+                <div class="info-pair"> <span class="info-label">Địa chỉ:</span> <span class="info-value">${data.sender_address || ''}</span> </div>
+            `;
+            infoSection.innerHTML = html;
+            creatorInfo.textContent = 'Người tạo: ' + (data.creator || 'Phạm Hoàng Đình - S1');
+        });
+
+        // --- Lưu toàn bộ dữ liệu form (bao gồm ảnh) vào localStorage khi submit ---
+        document.getElementById('pickup-order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                pickup_vehicle: document.getElementById('pickup_vehicle').value,
+                pickup_time: document.getElementById('pickup_time').value,
+                pickup_address: document.getElementById('pickup_address').value,
+                pickup_notes: document.getElementById('pickup_notes').value,
+                pickup_status: document.getElementById('pickup_status').value,
+                pickup_cs: document.getElementById('pickup_cs').value,
+                received_time: document.getElementById('received_time').value,
+                export_time: document.getElementById('export_time').value,
+                status_notes: document.getElementById('status_notes').value,
+                images: []
+            };
+            const files = document.getElementById('pickup_images').files;
+            if (files.length > 0) {
+                let loaded = 0;
+                for (let i = 0; i < files.length; i++) {
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        data.images.push(evt.target.result);
+                        loaded++;
+                        if (loaded === files.length) {
+                            localStorage.setItem('pickupOrder', JSON.stringify(data));
+                            // alert('Đã lưu thông tin pickup (bao gồm ảnh) vào localStorage!');
+                            window.location.href = 'package_manager.html';
+                        }
+                    };
+                    reader.readAsDataURL(files[i]);
+                }
+            } else {
+                localStorage.setItem('pickupOrder', JSON.stringify(data));
+                // alert('Đã lưu thông tin pickup (không có ảnh) vào localStorage!');
+                window.location.href = 'package_manager.html';
             }
         });
     </script>
-
 </body>
 </html>

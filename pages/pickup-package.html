@@ -158,23 +158,10 @@
                         <div class="data-section">
                             <div class="section-header">
                                 <span><i class="fa-solid fa-circle-info"></i> Thông tin đơn hàng</span>
-                                <div class="creator-info">Người tạo: Phạm Hoàng Đình - S1</div>
+                                <div class="creator-info" id="order-creator-info">Người tạo: </div>
                             </div>
-                            <div class="readonly-info-section">
-                                <div class="info-pair"> <span class="info-label">Tên Công ty:</span> <span class="info-value">CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ NINA</span> </div>
-                                <div class="info-pair"> <span class="info-label">Tên người gửi:</span> <span class="info-value">Trần Phúc Đường</span> </div>
-                                <div class="info-pair"> <span class="info-label">Số điện thoại:</span> <span class="info-value">0909 951 549 / 0909 952 550</span> </div>
-                                <div class="info-pair"> <span class="info-label">Cân nặng:</span> <span class="info-value">20.5 Kg</span> </div>
-                                <div class="info-pair"> <span class="info-label">Số lượng kiện:</span> <span class="info-value">2</span> </div>
-                                <div class="info-pair"> <span class="info-label">Tên hàng hóa:</span> <span class="info-value">Túi Gucci và Đồ nội thất từ Thái Công Store</span> </div>
-                                <div class="info-pair-row">
-                                    <div class="info-sub-pair"> <span class="info-label">Chi nhánh:</span> <span class="info-value">Tân Phú</span> </div>
-                                    <div class="info-sub-pair"> <span class="info-label">Hình thức gửi:</span> <span class="info-value">Gửi hàng tại bưu cục</span> </div>
-                                </div>
-                                <div class="info-pair"> <span class="info-label">Hàng dễ vỡ:</span> <span class="info-value">Yes</span> </div>
-                                <div class="info-pair"> <span class="info-label">Dịch vụ:</span> <span class="info-value">MTE DHL SIN</span> </div>
-                                <div class="info-pair"> <span class="info-label">Đại lý:</span> <span class="info-value">Gia Phú</span> </div>
-                                <div class="info-pair"> <span class="info-label">Địa chỉ:</span> <span class="info-value">Tòa nhà SaigonTel, Lô 46, CVPM Quang Trung, P. Tân Chánh Hiệp, Q. 12, TP HCM</span> </div>
+                            <div class="readonly-info-section" id="order-info-dynamic">
+                                <!-- Thông tin đơn hàng sẽ được render ở đây bằng JS -->
                             </div>
                         </div>
                     </div>
@@ -654,6 +641,86 @@
             }
             renderUserDropdown();
             window.addEventListener('storage', renderUserDropdown);
+        });
+
+        // --- Render thông tin đơn hàng động từ localStorage ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+            const infoSection = document.getElementById('order-info-dynamic');
+            const creatorInfo = document.getElementById('order-creator-info');
+            if (!data || Object.keys(data).length === 0) {
+                infoSection.innerHTML = '<div style="color:red;padding:12px 0;">Không có dữ liệu đơn hàng!</div>';
+                creatorInfo.textContent = 'Người tạo: ...';
+                return;
+            }
+            // Tính tổng cân nặng và số kiện
+            let totalWeight = '';
+            let soKien = '';
+            if (Array.isArray(data.dimensions) && data.dimensions.length > 0) {
+                totalWeight = data.dimensions.reduce((sum, d) => sum + (parseFloat(d.weight)||0), 0).toFixed(1) + ' Kg';
+                soKien = data.dimensions.length;
+            }
+            // Số điện thoại: chỉ lấy 1 số người gửi
+            let phones = data.sender_phone || '';
+            // Hàng dễ vỡ
+            let fragile = (data.is_fragile == '1' || data.is_fragile === true || data.is_fragile === 'true') ? 'Yes' : 'No';
+            // Render HTML
+            const html = `
+                <div class="info-pair"> <span class="info-label">Tên Công ty:</span> <span class="info-value">${data.sender_company || ''}</span> </div>
+                <div class="info-pair"> <span class="info-label">Tên người gửi:</span> <span class="info-value">${data.sender_name || ''}</span> </div>
+                <div class="info-pair"> <span class="info-label">Số điện thoại:</span> <span class="info-value">${phones}</span> </div>
+                <div class="info-pair"> <span class="info-label">Cân nặng:</span> <span class="info-value">${totalWeight}</span> </div>
+                <div class="info-pair"> <span class="info-label">Số lượng kiện:</span> <span class="info-value">${soKien}</span> </div>
+                <div class="info-pair"> <span class="info-label">Tên hàng hóa:</span> <span class="info-value">${data.product_name || ''}</span> </div>
+                <div class="info-pair-row">
+                    <div class="info-sub-pair"> <span class="info-label">Chi nhánh:</span> <span class="info-value">${data.branch || ''}</span> </div>
+                    <div class="info-sub-pair"> <span class="info-label">Hình thức gửi:</span> <span class="info-value">${data.pickup_method || ''}</span> </div>
+                </div>
+                <div class="info-pair"> <span class="info-label">Hàng dễ vỡ:</span> <span class="info-value">${fragile}</span> </div>
+                <div class="info-pair"> <span class="info-label">Dịch vụ:</span> <span class="info-value">${data.service_type || ''}</span> </div>
+                <div class="info-pair"> <span class="info-label">Đại lý:</span> <span class="info-value">${data.agent || ''}</span> </div>
+                <div class="info-pair"> <span class="info-label">Địa chỉ:</span> <span class="info-value">${data.sender_address || ''}</span> </div>
+            `;
+            infoSection.innerHTML = html;
+            creatorInfo.textContent = 'Người tạo: ' + (data.creator || 'Phạm Hoàng Đình - S1');
+        });
+
+        // --- Lưu toàn bộ dữ liệu form (bao gồm ảnh) vào localStorage khi submit ---
+        document.getElementById('pickup-order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                pickup_vehicle: document.getElementById('pickup_vehicle').value,
+                pickup_time: document.getElementById('pickup_time').value,
+                pickup_address: document.getElementById('pickup_address').value,
+                pickup_notes: document.getElementById('pickup_notes').value,
+                pickup_status: document.getElementById('pickup_status').value,
+                pickup_cs: document.getElementById('pickup_cs').value,
+                received_time: document.getElementById('received_time').value,
+                export_time: document.getElementById('export_time').value,
+                status_notes: document.getElementById('status_notes').value,
+                images: []
+            };
+            const files = document.getElementById('pickup_images').files;
+            if (files.length > 0) {
+                let loaded = 0;
+                for (let i = 0; i < files.length; i++) {
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        data.images.push(evt.target.result);
+                        loaded++;
+                        if (loaded === files.length) {
+                            localStorage.setItem('pickupOrder', JSON.stringify(data));
+                            // alert('Đã lưu thông tin pickup (bao gồm ảnh) vào localStorage!');
+                            window.location.href = 'package_manager.html';
+                        }
+                    };
+                    reader.readAsDataURL(files[i]);
+                }
+            } else {
+                localStorage.setItem('pickupOrder', JSON.stringify(data));
+                // alert('Đã lưu thông tin pickup (không có ảnh) vào localStorage!');
+                window.location.href = 'package_manager.html';
+            }
         });
     </script>
 </body>
