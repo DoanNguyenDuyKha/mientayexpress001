@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/package_manager.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <style>
 @media (max-width: 576px) {
   .header-search-input {
@@ -41,26 +42,6 @@
   .mobile-only { display: none !important; }
   .mobile-status-bar { display: none !important; }
 }
-/* Đã di chuyển các quy tắc action buttons cho màn hình 576px sang package_manager.css */
-/*
-@media (max-width: 576px) {
-  .mobile-only { display: inline-flex !important; }
-  .action-buttons { gap: 6px; }
-  .action-row {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 4px;
-  }
-  .action-row .button {
-    flex: 1 1 0;
-    min-width: 0;
-    font-size: 1em;
-    padding: 0.6em 0.2em;
-    white-space: nowrap;
-    margin-right: 15px;
-  }
-}
-*/
 @media (max-width: 900px) and (orientation: landscape) {
   .action-buttons, .action-row {
     flex-wrap: wrap !important;
@@ -639,7 +620,7 @@
             } else { console.error("Filter modal element not found!"); }
         }
 
-        function applyFilters(source) {
+        function applyFilters(source, statusTab) {
             const formPrefix = source === 'modal' ? 'modal-' : '';
             const dateStart = document.getElementById(`${formPrefix}date-start`)?.value;
             const dateEnd = document.getElementById(`${formPrefix}date-end`)?.value;
@@ -658,24 +639,34 @@
                     .trim();
             };
 
+            // Hàm helper để chuẩn hóa trạng thái
+            const normalizeStatus = (status) => {
+                if (!status) return '';
+                status = status.trim();
+                if (status === 'Đã nhận hàng') return 'Nhận hàng';
+                if (status === 'Mới tạo đơn') return 'Mới tạo';
+                if (status === 'Đang phát hàng') return 'Đang phát';
+                return status;
+            };
+
             // Hàm helper để so sánh ngày
             const compareDates = (dateStr, startDate, endDate) => {
                 if (!dateStr) return true;
-                const [d, m, y] = dateStr.split('/');
-                const rowDate = new Date(`20${y}`, m - 1, d);
-                
+                // Chuyển ngày bảng (dd/mm/yy hoặc dd/mm/yyyy) thành Date object
+                let [d, m, y] = dateStr.split('/');
+                if (y.length === 2) y = '20' + y;
+                const rowDate = new Date(`${y}-${m}-${d}`);
+                // Chuyển input date (yyyy-mm-dd) thành Date object
                 if (startDate) {
                     const start = new Date(startDate);
                     start.setHours(0, 0, 0, 0);
                     if (rowDate < start) return false;
                 }
-                
                 if (endDate) {
                     const end = new Date(endDate);
                     end.setHours(23, 59, 59, 999);
                     if (rowDate > end) return false;
                 }
-                
                 return true;
             };
 
@@ -685,48 +676,40 @@
 
             rows.forEach(row => {
                 let show = true;
-
-                // Lọc theo trạng thái - So khớp chính xác
-                if (status && status !== '') {
+                // Lọc theo trạng thái (ưu tiên tab, nếu không có thì lấy filter-bar)
+                let filterStatus = statusTab && statusTab !== 'Tất cả' ? statusTab : (status && status !== '' ? status : null);
+                if (filterStatus) {
                     const rowStatus = row.getAttribute('data-status');
-                    if (rowStatus !== status) show = false;
+                    const normalizedRowStatus = normalizeStatus(rowStatus);
+                    const normalizedFilterStatus = normalizeStatus(filterStatus);
+                    if (normalizedRowStatus !== normalizedFilterStatus) show = false;
                 }
-
                 // Lọc theo sale - So khớp chính xác mã sale
                 if (show && sale && sale !== '') {
                     const saleCell = row.children[8]?.textContent || '';
                     const saleCode = sale.split(' - ')[0].trim();
                     if (!saleCell.includes(saleCode)) show = false;
                 }
-
                 // Lọc theo khách hàng - Tìm kiếm mềm
                 if (show && customer && customer !== '') {
                     const customerCell = row.children[7]?.textContent || '';
                     const normalizedCustomer = normalizeText(customer);
                     const normalizedCell = normalizeText(customerCell);
-                    
-                    // Tìm kiếm theo từng từ
                     const searchTerms = normalizedCustomer.split(' ');
-                    const hasAllTerms = searchTerms.every(term => 
-                        normalizedCell.includes(term)
-                    );
-                    
+                    const hasAllTerms = searchTerms.every(term => normalizedCell.includes(term));
                     if (!hasAllTerms) show = false;
                 }
-
                 // Lọc theo chi nhánh - So khớp chính xác
                 if (show && branch && branch !== '') {
                     const branchCell = row.children[14]?.textContent || '';
                     const branchName = branch.replace('CN: ', '').trim();
                     if (branchCell !== branchName) show = false;
                 }
-
                 // Lọc theo ngày tạo
                 if (show && (dateStart || dateEnd)) {
                     const dateCell = row.children[3]?.textContent || '';
                     if (!compareDates(dateCell, dateStart, dateEnd)) show = false;
                 }
-
                 // Lọc theo search - Tìm kiếm thông minh
                 if (show && search && search.length > 0) {
                     const searchTerms = search.split(' ');
@@ -737,24 +720,14 @@
                         row.children[9]?.textContent || '', // Dịch vụ
                         row.children[2]?.textContent || ''  // Mã vận đơn
                     ];
-
                     const normalizedCells = cells.map(cell => normalizeText(cell));
-                    const hasMatch = searchTerms.every(term => 
-                        normalizedCells.some(cell => cell.includes(term))
-                    );
-
+                    const hasMatch = searchTerms.every(term => normalizedCells.some(cell => cell.includes(term)));
                     if (!hasMatch) show = false;
                 }
-
-                // Cập nhật hiển thị
                 row.style.display = show ? '' : 'none';
                 if (show) visibleCount++;
             });
-
-            // Cập nhật số lượng hiển thị trong tabs
             updateTabCounts();
-
-            // Đóng modal nếu là mobile
             if (source === 'modal') {
                 toggleFilterModal();
             }

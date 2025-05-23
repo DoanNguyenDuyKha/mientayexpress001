@@ -400,7 +400,7 @@ button:disabled {
   transition: max-width var(--transition-speed) ease, width var(--transition-speed) ease, height var(--transition-speed) ease, margin var(--transition-speed) ease;
   filter: drop-shadow(0 2px 8px rgba(79,70,229,0.15));
   background: transparent;
-  border-radius: 12px;
+  
 }
 .sidebar::-webkit-scrollbar{
   display: none;
@@ -2111,7 +2111,7 @@ button:disabled {
 
   .sidebar-header {
     justify-content: flex-start;
-    padding: var(--base-padding);
+    padding: 0;
   }
   .sidebar-header .logo {
     max-width: 100%;
@@ -2634,7 +2634,7 @@ button:disabled {
 }
 @media (max-width: 576px) {
   .sidebar .menu-items li a .menu-text {
-    font-size: 1.15em; /* Further increased font size for smaller mobile screens */
+    font-size: 0.75em; /* Further increased font size for smaller mobile screens */
   }
   .sidebar .menu-items li a .icon {
     font-size: 0.95em;

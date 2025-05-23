@@ -451,6 +451,9 @@
                               <span class="error-message"></span>
                           </div>
                           <div class="action-buttons">
+                              <button type="button" class="button secondary" id="view-terms-btn">
+                                  <i class="fa-solid fa-file-contract"></i> Xem lại điều khoản
+                              </button>
                               <button type="button" class="button danger" id="exit-btn">
                                   <i class="fa-solid fa-right-from-bracket"></i> Thoát
                               </button>
@@ -600,7 +603,8 @@
             }
 
             function openModal() {
-                if (termsModal && termsOverlay) {
+                const hasAgreedTerms = localStorage.getItem('hasAgreedTerms') === 'true';
+                if (!hasAgreedTerms && termsModal && termsOverlay) {
                     termsOverlay.classList.add('active');
                     termsModal.classList.add('active');
                     body.classList.add('modal-open');
@@ -622,6 +626,7 @@
 
             function handleAgree() {
                 if (agreeCheckbox && agreeCheckbox.checked) {
+                    localStorage.setItem('hasAgreedTerms', 'true');
                     closeModal();
                     document.getElementById('sender_preset')?.focus();
                 } else {
@@ -756,10 +761,18 @@
                 localStorage.removeItem('createPackageStep1');
                 localStorage.removeItem('wizardData'); // Remove old wizard data
             });
+            document.getElementById('view-terms-btn')?.addEventListener('click', function() {
+                openModal();
+            });
 
             if (form) {
                 form.addEventListener('submit', function(event) {
                     event.preventDefault();
+                    const hasAgreedTerms = localStorage.getItem('hasAgreedTerms') === 'true';
+                    if (!hasAgreedTerms) {
+                        openModal();
+                        return;
+                    }
                     if (termsModal && termsModal.classList.contains('active')) {
                         alert('Vui lòng đóng cửa sổ Điều khoản Quy định trước khi tiếp tục.');
                         termsModal.focus();
