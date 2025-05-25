@@ -871,33 +871,18 @@
                  console.log("Adjust Profit modal populated.");
             }
             function attachAdjustProfitModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button');
-                const confirmButton = container.querySelector('.modal-confirm-button');
-                const formElement = container.querySelector('#formAdjustProfitModal');
-                if (!formElement) { console.error("Cannot find #formAdjustProfitModal for listeners."); return; }
-
-                if (cancelButton) { const newBtn=cancelButton.cloneNode(true); cancelButton.parentNode.replaceChild(newBtn,cancelButton); newBtn.addEventListener('click', closeEditModal); }
+                const cancelButton = container.querySelector('.form-btn-cancel');
+                const confirmButton = container.querySelector('.form-btn-confirm');
+                if (cancelButton) {
+                    const newBtn = cancelButton.cloneNode(true);
+                    cancelButton.parentNode.replaceChild(newBtn, cancelButton);
+                    newBtn.addEventListener('click', closeEditModal);
+                }
                 if (confirmButton) {
-                    const newBtn=confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newBtn,confirmButton);
-                    newBtn.addEventListener('click', () => {
-                        console.log("Confirming Adjust Profit/Charges modal...");
-                        const formData = new FormData(formElement);
-                        const profitData = {};
-                        const getNum = (el) => parseInt(String(el?.value || '0').replace(/[^\d]/g, ''), 10) || 0;
-
-                        formData.forEach((value, key) => {
-                            const inputEl = formElement.elements[key];
-                            if (inputEl && (inputEl.dataset.type === 'currency' || inputEl.id === 'exchangeRateVND')) profitData[key] = getNum(inputEl);
-                            else if (inputEl && inputEl.type === 'number' && inputEl.step === 'any') profitData[key] = parseFloat(value) || 0;
-                            else profitData[key] = value;
-                        });
-                         profitData['vatConvertedModal'] = getNum(formElement.elements.vatConvertedModal);
-                         profitData['totalChargesModal'] = getNum(formElement.elements.totalChargesModal);
-                         profitData['totalAgentChargesModal'] = getNum(formElement.elements.totalAgentChargesModal);
-
-                        console.log('Data to update parent:', profitData);
-                        if (typeof window.updateChargesAndProfitDisplay === 'function') window.updateChargesAndProfitDisplay(profitData);
-                        else console.error("Update function not found!");
+                    const newBtn = confirmButton.cloneNode(true);
+                    confirmButton.parentNode.replaceChild(newBtn, confirmButton);
+                    newBtn.addEventListener('click', function() {
+                        console.log('Đã xác nhận điều chỉnh trị giá đơn hàng!');
                         closeEditModal();
                     });
                 }

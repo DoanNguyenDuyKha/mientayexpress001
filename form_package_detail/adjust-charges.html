@@ -1,637 +1,267 @@
-<!-- form_package_detail/adjust-order-value.html -->
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Font Awesome nên được load từ trang cha -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
-        /* === CSS SCOPED cho adjust-profit-form (Phiên bản Inline Form) === */
-        .adjust-profit-form {
-            /* --- Định nghĩa Biến CSS cục bộ (khớp màu thiết kế) --- */
-            --form-primary-color: #FFD600; /* Màu vàng chủ đạo */
-            --form-primary-hover: #FFB300;
-            --form-primary-light: #FFF9C4;
-            --form-secondary-color: #181818; /* Màu đen chủ đạo */
-            --form-success-color: #FFD600;
-            --form-danger-color: #FFD600;
-            --form-warning-color: #FFD600;
-            --form-light-gray: #181818;
-            --form-input-bg: #ffffff;
-            --form-input-readonly-bg: #f1f5f9;
-            --form-border-color: #e2e8f0;
-            --form-border-color-light: #f1f5f9;
-            --form-text-color: #181818;
-            --form-text-muted: #64748b;
-            --form-border-radius: 12px;
-            --form-spacing-unit: 8px;
-            --form-control-padding-y: 8px;
-            --form-control-padding-x: 12px;
-            --form-font-size-base: 14px;
-            --form-font-size-sm: 13px;
-            --form-font-family: 'Inter', sans-serif;
-            --form-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-            --form-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --form-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-            --form-transition: all 0.3s ease;
-
-            /* --- Style cơ bản cho container form --- */
-            box-sizing: border-box;
-            font-family: var(--form-font-family);
-            font-size: var(--form-font-size-base);
-            color: var(--form-text-color);
-            background-color: var(--form-input-bg);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            line-height: 1.5;
+        body {
             margin: 0;
             padding: 0;
-            border-radius: var(--form-border-radius);
-            box-shadow: var(--form-shadow-lg);
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff;
         }
-
-        /* Reset cơ bản cho các element bên trong form */
-        .adjust-profit-form *,
-        .adjust-profit-form *::before,
-        .adjust-profit-form *::after {
-            box-sizing: border-box;
-            margin: 0;
+        .adjust-order-value-form {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            max-width: 100vw;
             padding: 0;
-            border-width: 0;
-            border-style: solid;
-            border-color: transparent;
-            background: transparent;
-            font: inherit;
-            color: inherit;
-            line-height: inherit;
-            vertical-align: baseline;
+            margin: 0 auto;
+            width: 100%;
         }
-
-        /* --- Header --- */
-        .adjust-profit-form .form-header {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(90deg, #181818 0%, #2d2d2d 100%);
-            color: #FFD600;
-            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5);
-            flex-shrink: 0;
-            border-bottom: 1px solid rgba(255, 214, 0, 0.1);
-        }
-
-        .adjust-profit-form .form-header h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            line-height: 1.4;
-            color: #FFD600;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .adjust-profit-form .form-header h2::before {
-            content: '\f0d6';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            font-size: 1.4em;
-            color: #FFD600;
-        }
-
-        /* --- Form Body --- */
-        .adjust-profit-form .form-body {
-            padding: calc(var(--form-spacing-unit) * 2.5);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--form-spacing-unit) * 2);
-            background-color: var(--form-input-bg);
-        }
-
-        /* --- Section Title --- */
-        .adjust-profit-form .form-section-title {
-            display: flex;
-            align-items: center;
-            gap: calc(var(--form-spacing-unit) * 1);
+        .form-header {
+            background: #ffd700;
+            color: black;
+            padding: 10px 16px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
             font-size: 1.1rem;
             font-weight: 600;
-            color: #181818;
-            margin: 0 0 calc(var(--form-spacing-unit)) 0;
-            padding-bottom: calc(var(--form-spacing-unit));
-            border-bottom: 2px solid var(--form-border-color-light);
-            position: relative;
         }
-
-        .adjust-profit-form .form-section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, #FFD600 0%, #FFB300 100%);
+        .form-body {
+            padding: 12px 10px 0 10px;
         }
-
-        .adjust-profit-form .form-section-title i {
-            font-size: 1.2em;
-            color: #181818;
-            background: #FFD600;
-            padding: 0.5rem;
-            border-radius: 8px;
+        .form-section-title {
+            color: black;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-
-        /* --- Form Row --- */
-        .adjust-profit-form .form-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: calc(var(--form-spacing-unit) * 2.5);
-            align-items: start;
-            background: #f8fafc;
-            padding: calc(var(--form-spacing-unit) * 2);
-            border-radius: var(--form-border-radius);
-            transition: var(--form-transition);
-            border: 1px solid rgba(255, 214, 0, 0.1);
+        .form-section-title i {
+            color: black;
         }
-
-        .adjust-profit-form .form-row:hover {
-            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.1);
-            transform: translateY(-2px);
-            border-color: #FFD600;
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
         }
-
-        /* --- Field Group --- */
-        .adjust-profit-form .form-field-group {
+        .form-field-group {
             display: flex;
             flex-direction: column;
-            gap: calc(var(--form-spacing-unit));
+            min-width: 120px;
+            flex: 1 1 0;
         }
-
-        .adjust-profit-form .form-field-group label {
+        .form-field-group label {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+        .input-group {
             display: flex;
             align-items: center;
-            gap: calc(var(--form-spacing-unit) * 0.5);
-            font-weight: 500;
-            color: var(--form-text-muted);
-            font-size: var(--form-font-size-sm);
-            line-height: 1.4;
+            background: #f5f5f5;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            padding: 0 6px;
         }
-
-        .adjust-profit-form .form-field-group label i {
-            font-size: 0.9em;
-            color: var(--form-primary-color);
-            background: var(--form-primary-light);
-            padding: 0.3rem;
-            border-radius: 6px;
-        }
-
-        /* --- Input Group --- */
-        .adjust-profit-form .input-group {
-            display: flex;
-            align-items: stretch;
-            width: 100%;
-            position: relative;
-            transition: var(--form-transition);
-        }
-
-        .adjust-profit-form .input-group.with-addon {
-            border: 1px solid var(--form-border-color);
-            border-radius: var(--form-border-radius);
-            overflow: hidden;
-            background: var(--form-input-bg);
-            transition: var(--form-transition);
-        }
-
-        .adjust-profit-form .input-group.with-addon:focus-within {
-            border-color: var(--form-primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-            transform: translateY(-1px);
-        }
-
-        /* --- Control Item --- */
-        .adjust-profit-form .control-item {
-            min-height: calc(1.5em + var(--form-control-padding-y) * 2 + 2px);
-            padding: var(--form-control-padding-y) var(--form-control-padding-x);
-            font-size: var(--form-font-size-base);
-            font-family: var(--form-font-family);
-            color: var(--form-text-color);
-            background-color: var(--form-input-bg);
-            border: 1px solid var(--form-border-color);
-            border-radius: var(--form-border-radius);
-            width: 100%;
-            transition: var(--form-transition);
-        }
-
-        .adjust-profit-form .input-group.with-addon .control-item {
+        .input-group input {
             border: none;
-            border-radius: 0;
-        }
-
-        .adjust-profit-form .control-item:focus {
+            background: transparent;
+            padding: 6px 2px;
+            font-size: 15px;
+            width: 100%;
             outline: none;
-            border-color: var(--form-primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+            color: #222;
         }
-
-        /* --- Input Addon --- */
-        .adjust-profit-form .input-addon {
-            display: flex;
-            align-items: center;
-            padding: var(--form-control-padding-y) var(--form-control-padding-x);
-            font-size: var(--form-font-size-sm);
-            font-weight: 500;
-            color: var(--form-text-muted);
-            background-color: var(--form-light-gray);
-            border-left: 1px solid var(--form-border-color);
-            flex-shrink: 0;
+        .input-group input[readonly] {
+            color: #888;
         }
-
-        /* --- Form Actions --- */
-        .adjust-profit-form .form-actions {
-            padding: calc(var(--form-spacing-unit) * 2);
-            background-color: var(--form-light-gray);
-            border-top: 1px solid var(--form-border-color-light);
+        .input-addon {
+            font-size: 13px;
+            color: #888;
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+        .input-group .fa-exchange-alt {
+            color: #1761a0;
+            margin: 0 4px;
+        }
+        .input-group .fa-percent, .input-group .fa-file-invoice-dollar, .input-group .fa-book {
+            color: #1761a0;
+            margin-right: 4px;
+        }
+        .input-group .fa-exclamation-triangle {
+            color: #e53935;
+            margin-left: 4px;
+        }
+        .form-actions {
             display: flex;
             justify-content: flex-end;
-            gap: calc(var(--form-spacing-unit) * 1.5);
-            flex-shrink: 0;
+            gap: 10px;
+            padding: 8px 10px 10px 10px;
+            background: #fff;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
-
-        /* --- Buttons --- */
-        .adjust-profit-form .form-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: calc(var(--form-spacing-unit));
-            padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5);
-            font-size: var(--form-font-size-sm);
-            font-weight: 500;
-            border-radius: var(--form-border-radius);
-            border: 1px solid transparent;
+        .form-btn {
+            min-width: 90px;
+            padding: 5px 18px;
+            font-size: 15px;
+            border-radius: 4px;
+            border: 1.5px solid #d1d5db;
+            font-weight: 600;
             cursor: pointer;
-            transition: var(--form-transition);
-            min-width: 100px;
-            justify-content: center;
+            transition: 0.2s;
         }
-
-        .adjust-profit-form .form-btn i {
-            font-size: 1.1em;
+        .form-btn-cancel {
+            color: #e53935;
+            background: #fff;
+            border: 1.5px solid #e53935;
         }
-
-        .adjust-profit-form .form-btn-cancel {
-            background-color: #fff;
-            color: #181818;
-            border-color: #181818;
+        .form-btn-cancel:hover {
+            background: #ffeaea;
         }
-
-        .adjust-profit-form .form-btn-cancel:hover {
-            background-color: #181818;
-            color: #FFD600;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(24, 24, 24, 0.15);
+        .form-btn-confirm {
+            color: #388e3c;
+            background: #fff;
+            border: 1.5px solid #388e3c;
         }
-
-        .adjust-profit-form .form-btn-confirm {
-            background: linear-gradient(90deg, #FFD600 0%, #FFB300 100%);
-            color: #181818;
-            border: none;
-            box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15);
+        .form-btn-confirm:hover {
+            background: #eaffea;
         }
-
-        .adjust-profit-form .form-btn-confirm:hover {
-            background: linear-gradient(90deg, #FFB300 0%, #FFD600 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .adjust-profit-form .form-row {
-                grid-template-columns: 1fr 1fr;
-                gap: calc(var(--form-spacing-unit) * 2);
-            }
-            .adjust-profit-form .form-row:last-of-type {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .adjust-profit-form .form-row {
-                grid-template-columns: 1fr !important;
-                gap: calc(var(--form-spacing-unit) * 1.5);
-            }
-            .adjust-profit-form .form-actions {
-                flex-direction: column-reverse;
-                align-items: stretch;
-            }
-            .adjust-profit-form .form-btn {
-                width: 100%;
-            }
-        }
-
-        /* --- Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .adjust-profit-form {
-            animation: fadeIn 0.4s ease-out;
+        @media (max-width: 900px) {
+            .form-row { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <div class="adjust-profit-form">
-        <header class="form-header">
-            <h2>Điều chỉnh trị giá đơn hàng</h2>
-        </header>
-
+    <div class="adjust-order-value-form">
+        <div class="form-header">Điều chỉnh trị giá đơn hàng</div>
         <form class="form-body" id="formAdjustProfitModal">
-
-            <h3 class="form-section-title">
+            <div class="form-section-title">
                 <i class="fas fa-file-invoice-dollar"></i>
                 <span>Trị giá đơn hàng</span>
-            </h3>
-
-            <!-- Row 1: Quy đổi tiền tệ, Tiền cước, Chi phí khác -->
+            </div>
             <div class="form-row">
-                <div class="form-field-group currency-group">
-                    <label for="exchangeRateUSD">Quy đổi tiền tệ:</label>
-                    <div class="currency-group-wrapper">
-                        <div class="input-group with-addon">
-                            <input type="number" step="any" id="exchangeRateUSD" name="exchangeRateUSD" class="control-item" value="5">
+                <div class="form-field-group" style="min-width:260px;max-width:320px;">
+                    <label>Quy đổi tiền tệ:</label>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div class="input-group" style="flex:1;">
+                            <input type="text" value="5" readonly>
                             <span class="input-addon">USD</span>
                         </div>
-                        <span class="exchange-icon"><i class="fas fa-exchange-alt"></i></span>
-                         <div class="input-group with-addon">
-                            <input type="text" inputmode="numeric" data-type="currency" id="exchangeRateVND" name="exchangeRateVND" class="control-item" value="127.500">
-                            <span class="input-addon">VNĐ</span>
+                        <span style="color:#1761a0; font-size:18px; margin:0 2px; display:flex; align-items:center; justify-content:center;">
+                            <i class="fas fa-exchange-alt"></i>
+                        </span>
+                        <div class="input-group" style="flex:1;">
+                            <input type="text" value="127.500" readonly>
+                            <span class="input-addon">VND</span>
                         </div>
                     </div>
                 </div>
                 <div class="form-field-group">
-                    <label for="freightChargeModal">Tiền cước:</label>
-                     <div class="input-group with-addon">
-                        <input type="text" inputmode="numeric" data-type="currency" id="freightChargeModal" name="freightChargeModal" class="control-item" value="2.318.000">
-                        <span class="input-addon">VNĐ</span>
-                     </div>
+                    <label>Tiền cước:</label>
+                    <div class="input-group">
+                        <input type="text" value="2.318.000" readonly><span class="input-addon">VND</span>
+                    </div>
                 </div>
                 <div class="form-field-group">
-                    <label for="otherCostsProfitModal">Chi phí khác:</label>
-                     <div class="input-group with-addon">
-                        <input type="text" inputmode="numeric" data-type="currency" id="otherCostsProfitModal" name="otherCostsProfitModal" class="control-item" value="45.000">
-                        <span class="input-addon">VNĐ</span>
-                     </div>
+                    <label>Chi phí khác:</label>
+                    <div class="input-group">
+                        <input type="text" value="45.000" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <label>NET Đại lý:</label>
+                    <div class="input-group">
+                        <input type="text" value="800.000" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group" style="max-width:80px;flex:0 0 80px;">
+                    <label>VAT:</label>
+                    <div class="input-group">
+                        <input type="text" value="8" readonly><span class="input-addon">%</span>
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <label>Quy đổi VAT:</label>
+                    <div class="input-group">
+                        <input type="text" value="185.440" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <label><i class="fas fa-book"></i> Hoa hồng Sale:</label>
+                    <div class="input-group">
+                        <input type="text" value="159.942" readonly><span class="input-addon">VND</span>
+                    </div>
                 </div>
             </div>
-
-            <!-- Row 2: NET Đại lý, VAT, Quy đổi VAT -->
             <div class="form-row">
                 <div class="form-field-group">
-                    <label for="netAgentModal">NET Đại lý:</label>
-                     <div class="input-group with-addon">
-                        <input type="text" inputmode="numeric" data-type="currency" id="netAgentModal" name="netAgentModal" class="control-item" value="800.000">
-                        <span class="input-addon">VNĐ</span>
-                     </div>
-                </div>
-                 <div class="form-field-group">
-                    <label for="vatPercentProfitModal">VAT:</label>
-                     <!-- Wrap input group và icon warning -->
-                     <div class="field-with-warning">
-                         <div class="input-group with-addon">
-                            <input type="number" step="any" id="vatPercentProfitModal" name="vatPercentProfitModal" class="control-item" value="8">
-                            <span class="input-addon">%</span>
-                         </div>
-                         <span class="warning-icon" title="Kiểm tra lại thuế suất VAT"><i class="fas fa-exclamation-triangle"></i></span>
-                     </div>
+                    <label>Tổng cước:</label>
+                    <div class="input-group">
+                        <input type="text" value="3.198.000" readonly><span class="input-addon">VND</span>
+                    </div>
                 </div>
                 <div class="form-field-group">
-                    <label for="vatConvertedModal">Quy đổi VAT:</label>
-                     <div class="input-group with-addon" data-readonly="true">
-                        <input type="text" id="vatConvertedModal" name="vatConvertedModal" class="control-item" value="64.000" readonly>
-                        <span class="input-addon">VNĐ</span>
-                     </div>
+                    <label>Tổng cước Đại lý:</label>
+                    <div class="input-group">
+                        <input type="text" value="1.680.840" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group" style="flex:2;">
+                    <label>Ghi chú chi phí khác cho Sale:</label>
+                    <div class="input-group">
+                        <input type="text" value="Nhớ chụp lại ảnh kiện nhé Alice" readonly>
+                    </div>
                 </div>
             </div>
-
-             <!-- Row 3: Hoa hồng Sale, Tổng cước, Tổng cước Đại lý -->
-             <div class="form-row">
-                 <div class="form-field-group">
-                     <label for="salesCommissionModal"><i class="fas fa-percent"></i> Hoa hồng Sale:</label>
-                     <div class="input-group with-addon">
-                        <input type="text" inputmode="numeric" data-type="currency" id="salesCommissionModal" name="salesCommissionModal" class="control-item" value="159.942">
-                        <span class="input-addon">VNĐ</span>
-                     </div>
-                </div>
-                 <div class="form-field-group">
-                    <label for="totalChargesModal">Tổng cước:</label>
-                     <div class="input-group with-addon" data-readonly="true">
-                        <input type="text" id="totalChargesModal" name="totalChargesModal" class="control-item" value="3.198.000" readonly>
-                        <span class="input-addon">VNĐ</span>
-                     </div>
-                </div>
-                 <div class="form-field-group">
-                     <label for="totalAgentChargesModal">Tổng cước Đại lý:</label>
-                      <div class="input-group with-addon" data-readonly="true">
-                         <input type="text" id="totalAgentChargesModal" name="totalAgentChargesModal" class="control-item" value="1.680.840" readonly>
-                         <span class="input-addon">VNĐ</span>
-                      </div>
-                 </div>
-             </div>
-
-             <!-- Row 4: Ghi chú Sale -->
-            <div class="form-row">
-                 <div class="form-field-group"> <!-- Tự động chiếm 1 cột trong grid 1 cột -->
-                    <label for="salesNoteModal">Ghi chú chi phí khác cho Sale:</label>
-                     <div class="input-group"> <!-- Không có addon -->
-                        <input type="text" id="salesNoteModal" name="salesNoteModal" class="control-item" value="Nhớ chụp lại ảnh kiện nhé Alice">
-                     </div>
-                </div>
-            </div>
-
-            <!-- Actions -->
             <div class="form-actions">
-                 <!-- Class modal-cancel-button và modal-confirm-button để JS trang cha bắt sự kiện -->
-                <button type="button" class="form-btn form-btn-cancel modal-cancel-button"><i class="fas fa-times"></i> Hủy</button>
-                <button type="button" class="form-btn form-btn-confirm modal-confirm-button"><i class="fas fa-check"></i> Xác nhận</button>
+                <button type="button" class="form-btn form-btn-cancel"><i class="fas fa-times"></i> Hủy</button>
+                <button type="button" class="form-btn form-btn-confirm"><i class="fas fa-check"></i> Xác nhận</button>
             </div>
         </form>
     </div>
-
     <script>
-        // Script giữ nguyên từ lần trước, đảm bảo tìm đúng ID và class
-        // Và gọi hàm updateChargesAndProfitDisplay của trang cha khi xác nhận
-         (function() {
-            const formContainer = document.currentScript.closest('.adjust-profit-form');
-            if (!formContainer) { console.error("Inline Adjust Form Script Error: Cannot find parent '.adjust-profit-form'."); return; }
-            const form = formContainer.querySelector('#formAdjustProfitModal');
-            const cancelButton = formContainer.querySelector('.modal-cancel-button'); // Dùng class của cha
-            const confirmButton = formContainer.querySelector('.modal-confirm-button'); // Dùng class của cha
-
-             if (!form || !cancelButton || !confirmButton) {
-                 console.error("Inline Adjust Form Script Error: Cannot find form or buttons using parent classes.");
-                 return;
-            }
-
-             // Hàm đóng form inline (gọi hàm của trang cha)
-             function tryCloseInlineFormFromInside() {
-                 if (typeof window.closeInlineAdjustChargesForm === 'function') {
-                     console.log("Calling global closeInlineAdjustChargesForm().");
-                     window.closeInlineAdjustChargesForm();
-                 } else {
-                    console.error("Function 'closeInlineAdjustChargesForm' not found on parent page.");
-                    // Có thể ẩn trực tiếp container nhưng không lý tưởng
-                    if(formContainer.parentElement && formContainer.parentElement.id === 'inlineAdjustChargesContainer') {
-                        formContainer.parentElement.style.display = 'none';
-                        console.warn("Fallback: Hid the parent container directly.");
-                    }
-                 }
-             }
-
-            // --- Các hàm tính toán và format ---
-            const getNum = (el) => {
-                if (!el || !el.value) return 0;
-                return parseInt(String(el.value).replace(/[^\d]/g, ''), 10) || 0;
-            };
-
-            const formatVND = (num) => {
-                if (isNaN(num)) return ''; // Trả về rỗng nếu không phải số
-                return num.toLocaleString('vi-VN');
-            };
-
-            // Hàm format ngay khi nhập liệu
-            const formatCurrencyInput = (inputElement) => {
-                if (!inputElement || inputElement.readOnly) return;
-                let value = inputElement.value.replace(/[^\d]/g, '');
-                 // Giữ vị trí con trỏ (hơi phức tạp, có thể bỏ qua nếu không quá cần thiết)
-                 // let currentCursorPos = inputElement.selectionStart;
-                 // let originalLength = inputElement.value.length;
-
-                inputElement.value = formatVND(parseInt(value, 10));
-
-                 // Cập nhật lại vị trí con trỏ
-                 // let newLength = inputElement.value.length;
-                 // currentCursorPos = currentCursorPos + (newLength - originalLength);
-                 // if (currentCursorPos < 0) currentCursorPos = 0;
-                 // inputElement.setSelectionRange(currentCursorPos, currentCursorPos);
-             };
-             // Hàm format khi blur (đơn giản hơn)
-             const formatCurrencyOnBlur = (inputElement) => {
-                  if (!inputElement || inputElement.readOnly) return;
-                  let value = inputElement.value.replace(/[^\d]/g, '');
-                  inputElement.value = value ? formatVND(parseInt(value, 10)) : ''; // Nếu rỗng thì để rỗng
-             }
-
-            const calculateValues = () => {
-                const freight = getNum(form.freightChargeModal);
-                const otherCosts = getNum(form.otherCostsProfitModal);
-                const netAgent = getNum(form.netAgentModal);
-                const vatPercent = parseFloat(form.vatPercentProfitModal.value) || 0;
-                const commission = getNum(form.salesCommissionModal);
-
-                // Tính VAT dựa trên NET Đại lý
-                const vatAmount = Math.round(netAgent * (vatPercent / 100));
-                if(form.vatConvertedModal) form.vatConvertedModal.value = formatVND(vatAmount);
-
-                // Tính Tổng cước KH dự kiến (Công thức này CẦN XÁC NHẬN LẠI)
-                // Giả sử: Tổng cước KH = Tiền cước + Phụ phí + VAT (tính trên Tiền cước + Phụ phí ?)
-                const baseForCustomerVAT = freight + otherCosts; // Giả sử VAT tính trên tổng này
-                const vatForCustomer = Math.round(baseForCustomerVAT * (vatPercent / 100));
-                const totalChargesCustomer = baseForCustomerVAT + vatForCustomer;
-                if(form.totalChargesModal) form.totalChargesModal.value = formatVND(totalChargesCustomer);
-
-                // Tính Tổng cước Đại lý phải trả MTE = NET Đại lý + VAT (trên NET ĐL)
-                const totalAgentCharges = netAgent + vatAmount;
-                if(form.totalAgentChargesModal) form.totalAgentChargesModal.value = formatVND(totalAgentCharges);
-
-                // Tính toán tỷ giá VND từ USD (hoặc ngược lại nếu cần)
-                const usdRateInput = form.exchangeRateUSD;
-                const vndRateInput = form.exchangeRateVND;
-                const baseExchangeRate = 25500; // Tỷ giá gốc giả định
-
-                if (usdRateInput && vndRateInput) {
-                    // Ưu tiên tính VND từ USD nếu USD thay đổi
-                    const usdValue = parseFloat(usdRateInput.value) || 0;
-                     if(usdValue > 0) { // Chỉ tính nếu USD hợp lệ
-                         vndRateInput.value = formatVND(Math.round(usdValue * baseExchangeRate));
-                     }
-                 }
-                console.log(`Calculated: VAT Amount=${vatAmount}, Total Charges Customer=${totalChargesCustomer}, Total Agent Charges=${totalAgentCharges}`);
-            };
-
-            // Gắn sự kiện input/blur
-             const inputsToWatch = [
-                 form.exchangeRateUSD, // Tính khi input
-                 form.exchangeRateVND, // Format khi input/blur
-                 form.freightChargeModal, // Format khi input/blur
-                 form.otherCostsProfitModal, // Format khi input/blur
-                 form.netAgentModal, // Format khi input/blur
-                 form.vatPercentProfitModal, // Tính khi input
-                 form.salesCommissionModal // Format khi input/blur
-             ];
-
-             inputsToWatch.forEach(input => {
-                 if (input) {
-                      const isCurrency = input.dataset.type === 'currency';
-                      const isRateVND = input.id === 'exchangeRateVND';
-
-                     if (isCurrency || isRateVND) {
-                         input.addEventListener('input', () => formatCurrencyInput(input)); // Format nhanh
-                         input.addEventListener('blur', () => { formatCurrencyOnBlur(input); calculateValues(); }); // Format chuẩn + Tính
-                     } else {
-                         // Cho các trường số khác (USD, VAT %)
-                         input.addEventListener('input', calculateValues); // Tính ngay
-                     }
-                 }
-             });
-
-             // Format các trường tiền tệ ban đầu khi script chạy
-             formContainer.querySelectorAll('input[data-type="currency"], #exchangeRateVND').forEach(input => {
-                 formatCurrencyOnBlur(input);
-             });
-
-             // Tính toán giá trị ban đầu khi form load
-             calculateValues();
-
-             // Xử lý nút bấm
-             cancelButton.addEventListener('click', () => {
-                 console.log("Hủy điều chỉnh trị giá (inline).");
-                 tryCloseInlineFormFromInside();
-             });
-
-             confirmButton.addEventListener('click', () => {
-                 const formData = new FormData(form);
-                 const profitData = {};
-                 formData.forEach((value, key) => {
-                     const inputEl = form.querySelector(`[name="${key}"]`);
-                     if (inputEl && (inputEl.dataset.type === 'currency' || inputEl.id === 'exchangeRateVND')) {
-                         profitData[key] = getNum(inputEl);
-                     } else if (inputEl && inputEl.type === 'number' && inputEl.step === 'any'){
-                         profitData[key] = parseFloat(value) || 0;
-                     } else {
-                         profitData[key] = value;
-                     }
-                 });
-                 // Thêm các giá trị đã tính toán
-                 profitData['vatConvertedModal'] = getNum(form.vatConvertedModal);
-                 profitData['totalChargesModal'] = getNum(form.totalChargesModal);
-                 profitData['totalAgentChargesModal'] = getNum(form.totalAgentChargesModal);
-
-                 console.log('ĐÃ XÁC NHẬN - Điều chỉnh trị giá (inline):', profitData);
-
-                 // Gọi hàm cập nhật trang cha
-                 if (typeof window.updateChargesAndProfitDisplay === 'function') {
-                      console.log("Calling updateChargesAndProfitDisplay on parent page.");
-                      window.updateChargesAndProfitDisplay(profitData);
-                 } else {
-                      console.warn("Function 'updateChargesAndProfitDisplay' not found on parent page.");
-                      alert('Dữ liệu đã xử lý (Xem Console F12). Không tìm thấy hàm cập nhật giao diện.');
-                 }
-
-                 tryCloseInlineFormFromInside(); // Đóng form sau khi xác nhận
-             });
-
-             console.log("Script for Inline Adjust Profit Form initialized successfully.");
-         })();
+    document.addEventListener('DOMContentLoaded', function() {
+        // Nút xác nhận
+        const confirmBtn = document.querySelector('.form-btn-confirm');
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', function() {
+                console.log('Đã xác nhận điều chỉnh trị giá đơn hàng!');
+                if (window.parent && typeof window.parent.closeEditModal === 'function') {
+                    window.parent.closeEditModal();
+                } else if (window.closeEditModal) {
+                    window.closeEditModal();
+                } else {
+                    // fallback: thử đóng modal nếu có overlay
+                    const modalOverlay = document.querySelector('.modal-overlay.active');
+                    if (modalOverlay) modalOverlay.classList.remove('active');
+                }
+            });
+        }
+        // Nút hủy
+        const cancelBtn = document.querySelector('.form-btn-cancel');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', function() {
+                if (window.parent && typeof window.parent.closeEditModal === 'function') {
+                    window.parent.closeEditModal();
+                } else if (window.closeEditModal) {
+                    window.closeEditModal();
+                } else {
+                    const modalOverlay = document.querySelector('.modal-overlay.active');
+                    if (modalOverlay) modalOverlay.classList.remove('active');
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>

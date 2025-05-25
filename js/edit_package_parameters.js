@@ -8,10 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const addRowButton = document.querySelector('.btn-add-row');
 
     // Xóa hết các dòng cũ
-    modalTableBody.innerHTML = '';
+    if (modalTableBody) {
+        modalTableBody.innerHTML = '';
+    }
 
     // Render lại các dòng từ localStorage
     function renderRows() {
+        if (!modalTableBody) return;
         modalTableBody.innerHTML = '';
         items.forEach(item => {
             const row = document.createElement('tr');
@@ -56,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hàm tính tổng giá trị
     function calculateGrandTotal() {
+        if (!modalTableBody || !modalGrandTotalEl) return;
         let grandTotal = 0;
         modalTableBody.querySelectorAll('tr').forEach(row => {
             const totalInput = row.querySelector('.item-total');
@@ -93,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if(priceInput) priceInput.addEventListener('input', () => calculateRowTotal(row));
         if(deleteButton) {
             deleteButton.addEventListener('click', () => {
-                if (modalTableBody.querySelectorAll('tr').length > 1) {
+                if (modalTableBody && modalTableBody.querySelectorAll('tr').length > 1) {
                     row.remove();
                     calculateGrandTotal();
                 } else {
@@ -104,12 +108,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Render ban đầu
-    renderRows();
-    modalTableBody.querySelectorAll('tr').forEach(addRowListeners);
-    calculateGrandTotal();
+    if (modalTableBody) {
+        renderRows();
+        modalTableBody.querySelectorAll('tr').forEach(addRowListeners);
+        calculateGrandTotal();
+    }
 
     // Thêm dòng mới
-    if (addRowButton) {
+    if (addRowButton && modalTableBody) {
         addRowButton.addEventListener('click', () => {
             const row = document.createElement('tr');
             row.innerHTML = `

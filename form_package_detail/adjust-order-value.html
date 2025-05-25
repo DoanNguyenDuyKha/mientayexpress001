@@ -1,435 +1,267 @@
-<!-- form_package_detail/adjust-order-value.html -->
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff;
+        }
         .adjust-order-value-form {
-            --form-primary-color: #FFD600;
-            --form-primary-hover: #FFB300;
-            --form-secondary-color: #181818;
-            --form-success-color: #FFD600;
-            --form-danger-color: #EF4444;
-            --form-light-gray: #f8f9fa;
-            --form-input-bg: #fff;
-            --form-input-readonly-bg: #e9ecef;
-            --form-border-color: rgba(255, 214, 0, 0.3);
-            --form-border-color-light: #eee;
-            --form-text-color: #181818;
-            --form-text-muted: #64748b;
-            --form-border-radius: 12px; /* Adjusted for consistency */
-            --form-spacing-unit: 10px; /* Adjusted for consistency */
-            --form-control-padding-y: 10px; /* Adjusted for consistency */
-            --form-control-padding-x: 16px; /* Adjusted for consistency */
-            --form-font-size-base: 15px; /* Adjusted for consistency */
-            --form-font-size-sm: 13px; /* Adjusted for consistency */
-            --form-font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            --form-shadow-lg: 0 10px 15px rgba(0,0,0,0.10);
-            --form-transition: all 0.3s cubic-bezier(.4,0,.2,1);
-            animation: fadeIn .5s;
-            box-sizing: border-box;
-            font-family: var(--form-font-family);
-            font-size: var(--form-font-size-base);
-            color: var(--form-text-color);
-            background-color: var(--form-input-bg);
-            display: flex; flex-direction: column;
-            line-height: 1.5; margin: 0; padding: 0; border: none; width: 100%;
-            max-width: 100%;
-            overflow: hidden;
-            border-radius: var(--form-border-radius);
-            box-shadow: var(--form-shadow-lg);
-        }
-        .adjust-order-value-form *,
-        .adjust-order-value-form *::before,
-        .adjust-order-value-form *::after {
-            box-sizing: border-box; margin: 0; padding: 0; border-width: 0;
-            border-style: solid; border-color: transparent;
-            background: transparent; font: inherit; color: inherit;
-            line-height: inherit; vertical-align: baseline;
-        }
-        .adjust-order-value-form div, .adjust-order-value-form header, .adjust-order-value-form form,
-        .adjust-order-value-form label, .adjust-order-value-form h2, .adjust-order-value-form h3 { display: block; }
-        .adjust-order-value-form span, .adjust-order-value-form i { display: inline-block; vertical-align: middle; }
-        .adjust-order-value-form button { display: inline-flex; align-items: center; justify-content: center; }
-        .adjust-order-value-form input[type="text"],
-        .adjust-order-value-form input[type="number"] { display: block; width: 100%; }
-        .adjust-order-value-form label { display: block; margin-bottom: calc(var(--form-spacing-unit) * 0.5); }
-        /* Header */
-        .adjust-order-value-form .form-header {
-            background: linear-gradient(90deg, #181818 0%, #232323 100%);
-            color: var(--form-primary-color);
-            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5);
-            flex-shrink: 0; border-bottom: 1.5px solid var(--form-primary-color);
-            border-top-left-radius: var(--form-border-radius);
-            border-top-right-radius: var(--form-border-radius);
-            display: flex; align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .adjust-order-value-form .form-header h2 {
-            font-size: 1.18rem; font-weight: 700; color: var(--form-primary-color); margin:0;
-            display: flex; align-items: center; gap: 0.75rem;
-        }
-        .adjust-order-value-form .form-header h2::before {
-            content: '\f155';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            font-size: 1.4em;
-            color: var(--form-primary-color);
-        }
-        /* Form Body */
-        .adjust-order-value-form .form-body {
-            padding: calc(var(--form-spacing-unit) * 2.5);
-            display: flex; flex-direction: column;
-            gap: calc(var(--form-spacing-unit) * 2.5);
-            background-color: var(--form-input-bg);
-            flex-grow: 1; overflow-y: auto;
-        }
-        .adjust-order-value-form .form-section-title {
-            display: flex; align-items: center; gap: calc(var(--form-spacing-unit) * 0.8);
-            font-size: 1rem; font-weight: 700; color: var(--form-primary-color);
-            margin: 0 0 calc(var(--form-spacing-unit) * 0.5) 0;
-            padding-bottom: calc(var(--form-spacing-unit) * 0.5);
-            border-bottom: 1px solid var(--form-border-color-light);
-        }
-        .adjust-order-value-form .form-section-title i {
-            font-size: 1.1em; line-height: 1; color: var(--form-primary-color);
-            font-family: "Font Awesome 6 Free"; font-weight: 900;
-        }
-        .adjust-order-value-form .form-section-title span {
-            font-weight: 700; color: var(--form-primary-color); font-size: 1rem;
-        }
-        .adjust-order-value-form .form-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: calc(var(--form-spacing-unit) * 2);
-            align-items: start;
-        }
-        .adjust-order-value-form .form-row:last-of-type {
-            grid-template-columns: 1fr;
-        }
-        .adjust-order-value-form .form-field-group {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--form-spacing-unit) * 0.5);
-        }
-        .adjust-order-value-form .form-field-group label {
-            display: flex; align-items: center; gap: calc(var(--form-spacing-unit) * 0.5);
-            font-weight: 500; color: var(--form-text-muted);
-            font-size: var(--form-font-size-sm);
-            line-height: 1.4;
-            margin-bottom: 2px;
-        }
-        .adjust-order-value-form .form-field-group label i {
-            font-size: 0.9em; color: var(--form-secondary-color); line-height: 1;
-            font-family: "Font Awesome 6 Free"; font-weight: 900;
-        }
-        .adjust-order-value-form .input-group {
-            display: flex; align-items: stretch;
-            width: 100%; position: relative;
-        }
-        .adjust-order-value-form .input-group:not(.with-addon) .control-item {
-            border: 1.5px solid var(--form-primary-color);
-            border-radius: var(--form-border-radius);
             background: #fff;
-            transition: var(--form-transition);
-        }
-        .adjust-order-value-form .input-group.with-addon {
-            border: 1.5px solid var(--form-primary-color);
-            border-radius: var(--form-border-radius);
-            overflow: hidden;
-            background: #fff;
-            transition: var(--form-transition);
-        }
-        .adjust-order-value-form .input-group.with-addon:focus-within,
-        .adjust-order-value-form .input-group:not(.with-addon) .control-item:focus {
-            border-color: var(--form-primary-hover);
-            box-shadow: 0 0 0 2px #FFD60055;
-        }
-        .adjust-order-value-form .control-item {
-            min-height: calc(1.5em + var(--form-control-padding-y) * 2 + 2px);
-            padding: var(--form-control-padding-y) var(--form-control-padding-x);
-            font-size: var(--form-font-size-base);
-            font-family: var(--form-font-family);
-            color: var(--form-text-color);
-            background-color: var(--form-input-bg);
-            border: 1.5px solid var(--form-primary-color);
-            border-radius: var(--form-border-radius);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            max-width: 100vw;
+            padding: 0;
+            margin: 0 auto;
             width: 100%;
-            box-shadow: none;
-            flex-grow: 1;
-            transition: var(--form-transition);
-            -moz-appearance: textfield;
-            text-align: left;
         }
-        .adjust-order-value-form .input-group.with-addon .control-item {
-            border: none;
-            border-radius: 0;
-            box-shadow: none !important;
+        .form-header {
+            background: #ffd700;
+            color: black;
+            padding: 10px 16px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
-        
-        .adjust-order-value-form input[type=number] { text-align: right; }
-        .adjust-order-value-form input[type=number]::-webkit-inner-spin-button,
-        .adjust-order-value-form input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-        .adjust-order-value-form .control-item[readonly] {
-            background-color: var(--form-input-readonly-bg);
-            color: var(--form-text-muted);
-            cursor: default;
-            font-weight: 500;
-            border-color: var(--form-primary-color);
+        .form-body {
+            padding: 12px 10px 0 10px;
         }
-        .adjust-order-value-form .input-group.with-addon[data-readonly="true"] {
-            background-color: var(--form-input-readonly-bg);
-            border-color: var(--form-primary-color);
-            cursor: default;
-            box-shadow: none;
-        }
-        .adjust-order-value-form .input-group.with-addon[data-readonly="true"] .control-item {
-            background-color: transparent;
-            color: var(--form-text-muted);
-            font-weight: 500;
-            cursor: default;
-        }
-        .adjust-order-value-form .input-group.with-addon[data-readonly="true"] .input-addon {
-            background-color: #e9ecef;
-            border-color: var(--form-primary-color);
-            color: var(--form-text-muted);
-        }
-        .adjust-order-value-form .input-addon {
-            display: flex; align-items: center;
-            padding: var(--form-control-padding-y) var(--form-control-padding-x);
-            font-size: var(--form-font-size-sm); font-weight: 400; line-height: 1.5;
-            color: var(--form-primary-color); text-align: center; white-space: nowrap;
-            background-color: #fffbe6;
-            border-left: 1.5px solid var(--form-primary-color);
-            flex-shrink: 0;
-        }
-        .adjust-order-value-form .input-group.with-addon .control-item {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-        .adjust-order-value-form .exchange-icon,
-        .adjust-order-value-form .warning-icon {
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 1rem; color: var(--form-primary-color);
-            line-height: 1;
-            font-family: "Font Awesome 6 Free"; font-weight: 900;
-        }
-        .adjust-order-value-form .warning-icon {
-            color: var(--form-danger-color);
-            margin-left: 6px;
+        .form-section-title {
+            color: black;
+            font-weight: 600;
             font-size: 1rem;
-            position: relative;
-            top: 1px;
-        }
-        .adjust-order-value-form .exchange-icon {
-            margin: 0 calc(var(--form-spacing-unit) * 0.8);
-            color: var(--form-primary-color);
-            font-size: 0.9rem;
-        }
-        .adjust-order-value-form .field-with-warning {
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
-        .adjust-order-value-form .field-with-warning .input-group {
-            flex-grow: 1;
+        .form-section-title i {
+            color: black;
         }
-        .adjust-order-value-form .field-with-warning .warning-icon {
-            flex-shrink: 0;
-            margin-left: 0;
-            top: 0;
-            position: static;
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
         }
-        .adjust-order-value-form .currency-group-wrapper {
+        .form-field-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 120px;
+            flex: 1 1 0;
+        }
+        .form-field-group label {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+        .input-group {
             display: flex;
             align-items: center;
-            gap: calc(var(--form-spacing-unit) * 0.8);
+            background: #f5f5f5;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            padding: 0 6px;
         }
-        .adjust-order-value-form .currency-group-wrapper > .input-group {
-            flex: 1; min-width: 80px;
-        }
-        .adjust-order-value-form .currency-group-wrapper > .exchange-icon {
-            flex-shrink: 0;
-            align-self: center;
-        }
-        .adjust-order-value-form .form-actions {
-            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5);
-            background: linear-gradient(90deg, #181818 0%, #232323 100%);
-            border-top: 1.5px solid var(--form-primary-color);
-            display: flex; justify-content: flex-end; gap: var(--form-spacing-unit); flex-shrink: 0;
-            border-bottom-left-radius: var(--form-border-radius);
-            border-bottom-right-radius: var(--form-border-radius);
-        }
-        .adjust-order-value-form .form-btn {
-            gap: calc(var(--form-spacing-unit) * 0.8); padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5);
-            font-size: var(--form-font-size-base); font-weight: 600; border-radius: var(--form-border-radius);
-            border: 1.5px solid transparent; cursor: pointer; transition: var(--form-transition);
-            line-height: 1.4; white-space: nowrap; min-width: 100px;
-        }
-        .adjust-order-value-form .form-btn i { font-size: 1em; margin-right: 4px; font-family: "Font Awesome 6 Free"; font-weight: 900; line-height: 1; }
-        .adjust-order-value-form .form-btn-cancel {
-            background-color: transparent;
-            color: var(--form-primary-color);
-            border-color: var(--form-primary-color);
-        }
-        .adjust-order-value-form .form-btn-cancel:hover {
-            background-color: var(--form-primary-color);
-            color: var(--form-secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
-        }
-        .adjust-order-value-form .form-btn-confirm {
-            background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%);
-            color: var(--form-secondary-color);
+        .input-group input {
             border: none;
-            box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15);
+            background: transparent;
+            padding: 6px 2px;
+            font-size: 15px;
+            width: 100%;
+            outline: none;
+            color: #222;
         }
-        .adjust-order-value-form .form-btn-confirm:hover {
-            background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+        .input-group input[readonly] {
+            color: #888;
         }
-        .adjust-order-value-form .form-btn:focus-visible {
-            outline: 1.5px solid var(--form-primary-color);
-            outline-offset: 1px;
-            box-shadow: none;
+        .input-addon {
+            font-size: 13px;
+            color: #888;
+            margin-left: 2px;
+            margin-right: 2px;
         }
-        .adjust-order-value-form .form-btn:active {
-            transform: scale(0.98);
+        .input-group .fa-exchange-alt {
+            color: #1761a0;
+            margin: 0 4px;
         }
-        @media (max-width: 768px) {
-            .adjust-order-value-form .form-row {
-                grid-template-columns: 1fr 1fr;
-                gap: calc(var(--form-spacing-unit) * 1.5);
-            }
-            .adjust-order-value-form .form-row:last-of-type {
-                grid-template-columns: 1fr;
-            }
-            .adjust-order-value-form .form-body { padding: calc(var(--form-spacing-unit) * 1.5); }
-            .adjust-order-value-form .form-actions { padding: calc(var(--form-spacing-unit) * 1.2) calc(var(--form-spacing-unit) * 1.5); }
+        .input-group .fa-percent, .input-group .fa-file-invoice-dollar, .input-group .fa-book {
+            color: #1761a0;
+            margin-right: 4px;
         }
-        @media (max-width: 576px) {
-            .adjust-order-value-form .form-row {
-                grid-template-columns: 1fr !important;
-                gap: calc(var(--form-spacing-unit) * 1.2);
-            }
-            .adjust-order-value-form .currency-group-wrapper { flex-wrap: wrap; }
-            .adjust-order-value-form .currency-group-wrapper > .input-group { min-width: 120px; }
-            .adjust-order-value-form .field-with-warning { align-items: flex-start; }
-            .adjust-order-value-form .form-actions { flex-direction: column-reverse; align-items: stretch; gap: calc(var(--form-spacing-unit) * 1); }
-            .adjust-order-value-form .form-btn { width: 100%; }
+        .input-group .fa-exclamation-triangle {
+            color: #e53935;
+            margin-left: 4px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 8px 10px 10px 10px;
+            background: #fff;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        .form-btn {
+            min-width: 90px;
+            padding: 5px 18px;
+            font-size: 15px;
+            border-radius: 4px;
+            border: 1.5px solid #d1d5db;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .form-btn-cancel {
+            color: #e53935;
+            background: #fff;
+            border: 1.5px solid #e53935;
+        }
+        .form-btn-cancel:hover {
+            background: #ffeaea;
+        }
+        .form-btn-confirm {
+            color: #388e3c;
+            background: #fff;
+            border: 1.5px solid #388e3c;
+        }
+        .form-btn-confirm:hover {
+            background: #eaffea;
+        }
+        @media (max-width: 900px) {
+            .form-row { flex-direction: column; }
         }
     </style>
 </head>
 <body>
     <div class="adjust-order-value-form">
-        <header class="form-header">
-            <h2>Điều chỉnh trị giá đơn hàng</h2>
-        </header>
+        <div class="form-header">Điều chỉnh trị giá đơn hàng</div>
         <form class="form-body" id="formAdjustProfitModal">
-            <h3 class="form-section-title">
+            <div class="form-section-title">
                 <i class="fas fa-file-invoice-dollar"></i>
                 <span>Trị giá đơn hàng</span>
-            </h3>
+            </div>
             <div class="form-row">
-                <div class="form-field-group currency-group">
-                    <label for="exchangeRateUSD">Quy đổi tiền tệ:</label>
-                    <div class="currency-group-wrapper">
-                        <div class="input-group with-addon">
-                            <input type="number" step="any" id="exchangeRateUSD" name="exchangeRateUSD" class="control-item" value="5">
+                <div class="form-field-group" style="min-width:260px;max-width:320px;">
+                    <label>Quy đổi tiền tệ:</label>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div class="input-group" style="flex:1;">
+                            <input type="text" value="5" readonly>
                             <span class="input-addon">USD</span>
                         </div>
-                        <span class="exchange-icon"><i class="fas fa-exchange-alt"></i></span>
-                        <div class="input-group with-addon">
-                            <input type="text" inputmode="numeric" data-type="currency" id="exchangeRateVND" name="exchangeRateVND" class="control-item" value="127.500">
-                            <span class="input-addon">VNĐ</span>
+                        <span style="color:#1761a0; font-size:18px; margin:0 2px; display:flex; align-items:center; justify-content:center;">
+                            <i class="fas fa-exchange-alt"></i>
+                        </span>
+                        <div class="input-group" style="flex:1;">
+                            <input type="text" value="127.500" readonly>
+                            <span class="input-addon">VND</span>
                         </div>
                     </div>
                 </div>
                 <div class="form-field-group">
-                    <label for="freightChargeModal">Tiền cước:</label>
-                    <div class="input-group with-addon">
-                        <input type="text" inputmode="numeric" data-type="currency" id="freightChargeModal" name="freightChargeModal" class="control-item" value="2.318.000">
-                        <span class="input-addon">VNĐ</span>
-                    </div>
-                </div>
-                <div class="form-field-group">
-                    <label for="otherCostsProfitModal">Chi phí khác:</label>
-                    <div class="input-group with-addon">
-                        <input type="text" inputmode="numeric" data-type="currency" id="otherCostsProfitModal" name="otherCostsProfitModal" class="control-item" value="45.000">
-                        <span class="input-addon">VNĐ</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-field-group">
-                    <label for="netAgentModal">NET Đại lý:</label>
-                    <div class="input-group with-addon">
-                        <input type="text" inputmode="numeric" data-type="currency" id="netAgentModal" name="netAgentModal" class="control-item" value="800.000">
-                        <span class="input-addon">VNĐ</span>
-                    </div>
-                </div>
-                <div class="form-field-group">
-                    <label for="vatPercentProfitModal">VAT:</label>
-                    <div class="field-with-warning">
-                        <div class="input-group with-addon">
-                            <input type="number" step="any" id="vatPercentProfitModal" name="vatPercentProfitModal" class="control-item" value="8">
-                            <span class="input-addon">%</span>
-                        </div>
-                        <span class="warning-icon" title="Kiểm tra lại thuế suất VAT"><i class="fas fa-exclamation-triangle"></i></span>
-                    </div>
-                </div>
-                <div class="form-field-group">
-                    <label for="vatConvertedModal">Quy đổi VAT:</label>
-                    <div class="input-group with-addon" data-readonly="true">
-                        <input type="text" id="vatConvertedModal" name="vatConvertedModal" class="control-item" value="64.000" readonly>
-                        <span class="input-addon">VNĐ</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-field-group">
-                    <label for="salesCommissionModal"><i class="fas fa-percent"></i> Hoa hồng Sale:</label>
-                    <div class="input-group with-addon">
-                        <input type="text" inputmode="numeric" data-type="currency" id="salesCommissionModal" name="salesCommissionModal" class="control-item" value="159.942">
-                        <span class="input-addon">VNĐ</span>
-                    </div>
-                </div>
-                <div class="form-field-group">
-                    <label for="totalChargesModal">Tổng cước:</label>
-                    <div class="input-group with-addon" data-readonly="true">
-                        <input type="text" id="totalChargesModal" name="totalChargesModal" class="control-item" value="3.198.000" readonly>
-                        <span class="input-addon">VNĐ</span>
-                    </div>
-                </div>
-                <div class="form-field-group">
-                    <label for="totalAgentChargesModal">Tổng cước Đại lý:</label>
-                    <div class="input-group with-addon" data-readonly="true">
-                        <input type="text" id="totalAgentChargesModal" name="totalAgentChargesModal" class="control-item" value="1.680.840" readonly>
-                        <span class="input-addon">VNĐ</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-field-group">
-                    <label for="salesNoteModal">Ghi chú chi phí khác cho Sale:</label>
+                    <label>Tiền cước:</label>
                     <div class="input-group">
-                        <input type="text" id="salesNoteModal" name="salesNoteModal" class="control-item" value="Nhớ chụp lại ảnh kiện nhé Alice">
+                        <input type="text" value="2.318.000" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <label>Chi phí khác:</label>
+                    <div class="input-group">
+                        <input type="text" value="45.000" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <label>NET Đại lý:</label>
+                    <div class="input-group">
+                        <input type="text" value="800.000" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group" style="max-width:80px;flex:0 0 80px;">
+                    <label>VAT:</label>
+                    <div class="input-group">
+                        <input type="text" value="8" readonly><span class="input-addon">%</span>
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <label>Quy đổi VAT:</label>
+                    <div class="input-group">
+                        <input type="text" value="185.440" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <label><i class="fas fa-book"></i> Hoa hồng Sale:</label>
+                    <div class="input-group">
+                        <input type="text" value="159.942" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-field-group">
+                    <label>Tổng cước:</label>
+                    <div class="input-group">
+                        <input type="text" value="3.198.000" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <label>Tổng cước Đại lý:</label>
+                    <div class="input-group">
+                        <input type="text" value="1.680.840" readonly><span class="input-addon">VND</span>
+                    </div>
+                </div>
+                <div class="form-field-group" style="flex:2;">
+                    <label>Ghi chú chi phí khác cho Sale:</label>
+                    <div class="input-group">
+                        <input type="text" value="Nhớ chụp lại ảnh kiện nhé Alice" readonly>
                     </div>
                 </div>
             </div>
             <div class="form-actions">
-                <button type="button" class="form-btn form-btn-cancel modal-cancel-button"><i class="fas fa-times"></i> Hủy</button>
-                <button type="button" class="form-btn form-btn-confirm modal-confirm-button"><i class="fas fa-check"></i> Xác nhận</button>
+                <button type="button" class="form-btn form-btn-cancel"><i class="fas fa-times"></i> Hủy</button>
+                <button type="button" class="form-btn form-btn-confirm"><i class="fas fa-check"></i> Xác nhận</button>
             </div>
         </form>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Nút xác nhận
+        const confirmBtn = document.querySelector('.form-btn-confirm');
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', function() {
+                console.log('Đã xác nhận điều chỉnh trị giá đơn hàng!');
+                if (window.parent && typeof window.parent.closeEditModal === 'function') {
+                    window.parent.closeEditModal();
+                } else if (window.closeEditModal) {
+                    window.closeEditModal();
+                } else {
+                    // fallback: thử đóng modal nếu có overlay
+                    const modalOverlay = document.querySelector('.modal-overlay.active');
+                    if (modalOverlay) modalOverlay.classList.remove('active');
+                }
+            });
+        }
+        // Nút hủy
+        const cancelBtn = document.querySelector('.form-btn-cancel');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', function() {
+                if (window.parent && typeof window.parent.closeEditModal === 'function') {
+                    window.parent.closeEditModal();
+                } else if (window.closeEditModal) {
+                    window.closeEditModal();
+                } else {
+                    const modalOverlay = document.querySelector('.modal-overlay.active');
+                    if (modalOverlay) modalOverlay.classList.remove('active');
+                }
+            });
+        }
+    });
+    </script>
 </body>
 </html>

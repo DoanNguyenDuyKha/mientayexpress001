@@ -54,6 +54,23 @@
             padding-left: 4px;
             padding-right: 4px;
         }
+        .edit-package-params-form-correct-id .form-body {
+            overflow-x: auto;
+            min-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-y: hidden;
+        }
+        .edit-package-params-form-correct-id .form-body::-webkit-scrollbar {
+            height: 8px;
+        }
+        .edit-package-params-form-correct-id .form-body::-webkit-scrollbar-thumb {
+            background: #FFD600;
+            border-radius: 4px;
+        }
+        .edit-package-params-form-correct-id .dim-input {
+            min-width: 120px;
+        }
     }
     /* Responsive cho modal */
     @media (max-width: 1100px) {
@@ -256,6 +273,98 @@
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .edit-package-params-form-correct-id {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .edit-package-params-form-correct-id .form-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%);
+        }
+
+        .edit-package-params-form-correct-id .form-body {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: calc(var(--form-spacing-unit) * 2.5);
+            min-width: 600px; /* Đảm bảo nội dung không bị co quá nhỏ */
+        }
+
+        .edit-package-params-form-correct-id .form-body::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .edit-package-params-form-correct-id .form-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .edit-package-params-form-correct-id .form-body::-webkit-scrollbar-thumb {
+            background: var(--form-primary-color);
+            border-radius: 4px;
+        }
+
+        .edit-package-params-form-correct-id .form-body::-webkit-scrollbar-thumb:hover {
+            background: var(--form-primary-hover);
+        }
+
+        .edit-package-params-form-correct-id .form-actions {
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+            background: white;
+            border-top: 1.5px solid var(--form-primary-color);
+        }
+
+        .edit-package-params-form-correct-id .btn {
+            min-width: 120px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .edit-package-params-form-correct-id {
+            border-radius: 8px;
+        }
+
+        .edit-package-params-form-correct-id .form-header,
+        .edit-package-params-form-correct-id .form-body,
+        .edit-package-params-form-correct-id .form-actions {
+            padding: calc(var(--form-spacing-unit) * 1);
+        }
+
+        .edit-package-params-form-correct-id .dimension-headers {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .edit-package-params-form-correct-id .dim-header-label {
+            font-size: 12px;
+            padding: 2px;
+        }
+
+        .edit-package-params-form-correct-id .control-item {
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+
+        .edit-package-params-form-correct-id .form-header h2 {
+            font-size: 1.1rem;
+        }
+
+        .edit-package-params-form-correct-id .form-body {
+            min-width: 500px; /* Giảm kích thước tối thiểu cho màn hình nhỏ hơn */
+        }
+
+        .edit-package-params-form-correct-id .btn {
+            min-width: 100px;
+            font-size: 0.9rem;
+        }
     }
 </style>
 
