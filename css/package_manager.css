@@ -266,7 +266,7 @@ button:disabled {
 .button.warning {
   color: var(--text-on-primary);
   border-color: var(--warning-color);
-  background: var(--danger-color);
+  background: var(--warning-color);
   border: none;
   box-shadow: 0 2px 8px rgba(79,70,229,0.10);
 }
