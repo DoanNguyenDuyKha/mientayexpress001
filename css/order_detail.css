@@ -33,8 +33,8 @@
 
     /* Typography - Updated to match create-package.css */
     --font-family: 'Inter', sans-serif;
-    --base-font-size: 0.55rem;
-    --form-font-size: 0.5rem;
+    --base-font-size: 0.65rem;
+    --form-font-size: 0.7rem;
 
     /* Spacing - Updated to match create-package.css */
     --base-padding: 0.6rem;
@@ -57,21 +57,21 @@
 .order-detail-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.3rem;
+    gap: 10px;
     margin-top: var(--form-gap);
 }
 
 .detail-column-left {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 5px;
     overflow: hidden;
 }
 
 .detail-column-right {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 5px;
     overflow: hidden;
 }
 
@@ -95,7 +95,7 @@
 }
 
 .detail-section .card-header .card-title {
-    font-size: var(--base-font-size);
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-primary);
     font-family: var(--font-family);
@@ -283,7 +283,7 @@
     }
 
     .data-pair .value {
-        font-size: var(--base-font-size);
+        font-size: 0.5rem;
     }
 }
 
@@ -376,7 +376,7 @@ body {
     background-color: var(--bg-color);
     min-height: calc(100vh - 60px);
     padding: var(--base-padding);
-    --base-font-size: 0.5rem; /* Giảm kích thước chữ cho nội dung */
+    --base-font-size: 0.65rem; /* Giảm kích thước chữ cho nội dung */
     --form-gap: 0.1rem; /* Giảm khoảng cách giữa các thành phần nội dung */
 }
 
@@ -575,7 +575,6 @@ body {
 }
 
 .modal-content-wrapper {
-    background-color: var(--card-bg);
     border-radius: 12px;
     box-shadow: var(--shadow-lg);
     width: 100%;
@@ -650,11 +649,14 @@ body {
 .modal-content-wrapper input,
 .modal-content-wrapper select,
 .modal-content-wrapper textarea {
-    padding: 0.3rem;
+    padding: 0.4rem 0.6rem;
     border: 1px solid var(--input-border);
     border-radius: var(--border-radius);
-    font-size: var(--base-font-size);
+    font-size: var(--form-font-size);
     font-family: var(--font-family);
+    color: var(--text-primary);
+    background-color: var(--form-bg);
+    line-height: 1.3;
 }
 
 .modal-content-wrapper input:focus,
@@ -967,4 +969,181 @@ body {
     .modal-content-wrapper .form-footer {
         display: none;
     }
+}
+
+input, select, button, textarea {
+    font-family: inherit;
+    font-size: var(--form-font-size);
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    background-color: var(--form-bg);
+    line-height: 1.3;
+}
+
+.detail-section .card-header .card-title,
+.order-detail-content .detail-section .card-header .card-title {
+    font-size: 0.9rem;
+}
+
+.detail-footer .button,
+.order-detail-content button.button {
+    font-size: var(--form-font-size);
+    padding: 0.4rem 0.8rem;
+}
+
+/* Specific styles for charges table */
+.summary-table.charges-table {
+    table-layout: auto; /* Allow column width to adjust */
+}
+
+.summary-table.charges-table th,
+.summary-table.charges-table td {
+    padding: var(--form-padding);
+    font-size: var(--base-font-size);
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-family);
+    vertical-align: top;
+}
+
+.summary-table.charges-table th:nth-child(1), /* Cước phí */
+.summary-table.charges-table td:nth-child(1) {
+    text-align: left;
+    width: 40%; /* Adjust width as needed */
+}
+
+.summary-table.charges-table th:nth-child(2), /* Tiền cước */
+.summary-table.charges-table td:nth-child(2) {
+    text-align: right;
+    width: 30%; /* Adjust width as needed */
+}
+
+.summary-table.charges-table th:nth-child(3), /* Tạm tính */
+.summary-table.charges-table td:nth-child(3) {
+    text-align: right;
+    width: 30%; /* Adjust width as needed */
+}
+
+.summary-table.charges-table td.highlight {
+    font-weight: 600;
+    color: var(--primary-color); /* Highlight color */
+}
+
+/* Original Table styles - Keep for other tables */
+.detail-section .data-table, .detail-section .summary-table {
+    /* Keep original styles */
+}
+
+.detail-section .data-table th,
+.detail-section .data-table td,
+.detail-section .summary-table th,
+.detail-section .summary-table td {
+   /* Keep original styles */
+}
+
+.detail-section .data-table th, .detail-section .summary-table th {
+    /* Keep original styles */
+}
+
+.detail-section .data-table td.text-center,
+.detail-section .data-table th.text-center {
+    /* Keep original styles */
+}
+
+.detail-section .data-table td.text-right,
+.detail-section .data-table th.text-right {
+   /* Keep original styles */
+}
+
+/* Specific styles for profit table */
+.summary-table.profit-table {
+    table-layout: auto; /* Allow column width to adjust */
+}
+
+.summary-table.profit-table th,
+.summary-table.profit-table td {
+    padding: var(--form-padding);
+    font-size: var(--base-font-size);
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-family);
+    vertical-align: top;
+}
+
+.summary-table.profit-table th:nth-child(1), /* Lợi nhuận */
+.summary-table.profit-table td:nth-child(1) {
+    text-align: left;
+    width: 40%; /* Adjust width as needed */
+}
+
+.summary-table.profit-table th:nth-child(2), /* NET Đại lý */
+.summary-table.profit-table td:nth-child(2) {
+    text-align: right;
+    width: 30%; /* Adjust width as needed */
+}
+
+.summary-table.profit-table th:nth-child(3), /* Tạm tính */
+.summary-table.profit-table td:nth-child(3) {
+    text-align: right;
+    width: 30%; /* Adjust width as needed */
+}
+
+.summary-table.profit-table td.highlight {
+    font-weight: 600;
+    color: var(--primary-color); /* Highlight color */
+}
+
+/* Add styles for the specific weight values within the 'Khối lượng đại lý (KG)' data-pair */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span {
+    display: inline-block; /* Make span act like a block for padding/margin */
+    padding: 2px 5px; /* Add padding around the value */
+    border-radius: 3px; /* Add slight border radius */
+    font-weight: 500; /* Optional: make the text bold */
+    color: var(--text-primary); /* Default text color */
+    margin-right: 5px; /* Add a small gap between the value spans */
+}
+
+/* Remove margin-right from the last value span */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:last-of-type {
+    margin-right: 0; 
+}
+
+/* Style the individual weight values with specific background colors */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(1) { /* First value */
+    background-color: var(--primary-light); /* Light blue */
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(2) { /* Second value */
+    background-color: #fed7aa; /* Light orange - Using a specific hex for closer match */
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(3) { /* Third value */
+    background-color: #dcfce7; /* Light green - Using a specific hex for closer match */
+}
+
+/* Ensure inline buttons within this specific data-pair are styled correctly */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-inline {
+    font-size: var(--base-font-size); /* Match base font size */
+    padding: 3px 6px; /* Adjust padding for inline buttons to match image */
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--text-on-primary); /* White text */
+    display: inline-block; /* Ensure proper sizing */
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-blue { background-color: var(--info-color); }
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-teal { background-color: var(--warning-color); } /* Use warning color for Orange */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-green { background-color: var(--confirm-color); }
+
+/* Adjust inv-mte-badge within this specific data-pair */
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .inv-mte-badge {
+    font-size: var(--base-font-size); /* Match base font size */
+    margin-left: 10px; /* Small gap from value */
+    padding: 3px 8px;
+    border-radius: 15px; /* Make it pill shaped */
+    background-color: var(--confirm-color); /* Green background */
+    color: var(--text-on-primary); /* White text */
+    font-weight: 500;
+    flex-shrink: 0;
 }

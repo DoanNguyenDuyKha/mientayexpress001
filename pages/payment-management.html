@@ -18,7 +18,7 @@
         </div>
         <nav class="menu-items" aria-label="Main Navigation">
             <ul>
-                <li><a href="../index.html" class="active"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
+                <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
                 <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
                 <li>
                     <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
@@ -28,7 +28,7 @@
                             <li><a href="straking-bill-of-lading-status.html"><i class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng thái</span></a></li>
                             <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận chuyển</span></a></li>
                             <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản lý chi nhánh</span></a></li>
-                            <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
+                            <li><a href="payment-management.html" class="active"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
                         </ul>
                     </div>
                 </li>
@@ -137,7 +137,7 @@
                                 <h2>Trị giá đơn hàng</h2>
                             </div>
                              <div class="actions">
-                                <p class="order-value-note">Lưu ý: Tiền tệ được quy đổi theo tỷ lệ do admin nhập sẵn trong cấu hình ( 1USD = 25.500 VNĐ)</p>
+                                <p class="order-value-note">Lưu ý: Tiền tệ được quy đổi theo tỷ lệ bạn nhập ở mục Tỷ giá USD/VNĐ</p>
                                 <button type="button" class="section-toggle-btn"><i class="fas fa-chevron-up"></i></button>
                             </div>
                         </header>
@@ -149,6 +149,11 @@
                                     <span>USD</span>
                                     <button type="button" class="currency-switch-btn"><i class="fa-solid fa-repeat"></i></button>
                                     <input type="text" id="exchange_rate_vnd" value="127.500" readonly>
+                                    <span>VNĐ</span>
+                                </div>
+                                <label for="custom_exchange_rate">Tỷ giá USD/VNĐ:</label>
+                                <div class="input-group">
+                                    <input type="number" id="custom_exchange_rate" value="25500" step="1">
                                     <span>VNĐ</span>
                                 </div>
                                 <label>Tiền cước:</label>
@@ -321,6 +326,7 @@
             const fullscreenBtn = document.getElementById('fullscreen-btn');
             const usdInput = document.getElementById('exchange_rate');
             const vndInput = document.getElementById('exchange_rate_vnd');
+            const customExchangeRateInput = document.getElementById('custom_exchange_rate');
             const currencySwitchBtn = document.querySelector('.currency-switch-btn');
             const form = document.getElementById('payment-status-form');
 
@@ -479,11 +485,11 @@
                 }
             }
 
-            const exchangeRate = 25500;
             function calculateAndUpdateVND() {
                 if (!usdInput || !vndInput) return;
                 const usdValue = parseFloat(usdInput.value) || 0;
-                const vndValue = usdValue * exchangeRate;
+                const currentExchangeRate = parseFloat(customExchangeRateInput.value) || 25500;
+                const vndValue = usdValue * currentExchangeRate;
                 vndInput.value = vndValue.toLocaleString('vi-VN');
             }
 
@@ -556,6 +562,10 @@
             if (usdInput) {
                 usdInput.addEventListener('input', calculateAndUpdateVND);
                 calculateAndUpdateVND();
+            }
+
+            if (customExchangeRateInput) {
+                 customExchangeRateInput.addEventListener('input', calculateAndUpdateVND);
             }
 
             document.querySelectorAll('.confirmation-modal').forEach(modal => {

@@ -33,8 +33,8 @@
 
     /* Typography */
     --font-family: 'Inter', sans-serif;
-    --base-font-size: 0.55rem;
-    --form-font-size: 0.5rem;
+    --base-font-size: 0.65rem;
+    --form-font-size: 0.7rem;
 
     /* Spacing */
     --base-padding: 0.6rem;
@@ -105,7 +105,7 @@ input, select, button, textarea {
     font-size: var(--form-font-size);
     border: 1px solid var(--input-border); /* Sử dụng input-border */
     border-radius: var(--border-radius);
-    padding: 0.3rem 0.5rem; /* Tinh chỉnh padding input */
+    padding: 0.4rem 0.6rem; /* Tăng padding */
     transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Giữ transition */
     color: var(--text-primary);
     background-color: var(--form-bg);
@@ -182,14 +182,19 @@ input[readonly], textarea[readonly] {
 }
 
 /* Layout */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .content-wrapper {
+    flex: 1 0 auto;
     padding: var(--base-padding);
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
-    min-height: 100vh; /* Ensure content-wrapper is at least full viewport height */
     position: relative;
     overflow: visible; /* Allow content to overflow and be scrolled by body */
 }
@@ -240,14 +245,14 @@ input[readonly], textarea[readonly] {
     display: flex;
     flex-direction: column;
     flex-grow: 1; /* Allow form to grow */
-    padding-bottom: calc(var(--base-padding) + 60px); /* Add padding bottom to make space for footer */
+    padding-bottom: 0; /* Add padding bottom to make space for footer */
 }
 
 .form-layout {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--form-gap);
-    align-items: start;
+    gap: 10px;
+    align-items: stretch;
     flex-grow: 1;
     margin-bottom: var(--base-padding);
     min-height: 0;
@@ -256,7 +261,7 @@ input[readonly], textarea[readonly] {
 .form-column-left, .form-column-right {
     display: flex;
     flex-direction: column;
-    gap: var(--form-gap); /* Gap between cards in a column */
+    gap: 10px; /* Gap between cards in a column */
     min-width: 0;
 }
 
@@ -369,7 +374,7 @@ input[readonly], textarea[readonly] {
 .form-group textarea {
     width: 100%;
     font-size: var(--form-font-size);
-    padding: 0.25rem 0.4rem;
+    padding: 0.35rem 0.5rem; /* Tăng padding */
     border: 1px solid var(--input-border); /* Sử dụng input-border */
     border-radius: var(--border-radius);
     transition: all var(--transition-speed) ease; /* Giữ transition */
@@ -491,7 +496,7 @@ input[readonly], textarea[readonly] {
 
 /* Form Actions Footer */
 footer.form-actions {
-    padding: 0.5rem var(--base-padding);
+    padding: 0.8rem var(--base-padding);
     background-color: var(--card-bg);
     border-top: 1px solid var(--border-light);
     display: flex;
@@ -502,11 +507,9 @@ footer.form-actions {
     margin-top: var(--base-padding);
     flex-shrink: 0;
     box-shadow: 0 -2px 4px -1px rgba(0,0,0,0.05);
-    position: absolute; /* Position absolutely at the bottom of the form */
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative; /* Thay đổi từ absolute sang relative */
     width: 100%;
+    margin-bottom: 0.3rem;
 }
 
 .form-actions .terms-agreement {
@@ -557,8 +560,8 @@ footer.form-actions {
     align-items: center;
     gap: 0.4rem; /* Tinh chỉnh gap icon và text */
     font-weight: 600;
-    padding: 0.3rem 0.6rem;
-    font-size: 0.65rem;
+    padding: 0.4rem 0.8rem; /* Tăng padding */
+    font-size: 0.7rem; /* Tăng font size */
     white-space: nowrap;
     border-radius: var(--border-radius);
     transition: all var(--transition-speed); /* Giữ transition */
@@ -598,14 +601,14 @@ footer.form-actions {
 
 /* Site Footer */
 .site-footer {
-    margin-top: auto;
+    flex-shrink: 0;
+    margin-top: 0.3rem;
     padding: 0.8rem var(--base-padding);
     text-align: center;
     font-size: 0.65rem;
     color: var(--text-secondary);
     border-top: 1px solid var(--border-light);
     background-color: var(--bg-color);
-    flex-shrink: 0;
     position: relative;
     z-index: 1;
 }
@@ -844,11 +847,11 @@ footer.form-actions {
       }
 
     #create-order-form {
-         padding-bottom: calc(var(--base-padding) + 120px); /* Increase padding for smaller screens */
+         padding-bottom: var(--base-padding); /* Bỏ padding bottom cố định */
     }
 
     footer.form-actions {
-        position: relative;
+        position: relative; /* Đảm bảo footer luôn relative */
         bottom: auto;
         left: auto;
         right: auto;
@@ -942,7 +945,7 @@ footer.form-actions {
       }
 
     #create-order-form {
-        padding-bottom: calc(var(--base-padding) + 180px); /* Further increase padding */
+        padding-bottom: var(--base-padding); /* Bỏ padding bottom cố định */
     }
 }
 
@@ -1015,7 +1018,7 @@ footer.form-actions {
       }
 
     #create-order-form {
-        padding-bottom: calc(var(--base-padding) + 200px); /* Adjust padding for very small screens */
+        padding-bottom: var(--base-padding); /* Bỏ padding bottom cố định */
     }
 }
 
@@ -1130,4 +1133,9 @@ a {
     z-index: 2;
     background-color: var(--card-bg);
     width: 100%;
+}
+
+.form-column-left > .form-section:first-child, /* Sender Section */
+.form-column-right > .form-section:first-child { /* Receiver Section */
+    flex: 1; /* Allow both the Sender and Receiver sections to grow and shrink */
 }

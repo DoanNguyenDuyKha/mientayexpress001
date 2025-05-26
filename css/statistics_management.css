@@ -331,8 +331,8 @@
 }
 
 .national-details-table th {
-    background: linear-gradient(90deg, var(--gradient-primary-start) 0%, var(--gradient-primary-end) 100%);
-    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+    color: gray;
     font-weight: 700;
     border-bottom: 2px solid #e5e7eb;
     letter-spacing: 0.5px;
@@ -569,7 +569,7 @@ input[readonly], textarea[readonly] {
 }
 
 .kpi-title {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-weight: 600;
 }
 
@@ -610,7 +610,7 @@ input[readonly], textarea[readonly] {
 .report-title {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--primary-hover);
+    color: var(--sidebar-active-text);
     margin: 0;
 }
 
@@ -775,8 +775,8 @@ input[readonly], textarea[readonly] {
 .personnel-checkbox-item label:hover .person-name { color: var(--gradient-primary-start); }
 .personnel-checkbox-item i.fa-medal { font-size: 0.9em; margin-left: auto; }
 
-.layout-grid .kpi-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--base-padding); margin-bottom: var(--base-padding); }
-.layout-grid .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--base-padding); margin-bottom: var(--base-padding); }
+.layout-grid .kpi-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 10px; }
+.layout-grid .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: var(--base-padding); }
 .layout-grid #service-volume-report { grid-column: 1 / 2; }
 .layout-grid #revenue-profit-report { grid-column: 2 / 3; }
 .layout-grid #national-usage-report { grid-column: 1 / 2; }

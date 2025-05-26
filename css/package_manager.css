@@ -380,7 +380,7 @@ button:disabled {
   min-height: var(--header-height);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: justify-content var(--transition-speed) ease, padding var(--transition-speed) ease;
-  background: black;
+  background: var(--sidebar-bg) !important;
   backdrop-filter: blur(10px);
 }
 
@@ -2760,4 +2760,72 @@ button:disabled {
     margin-right: 0 !important;
     white-space: nowrap;
   }
+}
+
+/* Image Modal Styles */
+.image-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Darker background */
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+    display: flex !important;
+}
+
+.image-modal-content {
+    position: relative;
+    max-width: 95%;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-modal-content img {
+    display: block;
+    max-width: 100%;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.image-modal-close-btn {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.image-modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
 }

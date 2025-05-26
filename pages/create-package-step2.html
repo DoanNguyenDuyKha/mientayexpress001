@@ -154,6 +154,7 @@
                                   </div>
                                    </div>
                                    <div class="summary-body-like">
+                                       <!-- Container for the 2x2 grid sections -->
                                        <!-- Editable Sender Info -->
                                        <div class="summary-grid-2col editable-sender-row">
                                            <label class="summary-label">Người gửi:</label>
@@ -164,54 +165,62 @@
                                            </div>
                                        </div>
 
-                                          <div class="summary-grid-2col">
-                                           <div class="summary-label">Mã đơn hàng:</div> <div class="summary-value"><div class="summary-value-box" id="summary-order-code"></div></div>
-                                           <div class="summary-label">REF Code:</div> <div class="summary-value"><div class="summary-value-box" id="summary-ref-code"></div></div>
-                                          </div>
-
-                                       <hr class="summary-separator">
-
-                                       <div class="summary-section-block">
-                                           <div class="summary-section-title"><i class="fas fa-user icon"></i> 1. Người gửi</div>
+                                          <div class="summary-codes-container">
                                            <div class="summary-grid-2col">
-                                                <div class="summary-label">Tên công ty:</div> <div class="summary-value" id="summary-sender-company"></div>
-                                                <div class="summary-label">Địa chỉ:</div> <div class="summary-value" id="summary-sender-address"></div>
-                                                <div class="summary-label">Số điện thoại:</div> <div class="summary-value" id="summary-sender-phone"></div>
-                                                <div class="summary-label">Thành phố:</div> <div class="summary-value" id="summary-sender-city-details"></div>
-                                                <div class="summary-label">Quốc gia:</div> <div class="summary-value" id="summary-sender-country-zip"></div>
-                                      </div>
-                                  </div>
+                                            <div class="summary-label">Mã đơn hàng:</div> <div class="summary-value"><div class="summary-value-box" id="summary-order-code"></div></div>
+                                            <div class="summary-label">REF Code:</div> <div class="summary-value"><div class="summary-value-box" id="summary-ref-code"></div></div>
+                                           </div>
+                                         </div>
 
                                        <hr class="summary-separator">
 
-                                       <div class="summary-section-block">
-                                             <div class="summary-section-title"><i class="fas fa-box-open icon"></i> 2. Người nhận</div>
-                                             <div class="summary-grid-2col">
-                                                  <div class="summary-label">Tên công ty:</div> <div class="summary-value" id="summary-receiver-company"></div>
-                                                  <div class="summary-label">Tên người nhận:</div> <div class="summary-value" id="summary-receiver-name"></div>
-                                                  <div class="summary-label">Địa chỉ:</div> <div class="summary-value" id="summary-receiver-address"></div>
-                                                  <div class="summary-label">Số điện thoại:</div> <div class="summary-value" id="summary-receiver-phones"></div>
-                                                  <div class="summary-label">Thành phố:</div> <div class="summary-value" id="summary-receiver-city-state"></div>
-                                                  <div class="summary-label">Quốc gia:</div> <div class="summary-value" id="summary-receiver-country-zip"></div>
-                                  </div>
-                                  </div>
+                                       <!-- Container for the 2x2 grid sections -->
+                                       <div class="summary-sections-grid">
+                                           <!-- Section 1. Người gửi -->
+                                        <div class="summary-section-block">
+                                            <div class="summary-section-title"><i class="fas fa-user icon"></i> 1. Người gửi</div>
+                                            <div class="summary-grid-2col">
+                                                 <div class="summary-label">Tên công ty:</div> <div class="summary-value" id="summary-sender-company"></div>
+                                                 <div class="summary-label">Địa chỉ:</div> <div class="summary-value" id="summary-sender-address"></div>
+                                                 <div class="summary-label">Số điện thoại:</div> <div class="summary-value" id="summary-sender-phone"></div>
+                                                 <div class="summary-label">Thành phố:</div> <div class="summary-value" id="summary-sender-city-details"></div>
+                                                 <div class="summary-label">Quốc gia:</div> <div class="summary-value" id="summary-sender-country-zip"></div>
+                                       </div>
+                                   </div>
 
                                         <hr class="summary-separator">
 
-                                       <div class="summary-section-block">
-                                            <div class="summary-section-title"><i class="fas fa-truck icon"></i> 3. Dịch vụ</div>
-                                             <div class="summary-grid-2col">
-                                               <div class="summary-label">Dịch vụ:</div> <div class="summary-value" id="summary-service-type"></div>
-                                               <div class="summary-label">Chi nhánh:</div> <div class="summary-value" id="summary-branch"></div>
-                                               <div class="summary-label">Dịch vụ kèm:</div> <div class="summary-value" id="summary-add-service"></div>
-                                               <div class="summary-label">Loại bưu gửi:</div> <div class="summary-value" id="summary-package-type"></div>
-                                               <div class="summary-label">Hình thức gửi hàng:</div> <div class="summary-value" id="summary-pickup-method"></div>
-                                  </div>
-                                  </div>
+                                           <!-- Section 2. Người nhận -->
+                                        <div class="summary-section-block">
+                                              <div class="summary-section-title"><i class="fas fa-box-open icon"></i> 2. Người nhận</div>
+                                              <div class="summary-grid-2col">
+                                                   <div class="summary-label">Tên công ty:</div> <div class="summary-value" id="summary-receiver-company"></div>
+                                                   <div class="summary-label">Tên người nhận:</div> <div class="summary-value" id="summary-receiver-name"></div>
+                                                   <div class="summary-label">Địa chỉ:</div> <div class="summary-value" id="summary-receiver-address"></div>
+                                                   <div class="summary-label">Số điện thoại:</div> <div class="summary-value" id="summary-receiver-phones"></div>
+                                                   <div class="summary-label">Thành phố:</div> <div class="summary-value" id="summary-receiver-city-state"></div>
+                                                   <div class="summary-label">Quốc gia:</div> <div class="summary-value" id="summary-receiver-country-zip"></div>
+                                   </div>
+                                   </div>
 
-                                        <hr class="summary-separator">
+                                         <hr class="summary-separator">
 
-                                       <div class="summary-section-block">
+                                           <!-- Section 3. Dịch vụ -->
+                                        <div class="summary-section-block">
+                                             <div class="summary-section-title"><i class="fas fa-truck icon"></i> 3. Dịch vụ</div>
+                                              <div class="summary-grid-2col">
+                                                <div class="summary-label">Dịch vụ:</div> <div class="summary-value" id="summary-service-type"></div>
+                                                <div class="summary-label">Chi nhánh:</div> <div class="summary-value" id="summary-branch"></div>
+                                                <div class="summary-label">Dịch vụ kèm:</div> <div class="summary-value" id="summary-add-service"></div>
+                                                <div class="summary-label">Loại bưu gửi:</div> <div class="summary-value" id="summary-package-type"></div>
+                                                <div class="summary-label">Hình thức gửi hàng:</div> <div class="summary-value" id="summary-pickup-method"></div>
+                                       </div>
+                                       </div>
+
+                                         <hr class="summary-separator">
+
+                                           <!-- Section 4. Yêu cầu -->
+                                        <div class="summary-section-block">
                                            <div class="summary-section-title"><i class="fas fa-exclamation-circle icon"></i> 4. Yêu cầu</div>
                                             <div class="summary-grid-2col">
                                                <div class="summary-label">Yêu cầu:</div> <div class="summary-value" id="summary-bill-status"></div>
@@ -220,6 +229,7 @@
                                                <div class="summary-label">CS xử lý:</div> <div class="summary-value" id="summary-cs-handler"></div>
                                             </div>
                                         </div>
+                                      </div> <!-- End of summary-sections-grid -->
                                    </div>
                                  </div>
                          </div>

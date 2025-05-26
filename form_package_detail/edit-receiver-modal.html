@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa Người nhận</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+    <style>
+        .edit-receiver-form {
+            --form-primary-color: #FFD600;
+            --form-primary-hover: #FFB300;
+            --form-secondary-color: #181818;
+            --form-success-color: #FFD600;
+            --form-danger-color: #EF4444;
+            --form-light-gray: #f8f9fa;
+            --form-input-bg: #fff;
+            --form-input-readonly-bg: #e9ecef;
+            --form-border-color: rgba(255, 214, 0, 0.2);
+            --form-border-color-light: #eee;
+            --form-text-color: #181818;
+            --form-text-muted: #64748b;
+            --form-border-radius: 12px;
+            --form-spacing-unit: 10px;
+            --form-control-padding-y: 10px;
+            --form-control-padding-x: 16px;
+            --form-font-size-base: 12px;
+            --form-font-size-sm: 10px;
+            --form-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --form-shadow-lg: 0 10px 15px rgba(0,0,0,0.10);
+            --form-transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-family: var(--form-font-family);
+            font-size: var(--form-font-size-base);
+            color: var(--form-text-color);
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            border: none;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .edit-receiver-form .form-header {
+            background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%);
+            color: var(--form-primary-color) !important;
+            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5) !important;
+            flex-shrink: 0;
+            border-bottom: 1.5px solid var(--form-primary-color) !important;
+            border-top-left-radius: var(--form-border-radius);
+            border-top-right-radius: var(--form-border-radius);
+            display: flex;
+            align-items: center;
+        }
+        .edit-receiver-form .form-header h2 {
+            font-size: 1.18rem !important;
+            font-weight: 700 !important;
+            color: var(--form-secondary-color);
+            margin:0; display: flex; align-items: center; gap: 0.75rem;
+        }
+        .edit-receiver-form .form-header h2::before { content: '\f044'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 1.4em; color: var(--form-secondary-color); }
+        .edit-receiver-form .form-body { padding: calc(var(--form-spacing-unit) * 1.5) !important; background-color: var(--form-input-bg) !important; flex-grow: 1; overflow-y: auto; }
+        .edit-receiver-form .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px 20px; }
+        @media (max-width: 600px) { .edit-receiver-form .form-grid { grid-template-columns: 1fr; gap: 15px 0; } }
+        .edit-receiver-form .form-group { display: flex; flex-direction: column; gap: calc(var(--form-spacing-unit) * 0.6); margin-bottom: 12px; }
+        .edit-receiver-form .form-group-address { grid-column: span 2; } /* Địa chỉ kéo dài 2 cột */
+        .edit-receiver-form .form-label { font-weight: 600; color: var(--form-secondary-color); font-size: var(--form-font-size-base); margin-bottom: 2px; }
+        .edit-receiver-form .form-control {
+            width: 100%;
+            padding: var(--form-control-padding-y) var(--form-control-padding-x);
+            border: 1.5px solid #ffd600;
+            border-radius: var(--form-border-radius);
+            background-color: #fff;
+            font-size: var(--form-font-size-base);
+            font-family: var(--form-font-family);
+            color: var(--form-text-color);
+            line-height: 1.5;
+            transition: var(--form-transition);
+            min-height: calc(1.5em + var(--form-control-padding-y) * 2 + 2px);
+            box-sizing: border-box;
+        }
+        .edit-receiver-form .form-control:focus { border-color: #FFD600; outline: 0; box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15); }
+        .edit-receiver-form .form-actions { padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5); background: white; border-top: 1.5px solid var(--form-primary-color); display: flex; justify-content: flex-end; gap: var(--form-spacing-unit); flex-shrink: 0; border-bottom-left-radius: var(--form-border-radius); border-bottom-right-radius: var(--form-border-radius); }
+        .edit-receiver-form .form-btn { gap: calc(var(--form-spacing-unit) * 0.8); padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5); font-size: var(--form-font-size-base); font-weight: 600; border-radius: var(--form-border-radius); border: 1.5px solid transparent; cursor: pointer; transition: var(--form-transition); line-height: 1.4; white-space: nowrap; min-width: 100px; }
+        .edit-receiver-form .form-btn-cancel { background-color: transparent; color: var(--form-primary-color); border-color: var(--form-primary-color); }
+        .edit-receiver-form .form-btn-cancel:hover { background-color: var(--form-primary-color); color: var(--form-secondary-color); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); }
+        .edit-receiver-form .form-btn-confirm { background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%); color: var(--form-secondary-color); border: none; box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15); }
+        .edit-receiver-form .form-btn-confirm:hover { background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); }
+        .edit-receiver-form .form-btn:focus-visible { outline: 1.5px solid var(--form-primary-color); outline-offset: 1px; box-shadow: none; }
+        .edit-receiver-form .form-btn:active { transform: scale(0.98); }
+    </style>
+</head>
+<body>
+    <div class="edit-receiver-form">
+        <div class="form-header">
+            <h2>Chỉnh sửa Người nhận</h2>
+        </div>
+        <form id="editReceiverForm">
+            <div class="form-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="receiverCompanyNameInput">Tên công ty:</label>
+                        <input type="text" id="receiverCompanyNameInput" class="form-control" name="receiver_company">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="receiverNameInput">Họ và Tên:</label>
+                        <input type="text" id="receiverNameInput" class="form-control" name="receiver_name">
+                    </div>
+                     <div class="form-group">
+                        <label class="form-label" for="receiverPhone1Input">Số điện thoại 1:</label>
+                        <input type="text" id="receiverPhone1Input" class="form-control" name="receiver_phone1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="receiverPhone2Input">Số điện thoại 2:</label>
+                        <input type="text" id="receiverPhone2Input" class="form-control" name="receiver_phone2">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="receiverCityInput">Thành phố:</label>
+                        <input type="text" id="receiverCityInput" class="form-control" name="receiver_city">
+                    </div>
+                     <div class="form-group">
+                        <label class="form-label" for="receiverCountryInput">Quốc gia:</label>
+                        <input type="text" id="receiverCountryInput" class="form-control" name="receiver_country">
+                    </div>
+                    <div class="form-group form-group-address"> <!-- Địa chỉ kéo dài 2 cột -->
+                        <label class="form-label" for="receiverAddressInput">Địa chỉ:</label>
+                        <textarea id="receiverAddressInput" class="form-control" name="receiver_address" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="form-btn form-btn-cancel" id="cancelEditReceiver">Hủy</button>
+                <button type="submit" class="form-btn form-btn-confirm">Xác nhận</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Function to populate the form with data from localStorage
+        function populateReceiverModal() {
+            const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+            document.getElementById('receiverCompanyNameInput').value = orderData.receiver_company || '';
+            document.getElementById('receiverNameInput').value = orderData.receiver_name || '';
+            document.getElementById('receiverPhone1Input').value = orderData.receiver_phone1 || '';
+            document.getElementById('receiverPhone2Input').value = orderData.receiver_phone2 || '';
+            document.getElementById('receiverAddressInput').value = orderData.receiver_address || '';
+            document.getElementById('receiverCityInput').value = orderData.receiver_city || '';
+            document.getElementById('receiverCountryInput').value = orderData.receiver_country || '';
+        }
+
+        // Handle Cancel button
+        document.getElementById('cancelEditReceiver').onclick = function() {
+            // Close the modal (assuming it's loaded in an iframe)
+            window.parent && window.parent.closeEditModal ? window.parent.closeEditModal() : window.close();
+        };
+
+        // Handle form submission (Confirm button)
+        document.getElementById('editReceiverForm').onsubmit = function(e) {
+            e.preventDefault();
+
+            // Get data from form
+            const receiver_company = document.getElementById('receiverCompanyNameInput').value;
+            const receiver_name = document.getElementById('receiverNameInput').value;
+            const receiver_phone1 = document.getElementById('receiverPhone1Input').value;
+            const receiver_phone2 = document.getElementById('receiverPhone2Input').value;
+            const receiver_address = document.getElementById('receiverAddressInput').value;
+            const receiver_city = document.getElementById('receiverCityInput').value;
+            const receiver_country = document.getElementById('receiverCountryInput').value;
+
+            // Load existing data from localStorage
+            const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+
+            // Update receiver data
+            orderData.receiver_company = receiver_company;
+            orderData.receiver_name = receiver_name;
+            orderData.receiver_phone1 = receiver_phone1;
+            orderData.receiver_phone2 = receiver_phone2;
+            orderData.receiver_address = receiver_address;
+            orderData.receiver_city = receiver_city;
+            orderData.receiver_country = receiver_country;
+
+            // Save updated data back to localStorage
+            localStorage.setItem('currentOrderDetail', JSON.stringify(orderData));
+
+            // Reload the parent page to update the main interface
+            window.parent && window.parent.location ? window.parent.location.reload() : window.location.reload();
+        };
+
+        // Expose populate function to parent window if needed (for iframe)
+        window.populateReceiverModal = populateReceiverModal;
+
+        // Populate the modal when it's loaded
+        populateReceiverModal();
+
+    </script>
+</body>
+</html>

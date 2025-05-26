@@ -34,8 +34,8 @@
 
     /* Typography */
     --font-family: 'Inter', sans-serif;
-    --base-font-size: 0.55rem;
-    --form-font-size: 0.5rem;
+    --base-font-size: 0.65rem;
+    --form-font-size: 0.7rem;
 
     /* Spacing */
     --base-padding: 0.6rem;
@@ -251,7 +251,7 @@ input[readonly], textarea[readonly] {
 
 /* Layout for the main content columns (summary and data sections) */
 .main-content-grid {
-    display: grid;
+    display: table-column;
     grid-template-columns: 1fr 1.5fr; /* Keep your current column ratio */
     gap: var(--form-gap); /* Use form gap */
     flex-grow: 0; /* Changed from 1 */
@@ -283,7 +283,7 @@ input[readonly], textarea[readonly] {
     overflow: hidden;
     background-color: var(--card-bg); /* Use card bg */
     box-shadow: var(--shadow-md); /* Use md shadow */
-    margin-bottom: 0; /* Gap handled by column */
+    margin-bottom: 10px; /* Gap handled by column */
 }
 
 .summary-header-like, .data-section .card-header {
@@ -330,11 +330,28 @@ input[readonly], textarea[readonly] {
     padding: var(--form-padding); /* Use form padding */
 }
 
-.summary-grid-2col {
+.summary-sections-grid {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.08rem var(--form-gap); /* Use form gap */
-    align-items: start;
+    grid-template-columns: 1fr 1fr; /* Two equal columns (5:5 ratio) */
+    grid-template-rows: auto auto; /* Two rows, height determined by content */
+    gap: var(--form-gap); /* Gap between grid items */
+    grid-template-areas:
+        "senderSection servicesSection"
+        "receiverSection billSection"; /* Define grid areas for the desired layout */
+}
+
+/* Assign grid areas to the summary sections within the grid */
+.summary-sections-grid > .summary-section-block:nth-of-type(1) { /* 1. Người gửi */
+    grid-area: senderSection;
+}
+.summary-sections-grid > .summary-section-block:nth-of-type(2) { /* 2. Người nhận */
+    grid-area: receiverSection;
+}
+.summary-sections-grid > .summary-section-block:nth-of-type(3) { /* 3. Dịch vụ */
+    grid-area: servicesSection;
+}
+.summary-sections-grid > .summary-section-block:nth-of-type(4) { /* 4. Yêu cầu */
+    grid-area: billSection;
 }
 
 .summary-label {
@@ -363,7 +380,7 @@ input[readonly], textarea[readonly] {
     line-height: 1.3; /* Ensure line height consistency */
     box-sizing: border-box;
     display: inline-block; /* Ensure it behaves like an inline block */
-    min-width: 50px; /* Ensure a minimum width */
+    min-width: 100%; /* Ensure a minimum width */
 }
 
 .summary-separator {
@@ -466,7 +483,7 @@ input[readonly], textarea[readonly] {
 
 
 .data-section .header-note {
-    font-size: 0.45rem; /* Keep small */
+    font-size: 0.8rem; /* Keep small */
     color: var(--text-secondary);
     display: flex;
     align-items: center;
@@ -741,7 +758,7 @@ textarea {
 }
 
 .data-table .col-action {
-    width: 25px;
+    width: 20px; /* Adjusted width */
     text-align: center;
     padding: 0.15rem 0.1rem; /* Adjusted padding */
 }
@@ -750,13 +767,13 @@ textarea {
 .data-table .col-unit,
 .data-table .col-price,
 .data-table .col-total {
-    width: 45px;
+    width: 110px;
     white-space: nowrap;
 }
 
 .data-table .col-name {
     width: auto;
-    min-width: 80px;
+    min-width: 60px;
 }
 
 .data-table tfoot strong {
@@ -976,13 +993,45 @@ footer.content-actions {
 }
 
 @media (max-width: 768px) {
+    /* Stack the code container grid */
+    .summary-codes-container .summary-grid-2col {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem; /* Space between stacked code pairs */
+    }
+
+    /* Stack the four main sections into a single column */
+    .summary-sections-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem; /* Space between the main sections */
+    }
+
+    /* Ensure content within each summary section stacks correctly */
+    .summary-sections-grid .summary-section-block {
+        margin-bottom: 0; /* Remove default margin */
+    }
+
+    /* Stack label and value vertically within each pair */
+    .summary-grid-2col {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem; /* Small gap between label and value */
+        align-items: flex-start; /* Align text to the left */
+        margin-bottom: 0.3rem; /* Space below each label-value pair */
+    }
+
+    .summary-grid-2col:last-child {
+         margin-bottom: 0; /* Remove margin for the last pair in a section */
+    }
+
     .summary-header-like, .data-section .card-header,
     .summary-body-like, .data-section .card-body {
-        padding: 0.4rem; /* Adjusted padding */
+        padding: 0.3rem; /* Adjusted padding */
     }
 
      .summary-header-left, .data-section .card-header .card-title {
-         font-size: 0.75rem; /* Adjusted size */
+         font-size: 0.7rem; /* Adjusted size */
          gap: 0.2rem; /* Adjusted gap */
      }
 
@@ -997,19 +1046,19 @@ footer.content-actions {
 
     .summary-label,
     .summary-value {
-        font-size: 0.65rem; /* Adjusted size */
+        font-size: 0.6rem; /* Adjusted size */
     }
 
      .summary-separator {
-         margin: 0.4rem 0; /* Adjusted margin */
+         margin: 0.3rem 0; /* Adjusted margin */
      }
 
      .summary-section-block {
-         margin-bottom: 0.4rem; /* Adjusted margin */
+         margin-bottom: 0.3rem; /* Adjusted margin */
      }
 
      .summary-section-title {
-         font-size: 0.7rem; /* Adjusted size */
+         font-size: 0.65rem; /* Adjusted size */
          gap: 0.2rem; /* Adjusted gap */
          margin-bottom: 0.3rem; /* Adjusted margin */
      }
@@ -1325,3 +1374,25 @@ footer.content-actions {
 
 /* Ensure sidebar and header styles are not conflicting - if needed copy relevant styles from package_manager.css or create-package.css */
 /* For simplicity, assuming general layout/sidebar/header styles are handled by package_manager.css or a shared file */
+
+/* Style for the Mã đơn hàng and REF Code container */
+.summary-codes-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Adjust gap as needed */
+    margin-bottom: var(--form-gap); /* Add space below */
+}
+
+/* Ensure the inner grid for codes doesn't take full width */
+.summary-codes-container .summary-grid-2col {
+    display: grid; /* Use flex for inner layout */
+    align-items: center;
+    gap: 0.5rem; /* Gap between label and value box */
+}
+
+.summary-grid-2col {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Creates two columns, first auto-sized, second takes remaining space */
+    gap: 0.15rem 0.3rem; /* Adjusted gap */
+     align-items: start; /* Align items to the start (top) of their grid area */
+}

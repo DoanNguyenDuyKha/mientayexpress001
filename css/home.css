@@ -94,14 +94,14 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 .welcome-header h1 {
-    font-size: 1.8rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.2rem;
     letter-spacing: 1px;
 }
 .welcome-header p {
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: var(--text-secondary);
 }
 
@@ -129,7 +129,7 @@ body {
     transform: translateY(-5px);
     box-shadow: var(--shadow-md);
     border-color: var(--primary-hover);
-    background: var(--primary-hover);
+    background: var(--border-light);
 }
 .stat-icon {
     flex-shrink: 0;
@@ -162,7 +162,7 @@ body {
     letter-spacing: 1px;
 }
 .stat-label {
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: var(--text-secondary);
     font-weight: 500;
     opacity: 0.9;
@@ -251,7 +251,7 @@ body {
     margin-bottom: var(--reduced-gap);
 }
 .recent-activity h2 {
-    font-size: 1.1rem;
+    font-size: 1.35rem;
     font-weight: 700;
     padding: var(--reduced-padding) var(--card-padding);
     margin: 0;
@@ -275,7 +275,7 @@ body {
     background: #f8fafc;
     box-shadow: 0 1px 6px #6366f111;
     transition: background 0.2s, box-shadow 0.2s;
-    font-size: 0.9em;
+    font-size: 1.15em;
 }
 #activity-list li:hover {
     background: #e0e7ff;
@@ -306,6 +306,7 @@ body {
     color: var(--text-secondary);
     line-height: 1.4;
     font-weight: 500;
+    font-size: 1.18em;
 }
 .activity-desc strong {
     color: var(--text-primary);
@@ -317,7 +318,7 @@ body {
 }
 .activity-time {
     flex-shrink: 0;
-    font-size: 0.85em;
+    font-size: 1.08em;
     color: var(--text-secondary);
     white-space: nowrap;
     font-weight: 600;
@@ -514,4 +515,9 @@ body {
 
 .main-content, .content-wrapper {
     font-size: 10px;
+}
+
+.action-buttons-group .button {
+    font-size: 1.15em;
+    padding: 0.8em 1.6em;
 }

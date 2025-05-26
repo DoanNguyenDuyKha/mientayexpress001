@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết đơn hàng - MTE192775 - Miền Tây Express</title>
+    <title>Chi tiết đơn hàng - MTE192775 - Minh Khôi Logistics</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/order_detail.css">
     <link rel="stylesheet" href="../css/package_manager.css">
@@ -12,7 +12,7 @@
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="logo-bg">
-                <img src="../images/newlogo2.png" alt="Mien Tay Express Logo" class="logo">
+                <img src="../images/newlogo2-removebg.png" alt="Minh Khôi Logistics Logo" class="logo">
             </div>
         </div>
         <nav class="menu-items" aria-label="Main Navigation">
@@ -130,13 +130,15 @@
                             </div>
                             <div class="header-actions">
                                 <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                <button class="icon-button edit-section" title="Chỉnh sửa toàn bộ thông tin">
+                                    <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="card-body section-body bill-info-body">
                              <div class="data-pair">
                                 <span class="label">Mã đơn hàng:</span>
                                 <span class="value">MTE192775</span>
-                                <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa Mã đơn"></i>
                             </div>
                              <div class="data-pair">
                                 <span class="label">REF Code:</span>
@@ -149,7 +151,6 @@
                             <div class="data-pair">
                                 <span class="label">Người tạo:</span>
                                 <span class="value">PHẠM HOÀNG BÌNH</span>
-                                <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa REF"></i>
                             </div>
                              <div class="data-pair">
                                 <span class="label">Trạng thái:</span>
@@ -157,12 +158,10 @@
                                     <span class="status-badge status-processing">Đang vận chuyển</span>
                                 </span>
                                 <span class="status-trigger" title="Chỉnh sửa trạng thái">Xem hành trình </span>
-                                <i class="fa-solid fa-pencil edit-value-icon" id="editStatusTrigger" title="Chỉnh sửa trạng thái"></i>
                             </div>
                              <div class="data-pair">
                                 <span class="label">Dịch vụ chuyển phát:</span>
                                 <span class="value" id="serviceNameValue">MTE DHL-SIN</span>
-                                <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa dịch vụ" id="editServiceInfoTrigger"></i>
                             </div>
                              <div class="data-pair">
                                 <span class="label">Dịch vụ cộng thêm:</span>
@@ -171,7 +170,6 @@
                             <div class="data-pair">
                                 <span class="label">Ghi chú:</span>
                                 <span class="value multiline">Nhận tại Bưu cục Rhode Island, Tên chính thức Tiểu bang Rhode Island, là một tiểu bang nằm trong vùng New England của Hoa Kỳ</span>
-                                <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa ghi chú"></i>
                             </div>
                         </div>
                     </section>
@@ -179,13 +177,15 @@
                     <section class="card detail-section">
                         <div class="card-header section-header">
                             <div class="header-left"> <h2 class="card-title">Thông số kiện hàng</h2> </div>
-                            <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button> </div>
+                            <div class="header-actions">
+                                <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                <button class="icon-button" id="editPackageDetailBtn" title="Chỉnh sửa Thông số kiện hàng"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
                         </div>
                         <div class="card-body section-body agent-invoice-body table-scroll">
                              <div class="data-pair">
                                  <span class="label">Nội dung hàng:</span>
                                  <span class="value" id="packageContentValue">Hàng cá nhân</span>
-                                 <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa thông số kiện hàng" id="editPackageParamsTrigger"></i>
                              </div>
                              <div class="data-pair" style="align-items: center;">
                                  <span class="label">Khối lượng đại lý (KG):</span>
@@ -197,14 +197,12 @@
                                      <span class="btn-inline btn-teal">L</span>
                                      <span class="btn-inline btn-green">INV</span>
                                  </span>
-                                 <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa thông số Kiện hàng (Reweight)" id="editAgentReweightTrigger"></i>
                              </div>
                              <div class="agent-invoice-dim-grid"></div>
                              <div class="agent-invoice-dim-grid"></div>
                              <div class="data-pair">
                                  <span class="label">Export as:</span>
                                  <span class="value">Gif (no commercial value)</span>
-                                 <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa nội dung"></i>
                             </div>
                              <div class="export-details-line" style="display: flex; align-items: center; justify-content: space-between;">
                                  <div class="left-group" style="display: flex; align-items: center; gap: 15px;">
@@ -215,11 +213,6 @@
                                          <option>Kiện 03</option>
                                      </select>
                                      <span class="label" style="margin-left: 15px;"><strong>Giá trị hóa đơn:</strong> 50 USD</span>
-                                 </div>
-                                 <div class="right-group" style="margin-left: auto;">
-                                     <button class="button primary small" id="editAgentItemsTrigger">
-                                         <i class="fa-solid fa-box"></i> Nhập/Sửa Hàng Hóa OPS
-                                     </button>
                                  </div>
                              </div>
                               <div class="table-container detail-table-container">
@@ -246,13 +239,16 @@
                     <section class="card detail-section">
                          <div class="card-header section-header">
                             <div class="header-left"> <h2 class="card-title">Khai Invoice đại lý</h2> </div>
-                            <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button> </div>
+                            <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                <button class="icon-button" id="editAgentInvoiceTrigger" title="Chỉnh sửa Khai Invoice đại lý">
+                                    <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
+                                </button>
+                             </div>
                          </div>
                          <div class="card-body section-body agent-invoice-body table-scroll">
                               <div class="data-pair">
                                  <span class="label">Nội dung hàng (Đại lý):</span>
                                  <span class="value" id="agentContentValue">Hàng cá nhân</span>
-                                 <i class="fa-solid fa-pencil edit-value-icon" title="Nhập cân nặng Đại lý" id="editAgentContentTrigger"></i>
                               </div>
                              <div class="data-pair">
                                  <span class="label">Khối lượng đại lý (KG):</span>
@@ -264,7 +260,6 @@
                              <div class="data-pair">
                                 <span class="label">Export as:</span>
                                 <span class="value">Gif (no commercial value)</span>
-                                <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa nội dung"></i></i>
                              </div>
                              <div class="export-details-line" style="display: flex; align-items: center; flex-wrap: wrap; gap: 15px; justify-content: space-between;">
                                  <div class="left-group" style="display: flex; align-items: center; gap: 15px;">
@@ -278,11 +273,6 @@
                                          <strong>Giá trị hóa đơn:</strong>
                                          <span id="invoiceValueDisplayAgent">50 USD</span>
                                      </span>
-                                 </div>
-                                 <div class="right-group">
-                                     <button class="button primary small" id="editOpsItemsTrigger">
-                                         <i class="fa-solid fa-box"></i> Nhập/Sửa Hàng Hóa Đại Lý
-                                     </button>
                                  </div>
                              </div>
                               <div class="table-container detail-table-container">
@@ -311,13 +301,15 @@
                      <section class="card detail-section">
                          <div class="card-header section-header">
                             <div class="header-left"> <h2 class="card-title">Người gửi</h2> </div>
-                            <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button> </div>
+                            <div class="header-actions">
+                                 <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                 <button class="icon-button" id="editSenderBtn" title="Chỉnh sửa Người gửi"><i class="fa-solid fa-pen-to-square"></i></button>
+                             </div>
                          </div>
                          <div class="card-body section-body address-block">
                              <div class="data-pair">
                                  <span class="label">Họ và Tên:</span>
                                  <span class="value" id="senderNameValue">Trần Phúc Đường</span>
-                                 <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa người gửi" id="editSenderInfoTrigger"></i>
                             </div>
                              <div class="data-pair">
                                  <span class="label">Số điện thoại:</span>
@@ -333,18 +325,19 @@
                     <section class="card detail-section">
                         <div class="card-header section-header">
                             <div class="header-left"> <h2 class="card-title">Người nhận</h2> </div>
-                            <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button> </div>
+                            <div class="header-actions">
+                                 <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                  <button class="icon-button" id="editReceiverBtn" title="Chỉnh sửa Người nhận"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
                          </div>
                          <div class="card-body section-body address-block">
                               <div class="data-pair">
                                   <span class="label">Tên công ty:</span>
                                   <span class="value" id="receiverCompanyNameValue">HEPS THANH RUBBER INDUSTRIES CORPORATION</span>
-                                  <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa Tên công ty"></i>
                               </div>
                              <div class="data-pair">
                                  <span class="label">Họ và Tên:</span>
                                  <span class="value" id="receiverNameValue">Alice the Alexander KPOP Woo Chun Pyoh Kamahamaha</span>
-                                 <i class="fa-solid fa-pencil edit-value-icon" title="Chỉnh sửa thông tin người nhận" id="editReceiverNameTrigger"></i>
                              </div>
                              <div class="data-pair">
                                  <span class="label">Số điện thoại:</span>
@@ -360,7 +353,11 @@
                     <section class="card detail-section">
                          <div class="card-header section-header">
                             <div class="header-left"> <h2 class="card-title">Cước phí</h2> </div>
-                            <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button> </div>
+                            <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                <button class="icon-button" id="adjustChargesTrigger" title="Điều chỉnh trị giá đơn hàng">
+                                    <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
+                                </button>
+                             </div>
                          </div>
                         <div class="card-body section-body table-scroll">
                             <div class="table-container detail-table-container">
@@ -371,7 +368,6 @@
                                                 <th class="col-label">Cước phí</th> <!-- Cột đầu tiên không có tiêu đề -->
                                                 <th class="col-amount">Tiền cước</th>
                                                 <th class="col-amount">Tạm tính</th>
-                                                <th class="col-note"></th> <!-- Cột cuối cùng cho icon -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -379,21 +375,16 @@
                                                 <td>Tổng cước</td>
                                                 <td class="col-amount" id="displayBaseFare">2.318.000</td>
                                                 <td class="col-amount highlight" id="displayTotalCharges">3.198.840</td>
-                                                <td class="col-note">
-                                                    <i class="fa-solid fa-pencil edit-value-icon" id="adjustChargesTrigger" title="Điều chỉnh trị giá đơn hàng"></i>
-                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>- Chi phí khác</td>
                                                 <td class="col-amount" id="displayOtherCharges">45.000</td>
-                                                <td></td>
                                                 <td></td>
                                             </tr>
                                             <tr>
                                                 <td>- VAT</td>
                                                 <td class="col-amount" id="displayVatAmount">185.440</td>
                                                 <td class="col-note" id="displayVatPercent">8%</td>
-                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -409,7 +400,11 @@
                    <section class="card detail-section">
                          <div class="card-header section-header">
                              <div class="header-left"> <h2 class="card-title">Lợi nhuận</h2> </div>
-                             <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button> </div>
+                             <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                 <button class="icon-button" id="editProfitTrigger" title="Điều chỉnh trị giá">
+                                     <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
+                                 </button>
+                              </div>
                          </div>
                         <div class="card-body section-body table-scroll">
                             <div class="table-container detail-table-container">
@@ -420,7 +415,6 @@
                                                 <th class="col-label">Lợi nhuận</th>
                                                 <th class="col-amount">NET Đại lý</th>
                                                 <th class="col-amount">Tạm tính</th>
-                                                <td class="col-note"> </td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -428,27 +422,21 @@
                                                 <td>Tổng cước đại lý:</td>
                                                 <td class="col-amount">2,318,000</td>
                                                 <td class="col-amount highlight">3,198,840</td>
-                                                <td class="col-note">
-                                                    <i class="fa-solid fa-pencil edit-value-icon" id="editProfitTrigger" title="Điều chỉnh trị giá"></i>
-                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Tổng chi phí lô hàng:</td>
                                                 <td></td>
                                                 <td class="col-amount">45,000</td>
-                                                <td class="col-note"> </td>
                                             </tr>
                                             <tr>
                                                 <td>Hoa hồng Sale:</td>
                                                  <td></td>
                                                 <td class="col-amount">159,942</td>
-                                                <td class="col-note"> </td>
                                             </tr>
                                              <tr>
                                                 <td class="bold">Lợi nhuận công ty:</td>
                                                  <td></td>
                                                 <td class="col-amount bold highlight">2,458,440</td>
-                                                <td class="col-note"> </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -470,7 +458,7 @@
              </footer>
 
              <footer class="site-footer">
-                 Miền Tây Express © <span id="current-year"></span>. All rights reserved. Design by Nina Co.,Ltd
+                Minh Khôi Logistics © <span id="current-year"></span>. All rights reserved. Design by Nina Co.,Ltd
              </footer>
 
         </div>
@@ -480,1025 +468,204 @@
         <div class="modal-content-wrapper" id="editStatusModalContent">
         </div>
     </div>
-    <div id="inlineAdjustChargesContainer" style="display: none;">
-    </div>
-
-    <div class="announcement-overlay" id="announcement-overlay">
-        <div class="announcement-box" id="announcement-box">
-            <div class="announcement-header">
-                <h3 id="announcement-title">Tiêu đề thông báo</h3>
-                <button class="announcement-close-btn" id="announcement-close-btn" title="Đóng thông báo">×</button>
-            </div>
-            <div class="announcement-body" id="announcement-body">
-                Nội dung chi tiết của thông báo sẽ được hiển thị ở đây.
-            </div>
-            <div class="announcement-footer">
-                <span id="announcement-timestamp">Thời gian</span>
-            </div>
-        </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("DOM loaded - Initializing Order Detail Page (Unified)...");
+            console.log("DOM loaded - Initializing Order Detail Page...");
 
-            const body = document.body;
-            const sidebar = document.getElementById('sidebar');
-            const sidebarOverlay = document.getElementById('sidebar-overlay');
-            const mobileSidebarToggleBtn = document.getElementById('mobile-sidebar-toggle');
-            const desktopSidebarToggleBtn = document.querySelector('.sidebar-toggle-desktop');
-            const currentDateSpan = document.getElementById('current-date');
-            const currentTimeSpan = document.getElementById('current-time');
-            const currentYearSpan = document.getElementById('current-year');
-            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            // Khởi tạo các biến modal
+            window.modalOverlay = document.getElementById('editStatusModalOverlay');
+            window.modalContent = document.getElementById('editStatusModalContent');
 
-            const openModalTrigger = document.getElementById('editStatusTrigger');
-            const modalOverlay = document.getElementById('editStatusModalOverlay');
-            const modalContent = document.getElementById('editStatusModalContent');
-            const openAgentItemsTrigger = document.getElementById('editAgentItemsTrigger');
-            const openPackageParamsTrigger = document.getElementById('editPackageParamsTrigger');
-            const packageContentDisplay = document.getElementById('packageContentValue');
-            const openServiceInfoTrigger = document.getElementById('editServiceInfoTrigger');
-            const serviceNameDisplay = document.getElementById('serviceNameValue');
-            const additionalServicesDisplay = document.getElementById('additionalServicesValue');
-            const openReceiverInfoTrigger = document.getElementById('editReceiverNameTrigger');
-            const receiverNameDisplay = document.getElementById('receiverNameValue');
-            const receiverPhonesDisplay = document.getElementById('receiverPhonesValue');
-            const receiverAddressDisplay = document.getElementById('receiverAddressValue');
-            const receiverCompanyDisplay = document.getElementById('receiverCompanyNameValue');
-            const openAgentReweightTrigger = document.getElementById('editAgentReweightTrigger');
-            const packageContentDisplayReweight = document.getElementById('packageContentValue');
-            const reweightDisplay1 = document.getElementById('reweightValue1');
-            const reweightDisplay2 = document.getElementById('reweightValue2');
-            const reweightDisplay3 = document.getElementById('reweightValue3');
-            const actualDimCalcDisplay1 = document.getElementById('actualDimCalc1');
-            const actualDimCalcDisplay2 = document.getElementById('actualDimCalc2');
-            const actualDimCalcDisplay3 = document.getElementById('actualDimCalc3');
-            const actualConvertedWeightDisplay1 = document.getElementById('actualConvertedWeight1');
-            const actualConvertedWeightDisplay2 = document.getElementById('actualConvertedWeight2');
-            const actualConvertedWeightDisplay3 = document.getElementById('actualConvertedWeight3');
-            const openOpsItemsTrigger = document.getElementById('editOpsItemsTrigger');
-            const packageCountSelectOps = document.getElementById('packageCountSelectAgent');
-            const invoiceValueDisplayOps = document.getElementById('invoiceValueDisplayAgent');
-            const openAgentContentTrigger = document.getElementById('editAgentContentTrigger');
-            const agentContentDisplay = document.getElementById('agentContentValue');
-            const agentDimCalcDisplay1 = document.getElementById('agentDimCalc1');
-            const agentDimCalcDisplay2 = document.getElementById('agentDimCalc2');
-            const agentDimCalcDisplay3 = document.getElementById('agentDimCalc3');
-            const agentConvertedWeightDisplay1 = document.getElementById('agentConvertedWeight1');
-            const agentConvertedWeightDisplay2 = document.getElementById('agentConvertedWeight2');
-            const agentConvertedWeightDisplay3 = document.getElementById('agentConvertedWeight3');
-            const agentReweightValueDisplay1 = document.getElementById('agentReweightValue1');
-            const agentReweightValueDisplay2 = document.getElementById('agentReweightValue2');
-            const agentReweightValueDisplay3 = document.getElementById('agentReweightValue3');
-
-            const adjustChargesTriggerButton = document.getElementById('adjustChargesTrigger');
-            const editProfitTriggerButton = document.getElementById('editProfitTrigger');
-
-            const notificationButton = document.getElementById('notification-button');
-            const notificationDropdown = document.getElementById('notification-dropdown');
-            const notificationList = document.getElementById('notification-list');
-            const announcementOverlay = document.getElementById('announcement-overlay');
-            const announcementBox = document.getElementById('announcement-box');
-            const announcementCloseBtn = document.getElementById('announcement-close-btn');
-            const announcementTitle = document.getElementById('announcement-title');
-            const announcementBodyEl = document.getElementById('announcement-body');
-            const announcementTimestamp = document.getElementById('announcement-timestamp');
-
-            const manageBodyScroll = () => {
-                const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
-                const isAnyModalVisible = document.querySelector('.modal-overlay.active') ||
-                                          (announcementOverlay && announcementOverlay.classList.contains('visible'));
-                if (isSidebarOpen || isAnyModalVisible) {
-                    body.classList.add('overflow-hidden');
-                } else {
-                    body.classList.remove('overflow-hidden');
-                }
-            };
-
-            function toggleSidebarMobileOrDesktop() {
-                if (window.innerWidth > 768) {
-                    document.body.classList.toggle('sidebar-collapsed');
-                    const isCollapsed = document.body.classList.contains('sidebar-collapsed');
-                    if (isCollapsed) {
-                        document.querySelectorAll('.menu-items .submenu.active').forEach(submenu => {
-                            submenu.classList.remove('active');
-                            const parentLink = submenu.previousElementSibling;
-                            if(parentLink?.classList.contains('submenu-parent')) {
-                                parentLink.classList.remove('active');
-                                parentLink.querySelector('.submenu-arrow')?.style.setProperty('transform', 'rotate(0deg)');
-                            }
-                        });
-                    } else {
-                        if (typeof initializeActiveSubmenu === 'function') initializeActiveSubmenu();
-                    }
-                } else {
-                    document.body.classList.toggle('sidebar-mobile-open');
-                }
-                const isOpen = document.body.classList.contains('sidebar-mobile-open') || !document.body.classList.contains('sidebar-collapsed');
-                const mobileSidebarToggleBtn = document.getElementById('mobile-sidebar-toggle');
-                if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen));
-                if (typeof manageBodyScroll === 'function') manageBodyScroll();
-            }
-
-            function toggleSubmenu(event) {
-                event.preventDefault();
-                if (body.classList.contains('sidebar-collapsed') && window.innerWidth > 768) return;
-                const parentLink = event.currentTarget;
-                const submenuWrapper = parentLink.nextElementSibling;
-                if (!submenuWrapper || !submenuWrapper.classList.contains('submenu')) return;
-                if (!parentLink.classList.contains('active')) {
-                    document.querySelectorAll('.menu-items .submenu-parent.active').forEach(activeParent => {
-                        if (activeParent !== parentLink) {
-                            activeParent.classList.remove('active');
-                            activeParent.nextElementSibling?.classList.remove('active');
-                        }
-                    });
-                }
-                submenuWrapper.classList.toggle('active');
-                parentLink.classList.toggle('active');
-            }
-
-            function initializeActiveSubmenu() {
-                 const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
-                 if (activeSubmenuLink) {
-                      const submenuDiv = activeSubmenuLink.closest('.submenu');
-                      const parentLink = submenuDiv?.previousElementSibling;
-                      if(submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
-                          submenuDiv.classList.add('active');
-                          parentLink.classList.add('active');
-                      }
-                 }
-            }
-
-            function updateDateTime() {
-                const now = new Date();
-                const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-                 try {
-                     let dayOfWeek; switch (now.getDay()) { case 0: dayOfWeek = "Sun"; break; case 1: dayOfWeek = "Mon"; break; case 2: dayOfWeek = "Tue"; break; case 3: dayOfWeek = "Wed"; break; case 4: dayOfWeek = "Thu"; break; case 5: dayOfWeek = "Fri"; break; case 6: dayOfWeek = "Sat"; break; default: dayOfWeek = ""; }
-                     const dateString = `${dayOfWeek}, ${now.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
-                     if (currentDateSpan) currentDateSpan.textContent = dateString;
-                     if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString('en-US', optionsTime);
-                 } catch (e) {
-                     if (currentDateSpan) currentDateSpan.textContent = now.toLocaleDateString();
-                     if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString();
-                 }
-                if (currentYearSpan) currentYearSpan.textContent = now.getFullYear();
-            }
-
-            function toggleFullscreen() {
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen().catch(err => console.error(`Fullscreen error: ${err.message}`));
-                } else if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-            function handleFullscreenChange() {
-                 const isFullscreen = !!document.fullscreenElement;
-                 const icon = fullscreenBtn?.querySelector('i');
-                 if(icon){
-                     icon.classList.toggle('fa-expand', !isFullscreen);
-                     icon.classList.toggle('fa-compress', isFullscreen);
-                 }
-                 if(fullscreenBtn) {
-                     fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
-                 }
-            }
-
-            function toggleSection(event) {
-                if (event.target.closest('button:not(.toggle-arrow), a, input, select')) {
-                    return;
-                }
-
-                const header = event.currentTarget;
-                const section = header.closest('.detail-section');
-                const sectionBody = section?.querySelector('.section-body');
-                const toggleButton = header.querySelector('.toggle-arrow');
-                const arrowIcon = toggleButton?.querySelector('.arrow');
-
-                if (sectionBody && arrowIcon && toggleButton) {
-                    const isHidden = sectionBody.classList.toggle('hidden');
-                    arrowIcon.classList.toggle('fa-chevron-up', !isHidden);
-                    arrowIcon.classList.toggle('fa-chevron-down', isHidden);
-                    toggleButton.setAttribute('title', isHidden ? 'Hiện' : 'Ẩn');
-                }
-            }
-
-            function initializeSectionToggles() {
-                document.querySelectorAll('.detail-section .card-header').forEach(header => {
-                    const toggleButton = header.querySelector('.toggle-arrow');
-                    const sectionBody = header.nextElementSibling;
-                    const arrowIcon = toggleButton?.querySelector('.arrow');
-
-                    if (toggleButton && sectionBody && arrowIcon) {
-                        toggleButton.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            sectionBody.classList.toggle('collapsed');
-                            arrowIcon.classList.toggle('collapsed');
-                        });
-                    }
-                });
-            }
-
-
+            // Hàm đóng modal
             function closeEditModal() {
-                if (modalOverlay) {
-                    modalOverlay.classList.remove('active');
-                    manageBodyScroll();
+                if (window.modalOverlay) {
+                    window.modalOverlay.classList.remove('active');
                 }
-                if (modalContent) modalContent.innerHTML = '';
-                if (modalOverlay) modalOverlay.onclick = null;
-                console.log("Generic modal closed.");
+                if (window.modalContent) window.modalContent.innerHTML = '';
+                if (window.modalOverlay) window.modalOverlay.onclick = null;
             }
 
-            function executeScriptFromHtml(htmlString) {
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = htmlString;
-                const scriptElement = tempDiv.querySelector('script');
-                if (scriptElement) {
-                    try {
-                        const newScript = document.createElement('script');
-                        Array.from(scriptElement.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-                        newScript.textContent = scriptElement.textContent;
-                        document.body.appendChild(newScript).parentNode.removeChild(newScript);
-                        console.log("Executed script from loaded content.");
-                    } catch (e) { console.error("Error executing script:", e); }
-                }
-            }
-
+            // Hàm gắn sự kiện click cho overlay
             function attachOverlayClickListener() {
-                if (modalOverlay) {
-                    modalOverlay.onclick = function(event) {
-                        if (event.target === modalOverlay) closeEditModal();
+                if (window.modalOverlay) {
+                    window.modalOverlay.onclick = function(event) {
+                        if (event.target === window.modalOverlay) closeEditModal();
                     };
                 }
             }
 
-            async function loadModalContent(formUrl, populationFunction = null, attachListenerFunction = null) {
-                if (!modalContent || !modalOverlay) {
+            // Hàm mở modal bằng iframe cho Thông số kiện hàng
+            function loadModalContentIframe(url) {
+                if (!window.modalContent || !window.modalOverlay) return;
+                window.modalContent.innerHTML = `<iframe src="${url}" style="width:100%;height:90vh;border:none;border-radius:12px;overflow:hidden;background:transparent;"></iframe>`;
+                window.modalOverlay.classList.add('active');
+                if (window.modalOverlay) {
+                    window.modalOverlay.onclick = function(event) {
+                        if (event.target === window.modalOverlay) closeEditModal();
+                    };
+                }
+            }
+
+            // Hàm load nội dung modal (HTML content) for Bill Info
+            async function loadModalContentHtml(formUrl, populationFunction = null, attachListenerFunction = null) {
+                if (!window.modalContent || !window.modalOverlay) {
                     console.error("Modal container or overlay not found."); return;
                 }
-                modalContent.innerHTML = '<div style="padding:20px;color:var(--text-secondary);text-align:center;">Đang tải...</div>';
-                modalOverlay.classList.add('active');
-                manageBodyScroll();
-                attachOverlayClickListener();
+                // Set height to auto for HTML modals if needed, or rely on modal-content-wrapper max-height
+                window.modalContent.innerHTML = '<div style="padding:20px;color:var(--text-secondary);text-align:center;">Đang tải...</div>';
+                // Adjust modal content wrapper style for HTML modals if necessary
+                // Example: window.modalContent.style.maxHeight = '90vh'; // Set max-height
+                // Example: window.modalContent.style.overflowY = 'auto'; // Allow internal scroll if needed
+
+                window.modalOverlay.classList.add('active');
+                if (window.modalOverlay) {
+                    window.modalOverlay.onclick = function(event) {
+                        if (event.target === window.modalOverlay) closeEditModal();
+                    };
+                }
 
                 try {
                     const response = await fetch(formUrl);
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}, URL: ${formUrl}`);
                     const htmlContent = await response.text();
-                    modalContent.innerHTML = htmlContent;
-                    executeScriptFromHtml(htmlContent);
-
-                    if (typeof populationFunction === 'function') populationFunction(modalContent);
-                    if (typeof attachListenerFunction === 'function') attachListenerFunction(modalContent);
-                    else attachGenericModalListeners(modalContent);
+                    window.modalContent.innerHTML = htmlContent;
+                    // For HTML modals, call population and listener functions after loading
+                    if (typeof populationFunction === 'function') populationFunction(window.modalContent);
+                    if (typeof attachListenerFunction === 'function') attachListenerFunction(window.modalContent);
 
                 } catch (error) {
-                    console.error(`Error loading modal content from ${formUrl}:`, error);
-                    modalContent.innerHTML = `<div style="padding:20px;color:var(--danger-color);">Lỗi tải form: ${error.message}.</div>`;
+                    window.modalContent.innerHTML = `<div style="padding:20px;color:var(--danger-color);">Lỗi tải form: ${error.message}.</div>`;
                 }
             }
 
-             function attachGenericModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button');
-                const confirmButton = container.querySelector('.modal-confirm-button');
-                if (cancelButton) {
-                    const newCancel = cancelButton.cloneNode(true);
-                    cancelButton.parentNode.replaceChild(newCancel, cancelButton);
-                    newCancel.addEventListener('click', closeEditModal);
+            // Gắn sự kiện cho nút edit Bill Info (dùng loadModalContentHtml)
+            document.querySelectorAll('.detail-section .edit-section').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    loadModalContentHtml(
+                        '../form_package_detail/edit-bill-info-section.html',
+                        populateBillInfoSectionModalData,
+                        attachBillInfoSectionModalListeners
+                    );
+                });
+            });
+
+            // Hàm populate dữ liệu cho modal Bill Info (lấy từ localStorage)
+            function populateBillInfoSectionModalData(container) {
+                const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+                const billCodeInput = container.querySelector('#billCodeInput');
+                if(billCodeInput) billCodeInput.value = orderData.bill_code || '';
+                const refCodeInput = container.querySelector('#refCodeInput');
+                if(refCodeInput) refCodeInput.value = orderData.ref_code || '';
+                const orderDateInput = container.querySelector('#orderDateInput');
+                if(orderDateInput) {
+                    if(orderData.order_date) {
+                        const d = new Date(orderData.order_date);
+                        if(!isNaN(d)) orderDateInput.value = d.toISOString().slice(0,16);
+                    }
                 }
-                 if (confirmButton) {
-                    const newConfirm = confirmButton.cloneNode(true);
-                    confirmButton.parentNode.replaceChild(newConfirm, confirmButton);
-                    newConfirm.addEventListener('click', () => { console.log("Generic Confirm - Closing Modal"); closeEditModal(); });
-                }
-            }
-
-            window.updateChargesAndProfitDisplay = function(data) {
-                console.log("Updating parent page display with data:", data);
-                const formatDisplay = (num) => (num === undefined || num === null || isNaN(num)) ? '0' : num.toLocaleString('vi-VN');
-
-                const displayBaseFare = document.getElementById('displayBaseFare');
-                const displayOtherCharges = document.getElementById('displayOtherCharges');
-                const displayVatAmount = document.getElementById('displayVatAmount');
-                const displayVatPercent = document.getElementById('displayVatPercent');
-                const displayTotalCharges = document.getElementById('displayTotalCharges');
-                const displayOtherChargesNotes = document.getElementById('displayOtherChargesNotes');
-                const displayNetAgent = document.querySelector('.profit-table tbody tr:nth-child(1) td:nth-child(2)');
-                const displayTotalAgentCharges = document.querySelector('.profit-table tbody tr:nth-child(1) td:nth-child(3)');
-                const displayProfitOtherCharges = document.querySelector('.profit-table tbody tr:nth-child(2) td:nth-child(3)');
-                const displaySalesCommission = document.querySelector('.profit-table tbody tr:nth-child(3) td:nth-child(3)');
-                const displayCompanyProfit = document.querySelector('.profit-table tbody tr:nth-child(4) td:nth-child(3)');
-
-                if (displayBaseFare && data.freightChargeModal !== undefined) displayBaseFare.textContent = formatDisplay(data.freightChargeModal);
-                if (displayOtherCharges && data.otherCostsProfitModal !== undefined) displayOtherCharges.textContent = formatDisplay(data.otherCostsProfitModal);
-                if (displayVatAmount && data.vatConvertedModal !== undefined) displayVatAmount.textContent = formatDisplay(data.vatConvertedModal);
-                if (displayVatPercent && data.vatPercentProfitModal !== undefined) displayVatPercent.textContent = `${data.vatPercentProfitModal}%`;
-                if (displayTotalCharges && data.totalChargesModal !== undefined) displayTotalCharges.textContent = formatDisplay(data.totalChargesModal);
-                if(displayOtherChargesNotes && data.salesNoteModal !== undefined) displayOtherChargesNotes.textContent = data.salesNoteModal;
-
-                if (displayNetAgent && data.netAgentModal !== undefined) displayNetAgent.textContent = formatDisplay(data.netAgentModal);
-                if (displayTotalAgentCharges && data.totalAgentChargesModal !== undefined) displayTotalAgentCharges.textContent = formatDisplay(data.totalAgentChargesModal);
-                if (displayProfitOtherCharges && data.otherCostsProfitModal !== undefined) displayProfitOtherCharges.textContent = formatDisplay(data.otherCostsProfitModal);
-                if (displaySalesCommission && data.salesCommissionModal !== undefined) displaySalesCommission.textContent = formatDisplay(data.salesCommissionModal);
-
-                const profit = (data.totalChargesModal || 0) - (data.totalAgentChargesModal || 0) - (data.salesCommissionModal || 0);
-                if (displayCompanyProfit) displayCompanyProfit.textContent = formatDisplay(profit > 0 ? profit : 0);
-
-                alert('Đã cập nhật thông tin Cước phí và Lợi nhuận.');
-            }
-
-            async function openEditModal() {
-                await loadModalContent(
-                    '../form_package_detail/edit-order-status.html',
-                    null,
-                    attachEditStatusModalListeners
-                );
-            }
-            function attachEditStatusModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button');
-                const confirmButton = container.querySelector('.modal-confirm-button');
-                const modalForm = container.querySelector('form');
-                if (cancelButton) { const newBtn = cancelButton.cloneNode(true); cancelButton.parentNode.replaceChild(newBtn, cancelButton); newBtn.addEventListener('click', closeEditModal); }
-                if (confirmButton && modalForm) { const newBtn = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newBtn, confirmButton); newBtn.addEventListener('click', () => { const formData = new FormData(modalForm); const data = Object.fromEntries(formData.entries()); console.log('Dữ liệu form modal đã xác nhận:', data); alert('Đã nhấn Xác nhận! Dữ liệu đã được log ra Console.'); closeEditModal(); });
-                } else if (confirmButton) { const newBtn = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newBtn, confirmButton); newBtn.addEventListener('click', () => { console.log('Modal confirm clicked (no form data)'); alert('Đã nhấn Xác nhận (không có form)!'); closeEditModal(); }); }
-            }
-
-            async function openAdjustProfitModal() {
-                console.log("Requesting Adjust Profit Modal...");
-                await loadModalContent(
-                    '../form_package_detail/adjust-order-value.html',
-                    populateAdjustProfitModalData,
-                    attachAdjustProfitModalListeners
-                );
-            }
-            function populateAdjustProfitModalData(container) {
-                 const formElement = container.querySelector('#formAdjustProfitModal');
-                 if (!formElement) { console.error("Cannot find #formAdjustProfitModal to populate."); return; }
-                 console.log("Populating Adjust Profit/Charges modal form...");
-
-                 const getNumText = (el) => el ? el.textContent.replace(/[^\d]/g, '') : '0';
-                 const getPercentText = (el) => el ? el.textContent.replace(/[^\d.]/g, '') : '0';
-                 const formatForInput = (numStr) => {
-                     const num = parseInt(numStr);
-                     return isNaN(num) ? '' : num.toLocaleString('vi-VN');
-                 };
-
-                 const displayBaseFare = document.getElementById('displayBaseFare');
-                 const displayOtherCharges = document.getElementById('displayOtherCharges');
-                 const displayVatPercent = document.getElementById('displayVatPercent');
-                 const displayOtherChargesNotes = document.getElementById('displayOtherChargesNotes');
-                 const displayNetAgent = document.querySelector('.profit-table tbody tr:nth-child(1) td:nth-child(2)');
-                 const displaySalesCommission = document.querySelector('.profit-table tbody tr:nth-child(3) td:nth-child(3)');
-
-                 if (formElement.elements.exchangeRateUSD) formElement.elements.exchangeRateUSD.value = 5;
-                 if (formElement.elements.exchangeRateVND) formElement.elements.exchangeRateVND.value = formatForInput('127500');
-                 if (formElement.elements.freightChargeModal && displayBaseFare) formElement.elements.freightChargeModal.value = formatForInput(getNumText(displayBaseFare));
-                 if (formElement.elements.otherCostsProfitModal && displayOtherCharges) formElement.elements.otherCostsProfitModal.value = formatForInput(getNumText(displayOtherCharges));
-                 if (formElement.elements.netAgentModal && displayNetAgent) formElement.elements.netAgentModal.value = formatForInput(getNumText(displayNetAgent));
-                 if (formElement.elements.vatPercentProfitModal && displayVatPercent) formElement.elements.vatPercentProfitModal.value = getPercentText(displayVatPercent);
-                 if (formElement.elements.salesCommissionModal && displaySalesCommission) formElement.elements.salesCommissionModal.value = formatForInput(getNumText(displaySalesCommission));
-                 if (formElement.elements.salesNoteModal && displayOtherChargesNotes) formElement.elements.salesNoteModal.value = displayOtherChargesNotes.textContent.trim();
-
-                 if (typeof window.formatCurrencyOnBlur === 'function') {
-                     formElement.querySelectorAll('input[data-type="currency"], #exchangeRateVND').forEach(inp => window.formatCurrencyOnBlur(inp));
-                 }
-                 if (typeof window.calculateValues === 'function') {
-                     console.log("Triggering initial calculation in modal form.");
-                     window.calculateValues();
-                 }
-                 console.log("Adjust Profit modal populated.");
-            }
-            function attachAdjustProfitModalListeners(container) {
-                const cancelButton = container.querySelector('.form-btn-cancel');
-                const confirmButton = container.querySelector('.form-btn-confirm');
-                if (cancelButton) {
-                    const newBtn = cancelButton.cloneNode(true);
-                    cancelButton.parentNode.replaceChild(newBtn, cancelButton);
-                    newBtn.addEventListener('click', closeEditModal);
-                }
-                if (confirmButton) {
-                    const newBtn = confirmButton.cloneNode(true);
-                    confirmButton.parentNode.replaceChild(newBtn, confirmButton);
-                    newBtn.addEventListener('click', function() {
-                        console.log('Đã xác nhận điều chỉnh trị giá đơn hàng!');
-                        closeEditModal();
-                    });
-                }
-            }
-
-            async function openAgentItemsModal() { await loadModalContent('../form_package_detail/edit_package_parameters.html', null, attachAgentItemsModalListeners); }
-            function attachAgentItemsModalListeners(container) {
-                 const cancelButton = container.querySelector('.modal-cancel-button');
-                 const confirmButton = container.querySelector('.modal-confirm-button');
-                 const formElement = container.querySelector('#formPackageParamsModal');
-                 if (cancelButton) { const newCancelButton = cancelButton.cloneNode(true); cancelButton.parentNode.replaceChild(newCancelButton, cancelButton); newCancelButton.addEventListener('click', closeEditModal); }
-                 if (confirmButton && formElement) { const newConfirmButton = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton); newConfirmButton.addEventListener('click', () => { console.log('Xác nhận nhập hàng hóa Đại lý!'); const items = []; const rows = formElement.querySelectorAll('.modal-item-table tbody tr'); rows.forEach(row => { const nameEl = row.querySelector('.item-name'); const qtyEl = row.querySelector('.item-qty'); const unitEl = row.querySelector('.item-unit'); const priceEl = row.querySelector('.item-price'); const totalEl = row.querySelector('.item-total'); if (nameEl && qtyEl && unitEl && priceEl && totalEl) { items.push({ name: nameEl.value, qty: qtyEl.value, unit: unitEl.value, price: priceEl.value, total: totalEl.value }); } else { console.warn("Một dòng trong bảng modal hàng hóa thiếu phần tử cần thiết, dòng này bị bỏ qua."); } }); console.log("Dữ liệu hàng hóa đã nhập:", items); alert('Đã nhấn Xác nhận Hàng hóa ĐL! Dữ liệu log ra Console.'); closeEditModal(); });
-                 } else if (confirmButton) { const newConfirmButton = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton); newConfirmButton.addEventListener('click', () => { console.log('Xác nhận nhập hàng hóa Đại lý (no form found)!'); alert('Đã nhấn Xác nhận Hàng hóa ĐL!'); closeEditModal(); }); }
-            }
-
-            async function openPackageParamsModal() { await loadModalContent('../form_package_detail/thongsokienhang.html', populatePackageParamsModalData, attachPackageParamsModalListeners); }
-            function populatePackageParamsModalData(container){
-                const productNameInputModal = container.querySelector('#productNameModal');
-                if (productNameInputModal && packageContentDisplay) { productNameInputModal.value = packageContentDisplay.textContent.trim(); }
-            }
-            function attachPackageParamsModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button'); const confirmButton = container.querySelector('.modal-confirm-button');
-                const formElement = container.querySelector('#formPackageParamsModal'); const productNameInputModal = container.querySelector('#productNameModal');
-                const dimDivisorInputModal = container.querySelector('#dimDivisorModal'); const dimensionsContainerModal = container.querySelector('#dimensionsContainerModal');
-                if (cancelButton) { const newCancelButton = cancelButton.cloneNode(true); cancelButton.parentNode.replaceChild(newCancelButton, cancelButton); newCancelButton.addEventListener('click', closeEditModal); }
-                if (confirmButton && formElement && productNameInputModal && packageContentDisplay && dimensionsContainerModal) {
-                    const newConfirmButton = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
-                    newConfirmButton.addEventListener('click', () => {
-                        const newProductName = productNameInputModal.value.trim(); const newDimDivisor = dimDivisorInputModal ? dimDivisorInputModal.value : '5000'; const dimensionsData = [];
-                        dimensionsContainerModal.querySelectorAll('.dimension-row').forEach(row => { const lenEl = row.querySelector('input[name="length[]"]'); const widEl = row.querySelector('input[name="width[]"]'); const heiEl = row.querySelector('input[name="height[]"]'); const weiEl = row.querySelector('input[name="weight[]"]'); if(lenEl && widEl && heiEl && weiEl) { dimensionsData.push({ length: lenEl.value, width: widEl.value, height: heiEl.value, weight: weiEl.value }); } });
-                        if (newProductName) { packageContentDisplay.textContent = newProductName; console.log('Đã cập nhật thông số kiện hàng (dữ liệu lấy từ modal):', { 'Tên sản phẩm': newProductName, 'DIM': newDimDivisor, 'Kích thước/Cân nặng': dimensionsData }); alert('Đã cập nhật Tên sản phẩm. Xem Console (F12) để biết chi tiết kích thước/cân nặng.'); closeEditModal(); }
-                        else { alert("Vui lòng nhập tên sản phẩm."); productNameInputModal.focus(); }
-                    });
-                } else if (confirmButton) { const newConfirmButton = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton); newConfirmButton.addEventListener('click', () => { console.log('Xác nhận Thông số kiện hàng (form/elements missing)'); alert('Đã nhấn xác nhận!'); closeEditModal(); }); }
-            }
-
-            async function openServiceInfoModal() { await loadModalContent('../form_package_detail/edit-service-information.html', populateServiceInfoModalData, attachServiceInfoModalListeners); }
-            function populateServiceInfoModalData(container){
-                const currentServiceText = serviceNameDisplay ? serviceNameDisplay.textContent.trim() : '';
-                const serviceSelectModal = container.querySelector('#serviceSelectModal');
-                if (serviceSelectModal && currentServiceText) { const currentOption = Array.from(serviceSelectModal.options).find(opt => opt.text === currentServiceText); if (currentOption) { currentOption.selected = true; } }
-                const currentAddServices = additionalServicesDisplay ? additionalServicesDisplay.textContent.split(' / ').map(s => s.trim()) : [];
-                const addServiceCheckboxes = container.querySelectorAll('input[name^="add_service_"]');
-                addServiceCheckboxes.forEach(checkbox => { const serviceName = checkbox.name.replace('add_service_', ''); let displayName = ''; if (serviceName === 'signature') displayName = 'Chữ ký'; else if (serviceName === 'insurance') displayName = 'Bảo hiểm hàng hóa'; else if (serviceName === 'fumigation') displayName = 'FUMIGATION'; else if (serviceName === 'wood_crate') displayName = 'Đóng kiện gỗ'; else displayName = serviceName.toUpperCase(); if (currentAddServices.includes(displayName)) { checkbox.checked = true; } });
-            }
-            function attachServiceInfoModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button'); const confirmButton = container.querySelector('.modal-confirm-button');
-                const formElement = container.querySelector('#formServiceInfoModal');
-                if (!formElement) return;
-                if (cancelButton) { const newCancelButton = cancelButton.cloneNode(true); cancelButton.parentNode.replaceChild(newCancelButton, cancelButton); newCancelButton.addEventListener('click', closeEditModal); }
-                if (confirmButton) {
-                    const newConfirmButton = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
-                    newConfirmButton.addEventListener('click', () => {
-                        const formData = new FormData(formElement); const serviceData = {}; const additionalServices = []; let selectedServiceText = '';
-                        for (const [key, value] of formData.entries()) { if (key === 'service_code') { serviceData[key] = value; const selectedOption = formElement.querySelector(`#serviceSelectModal option[value="${value}"]`); selectedServiceText = selectedOption ? selectedOption.text : value; } else if (key.startsWith('add_service_')) { additionalServices.push(key.replace('add_service_', '')); } else { serviceData[key] = value; } }
-                        serviceData.additional_services = additionalServices;
-                        console.log('Đã xác nhận thông tin dịch vụ (dữ liệu lấy từ modal):', serviceData);
-                        if (serviceNameDisplay && selectedServiceText) { serviceNameDisplay.textContent = selectedServiceText; }
-                        if (additionalServicesDisplay) { const displayNames = serviceData.additional_services.map(s => { if (s === 'signature') return 'Chữ ký'; if (s === 'insurance') return 'Bảo hiểm hàng hóa'; if (s === 'fumigation') return 'FUMIGATION'; if (s === 'wood_crate') return 'Đóng kiện gỗ'; return s.toUpperCase(); }); additionalServicesDisplay.textContent = displayNames.join(' / '); }
-                        alert('Đã cập nhật thông tin Dịch vụ. Xem Console (F12) để biết chi tiết.'); closeEditModal();
-                    });
-                }
-            }
-
-            async function openReceiverInfoModal() { await loadModalContent('../form_package_detail/edit-receiver-info.html', populateReceiverInfoModalData, attachReceiverInfoModalListeners); }
-            function populateReceiverInfoModalData(container){
-                const nameInput = container.querySelector('#receiverNameInputModal'); const companyInput = container.querySelector('#receiverCompanyInputModal'); const phone1NumInput = container.querySelector('#receiverPhone1NumberModal'); const phone2NumInput = container.querySelector('#receiverPhone2NumberModal'); const countrySelect = container.querySelector('#receiverCountryModal'); const postcodeInput = container.querySelector('#receiverPostcodeModal'); const cityInput = container.querySelector('#receiverCityModal'); const stateInput = container.querySelector('#receiverStateModal'); const addressInput = container.querySelector('#receiverAddressModal');
-                if (nameInput && receiverNameDisplay) nameInput.value = receiverNameDisplay.textContent.trim(); if (companyInput && receiverCompanyDisplay) companyInput.value = receiverCompanyDisplay.textContent.trim();
-                if (receiverPhonesDisplay) { const phones = receiverPhonesDisplay.textContent.split('/'); if (phones.length > 0 && phone1NumInput) phone1NumInput.value = phones[0].replace(/[^0-9]/g, ''); if (phones.length > 1 && phone2NumInput) phone2NumInput.value = phones[1].replace(/[^0-9]/g, ''); }
-                if (receiverAddressDisplay) { const fullAddress = receiverAddressDisplay.textContent.trim(); const addressParts = fullAddress.split(/,\s*|\s+/); if (addressInput) addressInput.value = fullAddress; if (addressParts.length > 0 && countrySelect) { const countryCode = addressParts[addressParts.length -1].toUpperCase(); if (Array.from(countrySelect.options).some(opt => opt.value === countryCode)) countrySelect.value = countryCode; } if (addressParts.length > 1 && postcodeInput) { const potentialZip = addressParts[addressParts.length - 2]; if (/^\d{5}(-\d{4})?$/.test(potentialZip) || /^[A-Z]\d[A-Z] \d[A-Z]\d$/i.test(potentialZip)) postcodeInput.value = potentialZip; } }
-                if (countrySelect && !countrySelect.value) countrySelect.value = "US";
-            }
-            function attachReceiverInfoModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button'); const confirmButton = container.querySelector('.modal-confirm-button');
-                const formElement = container.querySelector('#formReceiverInfoModal');
-                if (!formElement) return;
-                if (cancelButton) { const newCancelButton = cancelButton.cloneNode(true); cancelButton.parentNode.replaceChild(newCancelButton, cancelButton); newCancelButton.addEventListener('click', closeEditModal); }
-                if (confirmButton) {
-                    const newConfirmButton = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
-                    newConfirmButton.addEventListener('click', () => {
-                        const formData = new FormData(formElement); const receiverData = Object.fromEntries(formData.entries()); console.log('Đã xác nhận thông tin người nhận (dữ liệu lấy từ modal):', receiverData);
-                        if (receiverNameDisplay && receiverData.receiver_name) receiverNameDisplay.textContent = receiverData.receiver_name; if (receiverCompanyDisplay && receiverData.receiver_company) receiverCompanyDisplay.textContent = receiverData.receiver_company;
-                        if (receiverPhonesDisplay) { let phoneStr = `${receiverData.phone1_number || ''}`; if (receiverData.phone2_number) phoneStr += ` / ${receiverData.phone2_number}`; receiverPhonesDisplay.textContent = phoneStr.trim().replace(/^\/|\/$/g, '').trim(); }
-                        if (receiverAddressDisplay && receiverData.address_line1) receiverAddressDisplay.textContent = receiverData.address_line1;
-                        alert('Đã cập nhật thông tin Người nhận. Xem Console (F12) để biết chi tiết.'); closeEditModal();
-                    });
-                }
-            }
-
-            async function openAgentReweightModal() { await loadModalContent('../form_package_detail/edit-package-reweight.html', populateAgentReweightModalData, attachAgentReweightListeners); }
-            function populateAgentReweightModalData(container){
-                const productNameInputModal = container.querySelector('#productNameModal'); const dimDivisorInputModal = container.querySelector('#dimDivisorModal'); const dimensionsContainerModal = container.querySelector('#dimensionsContainerModal');
-                if (productNameInputModal && packageContentDisplayReweight) productNameInputModal.value = packageContentDisplayReweight.textContent.trim();
-                if (dimDivisorInputModal) { const calcText = actualDimCalcDisplay1 ? actualDimCalcDisplay1.textContent : ''; const dimMatch = calcText.match(/\/(\d+)/); dimDivisorInputModal.value = dimMatch ? dimMatch[1] : "5000"; }
-                if (dimensionsContainerModal) { let modalRows = dimensionsContainerModal.querySelectorAll('.dimension-row'); const actualDimCalcElements = [actualDimCalcDisplay1, actualDimCalcDisplay2, actualDimCalcDisplay3]; const reweightValueElements = [reweightDisplay1, reweightDisplay2, reweightDisplay3]; const dataRowCount = actualDimCalcElements.filter(el => el && el.textContent.trim() !== '').length; while(modalRows.length > dataRowCount && modalRows.length > 1) { modalRows[modalRows.length - 1].remove(); modalRows = dimensionsContainerModal.querySelectorAll('.dimension-row'); } while(modalRows.length < dataRowCount) { const addButton = container.querySelector('#btnAddDimRowModal'); if (addButton) addButton.click(); else break; modalRows = dimensionsContainerModal.querySelectorAll('.dimension-row'); } modalRows.forEach((row, index) => { const calcEl = actualDimCalcElements[index]; const weightEl = reweightValueElements[index]; const lengthInput = row.querySelector('input[name="length[]"]'); const widthInput = row.querySelector('input[name="width[]"]'); const heightInput = row.querySelector('input[name="height[]"]'); const weightInput = row.querySelector('input[name="weight[]"]'); if (calcEl) { const dimMatch = calcEl.textContent.match(/<b>(\d+(\.\d+)?)<\/b>\s*x\s*<b>(\d+(\.\d+)?)<\/b>\s*x\s*<b>(\d+(\.\d+)?)<\/b>/); if (dimMatch && lengthInput && widthInput && heightInput) { lengthInput.value = dimMatch[1] || ''; widthInput.value = dimMatch[3] || ''; heightInput.value = dimMatch[5] || ''; } } if (weightEl && weightInput) { const weightMatch = weightEl.textContent.match(/(\d+(\.\d+)?)/); weightInput.value = weightMatch ? weightMatch[1] : ''; } }); }
-            }
-            function attachAgentReweightListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button'); const confirmButton = container.querySelector('.modal-confirm-button');
-                const formElement = container.querySelector('#formPackageParamsModal');
-                if (!formElement) return;
-                if (cancelButton) { const newCancelButton = cancelButton.cloneNode(true); cancelButton.parentNode.replaceChild(newCancelButton, cancelButton); newCancelButton.addEventListener('click', closeEditModal); }
-                if (confirmButton) {
-                    const newConfirmButton = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
-                    newConfirmButton.addEventListener('click', () => {
-                        const formData = new FormData(formElement); const reweightData = { dimensions: [] }; reweightData.product_name = formData.get('product_name'); reweightData.dim_divisor = formData.get('dim_divisor') || 5000; const lengthInputs = formData.getAll('length[]'); const widthInputs = formData.getAll('width[]'); const heightInputs = formData.getAll('height[]'); const weightInputs = formData.getAll('weight[]');
-                        for(let i = 0; i < lengthInputs.length; i++) { reweightData.dimensions.push({ length: lengthInputs[i], width: widthInputs[i] || '', height: heightInputs[i], weight: weightInputs[i] }); }
-                        console.log('Đã xác nhận thông số Reweight:', reweightData);
-                        if (packageContentDisplayReweight && reweightData.product_name) packageContentDisplayReweight.textContent = reweightData.product_name;
-                        const reweightDisplays = [reweightDisplay1, reweightDisplay2, reweightDisplay3]; const actualDimCalcDisplays = [actualDimCalcDisplay1, actualDimCalcDisplay2, actualDimCalcDisplay3]; const actualConvertedDisplays = [actualConvertedWeightDisplay1, actualConvertedWeightDisplay2, actualConvertedWeightDisplay3];
-                        reweightData.dimensions.forEach((dim, index) => { if (reweightDisplays[index]) reweightDisplays[index].textContent = `${dim.weight || '0'} KG`; const l = parseFloat(dim.length) || 0; const w = parseFloat(dim.width) || 0; const h = parseFloat(dim.height) || 0; const divisor = parseInt(reweightData.dim_divisor, 10); const converted = divisor > 0 ? (l * w * h) / divisor : 0; if (actualDimCalcDisplays[index]) { actualDimCalcDisplays[index].innerHTML = `<b>${l}</b>x<b>${w}</b>x<b>${h}</b>/${divisor}= ${converted.toFixed(2)} KG`; } if (actualConvertedDisplays[index]) { actualConvertedDisplays[index].textContent = `${converted.toFixed(2)} KG`; } });
-                        alert('Đã cập nhật thông tin Reweight. Xem Console (F12).'); closeEditModal();
-                    });
-                }
-            }
-
-            async function openOpsItemsModal() { await loadModalContent('../form_package_detail/ops-item-details.html', populateOpsItemsModalData, attachOpsItemsModalListeners); }
-            function populateOpsItemsModalData(container){
-                const packageSelectModal = container.querySelector('#packageSelectModal');
-                if (packageSelectModal && packageCountSelectOps) { const selectedText = packageCountSelectOps.options[packageCountSelectOps.selectedIndex].text; const packageNumberMatch = selectedText.match(/Kiện\s*(\d+)/); if (packageNumberMatch) packageSelectModal.value = packageNumberMatch[1]; }
-            }
-            function attachOpsItemsModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button'); const confirmButton = container.querySelector('.modal-confirm-button');
-                const formContainer = container.querySelector('.agent-item-details-form');
-                if (!formContainer) return;
-                if (cancelButton) { const newCancelButton = cancelButton.cloneNode(true); cancelButton.parentNode.replaceChild(newCancelButton, cancelButton); newCancelButton.addEventListener('click', closeEditModal); }
-                if (confirmButton) {
-                    const newConfirmButton = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
-                    newConfirmButton.addEventListener('click', () => {
-                        const items = []; const rows = formContainer.querySelectorAll('.modal-item-table tbody tr'); let grandTotal = 0;
-                        rows.forEach(row => { const nameEl = row.querySelector('.item-name'); const qtyEl = row.querySelector('.item-qty'); const unitEl = row.querySelector('.item-unit'); const priceEl = row.querySelector('.item-price'); const totalEl = row.querySelector('.item-total'); if (nameEl && qtyEl && unitEl && priceEl && totalEl) { const itemData = { name: nameEl.value, qty: qtyEl.value, unit: unitEl.value, price: priceEl.value, total: totalEl.value }; items.push(itemData); grandTotal += parseFloat(itemData.total) || 0; } });
-                        console.log('Đã xác nhận chi tiết hàng hóa OPS (dữ liệu lấy từ modal):', { "Hàng hóa": items, "Tổng giá trị": grandTotal });
-                        if (invoiceValueDisplayOps) invoiceValueDisplayOps.textContent = `${grandTotal.toFixed(0)} USD`;
-                        alert('Đã cập nhật chi tiết hàng hóa OPS. Tổng giá trị đã được cập nhật. Xem Console (F12).'); closeEditModal();
-                    });
-                }
-            }
-
-            async function openAgentContentModal() { await loadModalContent('../form_package_detail/edit-package-reweight.html', populateAgentContentModalData, attachAgentContentModalListeners); }
-            function populateAgentContentModalData(container){
-                 const modalTitle = container.querySelector('.form-header h2'); if (modalTitle) modalTitle.textContent = 'Nhập cân nặng Đại lý';
-                 const productNameInputModal = container.querySelector('#productNameModal'); const dimDivisorInputModal = container.querySelector('#dimDivisorModal'); const dimensionsContainerModal = container.querySelector('#dimensionsContainerModal');
-                 if (productNameInputModal && agentContentDisplay) productNameInputModal.value = agentContentDisplay.textContent.trim();
-                 if (dimDivisorInputModal) { const calcText = agentDimCalcDisplay1 ? agentDimCalcDisplay1.textContent : ''; const dimMatch = calcText.match(/\/(\d+)/); dimDivisorInputModal.value = dimMatch ? dimMatch[1] : "5000"; }
-                 if (dimensionsContainerModal) { let modalRows = dimensionsContainerModal.querySelectorAll('.dimension-row'); const agentDimCalcElements = [agentDimCalcDisplay1, agentDimCalcDisplay2, agentDimCalcDisplay3]; const agentReweightValueElements = [agentReweightValueDisplay1, agentReweightValueDisplay2, agentReweightValueDisplay3]; const dataRowCount = agentDimCalcElements.filter(el => el && el.textContent.trim() !== '').length; while(modalRows.length > dataRowCount && modalRows.length > 1) { modalRows[modalRows.length - 1].remove(); modalRows = dimensionsContainerModal.querySelectorAll('.dimension-row'); } while(modalRows.length < dataRowCount) { const addButton = container.querySelector('#btnAddDimRowModal'); if (addButton) addButton.click(); else break; modalRows = dimensionsContainerModal.querySelectorAll('.dimension-row'); } modalRows.forEach((row, index) => { const calcEl = agentDimCalcElements[index]; const weightEl = agentReweightValueElements[index]; const lengthInput = row.querySelector('input[name="length[]"]'); const widthInput = row.querySelector('input[name="width[]"]'); const heightInput = row.querySelector('input[name="height[]"]'); const weightInput = row.querySelector('input[name="weight[]"]'); if (calcEl) { const dimMatch = calcEl.textContent.match(/<b>(\d+(\.\d+)?)<\/b>\s*x\s*<b>(\d+(\.\d+)?)<\/b>\s*x\s*<b>(\d+(\.\d+)?)<\/b>/); if (dimMatch && lengthInput && widthInput && heightInput) { lengthInput.value = dimMatch[1] || ''; widthInput.value = dimMatch[3] || ''; heightInput.value = dimMatch[5] || ''; } } if (weightEl && weightInput) { const weightMatch = weightEl.textContent.match(/(\d+(\.\d+)?)/); weightInput.value = weightMatch ? weightMatch[1] : ''; } }); }
-            }
-            function attachAgentContentModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button'); const confirmButton = container.querySelector('.modal-confirm-button');
-                const formElement = container.querySelector('#formPackageParamsModal');
-                if (!formElement) return;
-                if (cancelButton) { const newCancelButton = cancelButton.cloneNode(true); cancelButton.parentNode.replaceChild(newCancelButton, cancelButton); newCancelButton.addEventListener('click', closeEditModal); }
-                if (confirmButton) {
-                    const newConfirmButton = confirmButton.cloneNode(true); confirmButton.parentNode.replaceChild(newConfirmButton, confirmButton);
-                    newConfirmButton.addEventListener('click', () => {
-                        const formData = new FormData(formElement); const agentData = { dimensions: [] }; agentData.product_name = formData.get('product_name'); agentData.dim_divisor = formData.get('dim_divisor') || 5000; const lengthInputs = formData.getAll('length[]'); const widthInputs = formData.getAll('width[]'); const heightInputs = formData.getAll('height[]'); const weightInputs = formData.getAll('weight[]');
-                        for(let i = 0; i < lengthInputs.length; i++) { agentData.dimensions.push({ length: lengthInputs[i], width: widthInputs[i] || '', height: heightInputs[i], weight: weightInputs[i] }); }
-                        console.log('Đã xác nhận cân nặng Đại lý:', agentData);
-                        if (agentContentDisplay && agentData.product_name) agentContentDisplay.textContent = agentData.product_name;
-                        const agentDimCalcDisplays = [agentDimCalcDisplay1, agentDimCalcDisplay2, agentDimCalcDisplay3]; const agentConvertedDisplays = [agentConvertedWeightDisplay1, agentConvertedWeightDisplay2, agentConvertedWeightDisplay3]; const agentReweightValueDisplays = [agentReweightValueDisplay1, agentReweightValueDisplay2, agentReweightValueDisplay3];
-                        agentData.dimensions.forEach((dim, index) => { if (agentReweightValueDisplays[index]) agentReweightValueDisplays[index].textContent = `${dim.weight || '0'} KG`; const l = parseFloat(dim.length) || 0; const w = parseFloat(dim.width) || 0; const h = parseFloat(dim.height) || 0; const divisor = parseInt(agentData.dim_divisor, 10); const converted = divisor > 0 ? (l * w * h) / divisor : 0; if (agentDimCalcDisplays[index]) { agentDimCalcDisplays[index].innerHTML = `<b>${l}</b>x<b>${w}</b>x<b>${h}</b>/${divisor}= ${converted.toFixed(2)} KG`; } if (agentConvertedDisplays[index]) { agentConvertedDisplays[index].textContent = `${converted.toFixed(2)} KG`; } });
-                        alert('Đã cập nhật thông tin cân nặng Đại lý. Xem Console (F12).'); closeEditModal();
-                    });
-                }
-            }
-
-            // Add functions for Order Code, Creator and Notes modals
-            async function openOrderCodeModal() { 
-                console.log("Opening Order Code Modal..."); 
-                await loadModalContent("../form_package_detail/edit-order-code.html", populateOrderCodeModalData, attachOrderCodeModalListeners); 
-            }
-            
-            function populateOrderCodeModalData(container) {
-                const orderCodeInput = container.querySelector('#orderCodeInput');
-                // Find the first data-pair with a label containing "Mã đơn hàng"
-                const orderCodeLabels = Array.from(document.querySelectorAll('.data-pair .label')).filter(el => 
-                    el.textContent.includes('Mã đơn hàng'));
-                const orderCodeDisplay = orderCodeLabels[0]?.nextElementSibling;
-                
-                if (orderCodeInput && orderCodeDisplay) {
-                    orderCodeInput.value = orderCodeDisplay.textContent.trim();
-                }
-            }
-            
-            function attachOrderCodeModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button');
-                const confirmButton = container.querySelector('.modal-confirm-button');
-                
-                if (cancelButton) cancelButton.addEventListener('click', closeEditModal);
-                if (confirmButton) {
-                    confirmButton.addEventListener('click', () => {
-                        const orderCodeInput = container.querySelector('#orderCodeInput');
-                        const orderCodeLabels = Array.from(document.querySelectorAll('.data-pair .label')).filter(el => 
-                            el.textContent.includes('Mã đơn hàng'));
-                        const orderCodeDisplay = orderCodeLabels[0]?.nextElementSibling;
-                        
-                        if (orderCodeInput && orderCodeDisplay) {
-                            orderCodeDisplay.textContent = orderCodeInput.value;
-                            alert('Đã cập nhật mã đơn hàng thành công!');
-                        }
-                        closeEditModal();
-                    });
-                }
-            }
-            
-            async function openCreatorModal() {
-                console.log("Opening Creator Modal...");
-                await loadModalContent("../form_package_detail/edit-creator.html", populateCreatorModalData, attachCreatorModalListeners);
-            }
-            
-            function populateCreatorModalData(container) {
-                const creatorSelect = container.querySelector('#creatorSelect');
                 const creatorInput = container.querySelector('#creatorInput');
-                
-                // Find the data-pair with a label containing "Người tạo"
-                const creatorLabels = Array.from(document.querySelectorAll('.data-pair .label')).filter(el => 
-                    el.textContent.includes('Người tạo'));
-                const creatorDisplay = creatorLabels[0]?.nextElementSibling;
-                
-                if (creatorDisplay) {
-                    const currentCreator = creatorDisplay.textContent.trim();
-                    if (creatorSelect) {
-                        // Try to match with select options
-                        const option = Array.from(creatorSelect.options).find(opt => opt.value === currentCreator);
-                        if (option) {
-                            option.selected = true;
-                        } else if (creatorInput) {
-                            // If not in dropdown, put in custom input
-                            creatorInput.value = currentCreator;
-                        }
-                    }
-                }
-            }
-            
-            function attachCreatorModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button');
-                const confirmButton = container.querySelector('.modal-confirm-button');
-                
-                if (cancelButton) cancelButton.addEventListener('click', closeEditModal);
-                if (confirmButton) {
-                    confirmButton.addEventListener('click', () => {
-                        const creatorSelect = container.querySelector('#creatorSelect');
-                        const creatorInput = container.querySelector('#creatorInput');
-                        
-                        // Find the data-pair with a label containing "Người tạo"
-                        const creatorLabels = Array.from(document.querySelectorAll('.data-pair .label')).filter(el => 
-                            el.textContent.includes('Người tạo'));
-                        const creatorDisplay = creatorLabels[0]?.nextElementSibling;
-                        
-                        let creator = creatorInput.value.trim();
-                        if (!creator && creatorSelect) {
-                            creator = creatorSelect.value;
-                        }
-                        
-                        if (creatorDisplay && creator) {
-                            creatorDisplay.textContent = creator;
-                            alert('Đã cập nhật thông tin người tạo thành công!');
-                        }
-                        closeEditModal();
-                    });
-                }
-            }
-            
-            async function openNotesModal() {
-                console.log("Opening Notes Modal...");
-                await loadModalContent("../form_package_detail/edit-notes.html", populateNotesModalData, attachNotesModalListeners);
-            }
-            
-            function populateNotesModalData(container) {
-                const notesInput = container.querySelector('#notesInput');
-                
-                // Find the data-pair with a label containing "Ghi chú"
-                const notesLabels = Array.from(document.querySelectorAll('.data-pair .label')).filter(el => 
-                    el.textContent.includes('Ghi chú'));
-                const notesDisplay = notesLabels[0]?.nextElementSibling;
-                
-                if (notesInput && notesDisplay) {
-                    notesInput.value = notesDisplay.textContent.trim();
-                }
-            }
-            
-            function attachNotesModalListeners(container) {
-                const cancelButton = container.querySelector('.modal-cancel-button');
-                const confirmButton = container.querySelector('.modal-confirm-button');
-                
-                if (cancelButton) cancelButton.addEventListener('click', closeEditModal);
-                if (confirmButton) {
-                    confirmButton.addEventListener('click', () => {
-                        const notesInput = container.querySelector('#notesInput');
-                        
-                        // Find the data-pair with a label containing "Ghi chú"
-                        const notesLabels = Array.from(document.querySelectorAll('.data-pair .label')).filter(el => 
-                            el.textContent.includes('Ghi chú'));
-                        const notesDisplay = notesLabels[0]?.nextElementSibling;
-                        
-                        if (notesInput && notesDisplay) {
-                            notesDisplay.textContent = notesInput.value;
-                            alert('Đã cập nhật ghi chú thành công!');
-                        }
-                        closeEditModal();
-                    });
-                }
-            }
-
-            function toggleNotificationDropdown() { if (notificationDropdown) notificationDropdown.classList.toggle('visible'); }
-            function closeNotificationDropdown() { if (notificationDropdown) notificationDropdown.classList.remove('visible'); }
-            function showAnnouncement() { if (announcementOverlay) { announcementOverlay.classList.add('visible'); manageBodyScroll(); } }
-            function closeAnnouncement() { if (announcementOverlay) { announcementOverlay.classList.remove('visible'); manageBodyScroll(); } }
-
-            initializeActiveSubmenu();
-            updateDateTime();
-            setInterval(updateDateTime, 1000);
-            initializeSectionToggles();
-            if (announcementOverlay && announcementOverlay.classList.contains('visible')) closeAnnouncement();
-
-            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
-            if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobileOrDesktop);
-            if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarDesktop);
-            document.querySelectorAll('.menu-items .submenu-parent').forEach(link => link.addEventListener('click', toggleSubmenu));
-            if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
-            document.addEventListener('fullscreenchange', handleFullscreenChange);
-
-            if (openModalTrigger) openModalTrigger.addEventListener('click', openEditModal);
-            if (openAgentItemsTrigger) openAgentItemsTrigger.addEventListener('click', openAgentItemsModal);
-            if (openPackageParamsTrigger) openPackageParamsTrigger.addEventListener('click', openPackageParamsModal);
-            if (openServiceInfoTrigger) openServiceInfoTrigger.addEventListener('click', openServiceInfoModal);
-            if (openReceiverInfoTrigger) openReceiverInfoTrigger.addEventListener('click', openReceiverInfoModal);
-            if (openAgentReweightTrigger) openAgentReweightTrigger.addEventListener('click', openAgentReweightModal);
-            if (openOpsItemsTrigger) openOpsItemsTrigger.addEventListener('click', openOpsItemsModal);
-            if (openAgentContentTrigger) openAgentContentTrigger.addEventListener('click', openAgentContentModal);
-            if (adjustChargesTriggerButton) adjustChargesTriggerButton.addEventListener('click', openAdjustProfitModal);
-            if (editProfitTriggerButton) editProfitTriggerButton.addEventListener('click', openAdjustProfitModal);
-
-            // Add event listeners for the edit buttons
-            document.querySelectorAll('.edit-value-icon').forEach(button => {
-                const title = button.getAttribute('title');
-                if (title && title.includes('Chỉnh sửa Mã đơn')) {
-                    button.addEventListener('click', openOrderCodeModal);
-                    console.log("Added order code edit button listener");
-                } else if (button.closest('.data-pair') && 
-                           button.closest('.data-pair').querySelector('.label') && 
-                           button.closest('.data-pair').querySelector('.label').textContent.includes('Người tạo')) {
-                    button.addEventListener('click', openCreatorModal);
-                    console.log("Added creator edit button listener");
-                } else if (title && title.includes('Chỉnh sửa ghi chú')) {
-                    button.addEventListener('click', openNotesModal);
-                    console.log("Added notes edit button listener");
-                } else if (title && title.includes('Chỉnh sửa người gửi') && button.id === 'editSenderInfoTrigger') {
-                    // Listener already added above, skip to prevent duplication
-                    console.log("Sender info edit button listener already handled.");
-                }
-            });
-
-            if (notificationButton) {
-                notificationButton.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    toggleNotificationDropdown();
+                if(creatorInput) creatorInput.value = orderData.creator || '';
+                const statusInput = container.querySelector('#statusInput');
+                if(statusInput) statusInput.value = orderData.order_status || 'processing';
+                const serviceInput = container.querySelector('#serviceNameInput');
+                if(serviceInput) serviceInput.value = orderData.service_type || '';
+                const branchInput = container.querySelector('#branchInput');
+                if(branchInput) branchInput.value = orderData.branch || 'Tân Phú - HCM';
+                const addServicesArr = Array.isArray(orderData.add_service) ? orderData.add_service : (orderData.add_service ? orderData.add_service.split('/') : []);
+                const checkboxMap = {
+                    'Chữ ký': 'add_service_signature',
+                    'Bảo hiểm hàng hóa': 'add_service_insurance',
+                    'FUMIGATION': 'add_service_fumigation',
+                    'Đóng kiện gỗ': 'add_service_wood_crate'
+                };
+                Object.entries(checkboxMap).forEach(([label, name]) => {
+                    const cb = container.querySelector(`input[name="${name}"]`);
+                    if(cb) cb.checked = addServicesArr.map(s => s.trim()).includes(label);
                 });
-            }
-            if (notificationList) {
-                notificationList.addEventListener('click', (event) => {
-                    const clickedItem = event.target.closest('.notification-item');
-                    if (clickedItem && announcementTitle && announcementBodyEl && announcementTimestamp) {
-                        const title = clickedItem.dataset.title || 'Thông báo';
-                        const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
-                        const timestamp = clickedItem.dataset.timestamp || '';
-
-                        announcementTitle.textContent = title;
-                        announcementBodyEl.innerHTML = '';
-                        bodyText.split('||').forEach(paragraphText => {
-                            if(paragraphText.trim()) {
-                                const p = document.createElement('p');
-                                p.textContent = paragraphText.trim();
-                                announcementBodyEl.appendChild(p);
-                            }
-                        });
-                        announcementTimestamp.textContent = timestamp;
-                        showAnnouncement();
-                        closeNotificationDropdown();
-                    }
-                });
-            }
-            document.addEventListener('click', (event) => {
-                if (notificationDropdown?.classList.contains('visible') && !notificationDropdown.contains(event.target) && !notificationButton?.contains(event.target)) {
-                    closeNotificationDropdown();
-                }
-            });
-            if (announcementCloseBtn) {
-                announcementCloseBtn.addEventListener('click', closeAnnouncement);
-            }
-            if (announcementOverlay) {
-                announcementOverlay.addEventListener('click', (event) => {
-                    if (event.target === announcementOverlay) {
-                        closeAnnouncement();
-                    }
-                });
+                const noteInput = container.querySelector('#noteInput');
+                if(noteInput) noteInput.value = orderData.note || '';
             }
 
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') {
-                    if (announcementOverlay?.classList.contains('visible')) closeAnnouncement();
-                    else if (modalOverlay?.classList.contains('active')) closeEditModal();
-                    else if (notificationDropdown?.classList.contains('visible')) closeNotificationDropdown();
-                }
-            });
-
-            console.log("All initializations complete for Unified Order Detail Page.");
-
-            // Function to open Sender Info Modal
-            async function openSenderInfoModal() {
-                console.log("Opening Sender Info Modal...");
-                await loadModalContent(
-                    '../form_package_detail/edit-sender-info.html',
-                    populateSenderInfoModalData,
-                    attachSenderInfoModalListeners
-                );
-            }
-
-            // Function to populate Sender Info Modal with current data
-            function populateSenderInfoModalData(container) {
-                console.log("Populating Sender Info modal form...");
-                const senderNameInput = container.querySelector('#senderNameInputModal');
-                const senderPhoneInput = container.querySelector('#senderPhoneInputModal');
-                const senderAddressInput = container.querySelector('#senderAddressInputModal');
-
-                const senderNameValue = document.getElementById('senderNameValue')?.textContent.trim();
-                const senderPhoneValue = document.getElementById('senderPhoneValue')?.textContent.trim();
-                const senderAddressValue = document.getElementById('senderAddressValue')?.textContent.trim();
-
-                if (senderNameInput && senderNameValue) senderNameInput.value = senderNameValue;
-                if (senderPhoneInput && senderPhoneValue) senderPhoneInput.value = senderPhoneValue;
-                if (senderAddressInput && senderAddressValue) senderAddressInput.value = senderAddressValue;
-
-                console.log("Sender Info modal populated.");
-            }
-
-            // Function to attach event listeners to Sender Info Modal
-            function attachSenderInfoModalListeners(container) {
-                console.log("Attaching listeners to Sender Info modal...");
+            // Hàm gắn sự kiện cho modal Bill Info (lưu vào localStorage và cập nhật giao diện)
+            function attachBillInfoSectionModalListeners(container) {
                 const cancelButton = container.querySelector('.modal-cancel-button');
                 const confirmButton = container.querySelector('.modal-confirm-button');
-                const formElement = container.querySelector('#formSenderInfoModal'); // Make sure this ID matches your modal HTML
-
-                if (!formElement) {
-                    console.error("Cannot find #formSenderInfoModal for listeners.");
-                    return;
-                }
-
-                if (cancelButton) {
-                    const newBtn = cancelButton.cloneNode(true);
-                    cancelButton.parentNode.replaceChild(newBtn, cancelButton);
-                    newBtn.addEventListener('click', closeEditModal);
-                }
-                if (confirmButton) {
-                    const newBtn = confirmButton.cloneNode(true);
-                    confirmButton.parentNode.replaceChild(newBtn, confirmButton);
-                    newBtn.addEventListener('click', () => {
-                        console.log("Confirming Sender Info modal...");
-                        const formData = new FormData(formElement);
-                        const senderData = Object.fromEntries(formData.entries());
-                        console.log('Đã xác nhận thông tin người gửi (dữ liệu lấy từ modal):', senderData);
-
-                        // Update the main page content
-                        const senderNameDisplay = document.getElementById('senderNameValue');
-                        const senderPhoneDisplay = document.getElementById('senderPhoneValue');
-                        const senderAddressDisplay = document.getElementById('senderAddressValue');
-
-                        if (senderNameDisplay && senderData.sender_name) senderNameDisplay.textContent = senderData.sender_name;
-                        if (senderPhoneDisplay && senderData.sender_phone) senderPhoneDisplay.textContent = senderData.sender_phone;
-                        if (senderAddressDisplay && senderData.sender_address) senderAddressDisplay.textContent = senderData.sender_address;
-
-                        alert('Đã cập nhật thông tin Người gửi thành công! Xem Console (F12) để biết chi tiết.');
+                const form = container.querySelector('#formBillInfoSectionModal');
+                if(cancelButton) cancelButton.addEventListener('click', function() {
+                    console.log('[Modal] Đã bấm Hủy chỉnh sửa thông tin vận đơn');
                         closeEditModal();
                     });
-                }
-            }
-
-            // Add event listener specifically for the Sender Info edit icon using its ID
-            const openSenderInfoTrigger = document.getElementById('editSenderInfoTrigger');
-            if (openSenderInfoTrigger) {
-                openSenderInfoTrigger.removeEventListener('click', openSenderInfoModal); // Remove previous listener if any
-                openSenderInfoTrigger.addEventListener('click', openSenderInfoModal);
-                console.log("Added sender info edit button listener via ID.");
-            }
-
-            async function openCompanyNameModal() {
-                console.log("Opening Company Name Modal...");
-                await loadModalContent(
-                    '../form_package_detail/edit-company-name.html',
-                    populateCompanyNameModalData,
-                    attachCompanyNameModalListeners
-                );
-            }
-
-            function populateCompanyNameModalData(container) {
-                console.log("Populating Company Name modal form...");
-                const companyNameInput = container.querySelector('#companyNameInputModal');
-                const companyNameDisplay = document.getElementById('receiverCompanyNameValue');
-
-                if (companyNameInput && companyNameDisplay) {
-                    companyNameInput.value = companyNameDisplay.textContent.trim();
-                }
-            }
-
-            function attachCompanyNameModalListeners(container) {
-                console.log("Attaching listeners to Company Name modal...");
-                const cancelButton = container.querySelector('.modal-cancel-button');
-                const confirmButton = container.querySelector('.modal-confirm-button');
-                const formElement = container.querySelector('#formCompanyNameModal');
-
-                if (!formElement) {
-                    console.error("Cannot find #formCompanyNameModal for listeners.");
-                    return;
-                }
-
-                if (cancelButton) {
-                    const newBtn = cancelButton.cloneNode(true);
-                    cancelButton.parentNode.replaceChild(newBtn, cancelButton);
-                    newBtn.addEventListener('click', closeEditModal);
-                }
-
-                if (confirmButton) {
-                    const newBtn = confirmButton.cloneNode(true);
-                    confirmButton.parentNode.replaceChild(newBtn, confirmButton);
-                    newBtn.addEventListener('click', () => {
-                        console.log("Confirming Company Name modal...");
-                        const formData = new FormData(formElement);
-                        const companyData = Object.fromEntries(formData.entries());
-                        console.log('Đã xác nhận tên công ty (dữ liệu lấy từ modal):', companyData);
-
-                        const companyNameDisplay = document.getElementById('receiverCompanyNameValue');
-                        if (companyNameDisplay && companyData.company_name) {
-                            companyNameDisplay.textContent = companyData.company_name;
+                if(confirmButton && form) {
+                    confirmButton.addEventListener('click', function() {
+                        console.log('[Modal] Đã bấm Xác nhận chỉnh sửa thông tin vận đơn');
+                        const bill_code = container.querySelector('#billCodeInput')?.value || '';
+                        const ref_code = container.querySelector('#refCodeInput')?.value || '';
+                        const order_date = container.querySelector('#orderDateInput')?.value || '';
+                        const creator = container.querySelector('#creatorInput')?.value || '';
+                        const order_status = container.querySelector('#statusInput')?.value || 'processing';
+                        const service_type = container.querySelector('#serviceNameInput')?.value || '';
+                        const branch = container.querySelector('#branchInput')?.value || '';
+                        const note = container.querySelector('#noteInput')?.value || '';
+                        const add_service = Array.from(container.querySelectorAll('input[type="checkbox"][name^="add_service_"]:checked')).map(cb => cb.parentElement.textContent.trim());
+                        const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+                        orderData.bill_code = bill_code;
+                        orderData.ref_code = ref_code;
+                        orderData.order_date = order_date ? new Date(order_date).toISOString() : '';
+                        orderData.creator = creator;
+                        orderData.order_status = order_status;
+                        orderData.service_type = service_type;
+                        orderData.branch = branch;
+                        orderData.add_service = add_service;
+                        orderData.note = note;
+                        localStorage.setItem('currentOrderDetail', JSON.stringify(orderData));
+                        const section = document.querySelectorAll('.detail-section')[0];
+                        if(section) {
+                            const pairs = section.querySelectorAll('.data-pair');
+                            pairs[0].querySelector('.value').textContent = bill_code;
+                            pairs[1].querySelector('.value').textContent = ref_code;
+                            pairs[2].querySelector('.value').textContent = order_date ? new Date(order_date).toLocaleString('vi-VN') : '';
+                            pairs[3].querySelector('.value').textContent = creator;
+                            pairs[4].querySelector('.status-badge').textContent = order_status === 'processing' ? 'Đang vận chuyển' : (order_status === 'completed' ? 'Hoàn tất' : 'Đã hủy');
+                            pairs[5].querySelector('.value').textContent = service_type;
+                            pairs[6].querySelector('.value').textContent = add_service.join(' / ');
+                            pairs[7].querySelector('.value').textContent = note;
                         }
-
-                        alert('Đã cập nhật tên công ty thành công!');
                         closeEditModal();
                     });
                 }
             }
-
-            // Add event listener for company name edit icon
-            document.querySelectorAll('.edit-value-icon').forEach(button => {
-                const title = button.getAttribute('title');
-                if (title && title.includes('Chỉnh sửa Tên công ty')) {
-                    button.addEventListener('click', openCompanyNameModal);
-                    console.log("Added company name edit button listener");
-                }
+            
+            document.getElementById('editPackageDetailBtn').addEventListener('click', function() {
+                loadModalContentIframe('../form_package_detail/edit-package-detail-modal.html');
             });
 
+            document.getElementById('editReceiverBtn').addEventListener('click', function() {
+                loadModalContentIframe('../form_package_detail/edit-receiver-modal.html');
+            });
+
+            document.getElementById('editSenderBtn').addEventListener('click', function() {
+                loadModalContentIframe('../form_package_detail/edit-sender-modal.html');
+            });
+
+            // Add event listener for Charges section edit icon
+            document.getElementById('adjustChargesTrigger').addEventListener('click', function() {
+                console.log('Edit charges icon clicked'); // Add log for debugging
+                loadModalContentIframe('../form_package_detail/edit-charges-modal.html');
+            });
+
+            // Add event listener for Profit section edit icon
+            document.getElementById('editProfitTrigger').addEventListener('click', function() {
+                console.log('Edit profit icon clicked'); // Add log for debugging
+                loadModalContentIframe('../form_package_detail/edit-profit-modal.html');
+            });
+
+            // Add event listener for Agent Invoice section edit icon
+            document.getElementById('editAgentInvoiceTrigger').addEventListener('click', function() {
+                console.log('Edit agent invoice icon clicked'); // Add log for debugging
+                loadModalContentIframe('../form_package_detail/edit-agent-invoice-modal.html');
+            });
         });
-
-        // --- Dropdown user đăng nhập/đăng xuất ---
-        document.addEventListener('DOMContentLoaded', function() {
-            function renderUserDropdown() {
-                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-                const userToggle = document.getElementById('user-dropdown-toggle');
-                const userDropdown = document.getElementById('user-dropdown');
-                if (!userToggle || !userDropdown) return;
-                if (!isLoggedIn) {
-                    userToggle.innerHTML = `
-                        <div style="background: linear-gradient(135deg, #ffe066 0%, #a78bfa 100%); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-regular fa-circle-user user-icon" style="color: #4F46E5; font-size: 1.5em;"></i>
-                        </div>
-                    `;
-                    userDropdown.innerHTML = `
-                        <a href="#" class="user-dropdown-item" id="login-menu-item">
-                            <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
-                        </a>
-                    `;
-                } else {
-                    userToggle.innerHTML = `
-                        <div style="background: linear-gradient(135deg, #ffe066 0%, #a78bfa 100%); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-regular fa-circle-user user-icon" style="color: #4F46E5; font-size: 1.5em;"></i>
-                        </div>
-                    `;
-                    userDropdown.innerHTML = `
-                        <div class="user-info">
-                            <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
-                            <div class="user-details">
-                                <div>Phạm Hoàng Đình</div>
-                                <div>Quản trị viên</div>
-                            </div>
-                        </div>
-                        <hr>
-                        <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
-                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
-                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
-                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
-                        <hr>
-                        <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
-                    `;
-                }
-                setTimeout(() => {
-                    const loginItem = document.getElementById('login-menu-item');
-                    if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
-                    const logoutItem = document.getElementById('logout-menu-item');
-                    if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
-                }, 100);
-            }
-            renderUserDropdown();
-            window.addEventListener('storage', renderUserDropdown);
-            // Dropdown show/hide
-            const userToggle = document.getElementById('user-dropdown-toggle');
-            const userDropdown = document.getElementById('user-dropdown');
-            if(userToggle && userDropdown){
-                userToggle.addEventListener('click', function(e){
-                    e.stopPropagation();
-                    userDropdown.classList.toggle('show');
-                });
-                document.addEventListener('click', function(e){
-                    if(!userDropdown.contains(e.target) && e.target !== userToggle){
-                        userDropdown.classList.remove('show');
-                    }
-                });
-            }
-        });
-
         document.addEventListener('DOMContentLoaded', function() {
             // Lấy dữ liệu từ localStorage
             const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
@@ -1562,10 +729,12 @@
             // Hiển thị thông tin người nhận
             const receiverSection = document.querySelector('.detail-column-right .detail-section:nth-child(2)');
             if (receiverSection) {
+                const receiverCompanyNameValue = receiverSection.querySelector('#receiverCompanyNameValue');
                 const receiverNameValue = receiverSection.querySelector('#receiverNameValue');
-                const receiverPhoneValue = receiverSection.querySelector('#receiverPhoneValue');
+                const receiverPhoneValue = receiverSection.querySelector('#receiverPhonesValue');
                 const receiverAddressValue = receiverSection.querySelector('#receiverAddressValue');
 
+                if (receiverCompanyNameValue) receiverCompanyNameValue.textContent = orderData.receiver_company || '';
                 if (receiverNameValue) receiverNameValue.textContent = orderData.receiver_name || '';
                 if (receiverPhoneValue) {
                     const phones = [orderData.receiver_phone1, orderData.receiver_phone2].filter(Boolean).join(' / ');
@@ -1712,8 +881,193 @@
                     allDimGrids[i*2+1].innerHTML = html2;
                 }
             }
+            
+        });
+        const body = document.body;
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mobileSidebarToggleBtn = document.getElementById('mobile-sidebar-toggle');
+        const desktopSidebarToggleBtn = document.querySelector('.sidebar-toggle-desktop');
+        const serviceTableBody = document.getElementById('service-table-body');
+        const selectAllCheckbox = document.getElementById('select-all-checkbox');
+        const currentDateSpan = document.getElementById('current-date');
+        const currentTimeSpan = document.getElementById('current-time');
+        const currentYearSpan = document.getElementById('current-year');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const notificationButton = document.getElementById('notification-button');
+        const notificationDropdown = document.getElementById('notification-dropdown');
+        const notificationList = document.getElementById('notification-list');
+        const announcementOverlay = document.getElementById('announcement-overlay');
+        const announcementBox = document.getElementById('announcement-box');
+        const announcementCloseBtn = document.getElementById('announcement-close-btn');
+        const announcementTitle = document.getElementById('announcement-title');
+        const announcementBody = document.getElementById('announcement-body');
+        const announcementTimestamp = document.getElementById('announcement-timestamp');
+
+        const manageBodyScroll = () => {
+            const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
+            const isAnnounceVisible = announcementOverlay && announcementOverlay.classList.contains('visible');
+            const isAnyOtherModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
+            if (isSidebarOpen || isAnnounceVisible || isAnyOtherModalVisible) {
+                body.classList.add('overflow-hidden');
+            } else {
+                body.classList.remove('overflow-hidden');
+            }
+        };
+
+        function toggleSidebarMobile() { body.classList.toggle('sidebar-mobile-open'); const isOpen = body.classList.contains('sidebar-mobile-open'); if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen)); manageBodyScroll(); }
+        function toggleSidebarDesktop() { body.classList.toggle('sidebar-collapsed'); const isCollapsed = body.classList.contains('sidebar-collapsed'); if (desktopSidebarToggleBtn) { desktopSidebarToggleBtn.title = isCollapsed ? "Phóng Sidebar" : "Thu Sidebar"; desktopSidebarToggleBtn.querySelector('i').style.transform = isCollapsed ? 'rotate(180deg)' : ''; } if (isCollapsed) { document.querySelectorAll('.menu-items .submenu.active').forEach(submenu => { submenu.classList.remove('active'); submenu.previousElementSibling?.classList.remove('active'); }); } }
+        function toggleSubmenu(event) { event.preventDefault(); const parentLink = event.currentTarget; const submenuWrapper = parentLink.nextElementSibling; if (!submenuWrapper || !submenuWrapper.classList.contains('submenu')) return; if (!parentLink.classList.contains('active')) { document.querySelectorAll('.menu-items .submenu-parent.active').forEach(activeParent => { if (activeParent !== parentLink) { activeParent.classList.remove('active'); activeParent.nextElementSibling?.classList.remove('active'); } }); } submenuWrapper.classList.toggle('active'); parentLink.classList.toggle('active'); }
+        function initializeActiveSubmenu() { const activeLink = document.querySelector('.sidebar .menu-items > li > a.active'); const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active'); if (activeSubmenuLink) { const submenuDiv = activeSubmenuLink.closest('.submenu'); const parentLink = submenuDiv?.previousElementSibling; if (submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) { if (!activeLink || activeLink !== parentLink) { submenuDiv.classList.add('active'); parentLink.classList.add('active'); } } } }
+        function updateDateTime() { const now = new Date(); const optionsDate = { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' }; const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }; try { let dayOfWeek; switch (now.getDay()) { case 0: dayOfWeek = "Sun"; break; case 1: dayOfWeek = "Mon"; break; case 2: dayOfWeek = "Tue"; break; case 3: dayOfWeek = "Wed"; break; case 4: dayOfWeek = "Thu"; break; case 5: dayOfWeek = "Fri"; break; case 6: dayOfWeek = "Sat"; break; default: dayOfWeek = ""; } const dateString = `${dayOfWeek} ${now.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}`; if (currentDateSpan) currentDateSpan.textContent = dateString; if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString('en-US', optionsTime); } catch (e) { if (currentDateSpan) currentDateSpan.textContent = now.toLocaleDateString(); if (currentTimeSpan) currentTimeSpan.textContent = now.toLocaleTimeString(); } if (currentYearSpan) currentYearSpan.textContent = now.getFullYear(); }
+        function toggleFullscreen() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(err => console.error(`Fullscreen error: ${err.message}`)); } else if (document.exitFullscreen) { document.exitFullscreen(); } }
+        function handleFullscreenChange() { const isFullscreen = !!document.fullscreenElement; const icon = fullscreenBtn?.querySelector('i'); if(icon){ icon.classList.toggle('fa-expand', !isFullscreen); icon.classList.toggle('fa-compress', isFullscreen); } if(fullscreenBtn) { fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'); } }
+
+        function showAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.add('visible');
+                manageBodyScroll();
+            }
+        }
+        function closeAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.remove('visible');
+                manageBodyScroll();
+            }
+        }
+
+        function toggleNotificationDropdown() {
+            if (notificationDropdown) {
+                notificationDropdown.classList.toggle('visible');
+            }
+        }
+
+        function closeNotificationDropdown() {
+             if (notificationDropdown) {
+                notificationDropdown.classList.remove('visible');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeActiveSubmenu();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', function() {
+                if (window.innerWidth > 768) {
+                    body.classList.toggle('sidebar-collapsed');
+                } else {
+                    body.classList.toggle('sidebar-mobile-open');
+                }
+                const isOpen = body.classList.contains('sidebar-mobile-open') || !body.classList.contains('sidebar-collapsed');
+                mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen));
+            });
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobile);
+            if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarDesktop);
+            document.querySelectorAll('.menu-items .submenu-parent').forEach(link => link.addEventListener('click', toggleSubmenu));
+            if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+            if (notificationButton) {
+                notificationButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    toggleNotificationDropdown();
+                });
+            }
+
+            if (notificationList) {
+                notificationList.addEventListener('click', (event) => {
+                    const clickedItem = event.target.closest('.notification-item');
+                    if (clickedItem && announcementTitle && announcementBody && announcementTimestamp) {
+                        const title = clickedItem.dataset.title || 'Thông báo';
+                        const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
+                        const timestamp = clickedItem.dataset.timestamp || '';
+
+                        announcementTitle.textContent = title;
+
+                        announcementBody.innerHTML = '';
+                        bodyText.split('||').forEach(paragraphText => {
+                            if(paragraphText.trim()) {
+                                const p = document.createElement('p');
+                                p.textContent = paragraphText.trim();
+                                announcementBody.appendChild(p);
+                            }
+                        });
+
+                        announcementTimestamp.textContent = timestamp;
+
+                        showAnnouncement();
+
+                        closeNotificationDropdown();
+                    }
+                });
+            }
+
+            document.addEventListener('click', (event) => {
+                if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
+                    if (!notificationDropdown.contains(event.target) && event.target !== notificationButton && !notificationButton.contains(event.target)) {
+                        closeNotificationDropdown();
+                    }
+                }
+            });
+
+            if (announcementCloseBtn) announcementCloseBtn.addEventListener('click', closeAnnouncement);
+            if (announcementOverlay) announcementOverlay.addEventListener('click', (event) => { if (event.target === announcementOverlay) closeAnnouncement(); });
+
+            document.querySelector('.footer-actions .button.danger')?.addEventListener('click', () => { alert("Xóa đã chọn clicked!"); });
+            document.querySelector('.footer-actions .button.primary')?.addEventListener('click', () => { alert("Thêm dịch vụ mới clicked!"); });
+        });
+
+        // --- Dropdown user & đăng nhập/đăng xuất ---
+        document.addEventListener('DOMContentLoaded', function() {
+            function renderUserDropdown() {
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                const userToggle = document.getElementById('user-dropdown-toggle');
+                const userDropdown = document.getElementById('user-dropdown');
+                if (!userToggle || !userDropdown) return;
+                if (!isLoggedIn) {
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                    userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
+                } else {
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                    userDropdown.innerHTML = `
+                        <div class="user-info">
+                            <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
+                            <div class="user-details"><h4>Phạm Hoàng Đình</h4><span class="user-role">Quản trị viên</span></div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                    `;
+                }
+                setTimeout(() => {
+                    const loginItem = document.getElementById('login-menu-item');
+                    if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
+                    const logoutItem = document.getElementById('logout-menu-item');
+                    if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+                }, 100);
+            }
+            renderUserDropdown();
+            window.addEventListener('storage', renderUserDropdown);
+            // Dropdown show/hide
+            const userToggle = document.getElementById('user-dropdown-toggle');
+            const userDropdown = document.getElementById('user-dropdown');
+            if(userToggle && userDropdown){
+                userToggle.addEventListener('click', function(e){
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('show');
+                });
+                document.addEventListener('click', function(e){
+                    if(!userDropdown.contains(e.target) && e.target !== userToggle){
+                        userDropdown.classList.remove('show');
+                    }
+                });
+            }
         });
     </script>
-
 </body>
 </html>

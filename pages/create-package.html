@@ -269,8 +269,7 @@
                                             <div class="form-group">
                                                 <label for="service_type">Chọn dịch vụ<span class="required">*</span></label>
                                                 <select id="service_type" name="service_type" required>
-                                                    <option value="MTE_DHL_SIN" selected>MTE DHL SIN</option>
-                                                    <option value="MTE_FEDEX_SIN">MTE FEDEX SIN</option>
+                                                    <option value="MTE_DHL_SIN" selected>Chọn dịch vụ</option>
                                                  </select>
                                                  <span class="error-message"></span>
                                             </div>
@@ -314,7 +313,7 @@
                                     <label for="receiver_address_book" class="visually-hidden">Chọn từ danh bạ</label>
                                      <select id="receiver_address_book" name="receiver_address_book" title="Chọn từ danh bạ">
                                      <option value="" selected>Danh sách người nhận</option>
-                                     <option value="saved1">HIEP THANH RUBBER...
+                                     <option value="saved1">HIEP THANH
                                  </select>
                               </div>
                           </div>
@@ -467,11 +466,10 @@
                       </footer>
                  </div>
              </form>
-
-             <footer class="site-footer">
-                Minh Khôi Logistics © <span id="current-year"></span>. All rights reserved. Design by Nina Co.,Ltd
-             </footer>
         </div>
+        <footer class="site-footer">
+            Minh Khôi Logistics © <span id="current-year"></span>. All rights reserved. Design by Nina Co.,Ltd
+        </footer>
     </main>
 
     <div class="announcement-overlay" id="announcement-overlay">
@@ -1035,6 +1033,44 @@
                     }
                 });
             }
+
+            // Thêm code mới để lấy dữ liệu dịch vụ từ localStorage
+            function getServiceData() {
+                const data = localStorage.getItem('serviceData');
+                console.log('getServiceData: Retrieved data from localStorage:', data);
+                return data ? JSON.parse(data) : [];
+            }
+
+            // Hàm điền dữ liệu vào combobox dịch vụ
+            function populateServiceSelect() {
+                const serviceSelect = document.getElementById('service_type');
+                if (!serviceSelect) {
+                    console.error('Không tìm thấy element service_type');
+                    return;
+                }
+
+                // Xóa tất cả options hiện tại trừ option mặc định
+                while (serviceSelect.options.length > 1) {
+                    serviceSelect.remove(1);
+                }
+
+                // Lấy dữ liệu dịch vụ
+                const services = getServiceData();
+                console.log('Populating service select with data:', services);
+
+                // Thêm các options mới
+                services.forEach(service => {
+                    if (service.hienThi) { // Chỉ hiển thị các dịch vụ được đánh dấu là hiển thị
+                        const option = document.createElement('option');
+                        option.value = service.maDV;
+                        option.textContent = `${service.maDV} - ${service.tenDV}`;
+                        serviceSelect.appendChild(option);
+                    }
+                });
+            }
+
+            // Gọi hàm điền dữ liệu khi trang được tải
+            populateServiceSelect();
         });
     </script>
 

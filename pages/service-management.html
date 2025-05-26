@@ -117,12 +117,7 @@
 
         <div class="content-wrapper">
             <section class="page-header"><div class="page-header-left"><h1 class="page-title">DANH SÁCH DỊCH VỤ</h1><nav class="breadcrumb" aria-label="breadcrumb"><a href="#">Quản lý</a> / <span>Quản lý dịch vụ</span></nav></div></section>
-            <div style="display:flex; justify-content:flex-end; margin-bottom:1.2rem;">
-              <button id="addServiceBtn" style="display:flex; align-items:center; gap:8px; background:#10b981; color:#fff; border:none; border-radius:8px; padding:10px 22px; font-size:0.85rem; font-weight:600; box-shadow:0 2px 8px #6366f122; cursor:pointer;">
-                <i class="fa-solid fa-plus" style="font-size:1.2em;"></i> Thêm dịch vụ
-              </button>
-            </div>
-            <section class="table-area card" aria-labelledby="service-table-heading"><div class="card-header"><h2 id="service-table-heading">Danh sách Dịch vụ</h2></div><div class="table-container"><div class="table-wrapper"><table id="serviceTable"><thead><tr><th scope="col" class="col-center"><input type="checkbox" id="select-all-checkbox" title="Chọn tất cả"></th><th scope="col" class="col-center">STT</th><th scope="col">Mã dịch vụ</th><th scope="col">Tên dịch vụ</th><th scope="col">Ngày cập nhật</th><th scope="col" class="col-center">Hiển thị</th><th scope="col" class="col-center">Thao tác</th></tr></thead><tbody id="service-table-body"><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 1"></td><td class="col-center">1</td><td>MTE-AUS</td><td>Chuyên tuyến Úc</td><td>12-08-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 2"></td><td class="col-center">2</td><td>MTE-USA</td><td>Chuyên tuyến Mỹ</td><td>10-08-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 3"></td><td class="col-center">3</td><td>MTE-CAD</td><td>Chuyên tuyến Canada</td><td>25-07-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 4"></td><td class="col-center">4</td><td>MTE-EUR</td><td>Chuyên tuyến Châu Âu</td><td>11-08-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 5"></td><td class="col-center">5</td><td>MTE-ASIA</td><td>Chuyên tuyến Châu Á</td><td>09-08-2024</td><td class="col-center"><input type="checkbox" title="Dịch vụ này đang ẩn"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 6"></td><td class="col-center">6</td><td>MTE-DOM</td><td>Chuyển phát nhanh Nội địa</td><td>01-07-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr></tbody></table></div></div><div class="card-footer"><nav class="pagination" aria-label="Table navigation"><span class="pagination-info">Hiển thị <b>1</b> đến <b>6</b> của <b>15</b> mục</span><div class="pagination-buttons"><button class="button" disabled>Trước</button><button class="button active" aria-current="page">1</button><button class="button">2</button><button class="button">3</button><button class="button">Sau</button></div></nav><div class="footer-actions"><button class="button danger"><i class="fa-solid fa-trash-can"></i> Xóa đã chọn</button><button class="button primary"><i class="fa-solid fa-plus"></i> Thêm dịch vụ mới</button></div></div></section>
+            <section class="table-area card" aria-labelledby="service-table-heading"><div class="card-header"><h2 id="service-table-heading">Danh sách Dịch vụ</h2></div><div class="table-container"><div class="table-wrapper"><table id="serviceTable"><thead><tr><th scope="col" class="col-center"><input type="checkbox" id="select-all-checkbox" title="Chọn tất cả"></th><th scope="col" class="col-center">STT</th><th scope="col">Mã dịch vụ</th><th scope="col">Tên dịch vụ</th><th scope="col">Ngày cập nhật</th><th scope="col" class="col-center">Hiển thị</th><th scope="col" class="col-center">Thao tác</th></tr></thead><tbody id="service-table-body"><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 1"></td><td class="col-center">1</td><td>MTE-AUS</td><td>Chuyên tuyến Úc</td><td>12-08-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 2"></td><td class="col-center">2</td><td>MTE-USA</td><td>Chuyên tuyến Mỹ</td><td>10-08-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 3"></td><td class="col-center">3</td><td>MTE-CAD</td><td>Chuyên tuyến Canada</td><td>25-07-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 4"></td><td class="col-center">4</td><td>MTE-EUR</td><td>Chuyên tuyến Châu Âu</td><td>11-08-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 5"></td><td class="col-center">5</td><td>MTE-ASIA</td><td>Chuyên tuyến Châu Á</td><td>09-08-2024</td><td class="col-center"><input type="checkbox" title="Dịch vụ này đang ẩn"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr><tr><td class="col-center"><input type="checkbox" title="Chọn dòng 6"></td><td class="col-center">6</td><td>MTE-DOM</td><td>Chuyển phát nhanh Nội địa</td><td>01-07-2024</td><td class="col-center"><input type="checkbox" checked title="Hiển thị dịch vụ này"></td><td class="col-center action-icons"><button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button><button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button></td></tr></tbody></table></div></div><div class="card-footer"><nav class="pagination" aria-label="Table navigation"><span class="pagination-info" id="pagination-info">Hiển thị <b>1</b> đến <b>6</b> của <b>15</b> mục</span><div class="pagination-buttons"><button class="button" disabled>Trước</button><button class="button active" aria-current="page">1</button><button class="button">2</button><button class="button">3</button><button class="button">Sau</button></div></nav><div class="footer-actions"><button class="button danger"><i class="fa-solid fa-trash-can"></i> Xóa đã chọn</button><button class="button primary" id="addServiceBtn"><i class="fa-solid fa-plus"></i> Thêm dịch vụ mới</button></div></div></section>
             <footer class="site-footer">Minh Khôi Logistics © <span id="current-year">2025</span>. All rights reserved. Design by Nina Co.,Ltd</footer>
         </div>
 
@@ -165,6 +160,18 @@
         <div style="display:flex; gap:1rem; justify-content:center;">
           <button type="button" id="cancelDeleteService" style="padding:7px 18px; border-radius:6px; border:none; background:#e5e7eb; color:#222;">Hủy</button>
           <button type="button" id="confirmDeleteService" style="padding:7px 18px; border-radius:6px; border:none; background:#dc2626; color:#fff;">Xác nhận</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Xác nhận Xóa Nhiều Dịch Vụ -->
+    <div id="deleteMultipleModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(30,41,59,0.25); align-items:center; justify-content:center;">
+      <div style="background:#fff; border-radius:12px; box-shadow:0 4px 32px #0002; padding:2rem; min-width:320px; max-width:95vw; margin:auto; display:flex; flex-direction:column; gap:1.2rem; align-items:center;">
+        <h3 style="margin:0 0 0.5rem 0; color:#dc2626;">Xác nhận xóa dịch vụ</h3>
+        <div id="deleteMultipleInfo" style="color:#222; font-size:1.08em; text-align:center;"></div>
+        <div style="display:flex; gap:1rem; justify-content:center;">
+          <button type="button" id="cancelDeleteMultiple" style="padding:7px 18px; border-radius:6px; border:none; background:#e5e7eb; color:#222;">Hủy</button>
+          <button type="button" id="confirmDeleteMultiple" style="padding:7px 18px; border-radius:6px; border:none; background:#dc2626; color:#fff;">Xác nhận</button>
         </div>
       </div>
     </div>
@@ -240,6 +247,35 @@
             updateDateTime();
             setInterval(updateDateTime, 1000);
 
+            // --- Load service data on page load --- (Modified)
+            let serviceData = getServiceData();
+            if (serviceData.length === 0) {
+                // If no data in localStorage, load from initial HTML table
+                const initialRows = document.querySelectorAll('#serviceTable tbody tr');
+                initialRows.forEach(row => {
+                    const maDV = row.children[2].textContent.trim();
+                    const tenDV = row.children[3].textContent.trim();
+                    const ngayCapNhat = row.children[4].textContent.trim();
+                    const hienThi = row.children[5].querySelector('input[type="checkbox"]?').checked;
+                    if (maDV) { // Only add rows with a service code
+                         serviceData.push({
+                            stt: serviceData.length + 1, // STT will be re-calculated during rendering
+                            maDV: maDV,
+                            tenDV: tenDV,
+                            ngayCapNhat: ngayCapNhat,
+                            hienThi: hienThi
+                         });
+                    }
+                });
+                saveServiceData(serviceData); // Save initial data to localStorage
+                console.log('Loaded initial data from HTML and saved:', serviceData);
+            } else {
+                console.log('Loaded data from localStorage:', serviceData);
+            }
+
+            // Render the table with the loaded data
+            renderServiceTable(serviceData);
+
             if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', function() {
                 if (window.innerWidth > 768) {
                     body.classList.toggle('sidebar-collapsed');
@@ -305,219 +341,408 @@
             document.querySelector('.footer-actions .button.primary')?.addEventListener('click', () => { alert("Thêm dịch vụ mới clicked!"); });
         });
 
-        // --- Dropdown user & đăng nhập/đăng xuất ---
-        document.addEventListener('DOMContentLoaded', function() {
-            function renderUserDropdown() {
-                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-                const userToggle = document.getElementById('user-dropdown-toggle');
-                const userDropdown = document.getElementById('user-dropdown');
-                if (!userToggle || !userDropdown) return;
-                if (!isLoggedIn) {
-                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
-                    userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
-                } else {
-                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
-                    userDropdown.innerHTML = `
-                        <div class="user-info">
-                            <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
-                            <div class="user-details"><h4>Phạm Hoàng Đình</h4><span class="user-role">Quản trị viên</span></div>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
-                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
-                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
-                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
-                    `;
-                }
-                setTimeout(() => {
-                    const loginItem = document.getElementById('login-menu-item');
-                    if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
-                    const logoutItem = document.getElementById('logout-menu-item');
-                    if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
-                }, 100);
+        // Use event delegation for edit and delete buttons (Logic updated to work with data array)
+        document.getElementById('serviceTable').addEventListener('click', function(e) {
+            const editButton = e.target.closest('.icon-button.icon-edit');
+            const deleteButton = e.target.closest('.icon-button.icon-danger');
+
+            if (editButton) {
+                e.preventDefault();
+                const row = editButton.closest('tr');
+                if (!row) return;
+
+                const serviceIndex = row.rowIndex - 1; // Get the index of the service in the data array (subtract 1 for header)
+                const serviceData = getServiceData();
+                const service = serviceData[serviceIndex];
+
+                // Open edit modal and fill data
+                const modal = document.getElementById('editServiceModal');
+                const maDVInput = document.getElementById('editMaDV');
+                const tenDVInput = document.getElementById('editTenDV');
+                const ngayCapNhatInput = document.getElementById('editNgayCapNhat');
+                const hienThiInput = document.getElementById('editHienThi');
+
+                maDVInput.value = service.maDV;
+                tenDVInput.value = service.tenDV;
+
+                // Convert dd-mm-yyyy to yyyy-mm-dd for input type=date
+                const [d, m, y] = service.ngayCapNhat.split('-');
+                ngayCapNhatInput.value = y + '-' + m + '-' + d;
+
+                hienThiInput.checked = service.hienThi;
+
+                modal.style.display = 'flex';
+                modal._editingIndex = serviceIndex; // Store the index for later access
+
+                setTimeout(() => { maDVInput.focus(); }, 100);
             }
-            renderUserDropdown();
-            window.addEventListener('storage', renderUserDropdown);
-            // Dropdown show/hide
-            const userToggle = document.getElementById('user-dropdown-toggle');
-            const userDropdown = document.getElementById('user-dropdown');
-            if(userToggle && userDropdown){
-                userToggle.addEventListener('click', function(e){
-                    e.stopPropagation();
-                    userDropdown.classList.toggle('show');
-                });
-                document.addEventListener('click', function(e){
-                    if(!userDropdown.contains(e.target) && e.target !== userToggle){
-                        userDropdown.classList.remove('show');
+
+            if (deleteButton) {
+                e.preventDefault();
+                const row = deleteButton.closest('tr');
+                if (!row) return;
+
+                const serviceIndex = row.rowIndex - 1; // Get the index
+                const serviceData = getServiceData();
+                const service = serviceData[serviceIndex];
+
+                // Open delete modal
+                const modal = document.getElementById('deleteServiceModal');
+                const info = document.getElementById('deleteServiceInfo');
+
+                info.textContent = `Bạn có chắc muốn xóa dịch vụ: ${service.maDV} - ${service.tenDV} không?`;
+
+                modal.style.display = 'flex';
+                modal._deletingIndex = serviceIndex; // Store the index
+            }
+        });
+
+        // Handle delete confirmation for single row delete modal (Logic updated)
+        document.getElementById('confirmDeleteService').onclick = function() {
+            const modal = document.getElementById('deleteServiceModal');
+            const deletingIndex = modal._deletingIndex;
+            if (deletingIndex !== undefined && deletingIndex !== null) {
+                let serviceData = getServiceData();
+                serviceData.splice(deletingIndex, 1); // Remove service by index
+                saveServiceData(serviceData); // Save updated data
+                renderServiceTable(serviceData); // Re-render table
+            }
+            modal.style.display = 'none';
+            modal._deletingIndex = null; // Reset index
+        };
+
+        // Handle cancel for single row delete modal
+        document.getElementById('cancelDeleteService').onclick = function() {
+            const modal = document.getElementById('deleteServiceModal');
+            modal.style.display = 'none';
+            modal._deletingIndex = null;
+        };
+
+        // Close single delete modal when clicking outside
+        document.getElementById('deleteServiceModal').onclick = function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                this._deletingIndex = null;
+            }
+        };
+
+        // Handle edit form submission (Logic updated)
+        document.getElementById('editServiceForm').onsubmit = function(e) {
+            e.preventDefault();
+            const modal = document.getElementById('editServiceModal');
+            const editingIndex = modal._editingIndex;
+
+            if (editingIndex === undefined || editingIndex === null) return; // Should not happen if modal opened correctly
+
+            let serviceData = getServiceData();
+            let serviceToUpdate = serviceData[editingIndex];
+
+            const maDVInput = document.getElementById('editMaDV');
+            const tenDVInput = document.getElementById('editTenDV');
+            const ngayCapNhatInput = document.getElementById('editNgayCapNhat');
+            const hienThiInput = document.getElementById('editHienThi');
+
+            // Update service object with new values
+            serviceToUpdate.maDV = maDVInput.value.trim();
+            serviceToUpdate.tenDV = tenDVInput.value.trim();
+            // Convert yyyy-mm-dd back to dd-mm-yyyy for display/storage consistency
+            const [y, m, d] = ngayCapNhatInput.value.split('-');
+            serviceToUpdate.ngayCapNhat = [d, m, y].join('-');
+            serviceToUpdate.hienThi = hienThiInput.checked;
+
+            saveServiceData(serviceData); // Save updated data
+            renderServiceTable(serviceData); // Re-render table
+
+            modal.style.display = 'none';
+            modal._editingIndex = null; // Reset index
+
+            // Clear form after submission
+            maDVInput.value = '';
+            tenDVInput.value = '';
+            ngayCapNhatInput.value = '';
+            hienThiInput.checked = true;
+        };
+
+        // Handle cancel for edit modal
+        document.getElementById('cancelEditService').onclick = function() {
+            const modal = document.getElementById('editServiceModal');
+            modal.style.display = 'none';
+            modal._editingIndex = null;
+        };
+
+        // Close edit modal when clicking outside
+        document.getElementById('editServiceModal').onclick = function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                this._editingIndex = null;
+            }
+        };
+
+        // Thêm dịch vụ mới (Logic updated to work with data array)
+        (function() {
+            const addBtn = document.getElementById('addServiceBtn');
+            const modal = document.getElementById('editServiceModal'); // Use the existing edit modal
+            const form = document.getElementById('editServiceForm'); // Use the existing edit form
+            const maDVInput = document.getElementById('editMaDV');
+            const tenDVInput = document.getElementById('editTenDV');
+            const ngayCapNhatInput = document.getElementById('editNgayCapNhat');
+            const hienThiInput = document.getElementById('editHienThi');
+
+            if (addBtn) {
+                addBtn.onclick = function() {
+                    // Clear form for new entry
+                    maDVInput.value = '';
+                    tenDVInput.value = '';
+                    ngayCapNhatInput.value = '';
+                    hienThiInput.checked = true; // Default to visible
+
+                    // Show the edit modal, marking it as add mode
+                    modal.style.display = 'flex';
+                    modal._isAddMode = true; // Use a flag on the modal object
+                    modal._editingIndex = null; // Ensure no index is linked in add mode
+
+                    setTimeout(() => { maDVInput.focus(); }, 100);
+                };
+            }
+
+            // Update the form submit handler to differentiate between add and edit (Combined logic)
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                const modal = document.getElementById('editServiceModal');
+
+                if (modal._isAddMode) {
+                    // Logic for adding a new service object
+                    let serviceData = getServiceData(); // Get current data
+                    const newService = {
+                        stt: serviceData.length + 1, // STT will be re-calculated during rendering
+                        maDV: maDVInput.value.trim(),
+                        tenDV: tenDVInput.value.trim(),
+                        // Convert yyyy-mm-dd back to dd-mm-yyyy
+                        ngayCapNhat: ngayCapNhatInput.value.split('-').reverse().join('-'),
+                        hienThi: hienThiInput.checked
+                    };
+
+                    serviceData.unshift(newService); // Add new service to the beginning of the array
+                    saveServiceData(serviceData); // Save updated data
+                    renderServiceTable(serviceData); // Re-render table
+
+                    modal.style.display = 'none'; // Hide the modal
+
+                } else if (modal._editingIndex !== undefined && modal._editingIndex !== null) {
+                    // Existing logic for updating an edited service object (Moved into the combined handler)
+                    let serviceData = getServiceData();
+                    let serviceToUpdate = serviceData[modal._editingIndex];
+
+                    serviceToUpdate.maDV = maDVInput.value.trim();
+                    serviceToUpdate.tenDV = tenDVInput.value.trim();
+                    const [y, m, d] = ngayCapNhatInput.value.split('-');
+                    serviceToUpdate.ngayCapNhat = [d, m, y].join('-');
+                    serviceToUpdate.hienThi = hienThiInput.checked;
+
+                    saveServiceData(serviceData); // Save updated data
+                    renderServiceTable(serviceData); // Re-render table
+
+                    modal.style.display = 'none'; // Hide the modal
+                }
+
+                // Clear form and reset mode regardless of action
+                maDVInput.value = '';
+                tenDVInput.value = '';
+                ngayCapNhatInput.value = '';
+                hienThiInput.checked = true;
+                modal._isAddMode = false;
+                modal._editingIndex = null;
+            };
+
+            // Also update cancel button logic to clear mode/index
+            document.getElementById('cancelEditService').onclick = function() {
+                 const modal = document.getElementById('editServiceModal');
+                 modal.style.display = 'none';
+                 modal._isAddMode = false;
+                 modal._editingIndex = null;
+            };
+
+             // Update modal click outside logic to clear mode/index
+             document.getElementById('editServiceModal').onclick = function(e){
+                if(e.target===this){
+                   this.style.display='none';
+                   this._isAddMode = false;
+                   this._editingIndex = null;
+                }
+             };
+
+        })(); // End of the add/edit service logic
+
+        // Thêm xử lý cho nút xóa đã chọn (Logic updated to work with data array)
+        document.querySelector('.footer-actions .button.danger').addEventListener('click', function() {
+            // Find selected rows and get their original data indexes
+            const selectedCheckboxes = document.querySelectorAll('#serviceTable tbody tr input[type="checkbox"]:checked');
+            if (selectedCheckboxes.length === 0) {
+                alert('Vui lòng chọn ít nhất một dịch vụ để xóa!');
+                return;
+            }
+
+            const deleteMultipleModal = document.getElementById('deleteMultipleModal');
+            const deleteMultipleInfo = document.getElementById('deleteMultipleInfo');
+
+            // Collect the indexes of selected rows from the current table state
+            const selectedIndexes = Array.from(selectedCheckboxes).map(checkbox => checkbox.closest('tr').rowIndex - 1);
+
+            // Get the full service data
+            const serviceData = getServiceData();
+
+            // Get details for the confirmation message
+            const servicesToDeleteInfo = selectedIndexes.map(index => {
+                const service = serviceData[index];
+                 return `${service.maDV} - ${service.tenDV}`;
+            }).join('<br>');
+
+            deleteMultipleInfo.innerHTML = `Bạn có chắc muốn xóa ${selectedIndexes.length} dịch vụ sau?<br><br>` + servicesToDeleteInfo;
+
+            deleteMultipleModal.style.display = 'flex';
+
+            // Store indexes to delete on the modal object
+            deleteMultipleModal._indexesToDelete = selectedIndexes;
+
+            document.getElementById('cancelDeleteMultiple').onclick = function() {
+                deleteMultipleModal.style.display = 'none';
+                deleteMultipleModal._indexesToDelete = null; // Clear indexes
+            };
+
+            document.getElementById('confirmDeleteMultiple').onclick = function() {
+                let serviceData = getServiceData();
+                // Remove items from the end of the array first to avoid index issues
+                // Sort indexes in descending order
+                const sortedIndexes = deleteMultipleModal._indexesToDelete.sort((a, b) => b - a);
+
+                sortedIndexes.forEach(index => {
+                    if (index >= 0 && index < serviceData.length) { // Basic bounds check
+                       serviceData.splice(index, 1);
                     }
                 });
-            }
-        });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Sự kiện cho nút cập nhật và xóa trong bảng dịch vụ
-            document.querySelectorAll('#serviceTable .icon-edit').forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const row = btn.closest('tr');
-                    const maDV = row ? row.children[2].textContent.trim() : '';
-                    const tenDV = row ? row.children[3].textContent.trim() : '';
-                });
-            });
-            document.querySelectorAll('#serviceTable .icon-danger').forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const row = btn.closest('tr');
-                    const maDV = row ? row.children[2].textContent.trim() : '';
-                    const tenDV = row ? row.children[3].textContent.trim() : '';
+                saveServiceData(serviceData); // Save updated data
+                renderServiceTable(serviceData); // Re-render table
 
-                });
-            });
-        });
+                deleteMultipleModal.style.display = 'none';
+                deleteMultipleModal._indexesToDelete = null; // Clear indexes
 
-        (function(){
-          // Modal elements
-          const modal = document.getElementById('editServiceModal');
-          const form = document.getElementById('editServiceForm');
-          const maDV = document.getElementById('editMaDV');
-          const tenDV = document.getElementById('editTenDV');
-          const ngayCapNhat = document.getElementById('editNgayCapNhat');
-          const hienThi = document.getElementById('editHienThi');
-          let editingRow = null;
-          // Open modal and fill data
-          document.querySelectorAll('#serviceTable .icon-edit').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-              e.preventDefault();
-              editingRow = btn.closest('tr');
-              if (!editingRow) return;
-              maDV.value = editingRow.children[2].textContent.trim();
-              tenDV.value = editingRow.children[3].textContent.trim();
-              // Convert dd-mm-yyyy to yyyy-mm-dd for input type=date
-              const dateText = editingRow.children[4].textContent.trim();
-              const [d,m,y] = dateText.split('-');
-              ngayCapNhat.value = y+'-'+m+'-'+d;
-              hienThi.checked = !!editingRow.children[5].querySelector('input[type="checkbox"]:checked');
-              modal.style.display = 'flex';
-              setTimeout(()=>{maDV.focus();},100);
-            });
-          });
-          // Close modal
-          document.getElementById('cancelEditService').onclick = function(){ modal.style.display = 'none'; editingRow = null; };
-          modal.onclick = function(e){ if(e.target===modal){ modal.style.display='none'; editingRow=null; } };
-          // Save changes
-          form.onsubmit = function(e){
-            e.preventDefault();
-            if (!editingRow) return;
-            editingRow.children[2].textContent = maDV.value;
-            editingRow.children[3].textContent = tenDV.value;
-            // Convert yyyy-mm-dd to dd-mm-yyyy
-            const [y,m,d] = ngayCapNhat.value.split('-');
-            editingRow.children[4].textContent = [d,m,y].join('-');
-            const cb = editingRow.children[5].querySelector('input[type="checkbox"]');
-            if(cb) cb.checked = hienThi.checked;
-            modal.style.display = 'none';
-            editingRow = null;
-          };
-        })();
-
-        (function(){
-          const modal = document.getElementById('deleteServiceModal');
-          const info = document.getElementById('deleteServiceInfo');
-          const btnCancel = document.getElementById('cancelDeleteService');
-          const btnConfirm = document.getElementById('confirmDeleteService');
-          let deletingRow = null;
-          document.querySelectorAll('#serviceTable .icon-danger').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-              e.preventDefault();
-              deletingRow = btn.closest('tr');
-              if (!deletingRow) return;
-              const maDV = deletingRow.children[2].textContent.trim();
-              const tenDV = deletingRow.children[3].textContent.trim();
-              info.textContent = `Bạn có chắc muốn xóa dịch vụ: ${maDV} - ${tenDV} không?`;
-              modal.style.display = 'flex';
-            });
-          });
-          btnCancel.onclick = function(){ modal.style.display = 'none'; deletingRow = null; };
-          btnConfirm.onclick = function(){
-            if (deletingRow) {
-              deletingRow.remove();
-            }
-            modal.style.display = 'none';
-            deletingRow = null;
-          };
-          modal.onclick = function(e){ if(e.target===modal){ modal.style.display='none'; deletingRow=null; } };
-        })();
-
-        (function(){
-          // Thêm dịch vụ mới
-          const addBtn = document.getElementById('addServiceBtn');
-          const modal = document.getElementById('editServiceModal');
-          const form = document.getElementById('editServiceForm');
-          const maDV = document.getElementById('editMaDV');
-          const tenDV = document.getElementById('editTenDV');
-          const ngayCapNhat = document.getElementById('editNgayCapNhat');
-          const hienThi = document.getElementById('editHienThi');
-          let isAddMode = false;
-          if(addBtn){
-            addBtn.onclick = function(){
-              isAddMode = true;
-              maDV.value = '';
-              tenDV.value = '';
-              ngayCapNhat.value = '';
-              hienThi.checked = true;
-              modal.style.display = 'flex';
-              setTimeout(()=>{maDV.focus();},100);
+                 // Uncheck the select all checkbox after deletion
+                 document.getElementById('select-all-checkbox').checked = false;
             };
-          }
-          form.onsubmit = function(e){
-            e.preventDefault();
-            if(isAddMode){
-              // Thêm mới dịch vụ vào đầu bảng
+
+            deleteMultipleModal.onclick = function(e) {
+                if (e.target === deleteMultipleModal) {
+                    deleteMultipleModal.style.display = 'none';
+                    deleteMultipleModal._indexesToDelete = null;
+                }
+            };
+        });
+
+        // Cập nhật checkbox "Chọn tất cả" (Keep existing, works with rendered checkboxes)
+        document.getElementById('select-all-checkbox').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('#serviceTable tbody tr input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+
+        // Helper functions for localStorage (Modified to handle full service objects)
+        function getServiceData() {
+            const data = localStorage.getItem('serviceData');
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveServiceData(data) {
+            localStorage.setItem('serviceData', JSON.stringify(data));
+        }
+
+        // Thêm các hàm quản lý đơn hàng
+        function getPackageData() {
+            const data = localStorage.getItem('packageData');
+            return data ? JSON.parse(data) : [];
+        }
+
+        function savePackageData(data) {
+            localStorage.setItem('packageData', JSON.stringify(data));
+        }
+
+        // Hàm tạo mã đơn hàng tự động
+        function generatePackageCode() {
+            const packages = getPackageData();
+            const date = new Date();
+            const year = date.getFullYear().toString().slice(-2);
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            const count = (packages.length + 1).toString().padStart(4, '0');
+            return `MTE-${year}${month}${day}-${count}`;
+        }
+
+        // Hàm thêm đơn hàng mới
+        function addNewPackage(packageData) {
+            const packages = getPackageData();
+            const newPackage = {
+                ...packageData,
+                maDonHang: generatePackageCode(),
+                ngayTao: new Date().toLocaleDateString('vi-VN'),
+                trangThai: 'Chờ xử lý'
+            };
+            packages.unshift(newPackage);
+            savePackageData(packages);
+            return newPackage;
+        }
+
+        // Hàm cập nhật đơn hàng
+        function updatePackage(maDonHang, newData) {
+            const packages = getPackageData();
+            const index = packages.findIndex(p => p.maDonHang === maDonHang);
+            if (index !== -1) {
+                packages[index] = { ...packages[index], ...newData };
+                savePackageData(packages);
+                return true;
+            }
+            return false;
+        }
+
+        // Hàm xóa đơn hàng
+        function deletePackage(maDonHang) {
+            const packages = getPackageData();
+            const newPackages = packages.filter(p => p.maDonHang !== maDonHang);
+            if (newPackages.length !== packages.length) {
+                savePackageData(newPackages);
+                return true;
+            }
+            return false;
+        }
+
+        // Function to render the table from data array
+        function renderServiceTable(data) {
               const tbody = document.getElementById('service-table-body');
+            tbody.innerHTML = ''; // Clear existing table rows
+            data.forEach((service, index) => {
               const tr = document.createElement('tr');
               tr.innerHTML = `
-                <td class="col-center"><input type="checkbox" title="Chọn dòng mới"></td>
-                <td class="col-center">Mới</td>
-                <td>${maDV.value}</td>
-                <td>${tenDV.value}</td>
-                <td>${ngayCapNhat.value.split('-').reverse().join('-')}</td>
-                <td class="col-center"><input type="checkbox" ${hienThi.checked ? 'checked' : ''} title="Hiển thị dịch vụ này"></td>
+                    <td class="col-center"><input type="checkbox" title="Chọn dòng ${index + 1}"></td>
+                    <td class="col-center">${index + 1}</td>
+                    <td>${service.maDV}</td>
+                    <td>${service.tenDV}</td>
+                    <td>${service.ngayCapNhat}</td>
+                    <td class="col-center"><input type="checkbox" ${service.hienThi ? 'checked' : ''} title="Hiển thị dịch vụ này"></td>
                 <td class="col-center action-icons">
                   <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
                   <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
                 </td>`;
-              tbody.prepend(tr);
-              // Gắn lại sự kiện cho nút sửa/xóa mới
-              tr.querySelector('.icon-edit').addEventListener('click', function(e){
-                e.preventDefault();
-                isAddMode = false;
-                maDV.value = tr.children[2].textContent.trim();
-                tenDV.value = tr.children[3].textContent.trim();
-                const dateText = tr.children[4].textContent.trim();
-                const [d,m,y] = dateText.split('-');
-                ngayCapNhat.value = y+'-'+m+'-'+d;
-                hienThi.checked = !!tr.children[5].querySelector('input[type="checkbox"]:checked');
-                modal.style.display = 'flex';
-                setTimeout(()=>{maDV.focus();},100);
-                editingRow = tr;
-              });
-              tr.querySelector('.icon-danger').addEventListener('click', function(e){
-                e.preventDefault();
-                deletingRow = tr;
-                const ma = tr.children[2].textContent.trim();
-                const ten = tr.children[3].textContent.trim();
-                document.getElementById('deleteServiceInfo').textContent = `Bạn có chắc muốn xóa dịch vụ: ${ma} - ${ten} không?`;
-                document.getElementById('deleteServiceModal').style.display = 'flex';
-              });
-              modal.style.display = 'none';
-              isAddMode = false;
-              return;
+                tbody.appendChild(tr);
+            });
+
+            // Update pagination info count
+            const paginationInfoSpan = document.getElementById('pagination-info');
+            if (paginationInfoSpan) {
+                // Assuming simple display of total count for now, as full pagination logic is not implemented.
+                // If full pagination is added later, this logic will need to be updated.
+                paginationInfoSpan.innerHTML = `Tổng cộng: <b>${data.length}</b> mục`;
             }
-            // ... giữ nguyên logic cập nhật cũ ...
-          };
-        })();
+        }
     </script>
 
 </body>

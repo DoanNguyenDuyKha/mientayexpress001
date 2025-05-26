@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+    <style>
+        .edit-bill-info-form {
+            --form-primary-color: #FFD600;
+            --form-primary-hover: #FFB300;
+            --form-secondary-color: #181818;
+            --form-success-color: #FFD600;
+            --form-danger-color: #EF4444;
+            --form-light-gray: #f8f9fa;
+            --form-input-bg: #fff;
+            --form-input-readonly-bg: #e9ecef;
+            --form-border-color: rgba(255, 214, 0, 0.2);
+            --form-border-color-light: #eee;
+            --form-text-color: #181818;
+            --form-text-muted: #64748b;
+            --form-border-radius: 12px;
+            --form-spacing-unit: 10px;
+            --form-control-padding-y: 10px;
+            --form-control-padding-x: 16px;
+            --form-font-size-base: 12px;
+            --form-font-size-sm: 10px;
+            --form-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --form-shadow-lg: 0 10px 15px rgba(0,0,0,0.10);
+            --form-transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-family: var(--form-font-family);
+            font-size: var(--form-font-size-base);
+            color: var(--form-text-color);
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            border: none;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .edit-bill-info-form .form-header {
+            background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%);
+            color: var(--form-primary-color) !important;
+            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5) !important;
+            flex-shrink: 0;
+            border-bottom: 1.5px solid var(--form-primary-color) !important;
+            border-top-left-radius: var(--form-border-radius);
+            border-top-right-radius: var(--form-border-radius);
+            display: flex;
+            align-items: center;
+        }
+        .edit-bill-info-form .form-header h2 {
+            font-size: 1.18rem !important;
+            font-weight: 700 !important;
+            color: var(--form-secondary-color);
+            margin:0; display: flex; align-items: center; gap: 0.75rem;
+        }
+        .edit-bill-info-form .form-header h2::before { content: '\f044'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 1.4em; color: var(--form-secondary-color); }
+        .edit-bill-info-form .form-body { padding: calc(var(--form-spacing-unit) * 2.5) !important; background-color: var(--form-input-bg) !important; flex-grow: 1; overflow-y: auto; }
+        .edit-bill-info-form .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; }
+        @media (max-width: 900px) { .edit-bill-info-form .form-grid { grid-template-columns: 1fr; } }
+        .edit-bill-info-form .form-group { display: flex; flex-direction: column; gap: calc(var(--form-spacing-unit) * 0.7); margin-bottom: 5px; }
+        .edit-bill-info-form .form-label { font-weight: 600; color: var(--form-secondary-color); font-size: var(--form-font-size-base); margin-bottom: 2px; }
+        .edit-bill-info-form .form-control { width: 50%; padding: var(--form-control-padding-y) var(--form-control-padding-x); border: 1.5px solid #ffd600; border-radius: var(--form-border-radius); background-color: #fff; font-size: var(--form-font-size-base); font-family: var(--form-font-family); color: var(--form-text-color); line-height: 1.5; transition: var(--form-transition); min-height: 10px; }
+        .edit-bill-info-form .form-control:focus { border-color: #FFD600; outline: 0; box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15); }
+        .edit-bill-info-form #packageContentInput,
+        .edit-bill-info-form #agentWeightInput {
+            max-width: 200px;
+        }
+        @media (max-width: 600px) {
+            .edit-bill-info-form { padding: 0; }
+            .edit-bill-info-form .modal-table { min-width: 320px; font-size: 12px; }
+            .edit-bill-info-form .form-btn { padding: 8px 12px; font-size: 13px; }
+            .edit-bill-info-form #packageContentInput,
+            .edit-bill-info-form #agentWeightInput {
+                max-width: 100%;
+            }
+        }
+        .edit-bill-info-form .form-actions { padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5); background: white; border-top: 1.5px solid var(--form-primary-color); display: flex; justify-content: flex-end; gap: var(--form-spacing-unit); flex-shrink: 0; border-bottom-left-radius: var(--form-border-radius); border-bottom-right-radius: var(--form-border-radius); }
+        .edit-bill-info-form .form-btn { gap: calc(var(--form-spacing-unit) * 0.8); padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5); font-size: var(--form-font-size-base); font-weight: 600; border-radius: var(--form-border-radius); border: 1.5px solid transparent; cursor: pointer; transition: var(--form-transition); line-height: 1.4; white-space: nowrap; min-width: 100px; }
+        .edit-bill-info-form .form-btn-cancel { background-color: transparent; color: var(--form-primary-color); border-color: var(--form-primary-color); }
+        .edit-bill-info-form .form-btn-cancel:hover { background-color: var(--form-primary-color); color: var(--form-secondary-color); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); }
+        .edit-bill-info-form .form-btn-confirm { background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%); color: var(--form-secondary-color); border: none; box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15); }
+        .edit-bill-info-form .form-btn-confirm:hover { background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); }
+        .edit-bill-info-form .form-btn:focus-visible { outline: 1.5px solid var(--form-primary-color); outline-offset: 1px; box-shadow: none; }
+        .edit-bill-info-form .form-btn:active { transform: scale(0.98); }
+        .edit-bill-info-form .modal-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; min-width: 420px; background: #fff; }
+        .edit-bill-info-form .modal-table th, .edit-bill-info-form .modal-table td { border: 1px solid #eee; padding: 7px 10px; font-size: 13px; }
+        .edit-bill-info-form .modal-table th { background: #f8fafc; font-weight: 600; }
+        .edit-bill-info-form .add-row-btn { background: #e0e7ff; color: #181818; border: 1px solid #a5b4fc; border-radius: 6px; padding: 5px 16px; font-size: 13px; margin-bottom: 10px; margin-top: 2px; cursor: pointer; display: inline-flex; align-items: center; }
+        .edit-bill-info-form .form-group .add-row-btn { margin-left: 0; }
+    </style>
+</head>
+<body>
+    <div class="edit-bill-info-form">
+        <div class="form-header">
+            <h2>Chỉnh sửa Khai Invoice đại lý</h2>
+        </div>
+        <form id="editPackageDetailForm">
+            <div class="form-body">
+                <div class="form-grid">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label" for="packageContentInput">Nội dung hàng:</label>
+                            <input type="text" id="packageContentInput" class="form-control" name="package_content">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="agentWeightInput">Khối lượng đại lý (KG):</label>
+                            <input type="text" id="agentWeightInput" class="form-control" name="agent_weight">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Bảng kích thước kiện hàng:</label>
+                            <button type="button" class="add-row-btn" id="addDimRowBtn"><i class="fa fa-plus"></i> Thêm dòng</button>
+                            <table class="modal-table" id="dimensionsTable">
+                                <thead>
+                                    <tr><th>Dài (cm)</th><th>Rộng (cm)</th><th>Cao (cm)</th><th>Cân nặng (kg)</th><th></th></tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Bảng sản phẩm:</label>
+                            <button type="button" class="add-row-btn" id="addProductRowBtn"><i class="fa fa-plus"></i> Thêm sản phẩm</button>
+                            <table class="modal-table" id="productsTable">
+                                <thead>
+                                    <tr><th>Tên sản phẩm</th><th>Đơn vị</th><th>Số lượng</th><th>Đơn giá</th><th>Tổng giá</th><th></th></tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="form-btn form-btn-cancel" id="cancelEditAgentInvoice">Hủy</button>
+                <button type="submit" class="form-btn form-btn-confirm">Xác nhận</button>
+            </div>
+        </form>
+    </div>
+    <script>
+    // Hàm load dữ liệu từ localStorage vào modal
+    function populateAgentInvoiceModal() {
+        const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+        document.getElementById('packageContentInput').value = orderData.product_name || '';
+        document.getElementById('agentWeightInput').value = orderData.agent_weight || '';
+        // Dimensions
+        const dimTbody = document.getElementById('dimensionsTable').querySelector('tbody');
+        dimTbody.innerHTML = '';
+        (orderData.dimensions || []).forEach((dim, idx) => {
+            addDimRow(dim.length, dim.width, dim.height, dim.weight);
+        });
+        // Products
+        const prodTbody = document.getElementById('productsTable').querySelector('tbody');
+        prodTbody.innerHTML = '';
+        (orderData.items || []).forEach(item => {
+            addProductRow(item.name, item.unit, item.quantity, item.price, item.total);
+        });
+    }
+    // Thêm dòng kích thước
+    function addDimRow(length='', width='', height='', weight='') {
+        const tbody = document.getElementById('dimensionsTable').querySelector('tbody');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><input type='number' class='form-control' name='length[]' value='${length}'></td>\n            <td><input type='number' class='form-control' name='width[]' value='${width}'></td>\n            <td><input type='number' class='form-control' name='height[]' value='${height}'></td>\n            <td><input type='number' class='form-control' name='weight[]' value='${weight}'></td>\n            <td><button type='button' onclick='this.closest("tr").remove()' style='color:red;border:none;background:none;'><i class='fa fa-trash'></i></button></td>`;
+        tbody.appendChild(tr);
+    }
+    // Thêm dòng sản phẩm
+    function addProductRow(name='', unit='', quantity='', price='', total='') {
+        const tbody = document.getElementById('productsTable').querySelector('tbody');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><input type='text' class='form-control' name='prod_name[]' value='${name}'></td>\n            <td><input type='text' class='form-control' name='prod_unit[]' value='${unit}'></td>\n            <td><input type='number' class='form-control' name='prod_quantity[]' value='${quantity}'></td>\n            <td><input type='number' class='form-control' name='prod_price[]' value='${price}'></td>\n            <td><input type='number' class='form-control' name='prod_total[]' value='${total}'></td>\n            <td><button type='button' onclick='this.closest("tr").remove()' style='color:red;border:none;background:none;'><i class='fa fa-trash'></i></button></td>`;
+        tbody.appendChild(tr);
+    }
+    document.getElementById('addDimRowBtn').onclick = () => addDimRow();
+    document.getElementById('addProductRowBtn').onclick = () => addProductRow();
+    // Khi mở modal, gọi hàm này
+    populateAgentInvoiceModal();
+    // Xử lý nút Hủy
+    document.getElementById('cancelEditAgentInvoice').onclick = function() {
+        window.parent && window.parent.closeEditModal ? window.parent.closeEditModal() : window.close();
+    };
+    // Xử lý xác nhận
+    document.getElementById('editPackageDetailForm').onsubmit = function(e) {
+        e.preventDefault();
+        // Lấy dữ liệu
+        const product_name = document.getElementById('packageContentInput').value;
+        const agent_weight = document.getElementById('agentWeightInput').value;
+        // Dimensions
+        const lengths = Array.from(document.getElementsByName('length[]')).map(i=>i.value);
+        const widths = Array.from(document.getElementsByName('width[]')).map(i=>i.value);
+        const heights = Array.from(document.getElementsByName('height[]')).map(i=>i.value);
+        const weights = Array.from(document.getElementsByName('weight[]')).map(i=>i.value);
+        const dimensions = lengths.map((l,i)=>({length:l,width:widths[i],height:heights[i],weight:weights[i]}));
+        // Products
+        const prod_names = Array.from(document.getElementsByName('prod_name[]')).map(i=>i.value);
+        const prod_units = Array.from(document.getElementsByName('prod_unit[]')).map(i=>i.value);
+        const prod_quantities = Array.from(document.getElementsByName('prod_quantity[]')).map(i=>i.value);
+        const prod_prices = Array.from(document.getElementsByName('prod_price[]')).map(i=>i.value);
+        const prod_totals = Array.from(document.getElementsByName('prod_total[]')).map(i=>i.value);
+        const items = prod_names.map((n,i)=>({name:n,unit:prod_units[i],quantity:prod_quantities[i],price:prod_prices[i],total:prod_totals[i]}));
+        // Lưu vào localStorage
+        const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+        orderData.product_name = product_name;
+        orderData.agent_weight = agent_weight;
+        orderData.dimensions = dimensions;
+        orderData.items = items;
+        localStorage.setItem('currentOrderDetail', JSON.stringify(orderData));
+        // Reload lại trang ngoài để cập nhật giao diện
+        window.parent && window.parent.location ? window.parent.location.reload() : window.location.reload();
+    };
+    window.populateAgentInvoiceModal = populateAgentInvoiceModal;
+    </script>
+</body>
+</html> 

@@ -23,7 +23,7 @@
     --status-delivered-bg: #dcfce7;
     --status-delivered-text: #16a34a;
     --value-purple-bg: #f5f3ff;
-    --value-purple-text: #7c3aed;
+    --value-purple-text: #181818;
     --value-warning-bg: #fffbeb;
     --value-warning-text: #d97706;
     --value-confirm-bg: #f0fdf4;
@@ -177,7 +177,7 @@ body, .content-wrapper, .payment-content-area {
 }
 .section-header-original .title-part i {
     font-size: 0.78rem;
-    color: var(--value-purple-text);
+    color: var(--text-primary);
     vertical-align: middle;
     display: inline-block;
 }
@@ -198,7 +198,7 @@ body, .content-wrapper, .payment-content-area {
     transition: none;
 }
 .section-header-original .section-toggle-btn i {
-    color: #7c3aed !important;
+    color: black !important;
     font-size: 1.3em !important;
     filter: none !important;
     box-shadow: none !important;
@@ -399,8 +399,8 @@ body, .content-wrapper, .payment-content-area {
 }
 .payment-details-original .card-title { font-size: 1rem; }
 .payment-details-header .update-button-original {
-    background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
-    color: #fff;
+    background: black;
+    color: var(--accent);
     border: none;
     border-radius: var(--border-radius);
     font-weight: 700;
@@ -495,8 +495,8 @@ body, .content-wrapper, .payment-content-area {
     vertical-align: middle;
 }
 .payment-history-table-original th {
-    background: linear-gradient(90deg, #f8fafc 0%, #e0e7ff 100%);
-    color: #6366f1;
+    background: rgba(0, 0, 0, 0.1);
+    color: gray;
     font-weight: 700;
     font-size: 0.95em;
     border-bottom: 2px solid #e5e7eb;
@@ -1273,7 +1273,7 @@ body, html {
 
   .order-value-grid-original label {
     font-size: 0.7rem;
-    color: #6366f1;
+    color: var(--value-purple-text);
     font-weight: 500;
     text-align: right;
     padding-right: 8px;
