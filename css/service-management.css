@@ -98,7 +98,7 @@
 #serviceTable {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0;
+    border-spacing: 0 8px;
     font-size: 0.97rem;
     background: #fff;
     font-family: 'Inter', 'Poppins', Arial, sans-serif;
@@ -110,6 +110,7 @@
     padding: 0.65rem 0.4rem;
     word-break: break-word;
     white-space: normal;
+    border-bottom: none;
 }
 
 #serviceTable td:nth-child(4) {
@@ -119,9 +120,9 @@
 #serviceTable th {
     background: #fafafa;
     color: #ffd600;
-    font-weight: 600;
+    font-weight: 700;
     padding: 1rem 0.7rem;
-    border-bottom: 2px solid #ffe066;
+    border-bottom: none;
     text-align: center;
     font-size: 0.7rem;
     letter-spacing: 0.2px;
@@ -129,18 +130,39 @@
 
 #serviceTable td {
     padding: 1rem 0.7rem;
-    border-bottom: 1px solid #f3e7b4;
+    text-align: left;
     color: #222;
-    background: #fff;
-    text-align: center;
     vertical-align: middle;
-    font-size: 0.7rem;
-    transition: background 0.18s;
-    padding: 0.3rem 0.3rem;
+    font-size: var(--font-size-base);
+    transition: all 0.2s ease-in-out;
+}
+
+#serviceTable tbody tr {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+}
+
+#serviceTable tbody tr:not(:last-child) {
+    margin-bottom: 8px;
 }
 
 #serviceTable tbody tr:hover {
-    background: #fffbe6;
+    background: var(--accent-light);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+}
+
+#serviceTable tbody tr td:first-child {
+    border-top-left-radius: var(--border-radius-sm);
+    border-bottom-left-radius: var(--border-radius-sm);
+}
+
+#serviceTable tbody tr td:last-child {
+    border-top-right-radius: var(--border-radius-sm);
+    border-bottom-right-radius: var(--border-radius-sm);
 }
 
 /* Custom Checkbox - Vuông, viền vàng, không hiệu ứng hoạt hình */
@@ -186,10 +208,10 @@
 .icon-button:hover,
 .icon-button:focus {
     background: #fffbe6;
-    color: #ffd600;
+    color: var(--accent-color);
 }
 .icon-button.icon-edit:hover {
-    color: #ffd600;
+    color: var(--accent-color);
 }
 .icon-button.icon-danger:hover {
     color: #dc2626;
@@ -258,7 +280,7 @@
         font-size: 1.1rem;
     }
     #serviceTable th, #serviceTable td {
-        padding: 0.7rem 0.3rem;
+        padding: 0.6rem 0.4rem;
         font-size: 0.97rem;
     }
     .footer-actions {
@@ -341,6 +363,31 @@
     #serviceTable {
         min-width: 600px;
     }
+    
+    #serviceTable th,
+    #serviceTable td {
+        padding: 0.6rem 0.4rem;
+        text-align: left;
+    }
+
+    #serviceTable tbody tr {
+         border: 1px solid var(--border-color);
+         border-radius: 0;
+         margin-bottom: 4px;
+    }
+
+    #serviceTable tbody tr:not(:last-child) {
+        margin-bottom: 4px;
+    }
+
+    #serviceTable tbody tr td:first-child,
+    #serviceTable tbody tr td:last-child {
+        border-radius: 0;
+    }
+
+    .action-icons {
+        justify-content: center;
+    }
 }
 
 .footer-actions {
@@ -358,5 +405,156 @@
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
+}
+
+/* Filter Section (Copied and adapted from customer-list.css) */
+.filter-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    padding: var(--base-padding);
+    margin-bottom: var(--base-padding);
+    border: 1.5px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.filter-container h3 {
+    font-size: var(--font-size-md);
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: var(--base-padding);
+    padding-bottom: var(--base-padding);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.filter-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%); /* Using accent colors from this file */
+    border-radius: 16px 16px 0 0;
+}
+
+.filter-section {
+    display: flex;
+    gap: var(--base-padding);
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative; /* To make sure filter items are above ::before */
+    z-index: 2;
+}
+
+.filter-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-item label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.filter-select {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 18px; /* Match other inputs */
+    background: white;
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    width: 100%;
+}
+
+.filter-input {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 18px; /* Match other inputs */
+    background: white;
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    outline: none;
+    border-color: var(--accent-color); /* Use accent color */
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.1); /* Use accent color with transparency */
+}
+
+.btn-filter {
+    background: var(--primary-light);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all var(--transition-speed-fast);
+    font-size: var(--font-size-sm);
+}
+
+.btn-filter:hover {
+    background: var(--border-light);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* Responsive adjustments for filter */
+@media (max-width: 768px) {
+    .filter-container {
+        padding: var(--base-padding);
+    }
+    
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    
+    .filter-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .filter-item {
+        min-width: 100%;
+    }
+    
+    .filter-select,
+    .filter-input,
+    .btn-filter {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+     .filter-select,
+     .filter-input,
+     .btn-filter {
+          padding: 0.5rem 0.8rem;
+          font-size: var(--font-size-sm);
+     }
 }
 

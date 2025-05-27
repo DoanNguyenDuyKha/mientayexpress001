@@ -151,6 +151,41 @@ function updateHeaderBlur() {
             </section>
 
             <div class="customer-actions">
+                <div class="filter-container">
+                    <h3>Bộ lọc khách hàng</h3>
+                    <div class="filter-section">
+                        <div class="filter-group">
+                            <div class="filter-item">
+                                <label for="customerType">Loại khách hàng</label>
+                                <select class="filter-select" id="customerType">
+                                    <option value="">Loại khách hàng</option>
+                                    <option value="personal">Cá nhân</option>
+                                    <option value="business">Doanh nghiệp</option>
+                                </select>
+                            </div>
+                            <div class="filter-item">
+                                <label for="customerStatus">Trạng thái</label>
+                                <select class="filter-select" id="customerStatus">
+                                    <option value="">Trạng thái</option>
+                                    <option value="active">Đang hoạt động</option>
+                                    <option value="inactive">Ngừng hoạt động</option>
+                                </select>
+                            </div>
+                            <div class="filter-item">
+                                <label for="filterCustomerId">Mã khách hàng</label>
+                                <input type="text" class="filter-input" id="filterCustomerId" placeholder="Lọc theo Mã KH">
+                            </div>
+                            <div class="filter-item">
+                                <label for="filterCustomerName">Tên khách hàng</label>
+                                <input type="text" class="filter-input" id="filterCustomerName" placeholder="Lọc theo Tên">
+                            </div>
+                            <div class="filter-item">
+                                <label for="filterCustomerPhone">Số điện thoại</label>
+                                <input type="text" class="filter-input" id="filterCustomerPhone" placeholder="Lọc theo SĐT">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="action-buttons">
                     <button class="btn-add-customer" id="addCustomerBtn">
                         <i class="fa-solid fa-user-plus"></i>
@@ -164,20 +199,6 @@ function updateHeaderBlur() {
                         <i class="fa-solid fa-file-import"></i>
                         Nhập Excel
                     </button>
-                </div>
-                <div class="filter-section">
-                    <div class="filter-group">
-                        <select class="filter-select" id="customerType">
-                            <option value="">Loại khách hàng</option>
-                            <option value="personal">Cá nhân</option>
-                            <option value="business">Doanh nghiệp</option>
-                        </select>
-                        <select class="filter-select" id="customerStatus">
-                            <option value="">Trạng thái</option>
-                            <option value="active">Đang hoạt động</option>
-                            <option value="inactive">Ngừng hoạt động</option>
-                        </select>
-                    </div>
                 </div>
             </div>
 
@@ -910,6 +931,9 @@ function updateHeaderBlur() {
     ];
     let filterType = '';
     let filterStatus = '';
+    let filterCustomerId = '';
+    let filterCustomerName = '';
+    let filterCustomerPhone = '';
 
     function renderCustomerTable() {
         const tbody = document.getElementById('customer-table-body');
@@ -919,6 +943,9 @@ function updateHeaderBlur() {
             let ok = true;
             if (filterType) ok = ok && (c.type === (filterType === 'personal' ? 'Cá nhân' : 'Doanh nghiệp'));
             if (filterStatus) ok = ok && (c.status === filterStatus);
+            if (filterCustomerId) ok = ok && c.id.toLowerCase().includes(filterCustomerId.toLowerCase());
+            if (filterCustomerName) ok = ok && c.name.toLowerCase().includes(filterCustomerName.toLowerCase());
+            if (filterCustomerPhone) ok = ok && c.phone.includes(filterCustomerPhone);
             return ok;
         });
         filtered.forEach((c, idx) => {
@@ -950,6 +977,10 @@ function updateHeaderBlur() {
     // Lọc
     const customerTypeSelect = document.getElementById('customerType');
     const customerStatusSelect = document.getElementById('customerStatus');
+    const filterCustomerIdInput = document.getElementById('filterCustomerId');
+    const filterCustomerNameInput = document.getElementById('filterCustomerName');
+    const filterCustomerPhoneInput = document.getElementById('filterCustomerPhone');
+
     if (customerTypeSelect) customerTypeSelect.onchange = function() {
         filterType = this.value;
         renderCustomerTable();
@@ -958,6 +989,18 @@ function updateHeaderBlur() {
         filterStatus = this.value;
         renderCustomerTable();
     };
+    if (filterCustomerIdInput) filterCustomerIdInput.addEventListener('input', function() {
+        filterCustomerId = this.value.trim();
+        renderCustomerTable();
+    });
+    if (filterCustomerNameInput) filterCustomerNameInput.addEventListener('input', function() {
+        filterCustomerName = this.value.trim();
+        renderCustomerTable();
+    });
+    if (filterCustomerPhoneInput) filterCustomerPhoneInput.addEventListener('input', function() {
+        filterCustomerPhone = this.value.trim();
+        renderCustomerTable();
+    });
 
     // Thêm khách hàng
     function getNextCustomerId() {

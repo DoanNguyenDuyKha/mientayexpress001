@@ -824,6 +824,148 @@ body {
     margin: 0;
 }
 
+/* Progress Steps */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 40px;
+    position: relative;
+}
+
+.progress-steps::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 60px;
+    right: 60px;
+    height: 2px;
+    background: #e5e7eb;
+    z-index: 1;
+}
+
+/* Đường kẻ màu xanh cho phần đã hoàn thành */
+.progress-steps::after {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 60px;
+    width: 58%; /* Chiều dài bằng 2/4 tổng chiều dài (vì đã hoàn thành 2 bước) */
+    height: 2px;
+    background: #2563eb;
+    z-index: 1;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    min-width: 180px;
+}
+
+.step-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.step.active .step-icon {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.step.completed .step-icon {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.step.active .step-icon i,
+.step.completed .step-icon i {
+    color: #fff;
+}
+
+.step-icon i {
+    font-size: 1.2rem;
+    color: #9ca3af;
+    transition: all 0.3s ease;
+}
+
+.step-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-align: center;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.step.active .step-label,
+.step.completed .step-label {
+    color: #2563eb;
+    font-weight: 500;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .progress-steps {
+        padding: 0 20px;
+    }
+
+    .step-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .step-label {
+        font-size: 0.75rem;
+    }
+
+    .progress-steps::before {
+        left: 40px;
+        right: 40px;
+    }
+
+    .step {
+        min-width: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-steps {
+        padding: 0 10px;
+    }
+
+    .step-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .step-label {
+        font-size: 0.7rem;
+    }
+
+    .progress-steps::before {
+        left: 30px;
+        right: 30px;
+    }
+
+    .step {
+        min-width: 120px;
+    }
+}
+
 /* Modal Responsive Styles */
 @media (max-width: 768px) {
     .modal-content-wrapper {
@@ -1028,32 +1170,6 @@ input, select, button, textarea {
 .summary-table.charges-table td.highlight {
     font-weight: 600;
     color: var(--primary-color); /* Highlight color */
-}
-
-/* Original Table styles - Keep for other tables */
-.detail-section .data-table, .detail-section .summary-table {
-    /* Keep original styles */
-}
-
-.detail-section .data-table th,
-.detail-section .data-table td,
-.detail-section .summary-table th,
-.detail-section .summary-table td {
-   /* Keep original styles */
-}
-
-.detail-section .data-table th, .detail-section .summary-table th {
-    /* Keep original styles */
-}
-
-.detail-section .data-table td.text-center,
-.detail-section .data-table th.text-center {
-    /* Keep original styles */
-}
-
-.detail-section .data-table td.text-right,
-.detail-section .data-table th.text-right {
-   /* Keep original styles */
 }
 
 /* Specific styles for profit table */
