@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/package_manager.css">
     <link rel="stylesheet" href="../css/pickup-package.css">
+    <link href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.6/dist/css/tempus-dominus.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.6/dist/js/tempus-dominus.min.js"></script>
 </head>
 <body>
     <aside class="sidebar" id="sidebar">
@@ -154,7 +157,7 @@
                          <div class="data-section">
                             <div class="section-header"><span><i class="fa-solid fa-truck"></i> Hình thức lấy hàng</span></div>
                             <div class="form-group"> <label for="pickup_vehicle">Hình thức vận chuyển:</label> <select id="pickup_vehicle" name="pickup_vehicle"> <option value="minivan" selected>Xe bán tải / Minivan</option> <option value="motorbike">Xe máy</option> <option value="truck">Xe tải</option> </select> </div>
-                            <div class="form-group"> <label for="pickup_time">Thời gian Pickup:</label> <div class="input-with-icon"> <input type="datetime-local" id="pickup_time" name="pickup_time"> </div> </div>
+                            <div class="form-group"> <label for="pickup_time">Thời gian Pickup:</label> <div class="input-with-icon"> <input type="text" id="pickup_time" name="pickup_time"> </div> </div>
                             <div class="form-group"> <label for="pickup_address">Địa chỉ lấy hàng:</label> <textarea id="pickup_address" name="pickup_address" rows="3">Căn nhà số 4, Đường B4, Phường An Lợi Đông, Thành phố Thủ Đức, Thành phố Hồ Chí Minh</textarea> </div>
                             <div class="form-group"> <label for="pickup_notes">Ghi chú lấy hàng:</label> <textarea id="pickup_notes" name="pickup_notes" rows="2">Nhờ chụp lại ảnh kiện nhé Alice</textarea> </div>
                          </div>
@@ -164,8 +167,8 @@
                                 <div class="form-group"> <label for="pickup_status">Trạng thái lấy hàng:</label> <select id="pickup_status" name="pickup_status"> <option value="pending" selected>Chờ lấy hàng</option> <option value="picked_up">Đã lấy hàng</option> <option value="failed">Lấy thất bại</option> </select> </div>
                                 <div class="form-group"> <label for="pickup_cs">CS xử lý:</label> <select id="pickup_cs" name="pickup_cs"> <option value="alice" selected>Alice in the Wonder La...</option> </select> </div>
                             </div>
-                            <div class="form-group"> <label for="received_time">Thời gian nhận hàng:</label> <div class="input-with-icon"> <input type="datetime-local" id="received_time" name="received_time"> </div> </div>
-                            <div class="form-group"> <label for="export_time">Thời gian xuất hàng:</label> <div class="input-with-icon"> <input type="datetime-local" id="export_time" name="export_time"> </div> </div>
+                            <div class="form-group"> <label for="received_time">Thời gian nhận hàng:</label> <div class="input-with-icon"> <input type="text" id="received_time" name="received_time"> </div> </div>
+                            <div class="form-group"> <label for="export_time">Thời gian xuất hàng:</label> <div class="input-with-icon"> <input type="text" id="export_time" name="export_time"> </div> </div>
                             <div class="form-group"> <label for="status_notes">Ghi chú:</label> <textarea id="status_notes" name="status_notes" rows="2"></textarea> </div>
                             <div class="form-group">
                                 <label>Ảnh đính kèm:</label>
@@ -725,6 +728,7 @@
                 status_notes: document.getElementById('status_notes').value,
                 images: []
             };
+            console.log('Dữ liệu thu thập từ form:', data);
             const files = document.getElementById('pickup_images').files;
             if (files.length > 0) {
                 let loaded = 0;
@@ -745,6 +749,161 @@
                 localStorage.setItem('pickupOrder', JSON.stringify(data));
                 // alert('Đã lưu thông tin pickup (không có ảnh) vào localStorage!');
                 window.location.href = 'package_manager.html';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Khởi tạo datetime picker cho pickup_time
+            const pickupTimeInput = document.getElementById('pickup_time');
+            if (pickupTimeInput) {
+                const picker = new tempusDominus.TempusDominus(pickupTimeInput, {
+                    display: {
+                        components: {
+                            decades: true,
+                            year: true,
+                            month: true,
+                            date: true,
+                            hours: true,
+                            minutes: true,
+                            seconds: false,
+                            useTwentyfourHour: true
+                        },
+                        icons: {
+                            type: 'icons',
+                            time: 'fa fa-clock',
+                            date: 'fa fa-calendar',
+                            up: 'fa fa-arrow-up',
+                            down: 'fa fa-arrow-down',
+                            previous: 'fa fa-chevron-left',
+                            next: 'fa fa-chevron-right',
+                            today: 'fa fa-calendar-check',
+                            clear: 'fa fa-trash',
+                            close: 'fa fa-times'
+                        }
+                    },
+                    localization: {
+                        format: 'dd/MM/yyyy HH:mm'
+                    }
+                });
+                picker.subscribe('change.datetimepicker', (e) => {
+                    if (e.detail.date) {
+                        const selectedDate = e.detail.date;
+                        const year = selectedDate.getFullYear();
+                        const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+                        const day = selectedDate.getDate().toString().padStart(2, '0');
+                        const hours = selectedDate.getHours().toString().padStart(2, '0');
+                        const minutes = selectedDate.getMinutes().toString().padStart(2, '0');
+                        const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}`;
+
+                        pickupTimeInput.value = formattedDate;
+                        console.log('Pickup Time selected:', formattedDate);
+                    } else {
+                        pickupTimeInput.value = '';
+                        console.log('Pickup Time cleared');
+                    }
+                });
+            }
+
+            // Khởi tạo datetime picker cho received_time
+            const receivedTimeInput = document.getElementById('received_time');
+            if (receivedTimeInput) {
+                const picker = new tempusDominus.TempusDominus(receivedTimeInput, {
+                    display: {
+                        components: {
+                            decades: true,
+                            year: true,
+                            month: true,
+                            date: true,
+                            hours: true,
+                            minutes: true,
+                            seconds: false,
+                            useTwentyfourHour: true
+                        },
+                        icons: {
+                            type: 'icons',
+                            time: 'fa fa-clock',
+                            date: 'fa fa-calendar',
+                            up: 'fa fa-arrow-up',
+                            down: 'fa fa-arrow-down',
+                            previous: 'fa fa-chevron-left',
+                            next: 'fa fa-chevron-right',
+                            today: 'fa fa-calendar-check',
+                            clear: 'fa fa-trash',
+                            close: 'fa fa-times'
+                        }
+                    },
+                    localization: {
+                        format: 'dd/MM/yyyy HH:mm'
+                    }
+                });
+                picker.subscribe('change.datetimepicker', (e) => {
+                    if (e.detail.date) {
+                        const selectedDate = e.detail.date;
+                        const year = selectedDate.getFullYear();
+                        const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+                        const day = selectedDate.getDate().toString().padStart(2, '0');
+                        const hours = selectedDate.getHours().toString().padStart(2, '0');
+                        const minutes = selectedDate.getMinutes().toString().padStart(2, '0');
+                        const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}`;
+
+                        receivedTimeInput.value = formattedDate;
+                        console.log('Received Time selected:', formattedDate);
+                    } else {
+                        receivedTimeInput.value = '';
+                        console.log('Received Time cleared');
+                    }
+                });
+            }
+
+            // Khởi tạo datetime picker cho export_time
+            const exportTimeInput = document.getElementById('export_time');
+            if (exportTimeInput) {
+                const picker = new tempusDominus.TempusDominus(exportTimeInput, {
+                    display: {
+                        components: {
+                            decades: true,
+                            year: true,
+                            month: true,
+                            date: true,
+                            hours: true,
+                            minutes: true,
+                            seconds: false,
+                            useTwentyfourHour: true
+                        },
+                        icons: {
+                            type: 'icons',
+                            time: 'fa fa-clock',
+                            date: 'fa fa-calendar',
+                            up: 'fa fa-arrow-up',
+                            down: 'fa fa-arrow-down',
+                            previous: 'fa fa-chevron-left',
+                            next: 'fa fa-chevron-right',
+                            today: 'fa fa-calendar-check',
+                            clear: 'fa fa-trash',
+                            close: 'fa fa-times'
+                        }
+                    },
+                    localization: {
+                        format: 'dd/MM/yyyy HH:mm'
+                    }
+                });
+                picker.subscribe('change.datetimepicker', (e) => {
+                    if (e.detail.date) {
+                        const selectedDate = e.detail.date;
+                        const year = selectedDate.getFullYear();
+                        const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+                        const day = selectedDate.getDate().toString().padStart(2, '0');
+                        const hours = selectedDate.getHours().toString().padStart(2, '0');
+                        const minutes = selectedDate.getMinutes().toString().padStart(2, '0');
+                        const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}`;
+
+                        exportTimeInput.value = formattedDate;
+                        console.log('Export Time selected:', formattedDate);
+                    } else {
+                        exportTimeInput.value = '';
+                        console.log('Export Time cleared');
+                    }
+                });
             }
         });
     </script>
