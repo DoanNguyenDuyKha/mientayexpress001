@@ -297,16 +297,14 @@
                                             <div class="form-group">
                                                 <label for="service_type">Chọn dịch vụ<span class="required">*</span></label>
                                                 <select id="service_type" name="service_type" required>
-                                                    <option value="MTE_DHL_SIN" selected>Chọn dịch vụ</option>
+                                                    <option value="" selected>Chọn dịch vụ</option>
                                                  </select>
                                                  <span class="error-message"></span>
                                             </div>
                                             <div class="form-group">
-                                                <label for="branch">Chi nhánh<span class="required">*</span></label>
-                                                <select id="branch" name="branch" required>
-                                                    <option value="TanPhu" selected>Tân Phú - HCM</option>
-                                                    <option value="BinhTan">Bình Tân</option>
-                                                 </select>
+                                                <label for="branch_input">Chi nhánh<span class="required">*</span></label>
+                                                 <input type="text" id="branch_input" name="branch" list="branch_suggestions" required autocomplete="off">
+                                                  <datalist id="branch_suggestions"></datalist>
                                                  <span class="error-message"></span>
                                             </div>
                                         </div>
@@ -441,10 +439,9 @@
                                </div>
                                     <div class="form-grid-2col">
                                         <div class="form-group">
-                                            <label for="agent">Chọn Đại lý<span class="required">*</span></label>
-                                            <select id="agent" name="agent" required>
-                                                <option value="quynam" selected>Quý Nam</option>
-                                             </select>
+                                            <label for="agent_input">Chọn Đại lý<span class="required">*</span></label>
+                                             <input type="text" id="agent_input" name="agent" list="agent_suggestions" required autocomplete="off">
+                                              <datalist id="agent_suggestions"></datalist>
                                              <span class="error-message"></span>
                                         </div>
                                         <div class="form-group">
@@ -805,83 +802,304 @@
                         return;
                     }
                     let isFormValid = true;
-                     form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-                     form.querySelectorAll('.error-message').forEach(el => el.remove());
-                     form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
-                     const termsCheckbox = document.getElementById('terms_agree');
-                     if (termsCheckbox && !termsCheckbox.checked) {
-                         isFormValid = false;
-                         addErrorMessage(termsCheckbox, 'Bạn phải đồng ý với Điều khoản quy định của đơn hàng.');
-                     } else if (termsCheckbox) {
-                         removeErrorMessage(termsCheckbox);
+
+                    // Xóa tất cả các thông báo lỗi và trạng thái lỗi hiện có
+                    form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+                    form.querySelectorAll('.error-message').forEach(el => el.textContent = ''); // Chỉ xóa nội dung text
+                    form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
+
+                    // Hàm kiểm tra định dạng số điện thoại Việt Nam
+                    function validateVietnamesePhoneNumber(phone) {
+                        // Loại bỏ khoảng trắng và dấu gạch ngang
+                        phone = phone.replace(/[\s-]/g, '');
+                        // Kiểm tra xem có phải là số không
+                        if (!/^\d+$/.test(phone)) {
+                            return false;
+                        }
+                        // Kiểm tra độ dài số điện thoại (10-11 số)
+                        if (phone.length < 10 || phone.length > 11) {
+                            return false;
+                        }
+                        // Kiểm tra số đầu tiên phải là 0
+                        if (phone[0] !== '0') {
+                            return false;
+                        }
+                        return true;
+                    }
+
+                     // Hàm kiểm tra định dạng số điện thoại quốc tế cơ bản (chỉ kiểm tra có phải là số và không rỗng)
+                     function validateInternationalPhoneNumberBasic(phone) {
+                        phone = phone.replace(/[\s-()]/g, ''); // Loại bỏ khoảng trắng, dấu gạch ngang, ngoặc đơn
+                         return phone.length > 0 && /^\d+$/.test(phone);
                      }
-                     const requiredFields = form.querySelectorAll('[required]');
-                     const radioGroupsValidated = {};
-                     requiredFields.forEach(input => {
-                         if (input.id === 'terms_agree') return;
-                         if (input.type === 'radio') {
-                             const groupName = input.name;
-                             if (!radioGroupsValidated[groupName]) {
-                                 const checkedRadio = form.querySelector(`input[name="${groupName}"]:checked`);
-                                 if (!checkedRadio) {
-                                     isFormValid = false;
-                                     addErrorMessage(input, 'Vui lòng chọn một tùy chọn.');
-                                 } else {
-                                     form.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => removeErrorMessage(radio));
-                                 }
-                                 radioGroupsValidated[groupName] = true;
-                             }
-                         } else if (input.type === 'checkbox' && input.required) {
-                             if (!input.checked) {
-                                 isFormValid = false;
-                                 addErrorMessage(input, 'Tùy chọn này là bắt buộc.');
+
+                    // Hàm hiển thị lỗi cho trường cụ thể
+                    function displayFieldError(field, message) {
+                         const container = field.closest('.input-group') || field.closest('.form-group');
+                         if (!container) return;
+
+                         let errorSpan = container.querySelector('.error-message');
+                         if (!errorSpan) {
+                              // If the span doesn't exist, create it (should exist based on HTML)
+                             errorSpan = document.createElement('span');
+                             errorSpan.className = 'error-message';
+                             errorSpan.style.color = 'var(--danger-color)';
+                             errorSpan.style.fontSize = '0.8em';
+                             errorSpan.style.marginTop = '4px';
+                             errorSpan.style.display = 'block';
+                              // Append it after the input or the phone-input-group
+                             const phoneInputGroup = field.closest('.phone-input-group');
+                             if(phoneInputGroup) {
+                                  phoneInputGroup.parentNode.insertBefore(errorSpan, phoneInputGroup.nextSibling);
                              } else {
-                                 removeErrorMessage(input);
+                                 field.parentNode.insertBefore(errorSpan, field.nextSibling);
                              }
-                         } else if (
-                             (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') &&
-                             !input.value.trim() && input.type !== 'radio' && input.type !== 'checkbox'
-                         ) {
-                             isFormValid = false;
-                             addErrorMessage(input, 'Trường này là bắt buộc.');
-                         } else if (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') {
-                             removeErrorMessage(input);
                          }
-                     });
-                     if (isFormValid) {
-                         const formData = {};
-                         form.querySelectorAll('input, select, textarea').forEach(input => {
-                             if (input.type === 'checkbox' && input.name === 'add_service[]') {
-                                 if (!formData['add_service[]']) formData['add_service[]'] = [];
-                                 if (input.checked) formData['add_service[]'].push(input.value);
-                             } else if (input.type === 'checkbox') {
-                                 formData[input.name] = input.checked;
-                             } else if (input.type === 'radio') {
-                                 if (input.checked) formData[input.name] = input.value;
+
+                         errorSpan.textContent = message;
+                         field.classList.add('error');
+                         const label = container.querySelector('label');
+                         if (label) label.classList.add('error');
+                    }
+
+                     // Hàm xóa lỗi cho trường cụ thể
+                    function clearFieldError(field) {
+                         const container = field.closest('.input-group') || field.closest('.form-group');
+                          if (!container) return;
+
+                         const errorSpan = container.querySelector('.error-message');
+                         if (errorSpan) {
+                             errorSpan.textContent = '';
+                         }
+                         field.classList.remove('error');
+                          const label = container.querySelector('label');
+                         if (label) label.classList.remove('error');
+                    }
+
+                    // Thêm event listeners cho các trường số điện thoại để validate ngay khi nhập
+                    const senderPhoneInput = document.getElementById('sender_phone');
+                    const receiverPhone1Input = document.getElementById('receiver_phone1');
+                    const receiverPhone2Input = document.getElementById('receiver_phone2');
+                    const receiverPhone1CodeSelect = document.getElementById('receiver_phone1_code');
+                    const receiverPhone2CodeSelect = document.getElementById('receiver_phone2_code');
+                    const senderNameInput = document.getElementById('sender_name_input'); // Get sender name input
+
+                     if (senderPhoneInput) {
+                         senderPhoneInput.addEventListener('input', function() {
+                             const value = this.value.trim();
+                             if (!value) {
+                                clearFieldError(this);
+                                 return;
+                             }
+                             if (!validateVietnamesePhoneNumber(value)) {
+                                 displayFieldError(this, 'Vui lòng nhập số điện thoại 10-11 số bắt đầu bằng số 0');
                              } else {
-                                 // Exclude the old sender_preset select, take value from new input
-                                 if (input.id === 'sender_name_input') {
-                                     formData['sender_name_display'] = input.value; // Use a new key or replace an old one if needed
-                                 } else if (input.tagName === 'SELECT' && (input.id === 'sender_city' || input.id === 'sender_district' || input.id === 'sender_ward' || input.id === 'receiver_country' || input.id === 'service_type' || input.id === 'branch' || input.id === 'agent' || input.id === 'ops_coord' || input.id === 'cs_handler' || input.id === 'receiver_phone1_code' || input.id === 'receiver_phone2_code' || input.id === 'package_select')) {
-                                     formData[input.name] = input.options[input.selectedIndex].text; // Get text instead of value
-                                 } else if (input.name !== 'sender_preset') { // Exclude the old sender_preset name
-                                 formData[input.name] = input.value;
-                                 }
+                                clearFieldError(this);
                              }
                          });
+                          senderPhoneInput.addEventListener('focus', function() {
+                              clearFieldError(this);
+                         });
 
-                         // Add sender country as always 'Việt Nam'
-                         formData['sender_country'] = 'Việt Nam';
-
-                         localStorage.setItem('createPackageStep1', JSON.stringify(formData));
-                         window.location.href = 'create-package-step2.html';
-                     } else {
-                         const firstErrorField = form.querySelector('.error');
-                         if (firstErrorField) {
-                             const elementToScroll = firstErrorField.closest('.form-group, .terms-agreement') || firstErrorField;
-                             elementToScroll.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                          // Add change listener for select elements
+                         if(senderPhoneInput.tagName === 'SELECT') {
+                             senderPhoneInput.addEventListener('change', function() {
+                                 if (!this.value.trim()) {
+                                      displayFieldError(this, 'Trường này là bắt buộc.');
+                                 } else {
+                                      clearFieldError(this);
+                                 }
+                             });
                          }
+
                      }
+
+                    function validateReceiverPhone(phoneInput, countryCodeSelect, isRequired) {
+                         const value = phoneInput.value.trim();
+                         const countryCode = countryCodeSelect.value;
+
+                         if (isRequired && !value) {
+                             displayFieldError(phoneInput, 'Trường này là bắt buộc.');
+                             return false;
+                         } else if (!isRequired && !value) {
+                             clearFieldError(phoneInput);
+                              return true;
+                         }
+
+                         // If not empty, validate based on country code
+                         if (countryCode === '+84') {
+                             if (!validateVietnamesePhoneNumber(value)) {
+                                 displayFieldError(phoneInput, 'Vui lòng nhập số điện thoại 10-11 số bắt đầu bằng số 0');
+                                 return false;
+                             } else {
+                                 clearFieldError(phoneInput);
+                                 return true;
+                             }
+                         } else {
+                             // Basic validation for international numbers (just check if it's not empty and is numeric)
+                             if (!validateInternationalPhoneNumberBasic(value)){
+                                 displayFieldError(phoneInput, 'Vui lòng nhập số điện thoại hợp lệ.');
+                                 return false;
+                             } else {
+                                 clearFieldError(phoneInput);
+                                  return true;
+                             }
+                         }
+                    }
+
+
+                    if (receiverPhone1Input && receiverPhone1CodeSelect) {
+                         receiverPhone1Input.addEventListener('input', function() {
+                             validateReceiverPhone(this, receiverPhone1CodeSelect, true);
+                         });
+                         receiverPhone1Input.addEventListener('focus', function() {
+                              clearFieldError(this);
+                         });
+                         receiverPhone1CodeSelect.addEventListener('change', function() {
+                              validateReceiverPhone(receiverPhone1Input, this, true);
+                         });
+                    }
+
+                    if (receiverPhone2Input && receiverPhone2CodeSelect) {
+                        receiverPhone2Input.addEventListener('input', function() {
+                             validateReceiverPhone(this, receiverPhone2CodeSelect, false);
+                         });
+                        receiverPhone2Input.addEventListener('focus', function() {
+                              clearFieldError(this);
+                         });
+                        receiverPhone2CodeSelect.addEventListener('change', function() {
+                             validateReceiverPhone(receiverPhone2Input, this, false);
+                         });
+                    }
+
+                    // Validate on submit
+
+                    // Kiểm tra số điện thoại người gửi
+                    if (senderPhoneInput) {
+                        if (!validateVietnamesePhoneNumber(senderPhoneInput.value.trim())) {
+                            isFormValid = false;
+                            displayFieldError(senderPhoneInput, 'Vui lòng nhập số điện thoại 10-11 số bắt đầu bằng số 0');
+                        } else {
+                           clearFieldError(senderPhoneInput);
+                        }
+                    }
+
+                    // Kiểm tra số điện thoại người nhận 1
+                    if (receiverPhone1Input && receiverPhone1CodeSelect) {
+                         if (!validateReceiverPhone(receiverPhone1Input, receiverPhone1CodeSelect, true)){
+                             isFormValid = false;
+                         }
+                    }
+
+                    // Kiểm tra số điện thoại người nhận 2
+                    if (receiverPhone2Input && receiverPhone2CodeSelect) {
+                        // validateReceiverPhone handles the optional nature and validation based on code
+                         if (!validateReceiverPhone(receiverPhone2Input, receiverPhone2CodeSelect, false)){
+                             isFormValid = false;
+                         }
+                    }
+
+
+                    // Validation cho các trường bắt buộc khác (giữ nguyên logic cũ)
+                    const termsCheckbox = document.getElementById('terms_agree');
+                    if (termsCheckbox && !termsCheckbox.checked) {
+                        isFormValid = false;
+                        addErrorMessage(termsCheckbox, 'Bạn phải đồng ý với Điều khoản quy định của đơn hàng.');
+                    } else if (termsCheckbox) {
+                        removeErrorMessage(termsCheckbox);
+                    }
+                    const requiredFields = form.querySelectorAll('[required]');
+                    const radioGroupsValidated = {};
+                    requiredFields.forEach(input => {
+                        if (input.id === 'terms_agree') return; // Terms checkbox handled separately
+                        // Skip phone inputs as they are validated above
+                        if (input.id === 'sender_phone' || input.id === 'receiver_phone1' || input.id === 'receiver_phone2') return;
+
+                        // Handle select fields and other non-radio/checkbox required fields
+                        if (input.tagName === 'SELECT' || input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
+                            if (!input.value.trim()) {
+                                isFormValid = false;
+                                displayFieldError(input, 'Trường này là bắt buộc.');
+                            } else {
+                                clearFieldError(input);
+                            }
+                             // Add event listener for immediate validation feedback
+                            input.addEventListener('input', function() {
+                                if (!this.value.trim()) {
+                                     displayFieldError(this, 'Trường này là bắt buộc.');
+                                } else {
+                                     clearFieldError(this);
+                                }
+                            });
+                             // Add focus listener to clear error on focus
+                            input.addEventListener('focus', function() {
+                                clearFieldError(this);
+                            });
+                        }
+
+                        if (input.type === 'radio') {
+                            const groupName = input.name;
+                            if (!radioGroupsValidated[groupName]) {
+                                const checkedRadio = form.querySelector(`input[name="${groupName}"]:checked`);
+                                if (!checkedRadio) {
+                                    isFormValid = false;
+                                    // Find the first radio in the group to attach the error
+                                     const firstRadioInGroup = form.querySelector(`input[name="${groupName}"]`);
+                                    if(firstRadioInGroup) addErrorMessage(firstRadioInGroup, 'Vui lòng chọn một tùy chọn.');
+                                } else {
+                                     // Find the first radio in the group to remove the error
+                                    const firstRadioInGroup = form.querySelector(`input[name="${groupName}"]`);
+                                    if(firstRadioInGroup) removeErrorMessage(firstRadioInGroup);
+                                }
+                                radioGroupsValidated[groupName] = true;
+                            }
+                        } else if (input.type === 'checkbox' && input.required) {
+                            if (!input.checked) {
+                                isFormValid = false;
+                                addErrorMessage(input, 'Tùy chọn này là bắt buộc.');
+                            } else {
+                                removeErrorMessage(input);
+                            }
+                        }
+                    });
+
+
+                    if (isFormValid) {
+                        const formData = {};
+                        form.querySelectorAll('input, select, textarea').forEach(input => {
+                            if (input.type === 'checkbox' && input.name === 'add_service[]') {
+                                if (!formData['add_service[]']) formData['add_service[]'] = [];
+                                if (input.checked) formData['add_service[]'].push(input.value);
+                            } else if (input.type === 'checkbox') {
+                                formData[input.name] = input.checked;
+                            } else if (input.type === 'radio') {
+                                if (input.checked) formData[input.name] = input.value;
+                            } else {
+                                // Handle the new branch and agent inputs, and other general inputs/textareas
+                                // sender_name_input was handled separately in previous edits
+                                if (input.id === 'sender_name_input') {
+                                    formData['sender_name_display'] = input.value;
+                                } else if (input.tagName === 'SELECT') {
+                                    // For select fields that still exist (address, country, service, etc.), store their selected text
+                                    formData[input.name] = input.options[input.selectedIndex].text;
+                                } else if (input.name !== 'sender_preset') { // Exclude the old sender_preset name
+                                    formData[input.name] = input.value;
+                                }
+                            }
+                        });
+
+                        // Add sender country as always 'Việt Nam'
+                        formData['sender_country'] = 'Việt Nam';
+
+                        localStorage.setItem('createPackageStep1', JSON.stringify(formData));
+                        window.location.href = 'create-package-step2.html';
+                    } else {
+                        const firstErrorField = form.querySelector('.error');
+                        if (firstErrorField) {
+                            const elementToScroll = firstErrorField.closest('.form-group, .terms-agreement') || firstErrorField;
+                            elementToScroll.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
                 });
 
                 form.addEventListener('reset', function() {
@@ -1149,6 +1367,76 @@
 
             // Gọi hàm lấy danh sách quốc gia khi trang được tải
             fetchCountries();
+
+            // New code for Branch and Agent autocomplete
+            const branchInput = document.getElementById('branch_input');
+            const agentInput = document.getElementById('agent_input');
+
+            // Helper function to get data from localStorage
+            function getSuggestions(key) {
+                const data = localStorage.getItem(key);
+                return data ? JSON.parse(data) : [];
+            }
+
+            // Helper function to save data to localStorage (add new value if not exists)
+            function addSuggestion(key, value) {
+                if (!value || typeof value !== 'string' || value.trim() === '') return; // Prevent saving empty or invalid values
+                const suggestions = getSuggestions(key);
+                const trimmedValue = value.trim();
+                if (!suggestions.includes(trimmedValue)) {
+                    suggestions.push(trimmedValue);
+                    localStorage.setItem(key, JSON.stringify(suggestions));
+                }
+            }
+
+            // Helper function to populate datalist
+            function populateDatalist(datalistElement, suggestions) {
+                datalistElement.innerHTML = ''; // Clear existing options
+                suggestions.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item;
+                    datalistElement.appendChild(option);
+                });
+            }
+
+            // Populate datalists on page load
+            const branchSuggestions = getSuggestions('branchSuggestions');
+            const agentSuggestions = getSuggestions('agentSuggestions');
+
+            const branchDatalist = document.getElementById('branch_suggestions');
+            const agentDatalist = document.getElementById('agent_suggestions');
+
+            if(branchDatalist) populateDatalist(branchDatalist, branchSuggestions);
+            if(agentDatalist) populateDatalist(agentDatalist, agentSuggestions);
+
+            // Add event listeners to save new entries on input blur
+            if(branchInput) {
+                branchInput.addEventListener('blur', function() {
+                    addSuggestion('branchSuggestions', this.value);
+                });
+            }
+            if(agentInput) {
+                 agentInput.addEventListener('blur', function() {
+                    addSuggestion('agentSuggestions', this.value);
+                });
+            }
+
+             // Update form submit to ensure latest values are saved before leaving the page
+             if (form) {
+                  form.addEventListener('submit', function(event) {
+                       // ... existing submit logic ...
+                       // Save the current values of branch and agent inputs
+                       if(branchInput) addSuggestion('branchSuggestions', branchInput.value);
+                       if(agentInput) addSuggestion('agentSuggestions', agentInput.value);
+
+                       // The rest of the form submit logic remains
+                  });
+                  // Also save on beforeunload in case the form is not submitted but the page is left
+                  window.addEventListener('beforeunload', function() {
+                      if(branchInput) addSuggestion('branchSuggestions', branchInput.value);
+                      if(agentInput) addSuggestion('agentSuggestions', agentInput.value);
+                  });
+             }
         });
     </script>
 

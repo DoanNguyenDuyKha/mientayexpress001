@@ -600,58 +600,119 @@
                 }
             }
 
-            // Gắn sự kiện cho nút edit Bill Info (dùng loadModalContentHtml)
-            document.querySelectorAll('.detail-section .edit-section').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    loadModalContentHtml(
-                        '../form_package_detail/edit-bill-info-section.html',
-                        populateBillInfoSectionModalData,
-                        attachBillInfoSectionModalListeners
-                    );
-                });
-            });
-
             // Hàm populate dữ liệu cho modal Bill Info (lấy từ localStorage)
             function populateBillInfoSectionModalData(container) {
+                console.log('populateBillInfoSectionModalData called');
                 const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+                console.log('orderData from localStorage:', orderData);
+
                 const billCodeInput = container.querySelector('#billCodeInput');
                 if(billCodeInput) billCodeInput.value = orderData.bill_code || '';
                 const refCodeInput = container.querySelector('#refCodeInput');
                 if(refCodeInput) refCodeInput.value = orderData.ref_code || '';
+
                 const orderDateInput = container.querySelector('#orderDateInput');
                 if(orderDateInput) {
                     if(orderData.order_date) {
                         const d = new Date(orderData.order_date);
-                        if(!isNaN(d)) orderDateInput.value = d.toISOString().slice(0,16);
+                         const year = d.getFullYear();
+                         const month = String(d.getMonth() + 1).padStart(2, '0');
+                         const day = String(d.getDate()).padStart(2, '0');
+                         const hours = String(d.getHours()).padStart(2, '0');
+                         const minutes = String(d.getMinutes()).padStart(2, '0');
+                         orderDateInput.value = `${year}-${month}-${day}T${hours}:${minutes}`;
                     }
                 }
+
                 const creatorInput = container.querySelector('#creatorInput');
-                if(creatorInput) creatorInput.value = orderData.creator || '';
+                // Set giá trị người tạo mặc định hoặc từ dữ liệu đã lưu (nếu có)
+                if(creatorInput) creatorInput.value = orderData.creator || 'PHẠM HOÀNG ĐÌNH'; // Mặc định là "PHẠM HOÀNG ĐÌNH" nếu chưa có
+
                 const statusInput = container.querySelector('#statusInput');
                 if(statusInput) statusInput.value = orderData.order_status || 'processing';
+
                 const serviceInput = container.querySelector('#serviceNameInput');
-                if(serviceInput) {
-                    // Populate the dropdown first if needed (already done by modal's script, but ensure)
-                    // Then set the value from orderData
-                    serviceInput.value = orderData.service_type || '';
-                    // If the value from orderData doesn't exist in the options (e.g., service was hidden),
-                    // the browser will typically default to the first option or leave it blank.
+                // Lấy dịch vụ từ orderData và tìm option khớp bằng textContent
+                if(serviceInput && orderData.service_type) {
+                     const options = serviceInput.options;
+                     let serviceFound = false;
+                     for(let i = 0; i < options.length; i++) {
+                         if (options[i].textContent.trim() === orderData.service_type.trim()) {
+                             serviceInput.value = options[i].value;
+                             serviceFound = true;
+                             break;
+                         }
+                     }
+                     if (!serviceFound && orderData.service_type) {
+                          // If textContent match failed, try matching by the stored value if it was the value from create-package
+                           const createPackageServices = [
+                             { value: 'signature', text: 'Chữ Ký' },
+                             { value: 'fumigation', text: 'FUMIGATION' },
+                             { value: 'packing', text: 'Đóng kiện gỗ' },
+                             { value: 'insurance', text: 'Bảo hiểm hàng hóa' }
+                             // Add other service mappings if needed
+                         ];
+                         const matchedService = createPackageServices.find(service => service.text === orderData.service_type.trim());
+                         if (matchedService) {
+                              for(let i = 0; i < options.length; i++) {
+                                  if (options[i].value.trim() === matchedService.value) {
+                                      serviceInput.value = options[i].value;
+                                       break;
+                                  }
+                              }
+                         }
+
+
+                     }
+                     console.log('Populating serviceNameInput with text:', orderData.service_type, '. Element value set to:', serviceInput.value);
                 }
+
                 const branchInput = container.querySelector('#branchInput');
-                if(branchInput) branchInput.value = orderData.branch || 'Tân Phú - HCM';
-                const addServicesArr = Array.isArray(orderData.add_service) ? orderData.add_service : (orderData.add_service ? orderData.add_service.split('/') : []);
-                const checkboxMap = {
-                    'Chữ ký': 'add_service_signature',
-                    'Bảo hiểm hàng hóa': 'add_service_insurance',
-                    'FUMIGATION': 'add_service_fumigation',
-                    'Đóng kiện gỗ': 'add_service_wood_crate'
-                };
-                Object.entries(checkboxMap).forEach(([label, name]) => {
-                    const cb = container.querySelector(`input[name="${name}"]`);
-                    if(cb) cb.checked = addServicesArr.map(s => s.trim()).includes(label);
+                // Lấy chi nhánh từ orderData
+                if(branchInput) branchInput.value = orderData.branch || '';
+
+                // Xử lý Dịch vụ cộng thêm: Đảm bảo orderData.add_service là mảng và kiểm tra checkbox theo value
+                // orderData.add_service lưu mảng các VALUE TỪ create-package.html: ['signature', 'insurance', ...]
+                const addServicesArr = Array.isArray(orderData.add_service) ? orderData.add_service : []; // Ensure it's always an array
+                 console.log('Saved add_service values (from localStorage): ', addServicesArr);
+
+                // Reset all checkboxes first
+                 container.querySelectorAll('input[type="checkbox"][name^="add_service_"]').forEach(cb => cb.checked = false);
+
+                // Check checkboxes based on the values in addServicesArr, comparing with modal checkbox VALUE
+                container.querySelectorAll('input[type="checkbox"][name^="add_service_"]').forEach(cb => {
+                    console.log('Checking checkbox:', cb.name, ', modal checkbox value:', cb.value);
+                    // We need to check if the saved value (e.g., 'signature') matches the modal checkbox value (e.g., 'Chữ ký')
+                    // Or vice versa, depending on what was truly saved.
+                    // Let's map the modal checkbox value back to the potential saved value
+                     const modalValueMap = {
+                         'Chữ ký': 'signature',
+                         'Bảo hiểm hàng hóa': 'insurance',
+                         'FUMIGATION': 'fumigation',
+                         'Đóng kiện gỗ': 'packing'
+                     };
+                    const potentialSavedValue = modalValueMap[cb.value.trim()];
+
+                     if (potentialSavedValue && addServicesArr.includes(potentialSavedValue)) {
+                         cb.checked = true;
+                         console.log('-> Checked!');
+                     } else {
+                          // Also check if the saved array includes the modal checkbox value directly (fallback)
+                         if (addServicesArr.includes(cb.value.trim())) {
+                             cb.checked = true;
+                             console.log('-> Checked by direct value match!');
+                         } else {
+                            console.log('-> Not checked.');
+                         }
+                     }
                 });
+                 console.log('Finished populating add_service checkboxes.');
+
                 const noteInput = container.querySelector('#noteInput');
-                if(noteInput) noteInput.value = orderData.note || '';
+                // Lấy ghi chú từ orderData.shipment_notes
+                if(noteInput) noteInput.value = orderData.shipment_notes || '';
+                 console.log('Populating noteInput with data:', orderData.shipment_notes);
+
             }
 
             // Hàm gắn sự kiện cho modal Bill Info (lưu vào localStorage và cập nhật giao diện)
@@ -666,43 +727,105 @@
                 if(confirmButton && form) {
                     confirmButton.addEventListener('click', function() {
                         console.log('[Modal] Đã bấm Xác nhận chỉnh sửa thông tin vận đơn');
+                        // Gather data from modal inputs
                         const bill_code = container.querySelector('#billCodeInput')?.value || '';
                         const ref_code = container.querySelector('#refCodeInput')?.value || '';
-                        const order_date = container.querySelector('#orderDateInput')?.value || '';
-                        const creator = container.querySelector('#creatorInput')?.value || '';
+                        const order_date_str = container.querySelector('#orderDateInput')?.value || '';
+                         const creator = container.querySelector('#creatorInput')?.value || ''; // Lấy giá trị người tạo từ input
                         const order_status = container.querySelector('#statusInput')?.value || 'processing';
-                        const service_type = container.querySelector('#serviceNameInput')?.value || '';
+                        const serviceSelectElement = container.querySelector('#serviceNameInput');
+                         const service_type = serviceSelectElement ? serviceSelectElement.options[serviceSelectElement.selectedIndex].textContent.trim() : ''; // Lưu text hiển thị
+
                         const branch = container.querySelector('#branchInput')?.value || '';
-                        const note = container.querySelector('#noteInput')?.value || '';
-                        const add_service = Array.from(container.querySelectorAll('input[type="checkbox"][name^="add_service_"]:checked')).map(cb => cb.parentElement.textContent.trim());
+                         // Lấy value của các checkbox dịch vụ cộng thêm đã chọn
+                         // Lần này chúng ta lưu các value khớp với form ở create-package.html
+                         const add_service = Array.from(container.querySelectorAll('input[type="checkbox"][name^="add_service_"]:checked')).map(cb => {
+                              // Map modal checkbox value back to the value used in create-package.html
+                              const modalValueToSavedValueMap = {
+                                   'Chữ ký': 'signature',
+                                   'Bảo hiểm hàng hóa': 'insurance',
+                                   'FUMIGATION': 'fumigation',
+                                   'Đóng kiện gỗ': 'packing'
+                              };
+                              return modalValueToSavedValueMap[cb.value.trim()] || cb.value.trim(); // Fallback to modal value if not found
+                         });
+
+                        const shipment_notes = container.querySelector('#noteInput')?.value || ''; // Lấy giá trị ghi chú
+
+                        // Convert date string to ISO string if valid
+                         let order_date = '';
+                         if(order_date_str) {
+                             const d = new Date(order_date_str);
+                             if(!isNaN(d)) order_date = d.toISOString();
+                         }
+
+                        // Load existing data from localStorage
                         const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
+
+                        // Update orderData object
                         orderData.bill_code = bill_code;
                         orderData.ref_code = ref_code;
-                        orderData.order_date = order_date ? new Date(order_date).toISOString() : '';
-                        orderData.creator = creator;
+                        orderData.order_date = order_date;
+                        orderData.creator = creator; // Lưu giá trị người tạo vào trường creator
                         orderData.order_status = order_status;
-                        orderData.service_type = service_type;
+                        orderData.service_type = service_type; // Lưu text hiển thị dịch vụ
                         orderData.branch = branch;
-                        orderData.add_service = add_service;
-                        orderData.note = note;
+                        orderData.add_service = add_service; // Lưu MẢNG các value dịch vụ cộng thêm (signature, fumigation, ...)
+                        orderData.shipment_notes = shipment_notes; // Lưu giá trị ghi chú
+
+                        // Save updated data back to localStorage
                         localStorage.setItem('currentOrderDetail', JSON.stringify(orderData));
+
+                        // Update displayed information on the page
                         const section = document.querySelectorAll('.detail-section')[0];
                         if(section) {
                             const pairs = section.querySelectorAll('.data-pair');
-                            pairs[0].querySelector('.value').textContent = bill_code;
-                            pairs[1].querySelector('.value').textContent = ref_code;
-                            pairs[2].querySelector('.value').textContent = order_date ? new Date(order_date).toLocaleString('vi-VN') : '';
-                            pairs[3].querySelector('.value').textContent = creator;
-                            pairs[4].querySelector('.status-badge').textContent = order_status === 'processing' ? 'Đang vận chuyển' : (order_status === 'completed' ? 'Hoàn tất' : 'Đã hủy');
-                            pairs[5].querySelector('.value').textContent = service_type;
-                            pairs[6].querySelector('.value').textContent = add_service.join(' / ');
-                            pairs[7].querySelector('.value').textContent = note;
+                            pairs[0].querySelector('.value').textContent = bill_code; // Mã đơn hàng
+                            pairs[1].querySelector('.value').textContent = ref_code; // REF Code
+                             // Display formatted date
+                            pairs[2].querySelector('.value').textContent = order_date ? new Date(order_date).toLocaleString('vi-VN') : ''; // Ngày tạo
+                            pairs[3].querySelector('.value').textContent = creator; // Người tạo
+                            // Update status badge
+                            const statusBadge = pairs[4].querySelector('.status-badge');
+                            if (statusBadge) {
+                                statusBadge.textContent = order_status === 'processing' ? 'Đang vận chuyển' : (order_status === 'completed' ? 'Hoàn tất' : (order_status === 'cancelled' ? 'Đã hủy' : order_status));
+                                statusBadge.className = `status-badge status-${order_status}`; // Update class for styling
+                            }
+
+                            pairs[5].querySelector('.value').textContent = service_type; // Dịch vụ
+                             // Display joined additional services text - use the values saved (signature, etc) and map them back to display text
+                            const addServiceDisplay = add_service.map(value => {
+                                 // Map saved value (signature, etc) back to display text
+                                 const displayMap = {
+                                     'signature': 'Chữ Ký',
+                                     'insurance': 'Bảo hiểm hàng hóa',
+                                     'fumigation': 'FUMIGATION',
+                                     'packing': 'Đóng kiện gỗ'
+                                 };
+                                 return displayMap[value] || value; // Fallback if value not in map
+                             }).join(' / ');
+                            pairs[6].querySelector('.value').textContent = addServiceDisplay; // Dịch vụ kèm
+
+                            pairs[7].querySelector('.value').textContent = shipment_notes; // Ghi chú
                         }
+
+                        // Close the modal
                         closeEditModal();
                     });
                 }
             }
-            
+
+            // Gắn sự kiện cho nút edit Bill Info (dùng loadModalContentHtml)
+            document.querySelectorAll('.detail-section .edit-section').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    loadModalContentHtml(
+                        '../form_package_detail/edit-bill-info-section.html',
+                        populateBillInfoSectionModalData,
+                        attachBillInfoSectionModalListeners
+                    );
+                });
+            });
+
             document.getElementById('editPackageDetailBtn').addEventListener('click', function() {
                 loadModalContentIframe('../form_package_detail/edit-package-detail-modal.html');
             });
@@ -771,7 +894,7 @@
                     const addServices = Array.isArray(orderData.add_service) ? orderData.add_service.join(' / ') : orderData.add_service || '';
                     addServiceValue.textContent = addServices;
                 }
-                if (noteValue) noteValue.textContent = orderData.note || '';
+                if (noteValue) noteValue.textContent = orderData.shipment_notes || '';
             }
 
             // Hiển thị thông tin người gửi

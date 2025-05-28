@@ -915,6 +915,7 @@ function updateHeaderBlur() {
             });
         })();
     </script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
     <script>
     // ================== DuyKha: Quản lý khách hàng động + Lọc + Modal ==================
     let customers = [
@@ -1121,6 +1122,35 @@ function updateHeaderBlur() {
     Array.from(document.querySelectorAll('#bulkDeleteModal .modal-close, #bulkDeleteModal [data-dismiss="modal"]')).forEach(btn=>{
         btn.onclick = ()=>{ document.getElementById('bulkDeleteModal').classList.remove('show'); };
     });
+
+    // Thêm hàm xuất Excel
+    function exportToExcel() {
+        // Tạo workbook mới
+        const wb = XLSX.utils.book_new();
+        
+        // Chuẩn bị dữ liệu cho Excel
+        const excelData = customers.map(customer => ({
+            'Mã KH': customer.id,
+            'Họ và tên': customer.name,
+            'Số điện thoại': customer.phone,
+            'Email': customer.email,
+            'Loại KH': customer.type,
+            'Địa chỉ': customer.address,
+            'Trạng thái': customer.status === 'active' ? 'Hoạt động' : 'Ngừng hoạt động'
+        }));
+
+        // Tạo worksheet từ dữ liệu
+        const ws = XLSX.utils.json_to_sheet(excelData);
+
+        // Thêm worksheet vào workbook
+        XLSX.utils.book_append_sheet(wb, ws, "Danh sách khách hàng");
+
+        // Xuất file Excel
+        XLSX.writeFile(wb, "Danh_sach_khach_hang.xlsx");
+    }
+
+    // Gắn sự kiện cho nút xuất Excel
+    document.querySelector('.btn-export').addEventListener('click', exportToExcel);
 
     // Render lần đầu
     renderCustomerTable();
