@@ -391,8 +391,8 @@
                          </div>
                          <div class="action-buttons">
                              <button type="button" class="button secondary" onclick="window.location.href='create-package.html';"> <i class="fa-solid fa-arrow-left"></i> Quay lại </button>
-                             <button type="button" class="button warning" onclick="resetRightColumn()"> <i class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
-                             <button type="submit" class="button confirm" form="create-order-step2-form" onclick="handleViewDetails(event)"> <i class="fa-solid fa-eye"></i> Xem chi tiết</button>
+                             <button type="reset" class="button warning" form="create-order-step2-form"> <i class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
+                             <button type="button" class="button confirm" onclick="handleViewDetails(event)"> <i class="fa-solid fa-eye"></i> Xem chi tiết</button>
                          </div>
                      </footer>
                  </form>
@@ -1169,6 +1169,8 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('currentOrderDetail', JSON.stringify(combinedData));
 
         // Chuyển đến trang order_detail.html
+        // Lưu trạng thái vào sessionStorage để biết nguồn chuyển trang
+        sessionStorage.setItem('fromCreatePackageStep2', 'true');
         window.location.href = 'order_detail.html';
     }
     </script>

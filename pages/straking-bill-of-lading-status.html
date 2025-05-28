@@ -565,6 +565,20 @@
                 });
             }
 
+            // Add event listener to history time input to show picker on click
+            const historyTimeInput = document.getElementById('history_time_ss');
+            if (historyTimeInput) {
+                historyTimeInput.addEventListener('click', function() {
+                    // Attempt to show the picker directly
+                    if (typeof this.showPicker === 'function') {
+                        this.showPicker();
+                    } else {
+                        // Fallback: focus the element, which often triggers the picker
+                        this.focus();
+                    }
+                });
+            }
+
         });
 
         document.addEventListener('DOMContentLoaded', () => {

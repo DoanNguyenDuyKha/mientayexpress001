@@ -877,10 +877,11 @@ footer.form-actions {
     }
 
     .form-section .card-header {
-        flex-direction: column;
-    align-items: flex-start;
+        flex-direction: row; /* Display items in a row */
+        align-items: center; /* Vertically align items in the center */
         gap: 0.2rem;
         padding: 0.3rem 0.5rem;
+        justify-content: space-between; /* Distribute space between title and select */
     }
 
     .form-section .card-header .card-title {
@@ -889,7 +890,8 @@ footer.form-actions {
 
      .form-section .card-header .address-book-select {
          margin-left: 0;
-         width: 100%;
+         width: auto; /* Allow select to take its natural width */
+         flex-shrink: 0; /* Prevent select from shrinking excessively */
      }
 
     .form-section .card-body {
@@ -923,13 +925,17 @@ footer.form-actions {
     }
 
     .form-actions .action-buttons {
-         flex-direction: column-reverse;
-         gap: 0.3rem;
+         flex-direction: row; /* Change to row for 2 columns */
+         flex-wrap: wrap; /* Allow items to wrap */
+         justify-content: space-between; /* Distribute space between items */
+         gap: 0.4rem; /* Adjust gap */
     }
 
      .form-actions .action-buttons .button {
-          flex-grow: 0;
-          width: 100%;
+          flex-grow: 1; /* Allow buttons to grow */
+          flex-basis: calc(50% - 0.2rem); /* Set base width for 2 columns with gap */
+          min-width: 120px; /* Ensure minimum width */
+          width: unset; /* Remove fixed 100% width */
      }
 
      .form-actions .terms-agreement {

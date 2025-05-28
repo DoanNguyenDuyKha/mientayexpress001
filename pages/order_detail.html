@@ -476,7 +476,7 @@
                  <div class="footer-actions">
                      <button class="button warning"> <i class="fa-solid fa-dollar-sign"></i> Nhập trị giá</button>
                      <button class="button primary" onclick="window.location.href='order-tracking.html'"><i class="fa-solid fa-hashtag"></i> Nhập tracking</button>
-                     <button class="button confirm" onclick="window.location.href='pickup-package.html'"> <i class="fa-solid fa-truck-pickup"></i> Tạo Pickup</button>
+                     <button type="button" class="button confirm" id="create-pickup-btn"> <i class="fa-solid fa-truck-pickup"></i> Tạo Pickup</button>
                      <button class="button danger"> <i class="fa-solid fa-xmark"></i> Thoát</button>
                  </div>
              </footer>
@@ -1135,6 +1135,32 @@
                 });
             }
         });
+
+        // Check sessionStorage flag to control process bar visibility
+        const processSteps = document.querySelector('.progress-steps');
+        const fromCreatePackageStep2 = sessionStorage.getItem('fromCreatePackageStep2');
+
+        if (processSteps) {
+            if (fromCreatePackageStep2 === 'true') {
+                // Show the process bar (it's visible by default unless hidden by CSS)
+                processSteps.style.display = ''; // Or remove a 'hidden' class if applied by CSS
+            } else {
+                // Hide the process bar
+                processSteps.style.display = 'none';
+            }
+        }
+
+        // Clean up the flag after checking
+        sessionStorage.removeItem('fromCreatePackageStep2');
+
+        // Add event listener for the "Tạo Pickup" button
+        const createPickupBtn = document.getElementById('create-pickup-btn');
+        if (createPickupBtn) {
+            createPickupBtn.addEventListener('click', function() {
+                sessionStorage.setItem('fromOrderDetailToPickup', 'true');
+                window.location.href = 'pickup-package.html';
+            });
+        }
     </script>
 </body>
 </html>

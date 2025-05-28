@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Package Manager - Mien Tay Express</title>
+    <title>Modern Package Manager - Minh Khôi Logistics</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/package_manager.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
 @media (max-width: 576px) {
   .header-search-input {
@@ -41,26 +43,6 @@
   .mobile-only { display: none !important; }
   .mobile-status-bar { display: none !important; }
 }
-/* Đã di chuyển các quy tắc action buttons cho màn hình 576px sang package_manager.css */
-/*
-@media (max-width: 576px) {
-  .mobile-only { display: inline-flex !important; }
-  .action-buttons { gap: 6px; }
-  .action-row {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 4px;
-  }
-  .action-row .button {
-    flex: 1 1 0;
-    min-width: 0;
-    font-size: 1em;
-    padding: 0.6em 0.2em;
-    white-space: nowrap;
-    margin-right: 15px;
-  }
-}
-*/
 @media (max-width: 900px) and (orientation: landscape) {
   .action-buttons, .action-row {
     flex-wrap: wrap !important;
@@ -88,7 +70,7 @@
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="logo-bg">
-                <img src="../images/newlogo2.png" alt="Mien Tay Express Logo" class="logo">
+                <img src="../images/newlogo2-removebg.png" alt="Mien Tay Express Logo" class="logo">
             </div>
         </div>
         <nav class="menu-items" aria-label="Main Navigation">
@@ -340,10 +322,14 @@
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">Chưa có</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Placeholder Sản phẩm 2</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">2</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Hàng dễ vỡ, cần xử lý cẩn thận.</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
                                                 <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
@@ -360,14 +346,14 @@
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659135</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng thương mại</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">2</span></div>
-                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien2.jpg" alt="Ảnh kiện"></div></span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">35 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">32 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">33 KG</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Hàng dễ vỡ / Cần xử lý cẩn thận / Phụ phí đóng gói</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
                                                 <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
@@ -384,10 +370,14 @@
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">Chưa có</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Placeholder Sản phẩm 4</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">4</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Hàng dễ vỡ, cần xử lý cẩn thận.</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
                                                 <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
@@ -404,10 +394,14 @@
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">Chưa có</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Placeholder Sản phẩm 5</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">5</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Hàng dễ vỡ, cần xử lý cẩn thận.</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
                                                 <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
@@ -424,10 +418,14 @@
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">Chưa có</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Placeholder Sản phẩm 6</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">6</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Hàng dễ vỡ, cần xử lý cẩn thận.</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
                                                 <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
@@ -444,10 +442,14 @@
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">Chưa có</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Placeholder Sản phẩm 7</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">7</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Hàng dễ vỡ, cần xử lý cẩn thận.</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
                                                 <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
@@ -464,10 +466,14 @@
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">Chưa có</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Placeholder Sản phẩm 8</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">8</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Hàng dễ vỡ, cần xử lý cẩn thận.</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
                                                 <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
@@ -495,10 +501,12 @@
             </section>
 
              <footer class="site-footer">
-                 Miền Tây Express © <span id="current-year"></span>. All rights reserved. Design by Nina Co.,Ltd
+                Minh Khôi Logistics © <span id="current-year"></span>. All rights reserved. Design by Nina Co.,Ltd
              </footer>
         </div>
 
+        <!-- Thêm vùng hiển thị đơn hàng mới -->
+        <div id="pickup-orders-list"></div>
     </main>
 
     <div class="filter-modal" id="filter-modal">
@@ -573,7 +581,7 @@
 
         const isElementVisible = (el) => el && !el.hasAttribute('hidden') && el.offsetParent !== null;
 
-        const manageBodyScroll = () => {
+        let manageBodyScroll = () => {
             const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
             const isAnyModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
             if (isSidebarOpen || isAnyModalVisible) {
@@ -649,7 +657,7 @@
             } else { console.error("Filter modal element not found!"); }
         }
 
-        function applyFilters(source) {
+        function applyFilters(source, statusTab) {
             const formPrefix = source === 'modal' ? 'modal-' : '';
             const dateStart = document.getElementById(`${formPrefix}date-start`)?.value;
             const dateEnd = document.getElementById(`${formPrefix}date-end`)?.value;
@@ -668,24 +676,34 @@
                     .trim();
             };
 
+            // Hàm helper để chuẩn hóa trạng thái
+            const normalizeStatus = (status) => {
+                if (!status) return '';
+                status = status.trim();
+                if (status === 'Đã nhận hàng') return 'Nhận hàng';
+                if (status === 'Mới tạo đơn') return 'Mới tạo';
+                if (status === 'Đang phát hàng') return 'Đang phát';
+                return status;
+            };
+
             // Hàm helper để so sánh ngày
             const compareDates = (dateStr, startDate, endDate) => {
                 if (!dateStr) return true;
-                const [d, m, y] = dateStr.split('/');
-                const rowDate = new Date(`20${y}`, m - 1, d);
-                
+                // Chuyển ngày bảng (dd/mm/yy hoặc dd/mm/yyyy) thành Date object
+                let [d, m, y] = dateStr.split('/');
+                if (y.length === 2) y = '20' + y;
+                const rowDate = new Date(`${y}-${m}-${d}`);
+                // Chuyển input date (yyyy-mm-dd) thành Date object
                 if (startDate) {
                     const start = new Date(startDate);
                     start.setHours(0, 0, 0, 0);
                     if (rowDate < start) return false;
                 }
-                
                 if (endDate) {
                     const end = new Date(endDate);
                     end.setHours(23, 59, 59, 999);
                     if (rowDate > end) return false;
                 }
-                
                 return true;
             };
 
@@ -695,48 +713,40 @@
 
             rows.forEach(row => {
                 let show = true;
-
-                // Lọc theo trạng thái - So khớp chính xác
-                if (status && status !== '') {
+                // Lọc theo trạng thái (ưu tiên tab, nếu không có thì lấy filter-bar)
+                let filterStatus = statusTab && statusTab !== 'Tất cả' ? statusTab : (status && status !== '' ? status : null);
+                if (filterStatus) {
                     const rowStatus = row.getAttribute('data-status');
-                    if (rowStatus !== status) show = false;
+                    const normalizedRowStatus = normalizeStatus(rowStatus);
+                    const normalizedFilterStatus = normalizeStatus(filterStatus);
+                    if (normalizedRowStatus !== normalizedFilterStatus) show = false;
                 }
-
                 // Lọc theo sale - So khớp chính xác mã sale
                 if (show && sale && sale !== '') {
                     const saleCell = row.children[8]?.textContent || '';
                     const saleCode = sale.split(' - ')[0].trim();
                     if (!saleCell.includes(saleCode)) show = false;
                 }
-
                 // Lọc theo khách hàng - Tìm kiếm mềm
                 if (show && customer && customer !== '') {
                     const customerCell = row.children[7]?.textContent || '';
                     const normalizedCustomer = normalizeText(customer);
                     const normalizedCell = normalizeText(customerCell);
-                    
-                    // Tìm kiếm theo từng từ
                     const searchTerms = normalizedCustomer.split(' ');
-                    const hasAllTerms = searchTerms.every(term => 
-                        normalizedCell.includes(term)
-                    );
-                    
+                    const hasAllTerms = searchTerms.every(term => normalizedCell.includes(term));
                     if (!hasAllTerms) show = false;
                 }
-
                 // Lọc theo chi nhánh - So khớp chính xác
                 if (show && branch && branch !== '') {
                     const branchCell = row.children[14]?.textContent || '';
                     const branchName = branch.replace('CN: ', '').trim();
                     if (branchCell !== branchName) show = false;
                 }
-
                 // Lọc theo ngày tạo
                 if (show && (dateStart || dateEnd)) {
                     const dateCell = row.children[3]?.textContent || '';
                     if (!compareDates(dateCell, dateStart, dateEnd)) show = false;
                 }
-
                 // Lọc theo search - Tìm kiếm thông minh
                 if (show && search && search.length > 0) {
                     const searchTerms = search.split(' ');
@@ -747,24 +757,14 @@
                         row.children[9]?.textContent || '', // Dịch vụ
                         row.children[2]?.textContent || ''  // Mã vận đơn
                     ];
-
                     const normalizedCells = cells.map(cell => normalizeText(cell));
-                    const hasMatch = searchTerms.every(term => 
-                        normalizedCells.some(cell => cell.includes(term))
-                    );
-
+                    const hasMatch = searchTerms.every(term => normalizedCells.some(cell => cell.includes(term)));
                     if (!hasMatch) show = false;
                 }
-
-                // Cập nhật hiển thị
                 row.style.display = show ? '' : 'none';
                 if (show) visibleCount++;
             });
-
-            // Cập nhật số lượng hiển thị trong tabs
             updateTabCounts();
-
-            // Đóng modal nếu là mobile
             if (source === 'modal') {
                 toggleFilterModal();
             }
@@ -778,24 +778,15 @@
                 return id && id.trim() !== '';
             });
             const statusCounts = {};
-            let visibleCount = 0;
 
-            // Đếm tổng số đơn hàng từng trạng thái dựa trên text cột Pick up (ô thứ 6)
+            // Đếm tổng số đơn hàng từng trạng thái dựa trên data-status (chuẩn hóa cho tab)
             rows.forEach(row => {
-                // Lấy text trạng thái từ cột Pick up (ô thứ 6, index 5, loại bỏ thẻ span nếu có)
-                let pickUpCell = row.children[5];
-                let status = '';
-                if (pickUpCell) {
-                    if (pickUpCell.querySelector('.status-badge')) {
-                        status = pickUpCell.querySelector('.status-badge').textContent.trim();
-                    } else {
-                        status = pickUpCell.textContent.trim();
-                    }
-                }
+                let status = row.getAttribute('data-status') || '';
                 // CHUẨN HÓA: Nếu là 'Đang phát hàng' thì quy về 'Đang phát' để khớp tab
                 if (status === 'Đang phát hàng') status = 'Đang phát';
+                if (status === 'Mới tạo đơn' || status === 'Mới tạo') status = 'Mới tạo';
+                if (status === 'Đã nhận hàng') status = 'Nhận hàng';
                 statusCounts[status] = (statusCounts[status] || 0) + 1;
-                if (row.style.display !== 'none') visibleCount++;
             });
 
             // Lấy danh sách tab hiện tại
@@ -809,46 +800,15 @@
             // Lấy trạng thái từ text tab
             const getStatusFromTab = tab => tab.textContent.replace(/\s*\(\d+\)/, '').trim();
 
-            // Sắp xếp các tab còn lại theo số lượng giảm dần (dựa trên tổng số, không phải số đang hiển thị)
-            otherTabs.sort((a, b) => {
-                const countA = statusCounts[getStatusFromTab(a)] || 0;
-                const countB = statusCounts[getStatusFromTab(b)] || 0;
-                return countB - countA;
-            });
-
             // Cập nhật lại số lượng trên từng tab
             if (allTab) {
-                allTab.textContent = `Tất cả (${visibleCount})`;
+                allTab.textContent = `Tất cả (${rows.length})`;
             }
             otherTabs.forEach(tab => {
                 const status = getStatusFromTab(tab);
                 const count = statusCounts[status] || 0;
                 tab.textContent = `${status} (${count})`;
             });
-
-            // Gắn lại thứ tự tab vào DOM
-            if (tabsContainer) {
-                tabsContainer.innerHTML = '';
-                if (allTab) tabsContainer.appendChild(allTab);
-                otherTabs.forEach(tab => tabsContainer.appendChild(tab));
-            }
-
-            // Sau khi updateTabCounts, cập nhật lại số tổng entries thực tế
-            updateEntriesInfo();
-        }
-
-        // Sau khi updateTabCounts, cập nhật lại số tổng entries thực tế
-        function updateEntriesInfo() {
-            const infoSpan = document.querySelector('.pagination-info');
-            if (!infoSpan) return;
-            // Đếm số dòng đơn hàng thực tế (tr.clickable-row)
-            const allRows = Array.from(orderTableBody.querySelectorAll('tr.clickable-row'));
-            const totalRows = allRows.length;
-            // Đếm số dòng đang hiển thị (không bị ẩn)
-            const visibleRows = allRows.filter(row => row.style.display !== 'none');
-            let from = visibleRows.length > 0 ? 1 : 0;
-            let to = visibleRows.length;
-            infoSpan.innerHTML = `Showing <b>${from}</b> to <b>${to}</b> of <b>${to}</b> entries`;
         }
 
         function resetFilters(source) {
@@ -996,8 +956,20 @@
             if (mainDeleteBulkBtn) mainDeleteBulkBtn.addEventListener('click', () => { const ids = getSelectedOrderIds(); if (ids.length === 0) alert("Vui lòng chọn đơn hàng."); else showConfirmationModal('delete-order-modal', ids); });
 
             if (orderTableBody) orderTableBody.addEventListener('click', function(event) {
-                const targetButton = event.target.closest('.icon-button');
-                if (!targetButton) return;
+                const clickedRow = event.target.closest('tr.clickable-row'); // Find the closest row
+                const targetElement = event.target; // The actual clicked element
+
+                // 1. Handle click on the row itself (to show/hide details)
+                // Check if a clickable row was clicked and the click was NOT on a button, link, input, or image trigger
+                if (clickedRow && !targetElement.closest('a, button, input[type="checkbox"], .image-modal-trigger')) {
+                    showOrderDetails(clickedRow); // Pass the clickedRow directly to showOrderDetails
+                    return; // Stop here if it was a row click for details
+                }
+
+                // 2. Handle click on action buttons within the row
+                const targetButton = targetElement.closest('.icon-button');
+                if (!targetButton) return; // If it's not a button, and not a row click for details, do nothing
+
                 const mainRow = targetButton.closest('tr.clickable-row');
                 const detailsRow = targetButton.closest('tr.details-row');
                 let orderId;
@@ -1298,17 +1270,18 @@
 
         // Thêm filter cho tabs trạng thái đơn hàng
         const tabItems = document.querySelectorAll('.tab-item');
-        const orderRows = document.querySelectorAll('#order-table-body tr.clickable-row');
         tabItems.forEach(tab => {
           tab.addEventListener('click', function() {
             tabItems.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             const status = tab.textContent.replace(/\s*\(\d+\)/, '').trim();
+            // Luôn lấy lại NodeList mới để lọc đúng các đơn mới tạo
+            const orderRows = document.querySelectorAll('#order-table-body tr.clickable-row');
             orderRows.forEach(row => {
+              const rowStatus = row.getAttribute('data-status') || '';
               if (status === 'Tất cả') {
                 row.style.display = '';
               } else {
-                const rowStatus = row.getAttribute('data-status') || '';
                 row.style.display = rowStatus === status ? '' : 'none';
               }
             });
@@ -1316,15 +1289,92 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
+          var mobileStatusSelect = document.getElementById('mobile-status-select');
+          if(mobileStatusSelect) {
+            mobileStatusSelect.addEventListener('change', function() {
+              var status = this.value;
+              // Luôn lấy lại NodeList mới để lọc đúng các đơn mới tạo
+              var orderRows = document.querySelectorAll('#order-table-body tr.clickable-row');
+              orderRows.forEach(function(row) {
+                var rowStatus = row.getAttribute('data-status') || '';
+                if (status === 'Tất cả') {
+                  row.style.display = '';
+                } else {
+                  row.style.display = rowStatus === status ? '' : 'none';
+                }
+              });
+            });
+          }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
           if (window.flatpickr) {
-            flatpickr('#date-start', {
+            console.log('Flatpickr is available.');
+            // Initialize Flatpickr for desktop date range inputs
+            const desktopStartDateInput = document.getElementById('date-start');
+            const desktopEndDateInput = document.getElementById('date-end');
+
+            console.log('Desktop Start Date Input', desktopStartDateInput);
+            console.log('Desktop End Date Input', desktopEndDateInput);
+
+            const desktopStartDatePicker = flatpickr(desktopStartDateInput, {
               dateFormat: 'Y-m-d',
-              allowInput: true
+              allowInput: true,
             });
-            flatpickr('#date-end', {
+            const desktopEndDatePicker = flatpickr(desktopEndDateInput, {
               dateFormat: 'Y-m-d',
-              allowInput: true
+              allowInput: true,
             });
+
+            console.log('Desktop Start Date Picker', desktopStartDatePicker);
+            console.log('Desktop End Date Picker', desktopEndDatePicker);
+
+            // Add click listeners to open the pickers
+            if (desktopStartDateInput && desktopStartDatePicker) {
+                desktopStartDateInput.addEventListener('click', function() {
+                    console.log('Desktop Start Date input clicked', this.id);
+                    desktopStartDatePicker.open();
+                });
+            }
+            if (desktopEndDateInput && desktopEndDatePicker) {
+                desktopEndDateInput.addEventListener('click', function() {
+                    console.log('Desktop End Date input clicked', this.id);
+                    desktopEndDatePicker.open();
+                });
+            }
+
+
+            // Initialize Flatpickr for modal date range inputs
+            const modalStartDateInput = document.getElementById('modal-date-start');
+            const modalEndDateInput = document.getElementById('modal-date-end');
+
+            console.log('Modal Start Date Input', modalStartDateInput);
+            console.log('Modal End Date Input', modalEndDateInput);
+
+            let modalStartDatePicker, modalEndDatePicker;
+            if (modalStartDateInput) {
+                 modalStartDatePicker = flatpickr(modalStartDateInput, {
+                    dateFormat: 'Y-m-d',
+                    allowInput: true,
+                 });
+                  // Add click listener for modal start date
+                 modalStartDateInput.addEventListener('click', function() {
+                     console.log('Modal Start Date input clicked', this.id);
+                     if (modalStartDatePicker) modalStartDatePicker.open();
+                 });
+            }
+            if (modalEndDateInput) {
+                 modalEndDatePicker = flatpickr(modalEndDateInput, {
+                    dateFormat: 'Y-m-d',
+                    allowInput: true,
+                 });
+                 // Add click listener for modal end date
+                 modalEndDateInput.addEventListener('click', function() {
+                      console.log('Modal End Date input clicked', this.id);
+                      if (modalEndDatePicker) modalEndDatePicker.open();
+                 });
+            }
+
           }
         });
 
@@ -1513,6 +1563,113 @@
             }, 300));
         }
 
+        document.addEventListener('DOMContentLoaded', function() {
+
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lấy danh sách đơn hàng cũ (nếu có)
+            let pickupOrders = JSON.parse(localStorage.getItem('pickupOrders') || '[]');
+            // Nếu có đơn mới ở pickupOrder (object), thêm vào mảng và xóa key cũ
+            const newOrder = JSON.parse(localStorage.getItem('pickupOrder') || '{}');
+            if (newOrder && Object.keys(newOrder).length > 0) {
+                pickupOrders.push(newOrder);
+                localStorage.setItem('pickupOrders', JSON.stringify(pickupOrders));
+                localStorage.removeItem('pickupOrder');
+            }
+
+            // Render vào bảng
+            const tbody = document.getElementById('order-table-body');
+            if (!tbody) return;
+
+            // Render pickupOrders (đơn mới) lên đầu bảng, STT sẽ được đánh lại sau
+            pickupOrders.slice().reverse().forEach((order, idx) => {
+                const idBill = 'MTE' + (Date.now() + idx).toString().slice(-8);
+                const today = new Date();
+                const ngayTao = today.toLocaleDateString('vi-VN');
+                const ngayXuat = new Date(today.getTime() + 2*24*60*60*1000).toLocaleDateString('vi-VN');
+                const tenKH = order.pickup_address ? order.pickup_address.split(',')[0] : 'Khách mới';
+                const sale = 'Phạm HĐ'; // Luôn là Phạm HĐ cho đơn mới
+                const dichVu = 'DHL';
+                const tongCuoc = '1.000.000₫';
+                // Lấy trạng thái từ order.status, nếu không có thì mặc định 'Mới tạo'
+                let status = order.status || 'Mới tạo';
+                let badge = 'status-pending', pickUp = 'Mới tạo', xuLy = 'Mới tạo';
+                if (status === 'Nhận hàng') { badge = 'status-received'; pickUp = 'Nhận hàng'; xuLy = 'Nhận hàng'; }
+                else if (status === 'Đang phát') { badge = 'status-processing'; pickUp = 'Đang phát hàng'; xuLy = 'Đang phát hàng'; }
+                else if (status === 'Hoàn tất') { badge = 'status-completed'; pickUp = 'Hoàn tất'; xuLy = 'Hoàn tất'; }
+                else if (status === 'Hủy') { badge = 'status-cancelled'; pickUp = 'Hủy'; xuLy = 'Hủy'; }
+                else if (status === 'Lỗi') { badge = 'status-unpaid'; pickUp = 'Lỗi'; xuLy = 'Lỗi'; }
+
+                const tr = document.createElement('tr');
+                tr.className = 'clickable-row';
+                tr.setAttribute('data-status', status);
+                tr.setAttribute('data-order-id', idBill); // Đảm bảo có data-order-id để đếm tab
+                tr.id = 'main-row-pickup-' + idx; // Gán ID duy nhất cho dòng chính
+                tr.innerHTML = `
+                    <td><input type="checkbox"></td>
+                    <td></td>
+                    <td><a href="order_detail.html" class="order-id-link">${idBill}</a></td>
+                    <td>${ngayTao}</td>
+                    <td>${ngayXuat}</td>
+                    <td><span class="status-badge ${badge}">${pickUp}</span></td>
+                    <td>${xuLy}</td>
+                    <td>${tenKH}</td>
+                    <td>${sale}</td>
+                    <td>${dichVu}</td>
+                    <td class="currency">${tongCuoc}</td>
+                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                    <td class="currency">0₫</td>
+                    <td>Tân Phú</td>
+                    <td class="action-icons">
+                        <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
+                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button>
+                        <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
+                        <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button>
+                    </td>
+                `;
+                tbody.insertBefore(tr, tbody.firstChild);
+
+                // Tạo và chèn dòng chi tiết cho đơn hàng mới
+                const detailsTr = document.createElement('tr');
+                detailsTr.className = 'details-row';
+                detailsTr.id = 'details-' + tr.id; // Gán ID tương ứng với dòng chính
+                detailsTr.style.display = 'none'; // Mặc định ẩn
+                
+                // Xây dựng HTML cho phần chi tiết đơn hàng
+                const imageHtml = order.image ? `
+                    <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="${order.image}" alt="Ảnh kiện"></div></span></div>
+                ` : '';
+
+                detailsTr.innerHTML = `
+                    <td colspan="16">
+                        <div class="details-inner-wrapper">
+                            <div class="order-details-content">
+                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">${order.refCode || 'Chưa có'}</span></div>
+                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">${order.itemDescription || 'Chưa có'}</span></div>
+                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">${order.packageCount || '-'}</span></div>
+                                ${imageHtml} <!-- Chèn HTML ảnh kiện đã xây dựng -->
+                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">${order.weight || '-'} KG</span></div>
+                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">${order.reweight || '-'} KG</span></div>
+                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">${order.agentWeight || '-'} KG</span></div>
+                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">${order.note || 'Không có ghi chú'}</span></div>
+                            </div>
+                            <div class="details-action-icons">
+                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
+                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
+                            </div>
+                        </div>
+                    </td>
+                `;
+
+                tbody.insertBefore(detailsTr, tr.nextSibling); // Chèn ngay sau dòng chính
+
+            });
+            reindexOrderRows();
+            updateTabCounts && updateTabCounts();
+        });
+
         // === Thêm hàm đánh lại số thứ tự STT cho các dòng đơn hàng ===
         function reindexOrderRows() {
             const rows = document.querySelectorAll('#order-table-body tr.clickable-row');
@@ -1577,7 +1734,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Add event listeners to image triggers AFTER rows are potentially added/rendered
             // Using event delegation on the table body
-            orderTableBody.addEventListener('click', function(event) {
+            // Note: Need to select from the document or a static container if orderTableBody is dynamic
+            document.body.addEventListener('click', function(event) {
                 const imageTrigger = event.target.closest('.image-modal-trigger img');
                 if (imageTrigger) {
                     event.stopPropagation(); // Prevent row click handler
@@ -1609,18 +1767,20 @@
         });
 
         // Override default manageBodyScroll to include the new image modal
-        const originalManageBodyScroll = manageBodyScroll;
+        const originalManageBodyScroll = typeof manageBodyScroll !== 'undefined' ? manageBodyScroll : null;
         manageBodyScroll = () => {
-             const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
+             const isSidebarOpen = document.body.classList.contains('sidebar-mobile-open');
              const isAnyModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
              const isImageModalVisible = imageModalOverlay && imageModalOverlay.classList.contains('visible');
              if (isSidebarOpen || isAnyModalVisible || isImageModalVisible) {
-                 body.classList.add('overflow-hidden');
+                 document.body.classList.add('overflow-hidden');
              } else {
-                 body.classList.remove('overflow-hidden');
+                 document.body.classList.remove('overflow-hidden');
              }
         };
+        // End Image Modal Logic
 
     </script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 </html>

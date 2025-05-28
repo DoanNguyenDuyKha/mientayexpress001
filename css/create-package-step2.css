@@ -915,14 +915,23 @@ footer.content-actions {
     }
 
     .summary-header-like, .data-section .card-header {
-         flex-direction: column;
-         align-items: flex-start;
+         flex-direction: row; /* Display items in a row */
+         align-items: center; /* Vertically align items */
          gap: 0.4rem; /* Keep gap */
+         justify-content: space-between; /* Distribute space between title and other elements */
     }
 
      .data-section .header-note {
-         margin-top: 0.3rem; /* Keep margin */
+         margin-top: 0; /* Remove top margin */
      }
+
+    #package_select {
+        max-width: 120px; /* Limit the width of the select box */
+        font-size: 0.7rem; /* Adjust font size */
+        padding: 0.2rem 1.4rem 0.2rem 0.4rem; /* Adjust padding and make space for arrow */
+        background-size: 1em 1em; /* Adjust arrow size */
+        background-position: right 0.4rem center; /* Adjust arrow position */
+    }
 
     .dimension-labels,
     .dimension-row {
@@ -986,9 +995,9 @@ footer.content-actions {
           flex-grow: 1; /* Allow buttons to grow */
           text-align: center;
           justify-content: center;
-          padding: 0.25rem 0.6rem; /* Keep padding */
-          font-size: var(--form-font-size); /* Use form font size */
-          gap: 0.08rem;
+          padding: 0.7rem 1.2rem; /* Increase padding further */
+          font-size: 1rem; /* Increase font size further */
+          gap: 0.5rem; /* Increase gap further */
      }
 }
 
@@ -1027,7 +1036,7 @@ footer.content-actions {
 
     .summary-header-like, .data-section .card-header,
     .summary-body-like, .data-section .card-body {
-        padding: 0.3rem; /* Adjusted padding */
+        padding: 0.5rem; /* Adjusted padding */
     }
 
      .summary-header-left, .data-section .card-header .card-title {
@@ -1066,7 +1075,16 @@ footer.content-actions {
      .data-section .header-note {
          font-size: 0.55rem; /* Adjusted size */
          gap: 0.15rem; /* Adjusted gap */
+         margin-top: 0; /* Remove top margin */
      }
+
+    #package_select {
+        max-width: 100px; /* Further limit width on smaller screens */
+        font-size: 0.65rem; /* Further adjust font size */
+        padding: 0.15rem 1.2rem 0.15rem 0.3rem; /* Further adjust padding */
+        background-size: 0.9em 0.9em; /* Further adjust arrow size */
+        background-position: right 0.3rem center; /* Further adjust arrow position */
+    }
 
     .dimension-labels,
     .dimension-row {
@@ -1163,9 +1181,9 @@ footer.content-actions {
       }
 
       .content-actions .button {
-          padding: 0.2rem 0.4rem; /* Adjusted padding */
-          font-size: 0.65rem; /* Adjusted size */
-          gap: 0.05rem; /* Adjusted gap */
+          padding: 0.6rem 0.9rem; /* Increase padding even further */
+          font-size: 1rem; /* Increase font size even further */
+          gap: 0.5rem; /* Increase gap even further */
      }
 }
 
@@ -1181,7 +1199,7 @@ footer.content-actions {
 
     .summary-header-like, .data-section .card-header,
     .summary-body-like, .data-section .card-body {
-        padding: 0.3rem; /* Adjusted padding */
+        padding: 0.5rem; /* Adjusted padding */
     }
 
     .summary-header-left, .data-section .card-header .card-title {
@@ -1317,9 +1335,9 @@ footer.content-actions {
       }
 
       .content-actions .button {
-          padding: 0.15rem 0.3rem; /* Adjusted padding */
-          font-size: 0.6rem; /* Adjusted size */
-          gap: 0.05rem; /* Adjusted gap */
+          padding: 0.5rem 0.8rem; /* Increase padding even further */
+          font-size: 0.95rem; /* Increase font size even further */
+          gap: 0.3rem; /* Increase gap even further */
      }
 }
 

@@ -878,6 +878,20 @@
                 }
             });
 
+            // Add event listeners to show date picker when date inputs are clicked
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                input.addEventListener('click', function() {
+                    // Try to show the native date picker
+                    if (typeof this.showPicker === 'function') {
+                        this.showPicker();
+                    } else {
+                        // Fallback for browsers that don't support showPicker
+                        this.focus();
+                        // You might need a library for full cross-browser compatibility
+                    }
+                });
+            });
         });
         
     </script>

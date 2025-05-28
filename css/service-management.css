@@ -795,9 +795,6 @@
          margin-bottom: var(--base-padding-sm);
     }
 
-    .modal-body {
-        /* Adjust padding if needed */
-    }
 
     .modal-footer {
         padding-top: var(--base-padding-sm);
@@ -865,10 +862,6 @@ body.modal-open {
 
 .modal-container.add-mode .modal-close-btn {
      color: black; /* Match close button color */
-}
-
-.modal-container.add-mode .modal-body {
-    /* Styles handled by default .modal-body */
 }
 
 .modal-container.add-mode .modal-footer {

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/package_manager.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
 @media (max-width: 576px) {
   .header-search-input {
@@ -215,17 +216,18 @@
                      <div class="filter-group"><label for="filter-sale">Sales Rep</label><select id="filter-sale" title="Select Sales Rep"><option value="">Tất cả Sale</option><option>SALE01 - P.H. Đình</option> <option>SALE02 - N.V. An</option></select></div>
                      <div class="filter-group"><label for="filter-customer">Customer</label><select id="filter-customer" title="Select Customer"><option value="">Tất cả khách hàng</option> <option>Alice</option></select></div>
                      <div class="filter-group"><label for="filter-branch">Branch</label><select id="filter-branch" title="Select Branch"><option value="">Tất cả chi nhánh</option><option>CN: Tân Phú</option> <option>CN: Bình Tân</option></select></div>
-                     <div class="filter-group filter-search" style="display: flex; flex-direction: column; align-items: stretch; gap: 0.25rem; grid-column: span 2; width: 100%; margin-top: 0.5rem;">
-                         <label for="filter-search-input" style="min-width: 70px; margin-bottom: 2px;">Search</label>
-                         <div style="display: flex; flex-direction: row; align-items: end; gap: 0.5rem; width: 100%;">
-                             <div class="search-input-wrapper" style="flex: 1; position: relative;">
-                                 <!-- <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #64748b;"></i> -->
-                                 <input type="text" id="filter-search-input" placeholder="Order ID, Customer...">
-                             </div>
-                             <button class="button primary filter-apply-btn" id="desktop-apply-filter-btn">
-                                 <i class="fa-solid fa-search"></i> Find Orders
-                             </button>
+                     <div class="filter-group filter-search-input" >
+                         <label for="filter-search-input">Search</label>
+                         <div class="search-input-wrapper" style="position: relative; flex-grow: 1;">
+                             <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #64748b;"></i>
+                             <input type="text" id="filter-search-input" placeholder="Order ID, Customer..." style="width: 100%; padding-left: 2.5em;">
                          </div>
+                     </div>
+                     <div class="filter-group filter-find-button" >
+                         <label for="desktop-apply-filter-btn" class="visually-hidden">Find Orders Button</label>
+                         <button class="button primary filter-apply-btn" id="desktop-apply-filter-btn" style="height: 30px; width: 150px; padding: 0.3rem 0.6rem; font-size: var(--font-size-sm); display: flex; align-items: center; justify-content: center; gap: 0.2rem;">
+                             <i class="fa-solid fa-search"></i> Find Orders
+                         </button>
                      </div>
                  </div>
             </section>
@@ -580,7 +582,7 @@
 
         const isElementVisible = (el) => el && !el.hasAttribute('hidden') && el.offsetParent !== null;
 
-        const manageBodyScroll = () => {
+        let manageBodyScroll = () => {
             const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
             const isAnyModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
             if (isSidebarOpen || isAnyModalVisible) {
@@ -1308,14 +1310,72 @@
 
         document.addEventListener('DOMContentLoaded', function() {
           if (window.flatpickr) {
-            flatpickr('#date-start', {
+            console.log('Flatpickr is available.');
+            // Initialize Flatpickr for desktop date range inputs
+            const desktopStartDateInput = document.getElementById('date-start');
+            const desktopEndDateInput = document.getElementById('date-end');
+
+            console.log('Desktop Start Date Input', desktopStartDateInput);
+            console.log('Desktop End Date Input', desktopEndDateInput);
+
+            const desktopStartDatePicker = flatpickr(desktopStartDateInput, {
               dateFormat: 'Y-m-d',
-              allowInput: true
+              allowInput: true,
             });
-            flatpickr('#date-end', {
+            const desktopEndDatePicker = flatpickr(desktopEndDateInput, {
               dateFormat: 'Y-m-d',
-              allowInput: true
+              allowInput: true,
             });
+
+            console.log('Desktop Start Date Picker', desktopStartDatePicker);
+            console.log('Desktop End Date Picker', desktopEndDatePicker);
+
+            // Add click listeners to open the pickers
+            if (desktopStartDateInput && desktopStartDatePicker) {
+                desktopStartDateInput.addEventListener('click', function() {
+                    console.log('Desktop Start Date input clicked', this.id);
+                    desktopStartDatePicker.open();
+                });
+            }
+            if (desktopEndDateInput && desktopEndDatePicker) {
+                desktopEndDateInput.addEventListener('click', function() {
+                    console.log('Desktop End Date input clicked', this.id);
+                    desktopEndDatePicker.open();
+                });
+            }
+
+
+            // Initialize Flatpickr for modal date range inputs
+            const modalStartDateInput = document.getElementById('modal-date-start');
+            const modalEndDateInput = document.getElementById('modal-date-end');
+
+            console.log('Modal Start Date Input', modalStartDateInput);
+            console.log('Modal End Date Input', modalEndDateInput);
+
+            let modalStartDatePicker, modalEndDatePicker;
+            if (modalStartDateInput) {
+                 modalStartDatePicker = flatpickr(modalStartDateInput, {
+                    dateFormat: 'Y-m-d',
+                    allowInput: true,
+                 });
+                  // Add click listener for modal start date
+                 modalStartDateInput.addEventListener('click', function() {
+                     console.log('Modal Start Date input clicked', this.id);
+                     if (modalStartDatePicker) modalStartDatePicker.open();
+                 });
+            }
+            if (modalEndDateInput) {
+                 modalEndDatePicker = flatpickr(modalEndDateInput, {
+                    dateFormat: 'Y-m-d',
+                    allowInput: true,
+                 });
+                 // Add click listener for modal end date
+                 modalEndDateInput.addEventListener('click', function() {
+                      console.log('Modal End Date input clicked', this.id);
+                      if (modalEndDatePicker) modalEndDatePicker.open();
+                 });
+            }
+
           }
         });
 
@@ -1722,5 +1782,6 @@
         // End Image Modal Logic
 
     </script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 </html>
