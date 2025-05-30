@@ -127,27 +127,42 @@
                 </div>
             </section>
             <div class="customer-actions">
-                <div class="action-buttons">
-                    <button class="btn-add-employee" id="addEmployeeBtn">
-                        <i class="fa-solid fa-user-plus"></i>
-                        Thêm nhân viên
-                    </button>
-                </div>
                 <div class="filter-section">
+                    <h3>Bộ lọc nhân viên</h3>
                     <div class="filter-group">
-                        <select class="filter-select" id="employeeRole">
-                            <option value="">Chức vụ</option>
-                            <option value="Nhân viên">Nhân viên</option>
-                            <option value="Quản lý">Quản lý</option>
-                            <option value="Admin">Admin</option>
-                        </select>
-                        <select class="filter-select" id="employeeStatus">
-                            <option value="">Trạng thái</option>
-                            <option value="active">Đang làm</option>
-                            <option value="inactive">Nghỉ việc</option>
-                        </select>
+                        <div class="filter-item">
+                            <label for="employeeRole">Chức vụ</label>
+                            <select class="filter-select" id="employeeRole">
+                                <option value="">Chức vụ</option>
+                                <option value="Nhân viên">Nhân viên</option>
+                                <option value="Quản lý">Quản lý</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label for="employeeStatus">Trạng thái</label>
+                            <select class="filter-select" id="employeeStatus">
+                                <option value="">Trạng thái</option>
+                                <option value="active">Đang làm</option>
+                                <option value="inactive">Nghỉ việc</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label for="employeeNameFilter">Họ và tên</label>
+                            <input type="text" class="filter-select" id="employeeNameFilter" placeholder="Lọc theo tên..."/>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="action-buttons" style="text-align: right; margin: 0.6rem 0;">
+                <button class="btn-add-employee" id="addEmployeeBtn">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Thêm nhân viên
+                </button>
+                <button class="btn-add-employee danger" id="deleteSelectedBtn">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Xóa đã chọn
+                </button>
             </div>
             <section class="table-area card">
                 <div class="card-header">
@@ -158,6 +173,7 @@
                         <table id="employeeTable">
                             <thead>
                                 <tr>
+                                    <th class="col-center"><input type="checkbox" id="selectAllCheckboxes" title="Chọn tất cả"></th>
                                     <th class="col-center">STT</th>
                                     <th>Mã NV</th>
                                     <th>Họ và tên</th>
@@ -174,6 +190,15 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <!-- Pagination (Tạm thời bỏ qua hoặc giữ lại nếu đã có) -->
+                <div class="card-footer">
+                    <nav class="pagination" aria-label="Table navigation">
+                        <span class="pagination-info" id="pagination-info"></span>
+                        <div class="pagination-buttons">
+                            <!-- Pagination buttons will be rendered by JS -->
+                        </div>
+                    </nav>
                 </div>
             </section>
             <!-- Modal Thêm Nhân viên -->
@@ -301,6 +326,24 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal Xác nhận Xóa Nhiều Nhân viên -->
+            <div class="modal" id="bulkDeleteEmployeeModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Xác nhận xóa nhiều</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có chắc chắn muốn xóa <strong id="bulkDeleteCount">0</strong> nhân viên đã chọn?</p>
+                        <div id="bulkDeleteNamesList" style="margin-top: 1rem;"></div>
+                        <p>Hành động này không thể hoàn tác.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button class="btn-danger" id="confirmBulkDeleteEmployee">Xóa</button>
+                    </div>
+                </div>
+            </div>
             <!-- Modal Xem chi tiết Nhân viên -->
             <div class="modal" id="employeeDetailModal">
                 <div class="modal-content">
@@ -309,32 +352,32 @@
                         <button class="modal-close">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <div class="customer-info-grid">
-                            <div class="info-group">
+                        <div class="form-grid">
+                            <div class="form-group">
                                 <label>Mã nhân viên:</label>
                                 <span id="detailEmployeeId">NV001</span>
                             </div>
-                            <div class="info-group">
+                            <div class="form-group">
                                 <label>Họ và tên:</label>
                                 <span id="detailEmployeeName">Nguyễn Văn Nhân</span>
                             </div>
-                            <div class="info-group">
+                            <div class="form-group">
                                 <label>Số điện thoại:</label>
                                 <span id="detailEmployeePhone">0901234567</span>
                             </div>
-                            <div class="info-group">
+                            <div class="form-group">
                                 <label>Email:</label>
                                 <span id="detailEmployeeEmail">nhan.nguyen@email.com</span>
                             </div>
-                            <div class="info-group">
+                            <div class="form-group">
                                 <label>Chức vụ:</label>
                                 <span id="detailEmployeeRole">Nhân viên</span>
                             </div>
-                            <div class="info-group">
+                            <div class="form-group">
                                 <label>Địa chỉ:</label>
                                 <span id="detailEmployeeAddress">123 Nguyễn Văn Linh, Q.7, TP.HCM</span>
                             </div>
-                            <div class="info-group">
+                            <div class="form-group">
                                 <label>Trạng thái:</label>
                                 <span id="detailEmployeeStatus" class="status-badge active">Đang làm</span>
                             </div>
@@ -612,27 +655,78 @@
     </script>
     <script>
     // ================== DuyKha: Quản lý nhân viên động + Lọc + Modal ==================
-    let employees = [
-        { id: 'NV001', name: 'Nguyễn Văn Nhân', phone: '0901234567', email: 'nhan.nguyen@email.com', role: 'Nhân viên', address: '123 Nguyễn Văn Linh, Q.7, TP.HCM', status: 'active' },
-        { id: 'NV002', name: 'Trần Thị Quản', phone: '0912345678', email: 'quan.tran@email.com', role: 'Quản lý', address: '456 Điện Biên Phủ, Q.3, TP.HCM', status: 'active' },
-        { id: 'NV003', name: 'Lê Văn Admin', phone: '0923456789', email: 'admin.le@email.com', role: 'Admin', address: '789 Cách Mạng Tháng 8, Q.10, TP.HCM', status: 'inactive' }
-    ];
+    // Khởi tạo mảng employees
+    let employees = [];
+
+    // Hàm lưu dữ liệu vào localStorage
+    function saveEmployeesToLocalStorage() {
+        localStorage.setItem('employees', JSON.stringify(employees));
+    }
+
+    // Hàm lấy dữ liệu từ localStorage
+    function loadEmployeesFromLocalStorage() {
+        const savedEmployees = localStorage.getItem('employees');
+        if (savedEmployees) {
+            employees = JSON.parse(savedEmployees);
+        } else {
+            // Nếu không có dữ liệu trong localStorage, khởi tạo với một số nhân viên mẫu
+            employees = [
+                { id: 'NV001', name: 'Nguyễn Văn Nhân', phone: '0901234567', email: 'nhan.nguyen@email.com', role: 'Nhân viên', address: '123 Nguyễn Văn Linh, Q.7, TP.HCM', status: 'active' },
+                { id: 'NV002', name: 'Trần Thị Quản', phone: '0912345678', email: 'quan.tran@email.com', role: 'Quản lý', address: '456 Điện Biên Phủ, Q.3, TP.HCM', status: 'active' },
+                { id: 'NV003', name: 'Lê Văn Admin', phone: '0923456789', email: 'admin.le@email.com', role: 'Admin', address: '789 Cách Mạng Tháng 8, Q.10, TP.HCM', status: 'inactive' }
+            ];
+            saveEmployeesToLocalStorage(); // Lưu dữ liệu mẫu vào localStorage
+        }
+    }
+
+    // Load dữ liệu khi trang được tải
+    loadEmployeesFromLocalStorage();
+
     let filterRole = '';
     let filterStatus = '';
+    let filterName = '';
+
+    let itemsPerPage = 10;
+    let currentPage = 1;
 
     function renderEmployeeTable() {
         const tbody = document.getElementById('employee-table-body');
+        const paginationInfoSpan = document.getElementById('pagination-info');
+        const paginationButtonsDiv = document.querySelector('.pagination-buttons');
         tbody.innerHTML = '';
+
         let filtered = employees.filter(e => {
             let ok = true;
             if (filterRole) ok = ok && (e.role === filterRole);
             if (filterStatus) ok = ok && (e.status === filterStatus);
+            if (filterName) ok = ok && (e.name.toLowerCase().includes(filterName.toLowerCase()));
             return ok;
         });
-        filtered.forEach((e, idx) => {
+
+        // Calculate pagination variables
+        const totalItems = filtered.length;
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const itemsToShow = filtered.slice(start, end);
+
+        // Adjust current page if it's beyond the last page after filtering
+        if (currentPage > totalPages && totalPages > 0) {
+            currentPage = totalPages;
+            renderEmployeeTable(); // Re-render with the last page
+            return;
+        }
+        if (totalPages === 0) {
+             currentPage = 1; // Reset to page 1 if no items
+        }
+
+        itemsToShow.forEach((e, idx) => {
             const tr = document.createElement('tr');
+            // Use the index within the *current page* for STT
+            const stt = start + idx + 1; // Calculate actual STT based on start index
             tr.innerHTML = `
-                <td class="col-center">${idx+1}</td>
+                <td class="col-center"><input type="checkbox" class="rowCheckbox" data-employee-id="${e.id}"></td>
+                <td class="col-center">${stt}</td>
                 <td>${e.id}</td>
                 <td>${e.name}</td>
                 <td>${e.phone}</td>
@@ -651,19 +745,110 @@
             tr.querySelector('.icon-danger').onclick = () => openDeleteModalById(e.id);
             tbody.appendChild(tr);
         });
+
+        // Update pagination info count
+        if (paginationInfoSpan) {
+            if (totalItems === 0) {
+                paginationInfoSpan.innerHTML = 'Không tìm thấy nhân viên nào';
+            } else {
+                const displayedStart = totalItems > 0 ? start + 1 : 0;
+                const displayedEnd = Math.min(start + itemsPerPage, totalItems);
+                paginationInfoSpan.innerHTML = `Hiển thị <b>${displayedStart}</b> đến <b>${displayedEnd}</b> của <b>${totalItems}</b> mục`;
+            }
+        }
+
+        // Render pagination buttons
+        if (paginationButtonsDiv) {
+            paginationButtonsDiv.innerHTML = ''; // Clear existing buttons
+
+            // "Trước" button
+            const prevButton = document.createElement('button');
+            prevButton.classList.add('button');
+            if (currentPage === 1 || totalPages === 0) {
+                prevButton.disabled = true;
+            }
+            prevButton.textContent = 'Trước';
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderEmployeeTable();
+                }
+            });
+            paginationButtonsDiv.appendChild(prevButton);
+
+            // Page number buttons
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.classList.add('button');
+                if (i === currentPage) {
+                    pageButton.classList.add('active');
+                    pageButton.setAttribute('aria-current', 'page');
+                    pageButton.disabled = true; // Disable the current page button
+                }
+                pageButton.textContent = i;
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    renderEmployeeTable();
+                });
+                paginationButtonsDiv.appendChild(pageButton);
+            }
+
+            // "Sau" button
+            const nextButton = document.createElement('button');
+            nextButton.classList.add('button');
+            if (currentPage === totalPages || totalPages === 0) {
+                nextButton.disabled = true;
+            }
+            nextButton.textContent = 'Sau';
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderEmployeeTable();
+                }
+            });
+            paginationButtonsDiv.appendChild(nextButton);
+        }
+
+        // Uncheck the select all checkbox after re-rendering
+        const selectAllCheckboxes = document.getElementById('selectAllCheckboxes');
+        if (selectAllCheckboxes) {
+            selectAllCheckboxes.checked = false;
+        }
     }
 
-    // Lọc
+    // Logic cho checkbox "Chọn tất cả"
+    const selectAllCheckboxes = document.getElementById('selectAllCheckboxes');
+    if (selectAllCheckboxes) {
+        selectAllCheckboxes.addEventListener('change', function() {
+            const rowCheckboxes = document.querySelectorAll('#employeeTable tbody .rowCheckbox');
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+    }
+
+    // Gắn lại sự kiện lắng nghe cho checkbox hàng khi bảng được render lại
+    document.getElementById('employee-table-body').addEventListener('change', function(e) {
+        if (e.target.classList.contains('rowCheckbox')) {
+            // Có thể thêm logic kiểm tra nếu tất cả các rowCheckbox đã được chọn để tự động tích selectAllCheckboxes
+        }
+    });
+
+    // Lọc tự động khi thay đổi select box
     const employeeRoleSelect = document.getElementById('employeeRole');
     const employeeStatusSelect = document.getElementById('employeeStatus');
-    if (employeeRoleSelect) employeeRoleSelect.onchange = function() {
-        filterRole = this.value;
+    const employeeNameFilterInput = document.getElementById('employeeNameFilter');
+
+    function updateFiltersAndRender() {
+        filterRole = employeeRoleSelect.value;
+        filterStatus = employeeStatusSelect.value;
+        filterName = employeeNameFilterInput.value.trim();
         renderEmployeeTable();
-    };
-    if (employeeStatusSelect) employeeStatusSelect.onchange = function() {
-        filterStatus = this.value;
-        renderEmployeeTable();
-    };
+    }
+
+    if (employeeRoleSelect) employeeRoleSelect.onchange = updateFiltersAndRender;
+    if (employeeStatusSelect) employeeStatusSelect.onchange = updateFiltersAndRender;
+    if (employeeNameFilterInput) employeeNameFilterInput.oninput = updateFiltersAndRender;
 
     // Thêm nhân viên
     function getNextEmployeeId() {
@@ -674,6 +859,46 @@
         });
         return 'NV' + String(max+1).padStart(3,'0');
     }
+
+    // Hàm kiểm tra email hợp lệ (chỉ chấp nhận @gmail.com)
+    function isValidEmail(email) {
+        // Kiểm tra email chỉ có đuôi @gmail.com
+        const emailRegex = /^[^\s@]+@gmail\.com$/;
+        return emailRegex.test(email);
+    }
+
+    // Hàm kiểm tra số điện thoại hợp lệ (Kiểm tra số điện thoại Việt Nam: bắt đầu bằng 0 và có 10 số)
+    function isValidPhone(phone) {
+        // Kiểm tra số điện thoại Việt Nam: bắt đầu bằng 0 và có 10 số
+        const phoneRegex = /^0[3|5|7|8|9][0-9]{8}$/;
+        return phoneRegex.test(phone);
+    }
+
+    // Hàm kiểm tra email đã tồn tại
+    function isEmailExists(email, currentId = null) {
+        return employees.some(emp => emp.email === email && emp.id !== currentId);
+    }
+
+    // Hàm kiểm tra số điện thoại đã tồn tại
+    function isPhoneExists(phone, currentId = null) {
+        return employees.some(emp => emp.phone === phone && emp.id !== currentId);
+    }
+
+    // Hàm hiển thị thông báo lỗi (sử dụng alert)
+    function showError(inputElement, message) {
+        alert(message);
+    }
+
+    // Hàm xóa thông báo lỗi (không cần thiết với alert)
+    function clearError(inputElement) {
+        // inputElement.classList.remove('error'); // Remove removing error class
+    }
+
+    // Hàm hiển thị thông báo thành công (sử dụng alert)
+    function showSuccessMessage(title, message) {
+        alert(`${title}\n\n${message}`);
+    }
+
     function openAddModal() {
         var modal = document.getElementById('addEmployeeModal');
         if(modal) modal.classList.add('show');
@@ -685,25 +910,117 @@
         document.getElementById('addEmployeeRole').value = 'Nhân viên';
         document.getElementById('addEmployeeAddress').value = '';
         document.getElementById('addEmployeeStatus').value = 'active';
+        
+        // Xóa tất cả thông báo lỗi
+        modal.querySelectorAll('.error-message').forEach(el => el.remove());
+        modal.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
     }
+
+    // Thêm lại sự kiện click cho nút thêm nhân viên
     document.getElementById('addEmployeeBtn').onclick = openAddModal;
-    document.getElementById('addEmployeeForm').onsubmit = function(e){
-        e.preventDefault();
-        const newEmp = {
-            id: document.getElementById('addEmployeeId').value,
-            name: document.getElementById('addEmployeeName').value,
-            phone: document.getElementById('addEmployeePhone').value,
-            email: document.getElementById('addEmployeeEmail').value,
-            role: document.getElementById('addEmployeeRole').value,
-            address: document.getElementById('addEmployeeAddress').value,
-            status: document.getElementById('addEmployeeStatus').value
-        };
-        employees.push(newEmp);
-        renderEmployeeTable();
-        document.getElementById('addEmployeeModal').classList.remove('show');
-    };
+
+    // Thêm lại sự kiện đóng modal
     Array.from(document.querySelectorAll('#addEmployeeModal .modal-close, #addEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
         btn.onclick = ()=>{ document.getElementById('addEmployeeModal').classList.remove('show'); };
+    });
+
+    document.getElementById('addEmployeeForm').onsubmit = function(e){
+        e.preventDefault();
+        
+        // Lấy giá trị từ form
+        const name = document.getElementById('addEmployeeName').value.trim();
+        const phone = document.getElementById('addEmployeePhone').value.trim();
+        const email = document.getElementById('addEmployeeEmail').value.trim();
+        const role = document.getElementById('addEmployeeRole').value;
+        const address = document.getElementById('addEmployeeAddress').value.trim();
+        const status = document.getElementById('addEmployeeStatus').value;
+
+        // Kiểm tra các trường bắt buộc
+        let isValid = true;
+
+        // Kiểm tra tên
+        if (name === '') {
+            showError(document.getElementById('addEmployeeName'), 'Vui lòng nhập họ và tên');
+            isValid = false;
+        }
+
+        // Kiểm tra số điện thoại
+        if (!isValidPhone(phone)) {
+            showError(document.getElementById('addEmployeePhone'), 'Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại Việt Nam (VD: 0912345678)');
+            isValid = false;
+        } else if (isPhoneExists(phone)) {
+            showError(document.getElementById('addEmployeePhone'), 'Số điện thoại đã tồn tại');
+            isValid = false;
+        }
+
+        // Kiểm tra email
+        if (!isValidEmail(email)) {
+            showError(document.getElementById('addEmployeeEmail'), 'Email không hợp lệ. Vui lòng sử dụng địa chỉ email @gmail.com');
+            isValid = false;
+        } else if (isEmailExists(email)) {
+            showError(document.getElementById('addEmployeeEmail'), 'Email đã tồn tại');
+            isValid = false;
+        }
+
+        // Kiểm tra địa chỉ
+        if (address === '') {
+            showError(document.getElementById('addEmployeeAddress'), 'Vui lòng nhập địa chỉ');
+            isValid = false;
+        }
+
+        if (!isValid) return;
+
+        // Nếu tất cả đều hợp lệ, thêm nhân viên mới
+        const newEmp = {
+            id: document.getElementById('addEmployeeId').value,
+            name: name,
+            phone: phone,
+            email: email,
+            role: role,
+            address: address,
+            status: status
+        };
+        employees.push(newEmp);
+        saveEmployeesToLocalStorage();
+        renderEmployeeTable();
+        document.getElementById('addEmployeeModal').classList.remove('show');
+        
+        // Hiển thị thông báo thành công
+        showSuccessMessage(
+            'Thêm nhân viên thành công',
+            `Đã thêm nhân viên ${name} vào hệ thống.`
+        );
+    };
+
+    // Thêm sự kiện validate realtime cho form thêm
+    document.getElementById('addEmployeeName').addEventListener('input', function() {
+        // if (this.value.trim() !== '') {
+        //     clearError(this);
+        // } // Remove realtime clear error logic
+    });
+
+    document.getElementById('addEmployeePhone').addEventListener('input', function() {
+        const phone = this.value.trim();
+        if (isValidPhone(phone) && !isPhoneExists(phone)) {
+            clearError(this);
+        }
+    });
+
+    document.getElementById('addEmployeeEmail').addEventListener('input', function() {
+        const email = this.value.trim();
+        if (!isValidEmail(email)) {
+            showError(document.getElementById('addEmployeeEmail'), 'Email không hợp lệ. Vui lòng sử dụng địa chỉ email @gmail.com');
+        } else if (isEmailExists(email)) {
+            showError(document.getElementById('addEmployeeEmail'), 'Email đã tồn tại');
+        } else {
+            clearError(this);
+        }
+    });
+
+    document.getElementById('addEmployeeAddress').addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+            clearError(this);
+        }
     });
 
     // Sửa nhân viên
@@ -720,26 +1037,115 @@
         document.getElementById('editEmployeeRole').value = e.role;
         document.getElementById('editEmployeeAddress').value = e.address;
         document.getElementById('editEmployeeStatus').value = e.status;
+        
+        // Xóa tất cả thông báo lỗi
+        modal.querySelectorAll('.error-message').forEach(el => el.remove());
+        modal.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
     }
+
+    // Thêm lại sự kiện đóng modal sửa
+    Array.from(document.querySelectorAll('#editEmployeeModal .modal-close, #editEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
+        btn.onclick = ()=>{ document.getElementById('editEmployeeModal').classList.remove('show'); };
+    });
+
     document.getElementById('editEmployeeForm').onsubmit = function(e){
         e.preventDefault();
+        
+        // Lấy giá trị từ form
+        const name = document.getElementById('editEmployeeName').value.trim();
+        const phone = document.getElementById('editEmployeePhone').value.trim();
+        const email = document.getElementById('editEmployeeEmail').value.trim();
+        const role = document.getElementById('editEmployeeRole').value;
+        const address = document.getElementById('editEmployeeAddress').value.trim();
+        const status = document.getElementById('editEmployeeStatus').value;
+
+        // Kiểm tra các trường bắt buộc
+        let isValid = true;
+
+        // Kiểm tra tên
+        if (name === '') {
+            showError(document.getElementById('editEmployeeName'), 'Vui lòng nhập họ và tên');
+            isValid = false;
+        }
+
+        // Kiểm tra số điện thoại
+        if (!isValidPhone(phone)) {
+            showError(document.getElementById('editEmployeePhone'), 'Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại Việt Nam (VD: 0912345678)');
+            isValid = false;
+        } else if (isPhoneExists(phone, editingId)) {
+            showError(document.getElementById('editEmployeePhone'), 'Số điện thoại đã tồn tại');
+            isValid = false;
+        }
+
+        // Kiểm tra email
+        if (!isValidEmail(email)) {
+            showError(document.getElementById('editEmployeeEmail'), 'Email không hợp lệ. Vui lòng sử dụng địa chỉ email @gmail.com');
+            isValid = false;
+        } else if (isEmailExists(email, editingId)) {
+            showError(document.getElementById('editEmployeeEmail'), 'Email đã tồn tại');
+            isValid = false;
+        }
+
+        // Kiểm tra địa chỉ
+        if (address === '') {
+            showError(document.getElementById('editEmployeeAddress'), 'Vui lòng nhập địa chỉ');
+            isValid = false;
+        }
+
+        if (!isValid) return;
+
         if(editingId!==null) {
             const idx = employees.findIndex(emp => emp.id === editingId);
             employees[idx] = {
                 id: document.getElementById('editEmployeeId').value,
-                name: document.getElementById('editEmployeeName').value,
-                phone: document.getElementById('editEmployeePhone').value,
-                email: document.getElementById('editEmployeeEmail').value,
-                role: document.getElementById('editEmployeeRole').value,
-                address: document.getElementById('editEmployeeAddress').value,
-                status: document.getElementById('editEmployeeStatus').value
+                name: name,
+                phone: phone,
+                email: email,
+                role: role,
+                address: address,
+                status: status
             };
+            saveEmployeesToLocalStorage();
             renderEmployeeTable();
             document.getElementById('editEmployeeModal').classList.remove('show');
+            
+            // Hiển thị thông báo thành công
+            showSuccessMessage(
+                'Cập nhật thành công',
+                `Đã cập nhật thông tin nhân viên ${name}.`
+            );
         }
     };
-    Array.from(document.querySelectorAll('#editEmployeeModal .modal-close, #editEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
-        btn.onclick = ()=>{ document.getElementById('editEmployeeModal').classList.remove('show'); };
+
+    // Thêm sự kiện validate realtime cho form sửa
+    document.getElementById('editEmployeeName').addEventListener('input', function() {
+        // if (this.value.trim() !== '') {
+        //     clearError(this);
+        // } // Remove realtime clear error logic
+    });
+
+    document.getElementById('editEmployeePhone').addEventListener('input', function() {
+        const phone = this.value.trim();
+        if (isValidPhone(phone) && !isPhoneExists(phone, editingId)) {
+            clearError(this);
+        }
+    });
+
+    document.getElementById('editEmployeeEmail').addEventListener('input', function() {
+        const email = this.value.trim();
+        if (!isValidEmail(email)) {
+            showError(document.getElementById('editEmployeeEmail'), 'Email không hợp lệ. Vui lòng sử dụng địa chỉ email @gmail.com');
+        } else if (isEmailExists(email, editingId)) {
+            showError(document.getElementById('editEmployeeEmail'), 'Email đã tồn tại');
+        } else {
+            clearError(this);
+        }
+    });
+
+    document.getElementById('editEmployeeAddress').addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+            clearError(this);
+        }
     });
 
     // Xóa nhân viên
@@ -755,6 +1161,7 @@
         if(deletingId!==null) {
             const idx = employees.findIndex(emp => emp.id === deletingId);
             employees.splice(idx,1);
+            saveEmployeesToLocalStorage(); // Lưu vào localStorage sau khi xóa
             renderEmployeeTable();
             document.getElementById('deleteEmployeeModal').classList.remove('show');
         }
@@ -780,7 +1187,73 @@
         btn.onclick = ()=>{ document.getElementById('employeeDetailModal').classList.remove('show'); };
     });
 
-    // Render lần đầu
+    // Xóa nhiều nhân viên
+    let selectedEmployeeIds = []; // Biến để lưu ID các nhân viên được chọn
+
+    document.getElementById('deleteSelectedBtn').onclick = function() {
+        const selectedCheckboxes = document.querySelectorAll('#employeeTable tbody .rowCheckbox:checked');
+        selectedEmployeeIds = Array.from(selectedCheckboxes).map(cb => cb.dataset.employeeId);
+
+        if (selectedEmployeeIds.length === 0) {
+            alert('Vui lòng chọn ít nhất một nhân viên để xóa!');
+            return;
+        }
+
+        // Lấy tên của các nhân viên được chọn
+        const selectedEmployeeNames = employees
+            .filter(emp => selectedEmployeeIds.includes(emp.id))
+            .map(emp => emp.name);
+
+        // Hiển thị modal xác nhận xóa nhiều
+        const bulkDeleteModal = document.getElementById('bulkDeleteEmployeeModal');
+        const bulkDeleteCountSpan = document.getElementById('bulkDeleteCount');
+        const bulkDeleteNamesListDiv = document.getElementById('bulkDeleteNamesList');
+
+        if (bulkDeleteCountSpan) {
+            bulkDeleteCountSpan.textContent = selectedEmployeeIds.length;
+        }
+        if (bulkDeleteNamesListDiv) {
+            // Xóa nội dung cũ và thêm danh sách tên
+            bulkDeleteNamesListDiv.innerHTML = '';
+            if (selectedEmployeeNames.length > 0) {
+                const ul = document.createElement('ul');
+                ul.style.listStyle = 'disc inside';
+                ul.style.paddingLeft = '1rem';
+                ul.style.color = 'var(--text-primary)';
+                selectedEmployeeNames.forEach(name => {
+                    const li = document.createElement('li');
+                    li.textContent = name;
+                    ul.appendChild(li);
+                });
+                bulkDeleteNamesListDiv.appendChild(ul);
+            }
+        }
+
+        if (bulkDeleteModal) {
+            bulkDeleteModal.classList.add('show');
+        }
+    };
+
+    // Sự kiện click cho nút Xác nhận Xóa trong modal xóa nhiều
+    document.getElementById('confirmBulkDeleteEmployee').onclick = function() {
+        if (selectedEmployeeIds.length > 0) {
+            // Lọc ra các nhân viên KHÔNG có trong danh sách ID cần xóa
+            employees = employees.filter(emp => !selectedEmployeeIds.includes(emp.id));
+            
+            selectedEmployeeIds = []; // Clear selected IDs
+            saveEmployeesToLocalStorage(); // Lưu vào localStorage sau khi xóa nhiều
+            renderEmployeeTable();
+            
+            // Đóng modal xác nhận xóa nhiều
+            document.getElementById('bulkDeleteEmployeeModal').classList.remove('show');
+        }
+    };
+    // Sự kiện đóng modal xóa nhiều
+    Array.from(document.querySelectorAll('#bulkDeleteEmployeeModal .modal-close, #bulkDeleteEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
+        btn.onclick = ()=>{ document.getElementById('bulkDeleteEmployeeModal').classList.remove('show'); };
+    });
+
+    // Initial render
     renderEmployeeTable();
     // ================== END DuyKha ==================
     </script>

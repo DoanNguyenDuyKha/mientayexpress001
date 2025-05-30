@@ -1080,7 +1080,7 @@
     box-sizing: border-box;
     position: relative;
     overflow: visible;
-    gap: var(--base-padding);
+    gap: 3px;
 }
 
 /* Footer styles */

@@ -491,6 +491,16 @@
                 <nav class="pagination" aria-label="Table navigation">
                     <span class="pagination-info">Hiển thị <b id="start-index">1</b> cho tới <b id="end-index">8</b> của <b id="total-entries">127</b> Đơn hàng</span>
                     <div class="pagination-buttons">
+                        <div class="items-per-page-control">
+                            <select id="items-per-page-select" class="form-select">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                            </select>
+                            <span>đơn hàng/trang</span>
+                        </div>
                         <button class="button" id="prev-page" disabled>Trước</button>
                         <div id="page-numbers" class="page-numbers"></div>
                         <button class="button" id="next-page">Sau</button>
@@ -1737,9 +1747,28 @@
 
         // Thêm biến và hàm xử lý phân trang
         let currentPage = 1;
-        const itemsPerPage = 8;
+        let itemsPerPage = 8; // Giá trị mặc định
         let totalItems = 0;
         let totalPages = 0;
+
+        // Thêm hàm xử lý thay đổi số đơn hàng trên mỗi trang
+        function handleItemsPerPageChange() {
+            const select = document.getElementById('items-per-page-select');
+            if (select) {
+                // Lấy giá trị mới từ select
+                const newItemsPerPage = parseInt(select.value);
+                
+                // Cập nhật biến itemsPerPage
+                itemsPerPage = newItemsPerPage;
+                
+                // Reset về trang 1
+                currentPage = 1;
+                
+                // Cập nhật lại phân trang
+                updatePagination();
+                goToPage(1);
+            }
+        }
 
         function updatePagination() {
              totalItems = filteredRows.length; // Tổng số đơn hàng là số lượng trong filteredRows
@@ -1828,6 +1857,14 @@
             // Sau đó cập nhật phân trang và hiển thị trang 1
             updatePagination();
             goToPage(1);
+
+            // Thêm event listener cho select items per page
+            const itemsPerPageSelect = document.getElementById('items-per-page-select');
+            if (itemsPerPageSelect) {
+                itemsPerPageSelect.addEventListener('change', handleItemsPerPageChange);
+                // Set giá trị mặc định là 8
+                itemsPerPageSelect.value = '8';
+            }
 
             // Gắn lại sự kiện click cho các tab sau khi DOMContentLoaded
             const tabItems = document.querySelectorAll('.tabs .tab-item');

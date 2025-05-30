@@ -2828,3 +2828,48 @@ button:disabled {
 .image-modal-close-btn:hover {
     background: rgba(255, 255, 255, 0.2);
 }
+
+/* Styles for items per page control */
+.items-per-page-control {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa select và text */
+    margin-right: 10px; /* Khoảng cách bên phải của nhóm điều khiển này */
+}
+
+.items-per-page-control select.form-select {
+    width: 80px; /* Điều chỉnh chiều rộng nếu cần */
+    height: 30px; /* Điều chỉnh chiều cao nếu cần */
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem; /* Padding chuẩn form-select */
+    font-size: var(--font-size-sm); /* Cỡ chữ nhỏ */
+    font-weight: 400; /* Độ đậm chữ */
+    line-height: 1.5; /* Chiều cao dòng */
+    color: #495057; /* Màu chữ */
+    background-color: #fff; /* Màu nền */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); /* Custom arrow icon */
+    background-repeat: no-repeat; /* Không lặp lại icon */
+    background-position: right 0.75rem center; /* Vị trí icon */
+    background-size: 16px 12px; /* Kích thước icon */
+    border: 1px solid #ced4da; /* Màu viền */
+    border-radius: 0.25rem; /* Độ cong góc */
+    appearance: none; /* Bỏ giao diện mặc định */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.items-per-page-control span {
+    font-size: var(--font-size-sm); /* Cỡ chữ nhỏ */
+    color: var(--text-primary); /* Màu chữ */
+}
+
+/* Responsive adjustments if needed */
+@media (max-width: 768px) {
+    .pagination-buttons {
+        flex-direction: column; /* Xếp dọc các nút và select trên màn hình nhỏ */
+        align-items: center;
+        gap: 10px; /* Khoảng cách giữa các mục khi xếp dọc */
+    }
+     .items-per-page-control {
+         margin-right: 0; /* Bỏ margin phải khi xếp dọc */
+     }
+}
