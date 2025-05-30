@@ -252,7 +252,7 @@ input[readonly], textarea[readonly] {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 10px;
-    align-items: stretch;
+    align-items: flex-start;
     flex-grow: 1;
     margin-bottom: var(--base-padding);
     min-height: 0;
@@ -261,7 +261,7 @@ input[readonly], textarea[readonly] {
 .form-column-left, .form-column-right {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Gap between cards in a column */
+    gap: 10px;
     min-width: 0;
 }
 
@@ -337,7 +337,13 @@ input[readonly], textarea[readonly] {
     padding: var(--form-padding);
     position: relative;
     z-index: 1;
+    background: #f8fafc;
 }
+
+/* Remove stretching from card body children */
+/* .form-section .card-body > * {
+    flex: 1;
+} */
 
 /* Form Groups */
 .form-group {
@@ -1055,6 +1061,7 @@ body.modal-open {
 }
 
 .form-section .card-body {
+    padding: var(--form-padding);
     position: relative;
     z-index: 1;
     background: #f8fafc;
@@ -1261,3 +1268,7 @@ a {
         display: none;
     }
     }
+
+.form-column-left .form-group textarea {
+    min-height: 160px; /* Increased default height for 'Địa chỉ' in Sender */
+}

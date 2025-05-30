@@ -185,3 +185,19 @@
 ở file package_manager.html tôi muốn bạn điều chỉnh cho phần phân trang trên ảnh thật sự có thể phân trang và chuyển trang với mặc định 10 đơn hàng cho 1 trang, lưu ý phải thật sự là đếm được số đơn hàng hiện đang có trong bảng danh sách đơn hàng vì có 1 số đơn hàng vừa được thêm nên không chỉ có 8 đơn hàng mẫu đâu, nhớ là phải lấy được số đơn hàng đúng rồi điều chỉnh phân trang như 11 thì qua trang 2, 21 thì qua trang 3 và cứ tiếp tục như vậy, kiểm tra kỹ file trước khi làm tránh gây sai sót
 
 -webkit-scrollbar
+
+                                        <div class="form-grid-2col">
+                                            <div class="form-group">
+                                                <label for="service_type">Chọn dịch vụ<span class="required">*</span></label>
+                                                <select id="service_type" name="service_type" required>
+                                                    <option value="" selected>Chọn dịch vụ</option>
+                                                 </select>
+                                                 <span class="error-message"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="branch_input">Chi nhánh<span class="required">*</span></label>
+                                                 <input type="text" id="branch_input" name="branch" list="branch_suggestions" required autocomplete="off">\
+                                                  <datalist id="branch_suggestions"></datalist>
+                                                 <span class="error-message"></span>
+                                            </div>
+                                        </div>

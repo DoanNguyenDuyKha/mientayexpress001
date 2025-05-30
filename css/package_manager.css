@@ -200,7 +200,6 @@ button:disabled {
 }
 
 .button:hover {
-  transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -339,7 +338,6 @@ button:disabled {
 }
 
 .card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
@@ -1340,9 +1338,6 @@ button:disabled {
 #orderTable tbody tr:not(.details-row):hover {
   background-color: var(--primary-light);
   box-shadow: 0 2px 12px rgba(79,70,229,0.08);
-  z-index: 2;
-  position: relative;
-  transform: scale(1.01);
 }
 
 
@@ -1389,7 +1384,6 @@ button:disabled {
 }
 
 .status-badge:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -1549,7 +1543,6 @@ button:disabled {
 }
 
 .pagination-buttons .button:hover {
-  transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -2343,8 +2336,6 @@ button:disabled {
   }
   .user-dropdown-toggle .user-icon {
     font-size: 1.5em !important;
-    color: #fff !important;
-    margin: 0 !important;
   }
   .user-dropdown-toggle .user-arrow {
     display: none !important;
@@ -2480,7 +2471,6 @@ button:disabled {
 }
 
 .scroll-top-btn:hover {
-  transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -2519,7 +2509,6 @@ button:disabled {
 }
 
 .user-dropdown-toggle:hover {
-  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
   background: linear-gradient(135deg, #6366f1 0%, var(--accent) 100%);
 }
@@ -2534,10 +2523,6 @@ button:disabled {
   font-size: 0.9em;
   color: white;
   transition: transform 0.3s ease;
-}
-
-.user-dropdown-toggle:hover .user-arrow {
-  transform: translateY(1px);
 }
 
 .user-dropdown {
