@@ -1509,7 +1509,7 @@ button:disabled {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Cho phép xuống dòng */
   gap: 0.5rem;
   padding: 0.6rem var(--reduced-padding);
   border-top: 1px solid var(--border-color);
@@ -1528,6 +1528,17 @@ button:disabled {
 .pagination-buttons {
   display: flex;
   gap: 0.3rem;
+  /* Loại bỏ flex-direction: column ở đây */
+  align-items: center; /* Căn giữa theo chiều dọc các item trong buttons */
+  flex-wrap: wrap; /* Cho phép các nút xuống dòng nếu không đủ chỗ */
+  justify-content: center; /* Căn giữa các nút khi xuống dòng */
+}
+
+.pagination-nav-buttons {
+    display: flex; /* Sử dụng flexbox */
+    align-items: center; /* Căn giữa các mục theo chiều dọc */
+    gap: 0.3rem; /* Khoảng cách giữa các nút */
+    flex-wrap: nowrap; /* KHÔNG cho phép xuống dòng */
 }
 
 .pagination-buttons .button {
@@ -2154,9 +2165,10 @@ button:disabled {
     font-size: 1.5rem;
   }
   .pagination {
-    flex-direction: column;
+    flex-direction: column; /* Vẫn xếp dọc nhóm info và nhóm buttons */
     align-items: center;
     text-align: center;
+    gap: 1rem; /* Tăng khoảng cách giữa các nhóm */
   }
   .details-inner-wrapper {
     flex-direction: column;
@@ -2176,6 +2188,41 @@ button:disabled {
   .filter-bar {
     display: none !important;
   }
+
+  /* Điều chỉnh cho nhóm pagination-buttons bên trong */
+  .pagination-buttons {
+     flex-direction: row; /* Giữ các nút trong nhóm này theo hàng ngang */
+     flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ chỗ */
+     justify-content: center; /* Căn giữa các nút */
+     gap: 0.5rem; /* Khoảng cách giữa các nút */
+     width: 100%; /* Chiếm toàn bộ chiều rộng khả dụng */
+  }
+
+   .items-per-page-control {
+       margin-right: 0; /* Bỏ margin phải khi xếp dọc */
+       margin-bottom: 10px; /* Thêm khoảng cách dưới items-per-page */
+   }
+   /* Đảm bảo select và span trong items-per-page-control vẫn hiển thị ngang */
+   .items-per-page-control {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+   }
+    .items-per-page-control select.form-select {
+         width: 100px; /* Điều chỉnh chiều rộng select trên mobile */
+    }
+
+     /* Điều chỉnh cho nhóm nút điều hướng trên mobile */
+    .pagination-nav-buttons {
+         /* Giữ nguyên display: flex và align-items: center từ ngoài */
+         /* Đảm bảo không xuống dòng */
+         flex-wrap: nowrap; /* Rất quan trọng để giữ các nút trên 1 hàng */
+         overflow-x: auto; /* Thêm scroll nếu quá dài */
+         padding-bottom: 5px; /* Thêm padding dưới nếu có scroll */
+         /* Có thể cần thêm margin-top nếu muốn tách xa items-per-page */
+         margin-top: 10px; /* Ví dụ: thêm khoảng cách trên */
+    }
+
 }
 
 @media (max-width: 576px) {
