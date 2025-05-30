@@ -775,7 +775,7 @@ input[readonly], textarea[readonly] {
 .personnel-checkbox-item label:hover .person-name { color: var(--gradient-primary-start); }
 .personnel-checkbox-item i.fa-medal { font-size: 0.9em; margin-left: auto; }
 
-.layout-grid .kpi-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 10px; }
+.layout-grid .kpi-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 10px; }
 .layout-grid .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: var(--base-padding); }
 .layout-grid #service-volume-report { grid-column: 1 / 2; }
 .layout-grid #revenue-profit-report { grid-column: 2 / 3; }
@@ -898,8 +898,7 @@ body.overflow-hidden { overflow: hidden; }
     .national-details-table th, .national-details-table td { padding: 5px; }
 }
 @media (max-width: 390px) {
-
-
+    .kpi-cards-grid { grid-template-columns: 1fr; }
 }
 
 .stats-filters .filter-group.date-range input[type="date"] {

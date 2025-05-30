@@ -335,7 +335,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--base-padding);
+    padding: 0.8rem;
     background-color: var(--card-bg);
     border-top: 1px solid var(--border-light);
     margin-top: auto; /* Push footer to the bottom when there's extra space */
@@ -720,7 +720,7 @@ body {
 
 /* Modal Scrollbar Styles */
 .modal-content-wrapper::-webkit-scrollbar {
-    width: 8px;
+    display: none;
 }
 
 .modal-content-wrapper::-webkit-scrollbar-track {
@@ -1115,6 +1115,7 @@ input, select, button, textarea {
 .order-detail-content button.button {
     font-size: var(--form-font-size);
     padding: 0.4rem 0.8rem;
+    margin-right: 0.5rem;
 }
 
 /* Specific styles for charges table */
@@ -1244,4 +1245,31 @@ input, select, button, textarea {
     color: var(--text-on-primary); /* White text */
     font-weight: 500;
     flex-shrink: 0;
+}
+
+/* Responsive adjustments for detail footer buttons */
+@media (max-width: 768px) {
+    .detail-footer {
+        flex-direction: column; /* Stack items vertically initially */
+        align-items: center; /* Center items when stacked */
+        gap: 10px; /* Add space between stacked items */
+    }
+
+    .detail-footer .footer-actions {
+        display: grid; /* Use grid for button layout */
+        grid-template-columns: 1fr 1fr; /* Two columns, equal width */
+        gap: 10px; /* Space between grid items */
+        width: 100%; /* Make the grid take full width */
+    }
+
+    .detail-footer .footer-actions .button {
+        width: 100%; /* Make buttons fill their grid cell */
+        text-align: center; /* Center text in buttons */
+        margin: 0; /* Remove previous margins */
+    }
+
+    .detail-footer .footer-agreement {
+        width: 100%; /* Make agreement take full width */
+        justify-content: center; /* Center checkbox and label */
+    }
 }

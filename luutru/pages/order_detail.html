@@ -537,34 +537,12 @@
 
             // Hàm đóng modal
             function closeEditModal() {
-                console.log("Closing modal..."); // Add log
                 if (window.modalOverlay) {
                     window.modalOverlay.classList.remove('active');
                 }
-                // IMPORTANT: Do NOT clear the innerHTML of the modal content container here,
-                // as it destroys the iframe environment.
-                // The iframe content will be managed by the browser when the overlay is hidden.
-                // if (window.modalContent) window.modalContent.innerHTML = ''; // REMOVE OR COMMENT OUT THIS LINE
-
-                // Optionally, remove the iframe explicitly after hiding, but NOT by clearing innerHTML
-                const iframe = window.modalContent ? window.modalContent.querySelector('iframe') : null;
-                if (iframe) {
-                    // Give a small delay to allow iframe script to finish before removing
-                    setTimeout(() => {
-                        iframe.remove();
-                        console.log("Iframe removed after delay."); // Add log
-                    }, 50); // 50ms delay
-                }
-
-                if (window.modalOverlay) {
-                    window.modalOverlay.onclick = null;
-                    console.log("Overlay click listener removed."); // Add log
-                }
-                console.log("Modal closed."); // Add log
+                if (window.modalContent) window.modalContent.innerHTML = '';
+                if (window.modalOverlay) window.modalOverlay.onclick = null;
             }
-
-            // Gắn hàm closeEditModal vào window để các iframe có thể truy cập
-            window.closeEditModal = closeEditModal;
 
             // Hàm gắn sự kiện click cho overlay
             function attachOverlayClickListener() {

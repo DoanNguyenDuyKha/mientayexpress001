@@ -1175,7 +1175,6 @@ button:disabled {
 }
 .filter-controls-desktop .filter-group.date-range input[type="date"] {
   min-width: 0;
-  max-width: 120px; /* Limit the width of date inputs */
   flex: 1 1 0;
 }
 .filter-controls-desktop .filter-group.date-range span {

@@ -179,3 +179,9 @@
         min-width: 120px;
     }
 }
+
+×
+
+ở file package_manager.html tôi muốn bạn điều chỉnh cho phần phân trang trên ảnh thật sự có thể phân trang và chuyển trang với mặc định 10 đơn hàng cho 1 trang, lưu ý phải thật sự là đếm được số đơn hàng hiện đang có trong bảng danh sách đơn hàng vì có 1 số đơn hàng vừa được thêm nên không chỉ có 8 đơn hàng mẫu đâu, nhớ là phải lấy được số đơn hàng đúng rồi điều chỉnh phân trang như 11 thì qua trang 2, 21 thì qua trang 3 và cứ tiếp tục như vậy, kiểm tra kỹ file trước khi làm tránh gây sai sót
+
+-webkit-scrollbar

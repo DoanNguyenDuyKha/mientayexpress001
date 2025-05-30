@@ -66,6 +66,9 @@
     color: var(--primary-color);
 }
 
+.service-actions .button {
+    border-radius: 18px; /* Apply 10px border radius */
+}
 
 
 /* Table Styling */
@@ -75,6 +78,7 @@
     border-radius: 12px;
     box-shadow: 0 2px 16px 0 rgba(0,0,0,0.06);
     overflow: hidden;
+    margin-top: 10px;
     margin-bottom: 2rem;
 }
 
@@ -418,7 +422,7 @@
     border-radius: 16px;
     box-shadow: var(--shadow-md);
     padding: var(--base-padding);
-    margin-bottom: var(--base-padding);
+    margin-bottom: 10px;
     border: 1.5px solid var(--border-color);
     transition: all 0.3s ease;
     position: relative;
@@ -684,6 +688,7 @@
     font-size: var(--font-size-sm);
     color: var(--text-secondary);
     font-weight: 500;
+    /* margin-bottom: var(--base-padding); */
 }
 
 .modal-input,
@@ -837,70 +842,121 @@ body.modal-open {
     overflow: hidden;
 }
 
-/* Style adjustments for Add Service Modal when in add-mode */
-.modal-container.add-mode {
-    gap: 0; /* Ensure no gap between sections in add-mode */
+/* Common styles for modals with 2-column form layout and yellow header/footer */
+.modal-container.modal-form-layout-2col {
+    gap: 0; /* Ensure no gap between sections */
 }
 
-.modal-container.add-mode .modal-header {
-    border-bottom: none; /* Remove border under header */
-    margin-bottom: 0; /* Remove bottom margin */
-    padding-bottom: var(--base-padding);
-    background: #FFD700; /* Match the image header background */
+.modal-container.modal-form-layout-2col .modal-header {
+    background: #FFD700; /* Match the add-mode header background */
     color: black;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     padding: var(--base-padding) var(--card-padding);
+    border-bottom: none; /* Remove border under header */
+    margin-bottom: 0; /* Remove bottom margin */
 }
 
-.modal-container.add-mode .modal-title {
-     color: black; /* Match header text color */
+.modal-container.modal-form-layout-2col .modal-title {
+    color: black; /* Match header text color */
 }
 
-.modal-container.add-mode .modal-title .icon {
-     color: black; /* Match icon color */
+.modal-container.modal-form-layout-2col .modal-title .icon {
+    color: black; /* Match icon color */
 }
 
-.modal-container.add-mode .modal-close-btn {
-     color: black; /* Match close button color */
+.modal-container.modal-form-layout-2col .modal-close-btn {
+    color: black; /* Match close button color */
 }
 
-.modal-container.add-mode .modal-footer {
-    border-top: none; /* Remove border above footer */
-    margin-top: 0; /* Remove top margin */
+.modal-container.modal-form-layout-2col .modal-body {
+    background: var(--card-bg); /* Add white background to body */
+    padding: var(--card-padding); /* Add padding to body content */
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+.modal-container.modal-form-layout-2col .modal-footer {
     padding: var(--card-padding); /* Add padding to footer */
     background: var(--bg-color); /* Light grey background for footer */
     border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-top: none; /* Remove border above footer */
+    margin-top: 0; /* Remove top margin */
+    gap: 1rem; /* Space between buttons */
 }
 
-.modal-container.add-mode .modal-actions {
-    width: 100%; /* Ensure buttons take full width if needed */
-    justify-content: flex-end; /* Align buttons to the right */
+.modal-container.modal-form-layout-2col .modal-form-group {
+    /* Adjust display and alignment for side-by-side label and input */
+    flex-direction: row !important; /* Arrange items in a row */
+    align-items: center; /* Vertically align items in the center */
+    gap: 1rem; /* Space between label and input */
+    margin-bottom: 0.8rem; /* Add some space below each form group */
+    display: flex !important;
 }
 
-.modal-container.add-mode .modal-form-group {
-    margin-bottom: var(--base-padding); /* Keep some space between form groups */
+.modal-container.modal-form-layout-2col .modal-label {
+    /* Give labels a fixed width or flex-basis */
+    flex-basis: 120px; /* Adjust as needed */
+    min-width: 120px; /* Ensure it doesn't shrink below this */
+    margin-bottom: 0; /* Remove bottom margin from label */
 }
 
-.modal-container.add-mode .modal-checkbox-group {
-     margin-bottom: var(--base-padding);
+.modal-container.modal-form-layout-2col .modal-input,
+.modal-container.modal-form-layout-2col .modal-select,
+.modal-container.modal-form-layout-2col .modal-textarea {
+    /* Allow input/select/textarea to take remaining space */
+    flex-grow: 1;
 }
 
-@media (max-width: 600px) {
-    .modal-container.add-mode .modal-header {
-        padding: 1rem;
-    }
-    .modal-container.add-mode .modal-body {
-        padding: var(--base-padding);
-    }
-    .modal-container.add-mode .modal-footer {
-        padding: var(--base-padding);
-    }
-    .modal-container.add-mode .modal-actions {
-         flex-direction: row; /* Keep buttons in a row on small screens */
-         justify-content: space-around; /* Distribute space around buttons */
-    }
-     .modal-container.add-mode .modal-actions .button {
-         width: auto;
-     }
+.modal-container.modal-form-layout-2col .modal-checkbox-group {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.modal-container.modal-form-layout-2col .modal-checkbox-group label {
+    /* Style for the checkbox label */
+    flex-basis: 120px; /* Align with other labels */
+    min-width: 120px;
+    margin-bottom: 0; /* Remove default margin */
+}
+
+.modal-container.modal-form-layout-2col .modal-checkbox-group input[type="checkbox"] {
+    /* Style for the checkbox input */
+    flex-grow: 0; /* Don't grow */
+    width: auto; /* Allow width to be determined by content */
+    margin-right: 0; /* Remove potential default right margin */
+}
+
+/* Style adjustments for Add Service Modal when in add-mode - Keep if any specific add-mode styles are needed */
+/* Example: Specific header icon color if different from edit mode */
+/* .modal-container.add-mode .modal-title .icon { color: black; } */
+
+/* Modal Xác nhận Xóa Dịch Vụ */
+#deleteServiceModalOverlay {
+    /* Inherits from .modal-overlay */
+}
+
+#deleteServiceModal .modal-container.small-modal {
+    min-width: 300px; /* Ensure it's not too small */
+    max-width: 400px; /* Keep it relatively small */
+    width: 350px; /* Set a specific width for a more square-like appearance */
+}
+
+/* Style for Delete Service Modal Header */
+#deleteServiceModal .modal-header {
+    background-color: var(--danger-color); /* Red background */
+}
+
+#deleteServiceModal .modal-title,
+#deleteServiceModal .modal-title .icon,
+#deleteServiceModal .modal-close-btn {
+    color: #fff; /* White text and icon color */
+}
+
+/* Set icon color to yellow specifically for delete modal header */
+#deleteServiceModal .modal-title .icon {
+    color: var(--accent-color); /* Yellow color from CSS variable */
 }
 

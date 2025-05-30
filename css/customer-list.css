@@ -68,8 +68,8 @@
 /* Customer Actions Section */
 .customer-actions {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     margin-bottom: 0;
     gap: var(--base-padding);
     flex-wrap: wrap;
@@ -79,6 +79,8 @@
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
 }
 
 .action-buttons button {
@@ -131,7 +133,8 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 0;
 }
 
 .filter-container h3 {
@@ -413,7 +416,7 @@
     background: white;
     border-radius: 18px;
     width: 95%;
-    max-width: 800px;
+    max-width: 800px; /* Default max width */
     max-height: 95vh;
     overflow: hidden;
     position: relative;
@@ -422,6 +425,14 @@
     padding: 0;
     display: flex;
     flex-direction: column;
+}
+
+#customerDetailModal .modal-content {
+    max-width: 600px; /* Reduced max width */
+}
+
+#editCustomerModal .modal-content {
+    max-width: 800px; /* Explicitly set max width to 800px for edit modal */
 }
 
 .modal-content::-webkit-scrollbar {
@@ -460,40 +471,57 @@
 
 /* Header và button màu cho từng loại modal */
 #addCustomerModal .modal-header {
-    background: #4ade80;
+    background: #ffe066; /* Solid yellow background */
 }
 #addCustomerModal .modal-header h3,
 #addCustomerModal .modal-close {
-    color: #fff;
+    color: var(--text-primary); /* Black text color for yellow background */
 }
 #addCustomerModal .btn-primary {
-    background: #4ade80;
+    background: #ffe066; /* Yellow button background */
+    color: var(--text-primary); /* Black button text */
 }
 #addCustomerModal .btn-primary:hover {
-    background: #22c55e;
+    background: #ffc107; /* Darker yellow on hover */
 }
 
 #editCustomerModal .modal-header {
-    background: #fb923c;
+    background: #ffe066; /* Match add modal yellow */
 }
 #editCustomerModal .modal-header h3,
 #editCustomerModal .modal-close {
-    color: #fff;
+    color: var(--text-primary); /* Match add modal black text */
 }
 #editCustomerModal .btn-primary {
-    background: #fb923c;
+    background: #ffe066; /* Match add modal yellow button */
 }
 #editCustomerModal .btn-primary:hover {
-    background: #f97316;
+    background: #ffc107; /* Match add modal darker yellow hover */
+}
+
+#deleteCustomerModal .modal-content {
+    max-width: 450px; /* Smaller width */
+    max-height: 450px; /* Smaller height, closer to square */
+    width: 90%; /* Ensure responsiveness on smaller screens */
+    box-sizing: border-box; /* Include padding/border in element's total width and height */
 }
 
 #deleteCustomerModal .modal-header {
-    background: #f87171;
+    background: #ff4d4d; /* Bright red color */
+    display: flex; /* Ensure flex layout for icon and title */
+    align-items: center; /* Vertically align icon and title */
+    gap: 8px; /* Slightly reduced gap between icon and title */
+    justify-content: space-between; /* Push title/icon to left, close button to right */
 }
 #deleteCustomerModal .modal-header h3,
 #deleteCustomerModal .modal-close {
     color: #fff;
 }
+
+#deleteCustomerModal .modal-header i {
+    color: #fff; /* White color for the icon */
+}
+
 #deleteCustomerModal .btn-danger {
     background: #f87171;
 }
@@ -502,17 +530,17 @@
 }
 
 #customerDetailModal .modal-header {
-    background: #a78bfa;
+    background: #ffe066; /* Match add modal yellow */
 }
 #customerDetailModal .modal-header h3,
 #customerDetailModal .modal-close {
-    color: #fff;
+    color: var(--text-primary); /* Match add modal black text */
 }
 #customerDetailModal .btn-primary {
-    background: #a78bfa;
+    background: var(--accent); /* Keep original purple color for Edit button */
 }
 #customerDetailModal .btn-primary:hover {
-    background: #8b5cf6;
+    background: var(--accent-hover); /* Keep original purple hover */
 }
 
 .modal-close {
@@ -543,8 +571,8 @@
 
 .customer-info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--base-padding);
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 5px;
     margin-bottom: var(--base-padding);
 }
 
@@ -553,6 +581,9 @@
     padding: 1rem;
     border-radius: var(--border-radius-sm);
     transition: all 0.2s ease;
+    display: flex; /* Use flexbox for label and span */
+    align-items: center; /* Vertically align items */
+    gap: var(--base-padding); /* Add space between label and value */
 }
 
 .info-group:hover {
@@ -564,8 +595,10 @@
     display: block;
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0; /* Remove margin below label */
     font-weight: 500;
+    flex-shrink: 0; /* Prevent label from shrinking */
+    width: 120px; /* Give label a fixed width for alignment */
 }
 
 .info-group span {
@@ -573,6 +606,7 @@
     color: var(--text-primary);
     font-size: var(--font-size-base);
     font-weight: 600;
+    flex-grow: 1; /* Allow span to take remaining space */
 }
 
 .customer-stats {
@@ -665,20 +699,25 @@
 /* Form Styling */
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr;
     gap: var(--base-padding);
 }
 
 .form-group {
-    margin-bottom: 0;
+    margin-bottom: var(--base-padding);
+    display: flex;
+    align-items: center;
+    gap: var(--base-padding);
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0;
     color: var(--text-secondary);
     font-weight: 500;
     font-size: var(--font-size-sm);
+    flex-shrink: 0;
+    width: 120px;
 }
 
 .form-group input,
@@ -689,6 +728,7 @@
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-base);
     transition: all 0.2s ease;
+    flex-grow: 1;
 }
 
 .form-group input:focus,
@@ -1050,7 +1090,7 @@
     background: var(--primary-light);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
     flex-wrap: wrap;
     gap: var(--base-padding);

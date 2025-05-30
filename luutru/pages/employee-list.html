@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý nhân viên - Minh Khôi Logistics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../css/employee-list.css">
+    <link rel="stylesheet" href="../css/package_manager.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="../images/newlogo2-removebg.png" alt="Mien Tay Express Logo" class="logo">
+        </div>
+        <nav class="menu-items" aria-label="Main Navigation">
+             <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
+                 <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
+                     <div class="submenu">
+                         <ul>
+                             <li><a href="package_manager.html"><i class="fa-solid fa-box-archive icon"></i><span class="menu-text">Quản lý đơn hàng</span></a></li>
+                             <li><a href="straking-bill-of-lading-status.html"><i class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng thái</span></a></li>
+                             <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận chuyển</span></a></li>
+                             <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản lý chi nhánh</span></a></li>
+                             <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
+                 <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span></a>
+                 </li>
+                  <li>
+                      <a href="employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN LÝ NHÂN SỰ</span></a>
+                      
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
+                  <li>
+                      <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                       <div class="submenu">
+                          <ul>
+                            <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+                 <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ DỤNG</span></a></li>
+                 <li>
+                     <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                      <div class="submenu">
+                          <ul>
+                            <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
+                          </ul>
+                      </div>
+                  </li>
+             </ul>
+         </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <main class="main-content">
+        <header class="header">
+            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu" aria-controls="sidebar" aria-expanded="false"> <i class="fa-solid fa-bars"></i> </button>
+            <div class="header-left">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" class="header-search-input" placeholder="Tìm kiếm nhân viên...">
+                </div>
+            </div>
+            <div class="header-actions" style="display: flex; align-items: center; gap: 1.2rem; margin-left: auto;">
+                <div class="notification-wrapper">
+                    <button class="notification-button" id="notification-button" title="Thông báo">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div class="notification-dropdown" id="notification-dropdown">
+                        <div class="dropdown-header">Thông báo</div>
+                        <ul class="notification-list" id="notification-list">
+                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024" data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada." data-timestamp="2024-07-25 13:53:27">
+                                <div class="item-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Dời Cut off Canada 24/08/2024</div>
+                                    <div class="item-time">25 Jul 2024</div>
+                                </div>
+                            </li>
+                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống" data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này." data-timestamp="2024-07-28 10:00:00">
+                                <div class="item-icon"><i class="fa-solid fa-wrench"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Cập nhật hệ thống 30/07</div>
+                                    <div class="item-time">28 Jul 2024</div>
+                                </div>
+                            </li>
+                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới" data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ." data-timestamp="2024-07-20 09:00:00">
+                                <div class="item-icon"><i class="fa-solid fa-tags"></i></div>
+                                <div class="item-content">
+                                    <div class="item-title">Khuyến mãi hè 2024!</div>
+                                    <div class="item-time">20 Jul 2024</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="dropdown-footer"><a href="#">Xem tất cả</a></div>
+                    </div>
+                </div>
+                <div class="user-container" style="position: relative;">
+                    <div class="user-dropdown-toggle" id="user-dropdown-toggle" style="display: flex; align-items: center; gap: 6px; background: #2563eb; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
+                        <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
+                </div>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <a href="#" class="user-dropdown-item" id="profile-link"><i class="fa-regular fa-user"></i> Profile</a>
+                        <a href="#" class="user-dropdown-item" id="login-link"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>
+                        <a href="#" class="user-dropdown-item" id="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+            </div>
+                </div>
+            </div>
+        </header>
+        <div class="content-wrapper">
+            <section class="page-header">
+                <div class="page-header-left">
+                    <h1 class="page-title">DANH SÁCH NHÂN VIÊN</h1>
+                    <nav class="breadcrumb" aria-label="breadcrumb">
+                        <a href="#">Quản lý</a> / <span>Quản lý nhân sự</span> / <span>Danh sách NV</span>
+                    </nav>
+                </div>
+            </section>
+            <div class="customer-actions">
+                <div class="action-buttons">
+                    <button class="btn-add-employee" id="addEmployeeBtn">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Thêm nhân viên
+                    </button>
+                </div>
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <select class="filter-select" id="employeeRole">
+                            <option value="">Chức vụ</option>
+                            <option value="Nhân viên">Nhân viên</option>
+                            <option value="Quản lý">Quản lý</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                        <select class="filter-select" id="employeeStatus">
+                            <option value="">Trạng thái</option>
+                            <option value="active">Đang làm</option>
+                            <option value="inactive">Nghỉ việc</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <section class="table-area card">
+                <div class="card-header">
+                    <h2>Danh sách Nhân viên</h2>
+                </div>
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table id="employeeTable">
+                            <thead>
+                                <tr>
+                                    <th class="col-center">STT</th>
+                                    <th>Mã NV</th>
+                                    <th>Họ và tên</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Email</th>
+                                    <th>Chức vụ</th>
+                                    <th>Địa chỉ</th>
+                                    <th class="col-center">Trạng thái</th>
+                                    <th class="col-center">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employee-table-body">
+                                <!-- Dữ liệu mẫu sẽ render bằng JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- Modal Thêm Nhân viên -->
+            <div class="modal" id="addEmployeeModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Thêm nhân viên mới</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addEmployeeForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="addEmployeeId">Mã nhân viên:</label>
+                                    <input type="text" id="addEmployeeId" required readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addEmployeeName">Họ và tên:</label>
+                                    <input type="text" id="addEmployeeName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addEmployeePhone">Số điện thoại:</label>
+                                    <input type="tel" id="addEmployeePhone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addEmployeeEmail">Email:</label>
+                                    <input type="email" id="addEmployeeEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addEmployeeRole">Chức vụ:</label>
+                                    <select id="addEmployeeRole" required>
+                                        <option value="Nhân viên">Nhân viên</option>
+                                        <option value="Quản lý">Quản lý</option>
+                                        <option value="Admin">Admin</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addEmployeeAddress">Địa chỉ:</label>
+                                    <input type="text" id="addEmployeeAddress" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="addEmployeeStatus">Trạng thái:</label>
+                                    <select id="addEmployeeStatus" required>
+                                        <option value="active">Đang làm</option>
+                                        <option value="inactive">Nghỉ việc</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button class="btn-primary" form="addEmployeeForm">Thêm</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Sửa Nhân viên -->
+            <div class="modal" id="editEmployeeModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Chỉnh sửa thông tin nhân viên</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editEmployeeForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="editEmployeeId">Mã nhân viên:</label>
+                                    <input type="text" id="editEmployeeId" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmployeeName">Họ và tên:</label>
+                                    <input type="text" id="editEmployeeName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmployeePhone">Số điện thoại:</label>
+                                    <input type="tel" id="editEmployeePhone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmployeeEmail">Email:</label>
+                                    <input type="email" id="editEmployeeEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmployeeRole">Chức vụ:</label>
+                                    <select id="editEmployeeRole" required>
+                                        <option value="Nhân viên">Nhân viên</option>
+                                        <option value="Quản lý">Quản lý</option>
+                                        <option value="Admin">Admin</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmployeeAddress">Địa chỉ:</label>
+                                    <input type="text" id="editEmployeeAddress" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmployeeStatus">Trạng thái:</label>
+                                    <select id="editEmployeeStatus" required>
+                                        <option value="active">Đang làm</option>
+                                        <option value="inactive">Nghỉ việc</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button class="btn-primary" form="editEmployeeForm">Lưu</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Xóa Nhân viên -->
+            <div class="modal" id="deleteEmployeeModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Xác nhận xóa</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có chắc chắn muốn xóa nhân viên <strong id="deleteEmployeeName"></strong>?</p>
+                        <p>Hành động này không thể hoàn tác.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button class="btn-danger" id="confirmDeleteEmployee">Xóa</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Xem chi tiết Nhân viên -->
+            <div class="modal" id="employeeDetailModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Thông tin chi tiết nhân viên</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="customer-info-grid">
+                            <div class="info-group">
+                                <label>Mã nhân viên:</label>
+                                <span id="detailEmployeeId">NV001</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Họ và tên:</label>
+                                <span id="detailEmployeeName">Nguyễn Văn Nhân</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Số điện thoại:</label>
+                                <span id="detailEmployeePhone">0901234567</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Email:</label>
+                                <span id="detailEmployeeEmail">nhan.nguyen@email.com</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Chức vụ:</label>
+                                <span id="detailEmployeeRole">Nhân viên</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Địa chỉ:</label>
+                                <span id="detailEmployeeAddress">123 Nguyễn Văn Linh, Q.7, TP.HCM</span>
+                            </div>
+                            <div class="info-group">
+                                <label>Trạng thái:</label>
+                                <span id="detailEmployeeStatus" class="status-badge active">Đang làm</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button class="btn-primary">Chỉnh sửa</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Thông báo (announcement modal) giống customer-list.html -->
+            <div class="announcement-overlay" id="announcement-overlay" style="display: none;">
+                <div class="announcement-box" id="announcement-box">
+                    <div class="announcement-header">
+                        <span id="announcement-title">Thông báo</span>
+                        <button class="announcement-close-btn" id="announcement-close-btn" aria-label="Đóng">&times;</button>
+                    </div>
+                    <div class="announcement-body" id="announcement-body"></div>
+                    <div class="announcement-footer">
+                        <span id="announcement-timestamp" style="font-size:0.95em;color:#64748b;"></span>
+                    </div>
+                </div>
+            </div>
+            <footer class="site-footer">
+                Minh Khôi Logistics © <span id="current-year">2024</span>. All rights reserved. Design by Nina Co.,Ltd
+            </footer>
+        </div>
+    </main>
+
+    <script>
+    // --- Sidebar, Header, Notification, User Dropdown, Announcement Modal ---
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Sidebar & Submenu ---
+        const body = document.body;
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mobileSidebarToggleBtn = document.getElementById('mobile-sidebar-toggle');
+        const desktopSidebarToggleBtn = document.querySelector('.sidebar-toggle-desktop');
+        function manageBodyScroll() {
+            const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
+            const isAnyModalVisible = document.querySelector('.confirmation-modal.visible, .filter-modal.visible, .announcement-overlay.visible');
+            if (isSidebarOpen || isAnyModalVisible) {
+                body.classList.add('overflow-hidden');
+            } else {
+                body.classList.remove('overflow-hidden');
+            }
+        }
+        function toggleSidebarMobile() {
+            body.classList.toggle('sidebar-mobile-open');
+            manageBodyScroll();
+        }
+        function toggleSidebarDesktop() {
+            body.classList.toggle('sidebar-collapsed');
+            manageBodyScroll();
+        }
+        function toggleSidebarMobileOrDesktop() {
+            if (window.innerWidth > 768) {
+                toggleSidebarDesktop();
+            } else {
+                toggleSidebarMobile();
+            }
+            const isOpen = body.classList.contains('sidebar-mobile-open') || !body.classList.contains('sidebar-collapsed');
+            if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.setAttribute('aria-expanded', String(isOpen));
+        }
+        function toggleSubmenu(event) {
+            event.preventDefault();
+            if (body.classList.contains('sidebar-collapsed') && window.innerWidth > 768) return;
+            const parentLink = event.currentTarget;
+            const submenuWrapper = parentLink.nextElementSibling;
+            if (!submenuWrapper || !submenuWrapper.classList.contains('submenu')) return;
+            if (!parentLink.classList.contains('active')) {
+                document.querySelectorAll('.menu-items .submenu-parent.active').forEach(activeParent => {
+                    if (activeParent !== parentLink) {
+                        activeParent.classList.remove('active');
+                        activeParent.nextElementSibling?.classList.remove('active');
+                    }
+                });
+            }
+            submenuWrapper.classList.toggle('active');
+            parentLink.classList.toggle('active');
+        }
+        function initializeActiveSubmenu() {
+            const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
+            if (activeSubmenuLink) {
+                const submenuDiv = activeSubmenuLink.closest('.submenu');
+                const parentLink = submenuDiv?.previousElementSibling;
+                if(submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
+                    submenuDiv.classList.add('active');
+                    parentLink.classList.add('active');
+                }
+            }
+        }
+        initializeActiveSubmenu();
+        if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobile);
+        if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarDesktop);
+        document.querySelectorAll('.menu-items .submenu-parent').forEach(link => link.addEventListener('click', toggleSubmenu));
+
+        // --- Notification & Announcement Modal ---
+        const notificationButton = document.getElementById('notification-button');
+        const notificationDropdown = document.getElementById('notification-dropdown');
+        const notificationList = document.getElementById('notification-list');
+        const announcementOverlay = document.getElementById('announcement-overlay');
+        const announcementBox = document.getElementById('announcement-box');
+        const announcementCloseBtn = document.getElementById('announcement-close-btn');
+        const announcementTitle = document.getElementById('announcement-title');
+        const announcementBody = document.getElementById('announcement-body');
+        const announcementTimestamp = document.getElementById('announcement-timestamp');
+        function showAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.add('visible');
+                announcementOverlay.style.display = 'flex';
+                updateHeaderBlur();
+                if (typeof manageBodyScroll === 'function') manageBodyScroll();
+            }
+        }
+        function closeAnnouncement() {
+            if (announcementOverlay) {
+                announcementOverlay.classList.remove('visible');
+                setTimeout(() => { announcementOverlay.style.display = 'none'; updateHeaderBlur(); }, 200);
+                updateHeaderBlur();
+                if (typeof manageBodyScroll === 'function') manageBodyScroll();
+            }
+        }
+        function toggleNotificationDropdown() {
+            if (notificationDropdown) {
+                notificationDropdown.classList.toggle('visible');
+            }
+        }
+        function closeNotificationDropdown() {
+            if (notificationDropdown) {
+                notificationDropdown.classList.remove('visible');
+            }
+        }
+        if (notificationButton) {
+            notificationButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                toggleNotificationDropdown();
+            });
+        }
+        if (notificationList) {
+            notificationList.addEventListener('click', (event) => {
+                const clickedItem = event.target.closest('.notification-item');
+                if (clickedItem && announcementTitle && announcementBody && announcementTimestamp) {
+                    const title = clickedItem.dataset.title || 'Thông báo';
+                    const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
+                    const timestamp = clickedItem.dataset.timestamp || '';
+                    announcementTitle.textContent = title;
+                    announcementBody.innerHTML = '';
+                    bodyText.split('||').forEach(paragraphText => {
+                        if(paragraphText.trim()) {
+                            const p = document.createElement('p');
+                            p.textContent = paragraphText.trim();
+                            announcementBody.appendChild(p);
+                        }
+                    });
+                    announcementTimestamp.textContent = timestamp;
+                    showAnnouncement();
+                    closeNotificationDropdown();
+                }
+            });
+        }
+        document.addEventListener('click', (event) => {
+            if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
+                if (!notificationDropdown.contains(event.target) && event.target !== notificationButton && !notificationButton.contains(event.target)) {
+                    closeNotificationDropdown();
+                }
+            }
+        });
+        if (announcementCloseBtn) announcementCloseBtn.addEventListener('click', closeAnnouncement);
+        if (announcementOverlay) announcementOverlay.addEventListener('click', (event) => { if (event.target === announcementOverlay) closeAnnouncement(); });
+
+        // --- Dropdown user & đăng nhập/đăng xuất ---
+        function renderUserDropdown() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userToggle = document.getElementById('user-dropdown-toggle');
+            const userDropdown = document.getElementById('user-dropdown');
+            if (!userToggle || !userDropdown) return;
+            if (!isLoggedIn) {
+                userToggle.innerHTML = `
+                    <div style="background: linear-gradient(135deg, #ffe066 0%, #a78bfa 100%); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-regular fa-circle-user user-icon" style="color: #4F46E5; font-size: 1.5em;"></i>
+                    </div>
+                `;
+                userDropdown.innerHTML = `
+                    <a href="#" class="user-dropdown-item" id="login-menu-item">
+                        <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+                    </a>
+                `;
+            } else {
+                userToggle.innerHTML = `
+                    <div style="background: linear-gradient(135deg, #ffe066 0%, #a78bfa 100%); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-regular fa-circle-user user-icon" style="color: #4F46E5; font-size: 1.5em;"></i>
+                    </div>
+                `;
+                userDropdown.innerHTML = `
+                    <div class="user-info">
+                        <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
+                        <div class="user-details">
+                            <div>Phạm Hoàng Đình</div>
+                            <div>Quản trị viên</div>
+                        </div>
+                    </div>
+                    <hr>
+                    <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
+                    <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
+                    <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                    <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
+                    <hr>
+                    <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                `;
+            }
+            setTimeout(() => {
+                const loginItem = document.getElementById('login-menu-item');
+                if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
+                const logoutItem = document.getElementById('logout-menu-item');
+                if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+            }, 100);
+        }
+        renderUserDropdown();
+        window.addEventListener('storage', renderUserDropdown);
+        // Dropdown show/hide
+        const userToggle = document.getElementById('user-dropdown-toggle');
+        const userDropdown = document.getElementById('user-dropdown');
+        if(userToggle && userDropdown){
+            userToggle.addEventListener('click', function(e){
+                e.stopPropagation();
+                userDropdown.classList.toggle('show');
+            });
+            document.addEventListener('click', function(e){
+                if(!userDropdown.contains(e.target) && e.target !== userToggle){
+                    userDropdown.classList.remove('show');
+                }
+            });
+        }
+    });
+    function updateHeaderBlur() {
+        var header = document.querySelector('.header');
+        var anyModalOpen = false;
+        document.querySelectorAll('.modal').forEach(function(modal){
+            var isVisible = modal.classList.contains('show') && (window.getComputedStyle(modal).visibility !== 'hidden');
+            if(isVisible) anyModalOpen = true;
+        });
+        if(document.querySelector('.announcement-overlay.visible')) anyModalOpen = true;
+        if (header) {
+            if (anyModalOpen) {
+                header.classList.add('blurred');
+                if (!header.querySelector('.header-dark-overlay')) {
+                    var overlay = document.createElement('div');
+                    overlay.className = 'header-dark-overlay';
+                    header.appendChild(overlay);
+                }
+            } else {
+                header.classList.remove('blurred');
+                var overlay = header.querySelector('.header-dark-overlay');
+                if (overlay) overlay.remove();
+            }
+        }
+    }
+    (function(){
+        var observer = new MutationObserver(updateHeaderBlur);
+        document.querySelectorAll('.modal').forEach(function(modal){
+            modal.addEventListener('transitionend', function(event) {
+                if (event.propertyName === 'opacity' && window.getComputedStyle(modal).opacity === '0') {
+                     updateHeaderBlur();
+                }
+                 if (event.propertyName === 'opacity' && window.getComputedStyle(modal).opacity === '1') {
+                     updateHeaderBlur();
+                 }
+            });
+        });
+        updateHeaderBlur();
+    })();
+    </script>
+    <script>
+    // ================== DuyKha: Quản lý nhân viên động + Lọc + Modal ==================
+    let employees = [
+        { id: 'NV001', name: 'Nguyễn Văn Nhân', phone: '0901234567', email: 'nhan.nguyen@email.com', role: 'Nhân viên', address: '123 Nguyễn Văn Linh, Q.7, TP.HCM', status: 'active' },
+        { id: 'NV002', name: 'Trần Thị Quản', phone: '0912345678', email: 'quan.tran@email.com', role: 'Quản lý', address: '456 Điện Biên Phủ, Q.3, TP.HCM', status: 'active' },
+        { id: 'NV003', name: 'Lê Văn Admin', phone: '0923456789', email: 'admin.le@email.com', role: 'Admin', address: '789 Cách Mạng Tháng 8, Q.10, TP.HCM', status: 'inactive' }
+    ];
+    let filterRole = '';
+    let filterStatus = '';
+
+    function renderEmployeeTable() {
+        const tbody = document.getElementById('employee-table-body');
+        tbody.innerHTML = '';
+        let filtered = employees.filter(e => {
+            let ok = true;
+            if (filterRole) ok = ok && (e.role === filterRole);
+            if (filterStatus) ok = ok && (e.status === filterStatus);
+            return ok;
+        });
+        filtered.forEach((e, idx) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="col-center">${idx+1}</td>
+                <td>${e.id}</td>
+                <td>${e.name}</td>
+                <td>${e.phone}</td>
+                <td>${e.email}</td>
+                <td>${e.role}</td>
+                <td>${e.address}</td>
+                <td class="col-center"><span class="status-badge ${e.status==='active'?'active':'inactive'}">${e.status==='active'?'Đang làm':'Nghỉ việc'}</span></td>
+                <td class="col-center action-icons">
+                    <button class="icon-button icon-view" title="Xem chi tiết"><i class="fa-solid fa-eye"></i></button>
+                    <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
+                </td>
+            `;
+            tr.querySelector('.icon-view').onclick = () => openDetailModalById(e.id);
+            tr.querySelector('.icon-edit').onclick = () => openEditModalById(e.id);
+            tr.querySelector('.icon-danger').onclick = () => openDeleteModalById(e.id);
+            tbody.appendChild(tr);
+        });
+    }
+
+    // Lọc
+    const employeeRoleSelect = document.getElementById('employeeRole');
+    const employeeStatusSelect = document.getElementById('employeeStatus');
+    if (employeeRoleSelect) employeeRoleSelect.onchange = function() {
+        filterRole = this.value;
+        renderEmployeeTable();
+    };
+    if (employeeStatusSelect) employeeStatusSelect.onchange = function() {
+        filterStatus = this.value;
+        renderEmployeeTable();
+    };
+
+    // Thêm nhân viên
+    function getNextEmployeeId() {
+        let max = 0;
+        employees.forEach(e => {
+            const num = parseInt(e.id.replace('NV',''));
+            if(num > max) max = num;
+        });
+        return 'NV' + String(max+1).padStart(3,'0');
+    }
+    function openAddModal() {
+        var modal = document.getElementById('addEmployeeModal');
+        if(modal) modal.classList.add('show');
+        document.getElementById('addEmployeeId').value = getNextEmployeeId();
+        document.getElementById('addEmployeeId').readOnly = true;
+        document.getElementById('addEmployeeName').value = '';
+        document.getElementById('addEmployeePhone').value = '';
+        document.getElementById('addEmployeeEmail').value = '';
+        document.getElementById('addEmployeeRole').value = 'Nhân viên';
+        document.getElementById('addEmployeeAddress').value = '';
+        document.getElementById('addEmployeeStatus').value = 'active';
+    }
+    document.getElementById('addEmployeeBtn').onclick = openAddModal;
+    document.getElementById('addEmployeeForm').onsubmit = function(e){
+        e.preventDefault();
+        const newEmp = {
+            id: document.getElementById('addEmployeeId').value,
+            name: document.getElementById('addEmployeeName').value,
+            phone: document.getElementById('addEmployeePhone').value,
+            email: document.getElementById('addEmployeeEmail').value,
+            role: document.getElementById('addEmployeeRole').value,
+            address: document.getElementById('addEmployeeAddress').value,
+            status: document.getElementById('addEmployeeStatus').value
+        };
+        employees.push(newEmp);
+        renderEmployeeTable();
+        document.getElementById('addEmployeeModal').classList.remove('show');
+    };
+    Array.from(document.querySelectorAll('#addEmployeeModal .modal-close, #addEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
+        btn.onclick = ()=>{ document.getElementById('addEmployeeModal').classList.remove('show'); };
+    });
+
+    // Sửa nhân viên
+    let editingId = null;
+    function openEditModalById(id) {
+        editingId = id;
+        const e = employees.find(emp => emp.id === id);
+        var modal = document.getElementById('editEmployeeModal');
+        if(modal) modal.classList.add('show');
+        document.getElementById('editEmployeeId').value = e.id;
+        document.getElementById('editEmployeeName').value = e.name;
+        document.getElementById('editEmployeePhone').value = e.phone;
+        document.getElementById('editEmployeeEmail').value = e.email;
+        document.getElementById('editEmployeeRole').value = e.role;
+        document.getElementById('editEmployeeAddress').value = e.address;
+        document.getElementById('editEmployeeStatus').value = e.status;
+    }
+    document.getElementById('editEmployeeForm').onsubmit = function(e){
+        e.preventDefault();
+        if(editingId!==null) {
+            const idx = employees.findIndex(emp => emp.id === editingId);
+            employees[idx] = {
+                id: document.getElementById('editEmployeeId').value,
+                name: document.getElementById('editEmployeeName').value,
+                phone: document.getElementById('editEmployeePhone').value,
+                email: document.getElementById('editEmployeeEmail').value,
+                role: document.getElementById('editEmployeeRole').value,
+                address: document.getElementById('editEmployeeAddress').value,
+                status: document.getElementById('editEmployeeStatus').value
+            };
+            renderEmployeeTable();
+            document.getElementById('editEmployeeModal').classList.remove('show');
+        }
+    };
+    Array.from(document.querySelectorAll('#editEmployeeModal .modal-close, #editEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
+        btn.onclick = ()=>{ document.getElementById('editEmployeeModal').classList.remove('show'); };
+    });
+
+    // Xóa nhân viên
+    let deletingId = null;
+    function openDeleteModalById(id) {
+        deletingId = id;
+        const e = employees.find(emp => emp.id === id);
+        var modal = document.getElementById('deleteEmployeeModal');
+        if(modal) modal.classList.add('show');
+        document.getElementById('deleteEmployeeName').textContent = e.name;
+    }
+    document.getElementById('confirmDeleteEmployee').onclick = function(){
+        if(deletingId!==null) {
+            const idx = employees.findIndex(emp => emp.id === deletingId);
+            employees.splice(idx,1);
+            renderEmployeeTable();
+            document.getElementById('deleteEmployeeModal').classList.remove('show');
+        }
+    };
+    Array.from(document.querySelectorAll('#deleteEmployeeModal .modal-close, #deleteEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
+        btn.onclick = ()=>{ document.getElementById('deleteEmployeeModal').classList.remove('show'); };
+    });
+
+    // Xem chi tiết
+    function openDetailModalById(id) {
+        const e = employees.find(emp => emp.id === id);
+        document.getElementById('detailEmployeeId').textContent = e.id;
+        document.getElementById('detailEmployeeName').textContent = e.name;
+        document.getElementById('detailEmployeePhone').textContent = e.phone;
+        document.getElementById('detailEmployeeEmail').textContent = e.email;
+        document.getElementById('detailEmployeeRole').textContent = e.role;
+        document.getElementById('detailEmployeeAddress').textContent = e.address;
+        document.getElementById('detailEmployeeStatus').textContent = e.status==='active'?'Đang làm':'Nghỉ việc';
+        document.getElementById('detailEmployeeStatus').className = 'status-badge ' + (e.status==='active'?'active':'inactive');
+        document.getElementById('employeeDetailModal').classList.add('show');
+    }
+    Array.from(document.querySelectorAll('#employeeDetailModal .modal-close, #employeeDetailModal [data-dismiss="modal"]')).forEach(btn=>{
+        btn.onclick = ()=>{ document.getElementById('employeeDetailModal').classList.remove('show'); };
+    });
+
+    // Render lần đầu
+    renderEmployeeTable();
+    // ================== END DuyKha ==================
+    </script>
+</body>
+</html> 
