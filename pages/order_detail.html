@@ -192,7 +192,7 @@
                                 <span class="label">Dịch vụ cộng thêm:</span>
                                 <span class="value" id="additionalServicesValue">Chữ ký / Bảo hiểm hàng hóa</span>
                             </div>
-                            <div class="data-pair">
+                            <div class="data-pair note-highlight">
                                 <span class="label">Ghi chú:</span>
                                 <span class="value multiline">Nhận tại Bưu cục Rhode Island, Tên chính thức Tiểu bang Rhode Island, là một tiểu bang nằm trong vùng New England của Hoa Kỳ</span>
                             </div>
@@ -259,15 +259,114 @@
                               </div>
                         </div>
                     </section>
+                    <section class="card detail-section">
+                         <div class="card-header section-header">
+                             <div class="header-left"> <h2 class="card-title">Lợi nhuận</h2> </div>
+                             <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                 <button class="icon-button" id="editProfitTrigger" title="Điều chỉnh trị giá">
+                                     <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
+                                 </button>
+                              </div>
+                         </div>
+                        <div class="card-body section-body table-scroll">
+                            <div class="table-container detail-table-container">
+                                <div class="table-wrapper">
+                                    <table class="summary-table profit-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-label">Lợi nhuận</th>
+                                                <th class="col-amount">NET Đại lý</th>
+                                                <th class="col-amount">Tạm tính</th>
+                                            </tr>
+                                        </thead>
+                                       <tbody>
+                                           <tr>
+                                               <td>Tổng cước đại lý:</td>
+                                               <td class="col-amount">2,318,000</td>
+                                               <td class="col-amount highlight">3,198,840</td>
+                                           </tr>
+                                           <tr>
+                                               <td>Tổng chi phí lô hàng:</td>
+                                               <td></td>
+                                               <td class="col-amount">45,000</td>
+                                           </tr>
+                                          <tr>
+                                               <td>Hoa hồng Sale:</td>
+                                                <td></td>
+                                               <td class="col-amount">159,942</td>                                           </tr>
+                                            <tr>
+                                               <td class="bold">Lợi nhuận công ty:</td>
+                                                <td></td>
+                                               <td class="col-amount bold highlight">2,458,440</td>
+                                           </tr>
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+                   </section>
+                 </div>
+
+                 <div class="detail-column-right">
+                      <section class="card detail-section">
+                          <div class="card-header section-header">
+                             <div class="header-left"> <h2 class="card-title">Người gửi</h2> </div>
+                             <div class="header-actions">
+                                  <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                  <button class="icon-button" id="editSenderBtn" title="Chỉnh sửa Người gửi"><i class="fa-solid fa-pen-to-square"></i></button>
+                              </div>
+                          </div>
+                          <div class="card-body section-body address-block">
+                              <div class="data-pair">
+                                  <span class="label">Họ và Tên:</span>
+                                  <span class="value" id="senderNameValue">Trần Phúc Đường</span>
+                             </div>
+                              <div class="data-pair">
+                                  <span class="label">Số điện thoại:</span>
+                                  <span class="value" id="senderPhoneValue">0909951549 / 0909951559</span>
+                              </div>
+                              <div class="data-pair">
+                                  <span class="label">Địa chỉ:</span>
+                                  <span class="value multiline" id="senderAddressValue">Tòa nhà Sài Gòn Tel, CVPM Quang Trung, P.Tân Chánh Hiệp, Q.12, TP.CHM</span>
+                              </div>
+                          </div>
+                      </section>
 
                     <section class="card detail-section">
                          <div class="card-header section-header">
-                            <div class="header-left"> <h2 class="card-title">Khai Invoice đại lý</h2> </div>
-                            <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
-                                <button class="icon-button" id="editAgentInvoiceTrigger" title="Chỉnh sửa Khai Invoice đại lý">
-                                    <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
-                                </button>
+                            <div class="header-left"> <h2 class="card-title">Người nhận</h2> </div>
+                            <div class="header-actions">
+                                 <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                  <button class="icon-button" id="editReceiverBtn" title="Chỉnh sửa Người nhận"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
+                         </div>
+                         <div class="card-body section-body address-block">
+                              <div class="data-pair">
+                                  <span class="label">Tên công ty:</span>
+                                  <span class="value" id="receiverCompanyNameValue">HEPS THANH RUBBER INDUSTRIES CORPORATION</span>
+                              </div>
+                             <div class="data-pair">
+                                 <span class="label">Họ và Tên:</span>
+                                 <span class="value" id="receiverNameValue">Alice the Alexander KPOP Woo Chun Pyoh Kamahamaha</span>
                              </div>
+                             <div class="data-pair">
+                                 <span class="label">Số điện thoại:</span>
+                                 <span class="value" id="receiverPhonesValue">1 (401) 426-1999 / 1 (401) 417-1995</span>
+                             </div>
+                             <div class="data-pair">
+                                 <span class="label">Địa chỉ:</span>
+                                 <span class="value multiline" id="receiverAddressValue">80 Don Avenue Rumford, Rhode Island 02916 US</span>
+                             </div>
+                         </div>
+                     </section>
+                     <section class="card detail-section">
+                          <div class="card-header section-header">
+                             <div class="header-left"> <h2 class="card-title">Khai Invoice đại lý</h2> </div>
+                             <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                 <button class="icon-button" id="editAgentInvoiceTrigger" title="Chỉnh sửa Khai Invoice đại lý">
+                                     <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
+                                 </button>
+                              </div>
                          </div>
                          <div class="card-body section-body agent-invoice-body table-scroll">
                               <div class="data-pair">
@@ -319,69 +418,14 @@
                               </div>
                          </div>
                     </section>
-                </div>
-
-                <div class="detail-column-right">
                      <section class="card detail-section">
-                         <div class="card-header section-header">
-                            <div class="header-left"> <h2 class="card-title">Người gửi</h2> </div>
-                            <div class="header-actions">
-                                 <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
-                                 <button class="icon-button" id="editSenderBtn" title="Chỉnh sửa Người gửi"><i class="fa-solid fa-pen-to-square"></i></button>
-                             </div>
-                         </div>
-                         <div class="card-body section-body address-block">
-                             <div class="data-pair">
-                                 <span class="label">Họ và Tên:</span>
-                                 <span class="value" id="senderNameValue">Trần Phúc Đường</span>
-                            </div>
-                             <div class="data-pair">
-                                 <span class="label">Số điện thoại:</span>
-                                 <span class="value" id="senderPhoneValue">0909951549 / 0909951559</span>
-                             </div>
-                             <div class="data-pair">
-                                 <span class="label">Địa chỉ:</span>
-                                 <span class="value multiline" id="senderAddressValue">Tòa nhà Sài Gòn Tel, CVPM Quang Trung, P.Tân Chánh Hiệp, Q.12, TP.CHM</span>
-                             </div>
-                         </div>
-                     </section>
-
-                    <section class="card detail-section">
-                        <div class="card-header section-header">
-                            <div class="header-left"> <h2 class="card-title">Người nhận</h2> </div>
-                            <div class="header-actions">
-                                 <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
-                                  <button class="icon-button" id="editReceiverBtn" title="Chỉnh sửa Người nhận"><i class="fa-solid fa-pen-to-square"></i></button>
-                            </div>
-                         </div>
-                         <div class="card-body section-body address-block">
-                              <div class="data-pair">
-                                  <span class="label">Tên công ty:</span>
-                                  <span class="value" id="receiverCompanyNameValue">HEPS THANH RUBBER INDUSTRIES CORPORATION</span>
+                          <div class="card-header section-header">
+                             <div class="header-left"> <h2 class="card-title">Cước phí</h2> </div>
+                             <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
+                                 <button class="icon-button" id="adjustChargesTrigger" title="Điều chỉnh trị giá đơn hàng">
+                                     <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
+                                 </button>
                               </div>
-                             <div class="data-pair">
-                                 <span class="label">Họ và Tên:</span>
-                                 <span class="value" id="receiverNameValue">Alice the Alexander KPOP Woo Chun Pyoh Kamahamaha</span>
-                             </div>
-                             <div class="data-pair">
-                                 <span class="label">Số điện thoại:</span>
-                                 <span class="value" id="receiverPhonesValue">1 (401) 426-1999 / 1 (401) 417-1995</span>
-                             </div>
-                             <div class="data-pair">
-                                 <span class="label">Địa chỉ:</span>
-                                 <span class="value multiline" id="receiverAddressValue">80 Don Avenue Rumford, Rhode Island 02916 US</span>
-                             </div>
-                         </div>
-                     </section>
-
-                    <section class="card detail-section">
-                         <div class="card-header section-header">
-                            <div class="header-left"> <h2 class="card-title">Cước phí</h2> </div>
-                            <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
-                                <button class="icon-button" id="adjustChargesTrigger" title="Điều chỉnh trị giá đơn hàng">
-                                    <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
-                                </button>
-                             </div>
                          </div>
                         <div class="card-body section-body table-scroll">
                             <div class="table-container detail-table-container">
@@ -394,82 +438,34 @@
                                                 <th class="col-amount">Tạm tính</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Tổng cước</td>
-                                                <td class="col-amount" id="displayBaseFare">2.318.000</td>
-                                                <td class="col-amount highlight" id="displayTotalCharges">3.198.840</td>
-                                            </tr>
-                                            <tr>
-                                                <td>- Chi phí khác</td>
-                                                <td class="col-amount" id="displayOtherCharges">45.000</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>- VAT</td>
-                                                <td class="col-amount" id="displayVatAmount">185.440</td>
-                                                <td class="col-note" id="displayVatPercent">8%</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                       <tbody>
+                                           <tr>
+                                               <td>Tổng cước</td>
+                                               <td class="col-amount" id="displayBaseFare">2.318.000</td>
+                                               <td class="col-amount highlight" id="displayTotalCharges">3.198.840</td>
+                                           </tr>
+                                           <tr>
+                                               <td>- Chi phí khác</td>
+                                               <td class="col-amount" id="displayOtherCharges">45.000</td>
+                                               <td></td>
+                                           </tr>
+                                           <tr>
+                                               <td>- VAT</td>
+                                               <td class="col-amount" id="displayVatAmount">185.440</td>
+                                               <td class="col-note" id="displayVatPercent">8%</td>
+                                           </tr>
+                                       </tbody>
+                                   </table>
                                 </div>
                             </div>
                             <div class="charges-note">
                                  <span class="label">Ghi chú Chi phí khác:</span>
                                  <span class="value" id="displayOtherChargesNotes">Đóng kiện pallet / Phí hải quan / phụ phí đóng gói</span>
                              </div>
-                        </div>
-                    </section>
-
-                   <section class="card detail-section">
-                         <div class="card-header section-header">
-                             <div class="header-left"> <h2 class="card-title">Lợi nhuận</h2> </div>
-                             <div class="header-actions"> <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
-                                 <button class="icon-button" id="editProfitTrigger" title="Điều chỉnh trị giá">
-                                     <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
-                                 </button>
-                              </div>
                          </div>
-                        <div class="card-body section-body table-scroll">
-                            <div class="table-container detail-table-container">
-                                <div class="table-wrapper">
-                                    <table class="summary-table profit-table">
-                                        <thead>
-                                            <tr>
-                                                <th class="col-label">Lợi nhuận</th>
-                                                <th class="col-amount">NET Đại lý</th>
-                                                <th class="col-amount">Tạm tính</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Tổng cước đại lý:</td>
-                                                <td class="col-amount">2,318,000</td>
-                                                <td class="col-amount highlight">3,198,840</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tổng chi phí lô hàng:</td>
-                                                <td></td>
-                                                <td class="col-amount">45,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hoa hồng Sale:</td>
-                                                 <td></td>
-                                                <td class="col-amount">159,942</td>
-                                            </tr>
-                                             <tr>
-                                                <td class="bold">Lợi nhuận công ty:</td>
-                                                 <td></td>
-                                                <td class="col-amount bold highlight">2,458,440</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
+                     </section>
+                 </div>
+             </div>
 
              <footer class="detail-footer">
                  <div class="footer-agreement"> <input type="checkbox" id="termsAgreement" checked> <label for="termsAgreement">Tôi đã đọc và đồng ý với Điều khoản quy định</label> </div>

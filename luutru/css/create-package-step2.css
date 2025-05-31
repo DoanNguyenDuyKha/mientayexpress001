@@ -536,7 +536,7 @@ input[readonly], textarea[readonly] {
 
 textarea {
     resize: vertical;
-    min-height: 50px;
+    min-height: 80px;
 }
 
 .form-group .input-with-icon {
@@ -740,8 +740,8 @@ textarea {
 }
 
 .data-table td textarea {
-    resize: none; /* Prevent resizing */
-    height: 18px; /* Set a fixed height */
+    resize: vertical;
+    min-height: 12px; /* Keep small */
 }
 
 .data-table td input[readonly] {

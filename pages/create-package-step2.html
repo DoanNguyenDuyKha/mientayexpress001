@@ -391,7 +391,7 @@
                                                        <td><label for="item_total_4" class="visually-hidden">Tổng giá dòng 4</label><input type="number" step="any" id="item_total_4" name="item_total[]" value="60" readonly></td>
                                                    </tr>
                                               </tbody>
-                                              <tfoot> <tr> <td colspan="5"><strong>Tổng trị giá đơn hàng:</strong></td> <td><strong id="total-order-value">5275</strong></td> </tr> </tfoot>
+                                              <tfoot> <tr> <td colspan="5"><strong>Tổng trị giá đơn hàng:</strong></td> <td><strong id="total-order-value">5275</strong> VNĐ</td> </tr> </tfoot>
                                           </table>
                                       </div>
                                        <button type="button" class="button secondary small add-item-button" onclick="addItemRow(event)"> <i class="fas fa-plus"></i> Thêm dòng </button>
@@ -572,6 +572,7 @@
             updateTotalOrderValue();
             calculateAllItemTotals();
             ensureAddButtonOnLastRow();
+            updateTotalOrderValue(); // Ensure total is updated on load
          });
 
        function handleFormSubmit(event) {
@@ -769,7 +770,20 @@
             const totalInputs = document.querySelectorAll('#shipment-items-tbody input[name="item_total[]"]');
             totalInputs.forEach(input => { grandTotal += parseFloat(input.value) || 0; });
             const totalValueDisplay = document.getElementById('total-order-value');
-            if(totalValueDisplay) { totalValueDisplay.textContent = grandTotal.toFixed(0); }
+            // Manually format number with dot as thousands separator
+            if(totalValueDisplay) {
+                // Convert to string, remove any existing formatting, parse as integer
+                let numberString = String(Math.round(grandTotal)); // Round to nearest whole number
+                // Add dots every three digits from the right
+                let formattedString = '';
+                for (let i = numberString.length - 1; i >= 0; i--) {
+                    formattedString = numberString[i] + formattedString;
+                    if (i > 0 && (numberString.length - i) % 3 === 0) {
+                        formattedString = '.' + formattedString;
+                    }
+                }
+                totalValueDisplay.textContent = formattedString;
+            }
         }
 
        function addDimensionRow() {

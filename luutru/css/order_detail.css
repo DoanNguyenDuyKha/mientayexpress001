@@ -66,13 +66,12 @@
     flex-direction: column;
     gap: 5px;
     overflow: hidden;
-    flex-grow: 1;
 }
 
 .detail-column-right {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
     overflow: hidden;
 }
 
@@ -1096,7 +1095,6 @@ body {
     }
 }
 
-
 input, select, button, textarea {
     font-family: inherit;
     font-size: var(--form-font-size);
@@ -1107,9 +1105,7 @@ input, select, button, textarea {
     background-color: var(--form-bg);
     line-height: 1.3;
 }
-.data-pair textarea {
-    min-height: 40px; /* Increased default height for 'Địa chỉ' in Sender */
-}
+
 .detail-section .card-header .card-title,
 .order-detail-content .detail-section .card-header .card-title {
     font-size: 0.9rem;
@@ -1120,36 +1116,6 @@ input, select, button, textarea {
     font-size: var(--form-font-size);
     padding: 0.4rem 0.8rem;
     margin-right: 0.5rem;
-}
-
-/* Style for the highlighted note section */
-.data-pair.note-highlight {
-    /* Remove frame from the outer div */
-    border: none;
-    padding: 0;
-    background-color: transparent;
-    border-radius: 0;
-    margin-bottom: var(--form-gap); /* Keep some space below */
-    /* Change flex direction to stack label and value */
-    flex-direction: column;
-}
-
-.data-pair.note-highlight .label {
-    margin-bottom: var(--form-gap); /* Add space below the label */
-    font-weight: 500; /* Make label bold */
-    font-size: var(--form-font-size); /* Adjust font size for clarity */
-}
-
-.data-pair.note-highlight .value.multiline {
-    /* Apply frame to the value content and increase padding */
-    border: 1px solid var(--border-color);
-    padding: 0.4rem; /* Increased padding for a larger frame */
-    background-color: var(--card-bg); /* White background inside the box */
-    border-radius: var(--border-radius);
-    /* Ensure it takes appropriate width */
-    width: 100%;
-    box-sizing: border-box;
-    min-height: 30px; /* Set minimum height */
 }
 
 /* Specific styles for charges table */

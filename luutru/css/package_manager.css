@@ -434,7 +434,7 @@ button:disabled {
   border-radius: 12px;
   margin: 4px 8px;
   background: transparent !important;
-  transition: background 1s, color 1s, box-shadow 1s; /* Removed transform transition */
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
 }
 
 .menu-items li a::before {
@@ -453,7 +453,7 @@ button:disabled {
   background: var(--sidebar-hover-bg) !important;
   color: #181818 !important;
   box-shadow: 0 2px 12px rgba(255,214,0,0.08);
-  /* Removed transform to prevent jerky movement */
+  transform: translateX(8px) scale(1.04);
 }
 
 .menu-items li a.active {
