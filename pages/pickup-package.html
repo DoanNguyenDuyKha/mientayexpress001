@@ -430,6 +430,31 @@
                      listItem.textContent = file.name;
                      const removeBtn = document.createElement('button');
                      removeBtn.type = 'button'; removeBtn.className = 'remove-file-btn'; removeBtn.innerHTML = '×'; removeBtn.title = 'Gỡ bỏ file này'; removeBtn.dataset.fileName = file.name; listItem.appendChild(removeBtn);
+                     
+                     // Create image preview element
+                     const imgPreview = document.createElement('img');
+                     imgPreview.style.maxWidth = '50px'; // Set max width for preview
+                     imgPreview.style.maxHeight = '50px'; // Set max height for preview
+                     imgPreview.style.marginRight = '10px'; // Add some space
+                     imgPreview.style.verticalAlign = 'middle';
+                     imgPreview.style.border = '1px solid #ddd'; // Optional border
+                     imgPreview.style.borderRadius = '4px'; // Optional border radius
+                     imgPreview.style.objectFit = 'cover'; // Cover the area without stretching
+                     
+                     // Use FileReader to read the image file
+                     const reader = new FileReader();
+                     reader.onload = function(e) {
+                         imgPreview.src = e.target.result;
+                     }
+                     // Check if the file is an image before reading
+                     if (file.type.startsWith('image/')) {
+                         reader.readAsDataURL(file);
+                         listItem.prepend(imgPreview); // Add image before text
+                     } else {
+                          // Optionally handle non-image files, maybe show a file icon
+                          // For now, just add text content if not an image
+                     }
+                     
                      list.appendChild(listItem);
                  });
                  fileListDisplay.appendChild(list);

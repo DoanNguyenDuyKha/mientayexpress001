@@ -206,9 +206,9 @@
                      <div class="filter-group date-range" style="grid-column: span 2;">
                          <label for="date-start">Date Range</label>
                          <div style="display: flex; flex-direction: row; align-items: center; gap: 0.7rem; width: 100%;">
-                             <input type="date" id="date-start" title="From Date">
+                             <input type="date" id="date-start" title="Từ ngày" placeholder="yyyy-mm-dd">
                              <span>→</span>
-                             <input type="date" id="date-end" title="To Date">
+                             <input type="date" id="date-end" title="Đến ngày" placeholder="yyyy-mm-dd">
                          </div>
                      </div>
                      <div class="filter-group"><label for="filter-status">Status</label><select id="filter-status" title="Filter by status"><option value="">Tất cả trạng thái</option><option>Mới tạo đơn</option> <option>Đã nhận hàng</option> <option>Đang phát hàng</option> <option>Hoàn tất</option><option>Hủy</option><option>Lỗi</option><option>Chuyển hoàn</option></select></div>
@@ -489,15 +489,26 @@
                 </div>
 
                 <nav class="pagination" aria-label="Table navigation">
-                    <span class="pagination-info">Showing <b>1</b> to <b>8</b> of <b>127</b> entries</span>
-                     <div class="pagination-buttons">
-                         <button class="button" disabled>Previous</button>
-                         <button class="button active" aria-current="page">1</button>
-                         <button class="button">2</button>
-                         <button class="button">3</button>
-                         <button class="button">4</button>
-                         <button class="button">Next</button>
-                     </div>
+                    <span class="pagination-info">Hiển thị <b id="start-index">1</b> cho tới <b id="end-index">8</b> của <b id="total-entries">127</b> Đơn hàng</span>
+                    <div class="pagination-buttons">
+                        <div class="items-per-page-control">
+                            <select id="items-per-page-select" class="form-select">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            <span>đơn hàng/trang</span>
+                        </div>
+                        <div class="pagination-nav-buttons">
+                             <button class="button" id="prev-page" disabled>Trước</button>
+                             <div id="page-numbers" class="page-numbers"></div>
+                             <button class="button" id="next-page">Sau</button>
+                        </div>
+                    </div>
                 </nav>
             </section>
 
@@ -517,7 +528,7 @@
                 <button class="filter-modal-close-btn icon-button" aria-label="Close Filters"> <i class="fa-solid fa-xmark"></i> </button>
             </div>
             <div class="filter-modal-body">
-                <div class="filter-group date-range"><label for="modal-date-start">Date Range</label><input type="date" id="modal-date-start" title="From Date"><span>→</span><input type="date" id="modal-date-end" title="To Date"></div>
+                <div class="filter-group date-range"><label for="modal-date-start">Date Range</label><input type="date" id="modal-date-start" title="From Date" placeholder="yyyy-mm-dd"><span>→</span><input type="date" id="modal-date-end" title="To Date" placeholder="yyyy-mm-dd"></div>
                 <div class="filter-group"><label for="modal-filter-status">Status</label><select id="modal-filter-status" title="Filter by status"><option value="">Tất cả trạng thái</option><option>Mới tạo đơn</option> <option>Đã nhận hàng</option> <option>Đang phát hàng</option> <option>Hoàn tất</option><option>Hủy</option><option>Lỗi</option><option>Chuyển hoàn</option></select></div>
                 <div class="filter-group"><label for="modal-filter-data">Data Filter</label><select id="modal-filter-data" title="Data Filter"><option>Lọc dữ liệu</option></select></div>
                 <div class="filter-group"><label for="modal-filter-sale">Sales Rep</label><select id="modal-filter-sale" title="Select Sales Rep"><option value="">Tất cả Sale</option><option>SALE01 - P.H. Đình</option> <option>SALE02 - N.V. An</option></select></div>
@@ -582,15 +593,19 @@
 
         const isElementVisible = (el) => el && !el.hasAttribute('hidden') && el.offsetParent !== null;
 
-        let manageBodyScroll = () => {
+        // Thêm biến toàn cục để lưu trữ các dòng đơn hàng đã lọc
+        let filteredRows = []; // Mảng chứa các dòng tr.clickable-row sau khi lọc
+
+        function manageBodyScroll() {
             const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
             const isAnyModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
-            if (isSidebarOpen || isAnyModalVisible) {
+            const isImageModalVisible = imageModalOverlay && imageModalOverlay.classList.contains('visible');
+            if (isSidebarOpen || isAnyModalVisible || isImageModalVisible) {
                 body.classList.add('overflow-hidden');
             } else {
                 body.classList.remove('overflow-hidden');
             }
-        };
+        }
 
         function toggleSidebarMobileOrDesktop() {
             if (window.innerWidth > 768) {
@@ -660,12 +675,20 @@
 
         function applyFilters(source, statusTab) {
             const formPrefix = source === 'modal' ? 'modal-' : '';
-            const dateStart = document.getElementById(`${formPrefix}date-start`)?.value;
-            const dateEnd = document.getElementById(`${formPrefix}date-end`)?.value;
-            const status = document.getElementById(`${formPrefix}filter-status`)?.value;
-            const sale = document.getElementById(`${formPrefix}filter-sale`)?.value;
-            const customer = document.getElementById(`${formPrefix}filter-customer`)?.value;
-            const branch = document.getElementById(`${formPrefix}filter-branch`)?.value;
+            // Lấy giá trị từ các input filter, nhưng chỉ sử dụng chúng nếu source không phải là từ tab
+            const dateStart = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}date-start`)?.value : '';
+            const dateEnd = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}date-end`)?.value : '';
+            // Trạng thái ưu tiên từ statusTab (khi click tab), nếu không thì lấy từ dropdown filter
+            let filterStatus = statusTab && statusTab !== 'Tất cả' ? statusTab : '';
+            if (!filterStatus) { // Nếu không có trạng thái từ tab, lấy từ dropdown nếu không phải từ tab
+                 filterStatus = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}filter-status`)?.value : '';
+            }
+
+            const sale = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}filter-sale`)?.value : '';
+            const customer = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}filter-customer`)?.value : '';
+            const branch = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}filter-branch`)?.value : '';
+            
+            // Ô search input vẫn luôn được sử dụng bất kể source nào
             const search = document.getElementById(`${formPrefix}filter-search-input`)?.value?.toLowerCase().trim();
 
             // Hàm helper để chuẩn hóa text
@@ -710,78 +733,95 @@
 
             // Lọc các dòng đơn hàng
             const rows = orderTableBody.querySelectorAll('tr.clickable-row');
-            let visibleCount = 0;
+            // Reset filteredRows ở đầu mỗi lần lọc
+            filteredRows = [];
 
             rows.forEach(row => {
                 let show = true;
-                // Lọc theo trạng thái (ưu tiên tab, nếu không có thì lấy filter-bar)
-                let filterStatus = statusTab && statusTab !== 'Tất cả' ? statusTab : (status && status !== '' ? status : null);
-                if (filterStatus) {
+
+                // Lọc theo trạng thái (sử dụng filterStatus đã được xác định ở trên)
+                if (filterStatus && filterStatus !== 'Tất cả') {
                     const rowStatus = row.getAttribute('data-status');
                     const normalizedRowStatus = normalizeStatus(rowStatus);
                     const normalizedFilterStatus = normalizeStatus(filterStatus);
+                    // console.log(`Row ID: ${row.dataset.orderId}, Row Status: ${rowStatus}, Filter Status: ${filterStatus}`);
                     if (normalizedRowStatus !== normalizedFilterStatus) show = false;
                 }
+
                 // Lọc theo sale - So khớp chính xác mã sale
+                // Chỉ áp dụng filter này nếu show vẫn true và có giá trị sale được chọn
                 if (show && sale && sale !== '') {
                     const saleCell = row.children[8]?.textContent || '';
                     const saleCode = sale.split(' - ')[0].trim();
                     if (!saleCell.includes(saleCode)) show = false;
                 }
                 // Lọc theo khách hàng - Tìm kiếm mềm
+                // Chỉ áp dụng filter này nếu show vẫn true và có giá trị customer được chọn
                 if (show && customer && customer !== '') {
                     const customerCell = row.children[7]?.textContent || '';
                     const normalizedCustomer = normalizeText(customer);
                     const normalizedCell = normalizeText(customerCell);
-                    const searchTerms = normalizedCustomer.split(' ');
+                    const searchTerms = normalizedCustomer.split(' ').filter(term => term.length > 0); // Loại bỏ khoảng trắng thừa
                     const hasAllTerms = searchTerms.every(term => normalizedCell.includes(term));
                     if (!hasAllTerms) show = false;
                 }
                 // Lọc theo chi nhánh - So khớp chính xác
+                // Chỉ áp dụng filter này nếu show vẫn true và có giá trị branch được chọn
                 if (show && branch && branch !== '') {
                     const branchCell = row.children[14]?.textContent || '';
                     const branchName = branch.replace('CN: ', '').trim();
                     if (branchCell !== branchName) show = false;
                 }
                 // Lọc theo ngày tạo
+                // Chỉ áp dụng filter này nếu show vẫn true và có ngày bắt đầu hoặc kết thúc được chọn
                 if (show && (dateStart || dateEnd)) {
                     const dateCell = row.children[3]?.textContent || '';
                     if (!compareDates(dateCell, dateStart, dateEnd)) show = false;
                 }
-                // Lọc theo search - Tìm kiếm thông minh
+                // Lọc theo search - Tìm kiếm thông minh (Luôn áp dụng)
+                // Chỉ áp dụng filter này nếu show vẫn true và có giá trị search được nhập
                 if (show && search && search.length > 0) {
-                    const searchTerms = search.split(' ');
-                    const cells = [
-                        row.children[2]?.textContent || '', // ID
-                        row.children[7]?.textContent || '', // Tên KH
-                        row.children[8]?.textContent || '', // Sale
-                        row.children[9]?.textContent || '', // Dịch vụ
-                        row.children[2]?.textContent || ''  // Mã vận đơn
-                    ];
-                    const normalizedCells = cells.map(cell => normalizeText(cell));
-                    const hasMatch = searchTerms.every(term => normalizedCells.some(cell => cell.includes(term)));
-                    if (!hasMatch) show = false;
+                    const searchTerms = search.split(' ').filter(term => term.length > 0); // Loại bỏ khoảng trắng thừa
+                    if (searchTerms.length > 0) { // Chỉ lọc nếu có ít nhất một từ khóa search
+                         const cellsToSearch = [
+                            row.children[2]?.textContent || '', // ID
+                            row.children[7]?.textContent || '', // Tên KH
+                            row.children[8]?.textContent || '', // Sale
+                            row.children[9]?.textContent || '', // Dịch vụ
+                            row.children[2]?.textContent || ''  // Mã vận đơn
+                         ];
+                         const normalizedCells = cellsToSearch.map(cell => normalizeText(cell));
+                         // Kiểm tra xem TẤT CẢ các từ khóa search có tồn tại trong BẤT KỲ ô nào không
+                         const hasMatch = searchTerms.every(term => normalizedCells.some(cell => cell.includes(term)));
+                         if (!hasMatch) show = false;
+                    }
                 }
-                row.style.display = show ? '' : 'none';
-                if (show) visibleCount++;
+                // Thêm dòng vào danh sách filteredRows nếu nó được hiển thị
+                if (show) {
+                    filteredRows.push(row);
+                }
             });
+
+            // Sau khi lọc xong, cập nhật lại phân trang và hiển thị trang đầu tiên
+            currentPage = 1; // Reset về trang 1 sau khi lọc
+            updatePagination(); // Cập nhật thông tin phân trang dựa trên filteredRows
+            goToPage(currentPage); // Hiển thị trang đầu tiên của kết quả lọc
+
+            // Cập nhật số lượng trên các tab
             updateTabCounts();
+
             if (source === 'modal') {
                 toggleFilterModal();
             }
         }
 
         // Hàm cập nhật số lượng đơn hàng trong tabs
+        // Hàm này chỉ cần đếm dựa trên filteredRows hiện tại.
         function updateTabCounts() {
-            // Đếm đúng các dòng đơn hàng thực sự: tr.clickable-row có data-order-id hợp lệ
-            const rows = Array.from(orderTableBody.querySelectorAll('tr.clickable-row')).filter(row => {
-                const id = row.getAttribute('data-order-id');
-                return id && id.trim() !== '';
-            });
             const statusCounts = {};
 
-            // Đếm tổng số đơn hàng từng trạng thái dựa trên data-status (chuẩn hóa cho tab)
-            rows.forEach(row => {
+            // Đếm tổng số đơn hàng từng trạng thái dựa trên data-status trong filteredRows
+            filteredRows.forEach(row => {
                 let status = row.getAttribute('data-status') || '';
                 // CHUẨN HÓA: Nếu là 'Đang phát hàng' thì quy về 'Đang phát' để khớp tab
                 if (status === 'Đang phát hàng') status = 'Đang phát';
@@ -803,13 +843,18 @@
 
             // Cập nhật lại số lượng trên từng tab
             if (allTab) {
-                allTab.textContent = `Tất cả (${rows.length})`;
+                // Tab 'Tất cả' đếm TỔNG số dòng trong filteredRows
+                allTab.textContent = `Tất cả (${filteredRows.length})`;
+            } else {
+                console.warn("Tab 'Tất cả' not found!");
             }
             otherTabs.forEach(tab => {
                 const status = getStatusFromTab(tab);
                 const count = statusCounts[status] || 0;
                 tab.textContent = `${status} (${count})`;
             });
+
+            // Lưu ý: Không gọi updatePagination() ở đây nữa vì nó đã được gọi ở cuối applyFilters và goToPage.
         }
 
         function resetFilters(source) {
@@ -1273,19 +1318,17 @@
         const tabItems = document.querySelectorAll('.tab-item');
         tabItems.forEach(tab => {
           tab.addEventListener('click', function() {
+            // Xóa lớp 'active' khỏi tất cả các tab
             tabItems.forEach(t => t.classList.remove('active'));
+            // Thêm lớp 'active' cho tab được click
             tab.classList.add('active');
-            const status = tab.textContent.replace(/\s*\(\d+\)/, '').trim();
-            // Luôn lấy lại NodeList mới để lọc đúng các đơn mới tạo
-            const orderRows = document.querySelectorAll('#order-table-body tr.clickable-row');
-            orderRows.forEach(row => {
-              const rowStatus = row.getAttribute('data-status') || '';
-              if (status === 'Tất cả') {
-                row.style.display = '';
-              } else {
-                row.style.display = rowStatus === status ? '' : 'none';
-              }
-            });
+            
+            // Lấy trạng thái từ text tab (bỏ số lượng đi)
+            const status = this.textContent.replace(/\s*\(\d+\)/, '').trim();
+            
+            // Thay vì hiển thị trực tiếp, gọi hàm applyFilters với trạng thái từ tab
+            // applyFilters sẽ tự động gọi updatePagination và goToPage(1)
+            applyFilters('tab', status); 
           });
         });
 
@@ -1294,88 +1337,10 @@
           if(mobileStatusSelect) {
             mobileStatusSelect.addEventListener('change', function() {
               var status = this.value;
-              // Luôn lấy lại NodeList mới để lọc đúng các đơn mới tạo
-              var orderRows = document.querySelectorAll('#order-table-body tr.clickable-row');
-              orderRows.forEach(function(row) {
-                var rowStatus = row.getAttribute('data-status') || '';
-                if (status === 'Tất cả') {
-                  row.style.display = '';
-                } else {
-                  row.style.display = rowStatus === status ? '' : 'none';
-                }
-              });
+              // Thay vì hiển thị trực tiếp, gọi hàm applyFilters với trạng thái từ select mobile
+              // applyFilters sẽ tự động gọi updatePagination và goToPage(1)
+              applyFilters('mobile-select', status);
             });
-          }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-          if (window.flatpickr) {
-            console.log('Flatpickr is available.');
-            // Initialize Flatpickr for desktop date range inputs
-            const desktopStartDateInput = document.getElementById('date-start');
-            const desktopEndDateInput = document.getElementById('date-end');
-
-            console.log('Desktop Start Date Input', desktopStartDateInput);
-            console.log('Desktop End Date Input', desktopEndDateInput);
-
-            const desktopStartDatePicker = flatpickr(desktopStartDateInput, {
-              dateFormat: 'Y-m-d',
-              allowInput: true,
-            });
-            const desktopEndDatePicker = flatpickr(desktopEndDateInput, {
-              dateFormat: 'Y-m-d',
-              allowInput: true,
-            });
-
-            console.log('Desktop Start Date Picker', desktopStartDatePicker);
-            console.log('Desktop End Date Picker', desktopEndDatePicker);
-
-            // Add click listeners to open the pickers
-            if (desktopStartDateInput && desktopStartDatePicker) {
-                desktopStartDateInput.addEventListener('click', function() {
-                    console.log('Desktop Start Date input clicked', this.id);
-                    desktopStartDatePicker.open();
-                });
-            }
-            if (desktopEndDateInput && desktopEndDatePicker) {
-                desktopEndDateInput.addEventListener('click', function() {
-                    console.log('Desktop End Date input clicked', this.id);
-                    desktopEndDatePicker.open();
-                });
-            }
-
-
-            // Initialize Flatpickr for modal date range inputs
-            const modalStartDateInput = document.getElementById('modal-date-start');
-            const modalEndDateInput = document.getElementById('modal-date-end');
-
-            console.log('Modal Start Date Input', modalStartDateInput);
-            console.log('Modal End Date Input', modalEndDateInput);
-
-            let modalStartDatePicker, modalEndDatePicker;
-            if (modalStartDateInput) {
-                 modalStartDatePicker = flatpickr(modalStartDateInput, {
-                    dateFormat: 'Y-m-d',
-                    allowInput: true,
-                 });
-                  // Add click listener for modal start date
-                 modalStartDateInput.addEventListener('click', function() {
-                     console.log('Modal Start Date input clicked', this.id);
-                     if (modalStartDatePicker) modalStartDatePicker.open();
-                 });
-            }
-            if (modalEndDateInput) {
-                 modalEndDatePicker = flatpickr(modalEndDateInput, {
-                    dateFormat: 'Y-m-d',
-                    allowInput: true,
-                 });
-                 // Add click listener for modal end date
-                 modalEndDateInput.addEventListener('click', function() {
-                      console.log('Modal End Date input clicked', this.id);
-                      if (modalEndDatePicker) modalEndDatePicker.open();
-                 });
-            }
-
           }
         });
 
@@ -1529,14 +1494,15 @@
           if(mobileStatusSelect) {
             mobileStatusSelect.addEventListener('change', function() {
               var status = this.value;
-              orderRows.forEach(function(row) {
-                if (status === 'Tất cả') {
-                  row.style.display = '';
-                } else {
-                  var rowStatus = row.getAttribute('data-status') || '';
-                  row.style.display = rowStatus === status ? '' : 'none';
-                }
-              });
+              // Đã chuyển logic sang applyFilters
+              // orderRows.forEach(function(row) {
+              //   if (status === 'Tất cả') {
+              //     row.style.display = '';
+              //   } else {
+              //     var rowStatus = row.getAttribute('data-status') || '';
+              //     row.style.display = rowStatus === status ? '' : 'none';
+              //   }
+              // });
             });
           }
         });
@@ -1673,11 +1639,13 @@
 
         // === Thêm hàm đánh lại số thứ tự STT cho các dòng đơn hàng ===
         function reindexOrderRows() {
-            const rows = document.querySelectorAll('#order-table-body tr.clickable-row');
+            // Chỉ lấy các dòng hiển thị để đánh STT
+            const rows = document.querySelectorAll('#order-table-body tr.clickable-row:not([style*="display: none"])');
             let stt = 1;
             rows.forEach(row => {
+                // Kiểm tra lại để đảm bảo chỉ đánh số cho dòng hiển thị
                 if (row.style.display !== 'none') {
-                    row.children[1].textContent = stt++;
+                     row.children[1].textContent = stt++;
                 }
             });
         }
@@ -1780,6 +1748,203 @@
              }
         };
         // End Image Modal Logic
+
+        // Thêm biến và hàm xử lý phân trang
+        let currentPage = 1;
+        let itemsPerPage = 8; // Giá trị mặc định
+        let totalItems = 0;
+        let totalPages = 0;
+
+        // Thêm hàm xử lý thay đổi số đơn hàng trên mỗi trang
+        function handleItemsPerPageChange() {
+            const select = document.getElementById('items-per-page-select');
+            if (select) {
+                // Lấy giá trị mới từ select
+                const newItemsPerPage = parseInt(select.value);
+                
+                // Cập nhật biến itemsPerPage
+                itemsPerPage = newItemsPerPage;
+                
+                // Reset về trang 1
+                currentPage = 1;
+                
+                // Cập nhật lại phân trang
+                updatePagination();
+                goToPage(1);
+            }
+        }
+
+        function updatePagination() {
+             totalItems = filteredRows.length; // Tổng số đơn hàng là số lượng trong filteredRows
+             totalPages = Math.ceil(totalItems / itemsPerPage);
+
+             // Cập nhật thông tin hiển thị
+             const startIndex = (totalItems === 0) ? 0 : (currentPage - 1) * itemsPerPage + 1; // Nếu không có đơn hàng, hiển thị 0
+             const endIndex = Math.min(currentPage * itemsPerPage, totalItems);
+
+             document.getElementById('start-index').textContent = startIndex;
+             document.getElementById('end-index').textContent = endIndex;
+             document.getElementById('total-entries').textContent = totalItems;
+
+             // Cập nhật trạng thái nút Previous/Next
+             document.getElementById('prev-page').disabled = currentPage === 1 || totalItems === 0;
+             document.getElementById('next-page').disabled = currentPage === totalPages || totalItems === 0;
+
+             // Tạo các nút số trang
+             const pageNumbers = document.getElementById('page-numbers');
+             pageNumbers.innerHTML = '';
+
+             // Hiển thị tối đa 5 trang xung quanh trang hiện tại, hoặc ít hơn nếu gần đầu/cuối
+             let startPage = Math.max(1, currentPage - 2);
+             let endPage = Math.min(totalPages, startPage + 4);
+
+             // Điều chỉnh lại startPage nếu totalPages < 5 hoặc endPage bị giới hạn
+             if (endPage - startPage < 4) {
+                 startPage = Math.max(1, endPage - 4);
+             }
+
+             // Nếu không có trang nào (totalItems === 0), không hiển thị nút số trang
+             if (totalPages > 0) {
+                  for (let i = startPage; i <= endPage; i++) {
+                      const pageButton = document.createElement('button');
+                      pageButton.className = `button ${i === currentPage ? 'active' : ''}`;
+                      pageButton.textContent = i;
+                      pageButton.onclick = () => goToPage(i);
+                      pageNumbers.appendChild(pageButton);
+                 }
+             }
+
+        }
+
+        function goToPage(page) {
+            // console.log(`goToPage(${page}) called. totalPages: ${totalPages}, filteredRows.length: ${filteredRows.length}`);
+            if (page < 1 || page > totalPages) {
+                // console.log("Page out of bounds.");
+                return;
+            }
+
+            currentPage = page;
+
+            // Ẩn TẤT CẢ các dòng trước khi hiển thị các dòng của trang hiện tại
+            const allRows = document.querySelectorAll('#order-table-body tr.clickable-row');
+            allRows.forEach(row => {
+                row.style.display = 'none';
+            });
+
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, filteredRows.length); // Sử dụng filteredRows.length
+
+            // console.log(`Showing rows from index ${startIndex} to ${endIndex-1} from filteredRows.`);
+            // Chỉ hiển thị các dòng trong filteredRows cho trang hiện tại
+            for (let i = startIndex; i < endIndex; i++) {
+                 if (filteredRows[i]) { // Kiểm tra tồn tại
+                      filteredRows[i].style.display = '';
+                 }
+            }
+
+            updatePagination(); // Cập nhật thông tin phân trang và nút dựa trên trạng thái hiện tại (bao gồm filteredRows.length)
+            reindexOrderRows(); // Đánh số lại STT cho các dòng hiển thị
+        }
+
+        // Thêm event listeners cho nút Previous/Next
+        document.getElementById('prev-page').addEventListener('click', () => goToPage(currentPage - 1));
+        document.getElementById('next-page').addEventListener('click', () => goToPage(currentPage + 1));
+
+        // Cập nhật phân trang khi DOM đã load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lấy tất cả các dòng đơn hàng ban đầu
+            const initialRows = Array.from(document.querySelectorAll('#order-table-body tr.clickable-row'));
+            // Khởi tạo filteredRows với tất cả các dòng khi load trang lần đầu
+            filteredRows = initialRows;
+            // Cập nhật số lượng trên các tab dựa trên filteredRows ban đầu
+            updateTabCounts(); // Gọi updateTabCounts trước để đếm đúng số lượng ban đầu
+            // Sau đó cập nhật phân trang và hiển thị trang 1
+            updatePagination();
+            goToPage(1);
+
+            // Thêm event listener cho select items per page
+            const itemsPerPageSelect = document.getElementById('items-per-page-select');
+            if (itemsPerPageSelect) {
+                itemsPerPageSelect.addEventListener('change', handleItemsPerPageChange);
+                // Set giá trị mặc định là 8
+                itemsPerPageSelect.value = '8';
+            }
+
+            // Gắn lại sự kiện click cho các tab sau khi DOMContentLoaded
+            const tabItems = document.querySelectorAll('.tabs .tab-item');
+            tabItems.forEach(tab => {
+              tab.addEventListener('click', function() {
+                // Xóa lớp 'active' khỏi tất cả các tab
+                tabItems.forEach(t => t.classList.remove('active'));
+                // Thêm lớp 'active' cho tab được click
+                tab.classList.add('active');
+
+                // Lấy trạng thái từ text tab (bỏ số lượng đi)
+                const status = this.textContent.replace(/\s*\(\d+\)/, '').trim();
+
+                // Gọi applyFilters với source là 'tab'
+                applyFilters('tab', status); // Truyền source là 'tab'
+              });
+            });
+
+             var mobileStatusSelect = document.getElementById('mobile-status-select');
+             if(mobileStatusSelect) {
+               mobileStatusSelect.addEventListener('change', function() {
+                 var status = this.value;
+                 // Gọi applyFilters với source là 'mobile-select'
+                 applyFilters('mobile-select', status); // Truyền source là 'mobile-select'
+               });
+             }
+
+            // === Basic JS to focus date inputs on click ===
+            flatpickr("#date-start", { /* options */ });
+            flatpickr("#date-end", { /* options */ });
+            flatpickr("#modal-date-start", { /* options */ });
+            flatpickr("#modal-date-end", { /* options */ });
+            // ===============================================
+        });
+
+        // Cập nhật phân trang khi có thay đổi về số lượng đơn hàng
+        // Hàm này không còn cần gọi updatePagination() bên trong nữa.
+        function updateTabCounts() {
+            const statusCounts = {};
+
+            // Đếm tổng số đơn hàng từng trạng thái dựa trên data-status trong filteredRows
+            filteredRows.forEach(row => {
+                let status = row.getAttribute('data-status') || '';
+                // CHUẨN HÓA: Nếu là 'Đang phát hàng' thì quy về 'Đang phát' để khớp tab
+                if (status === 'Đang phát hàng') status = 'Đang phát';
+                if (status === 'Mới tạo đơn' || status === 'Mới tạo') status = 'Mới tạo';
+                if (status === 'Đã nhận hàng') status = 'Nhận hàng';
+                statusCounts[status] = (statusCounts[status] || 0) + 1;
+            });
+
+            // Lấy danh sách tab hiện tại
+            const tabsContainer = document.querySelector('.tabs');
+            const tabNodes = Array.from(tabsContainer.querySelectorAll('.tab-item'));
+
+            // Tách tab 'Tất cả' ra riêng
+            const allTab = tabNodes.find(tab => tab.textContent.trim().startsWith('Tất cả'));
+            const otherTabs = tabNodes.filter(tab => tab !== allTab);
+
+            // Lấy trạng thái từ text tab
+            const getStatusFromTab = tab => tab.textContent.replace(/\s*\(\d+\)/, '').trim();
+
+            // Cập nhật lại số lượng trên từng tab
+            if (allTab) {
+                // Tab 'Tất cả' đếm TỔNG số dòng trong filteredRows
+                allTab.textContent = `Tất cả (${filteredRows.length})`;
+            } else {
+                console.warn("Tab 'Tất cả' not found!");
+            }
+            otherTabs.forEach(tab => {
+                const status = getStatusFromTab(tab);
+                const count = statusCounts[status] || 0;
+                tab.textContent = `${status} (${count})`;
+            });
+
+            // Lưu ý: Không gọi updatePagination() ở đây nữa vì nó đã được gọi ở cuối applyFilters và goToPage.
+        }
 
     </script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
