@@ -1632,24 +1632,91 @@
                 detailsTr.style.display = 'none'; // Mặc định ẩn
                 
                 // Xây dựng HTML cho phần chi tiết đơn hàng từ dữ liệu localStorage (order object)
-                // Sử dụng cấu trúc giống với các dòng mặc định
-                // Thêm kiểm tra nullish coalescing (??) để sử dụng giá trị mặc định nếu dữ liệu thiếu
-                const imageHtml = order.image ? `
-                    <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="${order.image}" alt="Ảnh kiện"></div></span></div>
+                // SỬ DỤNG CÁC KEY ĐÃ THỐNG NHẤT
+                // Hàm helper để lấy giá trị từ nhiều key có thể có
+                const getValue = (obj, keys, defaultValue = 'Chưa có') => {
+                     for (const key of keys) {
+                         if (obj && obj[key] !== undefined && obj[key] !== null && obj[key] !== '') {
+                             return obj[key];
+                         }
+                     }
+                     return defaultValue;
+                };
+
+                // Hàm helper để lấy ảnh từ nhiều key có thể có
+                const getImage = (obj, keys) => {
+                    for (const key of keys) {
+                        if (obj && obj[key]) {
+                            // Check if it's an array of objects with base64
+                            if (Array.isArray(obj[key]) && obj[key].length > 0 && obj[key][0].base64) {
+                                return obj[key][0].base64;
+                            }
+                            // Check if it's an array of base64 strings
+                             if (Array.isArray(obj[key]) && obj[key].length > 0) {
+                                 // Find the first item that is a non-empty string
+                                 const base64String = obj[key].find(item => typeof item === 'string' && item.startsWith('data:image'));
+                                 if (base64String) return base64String;
+                             }
+                             // Check if it's a single base64 string
+                            if (typeof obj[key] === 'string' && obj[key].startsWith('data:image')) {
+                                return obj[key];
+                            }
+                        }
+                    }
+                    return null; // No image found
+                };
+
+                // Lấy dữ liệu chi tiết từ order object, ưu tiên các key phổ biến
+                const orderId = getValue(order, ['id', 'bill_code', 'order_id', 'IDBILL'], 'Chưa có'); // Added IDBILL
+                const refCode = getValue(order, ['refCode', 'ref_code', 'REF_Code', 'REFCODE'], 'Chưa có'); // Added REFCODE
+                const productName = getValue(order, ['productName', 'product_name', 'ten_hang', 'TENSP'], 'Chưa có'); // Added TENSP
+                // Tính tổng cân nặng và số kiện từ mảng dimensions hoặc các key khác
+                let totalDeclaredWeight = '-';
+                let packageCount = '-';
+                let calculatedWeight = 0;
+
+                // Kiểm tra key dimensions (từ bước 2)
+                if (Array.isArray(order.dimensions) && order.dimensions.length > 0) {
+                     packageCount = order.dimensions.length;
+                     calculatedWeight = order.dimensions.reduce((sum, dim) => sum + (parseFloat(dim.weight) || 0), 0);
+                     totalDeclaredWeight = calculatedWeight.toFixed(2) + ' KG';
+                } else if (order.totalWeight) { // Kiểm tra key totalWeight
+                    totalDeclaredWeight = order.totalWeight + ' KG';
+                    packageCount = order.packageCount || '-'; // Nếu có totalWeight, kiểm tra packageCount
+                } else if (order.weight) { // Kiểm tra key weight (từ bước 1 hoặc khác)
+                    totalDeclaredWeight = order.weight + ' KG';
+                    packageCount = order.packageCount || '-';
+                } else if (order.sl_kien) { // Kiểm tra key sl_kien (từ bước 2)
+                     packageCount = order.sl_kien;
+                } else if (order.packageCount) { // Kiểm tra key packageCount
+                     packageCount = order.packageCount;
+                }
+
+
+                const reweight = getValue(order, ['reweight', 're_weight'], '-');
+                const agentWeight = getValue(order, ['agentWeight', 'agent_weight'], '-');
+                const notes = getValue(order, ['shipmentNotes', 'packageNote', 'pickup_notes', 'note', 'ghi_chu'], 'Không có ghi chú');
+
+                // Lấy ảnh, kiểm tra nhiều key có thể có
+                const imageUrl = getImage(order, ['shipmentImageBase64', 'shipmentImages', 'images', 'pickup_images_base64', 'pickup_images']); // Added 'pickup_images' as it might be an array of file objects or similar
+
+                const imageHtml = imageUrl ? `
+                    <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="${imageUrl}" alt="Ảnh kiện"></div></span></div>
                 ` : '';
 
                 detailsTr.innerHTML = `
                     <td colspan="16">
                         <div class="details-inner-wrapper">
                             <div class="order-details-content">
-                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">${order.refCode ?? 'Chưa có'}</span></div>
-                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">${order.itemDescription ?? 'Chưa có'}</span></div>
-                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">${order.packageCount ?? '-'}</span></div>
+                                <div class="detail-item"><span class="detail-label">Mã đơn hàng:</span><span class="detail-value">${orderId}</span></div>
+                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">${refCode}</span></div>
+                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">${productName}</span></div>
+                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">${packageCount}</span></div>
                                 ${imageHtml} <!-- Chèn HTML ảnh kiện đã xây dựng -->
-                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">${order.weight ?? '-'} KG</span></div>
-                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">${order.reweight ?? '-'} KG</span></div>
-                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">${order.agentWeight ?? '-'} KG</span></div>
-                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">${order.note ?? 'Không có ghi chú'}</span></div>
+                                <div class="detail-item"><span class="detail-label">Tổng Cân nặng khai báo:</span><span class="detail-value">${totalDeclaredWeight}</span></div>
+                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">${reweight} KG</span></div>
+                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">${agentWeight} KG</span></div>
+                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">${notes}</span></div>
                             </div>
                             <div class="details-action-icons">
                                 <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
@@ -1664,6 +1731,10 @@
             });
             // Sau khi thêm tất cả các dòng từ localStorage, cập nhật lại UI
             reindexOrderRows(); // Đánh số lại STT
+            // Lấy lại tất cả các dòng clickable-row từ DOM sau khi thêm dòng mới
+            const updatedRows = Array.from(tbody.querySelectorAll('tr.clickable-row'));
+            filteredRows = updatedRows; // Cập nhật lại toàn bộ filteredRows
+
             updateTabCounts(); // Cập nhật số lượng trên tabs
             // filteredRows đã được cập nhật trong addNewOrder hoặc khi load trang ban đầu
             updatePagination(); // Cập nhật phân trang

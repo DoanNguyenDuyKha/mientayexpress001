@@ -611,6 +611,9 @@
                return false;
            }
 
+           // Lưu dữ liệu bước 2 vào localStorage trước khi chuyển trang
+           saveStep2ToLocalStorage();
+
            const formData = new FormData(form);
            const fileInput = document.getElementById('shipment_images');
            const displayedFileNames = Array.from(document.querySelectorAll('#selected_files_list li span:first-child')).map(span => span.textContent);
@@ -1276,6 +1279,76 @@ document.addEventListener('DOMContentLoaded', function() {
         // Lưu trạng thái vào sessionStorage để biết nguồn chuyển trang
         sessionStorage.setItem('fromCreatePackageStep2', 'true');
         window.location.href = 'order_detail.html';
+    }
+
+    // Hàm thu thập dữ liệu form bước 2
+    function collectStep2FormData() {
+        const formData = {};
+        const form = document.getElementById('create-order-step2-form');
+
+        // Lấy thông tin kiện hàng (dimensions)
+        formData.dimensions = [];
+        form.querySelectorAll('#dimension-rows .dimension-row').forEach(row => {
+            const dim = {
+                length: row.querySelector('input[name="dim_length[]"]')?.value,
+                width: row.querySelector('input[name="dim_width[]"]')?.value,
+                height: row.querySelector('input[name="dim_height[]"]')?.value,
+                weight: row.querySelector('input[name="dim_weight[]"]')?.value
+            };
+            // Chỉ thêm vào nếu có ít nhất một giá trị được nhập
+            if (Object.values(dim).some(val => val)) {
+                 formData.dimensions.push(dim);
+            }
+        });
+        formData.dimFactor = form.querySelector('#dim_factor')?.value;
+        formData.productName = form.querySelector('#product_name')?.value;
+        formData.shipmentNotes = form.querySelector('#shipment_notes')?.value;
+        formData.isFragile = form.querySelector('input[name="is_fragile"]')?.checked;
+        formData.imageLink = form.querySelector('#image_link')?.value;
+
+        // Lấy chi tiết hàng hóa (items) cho kiện đang chọn
+        // Lưu ý: Cách này chỉ lấy chi tiết cho kiện đang hiển thị.
+        // Cần logic phức tạp hơn nếu muốn lưu chi tiết cho TẤT CẢ các kiện.
+        // Tạm thời lưu theo kiện đang hiển thị hoặc cần chỉnh sửa cấu trúc HTML/JS để gom tất cả.
+        // Hiện tại, form chỉ hiển thị chi tiết cho 1 kiện tại 1 thời điểm dựa vào #package_select
+        // Giả định đơn giản: gom tất cả các dòng item đang có trong bảng
+        formData.shipmentItems = [];
+        form.querySelectorAll('#shipment-items-tbody tr').forEach(row => {
+             const item = {
+                name: row.querySelector('textarea[name="item_name[]"]')?.value,
+                quantity: row.querySelector('input[name="item_quantity[]"]')?.value,
+                unit: row.querySelector('select[name="item_unit[]"]')?.value,
+                price: row.querySelector('input[name="item_price[]"]')?.value,
+                total: row.querySelector('input[name="item_total[]"]')?.value
+             };
+             // Chỉ thêm vào nếu có tên hàng hóa
+             if (item.name?.trim()) {
+                  formData.shipmentItems.push(item);
+             }
+        });
+         formData.totalOrderValue = document.getElementById('total-order-value')?.textContent; // Lấy tổng giá trị
+
+        // Files are handled separately, we won't store file data in localStorage due to size limits.
+        // We can indicate if files were selected.
+        formData.hasShipmentImages = document.getElementById('shipment_images')?.files.length > 0;
+         // For actual submission, files would be appended to FormData.
+
+        return formData;
+    }
+
+    // Hàm lưu dữ liệu bước 2 vào localStorage
+    function saveStep2ToLocalStorage() {
+        const step2Data = collectStep2FormData();
+        // Lấy dữ liệu bước 1 (nếu có)
+        const step1Data = JSON.parse(localStorage.getItem('createPackageStep1') || '{}');
+
+        // Kết hợp dữ liệu bước 1 và bước 2
+        const combinedData = { ...step1Data, ...step2Data };
+
+        // Lưu lại vào localStorage, có thể dùng key mới hoặc cập nhật key cũ
+        // Sử dụng key mới 'createPackageWizardData' để lưu toàn bộ quá trình
+        localStorage.setItem('createPackageWizardData', JSON.stringify(combinedData));
+         console.log('Saved combined step 1 & 2 data to localStorage:', combinedData);
     }
     </script>
 </body>

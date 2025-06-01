@@ -741,6 +741,10 @@
         // --- Lưu toàn bộ dữ liệu form (bao gồm ảnh) vào localStorage khi submit ---
         document.getElementById('pickup-order-form').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Lấy dữ liệu từ các bước trước (nếu có)
+            const step1Data = JSON.parse(localStorage.getItem('createPackageWizardData') || localStorage.getItem('createPackageStep1') || '{}');
+
             const data = {
                 pickup_vehicle: document.getElementById('pickup_vehicle').value,
                 pickup_time: document.getElementById('pickup_time').value,
@@ -751,30 +755,39 @@
                 received_time: document.getElementById('received_time').value,
                 export_time: document.getElementById('export_time').value,
                 status_notes: document.getElementById('status_notes').value,
-                images: []
+                // images will be handled separately
             };
-            console.log('Dữ liệu thu thập từ form:', data);
-            const files = document.getElementById('pickup_images').files;
-            if (files.length > 0) {
-                let loaded = 0;
-                for (let i = 0; i < files.length; i++) {
+
+            // Gom dữ liệu từ các bước trước và bước hiện tại
+            const completeOrderData = { ...step1Data, ...data };
+
+            // Xử lý ảnh: Đọc file ảnh và chuyển sang Base64 để lưu vào localStorage
+            const fileInput = document.getElementById('pickup_images');
+            const files = Array.from(fileInput.files);
+            const imagePromises = files.map(file => {
+                return new Promise((resolve, reject) => {
                     const reader = new FileReader();
-                    reader.onload = function(evt) {
-                        data.images.push(evt.target.result);
-                        loaded++;
-                        if (loaded === files.length) {
-                            localStorage.setItem('pickupOrder', JSON.stringify(data));
-                            // alert('Đã lưu thông tin pickup (bao gồm ảnh) vào localStorage!');
-                            window.location.href = 'package_manager.html';
-                        }
-                    };
-                    reader.readAsDataURL(files[i]);
-                }
-            } else {
-                localStorage.setItem('pickupOrder', JSON.stringify(data));
-                // alert('Đã lưu thông tin pickup (không có ảnh) vào localStorage!');
-                window.location.href = 'package_manager.html';
-            }
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.onerror = (e) => reject(e);
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            // Chờ tất cả ảnh được đọc xong, sau đó lưu toàn bộ dữ liệu
+            Promise.all(imagePromises).then(base64Images => {
+                completeOrderData.pickup_images_base64 = base64Images; // Lưu mảng base64
+                // Lưu toàn bộ object đơn hàng vào localStorage
+                localStorage.setItem('pickupOrder', JSON.stringify(completeOrderData));
+                console.log('Order data saved to localStorage under key "pickupOrder":', completeOrderData);
+
+                // Chuyển hướng về trang quản lý đơn hàng sau khi lưu
+                alert('Thông tin Pickup đã được hoàn thành và lưu!'); // Giữ lại alert
+                window.location.href = 'package_manager.html'; // Chuyển hướng
+
+            }).catch(error => {
+                console.error('Error reading image files:', error);
+                alert('Đã xảy ra lỗi khi xử lý ảnh.');
+            });
         });
 
         document.addEventListener('DOMContentLoaded', function() {
