@@ -309,6 +309,11 @@
     transform: rotate(180deg);
 }
 
+/* Ẩn nút chỉnh sửa khi card body bị collapsed */
+.detail-section .section-body.collapsed + .header-actions .edit-section {
+    display: none;
+}
+
 /* Base Styles - Ensure body uses the base font size */
 body {
     font-family: var(--font-family);

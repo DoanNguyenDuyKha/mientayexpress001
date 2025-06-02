@@ -1889,10 +1889,10 @@
                         <td>${orderData.sender_name || ''}</td>
                         <td>${orderData.agent || 'SALE01'}</td>
                         <td>${orderData.service_type || ''}</td>
-                        <td class="currency">${orderData.totalOrderValue || '0'}₫</td>
+                        <td class="currency">${orderData.totalOrderValue || '3.198.840'}₫</td>
                         <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
                         <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
-                        <td class="currency">0₫</td>
+                        <td class="currency">159.942₫</td>
                         <td>${orderData.branch || ''}</td>
                         <td class="action-icons">
                             <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
@@ -1921,18 +1921,6 @@
                                     <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">${orderData.reweight || ''} KG</span></div>
                                     <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">${orderData.agentWeight || ''} KG</span></div>
                                     <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">${(orderData.add_service && Array.isArray(orderData.add_service) && orderData.add_service.length > 0 ? orderData.add_service.map(service => { const serviceMap = {'signature': 'Chữ Ký','fumigation': 'FUMIGATION','packing': 'Đóng kiện gỗ','insurance': 'Bảo hiểm hàng hóa'}; return serviceMap[service] || service; }).join(' / ') : 'Không có ghi chú')}</span></div>
-                                    <div class="detail-item full-width"><span class="detail-label">Chi tiết hàng hóa:</span>
-                                        <div class="shipment-items">
-                                            ${orderData.shipmentItems ? orderData.shipmentItems.map(item => `
-                                                <div class="shipment-item">
-                                                    <span>${item.name || ''}</span>
-                                                    <span>${item.quantity || ''} ${item.unit || ''}</span>
-                                                    <span>${item.price || ''} USD</span>
-                                                    <span>${item.total || ''} USD</span>
-                                                </div>
-                                            `).join('') : 'Không có chi tiết hàng hóa'}
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="details-action-icons">
                                     <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>

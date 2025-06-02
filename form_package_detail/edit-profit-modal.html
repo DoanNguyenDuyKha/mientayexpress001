@@ -6,289 +6,371 @@
     <title>Điều chỉnh trị giá đơn hàng</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
+        /* Copy style variables from synchronized modals for consistency */
         :root {
-            --primary-color: #0891b2;
-            --primary-hover: #0e7490;
-            --primary-light: #ecfeff;
-            --secondary-color: #64748b;
-            --secondary-hover: #475569;
-            --confirm-color: #16a34a;
-            --confirm-hover: #15803d;
-            --warning-color: #f97316;
-            --warning-hover: #ea580c;
-            --danger-color: #dc2626;
-            --danger-hover: #b91c1c;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --border-color: #d1d5db;
-            --border-light: #e5e7eb;
-            --input-border: #d1d5db;
-            --text-gray-label: #4b5563;
-            --border-radius: 12px;
-            --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
-            --shadow-lg: 0 8px 12px -4px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06);
-            --transition-speed: 0.25s;
+            --form-primary-color: #FFD600;
+            --form-primary-hover: #FFB300;
+            --form-secondary-color: #181818;
+            --form-success-color: #16a34a; /* Green confirm */
+            --form-danger-color: #EF4444; /* Red danger */
+            --form-light-gray: #f8f9fa;
+            --form-input-bg: #fff;
+            --form-input-readonly-bg: #e9ecef;
+            --form-border-color: #FFC107; /* Darker yellow border */
+            --form-border-color-light: #eee; /* Very light grey border */
+            --form-text-color: #181818;
+            --form-text-muted: #64748b;
+            --form-border-radius: 12px;
+            --form-spacing-unit: 10px;
+            --form-control-padding-y: 10px;
+            --form-control-padding-x: 16px;
+            --form-font-size-base: 12px;
+            --form-font-size-sm: 10px;
+            --form-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --form-shadow-lg: 0 10px 15px rgba(0,0,0,0.10);
+            --form-transition: all 0.3s ease;
+             /* Specific variables for this modal */
+            --profit-warning-color: #f97316;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--form-font-family); /* Use defined font family */
             background: transparent;
-            font-size: 14px;
+            font-size: var(--form-font-size-base); /* Use defined base font size */
             line-height: 1.5;
-            color: var(--text-primary);
+            color: var(--form-text-color); /* Use defined text color */
         }
 
         .adjust-order-value-form {
-            background: var(--card-bg);
+            background: var(--form-input-bg); /* White background */
             padding: 0;
             margin: 0 auto;
             width: 100%;
             box-sizing: border-box;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
+            border-radius: var(--form-border-radius); /* Use defined border-radius */
+            box-shadow: var(--form-shadow-lg); /* Use defined shadow */
+            display: flex; /* Added flex to match other modals */
+            flex-direction: column; /* Added flex-direction */
+            overflow: hidden; /* Added overflow hidden */
         }
 
         .form-header {
-            background: #ffd700;
-            color: var(--text-primary);
-            padding: 12px 20px;
-            border-top-left-radius: var(--border-radius);
-            border-top-right-radius: var(--border-radius);
-            font-size: 1.1rem;
-            font-weight: 600;
+            background: linear-gradient(90deg, var(--form-primary-color) 0%, #FFF8DC 100%); /* Gradient background */
+            color: var(--form-secondary-color); /* Header text black */
+            padding: calc(var(--form-spacing-unit) * 1.8) calc(var(--form-spacing-unit) * 2.5); /* Use defined spacing, slightly adjusted */
+            border-bottom: 1.5px solid var(--form-primary-color); /* Primary color border */
+            border-top-left-radius: var(--form-border-radius);
+            border-top-right-radius: var(--form-border-radius);
+            font-size: 1.18rem; /* Use defined header font size */
+            font-weight: 700; /* Use defined header font weight */
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.75rem; /* Gap between icon and text */
+        }
+        /* Style for icon in header */
+        .form-header i.fas {
+            font-size: 1.2em; /* Slightly larger icon */
+            color: var(--form-secondary-color); /* Icon color */
         }
 
         .form-body {
-            padding: 20px;
-            background: var(--card-bg);
+            padding: calc(var(--form-spacing-unit) * 2.5); /* Use defined spacing */
+            background: var(--form-input-bg); /* White background */
+            flex-grow: 1;
+            overflow-y: auto; /* Allow vertical scrolling */
+            overflow-x: hidden; /* Prevent horizontal overflow */
         }
 
         .form-section-title {
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 16px;
+            color: var(--form-secondary-color); /* Darker title color */
+            font-weight: 600; /* Bolder font weight */
+            font-size: var(--form-font-size-base); /* Use defined base font size */
+            margin-bottom: calc(var(--form-spacing-unit) * 1.6); /* Use defined spacing */
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-light);
+            gap: var(--form-spacing-unit) * 0.8; /* Use defined spacing */
+            padding-bottom: calc(var(--form-spacing-unit) * 0.8); /* Use defined spacing */
+            border-bottom: 1px solid var(--form-border-color-light); /* Use light border */
         }
 
         .form-section-title i {
-            color: var(--primary-color);
+            color: var(--form-primary-color); /* Primary color for icons */
         }
 
         .form-row {
             display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 16px;
+            flex-wrap: wrap; /* Allow wrapping */
+            gap: calc(var(--form-spacing-unit) * 1.6); /* Use defined spacing */
+            margin-bottom: calc(var(--form-spacing-unit) * 1.6); /* Use defined spacing */
+            align-items: center; /* Vertically center items in the row */
+        }
+
+        .form-row:last-child {
+            margin-bottom: 0; /* Remove bottom margin for the last row */
         }
 
         .form-field-group {
             display: flex;
             flex-direction: column;
-            min-width: 200px;
-            flex: 1 1 0;
+            min-width: 200px; /* Keep min-width */
+            flex: 1 1 0; /* Allow flexing */
+            gap: calc(var(--form-spacing-unit) * 0.5); /* Use defined spacing */
         }
 
         .form-field-group label {
-            font-size: 13px;
-            color: var(--text-gray-label);
-            margin-bottom: 4px;
-            font-weight: 500;
+            font-size: var(--form-font-size-base); /* Use defined base font size */
+            color: var(--form-secondary-color); /* Darker label color */
+            margin-bottom: 0; /* Gap handled by parent flex */
+            font-weight: 600; /* Bolder font weight */
         }
 
         .input-group {
             display: flex;
             align-items: center;
-            background: var(--bg-color);
-            border: 1px solid var(--input-border);
-            border-radius: 8px;
-            padding: 0 12px;
-            height: 36px;
-            transition: all var(--transition-speed) ease;
+            background: var(--form-input-bg); /* White background */
+            border: 1.5px solid var(--form-border-color); /* Use defined border */
+            border-radius: var(--form-border-radius); /* Use defined border-radius */
+            padding: var(--form-control-padding-y) var(--form-control-padding-x); /* Use defined padding */
+            height: auto; /* Height determined by content */
+            transition: var(--form-transition); /* Use defined transition */
+            flex-grow: 1; /* Allow to grow */
         }
 
         .input-group:hover {
-            border-color: var(--primary-color);
+            border-color: var(--form-primary-color); /* Primary color on hover */
         }
 
         .input-group:focus-within {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px var(--primary-light);
+            border-color: var(--form-primary-color); /* Primary color on focus */
+            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15); /* Defined focus shadow */
         }
 
         .input-group input {
             border: none;
             background: transparent;
-            padding: 0;
-            font-size: 14px;
+            padding: 0; /* Padding handled by input-group */
+            font-size: var(--form-font-size-base); /* Use defined base font size */
             width: 100%;
             outline: none;
-            color: var(--text-primary);
+            color: var(--form-text-color); /* Use defined text color */
             line-height: 1.5;
         }
 
         .input-group input[readonly] {
-            color: var(--text-secondary);
+            color: var(--form-text-muted); /* Muted text color for readonly */
             cursor: default;
+            background-color: var(--form-input-readonly-bg); /* Readonly background */
+            border-radius: var(--form-border-radius); /* Apply border-radius to readonly input if needed, though group has it */
+            padding: var(--form-control-padding-y) var(--form-control-padding-x); /* Apply padding to readonly input */
+            border: 1px solid var(--form-border-color-light); /* Light border for readonly */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Inset shadow for readonly */
+        }
+         /* Reset input style when it's inside input-group */
+         .input-group input[readonly] {
+             border: none; /* Remove border from input */
+             padding: 0; /* Remove padding from input */
+             background: transparent; /* Transparent background */
+             box-shadow: none; /* Remove shadow from input */
+             color: var(--form-text-color); /* Use standard text color inside group */
+             cursor: text; /* Use text cursor */
+         }
+        .input-group input[readonly] + .input-addon { /* Style addon next to readonly input */
+            color: var(--form-text-color);
         }
 
         .input-addon {
-            font-size: 13px;
-            color: var(--text-secondary);
+            font-size: var(--form-font-size-base); /* Use defined base font size */
+            color: var(--form-text-color); /* Use defined text color */
             margin-left: 4px;
             flex-shrink: 0;
         }
 
         .input-group .fa-exchange-alt {
-            color: var(--primary-color);
-            margin: 0 8px;
-            flex-shrink: 0;
+            /* This rule is no longer needed as the icon is moved */
         }
 
         .input-group i:not(.fa-exchange-alt) {
-            color: var(--primary-color);
+            color: var(--form-primary-color); /* Primary color for icons */
             margin-left: 4px;
             flex-shrink: 0;
         }
 
         .input-group .fa-exclamation-triangle {
-            color: var(--warning-color);
+            color: var(--profit-warning-color); /* Specific warning color */
         }
 
         .form-actions {
             display: flex;
             justify-content: flex-end;
-            gap: 12px;
-            padding: 16px 20px;
-            background: var(--bg-color);
-            border-bottom-left-radius: var(--border-radius);
-            border-bottom-right-radius: var(--border-radius);
-            border-top: 1px solid var(--border-light);
+            gap: var(--form-spacing-unit); /* Use defined spacing */
+            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5); /* Use defined spacing */
+            background: var(--form-input-bg); /* White background */
+            border-top: 1.5px solid var(--form-primary-color); /* Primary color border */
+            border-bottom-left-radius: var(--form-border-radius);
+            border-bottom-right-radius: var(--form-border-radius);
         }
+        @media (max-width: 600px) { /* Adjusted media query */
+             .form-actions {
+                 padding: calc(var(--form-spacing-unit) * 1.5) calc(var(--form-spacing-unit) * 2); /* Adjusted padding on mobile */
+                 justify-content: space-between; /* Space between buttons on mobile */
+                 gap: var(--form-spacing-unit); /* Adjusted gap on mobile */
+             }
+         }
 
         .form-btn {
-            min-width: 100px;
-            padding: 8px 20px;
-            font-size: 14px;
-            border-radius: 8px;
-            border: 1.5px solid;
-            font-weight: 600;
+            gap: calc(var(--form-spacing-unit) * 0.8); /* Use defined spacing */
+            padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5); /* Use defined padding */
+            font-size: var(--form-font-size-base); /* Use defined base font size */
+            font-weight: 600; /* Bolder font weight */
+            border-radius: var(--form-border-radius); /* Use defined border-radius */
+            border: 1.5px solid transparent; /* Transparent border */
             cursor: pointer;
-            transition: all var(--transition-speed) ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            transition: var(--form-transition); /* Use defined transition */
+            line-height: 1.4;
+            white-space: nowrap;
+            min-width: 100px; /* Minimum width */
+             display: inline-flex; /* Ensure flex properties */
+             align-items: center;
+             justify-content: center; /* Center content */
+        }
+         .form-btn i { /* Style for icons within buttons */
+            font-size: 1em;
+            margin-right: 4px;
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            line-height: 1;
         }
 
         .form-btn-cancel {
-            color: var(--danger-color);
-            background: var(--card-bg);
-            border-color: var(--danger-color);
+            background-color: transparent; /* Transparent background */
+            color: var(--form-danger-color); /* Danger color text */
+            border-color: var(--form-danger-color); /* Danger color border */
         }
-
         .form-btn-cancel:hover {
-            background: var(--danger-color);
-            color: white;
+             background-color: var(--form-danger-color); /* Danger color background on hover */
+             color: white; /* White text on hover */
+             transform: translateY(-2px); /* Hover effect */
+             box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); /* Danger hover shadow */
         }
 
         .form-btn-confirm {
-            color: var(--confirm-color);
-            background: var(--card-bg);
-            border-color: var(--confirm-color);
+            background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%); /* Gradient background */
+            color: var(--form-secondary-color); /* Secondary color text */
+            border: none;
+            box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15); /* Primary shadow */
+        }
+        .form-btn-confirm:hover {
+             background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%); /* Reversed gradient on hover */
+             transform: translateY(-2px); /* Hover effect */
+             box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); /* Primary hover shadow */
         }
 
-        .form-btn-confirm:hover {
-            background: var(--confirm-color);
-            color: white;
-        }
+         .form-btn:focus-visible {
+             outline: 1.5px solid var(--form-primary-color);
+             outline-offset: 1px;
+             box-shadow: none;
+         }
+         .form-btn:active {
+             transform: scale(0.98); /* Active effect */
+         }
+         @media (max-width: 600px) { /* Adjusted media query */
+             .form-btn {
+                 flex-grow: 1; /* Allow buttons to grow on mobile */
+                 max-width: 48%; /* Limit max width on mobile */
+             }
+         }
 
         textarea.form-control {
-            height: 80px;
-            padding: 12px;
+            height: 80px; /* Keep defined height */
+            padding: var(--form-control-padding-y) var(--form-control-padding-x); /* Use defined padding */
             width: 100%;
-            border: 1px solid var(--input-border);
-            border-radius: 8px;
-            resize: vertical;
+            border: 1.5px solid var(--form-border-color); /* Use defined border */
+            border-radius: var(--form-border-radius); /* Use defined border-radius */
+            resize: vertical; /* Allow vertical resizing */
             font-family: inherit;
-            font-size: 14px;
-            color: var(--text-primary);
-            background: var(--bg-color);
-            transition: all var(--transition-speed) ease;
+            font-size: var(--form-font-size-base); /* Use defined base font size */
+            color: var(--form-text-color); /* Use defined text color */
+            background: var(--form-input-bg); /* White background */
+            transition: var(--form-transition); /* Use defined transition */
         }
 
         textarea.form-control:hover {
-            border-color: var(--primary-color);
+            border-color: var(--form-primary-color); /* Primary color on hover */
         }
 
         textarea.form-control:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px var(--primary-light);
+            border-color: var(--form-primary-color); /* Primary color on focus */
+            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15); /* Defined focus shadow */
         }
 
-        .form-field-group.span-2 { grid-column: span 2; }
-        .form-field-group.span-3 { grid-column: span 3; }
-        .form-field-group.full-width { grid-column: span 4; }
-
+        /* Responsive adjustments for layout */
         @media (max-width: 768px) {
-            .form-grid { 
-                display: grid; 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 16px; 
+             .form-body {
+                 padding: calc(var(--form-spacing-unit) * 2);
+             }
+            .form-row {
+                gap: calc(var(--form-spacing-unit) * 1.2); /* Adjusted gap on smaller screens */
             }
-            .form-field-group.span-2, 
-            .form-field-group.span-3, 
-            .form-field-group.full-width { 
-                grid-column: span 2; 
-            }
-            .form-body {
-                padding: 16px;
+            .form-field-group.span-2,
+            .form-field-group.span-3,
+            .form-field-group.full-width {
+                flex: 1 1 100%; /* Stack these on smaller screens */
+                min-width: unset;
             }
         }
 
         @media (max-width: 480px) {
-            .form-grid { 
-                display: grid; 
-                grid-template-columns: 1fr; 
-                gap: 12px; 
-            }
-            .form-field-group.span-2, 
-            .form-field-group.span-3, 
-            .form-field-group.full-width { 
-                grid-column: span 1; 
-            }
-            .form-row { 
-                flex-direction: column; 
-                gap: 12px; 
-            }
-            .form-field-group { 
-                min-width: unset; 
-                flex: 1 1 auto; 
+            .form-header {
+                padding: calc(var(--form-spacing-unit) * 1.5) calc(var(--form-spacing-unit) * 2.5);
             }
             .form-body {
-                padding: 12px;
+                 padding: calc(var(--form-spacing-unit) * 1.5);
+            }
+            .form-section-title {
+                margin-bottom: var(--form-spacing-unit);
+                padding-bottom: var(--form-spacing-unit) * 0.5;
+            }
+            .form-row {
+                flex-direction: column;
+                gap: var(--form-spacing-unit); /* Adjusted gap on mobile */
+                margin-bottom: var(--form-spacing-unit);
+            }
+            .form-row:last-child {
+                margin-bottom: 0;
+            }
+            .form-field-group {
+                gap: calc(var(--form-spacing-unit) * 0.3); /* Adjusted gap */
+            }
+             .input-group {
+                 padding: calc(var(--form-control-padding-y) * 0.8) calc(var(--form-control-padding-x) * 0.8); /* Adjusted padding */
+                 height: auto;
+             }
+              .input-group input, textarea.form-control {
+                  font-size: var(--form-font-size-base); /* Keep base size or slightly smaller */
+                  padding: 0;
+              }
+            textarea.form-control {
+                 height: 60px; /* Slightly smaller height on small mobile */
             }
             .form-actions {
-                padding: 12px;
+                padding: calc(var(--form-spacing-unit) * 1.2) calc(var(--form-spacing-unit) * 1.5);
+                 gap: var(--form-spacing-unit);
+            }
+            .form-btn {
+                padding: calc(var(--form-control-padding-y) * 0.8) calc(var(--form-control-padding-x) * 1.2); /* Adjusted padding */
+                 min-width: 80px;
+                 gap: calc(var(--form-spacing-unit) * 0.5);
             }
         }
+
     </style>
 </head>
 <body>
     <div class="adjust-order-value-form">
-        <div class="form-header">Điều chỉnh trị giá đơn hàng</div>
+        <div class="form-header"><i class="fas fa-coins"></i> Điều chỉnh trị giá đơn hàng</div>
         <form id="editChargesForm">
             <div class="form-body">
                 <div class="form-section-title">
@@ -303,12 +385,12 @@
                             <span class="input-addon">USD</span>
                         </div>
                     </div>
+                    <i class="fas fa-exchange-alt" style="color: var(--form-primary-color);"></i>
                     <div class="form-field-group">
                         <label for="exchangeRateInput">Tỷ giá:</label>
                         <div class="input-group">
                             <input type="text" id="exchangeRateInput" name="exchange_rate" value="127.500" readonly>
                             <span class="input-addon">VNĐ</span>
-                            <i class="fas fa-exchange-alt"></i>
                         </div>
                     </div>
                     <div class="form-field-group">

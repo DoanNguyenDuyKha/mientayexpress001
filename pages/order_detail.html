@@ -200,13 +200,17 @@
                     </section>
                     <section class="card detail-section">
                         <div class="card-header section-header">
-                            <div class="header-left"> <h2 class="card-title">Thông số kiện hàng</h2> </div>
+                            <div class="header-left">
+                               <h2 class="card-title"><i class="fa-solid fa-box icon"></i> Thông số kiện hàng</h2>
+                            </div>
                             <div class="header-actions">
                                 <button class="icon-button toggle-arrow" title="Ẩn"><i class="fa-solid fa-chevron-up arrow up"></i></button>
-                                <button class="icon-button" id="editPackageDetailBtn" title="Chỉnh sửa Thông số kiện hàng"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="icon-button edit-section" id="editPackageDetailBtn" title="Chỉnh sửa Thông số kiện hàng">
+                                    <i class="fa-solid fa-pen-to-square edit-value-icon"></i>
+                                </button>
                             </div>
                         </div>
-                        <div class="card-body section-body agent-invoice-body table-scroll">
+                        <div class="card-body section-body bill-info-body">
                              <div class="data-pair">
                                  <span class="label">Nội dung hàng:</span>
                                  <span class="value" id="packageContentValue">Hàng cá nhân</span>
@@ -834,7 +838,7 @@
             }
 
             // Gắn sự kiện cho nút edit Bill Info (dùng loadModalContentHtml)
-            document.querySelectorAll('.detail-section .edit-section').forEach(function(btn) {
+            document.querySelectorAll('.detail-section .edit-section:not(#editPackageDetailBtn)').forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     loadModalContentHtml(
                         '../form_package_detail/edit-bill-info-section.html',
@@ -1302,6 +1306,26 @@
                 window.location.href = 'pickup-package.html';
             });
         }
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lắng nghe click vào nút mũi tên trên header của từng card
+        document.querySelectorAll('.detail-section .toggle-arrow').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Tìm tới card-section chứa nút này
+                const card = btn.closest('.detail-section');
+                if (!card) return;
+                // Tìm tới phần body cần ẩn/hiện
+                const body = card.querySelector('.section-body');
+                if (!body) return;
+                // Toggle class collapsed
+                body.classList.toggle('collapsed');
+                // Xoay mũi tên
+                const arrow = btn.querySelector('.arrow');
+                if (arrow) arrow.classList.toggle('collapsed');
+            });
+        });
+    });
     </script>
 </body>
 </html>
