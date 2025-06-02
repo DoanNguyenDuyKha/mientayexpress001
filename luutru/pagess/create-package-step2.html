@@ -156,7 +156,7 @@
             <section class="page-header">
                  <div class="page-header-left">
                      <h1 class="page-title">Tạo đơn hàng</h1>
-                     <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Tạo đơn hàng</a> / <span>Tạo đơn hàng bước 2</span> </nav>
+                     <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Tạo đơn hàng</a> / <span>Step 2</span> </nav>
                  </div>
              </section>
 
@@ -391,7 +391,7 @@
                                                        <td><label for="item_total_4" class="visually-hidden">Tổng giá dòng 4</label><input type="number" step="any" id="item_total_4" name="item_total[]" value="60" readonly></td>
                                                    </tr>
                                               </tbody>
-                                              <tfoot> <tr> <td colspan="5"><strong>Tổng trị giá đơn hàng:</strong></td> <td><strong id="total-order-value">5275</strong> VNĐ</td> </tr> </tfoot>
+                                              <tfoot> <tr> <td colspan="5"><strong>Tổng trị giá đơn hàng:</strong></td> <td><strong id="total-order-value">5275</strong></td> </tr> </tfoot>
                                           </table>
                                       </div>
                                        <button type="button" class="button secondary small add-item-button" onclick="addItemRow(event)"> <i class="fas fa-plus"></i> Thêm dòng </button>
@@ -446,9 +446,6 @@
          const currentTimeSpan = document.getElementById('current-time');
          const currentYearSpan = document.getElementById('current-year');
          const fullscreenBtn = document.getElementById('fullscreen-btn');
-
-        // Biến mới để lưu trữ Data URL của ảnh đầu tiên được chọn
-         let selectedImageDataUrl = '';
 
          const manageBodyScroll = () => {
              const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
@@ -575,7 +572,6 @@
             updateTotalOrderValue();
             calculateAllItemTotals();
             ensureAddButtonOnLastRow();
-            updateTotalOrderValue(); // Ensure total is updated on load
          });
 
        function handleFormSubmit(event) {
@@ -613,9 +609,6 @@
                event.preventDefault();
                return false;
            }
-
-           // Lưu dữ liệu bước 2 vào localStorage trước khi chuyển trang
-           saveStep2ToLocalStorage();
 
            const formData = new FormData(form);
            const fileInput = document.getElementById('shipment_images');
@@ -664,10 +657,6 @@
        function handleFileSelection(event) {
            const fileListDisplay = document.getElementById('selected_files_list');
            const files = event.target.files;
-
-            // Reset Data URL khi chọn file mới
-            selectedImageDataUrl = '';
-
            fileListDisplay.innerHTML = ''; // Clear existing previews/list
            const list = document.createElement('ul');
            list.className = 'file-list';
@@ -710,13 +699,6 @@
                            img.alt = file.name;
                            img.className = 'upload-image-preview'; // Add a class for styling
                            filePreviewContainer.appendChild(img);
-
-                            // Lưu Data URL của ảnh đầu tiên được chọn
-                            if (index === 0) {
-                                selectedImageDataUrl = e.target.result;
-                                console.log('Selected image Data URL stored.', selectedImageDataUrl.substring(0, 50) + '...'); // Log a part of the URL
-                            }
-
                        } else {
                             // If not an image, add a generic file icon
                             const fileIcon = document.createElement('div');
@@ -749,8 +731,6 @@
 
             } else {
                 fileListDisplay.innerHTML = '<span class="no-files-selected"><i>Chưa chọn file nào.</i></span>';
-                 selectedImageDataUrl = ''; // Clear Data URL if no files are selected
-                 console.log('No files selected. selectedImageDataUrl cleared.');
             }
         }
 
@@ -758,27 +738,13 @@
             const removeButton = event.target.closest('.remove-file-btn');
             if (removeButton) {
                 const fileNameToRemove = removeButton.dataset.fileName;
-                const listItem = removeButton.closest('li');
-                listItem.remove();
+                removeButton.closest('li').remove();
 
                 const fileListDisplay = document.getElementById('selected_files_list');
                 const remainingItems = fileListDisplay.querySelectorAll('li');
                 if (remainingItems.length === 0) {
                      fileListDisplay.innerHTML = '<span class="no-files-selected"><i>Chưa chọn file nào.</i></span>';
                      document.getElementById('shipment_images').value = '';
-                     selectedImageDataUrl = ''; // Clear Data URL if all files are removed
-                     console.log('All files removed. selectedImageDataUrl cleared.');
-                } else {
-                    // Nếu ảnh đầu tiên bị xóa, cập nhật selectedImageDataUrl với ảnh đầu tiên mới
-                    const firstRemainingFileItem = fileListDisplay.querySelector('.file-item');
-                    const firstRemainingImage = firstRemainingFileItem?.querySelector('img.upload-image-preview');
-                    if (firstRemainingImage) {
-                         selectedImageDataUrl = firstRemainingImage.src;
-                          console.log('First image removed. Updated selectedImageDataUrl.', selectedImageDataUrl.substring(0, 50) + '...');
-                    } else {
-                         selectedImageDataUrl = ''; // Nếu không còn ảnh nào là ảnh preview
-                          console.log('First image removed and no other images remain. selectedImageDataUrl cleared.');
-                    }
                 }
              }
         }
@@ -803,20 +769,7 @@
             const totalInputs = document.querySelectorAll('#shipment-items-tbody input[name="item_total[]"]');
             totalInputs.forEach(input => { grandTotal += parseFloat(input.value) || 0; });
             const totalValueDisplay = document.getElementById('total-order-value');
-            // Manually format number with dot as thousands separator
-            if(totalValueDisplay) {
-                // Convert to string, remove any existing formatting, parse as integer
-                let numberString = String(Math.round(grandTotal)); // Round to nearest whole number
-                // Add dots every three digits from the right
-                let formattedString = '';
-                for (let i = numberString.length - 1; i >= 0; i--) {
-                    formattedString = numberString[i] + formattedString;
-                    if (i > 0 && (numberString.length - i) % 3 === 0) {
-                        formattedString = '.' + formattedString;
-                    }
-                }
-                totalValueDisplay.textContent = formattedString;
-            }
+            if(totalValueDisplay) { totalValueDisplay.textContent = grandTotal.toFixed(0); }
         }
 
        function addDimensionRow() {
@@ -1299,9 +1252,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ops_coord: step1Data.ops_coord,
             cs_handler: step1Data.cs_handler,
             dimensions: dimensions,
-            product_name: productName,
-             // Thêm Data URL của ảnh vào dữ liệu
-            shipmentImage: selectedImageDataUrl // Lưu Data URL của ảnh đầu tiên
+            product_name: productName
         };
 
         // Lưu vào localStorage
@@ -1311,79 +1262,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Lưu trạng thái vào sessionStorage để biết nguồn chuyển trang
         sessionStorage.setItem('fromCreatePackageStep2', 'true');
         window.location.href = 'order_detail.html';
-    }
-
-    // Hàm thu thập dữ liệu form bước 2
-    function collectStep2FormData() {
-        const formData = {};
-        const form = document.getElementById('create-order-step2-form');
-
-        // Lấy thông tin kiện hàng (dimensions)
-        formData.dimensions = [];
-        form.querySelectorAll('#dimension-rows .dimension-row').forEach(row => {
-            const dim = {
-                length: row.querySelector('input[name="dim_length[]"]')?.value,
-                width: row.querySelector('input[name="dim_width[]"]')?.value,
-                height: row.querySelector('input[name="dim_height[]"]')?.value,
-                weight: row.querySelector('input[name="dim_weight[]"]')?.value
-            };
-            // Chỉ thêm vào nếu có ít nhất một giá trị được nhập
-            if (Object.values(dim).some(val => val)) {
-                 formData.dimensions.push(dim);
-            }
-        });
-        formData.dimFactor = form.querySelector('#dim_factor')?.value;
-        formData.productName = form.querySelector('#product_name')?.value;
-        formData.shipmentNotes = form.querySelector('#shipment_notes')?.value;
-        formData.isFragile = form.querySelector('input[name="is_fragile"]')?.checked;
-        formData.imageLink = form.querySelector('#image_link')?.value;
-
-        // Lấy chi tiết hàng hóa (items) cho kiện đang chọn
-        // Lưu ý: Cách này chỉ lấy chi tiết cho kiện đang hiển thị.
-        // Cần logic phức tạp hơn nếu muốn lưu chi tiết cho TẤT CẢ các kiện.
-        // Tạm thời lưu theo kiện đang hiển thị hoặc cần chỉnh sửa cấu trúc HTML/JS để gom tất cả.
-        // Hiện tại, form chỉ hiển thị chi tiết cho 1 kiện tại 1 thời điểm dựa vào #package_select
-        // Giả định đơn giản: gom tất cả các dòng item đang có trong bảng
-        formData.shipmentItems = [];
-        form.querySelectorAll('#shipment-items-tbody tr').forEach(row => {
-             const item = {
-                name: row.querySelector('textarea[name="item_name[]"]')?.value,
-                quantity: row.querySelector('input[name="item_quantity[]"]')?.value,
-                unit: row.querySelector('select[name="item_unit[]"]')?.value,
-                price: row.querySelector('input[name="item_price[]"]')?.value,
-                total: row.querySelector('input[name="item_total[]"]')?.value
-             };
-             // Chỉ thêm vào nếu có tên hàng hóa
-             if (item.name?.trim()) {
-                  formData.shipmentItems.push(item);
-             }
-        });
-         formData.totalOrderValue = document.getElementById('total-order-value')?.textContent; // Lấy tổng giá trị
-
-        // Files are handled separately, we won't store file data in localStorage due to size limits.
-        // We can indicate if files were selected.
-        formData.hasShipmentImages = document.getElementById('shipment_images')?.files.length > 0;
-         // For actual submission, files would be appended to FormData.
-
-         // Thêm Data URL của ảnh vào formData
-         formData.shipmentImage = selectedImageDataUrl; // Lưu Data URL của ảnh đầu tiên
-
-        return formData;
-    }
-
-    // Hàm lưu dữ liệu bước 2 vào localStorage
-    function saveStep2ToLocalStorage() {
-        const step2Data = collectStep2FormData();
-        // Lấy dữ liệu bước 1 (nếu có)
-        const step1Data = JSON.parse(localStorage.getItem('createPackageStep1') || '{}');
-
-        // Kết hợp dữ liệu bước 1 và bước 2
-        const combinedData = { ...step1Data, ...step2Data };
-
-        // Lưu lại vào localStorage, có thể dùng key mới hoặc cập nhật key cũ
-        // Sử dụng key mới 'createPackageWizardData' để lưu toàn bộ quá trình
-        localStorage.setItem('createPackageWizardData', JSON.stringify(combinedData));
-         console.log('Saved combined step 1 & 2 data to localStorage:', combinedData);
     }
     </script>
 </body>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
 @media (max-width: 576px) {
   .header-search-input {
@@ -2008,6 +2009,28 @@
                 }
             }
             // ... existing code ...
+        });
+
+        // Hàm xuất Excel cho bảng đơn hàng
+        function exportOrderTableToExcel() {
+            var table = document.getElementById('orderTable');
+            if (!table) {
+                alert('Không tìm thấy bảng đơn hàng!');
+                return;
+            }
+            var wb = XLSX.utils.table_to_book(table, {sheet: "Đơn hàng"});
+            XLSX.writeFile(wb, 'danh_sach_don_hang.xlsx');
+        }
+
+        // Gắn sự kiện cho nút Xuất DEBIT
+        document.addEventListener('DOMContentLoaded', function() {
+            var exportBtn = document.querySelector('.action-row .button.secondary');
+            if(exportBtn && exportBtn.textContent.includes('Xuất DEBIT')) {
+                exportBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    exportOrderTableToExcel();
+                });
+            }
         });
     </script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
