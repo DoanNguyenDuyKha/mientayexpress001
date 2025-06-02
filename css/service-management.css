@@ -161,7 +161,7 @@
 #serviceTable tbody tr:hover {
     background: var(--accent-light);
     box-shadow: 0 1px 8px rgba(0,0,0,0.1);
-    transform: translateY(-3px);
+    /* transform: translateY(-3px); */
 }
 
 #serviceTable tbody tr td:first-child {
@@ -927,15 +927,6 @@ body.modal-open {
     flex-grow: 0; /* Don't grow */
     width: auto; /* Allow width to be determined by content */
     margin-right: 0; /* Remove potential default right margin */
-}
-
-/* Style adjustments for Add Service Modal when in add-mode - Keep if any specific add-mode styles are needed */
-/* Example: Specific header icon color if different from edit mode */
-/* .modal-container.add-mode .modal-title .icon { color: black; } */
-
-/* Modal Xác nhận Xóa Dịch Vụ */
-#deleteServiceModalOverlay {
-    /* Inherits from .modal-overlay */
 }
 
 #deleteServiceModal .modal-container.small-modal {

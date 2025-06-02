@@ -81,7 +81,7 @@ body {
 
 .data-section:hover {
     box-shadow: 0 10px 25px 0 rgba(79,70,229,0.08);
-    transform: translateY(-1.5px) scale(1.001);
+    /* transform: translateY(-1.5px) scale(1.001); */
 }
 
 .section-header {

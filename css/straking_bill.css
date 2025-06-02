@@ -1163,7 +1163,7 @@ body, .straking-content-screenshot {
 }
 .card:hover {
     box-shadow: 0 16px 40px 0 rgba(79,70,229,0.13);
-    transform: translateY(-3px) scale(1.005);
+    /* transform: translateY(-3px) scale(1.005); */
 }
 
 .card-header, .info-header-ss, .history-header-ss {

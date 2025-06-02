@@ -125,7 +125,7 @@ body {
     cursor: pointer;
 }
 .stat-card:hover {
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
     box-shadow: var(--shadow-md);
     border-color: var(--primary-hover);
     background: var(--border-light);

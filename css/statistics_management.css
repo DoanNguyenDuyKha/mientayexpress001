@@ -365,7 +365,7 @@
 }
 .button.primary:hover, .filter-apply-btn:hover {
     box-shadow: 0 8px 24px rgba(99,102,241,0.18);
-    transform: translateY(-2px) scale(1.03);
+    /* transform: translateY(-2px) scale(1.03); */
     filter: brightness(1.08);
 }
 .button.primary:active::after, .filter-apply-btn:active::after {

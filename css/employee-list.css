@@ -235,7 +235,7 @@ body {
 }
 
 .btn-add-employee:hover {
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
     box-shadow: var(--shadow-md);
 }
 
@@ -263,7 +263,6 @@ body {
 }
 
 .table-area.card:hover {
-    transform: none;
     box-shadow: var(--shadow-md);
 }
 
@@ -381,9 +380,6 @@ body {
     margin: 0 3px;
 }
 
-.icon-button:hover {
-    transform: translateY(-2px);
-}
 
 .icon-button.icon-view:hover {
     color: var(--accent);
@@ -547,11 +543,11 @@ body {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    /* transition: all 0.2s ease; */
 }
 
 .modal-footer .btn-primary:hover {
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
     box-shadow: 0 4px 6px rgba(255, 214, 0, 0.2);
 }
 
