@@ -463,11 +463,11 @@ button:disabled {
   box-shadow: 0 4px 16px rgba(255,214,0,0.12);
   border-left: 4px solid #FFD600;
 }
-
+/* 
 .menu-items li a:hover::before,
 .menu-items li a.active::before {
   transform: scaleY(1);
-}
+} */
 
 
 .menu-items li a .icon {
@@ -555,10 +555,10 @@ button:disabled {
 .sidebar-toggle-desktop:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
-
+/* 
 .sidebar-toggle-desktop i {
   transition: transform var(--transition-speed) ease;
-}
+} */
 
 .sidebar-overlay {
   position: fixed;
@@ -694,7 +694,7 @@ button:disabled {
 .notification-button:hover {
   color: var(--accent);
   background: white;
-  transform: translateY(-1px);
+  /* transform: translateY(-1px); */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -790,7 +790,7 @@ button:disabled {
 
 .notification-item:hover {
   background-color: var(--primary-light);
-  transform: translateX(5px);
+  /* transform: translateX(5px); */
   background: rgba(79, 70, 229, 0.05);
 }
 
@@ -1806,7 +1806,7 @@ button:disabled {
   padding: 1rem 1.5rem;
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 0.2rem;
   box-shadow: none;
   padding: 10px;
 }
@@ -1830,6 +1830,7 @@ button:disabled {
   color: #fff;
   font-weight: 600;
   border: none;
+  background: var(--receive-color);
   box-shadow: 0 2px 8px rgba(79,70,229,0.10);
   margin: 0.5em;
 }
