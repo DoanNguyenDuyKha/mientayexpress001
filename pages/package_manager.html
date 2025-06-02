@@ -1417,17 +1417,24 @@
                     // Cập nhật cột ĐL TT (index 13)
                     const dlttCell = row.children[13];
                     if (dlttCell) {
-                        if (dlttText === 'Paid') {
-                            dlttCell.innerHTML = '<span class="status-badge status-paid">Paid</span>';
-                        } else if (dlttText === 'Unpaid') {
-                            dlttCell.innerHTML = '<span class="status-badge status-unpaid">Unpaid</span>';
-                        } else if (dlttText === 'Đã nhận') {
+                        // Chỉnh sửa logic để hiển thị "Đã thanh toán" cho trạng thái 'Paid'
+                        if (dlttText === 'Paid' || dlttText === 'Đã thanh toán' || dlttText === 'Đã thanh toán đủ') { // Added || 'Đã thanh toán đủ'
+                            dlttCell.innerHTML = '<span class="status-badge status-paid">Đã thanh toán</span>'; // Changed text to 'Đã thanh toán'
+                        } else if (dlttText === 'Unpaid' || dlttText === 'Chưa thanh toán') { // Added || 'Chưa thanh toán'
+                            dlttCell.innerHTML = '<span class="status-badge status-unpaid">Chưa thanh toán</span>'; // Changed text to 'Chưa thanh toán'
+                        } else if (dlttText === 'Thanh toán một phần') { // Added partial payment handling
+                             dlttCell.innerHTML = '<span class="status-badge status-warning">Thanh toán một phần</span>';
+                        }
+                        // Các trạng thái khác như 'Đã nhận', 'Hủy' có thể không nên áp dụng cho cột thanh toán này,
+                        // nhưng giữ lại fallback nếu cần
+                        else if (dlttText === 'Đã nhận') {
                             dlttCell.innerHTML = '<span class="status-badge status-received">Đã nhận</span>';
                         } else if (dlttText === 'Hủy') {
                             dlttCell.innerHTML = '<span class="status-badge status-cancelled">Hủy</span>';
-                        } else {
-                            dlttCell.textContent = dlttText;
                         }
+                         else {
+                             dlttCell.textContent = dlttText; // Fallback
+                         }
                     }
                 }
             });
@@ -1561,178 +1568,10 @@
 
         });
         document.addEventListener('DOMContentLoaded', function() {
-            // Lấy danh sách đơn hàng cũ (nếu có)
-            let pickupOrders = JSON.parse(localStorage.getItem('pickupOrders') || '[]');
-            // Nếu có đơn mới ở pickupOrder (object), thêm vào mảng và xóa key cũ
-            const newOrder = JSON.parse(localStorage.getItem('pickupOrder') || '{}');
-            if (newOrder && Object.keys(newOrder).length > 0) {
-                pickupOrders.push(newOrder);
-                localStorage.setItem('pickupOrders', JSON.stringify(pickupOrders));
-                localStorage.removeItem('pickupOrder');
-            }
-
-            // Render vào bảng
-            const tbody = document.getElementById('order-table-body');
-            if (!tbody) return;
-
-            // Render pickupOrders (đơn mới) lên đầu bảng, STT sẽ được đánh lại sau
-            pickupOrders.slice().reverse().forEach((order, idx) => {
-                const idBill = 'MTE' + (Date.now() + idx).toString().slice(-8);
-                const today = new Date();
-                const ngayTao = today.toLocaleDateString('vi-VN');
-                const ngayXuat = new Date(today.getTime() + 2*24*60*60*1000).toLocaleDateString('vi-VN');
-                const tenKH = order.pickup_address ? order.pickup_address.split(',')[0] : 'Khách mới';
-                const sale = 'Phạm HĐ'; // Luôn là Phạm HĐ cho đơn mới
-                const dichVu = 'DHL';
-                const tongCuoc = '1.000.000₫';
-                // Lấy trạng thái từ order.status, nếu không có thì mặc định 'Mới tạo'
-                let status = order.status || 'Mới tạo';
-                let badge = 'status-pending', pickUp = 'Mới tạo', xuLy = 'Mới tạo';
-                if (status === 'Nhận hàng') { badge = 'status-received'; pickUp = 'Nhận hàng'; xuLy = 'Nhận hàng'; }
-                else if (status === 'Đang phát') { badge = 'status-processing'; pickUp = 'Đang phát hàng'; xuLy = 'Đang phát hàng'; }
-                else if (status === 'Hoàn tất') { badge = 'status-completed'; pickUp = 'Hoàn tất'; xuLy = 'Hoàn tất'; }
-                else if (status === 'Hủy') { badge = 'status-cancelled'; pickUp = 'Hủy'; xuLy = 'Hủy'; }
-                else if (status === 'Lỗi') { badge = 'status-unpaid'; pickUp = 'Lỗi'; xuLy = 'Lỗi'; }
-
-                const tr = document.createElement('tr');
-                tr.className = 'clickable-row';
-                tr.setAttribute('data-status', status);
-                tr.setAttribute('data-order-id', idBill); // Đảm bảo có data-order-id để đếm tab
-                tr.id = 'main-row-pickup-' + idx; // Gán ID duy nhất cho dòng chính
-                tr.innerHTML = `
-                    <td><input type="checkbox"></td>
-                    <td></td>
-                    <td><a href="order_detail.html" class="order-id-link">${idBill}</a></td>
-                    <td>${ngayTao}</td>
-                    <td>${ngayXuat}</td>
-                    <td><span class="status-badge ${badge}">${pickUp}</span></td>
-                    <td>${xuLy}</td>
-                    <td>${tenKH}</td>
-                    <td>${sale}</td>
-                    <td>${dichVu}</td>
-                    <td class="currency">${tongCuoc}</td>
-                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
-                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
-                    <td class="currency">0₫</td>
-                    <td>Tân Phú</td>
-                    <td class="action-icons">
-                        <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
-                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button>
-                        <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
-                        <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
-                        <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button>
-                    </td>
-                `;
-                tbody.insertBefore(tr, tbody.firstChild);
-
-                // Tạo và chèn dòng chi tiết cho đơn hàng mới
-                const detailsTr = document.createElement('tr');
-                detailsTr.className = 'details-row';
-                detailsTr.id = 'details-row-' + tr.id.substring('main-row-'.length); // Sử dụng ID nhất quán
-                detailsTr.style.display = 'none'; // Mặc định ẩn
-                
-                // Xây dựng HTML cho phần chi tiết đơn hàng từ dữ liệu localStorage (order object)
-                // SỬ DỤNG CÁC KEY ĐÃ THỐNG NHẤT
-                // Hàm helper để lấy giá trị từ nhiều key có thể có
-                const getValue = (obj, keys, defaultValue = 'Chưa có') => {
-                     for (const key of keys) {
-                         if (obj && obj[key] !== undefined && obj[key] !== null && obj[key] !== '') {
-                             return obj[key];
-                         }
-                     }
-                     return defaultValue;
-                };
-
-                // Hàm helper để lấy ảnh từ nhiều key có thể có
-                const getImage = (obj, keys) => {
-                    for (const key of keys) {
-                        if (obj && obj[key]) {
-                            // Check if it's an array of objects with base64
-                            if (Array.isArray(obj[key]) && obj[key].length > 0 && obj[key][0].base64) {
-                                return obj[key][0].base64;
-                            }
-                            // Check if it's an array of base64 strings
-                             if (Array.isArray(obj[key]) && obj[key].length > 0) {
-                                 // Find the first item that is a non-empty string
-                                 const base64String = obj[key].find(item => typeof item === 'string' && item.startsWith('data:image'));
-                                 if (base64String) return base64String;
-                             }
-                             // Check if it's a single base64 string
-                            if (typeof obj[key] === 'string' && obj[key].startsWith('data:image')) {
-                                return obj[key];
-                            }
-                        }
-                    }
-                    return null; // No image found
-                };
-
-                // Lấy dữ liệu chi tiết từ order object, ưu tiên các key phổ biến
-                const orderId = getValue(order, ['id', 'bill_code', 'order_id', 'IDBILL'], 'Chưa có'); // Added IDBILL
-                const refCode = getValue(order, ['refCode', 'ref_code', 'REF_Code', 'REFCODE'], 'Chưa có'); // Added REFCODE
-                const productName = getValue(order, ['productName', 'product_name', 'ten_hang', 'TENSP'], 'Chưa có'); // Added TENSP
-                // Tính tổng cân nặng và số kiện từ mảng dimensions hoặc các key khác
-                let totalDeclaredWeight = '-';
-                let packageCount = '-';
-                let calculatedWeight = 0;
-
-                // Kiểm tra key dimensions (từ bước 2)
-                if (Array.isArray(order.dimensions) && order.dimensions.length > 0) {
-                     packageCount = order.dimensions.length;
-                     calculatedWeight = order.dimensions.reduce((sum, dim) => sum + (parseFloat(dim.weight) || 0), 0);
-                     totalDeclaredWeight = calculatedWeight.toFixed(2) + ' KG';
-                } else if (order.totalWeight) { // Kiểm tra key totalWeight
-                    totalDeclaredWeight = order.totalWeight + ' KG';
-                    packageCount = order.packageCount || '-'; // Nếu có totalWeight, kiểm tra packageCount
-                } else if (order.weight) { // Kiểm tra key weight (từ bước 1 hoặc khác)
-                    totalDeclaredWeight = order.weight + ' KG';
-                    packageCount = order.packageCount || '-';
-                } else if (order.sl_kien) { // Kiểm tra key sl_kien (từ bước 2)
-                     packageCount = order.sl_kien;
-                } else if (order.packageCount) { // Kiểm tra key packageCount
-                     packageCount = order.packageCount;
-                }
-
-
-                const reweight = getValue(order, ['reweight', 're_weight'], '-');
-                const agentWeight = getValue(order, ['agentWeight', 'agent_weight'], '-');
-                const notes = getValue(order, ['shipmentNotes', 'packageNote', 'pickup_notes', 'note', 'ghi_chu'], 'Không có ghi chú');
-
-                // Lấy ảnh, kiểm tra nhiều key có thể có
-                const imageUrl = getImage(order, ['shipmentImageBase64', 'shipmentImages', 'images', 'pickup_images_base64', 'pickup_images']); // Added 'pickup_images' as it might be an array of file objects or similar
-
-                const imageHtml = imageUrl ? `
-                    <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="${imageUrl}" alt="Ảnh kiện"></div></span></div>
-                ` : '';
-
-                detailsTr.innerHTML = `
-                    <td colspan="16">
-                        <div class="details-inner-wrapper">
-                            <div class="order-details-content">
-                                <div class="detail-item"><span class="detail-label">Mã đơn hàng:</span><span class="detail-value">${orderId}</span></div>
-                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">${refCode}</span></div>
-                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">${productName}</span></div>
-                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">${packageCount}</span></div>
-                                ${imageHtml} <!-- Chèn HTML ảnh kiện đã xây dựng -->
-                                <div class="detail-item"><span class="detail-label">Tổng Cân nặng khai báo:</span><span class="detail-value">${totalDeclaredWeight}</span></div>
-                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">${reweight} KG</span></div>
-                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">${agentWeight} KG</span></div>
-                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">${notes}</span></div>
-                            </div>
-                            <div class="details-action-icons">
-                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
-                            </div>
-                        </div>
-                    </td>
-                `;
-
-                tbody.insertBefore(detailsTr, tr.nextSibling); // Chèn ngay sau dòng chính
-
-            });
             // Sau khi thêm tất cả các dòng từ localStorage, cập nhật lại UI
             reindexOrderRows(); // Đánh số lại STT
             // Lấy lại tất cả các dòng clickable-row từ DOM sau khi thêm dòng mới
-            const updatedRows = Array.from(tbody.querySelectorAll('tr.clickable-row'));
+            const updatedRows = Array.from(orderTableBody.querySelectorAll('tr.clickable-row')); // Replace tbody with orderTableBody
             filteredRows = updatedRows; // Cập nhật lại toàn bộ filteredRows
 
             updateTabCounts(); // Cập nhật số lượng trên tabs
@@ -1755,103 +1594,6 @@
                      row.children[1].textContent = stt++;
                 }
             });
-        }
-
-        // === Ví dụ hàm thêm đơn hàng mới đúng chuẩn ===
-        function addNewOrder(orderData) {
-            const tbody = document.getElementById('order-table-body');
-            const uniqueId = orderData.id; // Sử dụng orderData.id làm phần định danh duy nhất
-
-            // Tạo dòng chính
-            const newRow = document.createElement('tr');
-            newRow.className = 'clickable-row';
-            newRow.id = `main-row-${uniqueId}`; // Gán ID cho dòng chính
-            newRow.setAttribute('data-order-id', orderData.id);
-            newRow.setAttribute('data-status', 'Mới tạo'); // Giả định trạng thái ban đầu là 'Mới tạo'
-
-            newRow.innerHTML = `
-                <td><input type="checkbox"></td>
-                <td></td> <!-- STT sẽ cập nhật sau bởi reindexOrderRows -->
-                <td><a href="order_detail.html" class="order-id-link">${orderData.id}</a></td>
-                <td>${orderData.ngayTao}</td>
-                <td>${orderData.ngayXuat}</td>
-                <td><span class="status-badge status-pending">Mới tạo</span></td>
-                <td>Mới tạo</td>
-                <td>${orderData.tenKH}</td>
-                <td>${orderData.sale}</td>
-                <td>${orderData.dichVu}</td>
-                <td class="currency">${orderData.tongCuoc}</td>
-                <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
-                <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
-                <td class="currency">${orderData.hoaHong}</td>
-                <td>${orderData.chiNhanh}</td>
-                <td class="action-icons">
-                     <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
-                     <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button>
-                     <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
-                     <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
-                     <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button>
-                </td>
-            `;
-
-            // Tạo dòng chi tiết
-            const detailsRow = document.createElement('tr');
-            detailsRow.className = 'details-row'; // Đảm bảo có class này
-            detailsRow.id = `details-row-${uniqueId}`; // Đảm bảo có ID theo format details-row-uniqueId
-            detailsRow.style.display = 'none'; // Mặc định ẩn
-
-             // Cần điền dữ liệu chi tiết vào đây.
-            // Sử dụng cấu trúc mẫu từ HTML (dòng 298-318)
-            // Xây dựng HTML cho phần chi tiết đơn hàng
-            const imageHtml = orderData.anhKien ? `
-                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="${orderData.anhKien}" alt="Ảnh kiện"></div></span></div>
-            ` : '';
-
-            detailsRow.innerHTML = `
-                <td colspan="16">
-                    <div class="details-inner-wrapper">
-                        <div class="order-details-content">
-                            <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">${orderData.refCode || ''}</span></div>
-                            <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">${orderData.tenSP || ''}</span></div>
-                            <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">${orderData.slKien || ''}</span></div>
-                            ${imageHtml}
-                            <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">${orderData.canNang || ''} KG</span></div>
-                            <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">${orderData.reweight || ''} KG</span></div>
-                            <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">${orderData.canNangDaiLy || ''} KG</span></div>
-                            <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">${orderData.ghiChuCPK || ''}</span></div>
-                        </div>
-                        <div class="details-action-icons">
-                            <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                            <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
-                        </div>
-                    </div>
-                </td>
-            `;
-
-
-            // Chèn dòng chính vào đầu bảng DOM
-            tbody.insertBefore(newRow, tbody.firstChild);
-            // Chèn dòng chi tiết ngay sau dòng chính trong DOM
-            tbody.insertBefore(detailsRow, newRow.nextSibling);
-
-            // === THÊM DÒNG MỚI VÀO MẢNG filteredRows ===
-            // Lấy lại tất cả các dòng clickable-row từ DOM sau khi thêm dòng mới
-            const updatedRows = Array.from(tbody.querySelectorAll('tr.clickable-row'));
-            filteredRows = updatedRows; // Cập nhật lại toàn bộ filteredRows
-
-            // === Cập nhật lại UI sau khi thêm dòng mới ===
-            reindexOrderRows(); // Cập nhật lại STT cho tất cả các dòng HIỂN THỊ
-            updateTabCounts && updateTabCounts(); // Cập nhật số lượng trên các tab
-            updatePagination(); // Cập nhật phân trang (dựa trên filteredRows mới)
-            goToPage(1); // Chuyển về trang đầu tiên để đảm bảo đơn hàng mới được hiển thị
-
-            // Gắn lại sự kiện click cho tất cả các dòng clickable-row sau khi thêm mới
-            document.querySelectorAll('#orderTable tbody tr.clickable-row').forEach(row => {
-                 row.removeEventListener('click', showOrderDetails); // Xóa listener cũ (nếu có)
-                 row.addEventListener('click', showOrderDetails); // Thêm listener mới
-            });
-
-             //  newRow.addEventListener('click', showOrderDetails); // Sử dụng event delegation nên không cần gắn lại từng dòng
         }
 
         // === Image Modal Logic ===
@@ -2117,7 +1859,6 @@
                 tab.textContent = `${status} (${count})`;
             });
 
-            // Lưu ý: Không gọi updatePagination() ở đây nữa vì nó đã được gọi ở cuối applyFilters và goToPage.
         }
         document.addEventListener('DOMContentLoaded', function() {
             // Kiểm tra xem có dữ liệu từ create-package-step2 không
@@ -2156,6 +1897,7 @@
                         <td class="action-icons">
                             <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
                             <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button>
+                            <a href="#" class="icon-button manage-payment-btn" title="Quản lý thanh toán" data-order-id="${orderData.bill_code}"><i class="fa-solid fa-dollar-sign"></i></a>
                             <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
                             <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
                             <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button>
@@ -2202,7 +1944,7 @@
                 `;
 
                 // Thêm các hàng mới vào đầu bảng
-                tbody.insertAdjacentHTML('afterbegin', mainRowHTML + detailsRowHTML);
+                orderTableBody.insertAdjacentHTML('afterbegin', mainRowHTML + detailsRowHTML); // Replace tbody with orderTableBody
 
                 // Thêm sự kiện click cho hàng mới
                 const newRow = document.getElementById(newRowId);
@@ -2222,11 +1964,63 @@
                 updatePagination();
                 goToPage(1);
 
-                // Xóa dữ liệu đơn hàng mới khỏi localStorage sau khi đã hiển thị
-                localStorage.removeItem('currentOrderDetail');
+                
             }
         });
         // ... existing code ...
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cập nhật trạng thái thanh toán từ localStorage cho cả KH và ĐL
+            const rows = document.querySelectorAll('#order-table-body tr.clickable-row');
+            rows.forEach(row => {
+                const billCode = row.getAttribute('data-order-id');
+
+                // Cập nhật cột KH TT (index 11)
+                const paymentStatusKH = localStorage.getItem('paymentStatusKH_' + billCode);
+                if (paymentStatusKH) {
+                    row.children[11].innerHTML = paymentStatusKH === 'Đã thanh toán đủ'
+                        ? '<span class="status-badge status-paid">Đã thanh toán</span>'
+                        : (paymentStatusKH === 'Thanh toán một phần'
+                            ? '<span class="status-badge status-warning">Thanh toán một phần</span>'
+                            : '<span class="status-badge status-unpaid">Chưa thanh toán</span>');
+                }
+
+                // Cập nhật cột ĐL TT (index 12)
+                const paymentStatusDL = localStorage.getItem('paymentStatusDL_' + billCode);
+                if (paymentStatusDL) {
+                    row.children[12].innerHTML = paymentStatusDL === 'Đã thanh toán đủ'
+                        ? '<span class="status-badge status-paid">Đã thanh toán</span>'
+                        : (paymentStatusDL === 'Thanh toán một phần'
+                            ? '<span class="status-badge status-warning">Thanh toán một phần</span>'
+                            : '<span class="status-badge status-unpaid">Chưa thanh toán</span>');
+                }
+            });
+
+            // Tùy chọn: Tự động reload khi có thay đổi trạng thái từ tab khác
+            window.addEventListener('storage', function(e) {
+                // Reload khi có thay đổi trạng thái KH hoặc ĐL
+                if (e.key && (e.key.startsWith('paymentStatusKH_') || e.key.startsWith('paymentStatusDL_'))) {
+                    location.reload();
+                }
+            });
+        });
+
+        if (orderTableBody) orderTableBody.addEventListener('click', function(event) {
+            // ... existing code ...
+            const targetElement = event.target;
+
+            if (targetElement.closest('.manage-payment-btn')) {
+                event.preventDefault(); // Ngăn hành động mặc định của thẻ <a> nếu có href="#"
+                const paymentButton = targetElement.closest('.manage-payment-btn');
+                const mainRow = paymentButton.closest('tr.clickable-row');
+                const orderId = mainRow?.dataset.orderId;
+                if (orderId) {
+                    // Chuyển hướng đến trang quản lý thanh toán với orderId trên URL
+                    window.location.href = `payment-management.html?orderId=${orderId}`;
+                }
+            }
+            // ... existing code ...
+        });
     </script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
