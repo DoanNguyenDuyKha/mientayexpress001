@@ -156,7 +156,7 @@
             <section class="page-header">
                  <div class="page-header-left">
                      <h1 class="page-title">Tạo đơn hàng</h1>
-                     <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Tạo đơn hàng</a> / <span>Step 2</span> </nav>
+                     <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Tạo đơn hàng</a> / <span>Tạo đơn hàng bước 2</span> </nav>
                  </div>
              </section>
 
@@ -447,6 +447,9 @@
          const currentYearSpan = document.getElementById('current-year');
          const fullscreenBtn = document.getElementById('fullscreen-btn');
 
+        // Biến mới để lưu trữ Data URL của ảnh đầu tiên được chọn
+         let selectedImageDataUrl = '';
+
          const manageBodyScroll = () => {
              const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
              const isAnyModalVisible = document.querySelector('.modal-overlay.active, .announcement-overlay.visible');
@@ -661,6 +664,10 @@
        function handleFileSelection(event) {
            const fileListDisplay = document.getElementById('selected_files_list');
            const files = event.target.files;
+
+            // Reset Data URL khi chọn file mới
+            selectedImageDataUrl = '';
+
            fileListDisplay.innerHTML = ''; // Clear existing previews/list
            const list = document.createElement('ul');
            list.className = 'file-list';
@@ -703,6 +710,13 @@
                            img.alt = file.name;
                            img.className = 'upload-image-preview'; // Add a class for styling
                            filePreviewContainer.appendChild(img);
+
+                            // Lưu Data URL của ảnh đầu tiên được chọn
+                            if (index === 0) {
+                                selectedImageDataUrl = e.target.result;
+                                console.log('Selected image Data URL stored.', selectedImageDataUrl.substring(0, 50) + '...'); // Log a part of the URL
+                            }
+
                        } else {
                             // If not an image, add a generic file icon
                             const fileIcon = document.createElement('div');
@@ -735,6 +749,8 @@
 
             } else {
                 fileListDisplay.innerHTML = '<span class="no-files-selected"><i>Chưa chọn file nào.</i></span>';
+                 selectedImageDataUrl = ''; // Clear Data URL if no files are selected
+                 console.log('No files selected. selectedImageDataUrl cleared.');
             }
         }
 
@@ -742,13 +758,27 @@
             const removeButton = event.target.closest('.remove-file-btn');
             if (removeButton) {
                 const fileNameToRemove = removeButton.dataset.fileName;
-                removeButton.closest('li').remove();
+                const listItem = removeButton.closest('li');
+                listItem.remove();
 
                 const fileListDisplay = document.getElementById('selected_files_list');
                 const remainingItems = fileListDisplay.querySelectorAll('li');
                 if (remainingItems.length === 0) {
                      fileListDisplay.innerHTML = '<span class="no-files-selected"><i>Chưa chọn file nào.</i></span>';
                      document.getElementById('shipment_images').value = '';
+                     selectedImageDataUrl = ''; // Clear Data URL if all files are removed
+                     console.log('All files removed. selectedImageDataUrl cleared.');
+                } else {
+                    // Nếu ảnh đầu tiên bị xóa, cập nhật selectedImageDataUrl với ảnh đầu tiên mới
+                    const firstRemainingFileItem = fileListDisplay.querySelector('.file-item');
+                    const firstRemainingImage = firstRemainingFileItem?.querySelector('img.upload-image-preview');
+                    if (firstRemainingImage) {
+                         selectedImageDataUrl = firstRemainingImage.src;
+                          console.log('First image removed. Updated selectedImageDataUrl.', selectedImageDataUrl.substring(0, 50) + '...');
+                    } else {
+                         selectedImageDataUrl = ''; // Nếu không còn ảnh nào là ảnh preview
+                          console.log('First image removed and no other images remain. selectedImageDataUrl cleared.');
+                    }
                 }
              }
         }
@@ -1269,7 +1299,9 @@ document.addEventListener('DOMContentLoaded', function() {
             ops_coord: step1Data.ops_coord,
             cs_handler: step1Data.cs_handler,
             dimensions: dimensions,
-            product_name: productName
+            product_name: productName,
+             // Thêm Data URL của ảnh vào dữ liệu
+            shipmentImage: selectedImageDataUrl // Lưu Data URL của ảnh đầu tiên
         };
 
         // Lưu vào localStorage
@@ -1332,6 +1364,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // We can indicate if files were selected.
         formData.hasShipmentImages = document.getElementById('shipment_images')?.files.length > 0;
          // For actual submission, files would be appended to FormData.
+
+         // Thêm Data URL của ảnh vào formData
+         formData.shipmentImage = selectedImageDataUrl; // Lưu Data URL của ảnh đầu tiên
 
         return formData;
     }
