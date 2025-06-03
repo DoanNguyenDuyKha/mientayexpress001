@@ -446,14 +446,20 @@ function updateHeaderBlur() {
                 <div class="card-footer">
                     <nav class="pagination" aria-label="Table navigation">
                         <span class="pagination-info">Hiển thị <b>1</b> đến <b>10</b> của <b>100</b> khách hàng</span>
-                        <div class="pagination-buttons">
-                            <button class="button" disabled>Trước</button>
-                            <button class="button active" aria-current="page">1</button>
-                            <button class="button">2</button>
-                            <button class="button">3</button>
-                            <button class="button">...</button>
-                            <button class="button">10</button>
-                            <button class="button">Sau</button>
+                        <div class="pagination-buttons" style="display: flex; align-items: center; gap: 16px;">
+                            <div class="items-per-page-control">
+                                <select id="items-per-page-select" class="form-select">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                <span>khách hàng/trang</span>
+                            </div>
+                            <div class="pagination-nav-buttons"></div>
                         </div>
                     </nav>
                 </div>
@@ -881,6 +887,17 @@ function updateHeaderBlur() {
                     }
                 });
             }
+
+            // --- Pagination ---
+            const itemsPerPageSelect = document.getElementById('items-per-page-select');
+            if (itemsPerPageSelect) {
+                itemsPerPageSelect.value = itemsPerPage;
+                itemsPerPageSelect.addEventListener('change', function() {
+                    itemsPerPage = parseInt(this.value);
+                    currentPage = 1;
+                    renderCustomerTable();
+                });
+            }
         });
         (function(){
             var observer = new MutationObserver(updateHeaderBlur);
@@ -911,7 +928,7 @@ function updateHeaderBlur() {
     let filterCustomerPhone = '';
 
     let currentPage = 1;
-    const itemsPerPage = 10;
+    let itemsPerPage = 10;
 
     function renderCustomerTable() {
         const tbody = document.getElementById('customer-table-body');
@@ -989,7 +1006,13 @@ function updateHeaderBlur() {
         const paginationButtonsDiv = document.querySelector('.pagination-buttons');
         if (!paginationButtonsDiv) return;
 
-        paginationButtonsDiv.innerHTML = ''; // Xóa các nút cũ
+        let navDiv = paginationButtonsDiv.querySelector('.pagination-nav-buttons');
+        if (!navDiv) {
+            navDiv = document.createElement('div');
+            navDiv.className = 'pagination-nav-buttons';
+            paginationButtonsDiv.appendChild(navDiv);
+        }
+        navDiv.innerHTML = '';
 
         const totalPages = Math.ceil(total / itemsPerPage);
 
@@ -1001,11 +1024,9 @@ function updateHeaderBlur() {
         prevButton.onclick = () => {
             if (currentPage > 1) {
                 goToPage(currentPage - 1);
-            } else if (totalPages === 0) {
-                 // Do nothing if no pages
             }
         };
-        paginationButtonsDiv.appendChild(prevButton);
+        navDiv.appendChild(prevButton);
 
         // Các nút trang
         // Logic hiển thị nút trang: Hiển thị 3 trang xung quanh trang hiện tại và trang đầu/cuối
@@ -1032,13 +1053,13 @@ function updateHeaderBlur() {
             firstPageButton.classList.add('button');
             firstPageButton.textContent = '1';
             firstPageButton.onclick = () => goToPage(1);
-            paginationButtonsDiv.appendChild(firstPageButton);
+            navDiv.appendChild(firstPageButton);
             if (startPage > 2) {
                 const ellipsis = document.createElement('span');
                 ellipsis.textContent = '...';
                 ellipsis.style.margin = '0 5px';
                  ellipsis.style.color = '#64748b';
-                paginationButtonsDiv.appendChild(ellipsis);
+                navDiv.appendChild(ellipsis);
             }
         }
 
@@ -1053,7 +1074,7 @@ function updateHeaderBlur() {
                 }
                 pageButton.textContent = i;
                 pageButton.onclick = () => goToPage(i);
-                paginationButtonsDiv.appendChild(pageButton);
+                navDiv.appendChild(pageButton);
             }
         }
 
@@ -1063,13 +1084,13 @@ function updateHeaderBlur() {
                 ellipsis.textContent = '...';
                 ellipsis.style.margin = '0 5px';
                 ellipsis.style.color = '#64748b';
-                paginationButtonsDiv.appendChild(ellipsis);
+                navDiv.appendChild(ellipsis);
              }
             const lastPageButton = document.createElement('button');
             lastPageButton.classList.add('button');
             lastPageButton.textContent = totalPages;
             lastPageButton.onclick = () => goToPage(totalPages);
-            paginationButtonsDiv.appendChild(lastPageButton);
+            navDiv.appendChild(lastPageButton);
         }
 
 
@@ -1081,17 +1102,15 @@ function updateHeaderBlur() {
         nextButton.onclick = () => {
             if (currentPage < totalPages) {
                 goToPage(currentPage + 1);
-            } else if (totalPages === 0) {
-                 // Do nothing if no pages
             }
         };
-        paginationButtonsDiv.appendChild(nextButton);
+        navDiv.appendChild(nextButton);
 
          if (totalPages <= 1) { // Ẩn nút "Trước" và "Sau" nếu chỉ có 1 trang
              prevButton.style.display = 'none';
              nextButton.style.display = 'none';
              if (totalPages === 0) {
-                  paginationButtonsDiv.innerHTML = ''; // Clear all buttons if no customers
+                  navDiv.innerHTML = ''; // Clear all buttons if no customers
              }
         } else {
              prevButton.style.display = '';
