@@ -1830,7 +1830,6 @@ button:disabled {
   color: #fff;
   font-weight: 600;
   border: none;
-  background: var(--receive-color);
   box-shadow: 0 2px 8px rgba(79,70,229,0.10);
   margin: 0.5em;
 }
@@ -2895,6 +2894,32 @@ button:disabled {
 .items-per-page-control span {
     font-size: var(--font-size-sm); /* Cỡ chữ nhỏ */
     color: var(--text-primary); /* Màu chữ */
+}
+
+/* Responsive adjustments if needed */
+@media (max-width: 768px) {
+    .pagination-buttons {
+        flex-direction: column; /* Xếp dọc các nút và select trên màn hình nhỏ */
+        align-items: center;
+        gap: 10px; /* Khoảng cách giữa các mục khi xếp dọc */
+    }
+     .items-per-page-control {
+         margin-right: 0; /* Bỏ margin phải khi xếp dọc */
+     }
+}
+
+/* Custom style for the confirm button in the Receive Order modal */
+#receive-order-modal .button.confirm-yes {
+    background: var(--receive-color); /* Màu nền xanh */
+    color: var(--text-on-primary); /* Màu chữ trắng */
+    border: none;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2); /* Box-shadow phù hợp với màu xanh */
+}
+
+#receive-order-modal .button.confirm-yes:hover {
+    background: linear-gradient(90deg, var(--receive-color) 0%, #2563eb 100%); /* Hiệu ứng hover màu xanh đậm hơn */
+    color: var(--text-on-primary);
+    box-shadow: 0 4px 12px rgba(255, 214, 0, 0.3);
 }
 
 /* Responsive adjustments if needed */
