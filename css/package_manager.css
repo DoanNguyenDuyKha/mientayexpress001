@@ -1002,6 +1002,7 @@ button:disabled {
   animation: dropdownPop 0.3s ease forwards;
 }
 
+
 @media (max-width: 576px) {
   .user-dropdown {
     position: fixed;
@@ -1026,23 +1027,6 @@ button:disabled {
     transform: translateY(0) !important;
     display: block !important;
     z-index: 99999 !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .user-dropdown {
-    position: fixed;
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    border-radius: 16px 16px 0 0;
-    transform: translateY(100%);
-  }
-
-  .user-dropdown.show {
-    transform: translateY(0);
   }
 }
 
