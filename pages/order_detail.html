@@ -477,7 +477,8 @@
                      <button class="button warning"> <i class="fa-solid fa-dollar-sign"></i> Nhập trị giá</button>
                      <button class="button primary" onclick="window.location.href='order-tracking.html'"><i class="fa-solid fa-hashtag"></i> Nhập tracking</button>
                      <button type="button" class="button confirm" id="create-pickup-btn"> <i class="fa-solid fa-truck-pickup"></i> Tạo Pickup</button>
-                     <button class="button danger"> <i class="fa-solid fa-xmark"></i> Thoát</button>
+                     <button class="button confirm" id="complete-order-footer-btn"><i class="fa-solid fa-check"></i> Hoàn thành</button>
+                      <button class="button danger"> <i class="fa-solid fa-xmark"></i> Thoát</button>
                  </div>
              </footer>
 
@@ -1306,6 +1307,89 @@
                 window.location.href = 'pickup-package.html';
             });
         }
+
+        // Add event listener for the "Hoàn thành" button in the footer
+        const completeOrderFooterBtn = document.getElementById('complete-order-footer-btn');
+        if (completeOrderFooterBtn) {
+            completeOrderFooterBtn.addEventListener('click', function() {
+                window.location.href = 'package_manager.html';
+            });
+        }
+
+        // --- Logic for footer button visibility based on source page ---
+        const sourcePage = sessionStorage.getItem('sourcePageOrderDetail');
+        const footerActionsDiv = document.querySelector('.footer-actions');
+        const completeButton = document.getElementById('complete-order-footer-btn');
+        const otherButtons = document.querySelectorAll('.footer-actions .button:not(#complete-order-footer-btn)');
+
+        // Tạo nút 'Quay lại'
+        const backButton = document.createElement('button');
+        backButton.className = 'button secondary'; // Hoặc class phù hợp
+        backButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Quay lại';
+        backButton.style.display = 'none'; // Mặc định ẩn
+        backButton.addEventListener('click', function() {
+            window.location.href = 'create-package-step2.html'; // Điều hướng về create-package-step2
+        });
+        // Tìm vị trí để chèn nút 'Quay lại'. Có thể chèn vào footerActionsDiv.
+        if (footerActionsDiv) {
+           // Chèn nút Quay lại vào đầu footer-actions
+           footerActionsDiv.insertBefore(backButton, footerActionsDiv.firstChild);
+        }
+
+        // Default: Show all buttons (as if coming from package_manager or direct access)
+        if (footerActionsDiv) {
+             footerActionsDiv.style.display = 'flex';
+        }
+        if (completeButton) {
+             completeButton.style.display = ''; // Show by default
+        }
+        otherButtons.forEach(btn => btn.style.display = ''); // Show by default
+
+        if (sourcePage === 'create-package-step2') {
+            // If coming from create-package-step2, hide all buttons except "Hoàn thành" and show "Quay lại"
+             if (footerActionsDiv) {
+                 footerActionsDiv.style.display = 'flex'; // Keep the container visible
+             }
+             if (completeButton) {
+                 completeButton.style.display = ''; // Show "Hoàn thành"
+             }
+             otherButtons.forEach(btn => btn.style.display = 'none'); // Hide others
+             if (backButton) {
+                 backButton.style.display = ''; // Show "Quay lại"
+             }
+
+        } else if (sourcePage === 'package-manager') {
+             // If coming from package-manager, hide "Hoàn thành" and show others, hide "Quay lại"
+             if (footerActionsDiv) {
+                 footerActionsDiv.style.display = 'flex'; // Keep the container visible
+             }
+             if (completeButton) {
+                 completeButton.style.display = 'none'; // Hide "Hoàn thành"
+             }
+             otherButtons.forEach(btn => btn.style.display = ''); // Show others
+             if (backButton) {
+                 backButton.style.display = 'none'; // Hide "Quay lại"
+             }
+        } else { // Trường hợp truy cập trực tiếp hoặc từ nguồn khác không xác định
+             // Mặc định hiển thị tất cả trừ nút Quay lại
+             if (backButton) {
+                 backButton.style.display = 'none'; // Hide "Quay lại"
+             }
+             if (footerActionsDiv) {
+                  footerActionsDiv.style.display = 'flex';
+             }
+             if (completeButton) {
+                  completeButton.style.display = ''; // Show by default
+             }
+             otherButtons.forEach(btn => btn.style.display = ''); // Show by default
+        }
+
+        // Clean up the flag after checking
+        sessionStorage.removeItem('sourcePageOrderDetail');
+        // --- End logic for footer button visibility ---
+
+        sessionStorage.setItem('sourcePageOrderDetail', 'create-package-step2');
+
     </script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
