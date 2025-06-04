@@ -1,4 +1,4 @@
-/* css/payment-management.css */
+
 
 :root {
     --primary-color: #0891b2;
@@ -138,7 +138,6 @@ body, .content-wrapper, .payment-content-area {
 }
 .detail-section-original:hover {
     box-shadow: 0 16px 40px 0 rgba(79,70,229,0.18);
-    /* transform: translateY(-2px) scale(1.01); */
     background: rgba(255,255,255,0.97);
 }
 
@@ -415,7 +414,6 @@ body, .content-wrapper, .payment-content-area {
 }
 .payment-details-header .update-button-original:hover {
     box-shadow: 0 8px 24px rgba(99,102,241,0.18);
-    /* transform: translateY(-2px) scale(1.03); */
     filter: brightness(1.08);
 }
 .payment-details-header .update-button-original i { font-size: 0.9em; filter: brightness(0) invert(1);}
@@ -848,7 +846,6 @@ body, .content-wrapper, .payment-content-area {
   }
   .update-button-original {
     padding: 0.4rem 0.9rem !important;
-    /* font-size: 0.92rem !important; */
     min-width: 0 !important;
     border-radius: 10px !important;
   }
@@ -1057,7 +1054,6 @@ body.overflow-hidden { overflow: hidden; }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Date Picker Styles */
 .date-picker {
     width: 100%;
     padding: 4px 8px;
@@ -1188,14 +1184,12 @@ body.overflow-hidden { overflow: hidden; }
     fill: var(--primary-color);
 }
 
-/* Remove old input-with-icon styles that are no longer needed */
 .input-with-icon {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-/* Mobile styles for date picker */
 @media (max-width: 768px) {
     .flatpickr-calendar {
         width: 280px;
@@ -1230,7 +1224,6 @@ body, html {
 
   .detail-section-original:hover {
     box-shadow: 0 12px 32px 0 rgba(79,70,229,0.15), 0 2px 0 #fffbe6 inset;
-    /* transform: translateY(-2px); */
   }
 
   .section-header-original {

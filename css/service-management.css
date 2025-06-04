@@ -1,5 +1,3 @@
-/* css/service_manager.css */
-
 :root {
     --primary-color: #000000;
     --primary-hover: #1a1a1a;
@@ -50,7 +48,6 @@
     color: var(--accent-color);
 }
 
-
 .notification-button {
     color: var(--text-on-primary);
     background: rgba(255, 255, 255, 0.1);
@@ -67,11 +64,9 @@
 }
 
 .service-actions .button {
-    border-radius: 18px; /* Apply 10px border radius */
+    border-radius: 18px; 
 }
 
-
-/* Table Styling */
 .table-area.card {
     background: #fff;
     border: 1.5px solid #ffe066;
@@ -161,7 +156,6 @@
 #serviceTable tbody tr:hover {
     background: var(--accent-light);
     box-shadow: 0 1px 8px rgba(0,0,0,0.1);
-    /* transform: translateY(-3px); */
 }
 
 #serviceTable tbody tr td:first-child {
@@ -174,7 +168,6 @@
     border-bottom-right-radius: var(--border-radius-sm);
 }
 
-/* Custom Checkbox - Vuông, viền vàng, không hiệu ứng hoạt hình */
 #serviceTable input[type="checkbox"] {
     appearance: auto !important;
     width: auto !important;
@@ -197,7 +190,6 @@
     content: none !important;
 }
 
-/* Icon Buttons - Không scale, chỉ đổi màu khi hover */
 .icon-button {
     background: none;
     border: none;
@@ -227,7 +219,6 @@
     background: #fff0f0;
 }
 
-/* Pagination */
 .pagination-buttons .button {
     min-width: 30px;
     height: 30px;
@@ -247,9 +238,6 @@
     color: var(--accent-color);
 }
 
-
-
-/* Responsive Design */
 @media (max-width: 900px) {
     .content-wrapper {
         padding: 0.5rem;
@@ -363,7 +351,6 @@
     }
 }
 
-/* Make table scrollable on small screens */
 @media (max-width: 700px) {
     .table-wrapper {
         overflow-x: auto;
@@ -416,7 +403,6 @@
     flex-wrap: wrap;
 }
 
-/* Filter Section (Copied and adapted from customer-list.css) */
 .filter-container {
     background: white;
     border-radius: 16px;
@@ -446,7 +432,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%); /* Using accent colors from this file */
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%); 
     border-radius: 16px 16px 0 0;
 }
 
@@ -455,7 +441,7 @@
     gap: var(--base-padding);
     align-items: center;
     flex-wrap: wrap;
-    position: relative; /* To make sure filter items are above ::before */
+    position: relative; 
     z-index: 2;
 }
 
@@ -483,7 +469,7 @@
 .filter-select {
     padding: 0.6rem 1rem;
     border: 1px solid var(--border-color);
-    border-radius: 18px; /* Match other inputs */
+    border-radius: 18px; 
     background: white;
     color: var(--text-primary);
     font-size: var(--font-size-sm);
@@ -493,7 +479,7 @@
 .filter-input {
     padding: 0.6rem 1rem;
     border: 1px solid var(--border-color);
-    border-radius: 18px; /* Match other inputs */
+    border-radius: 18px; 
     background: white;
     color: var(--text-primary);
     font-size: var(--font-size-sm);
@@ -504,8 +490,8 @@
 .filter-input:focus,
 .filter-select:focus {
     outline: none;
-    border-color: var(--accent-color); /* Use accent color */
-    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.1); /* Use accent color with transparency */
+    border-color: var(--accent-color); 
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.1); 
 }
 
 .btn-filter {
@@ -529,7 +515,6 @@
     color: var(--accent-color);
 }
 
-/* Responsive adjustments for filter */
 @media (max-width: 768px) {
     .filter-container {
         padding: var(--base-padding);
@@ -567,18 +552,17 @@
      }
 }
 
-/* Modal Styling */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(30, 41, 59, 0.5); /* Darker overlay */
+    background: rgba(30, 41, 59, 0.5); 
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9998; /* Below modal content */
+    z-index: 9998; 
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -590,27 +574,27 @@
 }
 
 .modal-container {
-    background: none; /* Make container transparent */
-    border-radius: var(--border-radius); /* Keep border-radius for rounded corners effect */
-    box-shadow: none; /* Remove default shadow */
-    padding: 0; /* Remove default padding */
+    background: none; 
+    border-radius: var(--border-radius); 
+    box-shadow: none; 
+    padding: 0; 
     min-width: 320px;
     max-width: 95vw;
-    width: 500px; /* Default width */
+    width: 500px; 
     max-height: 90vh;
-    overflow-y: auto; /* Enable scrolling if content is too long */
+    overflow-y: auto; 
     display: flex;
     flex-direction: column;
     gap: 0;
-    position: relative; /* Needed for close button absolute positioning */
+    position: relative; 
     z-index: 9999;
-    transform: translateY(-20px); /* Initial state for animation */
+    transform: translateY(-20px); 
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .modal-overlay.visible .modal-container {
-    transform: translateY(0); /* Final state for animation */
+    transform: translateY(0); 
     opacity: 1;
 }
 
@@ -653,8 +637,8 @@
 }
 
 .modal-body {
-    background: var(--card-bg); /* Add white background to body */
-    padding: var(--card-padding); /* Add padding to body content */
+    background: var(--card-bg); 
+    padding: var(--card-padding); 
     line-height: 1.6;
     color: var(--text-primary);
 }
@@ -668,7 +652,7 @@
     border-top: none;
     border-bottom-left-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
-    gap: 1rem; /* Space between buttons */
+    gap: 1rem; 
 }
 
 .modal-actions {
@@ -676,7 +660,6 @@
     gap: 1rem;
 }
 
-/* Modal Form Specific Styles */
 .modal-form-group {
     margin-bottom: var(--base-padding);
     display: flex;
@@ -688,7 +671,6 @@
     font-size: var(--font-size-sm);
     color: var(--text-secondary);
     font-weight: 500;
-    /* margin-bottom: var(--base-padding); */
 }
 
 .modal-input,
@@ -701,7 +683,7 @@
     color: var(--text-primary);
     font-size: var(--font-size-base);
     width: 100%;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    box-sizing: border-box; 
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -722,9 +704,7 @@
     font-size: var(--font-size-base);
 }
 
-/* Button styles within modals - reuse existing button styles */
 .modal-container .button {
-    /* Inherit styles from global .button if needed, or define specific ones */
     padding: 0.6rem 1.2rem;
     border-radius: var(--border-radius-sm);
     cursor: pointer;
@@ -744,7 +724,7 @@
 }
 
 .modal-container .button.primary {
-    background: #6366f1; /* Assuming this is a primary button color */
+    background: #6366f1; 
     color: #fff;
     border: none;
 }
@@ -763,7 +743,6 @@
     background: var(--danger-hover);
 }
 
-/* Specific styles for confirmation modal content */
 .modal-confirmation-info {
     color: var(--text-primary);
     font-size: var(--font-size-md);
@@ -771,23 +750,20 @@
     margin-bottom: var(--base-padding);
 }
 
-/* Style for Delete Service Modal Header */
 #deleteServiceModal .modal-header {
-    background-color: var(--danger-color); /* Red background */
+    background-color: var(--danger-color); 
 }
 
 #deleteServiceModal .modal-title,
 #deleteServiceModal .modal-title .icon,
 #deleteServiceModal .modal-close-btn {
-    color: #fff; /* White text and icon color */
+    color: #fff; 
 }
 
-/* Set icon color to yellow specifically for delete modal header */
 #deleteServiceModal .modal-title .icon {
-    color: var(--accent-color); /* Yellow color from CSS variable */
+    color: var(--accent-color); 
 }
 
-/* Responsive adjustments for modals */
 @media (max-width: 600px) {
     .modal-container {
         width: 95vw;
@@ -837,73 +813,71 @@
     }
 }
 
-/* Add overflow-hidden class to body when modal is open */
 body.modal-open {
     overflow: hidden;
 }
 
-/* Common styles for modals with 2-column form layout and yellow header/footer */
 .modal-container.modal-form-layout-2col {
-    gap: 0; /* Ensure no gap between sections */
+    gap: 0; 
 }
 
 .modal-container.modal-form-layout-2col .modal-header {
-    background: #FFD700; /* Match the add-mode header background */
+    background: #FFD700; 
     color: black;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     padding: var(--base-padding) var(--card-padding);
-    border-bottom: none; /* Remove border under header */
-    margin-bottom: 0; /* Remove bottom margin */
+    border-bottom: none; 
+    margin-bottom: 0; 
 }
 
 .modal-container.modal-form-layout-2col .modal-title {
-    color: black; /* Match header text color */
+    color: black; 
 }
 
 .modal-container.modal-form-layout-2col .modal-title .icon {
-    color: black; /* Match icon color */
+    color: black; 
 }
 
 .modal-container.modal-form-layout-2col .modal-close-btn {
-    color: black; /* Match close button color */
+    color: black; 
 }
 
 .modal-container.modal-form-layout-2col .modal-body {
-    background: var(--card-bg); /* Add white background to body */
-    padding: var(--card-padding); /* Add padding to body content */
+    background: var(--card-bg); 
+    padding: var(--card-padding); 
     line-height: 1.6;
     color: var(--text-primary);
 }
 
 .modal-container.modal-form-layout-2col .modal-footer {
-    padding: var(--card-padding); /* Add padding to footer */
-    background: var(--bg-color); /* Light grey background for footer */
+    padding: var(--card-padding); 
+    background: var(--bg-color); 
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    border-top: none; /* Remove border above footer */
-    margin-top: 0; /* Remove top margin */
-    gap: 1rem; /* Space between buttons */
+    border-top: none; 
+    margin-top: 0; 
+    gap: 1rem; 
 }
 
 .modal-container.modal-form-layout-2col .modal-form-group {
-    /* Adjust display and alignment for side-by-side label and input */
-    flex-direction: row !important; /* Arrange items in a row */
-    align-items: center; /* Vertically align items in the center */
-    gap: 1rem; /* Space between label and input */
-    margin-bottom: 0.8rem; /* Add some space below each form group */
+    
+    flex-direction: row !important; 
+    align-items: center; 
+    gap: 1rem; 
+    margin-bottom: 0.8rem; 
     display: flex !important;
 }
 
 .modal-container.modal-form-layout-2col .modal-label {
-    /* Give labels a fixed width or flex-basis */
-    flex-basis: 120px; /* Adjust as needed */
-    min-width: 120px; /* Ensure it doesn't shrink below this */
-    margin-bottom: 0; /* Remove bottom margin from label */
+    
+    flex-basis: 120px; 
+    min-width: 120px; 
+    margin-bottom: 0; 
 }
 
 .modal-container.modal-form-layout-2col .modal-input,
 .modal-container.modal-form-layout-2col .modal-select,
 .modal-container.modal-form-layout-2col .modal-textarea {
-    /* Allow input/select/textarea to take remaining space */
+    
     flex-grow: 1;
 }
 
@@ -916,38 +890,36 @@ body.modal-open {
 }
 
 .modal-container.modal-form-layout-2col .modal-checkbox-group label {
-    /* Style for the checkbox label */
-    flex-basis: 120px; /* Align with other labels */
+    
+    flex-basis: 120px; 
     min-width: 120px;
-    margin-bottom: 0; /* Remove default margin */
+    margin-bottom: 0; 
 }
 
 .modal-container.modal-form-layout-2col .modal-checkbox-group input[type="checkbox"] {
-    /* Style for the checkbox input */
-    flex-grow: 0; /* Don't grow */
-    width: auto; /* Allow width to be determined by content */
-    margin-right: 0; /* Remove potential default right margin */
+    
+    flex-grow: 0; 
+    width: auto; 
+    margin-right: 0; 
 }
 
 #deleteServiceModal .modal-container.small-modal {
-    min-width: 300px; /* Ensure it's not too small */
-    max-width: 400px; /* Keep it relatively small */
-    width: 350px; /* Set a specific width for a more square-like appearance */
+    min-width: 300px; 
+    max-width: 400px; 
+    width: 350px; 
 }
 
-/* Style for Delete Service Modal Header */
 #deleteServiceModal .modal-header {
-    background-color: var(--danger-color); /* Red background */
+    background-color: var(--danger-color); 
 }
 
 #deleteServiceModal .modal-title,
 #deleteServiceModal .modal-title .icon,
 #deleteServiceModal .modal-close-btn {
-    color: #fff; /* White text and icon color */
+    color: #fff; 
 }
 
-/* Set icon color to yellow specifically for delete modal header */
 #deleteServiceModal .modal-title .icon {
-    color: var(--accent-color); /* Yellow color from CSS variable */
+    color: var(--accent-color); 
 }
 

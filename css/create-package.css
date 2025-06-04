@@ -1,57 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Colors */
-    --primary-color: #0891b2; /* Blue */
+    --primary-color: #0891b2; 
     --primary-hover: #0e7490;
-    --primary-light: #ecfeff; /* Light Blue */
-    --secondary-color: #64748b; /* Grey-blue */
+    --primary-light: #ecfeff; 
+    --secondary-color: #64748b; 
     --secondary-hover: #475569;
-    --confirm-color: #16a34a; /* Green */
+    --confirm-color: #16a34a; 
     --confirm-hover: #15803d;
-    --warning-color: #f97316; /* Orange */
+    --warning-color: #f97316; 
     --warning-hover: #ea580c;
-    --danger-color: #dc2626; /* Red */
+    --danger-color: #dc2626; 
     --danger-hover: #b91c1c;
     --info-color: #3b82f6;
-    --receive-color: #2563eb; /* Darker Blue */
-    --text-primary: #1e293b; /* Dark Grey */
-    --text-secondary: #64748b; /* Medium Grey */
+    --receive-color: #2563eb; 
+    --text-primary: #1e293b; 
+    --text-secondary: #64748b; 
     --text-on-primary: #ffffff;
-    --bg-color: #f8fafc; /* Light Grey Background */
-    --card-bg: #ffffff; /* White */
+    --bg-color: #f8fafc; 
+    --card-bg: #ffffff; 
     --form-bg: #ffffff;
-    --border-color: #d1d5db; /* Tinh chỉnh màu border cho mềm mại hơn */
-    --border-light: #e5e7eb; /* Tinh chỉnh màu border nhẹ */
-    --input-border: #d1d5db; /* Tinh chỉnh màu input border */
-    --text-gray-label: #4b5563; /* Tinh chỉnh màu label */
+    --border-color: #d1d5db; 
+    --border-light: #e5e7eb; 
+    --input-border: #d1d5db; 
+    --text-gray-label: #4b5563; 
     --label-color: var(--text-gray-label);
     --success-color: var(--confirm-color);
     --text-read-only: #374151;
-    --input-readonly-bg: #e5e7eb; /* Tinh chỉnh màu readonly input */
-    --border-gold: #FFD700; /* Định nghĩa biến màu vàng cho border */
-
-    /* Typography */
+    --input-readonly-bg: #e5e7eb; 
+    --border-gold: #FFD700; 
     --font-family: 'Inter', sans-serif;
     --base-font-size: 0.65rem;
     --form-font-size: 0.7rem;
-
-    /* Spacing */
     --base-padding: 0.6rem;
     --card-padding: 0.6rem;
     --form-padding: 0.6rem;
     --form-gap: 0.3rem;
-
-    /* Borders & Shadows */
     --border-radius: 3px;
-    --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.04); /* Tinh chỉnh shadow nhẹ nhàng hơn */
-    --shadow-lg: 0 8px 12px -4px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06); /* Tinh chỉnh shadow nhẹ nhàng hơn */
-
-    /* Transitions */
-    --transition-speed: 0.25s; /* Tinh chỉnh tốc độ transition */
+    --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.04); 
+    --shadow-lg: 0 8px 12px -4px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06); 
+    --transition-speed: 0.25s; 
 }
 
-/* Base Styles */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -60,7 +50,7 @@
 
 html {
     scroll-behavior: smooth;
-    height: 100%; /* Ensure html takes full height */
+    height: 100%; 
 }
 
 body {
@@ -71,10 +61,9 @@ body {
     background-color: var(--bg-color);
     display: flex;
     transition: padding-left var(--transition-speed) ease;
-    min-height: 100vh; /* Ensure body is at least full viewport height */
+    min-height: 100vh; 
     position: relative;
-    overflow-x: hidden; /* Prevent horizontal scroll on body */
-    /* Let browser handle vertical scroll */
+    overflow-x: hidden; 
     overflow-y: auto;
 }
 
@@ -89,7 +78,7 @@ a {
 }
 
 a:hover {
-    color: var(--primary-hover); /* Tinh chỉnh màu hover */
+    color: var(--primary-hover); 
     text-decoration: underline;
 }
 
@@ -99,75 +88,75 @@ img {
     display: block;
 }
 
-/* Form Elements */
+
 input, select, button, textarea {
     font-family: inherit;
     font-size: var(--form-font-size);
-    border: 1px solid var(--input-border); /* Sử dụng input-border */
+    border: 1px solid var(--input-border); 
     border-radius: var(--border-radius);
-    padding: 0.4rem 0.6rem; /* Tăng padding */
-    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Giữ transition */
+    padding: 0.4rem 0.6rem; 
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; 
     color: var(--text-primary);
     background-color: var(--form-bg);
-    line-height: 1.3; /* Tinh chỉnh line-height */
+    line-height: 1.3; 
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.3); /* Tinh chỉnh focus shadow */
+    box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.3); 
 }
 
 select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); /* Giữ icon select */
-    background-position: right 0.5rem center; /* Tinh chỉnh vị trí icon */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); 
+    background-position: right 0.5rem center; 
     background-repeat: no-repeat;
-    background-size: 1.2em 1.2em; /* Giảm kích thước icon select */
-    padding-right: 1.8rem; /* Điều chỉnh padding right */
+    background-size: 1.2em 1.2em; 
+    padding-right: 1.8rem; 
 }
 
 textarea {
-    line-height: 1.4; /* Tinh chỉnh line-height textarea */
+    line-height: 1.4; 
 }
 
 button {
     cursor: pointer;
     background-color: var(--card-bg);
     color: var(--text-primary);
-    border: 1px solid var(--border-color); /* Sử dụng border-color */
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease; /* Thêm transition cho transform */
-    box-shadow: var(--shadow-md); /* Áp dụng shadow mặc định cho button */
+    border: 1px solid var(--border-color); 
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease; 
+    box-shadow: var(--shadow-md); 
 }
 
 button:hover {
-    border-color: var(--secondary-hover); /* Tinh chỉnh màu border hover */
-    background-color: var(--border-light); /* Tinh chỉnh màu background hover */
-    box-shadow: var(--shadow-lg); /* Tăng nhẹ shadow khi hover */
+    border-color: var(--secondary-hover); 
+    background-color: var(--border-light); 
+    box-shadow: var(--shadow-lg); 
 }
 
 button:active {
-    transform: translateY(1px); /* Hiệu ứng nhấn nút nhẹ */
-    box-shadow: var(--shadow-md); /* Shadow về lại md khi active */
+    transform: translateY(1px); 
+    box-shadow: var(--shadow-md); 
  }
 
 button:disabled, button[disabled] {
      cursor: not-allowed !important;
-     opacity: 0.7 !important; /* Tăng nhẹ opacity cho rõ hơn */
-     background-color: var(--border-light) !important; /* Tinh chỉnh màu disabled */
-     border-color: var(--border-light) !important; /* Tinh chỉnh màu border disabled */
-     color: var(--text-secondary) !important; /* Tinh chỉnh màu text disabled */
+     opacity: 0.7 !important; 
+     background-color: var(--border-light) !important; 
+     border-color: var(--border-light) !important; 
+     color: var(--text-secondary) !important; 
      transform: none !important;
      box-shadow: none !important;
  }
 
 input[readonly], textarea[readonly] {
-    background-color: var(--input-readonly-bg); /* Sử dụng biến */
-    color: var(--text-read-only); /* Sử dụng biến */
+    background-color: var(--input-readonly-bg); 
+    color: var(--text-read-only); 
     cursor: default;
-    border-color: var(--border-light); /* Sử dụng biến */
+    border-color: var(--border-light); 
 }
 
 .visually-hidden {
@@ -181,7 +170,7 @@ input[readonly], textarea[readonly] {
     border: 0;
 }
 
-/* Layout */
+
 .main-content {
     display: flex;
     flex-direction: column;
@@ -196,7 +185,7 @@ input[readonly], textarea[readonly] {
     width: 100%;
     box-sizing: border-box;
     position: relative;
-    overflow: visible; /* Allow content to overflow and be scrolled by body */
+    overflow: visible; 
 }
 
 .page-header {
@@ -205,14 +194,14 @@ input[readonly], textarea[readonly] {
     align-items: center;
     margin-bottom: var(--base-padding);
     flex-wrap: wrap;
-    gap: 0.8rem; /* Tinh chỉnh gap */
+    gap: 0.8rem; 
 }
 
 .page-title {
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 0.4rem; /* Tinh chỉnh margin */
+    margin-bottom: 0.4rem; 
 }
 
 .breadcrumb {
@@ -225,7 +214,7 @@ input[readonly], textarea[readonly] {
 }
 
 .breadcrumb a:hover {
-    color: var(--primary-hover); /* Tinh chỉnh màu hover */
+    color: var(--primary-hover); 
 }
 
 .breadcrumb span {
@@ -241,11 +230,11 @@ input[readonly], textarea[readonly] {
 #create-order-form {
     max-width: 100%;
     width: 100%;
-    margin: 0 auto; /* Center the form */
+    margin: 0 auto; 
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Allow form to grow */
-    padding-bottom: 0; /* Add padding bottom to make space for footer */
+    flex-grow: 1; 
+    padding-bottom: 0; 
 }
 
 .form-layout {
@@ -265,7 +254,7 @@ input[readonly], textarea[readonly] {
     min-width: 0;
 }
 
-/* Form Sections */
+
 .form-section {
     margin-bottom: var(--form-gap);
     border: 1px solid var(--border-gold);
@@ -281,8 +270,7 @@ input[readonly], textarea[readonly] {
     align-items: center;
     padding: 0.3rem var(--form-padding);
     border-bottom: 1px solid var(--border-color);
-    /* Background gradient from image */
-    background-color: var(--border-gold); /* Đổi sang màu vàng đồng nhất */
+    background-color: var(--border-gold); 
     color: var(--text-primary);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     position: relative;
@@ -296,12 +284,12 @@ input[readonly], textarea[readonly] {
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 0.3rem; /* Tinh chỉnh gap */
+    gap: 0.3rem; 
 }
 
 .form-section .card-header .card-title i.icon {
     font-size: 1em;
-    color: var(--receive-color); /* Blue icon color from image */
+    color: var(--receive-color); 
 }
 
 .form-section .card-header .address-book-select select {
@@ -311,26 +299,26 @@ input[readonly], textarea[readonly] {
     font-family: inherit;
     color: var(--text-primary);
     background-color: var(--form-bg);
-    border: 1px solid var(--input-border); /* Sử dụng input-border */
+    border: 1px solid var(--input-border); 
     border-radius: var(--border-radius);
     height: auto;
-    line-height: 1.5; /* Tăng nhẹ line-height */
+    line-height: 1.5; 
     max-width: 150px;
     cursor: pointer;
-    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Giữ transition */
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; 
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
     background-position: right 0.5rem center;
     background-repeat: no-repeat;
-    background-size: 1.2em 1.2em; /* Giảm kích thước icon select */
+    background-size: 1.2em 1.2em; 
 }
 
 .form-section .card-header .address-book-select select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 1px rgba(8, 145, 178, 0.2); /* Tinh chỉnh box-shadow focus */
+    box-shadow: 0 0 0 1px rgba(8, 145, 178, 0.2); 
 }
 
 .form-section .card-body {
@@ -340,12 +328,6 @@ input[readonly], textarea[readonly] {
     background: #f8fafc;
 }
 
-/* Remove stretching from card body children */
-/* .form-section .card-body > * {
-    flex: 1;
-} */
-
-/* Form Groups */
 .form-group {
     margin-bottom: var(--form-gap);
     display: flex;
@@ -362,7 +344,7 @@ input[readonly], textarea[readonly] {
 .form-group label, .form-label {
     font-size: var(--form-font-size);
     font-weight: 500;
-    color: var(--label-color); /* Sử dụng biến label color */
+    color: var(--label-color); 
     display: block;
     margin-bottom: 0.05rem;
 }
@@ -380,14 +362,14 @@ input[readonly], textarea[readonly] {
 .form-group textarea {
     width: 100%;
     font-size: var(--form-font-size);
-    padding: 0.35rem 0.5rem; /* Tăng padding */
-    border: 1px solid var(--input-border); /* Sử dụng input-border */
+    padding: 0.35rem 0.5rem; 
+    border: 1px solid var(--input-border); 
     border-radius: var(--border-radius);
-    transition: all var(--transition-speed) ease; /* Giữ transition */
+    transition: all var(--transition-speed) ease; 
     background-color: var(--form-bg);
 }
 
-/* Specific Form Group Layouts */
+
 .form-group.inline-group.multi-input {
     flex-direction: row;
     flex-wrap: wrap;
@@ -418,22 +400,21 @@ input[readonly], textarea[readonly] {
 
 .input-group-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); /* Tinh chỉnh minmax */
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); 
     gap: 0.15rem;
 }
 
 .form-grid-2col {
-        display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Tinh chỉnh minmax */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
     gap: 0.15rem var(--form-gap);
-        align-items: start;
-    }
+    align-items: start;
+}
 
 .form-grid-2col .form-group {
     margin-bottom: 0;
 }
 
-/* Radio and Checkbox Groups */
 .radio-group, .checkbox-group {
     display: flex;
     flex-wrap: wrap;
@@ -457,16 +438,14 @@ input[readonly], textarea[readonly] {
     margin: 0;
     accent-color: var(--primary-color);
     cursor: pointer;
-    /* Revert to default size */
     flex-shrink: 0;
     vertical-align: middle;
 }
 
 .radio-group input[type="radio"],
 .checkbox-group input[type="checkbox"] {
-    /* Use default appearance */
-    margin: 0; /* Ensure no default margin interferes */
-    vertical-align: middle; /* Align with text */
+    margin: 0; 
+    vertical-align: middle; 
 }
 
 .helper-text {
@@ -484,12 +463,12 @@ input[readonly], textarea[readonly] {
     font-weight: 500;
 }
 
-/* Error States */
+
 .form-group input.error,
 .form-group select.error,
 .form-group textarea.error {
     border-color: var(--danger-color) !important;
-    box-shadow: 0 0 0 1px var(--danger-color); /* Tinh chỉnh error shadow */
+    box-shadow: 0 0 0 1px var(--danger-color); 
 }
 
 .error-message {
@@ -500,7 +479,7 @@ input[readonly], textarea[readonly] {
     min-height: 1em;
 }
 
-/* Form Actions Footer */
+
 footer.form-actions {
     padding: 0.8rem var(--base-padding);
     background-color: var(--card-bg);
@@ -513,7 +492,7 @@ footer.form-actions {
     margin-top: var(--base-padding);
     flex-shrink: 0;
     box-shadow: 0 -2px 4px -1px rgba(0,0,0,0.05);
-    position: relative; /* Thay đổi từ absolute sang relative */
+    position: relative; 
     width: 100%;
     margin-bottom: 0.3rem;
 }
@@ -550,31 +529,31 @@ footer.form-actions {
 
 .form-actions .terms-agreement a:hover {
     text-decoration: underline;
-    color: var(--primary-hover); /* Tinh chỉnh màu hover */
+    color: var(--primary-hover); 
 }
 
 .form-actions .action-buttons {
     display: flex;
     gap: 0.3rem;
     flex-wrap: wrap;
-    justify-content: flex-end; /* Căn phải nút bấm trên desktop */
+    justify-content: flex-end; 
 }
 
-/* Buttons in Form Actions */
+
 .form-actions .button {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem; /* Tinh chỉnh gap icon và text */
+    gap: 0.4rem; 
     font-weight: 600;
-    padding: 0.4rem 0.8rem; /* Tăng padding */
-    font-size: 0.7rem; /* Tăng font size */
+    padding: 0.4rem 0.8rem; 
+    font-size: 0.7rem; 
     white-space: nowrap;
     border-radius: var(--border-radius);
-    transition: all var(--transition-speed); /* Giữ transition */
-    box-shadow: var(--shadow-md); /* Sử dụng shadow-md */
-    border: none; /* Buttons in footer have no border in image */
+    transition: all var(--transition-speed); 
+    box-shadow: var(--shadow-md); 
+    border: none; 
     text-transform: uppercase;
-    letter-spacing: 0.3px; /* Giảm nhẹ letter spacing */
+    letter-spacing: 0.3px; 
     margin-right: 0;
 }
 
@@ -584,7 +563,7 @@ footer.form-actions {
 }
 .form-actions .button.danger:hover {
      background-color: var(--danger-hover);
-     box-shadow: var(--shadow-lg); /* Tăng nhẹ shadow */
+     box-shadow: var(--shadow-lg); 
 }
 
 .form-actions .button.warning {
@@ -593,19 +572,19 @@ footer.form-actions {
 }
 .form-actions .button.warning:hover {
      background-color: var(--warning-hover);
-     box-shadow: var(--shadow-lg); /* Tăng nhẹ shadow */
+     box-shadow: var(--shadow-lg); 
 }
 
 .form-actions .button.confirm {
-     background-color: var(--confirm-color);
+    background-color: var(--confirm-color);
     color: var(--text-on-primary);
 }
 .form-actions .button.confirm:hover {
      background-color: var(--confirm-hover);
-     box-shadow: var(--shadow-lg); /* Tăng nhẹ shadow */
+     box-shadow: var(--shadow-lg); 
 }
 
-/* Site Footer */
+
 .site-footer {
     flex-shrink: 0;
     margin-top: 0.3rem;
@@ -619,7 +598,6 @@ footer.form-actions {
     z-index: 1;
 }
 
-/* Modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -670,64 +648,62 @@ footer.form-actions {
 }
 
 .modal-header {
-  display: flex;
+    display: flex;
     justify-content: space-between;
-  align-items: center;
-    /* Background and color based on image */
-    background-color: #FFD700; /* Màu vàng đồng nhất */
-    color: var(--text-primary); /* Dark text */
+    align-items: center;
+    background-color: #FFD700; 
+    color: var(--text-primary); 
     padding: 0.4rem 0.6rem;
-    border-bottom: 1px solid var(--border-color); /* Sử dụng border-color */
+    border-bottom: 1px solid var(--border-color); 
     flex-shrink: 0;
-    /* Border radius chỉ áp dụng cho header, sẽ bị cắt bởi overflow: hidden của modal cha */
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 .modal-title {
     font-size: 0.9rem;
-  font-weight: 600;
-    color: var(--text-primary); /* Dark text */
+    font-weight: 600;
+    color: var(--text-primary); 
     margin: 0;
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
     gap: 0.2rem;
 }
 .modal-title .icon {
     font-size: 1em;
-    color: var(--text-primary); /* Dark icon */
+    color: var(--text-primary); 
 }
 .modal-close-btn {
   background: none;
     border: none;
-    font-size: 1.1rem; /* Giảm nhẹ font size nút đóng */
-    font-weight: 400; /* Tinh chỉnh font weight */
+    font-size: 1.1rem; 
+    font-weight: 400; 
     line-height: 1;
-    color: var(--text-secondary); /* Tinh chỉnh màu nút đóng */
-    opacity: 0.9; /* Tăng nhẹ opacity */
+    color: var(--text-secondary); 
+    opacity: 0.9; 
     cursor: pointer;
-    padding: 0.1rem 0.2rem; /* Tinh chỉnh padding */
-    transition: color 0.2s ease, opacity 0.2s ease; /* Giữ transition */
+    padding: 0.1rem 0.2rem; 
+    transition: color 0.2s ease, opacity 0.2s ease; 
 }
 .modal-close-btn:hover {
-    color: var(--danger-color); /* Red on hover */
+    color: var(--danger-color); 
     opacity: 1;
 }
 
 .modal-body {
     padding: 0.6rem;
-    overflow-y: auto; /* Cho phép cuộn nội dung body modal nếu tràn */
+    overflow-y: auto; 
     flex-grow: 1;
     color: var(--text-primary);
-    line-height: 1.6; /* Tinh chỉnh line-height */
+    line-height: 1.6; 
     font-size: 0.75rem;
-    background-color: var(--card-bg); /* Đảm bảo màu nền body modal khớp với modal */
+    background-color: var(--card-bg); 
 }
 .modal-body p { margin-bottom: 0.5rem; } .modal-body p:last-child { margin-bottom: 0; }
 .modal-body strong { font-weight: 600; color: var(--text-primary); display: block; margin-bottom: 0.1rem; text-align: left; }
 
 .modal-footer {
     padding: 0.5rem 0.6rem;
-    border-top: 1px solid var(--border-light); /* Sử dụng border-light */
-    background-color: var(--bg-color); /* Sử dụng bg-color */
+    border-top: 1px solid var(--border-light); 
+    background-color: var(--bg-color); 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -742,7 +718,7 @@ footer.form-actions {
     font-size: 0.7em;
     color: var(--text-secondary);
     flex-grow: 1;
-    margin-right: 0.8rem; /* Tinh chỉnh margin right */
+    margin-right: 0.8rem; 
 }
 .modal-terms-agreement input[type="checkbox"] {
      margin: 0; accent-color: var(--primary-color); cursor: pointer; width: 1em; height: 1em; flex-shrink: 0; vertical-align: middle;
@@ -758,17 +734,17 @@ footer.form-actions {
 }
 
 .modal-footer .button {
-    min-width: 80px; /* Giảm nhẹ min-width button modal */
+    min-width: 80px; 
     padding: 0.25rem 0.5rem;
     font-size: 0.7rem;
-    box-shadow: var(--shadow-md); /* Sử dụng shadow-md */
+    box-shadow: var(--shadow-md); 
 }
 
 .modal-footer .button:hover {
-    box-shadow: var(--shadow-lg); /* Tăng nhẹ shadow */
+    box-shadow: var(--shadow-lg); 
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 992px) {
     .form-layout {
         grid-template-columns: 1fr;
@@ -791,7 +767,7 @@ footer.form-actions {
     }
 
     .input-group-3 {
-         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Điều chỉnh cho màn hình nhỏ hơn */
+         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); 
          gap: 0.3rem;
     }
 
@@ -810,7 +786,7 @@ footer.form-actions {
 
     .form-actions .action-buttons {
         justify-content: center;
-        flex-direction: row; /* Giữ nút bấm theo hàng ngang nếu đủ chỗ */
+        flex-direction: row; 
         gap: 0.4rem;
         width: 100%;
     }
@@ -853,11 +829,11 @@ footer.form-actions {
       }
 
     #create-order-form {
-         padding-bottom: var(--base-padding); /* Bỏ padding bottom cố định */
+         padding-bottom: var(--base-padding); 
     }
 
     footer.form-actions {
-        position: relative; /* Đảm bảo footer luôn relative */
+        position: relative; 
         bottom: auto;
         left: auto;
         right: auto;
@@ -883,11 +859,11 @@ footer.form-actions {
     }
 
     .form-section .card-header {
-        flex-direction: row; /* Display items in a row */
-        align-items: center; /* Vertically align items in the center */
+        flex-direction: row; 
+        align-items: center; 
         gap: 0.2rem;
         padding: 0.3rem 0.5rem;
-        justify-content: space-between; /* Distribute space between title and select */
+        justify-content: space-between; 
     }
 
     .form-section .card-header .card-title {
@@ -896,8 +872,8 @@ footer.form-actions {
 
      .form-section .card-header .address-book-select {
          margin-left: 0;
-         width: auto; /* Allow select to take its natural width */
-         flex-shrink: 0; /* Prevent select from shrinking excessively */
+         width: auto; 
+         flex-shrink: 0; 
      }
 
     .form-section .card-body {
@@ -931,17 +907,17 @@ footer.form-actions {
     }
 
     .form-actions .action-buttons {
-         flex-direction: row; /* Change to row for 2 columns */
-         flex-wrap: wrap; /* Allow items to wrap */
-         justify-content: space-between; /* Distribute space between items */
-         gap: 0.4rem; /* Adjust gap */
+         flex-direction: row; 
+         flex-wrap: wrap; 
+         justify-content: space-between; 
+         gap: 0.4rem; 
     }
 
      .form-actions .action-buttons .button {
-          flex-grow: 1; /* Allow buttons to grow */
-          flex-basis: calc(50% - 0.2rem); /* Set base width for 2 columns with gap */
-          min-width: 120px; /* Ensure minimum width */
-          width: unset; /* Remove fixed 100% width */
+          flex-grow: 1; 
+          flex-basis: calc(50% - 0.2rem); 
+          min-width: 120px; 
+          width: unset; 
      }
 
      .form-actions .terms-agreement {
@@ -957,7 +933,7 @@ footer.form-actions {
       }
 
     #create-order-form {
-        padding-bottom: var(--base-padding); /* Bỏ padding bottom cố định */
+        padding-bottom: var(--base-padding); 
     }
 }
 
@@ -1030,26 +1006,23 @@ footer.form-actions {
       }
 
     #create-order-form {
-        padding-bottom: var(--base-padding); /* Bỏ padding bottom cố định */
+        padding-bottom: var(--base-padding); 
     }
 }
 
-/* Ensure modal doesn't interfere with base layout */
 body.modal-open {
-    overflow: hidden; /* Prevent body scroll when modal is open */
+    overflow: hidden; 
     position: fixed;
     width: 100%;
 }
 
-/* Cards */
 .card {
     background-color: var(--card-bg);
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-md); /* Sử dụng shadow-md */
+    box-shadow: var(--shadow-md); 
     margin-bottom: 0;
 }
 
-/* Fix for form sections */
 .form-section {
     position: relative;
     z-index: 1;
@@ -1067,13 +1040,11 @@ body.modal-open {
     background: #f8fafc;
 }
 
-/* Fix for form groups */
 .form-group {
     position: relative;
     z-index: 1;
 }
 
-/* Fix for buttons and interactive elements */
 button, 
 input, 
 select, 
@@ -1083,14 +1054,12 @@ a {
     z-index: 2;
 }
 
-/* Fix for dropdowns */
 .user-dropdown,
 .notification-dropdown {
     position: absolute;
     z-index: 1000;
 }
 
-/* Fix for announcement overlay */
 .announcement-overlay {
     position: fixed;
     top: 0;
@@ -1116,12 +1085,12 @@ a {
     z-index: 1061;
 }
 
-/* Fix for sidebar */
+
 .sidebar {
     position: fixed;
     z-index: 1030;
-    height: 100vh; /* Sidebar takes full viewport height */
-    overflow-y: auto; /* Allow sidebar to scroll independently if needed */
+    height: 100vh; 
+    overflow-y: auto; 
     overflow-x: hidden;
 }
 
@@ -1130,30 +1099,26 @@ a {
     z-index: 1020;
 }
 
-/* Fix for header */
 .header {
-    /* Remove sticky position */
+    
     position: relative;
     z-index: 1020;
     background-color: var(--card-bg);
     width: 100%;
 }
 
-/* Fix for form actions */
 .form-actions {
-    /* Remove sticky position */
     position: relative;
     z-index: 2;
     background-color: var(--card-bg);
     width: 100%;
 }
 
-.form-column-left > .form-section:first-child, /* Sender Section */
-.form-column-right > .form-section:first-child { /* Receiver Section */
-    flex: 1; /* Allow both the Sender and Receiver sections to grow and shrink */
+.form-column-left > .form-section:first-child, 
+.form-column-right > .form-section:first-child { 
+    flex: 1; 
 }
 
-/* Progress Steps */
 .progress-steps {
     display: flex;
     justify-content: space-between;
@@ -1175,13 +1140,12 @@ a {
     z-index: 1;
 }
 
-/* Đường kẻ màu xanh cho phần đã hoàn thành */
 .progress-steps::after {
     content: '';
     position: absolute;
     top: 24px;
     left: 60px;
-    width: 10%; /* Chiều dài bằng 1/4 tổng chiều dài (vì có 4 bước) */
+    width: 10%; 
     height: 2px;
     background: #2563eb;
     z-index: 1;
@@ -1239,7 +1203,6 @@ a {
     font-weight: 500;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
     .progress-steps {
         padding: 0 20px;
@@ -1267,26 +1230,26 @@ a {
     .progress-steps{
         display: none;
     }
-    }
+}
 
 .form-column-left .form-group textarea {
-    min-height: 160px; /* Increased default height for 'Địa chỉ' in Sender */
+    min-height: 160px; 
 }
 
 .services-options-grid {
-    display: grid; /* Use grid for 2-column layout */
-    grid-template-columns: 3fr 2fr; /* Set column widths to 6:4 ratio (simplified to 3:2) */
-    gap: var(--form-gap); /* Gap between items */
-    margin-bottom: var(--form-gap); /* Space below this section */
+    display: grid; 
+    grid-template-columns: 3fr 2fr; 
+    gap: var(--form-gap); 
+    margin-bottom: var(--form-gap); 
 }
 
 .services-options-grid .form-group {
-    margin-bottom: 0; /* Remove default margin bottom for flex/grid items */
+    margin-bottom: 0; 
 }
 
 .services-options-grid .checkbox-group {
-    display: grid; /* Change to grid layout */
-    grid-template-columns: repeat(2, 1fr); /* Create 2 equal columns */
-    gap: 0.3rem var(--form-gap); /* Use gap from existing rule, adjust column gap */
-    /* Remove flex-wrap from the generic .checkbox-group rule if it interferes */
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.3rem var(--form-gap); 
+    
 }

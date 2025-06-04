@@ -125,7 +125,6 @@ body {
     cursor: pointer;
 }
 .stat-card:hover {
-    /* transform: translateY(-5px); */
     box-shadow: var(--shadow-md);
     border-color: var(--primary-hover);
     background: var(--border-light);
@@ -203,7 +202,7 @@ body {
     transform: translateY(-2px);
 }
 .action-buttons-group .button:nth-of-type(1) {
-    background: #FFD600; /* Yellow */
+    background: #FFD600; 
     color: #000000;
     border: 2px solid #FFD600;
 }
@@ -212,7 +211,7 @@ body {
      border-color: #FFC107;
 }
 .action-buttons-group .button:nth-of-type(2) {
-    background: #4f46e5; /* Purple/Indigo */
+    background: #4f46e5; 
     color: #ffffff;
     border: 2px solid #4f46e5;
 }
@@ -221,7 +220,7 @@ body {
     border-color: #6366f1;
 }
 .action-buttons-group .button:nth-of-type(3) {
-    background: #ef4444; /* Red */
+    background: #ef4444; 
     color: #ffffff;
     border: 2px solid #ef4444;
 }
@@ -230,7 +229,7 @@ body {
     border-color: #dc2626;
 }
 .action-buttons-group .button:nth-of-type(4) {
-    background: #0891b2; /* Cyan/Blue */
+    background: #0891b2; 
     color: #ffffff;
     border: 2px solid #0891b2;
 }
@@ -293,13 +292,13 @@ body {
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    background: #64748b; /* Default grey */
+    background: #64748b; 
     box-shadow: var(--shadow-sm);
 }
-.activity-icon.icon-new { background: #FFD600; color: #000000; } /* Yellow */
-.activity-icon.icon-update { background: #0891b2; color: #ffffff; } /* Cyan/Blue */
-.activity-icon.icon-complete { background: #10b981; color: #ffffff; } /* Green */
-.activity-icon.icon-alert { background: #ef4444; color: #ffffff; } /* Red */
+.activity-icon.icon-new { background: #FFD600; color: #000000; } 
+.activity-icon.icon-update { background: #0891b2; color: #ffffff; } 
+.activity-icon.icon-complete { background: #10b981; color: #ffffff; } 
+.activity-icon.icon-alert { background: #ef4444; color: #ffffff; } 
 .activity-desc {
     flex-grow: 1;
     color: var(--text-secondary);
@@ -353,7 +352,6 @@ body {
     letter-spacing: 0.5px;
     font-weight: 600;
 }
-
 
 .notification-button {
     background: #ffffff;

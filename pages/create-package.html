@@ -176,7 +176,6 @@
                  </div>
              </section>
 
-             <!-- Progress Steps -->
              <div class="progress-steps">
                  <div class="step active">
                      <div class="step-icon">
@@ -207,7 +206,6 @@
              <form id="create-order-form" novalidate autocomplete="off">
                 <div class="form-layout">
                     <div class="form-column-left">
-                        <!-- SENDER Section -->
                         <section class="card form-section">
                             <div class="card-header">
                                 <h2 class="card-title"><i class="fas fa-user icon"></i> Người gửi (SENDER)</h2>
@@ -269,7 +267,6 @@
                                </div>
                            </section>
 
-                           <!-- SERVICES Section -->
                            <section class="card form-section">
                                 <div class="card-header">
                                     <h2 class="card-title"><i class="fas fa-concierge-bell icon"></i> Chọn dịch vụ (SERVICES)</h2>
@@ -312,7 +309,7 @@
                                             </div>
                                              <span class="error-message group-error"></span>
                                         </div>
-                                    </div> <!-- Close services-options-grid -->
+                                    </div>
                                         <div class="form-grid-2col">
                                             <div class="form-group">
                                                 <label for="service_type">Chọn dịch vụ<span class="required">*</span></label>
@@ -333,7 +330,6 @@
                                 </section>
                     </div>
                     <div class="form-column-right">
-                        <!-- RECEIVER Section -->
                         <section class="card form-section">
                             <div class="card-header">
                                 <h2 class="card-title"><i class="fas fa-box-open icon"></i> Người nhận (RECEIVER)</h2>
@@ -625,16 +621,12 @@
             }
 
             function openModal(forceOpen = false) {
-                console.log('openModal function called', { forceOpen }); // Debug log
                 const hasAgreedTerms = localStorage.getItem('hasAgreedTerms') === 'true';
-                // DuyKha: Modal sẽ mở nếu chưa đồng ý HOẶC được yêu cầu mở bắt buộc (forceOpen)
                 if ((!hasAgreedTerms || forceOpen) && termsModal && termsOverlay) {
                     termsOverlay.classList.add('active');
                     termsModal.classList.add('active');
                     body.classList.add('modal-open');
                     manageBodyScroll();
-                    // DuyKha: Nếu không phải mở bắt buộc (tức là lần đầu mở khi chưa đồng ý),
-                    // thì đảm bảo checkbox chưa được check.
                     if (!forceOpen && agreeCheckbox) {
                         agreeCheckbox.checked = false;
                         if (agreeButton) agreeButton.disabled = true;
@@ -778,17 +770,16 @@
             if (exitButtonX) exitButtonX.addEventListener('click', closeHandler);
             if (exitButtonFooter) exitButtonFooter.addEventListener('click', closeHandler);
             document.getElementById('open-terms-modal-footer')?.addEventListener('click', function(e) {
-                e.preventDefault(); // Ngăn chặn hành vi mặc định (chuyển hướng)
-                console.log('Link "Điều khoản quy định" clicked'); // Debug log
-                openModal(true); // Gọi hàm mở modal, buộc mở (bỏ qua localStorage check)
+                e.preventDefault();
+                openModal(true); 
             });
             document.getElementById('exit-btn')?.addEventListener('click', function() {
-                window.location.href = '../index.html'; // Or wherever you want to navigate on exit
+                window.location.href = '../index.html'; 
             });
             document.getElementById('reset-btn')?.addEventListener('click', function() {
                 form.reset();
                 localStorage.removeItem('createPackageStep1');
-                localStorage.removeItem('wizardData'); // Remove old wizard data
+                localStorage.removeItem('wizardData');
             });
             document.getElementById('view-terms-btn')?.addEventListener('click', function() {
                 openModal();
@@ -809,51 +800,41 @@
                     }
                     let isFormValid = true;
 
-                    // Xóa tất cả các thông báo lỗi và trạng thái lỗi hiện có
                     form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-                    form.querySelectorAll('.error-message').forEach(el => el.textContent = ''); // Chỉ xóa nội dung text
+                    form.querySelectorAll('.error-message').forEach(el => el.textContent = '');
                     form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
 
-                    // Hàm kiểm tra định dạng số điện thoại Việt Nam
                     function validateVietnamesePhoneNumber(phone) {
-                        // Loại bỏ khoảng trắng và dấu gạch ngang
                         phone = phone.replace(/[\s-]/g, '');
-                        // Kiểm tra xem có phải là số không
                         if (!/^\d+$/.test(phone)) {
                             return false;
                         }
-                        // Kiểm tra độ dài số điện thoại (10-11 số)
                         if (phone.length < 10 || phone.length > 11) {
                             return false;
                         }
-                        // Kiểm tra số đầu tiên phải là 0
                         if (phone[0] !== '0') {
                             return false;
                         }
                         return true;
                     }
 
-                     // Hàm kiểm tra định dạng số điện thoại quốc tế cơ bản (chỉ kiểm tra có phải là số và không rỗng)
                      function validateInternationalPhoneNumberBasic(phone) {
-                        phone = phone.replace(/[\s-()]/g, ''); // Loại bỏ khoảng trắng, dấu gạch ngang, ngoặc đơn
+                        phone = phone.replace(/[\s-()]/g, '');
                          return phone.length > 0 && /^\d+$/.test(phone);
                      }
 
-                    // Hàm hiển thị lỗi cho trường cụ thể
                     function displayFieldError(field, message) {
                          const container = field.closest('.input-group') || field.closest('.form-group');
                          if (!container) return;
 
                          let errorSpan = container.querySelector('.error-message');
                          if (!errorSpan) {
-                              // If the span doesn't exist, create it (should exist based on HTML)
                              errorSpan = document.createElement('span');
                              errorSpan.className = 'error-message';
                              errorSpan.style.color = 'var(--danger-color)';
                              errorSpan.style.fontSize = '0.8em';
                              errorSpan.style.marginTop = '4px';
                              errorSpan.style.display = 'block';
-                              // Append it after the input or the phone-input-group
                              const phoneInputGroup = field.closest('.phone-input-group');
                              if(phoneInputGroup) {
                                   phoneInputGroup.parentNode.insertBefore(errorSpan, phoneInputGroup.nextSibling);
@@ -868,8 +849,7 @@
                          if (label) label.classList.add('error');
                     }
 
-                     // Hàm xóa lỗi cho trường cụ thể
-                    function clearFieldError(field) {
+                     function clearFieldError(field) {
                          const container = field.closest('.input-group') || field.closest('.form-group');
                           if (!container) return;
 
@@ -882,13 +862,12 @@
                          if (label) label.classList.remove('error');
                     }
 
-                    // Thêm event listeners cho các trường số điện thoại để validate ngay khi nhập
                     const senderPhoneInput = document.getElementById('sender_phone');
                     const receiverPhone1Input = document.getElementById('receiver_phone1');
                     const receiverPhone2Input = document.getElementById('receiver_phone2');
                     const receiverPhone1CodeSelect = document.getElementById('receiver_phone1_code');
                     const receiverPhone2CodeSelect = document.getElementById('receiver_phone2_code');
-                    const senderNameInput = document.getElementById('sender_name_input'); // Get sender name input
+                    const senderNameInput = document.getElementById('sender_name_input');
 
                      if (senderPhoneInput) {
                          senderPhoneInput.addEventListener('input', function() {
@@ -907,7 +886,6 @@
                               clearFieldError(this);
                          });
 
-                          // Add change listener for select elements
                          if(senderPhoneInput.tagName === 'SELECT') {
                              senderPhoneInput.addEventListener('change', function() {
                                  if (!this.value.trim()) {
@@ -932,7 +910,6 @@
                               return true;
                          }
 
-                         // If not empty, validate based on country code
                          if (countryCode === '+84') {
                              if (!validateVietnamesePhoneNumber(value)) {
                                  displayFieldError(phoneInput, 'Vui lòng nhập số điện thoại 10-11 số bắt đầu bằng số 0');
@@ -942,7 +919,6 @@
                                  return true;
                              }
                          } else {
-                             // Basic validation for international numbers (just check if it's not empty and is numeric)
                              if (!validateInternationalPhoneNumberBasic(value)){
                                  displayFieldError(phoneInput, 'Vui lòng nhập số điện thoại hợp lệ.');
                                  return false;
@@ -978,9 +954,6 @@
                          });
                     }
 
-                    // Validate on submit
-
-                    // Kiểm tra số điện thoại người gửi
                     if (senderPhoneInput) {
                         if (!validateVietnamesePhoneNumber(senderPhoneInput.value.trim())) {
                             isFormValid = false;
@@ -990,23 +963,18 @@
                         }
                     }
 
-                    // Kiểm tra số điện thoại người nhận 1
                     if (receiverPhone1Input && receiverPhone1CodeSelect) {
                          if (!validateReceiverPhone(receiverPhone1Input, receiverPhone1CodeSelect, true)){
                              isFormValid = false;
                          }
                     }
 
-                    // Kiểm tra số điện thoại người nhận 2
                     if (receiverPhone2Input && receiverPhone2CodeSelect) {
-                        // validateReceiverPhone handles the optional nature and validation based on code
                          if (!validateReceiverPhone(receiverPhone2Input, receiverPhone2CodeSelect, false)){
                              isFormValid = false;
                          }
                     }
 
-
-                    // Validation cho các trường bắt buộc khác (giữ nguyên logic cũ)
                     const termsCheckbox = document.getElementById('terms_agree');
                     if (termsCheckbox && !termsCheckbox.checked) {
                         isFormValid = false;
@@ -1017,11 +985,9 @@
                     const requiredFields = form.querySelectorAll('[required]');
                     const radioGroupsValidated = {};
                     requiredFields.forEach(input => {
-                        if (input.id === 'terms_agree') return; // Terms checkbox handled separately
-                        // Skip phone inputs as they are validated above
+                        if (input.id === 'terms_agree') return;
                         if (input.id === 'sender_phone' || input.id === 'receiver_phone1' || input.id === 'receiver_phone2') return;
 
-                        // Handle select fields and other non-radio/checkbox required fields
                         if (input.tagName === 'SELECT' || input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
                             if (!input.value.trim()) {
                                 isFormValid = false;
@@ -1029,16 +995,14 @@
                             } else {
                                 clearFieldError(input);
                             }
-                             // Add event listener for immediate validation feedback
-                            input.addEventListener('input', function() {
+                             input.addEventListener('input', function() {
                                 if (!this.value.trim()) {
                                      displayFieldError(this, 'Trường này là bắt buộc.');
                                 } else {
                                      clearFieldError(this);
                                 }
                             });
-                             // Add focus listener to clear error on focus
-                            input.addEventListener('focus', function() {
+                             input.addEventListener('focus', function() {
                                 clearFieldError(this);
                             });
                         }
@@ -1049,12 +1013,10 @@
                                 const checkedRadio = form.querySelector(`input[name="${groupName}"]:checked`);
                                 if (!checkedRadio) {
                                     isFormValid = false;
-                                    // Find the first radio in the group to attach the error
                                      const firstRadioInGroup = form.querySelector(`input[name="${groupName}"]`);
                                     if(firstRadioInGroup) addErrorMessage(firstRadioInGroup, 'Vui lòng chọn một tùy chọn.');
                                 } else {
-                                     // Find the first radio in the group to remove the error
-                                    const firstRadioInGroup = form.querySelector(`input[name="${groupName}"]`);
+                                     const firstRadioInGroup = form.querySelector(`input[name="${groupName}"]`);
                                     if(firstRadioInGroup) removeErrorMessage(firstRadioInGroup);
                                 }
                                 radioGroupsValidated[groupName] = true;
@@ -1081,20 +1043,16 @@
                             } else if (input.type === 'radio') {
                                 if (input.checked) formData[input.name] = input.value;
                             } else {
-                                // Handle the new branch and agent inputs, and other general inputs/textareas
-                                // sender_name_input was handled separately in previous edits
                                 if (input.id === 'sender_name_input') {
                                     formData['sender_name_display'] = input.value;
                                 } else if (input.tagName === 'SELECT') {
-                                    // For select fields that still exist (address, country, service, etc.), store their selected text
                                     formData[input.name] = input.options[input.selectedIndex].text;
-                                } else if (input.name !== 'sender_preset') { // Exclude the old sender_preset name
+                                } else if (input.name !== 'sender_preset') {
                                     formData[input.name] = input.value;
                                 }
                             }
                         });
 
-                        // Add sender country as always 'Việt Nam'
                         formData['sender_country'] = 'Việt Nam';
 
                         localStorage.setItem('createPackageStep1', JSON.stringify(formData));
@@ -1123,7 +1081,7 @@
                 notificationList.addEventListener('click', (event) => {
                     const clickedItem = event.target.closest('.notification-item');
                     if (clickedItem && announcementTitle && announcementBodyEl && announcementTimestamp) {
-                        event.preventDefault(); // Prevent default link behavior if any
+                        event.preventDefault();
                         const title = clickedItem.dataset.title || 'Thông báo';
                         const bodyText = clickedItem.dataset.body || 'Không có nội dung.';
                         const timestamp = clickedItem.dataset.timestamp || '';
@@ -1165,24 +1123,20 @@
                 }
             });
 
-            // Listener cho liên kết "Điều khoản quy định" bên trong modal
             const modalTermsLink = document.querySelector('#terms-modal .modal-link-underline');
             if (modalTermsLink) {
                 modalTermsLink.addEventListener('click', function(e) {
                     e.preventDefault();
-                    openModal(); // Gọi hàm mở modal (sẽ không có hiệu quả nếu modal đã mở)
+                    openModal();
                 });
             }
 
-            // DuyKha: Khi trang load, gọi openModal() mà KHÔNG buộc mở, chỉ mở nếu chưa đồng ý.
             openModal();
 
-            // Address API functions
             const senderCitySelect = $('#sender_city');
             const senderDistrictSelect = $('#sender_district');
             const senderWardSelect = $('#sender_ward');
 
-            // Fetch provinces
             $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function(data_tinh) {
                 if (data_tinh.error == 0) {
                     senderCitySelect.html('<option value="" selected>Chọn Tỉnh/Thành phố</option>');
@@ -1190,11 +1144,9 @@
                         senderCitySelect.append('<option value="' + val_tinh.id + '">' + val_tinh.full_name + '</option>');
                     });
 
-                    // Handle province change
                     senderCitySelect.on('change', function() {
                         const provinceId = $(this).val();
                         if (provinceId) {
-                            // Fetch districts
                             $.getJSON('https://esgoo.net/api-tinhthanh/2/' + provinceId + '.htm', function(data_quan) {
                                 if (data_quan.error == 0) {
                                     senderDistrictSelect.html('<option value="" selected>Chọn Quận / Huyện</option>');
@@ -1210,11 +1162,9 @@
                         }
                     });
 
-                    // Handle district change
                     senderDistrictSelect.on('change', function() {
                         const districtId = $(this).val();
                         if (districtId) {
-                            // Fetch wards
                             $.getJSON('https://esgoo.net/api-tinhthanh/3/' + districtId + '.htm', function(data_phuong) {
                                 if (data_phuong.error == 0) {
                                     senderWardSelect.html('<option value="" selected>Chọn Phường / Xã</option>');
@@ -1230,9 +1180,7 @@
                 }
             });
 
-
-             // render user dropdown
-            function renderUserDropdown() {
+             function renderUserDropdown() {
                 const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
                 const userToggle = document.getElementById('user-dropdown-toggle');
                 const userDropdown = document.getElementById('user-dropdown');
@@ -1281,7 +1229,6 @@
             renderUserDropdown();
             window.addEventListener('storage', renderUserDropdown);
 
-            // Dropdown show/hide
             const userToggle = document.getElementById('user-dropdown-toggle');
             const userDropdown = document.getElementById('user-dropdown');
             if(userToggle && userDropdown){
@@ -1296,33 +1243,25 @@
                 });
             }
 
-            // Thêm code mới để lấy dữ liệu dịch vụ từ localStorage
             function getServiceData() {
                 const data = localStorage.getItem('serviceData');
-                console.log('getServiceData: Retrieved data from localStorage:', data);
                 return data ? JSON.parse(data) : [];
             }
 
-            // Hàm điền dữ liệu vào combobox dịch vụ
             function populateServiceSelect() {
                 const serviceSelect = document.getElementById('service_type');
                 if (!serviceSelect) {
-                    console.error('Không tìm thấy element service_type');
                     return;
                 }
 
-                // Xóa tất cả options hiện tại trừ option mặc định
                 while (serviceSelect.options.length > 1) {
                     serviceSelect.remove(1);
                 }
 
-                // Lấy dữ liệu dịch vụ
                 const services = getServiceData();
-                console.log('Populating service select with data:', services);
 
-                // Thêm các options mới
                 services.forEach(service => {
-                    if (service.hienThi) { // Chỉ hiển thị các dịch vụ được đánh dấu là hiển thị
+                    if (service.hienThi) {
                         const option = document.createElement('option');
                         option.value = service.maDV;
                         option.textContent = `${service.maDV} - ${service.tenDV}`;
@@ -1331,34 +1270,26 @@
                 });
             }
 
-            // Gọi hàm điền dữ liệu khi trang được tải
             populateServiceSelect();
 
-            // Thêm code mới để lấy danh sách quốc gia
             const receiverCountrySelect = document.getElementById('receiver_country');
             
-            // Hàm để lấy danh sách quốc gia từ API
             async function fetchCountries() {
                 try {
                     const response = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2');
                     const countries = await response.json();
                     
-                    // Sắp xếp quốc gia theo tên
                     countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
                     
-                    // Xóa các options hiện tại
                     receiverCountrySelect.innerHTML = '<option value="" selected>Chọn quốc gia</option>';
                     
-                    // Thêm các quốc gia vào select
                     countries.forEach(country => {
                         const option = document.createElement('option');
-                        option.value = country.cca2; // Mã quốc gia 2 ký tự
-                        option.textContent = country.name.common; // Tên quốc gia
+                        option.value = country.cca2;
+                        option.textContent = country.name.common;
                         receiverCountrySelect.appendChild(option);
                     });
                 } catch (error) {
-                    console.error('Lỗi khi lấy danh sách quốc gia:', error);
-                    // Thêm một số quốc gia phổ biến nếu API không hoạt động
                     const fallbackCountries = [
                         { value: 'US', text: 'UNITED STATES' },
                         { value: 'GB', text: 'UNITED KINGDOM' },
@@ -1381,22 +1312,18 @@
                 }
             }
 
-            // Gọi hàm lấy danh sách quốc gia khi trang được tải
             fetchCountries();
 
-            // New code for Branch and Agent autocomplete
             const branchInput = document.getElementById('branch_input');
             const agentInput = document.getElementById('agent_input');
 
-            // Helper function to get data from localStorage
             function getSuggestions(key) {
                 const data = localStorage.getItem(key);
                 return data ? JSON.parse(data) : [];
             }
 
-            // Helper function to save data to localStorage (add new value if not exists)
             function addSuggestion(key, value) {
-                if (!value || typeof value !== 'string' || value.trim() === '') return; // Prevent saving empty or invalid values
+                if (!value || typeof value !== 'string' || value.trim() === '') return;
                 const suggestions = getSuggestions(key);
                 const trimmedValue = value.trim();
                 if (!suggestions.includes(trimmedValue)) {
@@ -1405,9 +1332,8 @@
                 }
             }
 
-            // Helper function to populate datalist
             function populateDatalist(datalistElement, suggestions) {
-                datalistElement.innerHTML = ''; // Clear existing options
+                datalistElement.innerHTML = '';
                 suggestions.forEach(item => {
                     const option = document.createElement('option');
                     option.value = item;
@@ -1415,7 +1341,6 @@
                 });
             }
 
-            // Populate datalists on page load
             const branchSuggestions = getSuggestions('branchSuggestions');
             const agentSuggestions = getSuggestions('agentSuggestions');
 
@@ -1425,7 +1350,6 @@
             if(branchDatalist) populateDatalist(branchDatalist, branchSuggestions);
             if(agentDatalist) populateDatalist(agentDatalist, agentSuggestions);
 
-            // Add event listeners to save new entries on input blur
             if(branchInput) {
                 branchInput.addEventListener('blur', function() {
                     addSuggestion('branchSuggestions', this.value);
@@ -1437,17 +1361,11 @@
                 });
             }
 
-             // Update form submit to ensure latest values are saved before leaving the page
              if (form) {
                   form.addEventListener('submit', function(event) {
-                       // ... existing submit logic ...
-                       // Save the current values of branch and agent inputs
                        if(branchInput) addSuggestion('branchSuggestions', branchInput.value);
                        if(agentInput) addSuggestion('agentSuggestions', agentInput.value);
-
-                       // The rest of the form submit logic remains
                   });
-                  // Also save on beforeunload in case the form is not submitted but the page is left
                   window.addEventListener('beforeunload', function() {
                       if(branchInput) addSuggestion('branchSuggestions', branchInput.value);
                       if(agentInput) addSuggestion('agentSuggestions', agentInput.value);

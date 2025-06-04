@@ -1,8 +1,4 @@
-/* @import url('customer-list.css'); */
-
-/* Chỉ giữ lại override cho modal nhân viên nếu muốn nét riêng, KHÔNG override notification, announcement, dropdown... */
 :root {
-    /* Kế thừa các biến màu chính từ home.css hoặc định nghĩa lại nếu cần */
     --primary-color: #FFD600;
     --primary-hover: #e6b800;
     --primary-light: #fff9e6;
@@ -30,20 +26,16 @@
     --transition-speed: 0.2s;
     --transition-speed-fast: 0.15s;
     --font-family: 'Inter', sans-serif;
-
-    /* Màu đặc trưng cho trang nhân viên */
     --employee-primary: #FFD600;
     --employee-primary-hover: #e6b800;
     --employee-primary-light: #fff9e6;
 }
 
-/* Apply general background color */
 body {
     background-color: var(--bg-color);
     font-family: var(--font-family);
 }
 
-/* Page Header Adjustments */
 .page-header {
     margin-bottom: 1rem;
     padding: 1rem 1.5rem;
@@ -78,7 +70,6 @@ body {
     text-decoration: underline;
 }
 
-/* Customer Actions & Filters - Bo góc và làm đẹp hơn */
 .customer-actions {
     display: flex;
     flex-direction: column;
@@ -97,7 +88,6 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Dải màu vàng phía trên */
 .customer-actions::before {
     content: '';
     position: absolute;
@@ -109,7 +99,6 @@ body {
     border-radius: 16px 16px 0 0;
 }
 
-/* Style for the h3 Filter Title inside customer-actions */
 .customer-actions h3 {
     font-size: var(--font-size-md);
     font-weight: 600;
@@ -119,7 +108,6 @@ body {
     padding-bottom: var(--base-padding);
     border-bottom: 1px solid var(--border-light);
 }
-
 
 .customer-actions .filter-section {
     flex: 1;
@@ -158,7 +146,6 @@ body {
     color: var(--text-secondary);
 }
 
-/* Style for Filter Selects and Inputs */
 .filter-section .filter-select,
 .filter-section .filter-group input[type="text"] {
     width: 100%;
@@ -202,13 +189,11 @@ body {
     box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.1);
 }
 
-/* Container for Add Employee Button */
 .add-button-container {
     text-align: right;
     margin: 0.5rem 0;
 }
 
-/* Style for action buttons container */
 .action-buttons {
     display: flex;
     gap: 1rem;
@@ -216,7 +201,6 @@ body {
     justify-content: flex-end;
 }
 
-/* Style for Add Employee Button */
 .btn-add-employee {
     background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
     color: var(--text-on-accent);
@@ -235,7 +219,6 @@ body {
 }
 
 .btn-add-employee:hover {
-    /* transform: translateY(-2px); */
     box-shadow: var(--shadow-md);
 }
 
@@ -251,7 +234,6 @@ body {
     font-size: 1.1rem;
 }
 
-/* Table Styling - Refined */
 .table-area.card {
     background: var(--card-bg);
     border: 1px solid var(--border-light);
@@ -334,13 +316,11 @@ body {
     background-color: var(--primary-light);
 }
 
-/* Column Specific Styles */
 #employeeTable th.col-center,
 #employeeTable td.col-center {
     text-align: center;
 }
 
-/* Style for the first column (checkbox) */
 #employeeTable th:first-child,
 #employeeTable td:first-child {
     text-align: center;
@@ -348,20 +328,17 @@ body {
     padding: 0.5rem;
 }
 
-/* Style for checkboxes in the first column */
 #employeeTable th:first-child input[type="checkbox"],
 #employeeTable td:first-child input[type="checkbox"] {
     margin: 0;
     vertical-align: middle;
 }
 
-/* Style for the last column (action icons) */
 #employeeTable td.action-icons {
     text-align: center;
     white-space: nowrap;
 }
 
-/* Icon Buttons - Refined */
 .icon-button {
     background: none;
     border: none;
@@ -380,7 +357,6 @@ body {
     margin: 0 3px;
 }
 
-
 .icon-button.icon-view:hover {
     color: var(--accent);
     background-color: var(--primary-light);
@@ -396,7 +372,6 @@ body {
     background-color: #fee2e2;
 }
 
-/* Status Badges */
 .status-badge {
     display: inline-block;
     padding: 0.4em 1em;
@@ -420,7 +395,6 @@ body {
     box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
 }
 
-/* Modal Styles */
 .modal {
     z-index: 10000;
     display: flex;
@@ -542,16 +516,13 @@ body {
     padding: 0.875rem 1.75rem;
     font-size: 1rem;
     font-weight: 600;
-    cursor: pointer;
-    /* transition: all 0.2s ease; */
+    cursor: pointer; 
 }
 
 .modal-footer .btn-primary:hover {
-    /* transform: translateY(-2px); */
     box-shadow: 0 4px 6px rgba(255, 214, 0, 0.2);
 }
 
-/* Style for buttons within delete modal footer */
 #deleteEmployeeModal .modal-footer .btn-secondary,
 #deleteEmployeeModal .modal-footer .btn-danger {
     min-width: 100px;
@@ -570,7 +541,6 @@ body {
     color: #fff;
 }
 
-/* Form Styles */
 .form-grid {
     display: flex;
     flex-direction: column;
@@ -626,7 +596,6 @@ body {
     outline: none;
 }
 
-/* Error styles */
 .form-group input.error,
 .form-group select.error,
 .form-group textarea.error {
@@ -641,7 +610,6 @@ body {
     font-weight: 500;
 }
 
-/* Animation for table rows */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -657,7 +625,6 @@ body {
     animation: fadeIn 0.3s ease forwards;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -677,7 +644,6 @@ body {
     background: var(--accent-hover);
 }
 
-/* Pagination */
 .card-footer {
     display: flex;
     justify-content: flex-end;
@@ -741,7 +707,6 @@ body {
     cursor: not-allowed;
 }
 
-/* Responsive adjustments for pagination */
 @media (max-width: 768px) {
     .card-footer {
         flex-direction: column;
@@ -792,7 +757,6 @@ body {
     }
 }
 
-/* Header Styles */
 .header {
     position: relative;
     z-index: 1;
@@ -809,7 +773,6 @@ body {
     position: absolute;
 }
 
-/* Modal Xác nhận Xóa Nhân viên - Specific Styles */
 #deleteEmployeeModal .modal-content {
     max-width: 400px;
 }
@@ -827,7 +790,6 @@ body {
     color: #fff;
 }
 
-/* Form Styles */
 .form-grid {
     display: flex;
     flex-direction: column;
@@ -883,7 +845,6 @@ body {
     outline: none;
 }
 
-/* Modal Xác nhận Xóa Nhiều Nhân viên - Specific Styles */
 #bulkDeleteEmployeeModal .modal-content {
     max-width: 400px;
     margin: auto;
@@ -920,7 +881,6 @@ body {
     color: #fff;
 }
 
-/* Form Styles */
 .form-grid {
     display: flex;
     flex-direction: column;

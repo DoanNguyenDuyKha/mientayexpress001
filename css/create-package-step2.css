@@ -1,58 +1,47 @@
-/* General layout for Step 2 content */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Colors */
-    --primary-color: #0891b2; /* Blue */
+    --primary-color: #0891b2; 
     --primary-hover: #0e7490;
-    --primary-light: #ecfeff; /* Light Blue */
-    --secondary-color: #64748b; /* Grey-blue */
+    --primary-light: #ecfeff; 
+    --secondary-color: #64748b; 
     --secondary-hover: #475569;
-    --confirm-color: #16a34a; /* Green */
+    --confirm-color: #16a34a; 
     --confirm-hover: #15803d;
-    --warning-color: #f97316; /* Orange */
+    --warning-color: #f97316; 
     --warning-hover: #ea580c;
-    --danger-color: #dc2626; /* Red */
+    --danger-color: #dc2626; 
     --danger-hover: #b91c1c;
     --info-color: #3b82f6;
-    --receive-color: #2563eb; /* Darker Blue */
-    --text-primary: #1e293b; /* Dark Grey */
-    --text-secondary: #64748b; /* Medium Grey */
+    --receive-color: #2563eb; 
+    --text-primary: #1e293b; 
+    --text-secondary: #64748b; 
     --text-on-primary: #ffffff;
-    --bg-color: #f8fafc; /* Light Grey Background */
-    --card-bg: #ffffff; /* White */
+    --bg-color: #f8fafc; 
+    --card-bg: #ffffff; 
     --form-bg: #ffffff;
-    --border-color: #d1d5db; /* Tinh chỉnh màu border cho mềm mại hơn */
-    --border-light: #e5e7eb; /* Tinh chỉnh màu border nhẹ */
-    --input-border: #d1d5db; /* Tinh chỉnh màu input border */
-    --text-gray-label: #4b5563; /* Tinh chỉnh màu label */
+    --border-color: #d1d5db; 
+    --border-light: #e5e7eb; 
+    --input-border: #d1d5db; 
+    --text-gray-label: #4b5563; 
     --label-color: var(--text-gray-label);
     --success-color: var(--confirm-color);
     --text-read-only: #374151;
-    --input-readonly-bg: #e5e7eb; /* Tinh chỉnh màu readonly input */
-    --border-gold: #FFD700; /* Định nghĩa biến màu vàng cho border */
-
-    /* Typography */
+    --input-readonly-bg: #e5e7eb; 
+    --border-gold: #FFD700; 
     --font-family: 'Inter', sans-serif;
     --base-font-size: 0.65rem;
     --form-font-size: 0.7rem;
-
-    /* Spacing */
     --base-padding: 0.6rem;
     --card-padding: 0.6rem;
     --form-padding: 0.6rem;
     --form-gap: 0.3rem;
-
-    /* Borders & Shadows */
     --border-radius: 3px;
-    --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.04); /* Tinh chỉnh shadow nhẹ nhàng hơn */
-    --shadow-lg: 0 8px 12px -4px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06); /* Tinh chỉnh shadow nhẹ nhàng hơn */
-
-    /* Transitions */
-    --transition-speed: 0.25s; /* Tinh chỉnh tốc độ transition */
+    --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.04); 
+    --shadow-lg: 0 8px 12px -4px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06); 
+    --transition-speed: 0.25s
 }
 
-/* Base Styles (copied from create-package.css) */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -61,7 +50,7 @@
 
 html {
     scroll-behavior: smooth;
-    height: 100%; /* Ensure html takes full height */
+    height: 100%; 
 }
 
 body {
@@ -72,10 +61,9 @@ body {
     background-color: var(--bg-color);
     display: flex;
     transition: padding-left var(--transition-speed) ease;
-    min-height: 100vh; /* Ensure body is at least full viewport height */
+    min-height: 100vh; 
     position: relative;
-    overflow-x: hidden; /* Prevent horizontal scroll on body */
-    /* Let browser handle vertical scroll */
+    overflow-x: hidden; 
     overflow-y: auto;
 }
 
@@ -90,7 +78,7 @@ a {
 }
 
 a:hover {
-    color: var(--primary-hover); /* Tinh chỉnh màu hover */
+    color: var(--primary-hover); 
     text-decoration: underline;
 }
 
@@ -100,78 +88,77 @@ img {
     display: block;
 }
 
-/* Form Elements (copied from create-package.css) */
 input, select, button, textarea {
     font-family: inherit;
     font-size: var(--form-font-size);
-    border: 1px solid var(--input-border); /* Sử dụng input-border */
+    border: 1px solid var(--input-border); 
     border-radius: var(--border-radius);
-    padding: 0.3rem 0.5rem; /* Tinh chỉnh padding input */
-    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Giữ transition */
+    padding: 0.3rem 0.5rem; 
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; 
     color: var(--text-primary);
     background-color: var(--form-bg);
-    line-height: 1.3; /* Tinh chỉnh line-height */
+    line-height: 1.3; 
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.3); /* Tinh chỉnh focus shadow */
+    box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.3); 
 }
 
 select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); /* Giữ icon select */
-    background-position: right 0.5rem center; /* Tinh chỉnh vị trí icon */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); 
+    background-position: right 0.5rem center; 
     background-repeat: no-repeat;
-    background-size: 1.2em 1.2em; /* Giảm kích thước icon select */
-    padding-right: 1.8rem; /* Điều chỉnh padding right */
+    background-size: 1.2em 1.2em; 
+    padding-right: 1.8rem; 
 }
 
 textarea {
-    line-height: 1.4; /* Tinh chỉnh line-height textarea */
+    line-height: 1.4; 
 }
 
 button {
     cursor: pointer;
     background-color: var(--card-bg);
     color: var(--text-primary);
-    border: 1px solid var(--border-color); /* Sử dụng border-color */
-    border-radius: var(--border-radius); /* Use variable */
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease; /* Thêm transition cho transform */
-    box-shadow: var(--shadow-md); /* Áp dụng shadow mặc định cho button */
-    font-size: var(--form-font-size); /* Use form font size */
-    padding: 0.3rem 0.5rem; /* Adjust padding */
+    border: 1px solid var(--border-color); 
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease; 
+    box-shadow: var(--shadow-md); 
+    font-size: var(--form-font-size);
+    padding: 0.3rem 0.5rem; 
 }
 
 button:hover {
-    border-color: var(--secondary-hover); /* Tinh chỉnh màu border hover */
-    background-color: var(--border-light); /* Tinh chỉnh màu background hover */
-    box-shadow: var(--shadow-lg); /* Tăng nhẹ shadow khi hover */
+    border-color: var(--secondary-hover); 
+    background-color: var(--border-light); 
+    box-shadow: var(--shadow-lg); 
 }
 
 button:active {
-    transform: translateY(1px); /* Hiệu ứng nhấn nút nhẹ */
-    box-shadow: var(--shadow-md); /* Shadow về lại md khi active */
+    transform: translateY(1px); 
+    box-shadow: var(--shadow-md);
  }
 
 button:disabled, button[disabled] {
      cursor: not-allowed !important;
-     opacity: 0.7 !important; /* Tăng nhẹ opacity cho rõ hơn */
-     background-color: var(--border-light) !important; /* Tinh chỉnh màu disabled */
-     border-color: var(--border-light) !important; /* Tinh chỉnh màu border disabled */
-     color: var(--text-secondary) !important; /* Tinh chỉnh màu text disabled */
+     opacity: 0.7 !important; 
+     background-color: var(--border-light) !important; 
+     border-color: var(--border-light) !important; 
+     color: var(--text-secondary) !important; 
      transform: none !important;
      box-shadow: none !important;
  }
 
 input[readonly], textarea[readonly] {
-    background-color: var(--input-readonly-bg); /* Sử dụng biến */
-    color: var(--text-read-only); /* Sử dụng biến */
+    background-color: var(--input-readonly-bg); 
+    color: var(--text-read-only); 
     cursor: default;
-    border-color: var(--border-light); /* Sử dụng biến */
+    border-color: var(--border-light);
 }
 
 .visually-hidden {
@@ -185,7 +172,7 @@ input[readonly], textarea[readonly] {
     border: 0;
 }
 
-/* Layout (copied and adapted from create-package.css) */
+
 .content-wrapper {
     padding: var(--base-padding);
     flex-grow: 1;
@@ -193,9 +180,9 @@ input[readonly], textarea[readonly] {
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
-    min-height: 100vh; /* Ensure content-wrapper is at least full viewport height */
+    min-height: 100vh; 
     position: relative;
-    overflow: visible; /* Allow content to overflow and be scrolled by body */
+    overflow: visible; 
 }
 
 .page-header {
@@ -204,14 +191,14 @@ input[readonly], textarea[readonly] {
     align-items: center;
     margin-bottom: var(--base-padding);
     flex-wrap: wrap;
-    gap: 0.8rem; /* Tinh chỉnh gap */
+    gap: 0.8rem; 
 }
 
 .page-title {
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 0.4rem; /* Tinh chỉnh margin */
+    margin-bottom: 0.4rem; 
 }
 
 .breadcrumb {
@@ -224,7 +211,7 @@ input[readonly], textarea[readonly] {
 }
 
 .breadcrumb a:hover {
-    color: var(--primary-hover); /* Tinh chỉnh màu hover */
+    color: var(--primary-hover); 
 }
 
 .breadcrumb span {
@@ -232,39 +219,36 @@ input[readonly], textarea[readonly] {
     color: var(--text-primary);
 }
 
-/* Specific layout for Step 2 content area */
 .content-area-step2 {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding: 0; /* Remove padding here, added in form layout */
-    margin-bottom: var(--base-padding); /* Add margin bottom */
+    padding: 0; 
+    margin-bottom: var(--base-padding); 
 }
 
 #create-order-step2-form {
-    flex-grow: 0; /* Changed from 1 */
+    flex-grow: 0; 
     display: flex;
     flex-direction: column;
-    gap: var(--form-gap); /* Gap between form sections */
-    padding-bottom: var(--base-padding); /* Reduced padding bottom */
+    gap: var(--form-gap); 
+    padding-bottom: var(--base-padding); 
 }
 
-/* Layout for the main content columns (summary and data sections) */
 .main-content-grid {
     display: table-column;
-    grid-template-columns: 1fr 1.5fr; /* Keep your current column ratio */
-    gap: var(--form-gap); /* Use form gap */
-    flex-grow: 0; /* Changed from 1 */
+    grid-template-columns: 1fr 1.5fr; 
+    gap: var(--form-gap); 
+    flex-grow: 0; 
     margin-bottom: 0;
 }
 
 .summary-column, .data-column {
     display: flex;
     flex-direction: column;
-    gap: var(--form-gap); /* Gap between cards in a column */
+    gap: var(--form-gap); 
 }
 
-/* Remove old layout classes (ensure they are not used) */
 .content-layout,
 .summary-flex-2col,
 .summary-col-left,
@@ -276,41 +260,40 @@ input[readonly], textarea[readonly] {
     padding: 0;
 }
 
-/* Styling for the summary column content based on image (Adapted from form-section) */
 .summary-card-like, .data-section {
-    border: 1px solid var(--border-gold); /* Use gold border */
-    border-radius: var(--border-radius); /* Use variable */
+    border: 1px solid var(--border-gold); 
+    border-radius: var(--border-radius); 
     overflow: hidden;
-    background-color: var(--card-bg); /* Use card bg */
-    box-shadow: var(--shadow-md); /* Use md shadow */
-    margin-bottom: 10px; /* Gap handled by column */
+    background-color: var(--card-bg); 
+    box-shadow: var(--shadow-md); 
+    margin-bottom: 10px; 
 }
 
 .summary-header-like, .data-section .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.3rem var(--form-padding); /* Use form padding */
-    border-bottom: 1px solid var(--border-color); /* Use border color */
-    background-color: var(--border-gold); /* Use gold background */
-    color: var(--text-primary); /* Use text primary color */
+    padding: 0.3rem var(--form-padding); 
+    border-bottom: 1px solid var(--border-color); 
+    background-color: var(--border-gold); 
+    color: var(--text-primary); 
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     position: relative;
     z-index: 2;
 }
 
 .summary-header-left, .data-section .card-header .card-title {
-    font-size: 0.8rem; /* Use size from create-package.css */
+    font-size: 0.8rem; 
     font-weight: 600;
-    color: var(--text-primary); /* Use text primary */
+    color: var(--text-primary); 
     display: flex;
     align-items: center;
-    gap: 0.3rem; /* Use gap from create-package.css */
+    gap: 0.3rem; 
 }
 
 .summary-header-left i.icon, .data-section .card-header .card-title i.icon {
-     color: var(--receive-color); /* Blue icon color */
-     font-size: 1em; /* Match parent font size */
+     color: var(--receive-color); 
+     font-size: 1em; 
 }
 
 .summary-header-right {
@@ -320,77 +303,75 @@ input[readonly], textarea[readonly] {
 }
 
 .summary-header-right input[type="text"] {
-     padding: 0.1rem 0.3rem; /* Adjusted padding */
-     font-size: var(--form-font-size); /* Use form font size */
-     border: 1px solid var(--input-border); /* Use input border */
-     border-radius: var(--border-radius); /* Use variable */
+     padding: 0.1rem 0.3rem; 
+     font-size: var(--form-font-size); 
+     border: 1px solid var(--input-border); 
+     border-radius: var(--border-radius); 
 }
 
 .summary-body-like, .data-section .card-body {
-    padding: var(--form-padding); /* Use form padding */
+    padding: var(--form-padding); 
 }
 
 .summary-sections-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns (5:5 ratio) */
-    grid-template-rows: auto auto; /* Two rows, height determined by content */
-    gap: var(--form-gap); /* Gap between grid items */
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto auto; 
+    gap: var(--form-gap); 
     grid-template-areas:
         "senderSection servicesSection"
-        "receiverSection billSection"; /* Define grid areas for the desired layout */
+        "receiverSection billSection"; 
 }
 
-/* Assign grid areas to the summary sections within the grid */
-.summary-sections-grid > .summary-section-block:nth-of-type(1) { /* 1. Người gửi */
+.summary-sections-grid > .summary-section-block:nth-of-type(1) { 
     grid-area: senderSection;
 }
-.summary-sections-grid > .summary-section-block:nth-of-type(2) { /* 2. Người nhận */
+.summary-sections-grid > .summary-section-block:nth-of-type(2) { 
     grid-area: receiverSection;
 }
-.summary-sections-grid > .summary-section-block:nth-of-type(3) { /* 3. Dịch vụ */
+.summary-sections-grid > .summary-section-block:nth-of-type(3) { 
     grid-area: servicesSection;
 }
-.summary-sections-grid > .summary-section-block:nth-of-type(4) { /* 4. Yêu cầu */
+.summary-sections-grid > .summary-section-block:nth-of-type(4) { 
     grid-area: billSection;
 }
 
 .summary-label {
-    font-size: var(--form-font-size); /* Use form font size */
+    font-size: var(--form-font-size); 
     font-weight: 500;
-    color: var(--label-color); /* Use label color */
+    color: var(--label-color); 
     display: flex;
     align-items: center;
     gap: 0.03rem;
 }
 
 .summary-value {
-     font-size: var(--form-font-size); /* Use form font size */
-     color: var(--text-primary); /* Use text primary */
+     font-size: var(--form-font-size); 
+     color: var(--text-primary); 
      word-break: break-word;
 }
 
-/* Style for the boxed summary values */
 .summary-body-like .summary-value-box {
-    border: 1px solid var(--input-border); /* Add border like inputs */
-    border-radius: var(--border-radius); /* Add border radius */
-    background-color: var(--form-bg); /* Add background color */
-    padding: 0.2rem 0.4rem; /* Match padding of inputs */
-    font-size: var(--form-font-size); /* Match font size */
-    color: var(--text-primary); /* Ensure text color is correct */
-    line-height: 1.3; /* Ensure line height consistency */
+    border: 1px solid var(--input-border); 
+    border-radius: var(--border-radius); 
+    background-color: var(--form-bg); 
+    padding: 0.2rem 0.4rem; 
+    font-size: var(--form-font-size); 
+    color: var(--text-primary); 
+    line-height: 1.3; 
     box-sizing: border-box;
-    display: inline-block; /* Ensure it behaves like an inline block */
-    min-width: 100%; /* Ensure a minimum width */
+    display: inline-block; 
+    min-width: 100%; 
 }
 
 .summary-separator {
     border: none;
-    border-top: 1px dashed var(--border-light); /* Use light border */
-    margin: 0.3rem 0; /* Use form gap */
+    border-top: 1px dashed var(--border-light); 
+    margin: 0.3rem 0; 
 }
 
 .summary-section-block {
-    margin-bottom: 0.3rem; /* Use form gap */
+    margin-bottom: 0.3rem; 
 }
 
 .summary-section-block:last-child {
@@ -398,9 +379,9 @@ input[readonly], textarea[readonly] {
 }
 
 .summary-section-title {
-    font-size: 0.65rem; /* Keep slightly larger than summary value */
+    font-size: 0.65rem; 
     font-weight: 600;
-    color: var(--text-primary); /* Use text primary */
+    color: var(--text-primary); 
     display: flex;
     align-items: center;
     gap: 0.1rem;
@@ -408,30 +389,28 @@ input[readonly], textarea[readonly] {
 }
 
 .summary-section-title i.icon {
-     color: var(--info-color); /* Info color for icons */
+     color: var(--info-color); 
      font-size: 0.7em;
 }
 
-/* Style for the new editable sender info row (using grid) */
 .summary-body-like .editable-sender-row {
      display: grid;
-     grid-template-columns: auto 1fr; /* Match summary grid columns */
-     gap: 0.5rem; /* Adjusted gap */
-     align-items: center; /* Vertically align items */
-     margin-bottom: var(--form-gap); /* Add some space below */
-     padding-left: 0; /* Ensure no extra padding on the left */
-     padding-right: 0; /* Ensure no extra padding on the right */
-     width: 100%; /* Ensure it takes full width of its container */
+     grid-template-columns: auto 1fr; 
+     gap: 0.5rem; 
+     align-items: center; 
+     margin-bottom: var(--form-gap); 
+     padding-left: 0; 
+     padding-right: 0; 
+     width: 100%; 
 }
 
 .summary-body-like .editable-sender-row .summary-label {
      flex-shrink: 0;
-     font-size: var(--form-font-size); /* Match font size */
+     font-size: var(--form-font-size); 
      font-weight: 500;
      color: var(--label-color);
      line-height: 1.3;
      text-align: left;
-     /* min-width handled by grid auto column */
 }
 
 .summary-body-like .editable-sender-row .input-with-icon {
@@ -442,7 +421,6 @@ input[readonly], textarea[readonly] {
      border: 1px solid var(--input-border);
      border-radius: var(--border-radius);
      background-color: var(--form-bg);
-     /* Padding controlled by input */
      min-width: 0;
 }
 
@@ -450,8 +428,8 @@ input[readonly], textarea[readonly] {
      width: 100%;
      flex-grow: 1;
      min-width: 0;
-     padding: 0.2rem 0.4rem; /* Adjusted padding slightly */
-     padding-right: 1.5em; /* Space for icon */
+     padding: 0.2rem 0.4rem; 
+     padding-right: 1.5em; 
      font-size: var(--form-font-size);
      box-sizing: border-box;
      border: none;
@@ -471,19 +449,16 @@ input[readonly], textarea[readonly] {
      font-size: 0.8em;
 }
 
-/* Data Section Styling (restored and styled as cards - adapted) */
 .data-section {
-     /* Styles inherited from .summary-card-like */
-     margin-bottom: 0; /* Gap handled by column */
+     margin-bottom: 0; 
 }
 
 .data-section:last-child {
     margin-bottom: 0;
 }
 
-
 .data-section .header-note {
-    font-size: 0.8rem; /* Keep small */
+    font-size: 0.8rem; 
     color: var(--text-secondary);
     display: flex;
     align-items: center;
@@ -495,13 +470,12 @@ input[readonly], textarea[readonly] {
      padding: 0.02rem 0.05rem;
      font-size: 0.45rem;
      text-align: center;
-     border: 1px solid var(--border-light); /* Use light border */
-     border-radius: var(--border-radius); /* Use variable */
+     border: 1px solid var(--border-light); 
+     border-radius: var(--border-radius); 
 }
 
-/* Form Group styles inherited/adapted */
 .form-group {
-    margin-bottom: var(--form-gap); /* Use form gap */
+    margin-bottom: var(--form-gap); 
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
@@ -514,9 +488,9 @@ input[readonly], textarea[readonly] {
 }
 
 .form-group label, .form-label {
-    font-size: var(--form-font-size); /* Use form font size */
+    font-size: var(--form-font-size); 
     font-weight: 500;
-    color: var(--label-color); /* Use label color */
+    color: var(--label-color); 
     display: block;
     margin-bottom: 0.05rem;
 }
@@ -527,11 +501,11 @@ input[readonly], textarea[readonly] {
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 0.25rem 0.4rem; /* Use form padding for inputs */
-    border: 1px solid var(--input-border); /* Use input border */
-    border-radius: var(--border-radius); /* Use variable */
+    padding: 0.25rem 0.4rem; 
+    border: 1px solid var(--input-border); 
+    border-radius: var(--border-radius); 
     box-sizing: border-box;
-    font-size: var(--form-font-size); /* Use form font size */
+    font-size: var(--form-font-size); 
 }
 
 textarea {
@@ -542,62 +516,61 @@ textarea {
 .form-group .input-with-icon {
     display: flex;
     align-items: center;
-    border: 1px solid var(--input-border); /* Use input border */
-    border-radius: var(--border-radius); /* Use variable */
-    padding-right: 0.4rem; /* Use form padding */
-    background-color: var(--form-bg); /* Use form bg */
+    border: 1px solid var(--input-border); 
+    border-radius: var(--border-radius); 
+    padding-right: 0.4rem; 
+    background-color: var(--form-bg); 
 }
 
 .form-group .input-with-icon input {
     flex-grow: 1;
     border: none;
-    padding: 0.25rem 0.4rem; /* Use form padding */
-    font-size: var(--form-font-size); /* Use form font size */
+    padding: 0.25rem 0.4rem; 
+    font-size: var(--form-font-size); 
 }
 
 .form-group .input-with-icon .edit-icon {
     cursor: pointer;
-    color: var(--info-color); /* Use info color */
+    color: var(--info-color); 
     margin-left: 0.2rem;
-    font-size: 0.8em; /* Slightly smaller than text */
+    font-size: 0.8em; 
 }
 
-/* Dimension Group (adapted) */
 .dimension-group {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem; /* Use form gap for items */
-    margin-bottom: var(--form-gap); /* Use form gap */
+    gap: 0.15rem; 
+    margin-bottom: var(--form-gap); 
 }
 
 .dimension-labels {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) auto; /* Keep structure */
-    gap: 0.15rem 0.5rem; /* Use form gap */
-    font-size: 0.45rem; /* Keep small */
+    grid-template-columns: repeat(4, 1fr) auto; 
+    gap: 0.15rem 0.5rem; 
+    font-size: 0.45rem; 
     padding: 0 0.08rem;
     font-weight: 500;
-    color: var(--text-gray-label); /* Use label color */
+    color: var(--text-gray-label); 
 }
 
 .dimension-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) auto; /* Keep structure */
-    gap: 0.15rem 0.5rem; /* Use form gap */
+    grid-template-columns: repeat(4, 1fr) auto; 
+    gap: 0.15rem 0.5rem; 
     align-items: center;
 }
 
 .dimension-row input[type="number"] {
     width: 100%;
-    font-size: var(--form-font-size); /* Use form font size */
-    padding: 0.25rem 0.4rem; /* Use form padding */
-    border: 1px solid var(--input-border); /* Use input border */
-    border-radius: var(--border-radius); /* Use variable */
+    font-size: var(--form-font-size); 
+    padding: 0.25rem 0.4rem; 
+    border: 1px solid var(--input-border); 
+    border-radius: var(--border-radius); 
 }
 
 .dim-actions {
     display: flex;
-    gap: 0.1rem; /* Keep gap */
+    gap: 0.1rem; 
     justify-content: flex-end;
 }
 
@@ -605,61 +578,60 @@ textarea {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 0.7rem; /* Keep size */
+    font-size: 0.7rem; 
     padding: 0;
     margin: 0;
     transition: color 0.2s ease;
 }
 
 .icon-button.confirm i {
-    color: var(--confirm-color); /* Use confirm color */
+    color: var(--confirm-color); 
 }
 
 .icon-button.confirm:hover i {
-    color: var(--confirm-hover); /* Use confirm hover */
+    color: var(--confirm-hover); 
 }
 
 .icon-button.danger i {
-    color: var(--danger-color); /* Use danger color */
+    color: var(--danger-color); 
 }
 
 .icon-button.danger:hover i {
-    color: var(--danger-hover); /* Use danger hover */
+    color: var(--danger-hover); 
 }
 
 .icon-button.small {
-    font-size: 0.6rem; /* Keep small size */
+    font-size: 0.6rem; 
 }
 
-/* Attachment Group (adapted) */
 .attachment-group {
     display: flex;
     align-items: center;
-    gap: 0.3rem; /* Use form gap */
+    gap: 0.3rem; 
     flex-wrap: wrap;
-    margin-bottom: 0.15rem; /* Use form gap */
-    justify-content: space-between; /* Add this to push items apart */
+    margin-bottom: 0.15rem; 
+    justify-content: space-between; 
 }
 
 .attachment-button-note {
     display: flex;
     align-items: center;
-    gap: 0.3rem; /* Space between button and note */
-    /* Ensure it doesn't grow unnecessarily */
+    gap: 0.3rem; 
+    
     flex-shrink: 0;
 }
 
 .file-type-note {
-    font-size: 0.5rem; /* Keep small */
+    font-size: 0.5rem; 
     color: var(--text-secondary);
 }
 
 .selected-files-container {
-    margin-top: 0.15rem; /* Use form gap */
-    border: 1px solid var(--border-light); /* Use light border */
-    border-radius: var(--border-radius); /* Use variable */
-    padding: 0.25rem; /* Use form padding */
-    background-color: var(--bg-color); /* Use bg color */
+    margin-top: 0.15rem; 
+    border: 1px solid var(--border-light); 
+    border-radius: var(--border-radius); 
+    padding: 0.25rem; 
+    background-color: var(--bg-color); 
     max-height: 100px;
     overflow-y: auto;
 }
@@ -674,10 +646,10 @@ textarea {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: var(--form-font-size); /* Use form font size */
-    color: var(--text-primary); /* Use text primary */
-    padding: 0.1rem 0; /* Adjusted padding */
-    border-bottom: 1px dashed var(--border-light); /* Use light border */
+    font-size: var(--form-font-size); 
+    color: var(--text-primary); 
+    padding: 0.1rem 0; 
+    border-bottom: 1px dashed var(--border-light); 
 }
 
 .file-list li:last-child {
@@ -691,41 +663,41 @@ textarea {
 }
 
 .file-list li .icon-button {
-     font-size: 0.5rem; /* Keep small */
+     font-size: 0.5rem; 
 }
 
 .no-files-selected {
-    font-size: var(--form-font-size); /* Use form font size */
+    font-size: var(--form-font-size); 
     color: var(--text-secondary);
     display: block;
     text-align: center;
-    padding: 0.25rem; /* Use form padding */
+    padding: 0.25rem; 
 }
 
-/* Item Details Table (adapted) */
+
 .table-responsive-wrapper {
     overflow-x: auto;
-    margin-bottom: var(--form-gap); /* Use form gap */
+    margin-bottom: var(--form-gap); 
 }
 
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: var(--form-font-size); /* Use form font size */
+    font-size: var(--form-font-size); 
 }
 
 .data-table th,
 .data-table td {
-    border: 1px solid var(--border-light); /* Use light border */
-    padding: 0.15rem 0.3rem; /* Adjusted padding */
+    border: 1px solid var(--border-light); 
+    padding: 0.15rem 0.3rem; 
     text-align: left;
     vertical-align: top;
 }
 
 .data-table th {
-    background-color: var(--bg-color); /* Use bg color */
+    background-color: var(--bg-color); 
     font-weight: 600;
-    color: var(--text-primary); /* Use text primary */
+    color: var(--text-primary); 
     white-space: nowrap;
 }
 
@@ -733,22 +705,22 @@ textarea {
 .data-table td select,
 .data-table td textarea {
     width: 100%;
-    border: 1px solid var(--input-border); /* Use input border */
-    border-radius: var(--border-radius); /* Use variable */
-    padding: 0.1rem 0.2rem; /* Adjusted padding */
-    font-size: var(--form-font-size); /* Use form font size */
+    border: 1px solid var(--input-border); 
+    border-radius: var(--border-radius); 
+    padding: 0.1rem 0.2rem; 
+    font-size: var(--form-font-size); 
 }
 
 .data-table td textarea {
-    resize: none; /* Prevent resizing */
-    height: 18px; /* Set a fixed height */
+    resize: none; 
+    height: 18px; 
 }
 
 .data-table td input[readonly] {
-    background-color: var(--input-readonly-bg); /* Use variable */
-    color: var(--text-read-only); /* Use variable */
+    background-color: var(--input-readonly-bg); 
+    color: var(--text-read-only); 
     cursor: default;
-    border-color: var(--border-light); /* Use light border */
+    border-color: var(--border-light); 
 }
 
 .data-table td select {
@@ -758,9 +730,9 @@ textarea {
 }
 
 .data-table .col-action {
-    width: 20px; /* Adjusted width */
+    width: 20px; 
     text-align: center;
-    padding: 0.15rem 0.1rem; /* Adjusted padding */
+    padding: 0.15rem 0.1rem; 
 }
 
 .data-table .col-qty,
@@ -781,45 +753,45 @@ textarea {
 }
 
 .data-table tfoot td {
-     background-color: var(--bg-color); /* Use bg color */
-     font-size: var(--form-font-size); /* Use form font size */
-     padding: 0.15rem 0.3rem; /* Adjusted padding */
+     background-color: var(--bg-color); 
+     font-size: var(--form-font-size); 
+     padding: 0.15rem 0.3rem; 
 }
 
-/* Form Actions Footer (adapted) */
+
 footer.content-actions {
-    padding: 0.3rem var(--base-padding); /* Use base padding */
-    background-color: var(--card-bg); /* Use card bg */
-    border-top: 1px solid var(--border-light); /* Use light border */
+    padding: 0.3rem var(--base-padding); 
+    background-color: var(--card-bg); 
+    border-top: 1px solid var(--border-light); 
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--form-gap); /* Use form gap */
-    margin-top: 0; /* Changed from auto to a fixed gap */
+    gap: var(--form-gap); 
+    margin-top: 0; 
     flex-shrink: 0;
-    box-shadow: 0 -2px 4px -1px rgba(0,0,0,0.05); /* Keep shadow */
+    box-shadow: 0 -2px 4px -1px rgba(0,0,0,0.05); 
     position: relative;
     z-index: 2;
 }
 
-/* Checkbox confirmation text (adapted) */
+
 .confirmation-check {
     display: flex;
     align-items: center;
-    gap: 0.15rem; /* Use form gap */
-    font-size: 0.65rem; /* Matched font size from create-package.css */
-    color: var(--text-secondary); /* Use text secondary */
+    gap: 0.15rem; 
+    font-size: 0.65rem; 
+    color: var(--text-secondary); 
     flex-grow: 1;
-    margin-right: 0; /* Remove specific right margin, rely on parent gap */
+    margin-right: 0; 
 }
 
 .confirmation-check input[type="checkbox"] {
     margin: 0;
-    accent-color: var(--confirm-color); /* Use confirm color */
+    accent-color: var(--confirm-color); 
     cursor: pointer;
-    width: 1em; /* Matched size from create-package.css */
-    height: 1em; /* Matched size from create-package.css */
+    width: 1em; 
+    height: 1em; 
     flex-shrink: 0;
     vertical-align: middle;
 }
@@ -829,114 +801,111 @@ footer.content-actions {
     cursor: pointer;
     margin-bottom: 0;
     line-height: 1.4;
-    font-size: 0.65rem; /* Ensure label font size matches parent */
+    font-size: 0.65rem; 
 }
 
 .confirmation-check label strong {
-    color: var(--danger-color); /* Use danger color */
+    color: var(--danger-color); 
     font-weight: 700;
 }
 
 .content-actions .action-buttons {
     display: flex;
-    gap: 0.15rem; /* Use form gap */
+    gap: 0.15rem; 
     flex-wrap: wrap;
-    justify-content: flex-end; /* Keep right alignment */
-    width: auto; /* Allow width to be determined by content */
+    justify-content: flex-end; 
+    width: auto; 
 }
 
-/* Buttons in Form Actions (adapted) */
 .content-actions .button {
     display: inline-flex;
     align-items: center;
     gap: 0.08rem;
     font-weight: 600;
-    padding: 0.25rem 0.6rem; /* Adjusted padding */
-    font-size: var(--form-font-size); /* Use form font size */
+    padding: 0.25rem 0.6rem; 
+    font-size: var(--form-font-size); 
     white-space: nowrap;
-    border-radius: var(--border-radius); /* Use variable */
-    transition: all var(--transition-speed); /* Keep transition */
-    box-shadow: var(--shadow-md); /* Use md shadow */
-    border: none; /* Remove border */
+    border-radius: var(--border-radius); 
+    transition: all var(--transition-speed); 
+    box-shadow: var(--shadow-md); 
+    border: none; 
     text-transform: uppercase;
     letter-spacing: 0.3px;
     margin-right: 0;
-    flex-grow: 0; /* Prevent growth */
+    flex-grow: 0; 
 }
 
 .content-actions .button.secondary {
-     background-color: var(--secondary-color); /* Use secondary color */
-     color: var(--text-on-primary); /* Use text on primary color */
+     background-color: var(--secondary-color); 
+     color: var(--text-on-primary); 
 }
 .content-actions .button.secondary:hover {
-     background-color: var(--secondary-hover); /* Use secondary hover */
-     box-shadow: var(--shadow-lg); /* Use lg shadow */
+     background-color: var(--secondary-hover); 
+     box-shadow: var(--shadow-lg); 
 }
 
 .content-actions .button.warning {
-     background-color: var(--warning-color); /* Use warning color */
-     color: var(--text-on-primary); /* Use text on primary color */
+     background-color: var(--warning-color); 
+     color: var(--text-on-primary); 
 }
 .content-actions .button.warning:hover {
-     background-color: var(--warning-hover); /* Use warning hover */
-     box-shadow: var(--shadow-lg); /* Use lg shadow */
+     background-color: var(--warning-hover); 
+     box-shadow: var(--shadow-lg); 
 }
 
 .content-actions .button.confirm {
-     background-color: var(--confirm-color); /* Use confirm color */
-    color: var(--text-on-primary); /* Use text on primary color */
+     background-color: var(--confirm-color); 
+    color: var(--text-on-primary); 
 }
 .content-actions .button.confirm:hover {
-     background-color: var(--confirm-hover); /* Use confirm hover */
-     box-shadow: var(--shadow-lg); /* Use lg shadow */
+     background-color: var(--confirm-hover); 
+     box-shadow: var(--shadow-lg); 
 }
 
-/* Site Footer (copied) */
 .site-footer {
-    margin-top: 0; /* Changed from form-gap */
+    margin-top: 0; 
     padding: var(--base-padding);
     text-align: center;
     font-size: 0.6rem;
     color: var(--text-secondary);
-    border-top: 1px solid var(--border-light); /* Use light border */
+    border-top: 1px solid var(--border-light); 
     flex-shrink: 0;
 }
 
-/* Responsive Adjustments (adapted from create-package.css) */
 @media (max-width: 992px) {
     .main-content-grid {
-        grid-template-columns: 1fr; /* Stack columns */
-        gap: var(--form-gap); /* Use form gap */
+        grid-template-columns: 1fr; 
+        gap: var(--form-gap); 
     }
 
     .summary-column,
     .data-column {
-        gap: var(--form-gap); /* Use form gap */
+        gap: var(--form-gap); 
     }
 
     .summary-header-like, .data-section .card-header {
-         flex-direction: row; /* Display items in a row */
-         align-items: center; /* Vertically align items */
-         gap: 0.4rem; /* Keep gap */
-         justify-content: space-between; /* Distribute space between title and other elements */
+         flex-direction: row; 
+         align-items: center; 
+         gap: 0.4rem; 
+         justify-content: space-between; 
     }
 
      .data-section .header-note {
-         margin-top: 0; /* Remove top margin */
+         margin-top: 0; 
      }
 
     #package_select {
-        max-width: 120px; /* Limit the width of the select box */
-        font-size: 0.7rem; /* Adjust font size */
-        padding: 0.2rem 1.4rem 0.2rem 0.4rem; /* Adjust padding and make space for arrow */
-        background-size: 1em 1em; /* Adjust arrow size */
-        background-position: right 0.4rem center; /* Adjust arrow position */
+        max-width: 120px; 
+        font-size: 0.7rem; 
+        padding: 0.2rem 1.4rem 0.2rem 0.4rem; 
+        background-size: 1em 1em; 
+        background-position: right 0.4rem center; 
     }
 
     .dimension-labels,
     .dimension-row {
-        grid-template-columns: repeat(4, 1fr) 30px; /* Keep structure */
-        gap: 0.15rem; /* Use form gap */
+        grid-template-columns: repeat(4, 1fr) 30px; 
+        gap: 0.15rem; 
     }
 
     .dim-actions {
@@ -946,12 +915,12 @@ footer.content-actions {
 
     .data-table th,
     .data-table td {
-        padding: 0.15rem 0.3rem; /* Adjusted padding */
+        padding: 0.15rem 0.3rem; 
     }
 
      .data-table .col-action {
         width: 20px;
-         padding: 0.15rem 0.1rem; /* Adjusted padding */
+         padding: 0.15rem 0.1rem; 
     }
 
      .data-table .col-qty,
@@ -968,390 +937,387 @@ footer.content-actions {
     footer.content-actions {
          flex-direction: column;
          align-items: stretch;
-         gap: var(--form-gap); /* Use form gap */
-         padding: 0.3rem var(--base-padding); /* Use padding */
+         gap: var(--form-gap); 
+         padding: 0.3rem var(--base-padding); 
     }
 
      .confirmation-check {
          justify-content: center;
          margin-right: 0;
-         font-size: 0.6rem; /* Keep size */
-         gap: 0.15rem; /* Use form gap */
+         font-size: 0.6rem; 
+         gap: 0.15rem; 
      }
 
       .confirmation-check input[type="checkbox"] {
-          width: 0.7em; /* Keep size */
-          height: 0.7em; /* Keep size */
+          width: 0.7em; 
+          height: 0.7em; 
       }
 
       .content-actions .action-buttons {
-          justify-content: center; /* Center buttons when stacked */
-          flex-direction: row; /* Keep row direction */
-          gap: 0.15rem; /* Use form gap */
+          justify-content: center; 
+          flex-direction: row; 
+          gap: 0.15rem; 
           width: 100%;
       }
 
       .content-actions .button {
-          flex-grow: 1; /* Allow buttons to grow */
+          flex-grow: 1; 
           text-align: center;
           justify-content: center;
-          padding: 0.7rem 1.2rem; /* Increase padding further */
-          font-size: 1rem; /* Increase font size further */
-          gap: 0.5rem; /* Increase gap further */
+          padding: 0.7rem 1.2rem; 
+          font-size: 1rem; 
+          gap: 0.5rem; 
      }
 }
 
 @media (max-width: 768px) {
-    /* Stack the code container grid */
+    
     .summary-codes-container .summary-grid-2col {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem; /* Space between stacked code pairs */
+        gap: 0.5rem; 
     }
 
-    /* Stack the four main sections into a single column */
     .summary-sections-grid {
         display: flex;
         flex-direction: column;
-        gap: 0.8rem; /* Space between the main sections */
+        gap: 0.8rem; 
     }
 
-    /* Ensure content within each summary section stacks correctly */
     .summary-sections-grid .summary-section-block {
-        margin-bottom: 0; /* Remove default margin */
+        margin-bottom: 0; 
     }
 
-    /* Stack label and value vertically within each pair */
     .summary-grid-2col {
         display: flex;
         flex-direction: column;
-        gap: 0.15rem; /* Small gap between label and value */
-        align-items: flex-start; /* Align text to the left */
-        margin-bottom: 0.3rem; /* Space below each label-value pair */
+        gap: 0.15rem; 
+        align-items: flex-start; 
+        margin-bottom: 0.3rem; 
     }
 
     .summary-grid-2col:last-child {
-         margin-bottom: 0; /* Remove margin for the last pair in a section */
+         margin-bottom: 0; 
     }
 
     .summary-header-like, .data-section .card-header,
     .summary-body-like, .data-section .card-body {
-        padding: 0.5rem; /* Adjusted padding */
+        padding: 0.5rem; 
     }
 
      .summary-header-left, .data-section .card-header .card-title {
-         font-size: 0.7rem; /* Adjusted size */
-         gap: 0.2rem; /* Adjusted gap */
+         font-size: 0.7rem; 
+         gap: 0.2rem; 
      }
 
      .summary-header-right input[type="text"] {
-         padding: 0.1rem 0.2rem; /* Adjusted padding */
-         font-size: 0.65rem; /* Adjusted size */
+         padding: 0.1rem 0.2rem; 
+         font-size: 0.65rem; 
      }
 
      .summary-grid-2col {
-         gap: 0.15rem 0.3rem; /* Adjusted gap */
+         gap: 0.15rem 0.3rem; 
      }
 
     .summary-label,
     .summary-value {
-        font-size: 0.6rem; /* Adjusted size */
+        font-size: 0.6rem; 
     }
 
      .summary-separator {
-         margin: 0.3rem 0; /* Adjusted margin */
+         margin: 0.3rem 0; 
      }
 
      .summary-section-block {
-         margin-bottom: 0.3rem; /* Adjusted margin */
+         margin-bottom: 0.3rem; 
      }
 
      .summary-section-title {
-         font-size: 0.65rem; /* Adjusted size */
-         gap: 0.2rem; /* Adjusted gap */
-         margin-bottom: 0.3rem; /* Adjusted margin */
+         font-size: 0.65rem; 
+         gap: 0.2rem; 
+         margin-bottom: 0.3rem; 
      }
 
      .data-section .header-note {
-         font-size: 0.55rem; /* Adjusted size */
-         gap: 0.15rem; /* Adjusted gap */
-         margin-top: 0; /* Remove top margin */
+         font-size: 0.55rem; 
+         gap: 0.15rem; 
+         margin-top: 0; 
      }
 
     #package_select {
-        max-width: 100px; /* Further limit width on smaller screens */
-        font-size: 0.65rem; /* Further adjust font size */
-        padding: 0.15rem 1.2rem 0.15rem 0.3rem; /* Further adjust padding */
-        background-size: 0.9em 0.9em; /* Further adjust arrow size */
-        background-position: right 0.3rem center; /* Further adjust arrow position */
+        max-width: 100px; 
+        font-size: 0.65rem; 
+        padding: 0.15rem 1.2rem 0.15rem 0.3rem; 
+        background-size: 0.9em 0.9em; 
+        background-position: right 0.3rem center; 
     }
 
     .dimension-labels,
     .dimension-row {
-        grid-template-columns: repeat(4, 1fr) 45px; /* Adjusted structure */
-        gap: 0.1rem; /* Adjusted gap */
+        grid-template-columns: repeat(4, 1fr) 45px; 
+        gap: 0.1rem; 
     }
 
     .dimension-row input[type="number"] {
-        font-size: 0.55rem; /* Adjusted size */
-        padding: 0.1rem 0.15rem; /* Adjusted padding */
+        font-size: 0.55rem; 
+        padding: 0.1rem 0.15rem; 
     }
 
     .icon-button {
-        font-size: 0.8rem; /* Adjusted size */
+        font-size: 0.8rem; 
     }
 
     .icon-button.small {
-        font-size: 0.7rem; /* Adjusted size */
+        font-size: 0.7rem; 
     }
 
     .attachment-group {
-        gap: 0.2rem; /* Adjusted gap */
-        margin-bottom: 0.3rem; /* Adjusted margin */
+        gap: 0.2rem; 
+        margin-bottom: 0.3rem; 
     }
 
     .file-type-note {
-        font-size: 0.6rem; /* Adjusted size */
+        font-size: 0.6rem; 
     }
 
     .selected-files-container {
-        padding: 0.2rem; /* Adjusted padding */
+        padding: 0.2rem; 
     }
 
      .file-list li,
      .no-files-selected {
-         font-size: 0.6rem; /* Adjusted size */
-         padding: 0.1rem 0; /* Adjusted padding */
+         font-size: 0.6rem; 
+         padding: 0.1rem 0; 
      }
 
     .data-table {
-        font-size: 0.6rem; /* Adjusted size */
+        font-size: 0.6rem; 
     }
 
     .data-table th,
     .data-table td {
-        padding: 0.15rem 0.2rem; /* Adjusted padding */
+        padding: 0.15rem 0.2rem; 
     }
 
      .data-table td input,
      .data-table td select,
      .data-table td textarea {
-         font-size: 0.6rem; /* Adjusted size */
-         padding: 0.05rem 0.1rem; /* Adjusted padding */
+         font-size: 0.6rem; 
+         padding: 0.05rem 0.1rem; 
      }
 
     .data-table .col-action {
         width: 25px;
-         padding: 0.2rem 0.15rem; /* Adjusted padding */
+         padding: 0.2rem 0.15rem; 
     }
 
     .data-table .col-qty,
     .data-table .col-unit,
     .data-table .col-price,
     .data-table .col-total {
-        width: 50px; /* Adjusted width */
+        width: 50px; 
     }
 
     .data-table .col-name {
-        min-width: 80px; /* Adjusted width */
+        min-width: 80px; 
     }
 
      .data-table tfoot td {
-         font-size: 0.65rem; /* Adjusted size */
-         padding: 0.1rem 0.15rem; /* Adjusted padding */
+         font-size: 0.65rem; 
+         padding: 0.1rem 0.15rem; 
      }
 
      footer.content-actions {
-         padding: 0.3rem 0.4rem; /* Adjusted padding */
-         gap: 0.3rem; /* Adjusted gap */
+         padding: 0.3rem 0.4rem; 
+         gap: 0.3rem; 
      }
 
      .confirmation-check {
-         font-size: 0.6rem; /* Adjusted size */
-         gap: 0.15rem; /* Adjusted gap */
+         font-size: 0.6rem; 
+         gap: 0.15rem; 
      }
 
       .confirmation-check input[type="checkbox"] {
-          width: 0.7em; /* Keep size */
-          height: 0.7em; /* Keep size */
+          width: 0.7em; 
+          height: 0.7em; 
       }
 
       .content-actions .action-buttons {
-          gap: 0.15rem; /* Adjusted gap */
+          gap: 0.15rem; 
       }
 
       .content-actions .button {
-          padding: 0.6rem 0.9rem; /* Increase padding even further */
-          font-size: 1rem; /* Increase font size even further */
-          gap: 0.5rem; /* Increase gap even further */
+          padding: 0.6rem 0.9rem; 
+          font-size: 1rem; 
+          gap: 0.5rem; 
      }
 }
 
 @media (max-width: 480px) {
     .main-content-grid {
-        gap: 0.3rem; /* Adjusted gap */
+        gap: 0.3rem; 
     }
 
     .summary-column,
     .data-column {
-        gap: 0.3rem; /* Adjusted gap */
+        gap: 0.3rem; 
     }
 
     .summary-header-like, .data-section .card-header,
     .summary-body-like, .data-section .card-body {
-        padding: 0.5rem; /* Adjusted padding */
+        padding: 0.5rem; 
     }
 
     .summary-header-left, .data-section .card-header .card-title {
-        font-size: 0.7rem; /* Adjusted size */
-        gap: 0.15rem; /* Adjusted gap */
+        font-size: 0.7rem; 
+        gap: 0.15rem; 
     }
 
      .summary-header-right input[type="text"] {
-         padding: 0.08rem 0.15rem; /* Adjusted padding */
-         font-size: 0.6rem; /* Adjusted size */
+         padding: 0.08rem 0.15rem; 
+         font-size: 0.6rem; 
      }
 
      .summary-grid-2col {
-         gap: 0.1rem 0.2rem; /* Adjusted gap */
+         gap: 0.1rem 0.2rem; 
      }
 
     .summary-label,
     .summary-value {
-        font-size: 0.6rem; /* Adjusted size */
+        font-size: 0.6rem; 
     }
 
      .summary-separator {
-         margin: 0.3rem 0; /* Adjusted margin */
+         margin: 0.3rem 0; 
      }
 
      .summary-section-block {
-         margin-bottom: 0.3rem; /* Adjusted margin */
+         margin-bottom: 0.3rem; 
      }
 
      .summary-section-title {
-         font-size: 0.65rem; /* Adjusted size */
-         gap: 0.15rem; /* Adjusted gap */
-         margin-bottom: 0.2rem; /* Adjusted margin */
+         font-size: 0.65rem; 
+         gap: 0.15rem; 
+         margin-bottom: 0.2rem; 
      }
 
      .data-section .header-note {
-         font-size: 0.5rem; /* Adjusted size */
-         gap: 0.1rem; /* Adjusted gap */
+         font-size: 0.5rem; 
+         gap: 0.1rem; 
      }
 
     .dimension-labels,
     .dimension-row {
-        grid-template-columns: repeat(4, 1fr) 40px; /* Adjusted structure */
-        gap: 0.08rem; /* Adjusted gap */
+        grid-template-columns: repeat(4, 1fr) 40px; 
+        gap: 0.08rem; 
     }
 
     .dimension-row input[type="number"] {
-        font-size: 0.5rem; /* Adjusted size */
-        padding: 0.08rem 0.1rem; /* Adjusted padding */
+        font-size: 0.5rem; 
+        padding: 0.08rem 0.1rem; 
     }
 
     .icon-button {
-        font-size: 0.7rem; /* Adjusted size */
+        font-size: 0.7rem; 
     }
 
     .icon-button.small {
-        font-size: 0.6rem; /* Adjusted size */
+        font-size: 0.6rem; 
     }
 
     .attachment-group {
-        gap: 0.15rem; /* Adjusted gap */
-        margin-bottom: 0.2rem; /* Adjusted margin */
+        gap: 0.15rem; 
+        margin-bottom: 0.2rem; 
     }
 
     .file-type-note {
-        font-size: 0.55rem; /* Adjusted size */
+        font-size: 0.55rem; 
     }
 
     .selected-files-container {
-        padding: 0.15rem; /* Adjusted padding */
+        padding: 0.15rem; 
     }
 
      .file-list li,
      .no-files-selected {
-         font-size: 0.55rem; /* Adjusted size */
-         padding: 0.08rem 0; /* Adjusted padding */
+         font-size: 0.55rem; 
+         padding: 0.08rem 0; 
      }
 
     .data-table {
-        font-size: 0.55rem; /* Adjusted size */
+        font-size: 0.55rem; 
     }
 
     .data-table th,
     .data-table td {
-        padding: 0.1rem 0.15rem; /* Adjusted padding */
+        padding: 0.1rem 0.15rem; 
     }
 
      .data-table td input,
      .data-table td select,
      .data-table td textarea {
-         font-size: 0.55rem; /* Adjusted size */
-         padding: 0.05rem 0.08rem; /* Adjusted padding */
+         font-size: 0.55rem; 
+         padding: 0.05rem 0.08rem; 
      }
 
     .data-table .col-action {
-        width: 20px; /* Adjusted width */
-         padding: 0.15rem 0.1rem; /* Adjusted padding */
+        width: 20px; 
+         padding: 0.15rem 0.1rem; 
     }
 
     .data-table .col-qty,
     .data-table .col-unit,
     .data-table .col-price,
     .data-table .col-total {
-        width: 40px; /* Adjusted width */
+        width: 40px; 
     }
 
     .data-table .col-name {
-        min-width: 60px; /* Adjusted width */
+        min-width: 60px; 
     }
 
      .data-table tfoot td {
-         font-size: 0.6rem; /* Adjusted size */
-         padding: 0.1rem 0.15rem; /* Adjusted padding */
+         font-size: 0.6rem; 
+         padding: 0.1rem 0.15rem; 
      }
 
      footer.content-actions {
-         padding: 0.2rem 0.3rem; /* Adjusted padding */
-         gap: 0.2rem; /* Adjusted gap */
+         padding: 0.2rem 0.3rem; 
+         gap: 0.2rem; 
      }
 
      .confirmation-check {
-         font-size: 0.55rem; /* Adjusted size */
-         gap: 0.1rem; /* Adjusted gap */
+         font-size: 0.55rem; 
+         gap: 0.1rem; 
      }
 
       .confirmation-check input[type="checkbox"] {
-          width: 0.6em; /* Adjusted size */
-          height: 0.6em; /* Adjusted size */
+          width: 0.6em; 
+          height: 0.6em; 
       }
 
       .content-actions .action-buttons {
-          gap: 0.1rem; /* Adjusted gap */
+          gap: 0.1rem; 
       }
 
       .content-actions .button {
-          padding: 0.5rem 0.8rem; /* Increase padding even further */
-          font-size: 0.95rem; /* Increase font size even further */
-          gap: 0.3rem; /* Increase gap even further */
+          padding: 0.5rem 0.8rem; 
+          font-size: 0.95rem; 
+          gap: 0.3rem; 
      }
 }
 
-/* Error States (copied) */
+
 .form-group input.error,
 .form-group select.error,
 .form-group textarea.error {
     border-color: var(--danger-color) !important;
-    box-shadow: 0 0 0 1px var(--danger-color); /* Tinh chỉnh error shadow */
+    box-shadow: 0 0 0 1px var(--danger-color); 
 }
 
 .error-message {
-    font-size: 0.6em; /* Use smaller size */
-    color: var(--danger-color); /* Use danger color */
+    font-size: 0.6em; 
+    color: var(--danger-color); 
     margin-top: 0.5px;
     display: block;
 }
@@ -1360,62 +1326,56 @@ footer.content-actions {
      color: var(--danger-color);
 }
 
-/* Additional styles based on step 1 */
+
 .card {
-     border: 1px solid var(--border-light); /* Use light border */
-     border-radius: var(--border-radius); /* Use variable */
+     border: 1px solid var(--border-light); 
+     border-radius: var(--border-radius); 
      overflow: hidden;
-     background-color: var(--card-bg); /* Use card bg */
-     box-shadow: var(--shadow-md); /* Use md shadow */
+     background-color: var(--card-bg); 
+     box-shadow: var(--shadow-md); 
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.3rem var(--card-padding); /* Use card padding */
-    border-bottom: 1px solid var(--border-light); /* Use light border */
-    background-color: var(--bg-color); /* Use bg color */
+    padding: 0.3rem var(--card-padding); 
+    border-bottom: 1px solid var(--border-light); 
+    background-color: var(--bg-color); 
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .card-header .card-title {
-    font-size: 0.8rem; /* Use size from create-package.css */
+    font-size: 0.8rem; 
     font-weight: 600;
-    color: var(--text-primary); /* Use text primary */
+    color: var(--text-primary); 
     margin: 0;
 }
 
 .card-body {
-    padding: var(--card-padding); /* Use card padding */
+    padding: var(--card-padding); 
 }
 
-/* Ensure sidebar and header styles are not conflicting - if needed copy relevant styles from package_manager.css or create-package.css */
-/* For simplicity, assuming general layout/sidebar/header styles are handled by package_manager.css or a shared file */
-
-/* Style for the Mã đơn hàng and REF Code container */
 .summary-codes-container {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Adjust gap as needed */
-    margin-bottom: var(--form-gap); /* Add space below */
+    gap: 1rem; 
+    margin-bottom: var(--form-gap); 
 }
 
-/* Ensure the inner grid for codes doesn't take full width */
 .summary-codes-container .summary-grid-2col {
-    display: grid; /* Use flex for inner layout */
+    display: grid; 
     align-items: center;
-    gap: 0.5rem; /* Gap between label and value box */
+    gap: 0.5rem; 
 }
 
 .summary-grid-2col {
     display: grid;
-    grid-template-columns: auto 1fr; /* Creates two columns, first auto-sized, second takes remaining space */
-    gap: 0.15rem 0.3rem; /* Adjusted gap */
-     align-items: start; /* Align items to the start (top) of their grid area */
+    grid-template-columns: auto 1fr; 
+    gap: 0.15rem 0.3rem; 
+     align-items: start; 
 }
 
-/* Progress Steps */
 .progress-steps {
     display: flex;
     justify-content: space-between;
@@ -1437,13 +1397,12 @@ footer.content-actions {
     z-index: 1;
 }
 
-/* Đường kẻ màu xanh cho phần đã hoàn thành */
 .progress-steps::after {
     content: '';
     position: absolute;
     top: 24px;
     left: 60px;
-    width: 35%; /* Chiều dài bằng 2/4 tổng chiều dài (vì đã hoàn thành 2 bước) */
+    width: 35%; 
     height: 2px;
     background: #2563eb;
     z-index: 1;
@@ -1513,7 +1472,7 @@ footer.content-actions {
     display: none;
 }
 }
-/* Responsive styles */
+
 @media (max-width: 768px) {
     .progress-steps {
         padding: 0 20px;

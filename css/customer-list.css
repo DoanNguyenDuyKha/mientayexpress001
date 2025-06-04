@@ -1,7 +1,7 @@
-/* css/customer-list.css */
+
 
 :root {
-    /* Colors */
+    
     --primary-color: #000000;
     --primary-hover: #1a1a1a;
     --primary-light: #f8f9fa;
@@ -36,7 +36,7 @@
     --transition-speed-fast: 0.15s;
     --font-family: 'Inter', sans-serif;
 
-    /* Font Sizes - Adjusted for better readability */
+    
     --font-size-base: 0.875rem;
     --font-size-sm: 0.75rem;
     --font-size-md: 1rem;
@@ -44,10 +44,10 @@
     --font-size-xl: 1.25rem;
 }
 
-/* Inherit base styles from service-management.css */
+
 .menu-items a {
     color: rgba(255, 255, 255, 0.8);
-    /* transition: all var(--transition-speed) ease; */
+    
 }
 
 .menu-items a:hover {
@@ -65,7 +65,7 @@
     color: var(--accent);
 }
 
-/* Customer Actions Section */
+
 .customer-actions {
     display: flex;
     flex-direction: column;
@@ -123,7 +123,7 @@
     background: var(--warning-hover);
 }
 
-/* Filter Section */
+
 .filter-container {
     background: white;
     border-radius: 16px;
@@ -221,7 +221,7 @@
     color: var(--accent);
 }
 
-/* Table Styling */
+
 .table-area.card {
     background: #fff;
     border: 1.5px solid var(--border-color);
@@ -307,7 +307,7 @@
 #customerTable tbody tr:hover {
     background: #eef2ff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    /* transform: translateY(-2px); */
+    
 }
 
 #customerTable tbody tr td:first-child {
@@ -321,7 +321,7 @@
 }
 
 
-/* Status Badges */
+
 .status-badge {
     display: inline-flex;
     align-items: center;
@@ -342,7 +342,7 @@
     color: var(--danger-color);
 }
 
-/* Action Buttons */
+
 .action-icons {
     display: flex;
     gap: 0.3rem;
@@ -388,7 +388,7 @@
     background: rgba(220, 38, 38, 0.1);
 }
 
-/* Customer Detail Modal */
+
 .modal {
     display: none;
     position: fixed;
@@ -416,7 +416,7 @@
     background: white;
     border-radius: 18px;
     width: 95%;
-    max-width: 800px; /* Default max width */
+    max-width: 800px; 
     max-height: 95vh;
     overflow: hidden;
     position: relative;
@@ -428,11 +428,11 @@
 }
 
 #customerDetailModal .modal-content {
-    max-width: 600px; /* Reduced max width */
+    max-width: 600px; 
 }
 
 #editCustomerModal .modal-content {
-    max-width: 800px; /* Explicitly set max width to 800px for edit modal */
+    max-width: 800px; 
 }
 
 .modal-content::-webkit-scrollbar {
@@ -469,49 +469,49 @@
     flex-shrink: 0;
 }
 
-/* Header và button màu cho từng loại modal */
+
 #addCustomerModal .modal-header {
-    background: #ffe066; /* Solid yellow background */
+    background: #ffe066; 
 }
 #addCustomerModal .modal-header h3,
 #addCustomerModal .modal-close {
-    color: var(--text-primary); /* Black text color for yellow background */
+    color: var(--text-primary); 
 }
 #addCustomerModal .btn-primary {
-    background: #ffe066; /* Yellow button background */
-    color: var(--text-primary); /* Black button text */
+    background: #ffe066; 
+    color: var(--text-primary); 
 }
 #addCustomerModal .btn-primary:hover {
-    background: #ffc107; /* Darker yellow on hover */
+    background: #ffc107; 
 }
 
 #editCustomerModal .modal-header {
-    background: #ffe066; /* Match add modal yellow */
+    background: #ffe066; 
 }
 #editCustomerModal .modal-header h3,
 #editCustomerModal .modal-close {
-    color: var(--text-primary); /* Match add modal black text */
+    color: var(--text-primary); 
 }
 #editCustomerModal .btn-primary {
-    background: #ffe066; /* Match add modal yellow button */
+    background: #ffe066; 
 }
 #editCustomerModal .btn-primary:hover {
-    background: #ffc107; /* Match add modal darker yellow hover */
+    background: #ffc107; 
 }
 
 #deleteCustomerModal .modal-content {
-    max-width: 450px; /* Smaller width */
-    max-height: 450px; /* Smaller height, closer to square */
-    width: 90%; /* Ensure responsiveness on smaller screens */
-    box-sizing: border-box; /* Include padding/border in element's total width and height */
+    max-width: 450px; 
+    max-height: 450px; 
+    width: 90%; 
+    box-sizing: border-box; 
 }
 
 #deleteCustomerModal .modal-header {
-    background: #ff4d4d; /* Bright red color */
-    display: flex; /* Ensure flex layout for icon and title */
-    align-items: center; /* Vertically align icon and title */
-    gap: 8px; /* Slightly reduced gap between icon and title */
-    justify-content: space-between; /* Push title/icon to left, close button to right */
+    background: #ff4d4d; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    justify-content: space-between; 
 }
 #deleteCustomerModal .modal-header h3,
 #deleteCustomerModal .modal-close {
@@ -519,7 +519,7 @@
 }
 
 #deleteCustomerModal .modal-header i {
-    color: #fff; /* White color for the icon */
+    color: #fff; 
 }
 
 #deleteCustomerModal .btn-danger {
@@ -530,17 +530,17 @@
 }
 
 #customerDetailModal .modal-header {
-    background: #ffe066; /* Match add modal yellow */
+    background: #ffe066; 
 }
 #customerDetailModal .modal-header h3,
 #customerDetailModal .modal-close {
-    color: var(--text-primary); /* Match add modal black text */
+    color: var(--text-primary); 
 }
 #customerDetailModal .btn-primary {
-    background: var(--accent); /* Keep original purple color for Edit button */
+    background: var(--accent); 
 }
 #customerDetailModal .btn-primary:hover {
-    background: var(--accent-hover); /* Keep original purple hover */
+    background: var(--accent-hover); 
 }
 
 .modal-close {
@@ -559,7 +559,7 @@
     background: none;
     color: #fff;
     opacity: 1;
-    /* transform: scale(1.1); */
+    
 }
 
 .modal-body {
@@ -571,7 +571,7 @@
 
 .customer-info-grid {
     display: grid;
-    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-columns: 1fr; 
     gap: 5px;
     margin-bottom: var(--base-padding);
 }
@@ -581,13 +581,13 @@
     padding: 1rem;
     border-radius: var(--border-radius-sm);
     transition: all 0.2s ease;
-    display: flex; /* Use flexbox for label and span */
-    align-items: center; /* Vertically align items */
-    gap: var(--base-padding); /* Add space between label and value */
+    display: flex; 
+    align-items: center; 
+    gap: var(--base-padding); 
 }
 
 .info-group:hover {
-    /* transform: translateY(-2px); */
+    
     box-shadow: var(--shadow-sm);
 }
 
@@ -595,10 +595,10 @@
     display: block;
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
-    margin-bottom: 0; /* Remove margin below label */
+    margin-bottom: 0; 
     font-weight: 500;
-    flex-shrink: 0; /* Prevent label from shrinking */
-    width: 120px; /* Give label a fixed width for alignment */
+    flex-shrink: 0; 
+    width: 120px; 
 }
 
 .info-group span {
@@ -606,7 +606,7 @@
     color: var(--text-primary);
     font-size: var(--font-size-base);
     font-weight: 600;
-    flex-grow: 1; /* Allow span to take remaining space */
+    flex-grow: 1; 
 }
 
 .customer-stats {
@@ -660,7 +660,7 @@
     flex-wrap: wrap-reverse;
 }
 
-/* Nút thứ cấp trong modal */
+
 .btn-secondary {
     background: white;
     color: #64748b;
@@ -679,7 +679,7 @@
     color: #475569;
 }
 
-/* Nút chính trong modal */
+
 .btn-primary, .btn-danger {
     color: white;
     border: none;
@@ -692,11 +692,11 @@
 }
 
 .btn-primary:hover, .btn-danger:hover {
-    /* transform: translateY(-1px); */
+    
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Styling */
+
 .form-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -738,7 +738,7 @@
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .customer-actions {
         flex-direction: column;
@@ -893,7 +893,7 @@
       }
 }
 
-/* Filter Animation */
+
 .filter-select, .btn-filter {
     transition: all 0.2s ease;
 }
@@ -903,7 +903,7 @@
     box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
 }
 
-/* Status Badge Animation */
+
 .status-badge {
     transition: all 0.2s ease;
 }
@@ -913,7 +913,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* User Dropdown Modern Style */
+
 .user-dropdown {
     position: absolute;
     top: 56px;
@@ -988,7 +988,7 @@
     }
 }
 
-/* Announcement Modal - Đảm bảo modal nằm giữa màn hình tuyệt đối */
+
 .announcement-overlay {
     position: fixed;
     inset: 0;
@@ -1009,7 +1009,7 @@
     display: flex;
     flex-direction: column;
     max-height: 85vh;
-    /* KHÔNG margin, KHÔNG position, KHÔNG transform */
+    
 }
 @keyframes modal-pop {
     from { opacity: 0; transform: scale(0.95);}
@@ -1068,7 +1068,7 @@
     overflow: hidden;
 }
 
-/* Layout */
+
 .content-wrapper {
     padding: var(--base-padding);
     flex-grow: 1;
@@ -1083,7 +1083,7 @@
     gap: 3px;
 }
 
-/* Footer styles */
+
 .card-footer {
     padding: var(--base-padding) var(--card-padding);
     border-top: 1.5px solid var(--border-color);

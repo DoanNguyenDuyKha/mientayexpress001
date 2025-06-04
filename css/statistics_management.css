@@ -1,5 +1,3 @@
-/* css/statistics_management.css */
-
 :root {
     --primary-light-focus: rgba(8, 145, 178, 0.2);
     --border-radius-sm: 6px;
@@ -10,7 +8,6 @@
     --checkbox-color: var(--primary-color);
     --input-disabled-bg: #e9ecef;
     --border-color-hover: #b0bec5;
-
     --base-padding: 0.3rem;
     --card-bg: #ffffff;
     --border-color: #e2e8f0;
@@ -30,10 +27,8 @@
     --card-padding: 0.7rem;
     --text-on-primary: #ffffff;
     --transition-speed: 0.2s;
-
     --gradient-primary-start: #6366f1;
     --gradient-primary-end: #818cf8;
-
     --gradient-border-thickness: 3px;
 }
 
@@ -223,7 +218,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    /* text-fill-color: transparent; */
     margin-bottom: 1px;
     letter-spacing: 1px;
     transition: filter 0.2s;
@@ -365,7 +359,6 @@
 }
 .button.primary:hover, .filter-apply-btn:hover {
     box-shadow: 0 8px 24px rgba(99,102,241,0.18);
-    /* transform: translateY(-2px) scale(1.03); */
     filter: brightness(1.08);
 }
 .button.primary:active::after, .filter-apply-btn:active::after {
@@ -379,6 +372,7 @@
     animation: ripple 0.5s linear;
     z-index: 2;
 }
+
 @keyframes ripple {
     from { opacity: 0.5; transform: translate(-50%,-50%) scale(0.7); }
     to { opacity: 0; transform: translate(-50%,-50%) scale(1.5); }
