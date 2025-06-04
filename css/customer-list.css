@@ -1,5 +1,3 @@
-
-
 :root {
     
     --primary-color: #000000;
@@ -35,8 +33,6 @@
     --transition-speed: 0.2s;
     --transition-speed-fast: 0.15s;
     --font-family: 'Inter', sans-serif;
-
-    
     --font-size-base: 0.875rem;
     --font-size-sm: 0.75rem;
     --font-size-md: 1rem;
@@ -44,10 +40,8 @@
     --font-size-xl: 1.25rem;
 }
 
-
 .menu-items a {
     color: rgba(255, 255, 255, 0.8);
-    
 }
 
 .menu-items a:hover {
@@ -221,7 +215,6 @@
     color: var(--accent);
 }
 
-
 .table-area.card {
     background: #fff;
     border: 1.5px solid var(--border-color);
@@ -320,8 +313,6 @@
     border-bottom-right-radius: var(--border-radius-sm);
 }
 
-
-
 .status-badge {
     display: inline-flex;
     align-items: center;
@@ -341,7 +332,6 @@
     background: rgba(220, 38, 38, 0.1);
     color: var(--danger-color);
 }
-
 
 .action-icons {
     display: flex;
@@ -387,7 +377,6 @@
 .icon-button.icon-danger:hover {
     background: rgba(220, 38, 38, 0.1);
 }
-
 
 .modal {
     display: none;
@@ -468,7 +457,6 @@
     border-top-right-radius: 18px;
     flex-shrink: 0;
 }
-
 
 #addCustomerModal .modal-header {
     background: #ffe066; 
@@ -660,7 +648,6 @@
     flex-wrap: wrap-reverse;
 }
 
-
 .btn-secondary {
     background: white;
     color: #64748b;
@@ -692,10 +679,8 @@
 }
 
 .btn-primary:hover, .btn-danger:hover {
-    
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 .form-grid {
     display: grid;
@@ -737,7 +722,6 @@
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
-
 
 @media (max-width: 768px) {
     .customer-actions {
@@ -893,7 +877,6 @@
       }
 }
 
-
 .filter-select, .btn-filter {
     transition: all 0.2s ease;
 }
@@ -903,7 +886,6 @@
     box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
 }
 
-
 .status-badge {
     transition: all 0.2s ease;
 }
@@ -912,7 +894,6 @@
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 .user-dropdown {
     position: absolute;
@@ -988,7 +969,6 @@
     }
 }
 
-
 .announcement-overlay {
     position: fixed;
     inset: 0;
@@ -1008,8 +988,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    max-height: 85vh;
-    
+    max-height: 85vh; 
 }
 @keyframes modal-pop {
     from { opacity: 0; transform: scale(0.95);}
@@ -1068,7 +1047,6 @@
     overflow: hidden;
 }
 
-
 .content-wrapper {
     padding: var(--base-padding);
     flex-grow: 1;
@@ -1082,7 +1060,6 @@
     overflow: visible;
     gap: 3px;
 }
-
 
 .card-footer {
     padding: var(--base-padding) var(--card-padding);
