@@ -966,27 +966,6 @@ button:disabled {
   color: #4f46e5 !important;
 }
 
-@media (max-width: 576px) {
-  .user-dropdown-toggle {
-    padding: 0 !important;
-    border-radius: 0 !important;
-    min-width: 0 !important;
-    max-width: 40px !important;
-    width: 40px !important;
-    height: 40px !important;
-    justify-content: center !important;
-    background: none !important;
-  }
-  .user-dropdown-toggle .user-icon {
-    font-size: 1.5em !important;
-  }
-  .user-dropdown-toggle .user-arrow {
-    font-size: 0.85em !important;
-    right: -2px;
-    bottom: 2px;
-  }
-}
-
 @keyframes dropdownPop {
   0% {
     opacity: 0;
@@ -1001,7 +980,6 @@ button:disabled {
 .user-dropdown.show {
   animation: dropdownPop 0.3s ease forwards;
 }
-
 
 @media (max-width: 576px) {
   .user-dropdown {
@@ -2308,7 +2286,7 @@ button:disabled {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 400px) {
   .user-dropdown-toggle {
     padding: 6px !important;
     border-radius: 50% !important;
@@ -2321,6 +2299,8 @@ button:disabled {
   }
   .user-dropdown-toggle .user-icon {
     font-size: 1.5em !important;
+    color: #fff !important;
+    margin: 0 !important;
   }
   .user-dropdown-toggle .user-arrow {
     display: none !important;
@@ -2334,39 +2314,7 @@ button:disabled {
     top: 110%;
     z-index: 99999;
     box-shadow: 0 4px 16px #0002;
-  }
-  .user-dropdown-item {
-    padding: 10px 14px;
-    font-size: 0.98em;
-  }
-  .header-search-input {
-    display: none !important;
-  }
-}
-
-@media (max-width: 400px) {
-  .user-dropdown {
-    position: absolute; /* Quan trọng: Đổi sang absolute */
-    top: calc(100% + 10px); /* Đặt cách userToggle 10px */
-    right: 0; /* Căn lề phải của dropdown với lề phải của userContainer */
-    min-width: 240px; /* Giữ kích thước tối thiểu */
-    max-width: 95vw; /* Giới hạn chiều rộng tối đa trên màn hình nhỏ */
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 9999; /* Đảm bảo hiển thị trên các phần tử khác */
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 1rem 0;
-  }
-  /* Đảm bảo .user-container có position: relative */
-  .user-container {
-    position: relative;
-    z-index: 100; /* Đảm bảo user-container và dropdown nằm trên header */
+    padding: 0.2em 0;
   }
   .user-dropdown-item {
     padding: 10px 14px;
@@ -2596,40 +2544,6 @@ button:disabled {
   margin: 8px 0;
 }
 
-@media (max-width: 576px) {
-  .user-dropdown-toggle {
-    padding: 6px 12px;
-    border-radius: 10px;
-  }
-  
-  .user-dropdown-toggle .user-icon {
-    font-size: 1.2em;
-  }
-  
-  .user-dropdown-toggle .user-arrow {
-    font-size: 0.8em;
-  }
-  
-  .user-dropdown {
-    position: fixed;
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    min-width: 100%;
-    border-radius: 20px 20px 0 0;
-    transform: translateY(100%);
-  }
-  
-  .user-dropdown.show {
-    transform: translateY(0);
-  }
-  
-  .user-dropdown-item {
-    padding: 16px 20px;
-  }
-}
 
 @media (max-width: 768px) {
   .sidebar .menu-items li a .menu-text {
@@ -2663,17 +2577,6 @@ button:disabled {
   font-size: 1.08em;
   gap: 18px;
   white-space: nowrap;
-}
-@media (max-width: 576px) {
-  .user-dropdown {
-    min-width: 180px;
-    padding: 0.7rem 0;
-  }
-  .user-dropdown-item {
-    padding: 13px 20px;
-    font-size: 1em;
-    gap: 12px;
-  }
 }
 
 @media (max-width: 576px) {
@@ -2715,25 +2618,6 @@ button:disabled {
 .confirmation-modal#cancel-order-modal .modal-header {
   background: var(--warning-color);
   color: #fff;
-}
-
-@media (max-width: 576px) {
-  .user-dropdown-toggle .user-icon {
-    font-size: 2.8em !important;
-  }
-  .user-dropdown {
-    top: 110% !important;
-    bottom: auto !important;
-    left: auto !important;
-    right: 0 !important;
-    transform: translateY(0) !important;
-    border-radius: 16px !important;
-    min-width: 120px;
-    max-width: 90vw;
-    font-size: 1em;
-    z-index: 99999;
-    box-shadow: 0 4px 16px #0002;
-  }
 }
 
 @media (max-width: 576px) {
