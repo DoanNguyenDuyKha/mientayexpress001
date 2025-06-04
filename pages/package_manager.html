@@ -10,44 +10,6 @@
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <style>
-@media (max-width: 576px) {
-  .header-search-input {
-    display: none !important;
-  }
-  .tabs { display: none !important; }
-  .mobile-status-bar { display: flex !important; gap: 8px; align-items: center; margin-bottom: 10px; }
-  .mobile-status-bar select { font-size: 1em; margin-right: 90px;} /* Điều chỉnh margin-right nếu cần */
-  .mobile-status-bar .mobile-only { display: inline-flex !important; }
-  .tabs, .action-buttons .mobile-only { display: none !important; }
-}
-/* Giữ nguyên hoặc điều chỉnh media query cho màn hình 577px+ nếu cần */
-@media (min-width: 577px) {
-  .mobile-only { display: none !important; }
-  .mobile-status-bar { display: none !important; }
-}
-@media (max-width: 900px) and (orientation: landscape) {
-  .action-buttons, .action-row {
-    flex-wrap: wrap !important;
-    gap: 8px;
-  }
-  .action-row .button {
-    min-width: 120px;
-    font-size: 0.95em;
-    padding: 0.6em 0.2em;
-  }
-  .tabs {
-    overflow-x: auto !important;
-    flex-wrap: nowrap !important;
-    white-space: nowrap;
-    scrollbar-width: thin;
-  }
-  .tabs .tab-item {
-    min-width: 110px;
-    font-size: 0.95em;
-  }
-}
-</style>
 </head>
 <body>
     <aside class="sidebar" id="sidebar">
