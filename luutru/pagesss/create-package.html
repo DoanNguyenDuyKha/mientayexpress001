@@ -196,6 +196,12 @@
                      </div>
                      <div class="step-label">Chi tiết đơn hàng</div>
                  </div>
+                 <div class="step">
+                     <div class="step-icon">
+                         <i class="fa-solid fa-truck-fast"></i>
+                     </div>
+                     <div class="step-label">Tạo pickup</div>
+                 </div>
              </div>
 
              <form id="create-order-form" novalidate autocomplete="off">
@@ -471,6 +477,9 @@
                               <span class="error-message"></span>
                           </div>
                           <div class="action-buttons">
+                              <button type="button" class="button secondary" id="view-terms-btn">
+                                  <i class="fa-solid fa-file-contract"></i> Xem lại điều khoản
+                              </button>
                               <button type="button" class="button danger" id="exit-btn">
                                   <i class="fa-solid fa-right-from-bracket"></i> Thoát
                               </button>
@@ -618,21 +627,15 @@
                   }
             }
 
-            function openModal(forceOpen = false) {
-                console.log('openModal function called', { forceOpen }); // Debug log
+            function openModal() {
                 const hasAgreedTerms = localStorage.getItem('hasAgreedTerms') === 'true';
-                // DuyKha: Modal sẽ mở nếu chưa đồng ý HOẶC được yêu cầu mở bắt buộc (forceOpen)
-                if ((!hasAgreedTerms || forceOpen) && termsModal && termsOverlay) {
+                if (!hasAgreedTerms && termsModal && termsOverlay) {
                     termsOverlay.classList.add('active');
                     termsModal.classList.add('active');
                     body.classList.add('modal-open');
                     manageBodyScroll();
-                    // DuyKha: Nếu không phải mở bắt buộc (tức là lần đầu mở khi chưa đồng ý),
-                    // thì đảm bảo checkbox chưa được check.
-                    if (!forceOpen && agreeCheckbox) {
-                        agreeCheckbox.checked = false;
-                        if (agreeButton) agreeButton.disabled = true;
-                    }
+                    agreeCheckbox.checked = false;
+                    if (agreeButton) agreeButton.disabled = true;
                     termsModal.focus();
                 }
             }
@@ -772,9 +775,8 @@
             if (exitButtonX) exitButtonX.addEventListener('click', closeHandler);
             if (exitButtonFooter) exitButtonFooter.addEventListener('click', closeHandler);
             document.getElementById('open-terms-modal-footer')?.addEventListener('click', function(e) {
-                e.preventDefault(); // Ngăn chặn hành vi mặc định (chuyển hướng)
-                console.log('Link "Điều khoản quy định" clicked'); // Debug log
-                openModal(true); // Gọi hàm mở modal, buộc mở (bỏ qua localStorage check)
+                e.preventDefault();
+                openModal();
             });
             document.getElementById('exit-btn')?.addEventListener('click', function() {
                 window.location.href = '../index.html'; // Or wherever you want to navigate on exit
@@ -1159,16 +1161,6 @@
                 }
             });
 
-            // Listener cho liên kết "Điều khoản quy định" bên trong modal
-            const modalTermsLink = document.querySelector('#terms-modal .modal-link-underline');
-            if (modalTermsLink) {
-                modalTermsLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openModal(); // Gọi hàm mở modal (sẽ không có hiệu quả nếu modal đã mở)
-                });
-            }
-
-            // DuyKha: Khi trang load, gọi openModal() mà KHÔNG buộc mở, chỉ mở nếu chưa đồng ý.
             openModal();
 
             // Address API functions

@@ -8,16 +8,20 @@
     <link rel="stylesheet" href="../css/create-package-step2.css">
     <link rel="stylesheet" href="../css/package_manager.css">
     <style>
+        /* Style để ảnh preview hiển thị toàn bộ */
         .upload-image-preview {
-            width: 40%; 
-            height: 40%;
-            object-fit: contain; 
+            width: 40%; /* Đảm bảo ảnh chiếm hết chiều rộng của container */
+            height: 40%; /* Đảm bảo ảnh chiếm hết chiều cao của container */
+            object-fit: contain; /* Giữ nguyên tỷ lệ và hiển thị toàn bộ ảnh */
         }
+        /* Tùy chọn: Điều chỉnh kích thước container nếu cần */
         .file-preview {
+            /* Đảm bảo container có kích thước cố định hoặc linh hoạt hợp lý */
+            /* Ví dụ: width: 100px; height: 100px; */
             display: flex;
             justify-content: center;
             align-items: center;
-             overflow: hidden;
+             overflow: hidden; /* Ẩn phần thừa nếu có */
         }
     </style>
 
@@ -127,8 +131,24 @@
                         <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
                 </div>
                     <div class="user-dropdown" id="user-dropdown">
-                        <!--Dropdown User-->
-                    </div>
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </div>
+                            <div class="user-details">
+                                <h4>Nguyễn Văn A</h4>
+                                <span class="user-role">Quản trị viên</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+            </div>
+                </div>
             </div>
         </header>
 
@@ -159,6 +179,12 @@
                          <i class="fa-solid fa-circle-info"></i>
                      </div>
                      <div class="step-label">Chi tiết đơn hàng</div>
+                 </div>
+                 <div class="step">
+                     <div class="step-icon">
+                         <i class="fa-solid fa-truck-fast"></i>
+                     </div>
+                     <div class="step-label">Tạo pickup</div>
                  </div>
              </div>
 
@@ -1032,9 +1058,27 @@
                 const userDropdown = document.getElementById('user-dropdown');
                 if (!userToggle || !userDropdown) return;
                 if (!isLoggedIn) {
-                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
-              userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
-              document.getElementById('username-display')?.classList.add('d-none');
+                    userToggle.innerHTML = `
+                        <div style="background: linear-gradient(135deg, #ffe066 0%, #a78bfa 100%); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-regular fa-circle-user user-icon" style="color: #4F46E5; font-size: 1.5em;"></i>
+                        </div>
+                    `;
+                    userDropdown.innerHTML = `
+                        <div class="user-info">
+                            <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
+                            <div class="user-details">
+                                <div>Phạm Hoàng Đình</div>
+                                <div>Quản trị viên</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
+                        <hr>
+                        <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                    `;
                 } else {
                     userToggle.innerHTML = `
                         <div>

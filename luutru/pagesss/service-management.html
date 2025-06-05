@@ -145,29 +145,7 @@
                  <button class="button primary" id="addServiceBtn"><i class="fa-solid fa-plus"></i> Thêm dịch vụ mới</button>
             </div>
 
-            <section class="table-area card" aria-labelledby="service-table-heading"><div class="card-header"><h2 id="service-table-heading">Danh sách Dịch vụ</h2></div><div class="table-container"><div class="table-wrapper"><table id="serviceTable"><thead><tr><th scope="col" class="col-center"><input type="checkbox" id="select-all-checkbox" title="Chọn tất cả"></th><th scope="col" class="col-center">STT</th><th scope="col">Mã dịch vụ</th><th scope="col">Tên dịch vụ</th><th scope="col">Ngày cập nhật</th><th scope="col" class="col-center">Hiển thị</th><th scope="col" class="col-center">Thao tác</th></tr></thead><tbody id="service-table-body"></tbody></table></div></div><div class="card-footer"><nav class="pagination" aria-label="Table navigation"><span class="pagination-info" id="pagination-info">Hiển thị <b>1</b> đến <b>6</b> của <b>15</b> mục</span><div class="pagination-buttons">
-    <!-- Combobox chọn số lượng hiển thị -->
-    <div class="items-per-page-control">
-        <select id="items-per-page-select" class="form-select">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-        </select>
-        <span>dịch vụ/trang</span>
-    </div>
-    <!-- Các nút phân trang sẽ được đặt trong một div riêng -->
-    <div class="pagination-nav-buttons">
-         <button class="button" disabled="">Trước</button>
-         <button class="button active" aria-current="page">1</button>
-         <button class="button">2</button>
-         <button class="button">3</button>
-         <button class="button">Sau</button>
-    </div>
-</div></nav><div class="footer-actions" style="display: none;"><!-- Moved buttons here --><button class="button danger"><i class="fa-solid fa-trash-can"></i> Xóa đã chọn</button><button class="button primary" id="addServiceBtn"><i class="fa-solid fa-plus"></i> Thêm dịch vụ mới</button></div></div></section>
+            <section class="table-area card" aria-labelledby="service-table-heading"><div class="card-header"><h2 id="service-table-heading">Danh sách Dịch vụ</h2></div><div class="table-container"><div class="table-wrapper"><table id="serviceTable"><thead><tr><th scope="col" class="col-center"><input type="checkbox" id="select-all-checkbox" title="Chọn tất cả"></th><th scope="col" class="col-center">STT</th><th scope="col">Mã dịch vụ</th><th scope="col">Tên dịch vụ</th><th scope="col">Ngày cập nhật</th><th scope="col" class="col-center">Hiển thị</th><th scope="col" class="col-center">Thao tác</th></tr></thead><tbody id="service-table-body"></tbody></table></div></div><div class="card-footer"><nav class="pagination" aria-label="Table navigation"><span class="pagination-info" id="pagination-info">Hiển thị <b>1</b> đến <b>6</b> của <b>15</b> mục</span><div class="pagination-buttons"><button class="button" disabled="">Trước</button><button class="button active" aria-current="page">1</button><button class="button">2</button><button class="button">3</button><button class="button">Sau</button></div></nav><div class="footer-actions" style="display: none;"><!-- Moved buttons here --><button class="button danger"><i class="fa-solid fa-trash-can"></i> Xóa đã chọn</button><button class="button primary" id="addServiceBtn"><i class="fa-solid fa-plus"></i> Thêm dịch vụ mới</button></div></div></section>
             <footer class="site-footer">Minh Khôi Logistics © <span id="current-year">2025</span>. All rights reserved. Design by Nina Co.,Ltd</footer>
         </div>
 
@@ -337,9 +315,7 @@
         function renderServiceTable(data, page = 1, itemsPerPage = 10) {
             const tbody = document.getElementById('service-table-body');
             const paginationInfoSpan = document.getElementById('pagination-info');
-            const paginationButtonsDiv = document.querySelector('.pagination-buttons'); // Container div
-            const paginationNavButtonsDiv = paginationButtonsDiv.querySelector('.pagination-nav-buttons'); // New div for nav buttons
-
+            const paginationButtonsDiv = document.querySelector('.pagination-buttons');
             tbody.innerHTML = ''; // Clear existing table rows
 
             // Apply filters
@@ -404,8 +380,8 @@
             }
 
             // Render pagination buttons
-            if (paginationNavButtonsDiv) {
-                paginationNavButtonsDiv.innerHTML = ''; // Clear *only* the navigation buttons
+            if (paginationButtonsDiv) {
+                paginationButtonsDiv.innerHTML = ''; // Clear existing buttons
 
                 // "Trước" button
                 const prevButton = document.createElement('button');
@@ -420,73 +396,24 @@
                         renderServiceTable(getServiceData(), currentPage, itemsPerPage);
                     }
                 });
-                paginationNavButtonsDiv.appendChild(prevButton); // Append to the new div
+                paginationButtonsDiv.appendChild(prevButton);
 
                 // Page number buttons
-                // Display up to 5 pages around the current page, or fewer if near the beginning/end
-                let startPage = Math.max(1, currentPage - 2);
-                let endPage = Math.min(totalPages, startPage + 4);
-
-                // Adjust startPage if totalPages < 5 or endPage is limited
-                if (endPage - startPage < 4) {
-                     startPage = Math.max(1, endPage - 4);
-                 }
-
-                 // Add ellipsis and first page button if needed
-                 if (startPage > 1) {
-                     const firstPageButton = document.createElement('button');
-                     firstPageButton.classList.add('button');
-                     firstPageButton.textContent = '1';
-                     firstPageButton.onclick = () => {
-                          currentPage = 1;
-                          renderServiceTable(getServiceData(), currentPage, itemsPerPage);
-                      };
-                     paginationNavButtonsDiv.appendChild(firstPageButton);
-                     if (startPage > 2) {
-                         const ellipsis = document.createElement('span');
-                         ellipsis.textContent = '...';
-                         ellipsis.style.margin = '0 5px';
-                         ellipsis.style.color = '#64748b';
-                         paginationNavButtonsDiv.appendChild(ellipsis);
-                     }
-                 }
-
-                for (let i = startPage; i <= endPage; i++) {
-                    if (i >= 1 && i <= totalPages) {
-                        const pageButton = document.createElement('button');
-                        pageButton.classList.add('button');
-                        if (i === currentPage) {
-                            pageButton.classList.add('active');
-                            pageButton.setAttribute('aria-current', 'page');
-                            // pageButton.disabled = true; // Disable the current page button (optional)
-                        }
-                        pageButton.textContent = i;
-                        pageButton.addEventListener('click', () => {
-                            currentPage = i;
-                            renderServiceTable(getServiceData(), currentPage, itemsPerPage);
-                        });
-                        paginationNavButtonsDiv.appendChild(pageButton); // Append to the new div
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.classList.add('button');
+                    if (i === currentPage) {
+                        pageButton.classList.add('active');
+                        pageButton.setAttribute('aria-current', 'page');
+                        pageButton.disabled = true; // Disable the current page button
                     }
+                    pageButton.textContent = i;
+                    pageButton.addEventListener('click', () => {
+                        currentPage = i;
+                        renderServiceTable(getServiceData(), currentPage, itemsPerPage);
+                    });
+                    paginationButtonsDiv.appendChild(pageButton);
                 }
-
-                 // Add ellipsis and last page button if needed
-                 if (endPage < totalPages) {
-                      if (endPage < totalPages -1 ) {
-                         const ellipsis = document.createElement('span');
-                         ellipsis.textContent = '...';
-                         ellipsis.style.margin = '0 5px';
-                         ellipsis.style.color = '#64748b';
-                         paginationNavButtonsDiv.appendChild(ellipsis);
-                      }
-                      const lastPageButton = document.createElement('button');
-                      lastPageButton.classList.add('button');
-                      lastPageButton.textContent = totalPages;
-                      lastPageButton.onclick = () => {
-                           currentPage = totalPages;
-                           renderServiceTable(getServiceData(), currentPage, itemsPerPage);
-                       };
-                      paginationNavButtonsDiv.appendChild(lastPageButton);
-                 }
 
                 // "Sau" button
                 const nextButton = document.createElement('button');
@@ -501,7 +428,7 @@
                         renderServiceTable(getServiceData(), currentPage, itemsPerPage);
                     }
                 });
-                paginationNavButtonsDiv.appendChild(nextButton); // Append to the new div
+                paginationButtonsDiv.appendChild(nextButton);
             }
 
             // Uncheck the select all checkbox after re-rendering
@@ -1061,7 +988,7 @@
             return false;
         }
 
-        
+        /* DuyKha: Thêm logic để xử lý sự kiện cho checkbox "Hiển thị" */
         document.addEventListener('DOMContentLoaded', () => {
             // Use event delegation on the table body for "Hiển thị" checkboxes
             document.getElementById('service-table-body').addEventListener('change', function(e) {
@@ -1092,19 +1019,6 @@
                     }
                 }
             });
-        });
-
-        // DuyKha: Thêm event listener cho combobox chọn số dịch vụ/trang
-        document.addEventListener('DOMContentLoaded', function() {
-            const itemsPerPageSelect = document.getElementById('items-per-page-select');
-            if (itemsPerPageSelect) {
-                itemsPerPageSelect.value = itemsPerPage;
-                itemsPerPageSelect.addEventListener('change', function() {
-                    itemsPerPage = parseInt(this.value);
-                    currentPage = 1;
-                    renderServiceTable(getServiceData(), currentPage, itemsPerPage);
-                });
-            }
         });
     </script>
 

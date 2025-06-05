@@ -195,20 +195,8 @@
                 <div class="card-footer">
                     <nav class="pagination" aria-label="Table navigation">
                         <span class="pagination-info" id="pagination-info"></span>
-                        <div class="pagination-buttons" style="display: flex; align-items: center; gap: 16px;">
-                            <div class="items-per-page-control">
-                                <select id="items-per-page-select" class="form-select">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                                <span>nhân viên/trang</span>
-                            </div>
-                            <div class="pagination-nav-buttons"></div>
+                        <div class="pagination-buttons">
+                            <!-- Pagination buttons will be rendered by JS -->
                         </div>
                     </nav>
                 </div>
@@ -705,7 +693,6 @@
         const tbody = document.getElementById('employee-table-body');
         const paginationInfoSpan = document.getElementById('pagination-info');
         const paginationButtonsDiv = document.querySelector('.pagination-buttons');
-        const navDiv = paginationButtonsDiv.querySelector('.pagination-nav-buttons');
         tbody.innerHTML = '';
 
         let filtered = employees.filter(e => {
@@ -771,8 +758,9 @@
         }
 
         // Render pagination buttons
-        if (navDiv) {
-            navDiv.innerHTML = '';
+        if (paginationButtonsDiv) {
+            paginationButtonsDiv.innerHTML = ''; // Clear existing buttons
+
             // "Trước" button
             const prevButton = document.createElement('button');
             prevButton.classList.add('button');
@@ -786,7 +774,8 @@
                     renderEmployeeTable();
                 }
             });
-            navDiv.appendChild(prevButton);
+            paginationButtonsDiv.appendChild(prevButton);
+
             // Page number buttons
             for (let i = 1; i <= totalPages; i++) {
                 const pageButton = document.createElement('button');
@@ -794,15 +783,16 @@
                 if (i === currentPage) {
                     pageButton.classList.add('active');
                     pageButton.setAttribute('aria-current', 'page');
-                    pageButton.disabled = true;
+                    pageButton.disabled = true; // Disable the current page button
                 }
                 pageButton.textContent = i;
                 pageButton.addEventListener('click', () => {
                     currentPage = i;
                     renderEmployeeTable();
                 });
-                navDiv.appendChild(pageButton);
+                paginationButtonsDiv.appendChild(pageButton);
             }
+
             // "Sau" button
             const nextButton = document.createElement('button');
             nextButton.classList.add('button');
@@ -816,7 +806,7 @@
                     renderEmployeeTable();
                 }
             });
-            navDiv.appendChild(nextButton);
+            paginationButtonsDiv.appendChild(nextButton);
         }
 
         // Uncheck the select all checkbox after re-rendering
@@ -1009,6 +999,24 @@
         // } // Remove realtime clear error logic
     });
 
+    document.getElementById('addEmployeePhone').addEventListener('input', function() {
+        const phone = this.value.trim();
+        if (isValidPhone(phone) && !isPhoneExists(phone)) {
+            clearError(this);
+        }
+    });
+
+    document.getElementById('addEmployeeEmail').addEventListener('input', function() {
+        const email = this.value.trim();
+        if (!isValidEmail(email)) {
+            showError(document.getElementById('addEmployeeEmail'), 'Email không hợp lệ. Vui lòng sử dụng địa chỉ email @gmail.com');
+        } else if (isEmailExists(email)) {
+            showError(document.getElementById('addEmployeeEmail'), 'Email đã tồn tại');
+        } else {
+            clearError(this);
+        }
+    });
+
     document.getElementById('addEmployeeAddress').addEventListener('input', function() {
         if (this.value.trim() !== '') {
             clearError(this);
@@ -1114,6 +1122,24 @@
         // if (this.value.trim() !== '') {
         //     clearError(this);
         // } // Remove realtime clear error logic
+    });
+
+    document.getElementById('editEmployeePhone').addEventListener('input', function() {
+        const phone = this.value.trim();
+        if (isValidPhone(phone) && !isPhoneExists(phone, editingId)) {
+            clearError(this);
+        }
+    });
+
+    document.getElementById('editEmployeeEmail').addEventListener('input', function() {
+        const email = this.value.trim();
+        if (!isValidEmail(email)) {
+            showError(document.getElementById('editEmployeeEmail'), 'Email không hợp lệ. Vui lòng sử dụng địa chỉ email @gmail.com');
+        } else if (isEmailExists(email, editingId)) {
+            showError(document.getElementById('editEmployeeEmail'), 'Email đã tồn tại');
+        } else {
+            clearError(this);
+        }
     });
 
     document.getElementById('editEmployeeAddress').addEventListener('input', function() {
@@ -1229,21 +1255,7 @@
 
     // Initial render
     renderEmployeeTable();
-
     // ================== END DuyKha ==================
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const itemsPerPageSelect = document.getElementById('items-per-page-select');
-        if (itemsPerPageSelect) {
-            itemsPerPageSelect.value = itemsPerPage;
-            itemsPerPageSelect.addEventListener('change', function() {
-                itemsPerPage = parseInt(this.value);
-                currentPage = 1;
-                renderEmployeeTable();
-            });
-        }
-    });
     </script>
 </body>
 </html> 

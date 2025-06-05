@@ -9,7 +9,62 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+@media (max-width: 576px) {
+  .header-search-input {
+    display: none !important;
+  }
+  .tabs { display: none !important; }
+  /* .mobile-status-filter { display: block !important; } */ /* Giữ nguyên hoặc loại bỏ tùy cấu trúc HTML */
+  
+  /* Đã di chuyển các quy tắc này sang package_manager.css */
+  /*
+  .action-buttons { gap: 6px; }
+  .action-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .action-row .button {
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 0.98em;
+    padding: 0.6em 0.2em;
+  }
+  */
+
+  .mobile-status-bar { display: flex !important; gap: 8px; align-items: center; margin-bottom: 10px; }
+  .mobile-status-bar select { font-size: 1em; margin-right: 90px;} /* Điều chỉnh margin-right nếu cần */
+  .mobile-status-bar .mobile-only { display: inline-flex !important; }
+  .tabs, .action-buttons .mobile-only { display: none !important; }
+}
+/* Giữ nguyên hoặc điều chỉnh media query cho màn hình 577px+ nếu cần */
+@media (min-width: 577px) {
+  .mobile-only { display: none !important; }
+  .mobile-status-bar { display: none !important; }
+}
+@media (max-width: 900px) and (orientation: landscape) {
+  .action-buttons, .action-row {
+    flex-wrap: wrap !important;
+    gap: 8px;
+  }
+  .action-row .button {
+    min-width: 120px;
+    font-size: 0.95em;
+    padding: 0.6em 0.2em;
+  }
+  .tabs {
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+    scrollbar-width: thin;
+  }
+  .tabs .tab-item {
+    min-width: 110px;
+    font-size: 0.95em;
+  }
+}
+</style>
 </head>
 <body>
     <aside class="sidebar" id="sidebar">
@@ -116,8 +171,23 @@
                         <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
                 </div>
                     <div class="user-dropdown" id="user-dropdown">
-                        <!--Dropdown User-->
-                    </div>
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </div>
+                            <div class="user-details">
+                                <h4>Nguyễn Văn A</h4>
+                                <span class="user-role">Quản trị viên</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item"><i class="fa-regular fa-user"></i> Thông tin cá nhân</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-gear"></i> Cài đặt tài khoản</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Bảo mật</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+            </div>
                 </div>
             </div>
         </header>
@@ -175,7 +245,7 @@
                     <button class="tab-item" role="tab">Hoàn tất (2)</button>
                 </nav>
                 <!-- Thanh chọn trạng thái và nút bộ lọc cho mobile -->
-                <div class="mobile-status-bar">
+                <div class="mobile-status-bar" style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px;">
                   <div style="flex:1;">
                     <select id="mobile-status-select" class="form-select" style="width:100%;">
                       <option value="Tất cả">Tất cả</option>
@@ -193,6 +263,7 @@
                 </div>
                 <div class="action-buttons" aria-label="Bulk Order Actions">
                   <div class="action-row">
+                    <button class="button mobile-only" id="mobile-filter-btn" style="background: #fff; color: #4f46e5; border: 2px solid #4f46e5; font-weight: 600;"><i class="fa-solid fa-filter"></i> Bộ lọc</button>
                     <button class="button primary" onclick="window.location.href='create-package.html'"><i class="fa-solid fa-plus"></i> Tạo đơn hàng</button>
                     <button class="button secondary"><i class="fa-solid fa-file-export"></i> Xuất DEBIT</button>
                   </div>
@@ -1560,16 +1631,6 @@
                 }
             });
 
-            // Add event listener for clicking on Order ID links to set sourcePage in sessionStorage
-            document.body.addEventListener('click', function(event) {
-                const orderLink = event.target.closest('a.order-id-link');
-                if (orderLink) {
-                    // Set the source page flag before navigating
-                    sessionStorage.setItem('sourcePageOrderDetail', 'package-manager');
-                    // Allow the default link navigation to proceed
-                }
-            });
-
             // Close modal when clicking close button or overlay background
             if (imageModalCloseBtn) {
                 imageModalCloseBtn.addEventListener('click', hideImageModal);
@@ -1947,28 +2008,6 @@
                 }
             }
             // ... existing code ...
-        });
-
-        // Hàm xuất Excel cho bảng đơn hàng
-        function exportOrderTableToExcel() {
-            var table = document.getElementById('orderTable');
-            if (!table) {
-                alert('Không tìm thấy bảng đơn hàng!');
-                return;
-            }
-            var wb = XLSX.utils.table_to_book(table, {sheet: "Đơn hàng"});
-            XLSX.writeFile(wb, 'danh_sach_don_hang.xlsx');
-        }
-
-        // Gắn sự kiện cho nút Xuất DEBIT
-        document.addEventListener('DOMContentLoaded', function() {
-            var exportBtn = document.querySelector('.action-row .button.secondary');
-            if(exportBtn && exportBtn.textContent.includes('Xuất DEBIT')) {
-                exportBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    exportOrderTableToExcel();
-                });
-            }
         });
     </script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
