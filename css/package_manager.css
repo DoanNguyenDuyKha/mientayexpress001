@@ -2266,10 +2266,6 @@ button:disabled {
     max-width: 120px;
     font-size: 0.98em;
   }
-  .user-dropdown-toggle .user-icon,
-  .user-dropdown-toggle .user-arrow {
-    font-size: 1.1em !important;
-  }
   .user-dropdown {
     right: 0;
     left: auto !important;
@@ -2287,40 +2283,6 @@ button:disabled {
 }
 
 @media (max-width: 400px) {
-  .user-dropdown-toggle {
-    padding: 6px !important;
-    border-radius: 50% !important;
-    min-width: 0 !important;
-    max-width: 40px !important;
-    width: 40px !important;
-    height: 40px !important;
-    justify-content: center !important;
-    background: #6366f1;
-  }
-  .user-dropdown-toggle .user-icon {
-    font-size: 1.5em !important;
-    color: #fff !important;
-    margin: 0 !important;
-  }
-  .user-dropdown-toggle .user-arrow {
-    display: none !important;
-  }
-  .user-dropdown {
-    right: 0;
-    left: auto !important;
-    min-width: 120px;
-    max-width: 90vw;
-    font-size: 0.98em;
-    top: 110%;
-    z-index: 99999;
-    box-shadow: 0 4px 16px #0002;
-    padding: 0.2em 0;
-  }
-  .user-dropdown-item {
-    padding: 10px 14px;
-    font-size: 0.98em;
-    word-break: break-word;
-  }
   .header-search-input {
     display: none !important;
   }

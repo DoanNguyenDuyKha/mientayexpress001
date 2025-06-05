@@ -959,7 +959,7 @@ footer.form-actions {
     }
 
     .form-section .card-header .card-title {
-        font-size: 0.75rem;
+        font-size: 16px;
     }
 
     .form-section .card-body {
@@ -1237,6 +1237,22 @@ a {
 @media (max-width: 400px){
     .progress-steps{
         display: none;
+    }
+    .form-group label, .form-label {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--label-color);
+        display: block;
+        margin-bottom: 0.05rem;
+    }
+    .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="email"], .form-group input[type="number"], .form-group select, .form-group textarea {
+        width: 100%;
+        font-size: 16px;
+        padding: 0.35rem 0.5rem;
+        border: 1px solid var(--input-border);
+        border-radius: var(--border-radius);
+        transition: all var(--transition-speed) ease;
+        background-color: var(--form-bg);
     }
 }
 
