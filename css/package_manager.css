@@ -981,6 +981,8 @@ button:disabled {
   animation: dropdownPop 0.3s ease forwards;
 }
 
+.mobile-status-bar{ display: none; align-items: center; margin-bottom: 10px; }
+
 @media (max-width: 576px) {
   .user-dropdown {
     position: absolute; /* Quan trọng: Đổi sang absolute */
@@ -999,6 +1001,17 @@ button:disabled {
     border: 1px solid rgba(226, 232, 240, 0.8);
     backdrop-filter: blur(10px);
     padding: 1rem 0;
+  }
+  input, select, button {
+    font-family: inherit;
+    font-size: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 0.5rem 0.75rem;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+  .mobile-status-bar{
+    display: flex;
   }
   /* Đảm bảo .user-container có position: relative */
   .user-container {
@@ -2520,7 +2533,7 @@ button:disabled {
 }
 @media (max-width: 576px) {
   .sidebar .menu-items li a .menu-text {
-    font-size: 0.75em; 
+    font-size: 1.1em; 
   }
   .sidebar .menu-items li a .icon {
     font-size: 0.95em;

@@ -1,5 +1,3 @@
-
-
 :root {
     --primary-color: #0891b2;
     --primary-hover: #0e7490;
@@ -672,12 +670,27 @@ body, .content-wrapper, .payment-content-area {
     .section-header-original, .section-content-original { padding: 8px; }
     .content-actions-original { padding: 8px; gap: 4px;}
     .order-value-grid-original .vat-group { flex-wrap: wrap; }
-     .action-buttons-original button { font-size: 0.65rem; padding: 6px;}
-     .order-value-grid-original label { font-size: 0.9em; }
-      .order-value-grid-original .input-group input, .order-value-grid-original textarea { font-size: 0.9em;}
-       .payment-info-grid-original label { font-size: 0.9em;}
-       .payment-info-grid-original select, .payment-info-grid-original input[type='text'], .payment-info-grid-original textarea { font-size: 0.9em;}
-        .payment-history-table-original { font-size: 0.8em;}
+    .action-buttons-original button { font-size: 1rem; padding: 6px;}
+    .order-value-grid-original label { font-size: 0.9em; }
+    .order-value-grid-original .input-group input, .order-value-grid-original textarea { font-size: 0.9rem !important;}
+    .payment-info-grid-original label { font-size: 0.9em;}
+    .payment-info-grid-original select, .payment-info-grid-original input[type='text'], .payment-info-grid-original textarea { font-size: 1rem;}
+    .payment-history-table-original { font-size: 0.8em;}
+    .payment-info-grid-original .date-display select {
+    padding: 4px 6px;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    }
+    .date-picker {
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 1rem !important;
+    border: 1px solid #ced4da;
+    border-radius: var(--border-radius);
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    }
 
 
 }
@@ -703,6 +716,7 @@ body, .content-wrapper, .payment-content-area {
     padding-right: 0.1rem !important;
     border-radius: 8px 8px 0 0;
     overflow-x: visible !important;
+    margin-bottom: 0.5rem !important;
   }
   .payment-history-table-wrapper {
     width: 100% !important;
@@ -719,7 +733,7 @@ body, .content-wrapper, .payment-content-area {
   }
   .payment-columns-original {
     flex-direction: column !important;
-    gap: 0.7rem !important;
+    gap: 0 !important;
   }
   .payment-column-original {
     min-width: 0 !important;
@@ -728,21 +742,21 @@ body, .content-wrapper, .payment-content-area {
     margin-bottom: 0.7rem !important;
   }
   .order-value-grid-original {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.5rem !important;
-    padding: 0.2rem 0.1rem !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+    gap: 0.2rem 0.4rem !important;
+    padding: 0.4rem 0.2rem !important;
   }
   .order-value-grid-original label {
-    width: 100% !important;
-    display: block !important;
-    margin-bottom: 2px !important;
-    font-weight: 600 !important;
-    font-size: 0.97em !important;
-    padding-left: 2px !important;
-    padding-right: 0 !important;
-    color: var(--text-secondary);
+    width: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 0 !important;
+    font-weight: 500 !important;
+    font-size: 0.85em !important;
+    padding-left: 0 !important;
     text-align: left !important;
+    color: var(--text-secondary);
   }
   .order-value-grid-original .input-group,
   .order-value-grid-original textarea,
@@ -752,9 +766,13 @@ body, .content-wrapper, .payment-content-area {
     min-width: 0 !important;
     box-sizing: border-box !important;
     border-radius: 6px !important;
-    font-size: 1em !important;
-    margin-bottom: 0.1rem !important;
+    font-size: 0.9em !important;
+    margin-bottom: 0 !important;
     display: block !important;
+    padding: 0.3rem 0.5rem !important;
+  }
+  .order-value-grid-original textarea {
+    min-height: 40px !important;
   }
   .order-value-grid-original .input-group,
   .order-value-grid-original .currency-group,
@@ -762,12 +780,12 @@ body, .content-wrapper, .payment-content-area {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 2px !important;
+    gap: 0.1rem !important;
     width: 100% !important;
     flex-wrap: nowrap !important;
-    margin-bottom: 0.1rem !important;
-    margin-left: 0.2rem !important;
-    margin-right: 0.2rem !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
   .order-value-grid-original .input-group input,
   .order-value-grid-original .input-group select,
@@ -778,28 +796,30 @@ body, .content-wrapper, .payment-content-area {
     min-width: 0 !important;
     max-width: 100% !important;
     display: inline-block !important;
-    margin-right: 4px !important;
+    margin-right: 0.1rem !important;
+    padding: 0.3rem 0.5rem !important;
   }
   .order-value-grid-original .input-group span,
   .order-value-grid-original .currency-group span,
   .order-value-grid-original .vat-group span {
     width: auto !important;
-    min-width: 32px;
+    min-width: 25px;
     display: inline-block !important;
-    margin-left: 2px !important;
-    font-size: 0.98em;
+    margin-left: 0.05rem !important;
+    font-size: 0.85em;
     white-space: nowrap;
   }
   .order-value-summary-original {
     grid-template-columns: 1fr 1fr !important;
     grid-template-rows: auto auto !important;
-    gap: 0.5rem !important;
-    padding: 0.5rem !important;
+    gap: 0.3rem !important;
+    padding: 0.3rem !important;
   }
   .order-value-summary-original .summary-item {
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 0.15rem !important;
   }
   .order-value-summary-original .summary-item:last-child:nth-child(odd) {
     grid-column: 1 / span 2;
@@ -831,9 +851,6 @@ body, .content-wrapper, .payment-content-area {
     justify-content: flex-end;
   }
   .section-header-original .order-value-note {
-    /* text-align: left !important;
-    font-size: 0.5rem !important;
-    padding: 0.2rem 0 !important; */
     display: none;;
   }
   .page-title {
@@ -860,40 +877,49 @@ body, .content-wrapper, .payment-content-area {
     border-radius: 10px !important;
   }
   .order-value-grid-original .vat-group {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 2px !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100% !important;
+    grid-column: 1 / span 2;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
   }
   .order-value-grid-original .vat-group input,
   .order-value-grid-original .vat-group span {
-    margin-bottom: 4px !important;
+    margin-bottom: 0 !important;
     margin-right: 0 !important;
+  }
+  .order-value-grid-original .vat-group label.vat-converted-label {
+    display: none !important;
+    align-items: center !important;
+    font-weight: 600 !important;
+    color: #7c3aed !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    font-size: 0.9em !important;
   }
   .order-value-grid-original .vat-group .info-icon {
     color: #7c3aed !important;
     font-size: 1.1em !important;
-    margin-right: 4px !important;
+    margin-right: 0.2rem !important;
     margin-left: 0 !important;
     vertical-align: middle;
-  }
-  .order-value-grid-original .vat-group label.vat-converted-label {
-    display: flex !important;
-    align-items: center !important;
-    font-weight: 600 !important;
-    color: #7c3aed !important;
-    margin-bottom: 2px !important;
-    margin-left: 0 !important;
-    font-size: 0.97em !important;
+    content: '\f362';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    cursor: pointer;
   }
   .order-value-grid-original .vat-group .vat-converted-value {
-    margin-bottom: 4px !important;
+    margin-bottom: 0 !important;
     margin-left: 0 !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
+    width: auto !important;
+    min-width: 80px !important;
+    max-width: 120px !important;
+    flex-grow: 1;
+    padding: 0.3rem 0.5rem !important;
+  }
+  .order-value-grid-original .vat-group #vat_rate {
+    width: 50px !important;
+    min-width: 50px !important;
   }
 }
 

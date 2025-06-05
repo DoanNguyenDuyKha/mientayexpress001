@@ -797,7 +797,6 @@ body {
     min-width: 300px;
     display: flex;
     flex-direction: column;
-    gap: var(--base-padding, 1rem);
 }
 
 .data-section {
@@ -811,7 +810,7 @@ body {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--sidebar-active-text);
-    margin-bottom: 0.1rem;
+    margin-bottom: 6px;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border-color);
     display: flex;
@@ -1420,4 +1419,28 @@ body.overflow-hidden {
 .content-wrapper {
     position: relative;
     z-index: 1;
+}
+
+@media (max-width: 576px){
+    .section-header{
+        font-size: 1rem;
+    }
+    .form-group label {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 6px;
+        display: block;
+    }
+    .form-group input[type="text"], .form-group input[type="datetime-local"], .form-group select, .form-group textarea {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font-size: 1rem;
+        border: 1px solid var(--input-border-color, var(--border-color));
+        border-radius: var(--border-radius);
+        background-color: var(--input-bg-color, var(--card-bg));
+        transition: border-color 0.3s, box-shadow 0.3s;
+        color: var(--text-primary);
+        line-height: 1.5;
+    }
 }

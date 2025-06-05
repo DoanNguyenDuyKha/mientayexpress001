@@ -776,7 +776,6 @@
          margin-bottom: var(--base-padding-sm);
     }
 
-
     .modal-footer {
         padding-top: var(--base-padding-sm);
         margin-top: var(--base-padding-sm);
@@ -785,13 +784,16 @@
     }
 
     .modal-actions {
-        flex-direction: column;
-        width: 100%;
-        gap: 0.8rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        width: auto;
+        align-self: flex-end;
     }
 
     .modal-actions .button {
-        width: 100%;
+        width: auto;
         justify-content: center;
     }
 
