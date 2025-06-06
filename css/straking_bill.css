@@ -228,7 +228,7 @@ body, .straking-content-screenshot {
     position: absolute;
     inset: -7px;
     border-radius: 50%;
-    border: 2.5px solid #fff;
+    border: 2.5px solid #6366f1;
     opacity: 0.7;
     z-index: 0;
 }
@@ -317,7 +317,7 @@ body, .straking-content-screenshot {
     background-color: var(--ss-card-bg);
     border: 1px solid var(--ss-border-color);
     border-radius: 21px;
-    margin-bottom: var(--ss-section-spacing);
+    margin-bottom: 0.75rem;
     box-shadow: none;
     overflow: hidden;
 }
@@ -664,7 +664,7 @@ body, .straking-content-screenshot {
 @media (max-width: 992px) {
     .content-columns-ss {
         flex-direction: column;
-        gap: var(--ss-section-spacing);
+        gap: 0;
     }
     .progress-bar-ss {
         padding: 0;
@@ -754,7 +754,7 @@ body, .straking-content-screenshot {
 
 @media (max-width: 600px) {
     .straking-content-screenshot {
-        padding: 0.8rem !important;
+        padding: 0.2rem !important;
     }
     .top-section-ss,
     .straking-content-screenshot .card-body,
@@ -766,7 +766,7 @@ body, .straking-content-screenshot {
         gap: 4px 8px;
     }
     .info-list-ss dt {
-        font-size: 0.9em;
+        font-size: 1rem;
         margin-bottom: 0;
         padding-top: 0;
         white-space: nowrap;
@@ -774,7 +774,7 @@ body, .straking-content-screenshot {
         text-overflow: ellipsis;
     }
     .info-list-ss dd {
-        font-size: 0.9em;
+        font-size: 1rem;
         padding-left: 0;
         margin-bottom: 0;
         margin-top: 0;
@@ -1634,6 +1634,49 @@ label {
         font-size: 0.95em;
         padding: 0 2px;
         white-space: normal;
+    }
+    input, select, button {
+        font-size: 16px !important;
+    }
+    .history-body-ss .section-subtitle{
+        font-size: 16px !important;
+    }
+    .straking-content-screenshot .card-body {
+        padding: 0.3rem !important;
+        line-height: var(--ss-line-height);
+    }
+    .add-history-grid-ss label {
+        font-size: 1rem;
+    }
+    .status-selector-ss select {
+        min-width: 130px;
+        font-size: 1em !important;
+        padding: 7px 9px;
+        padding-right: 1.5rem;
+    }
+    .timeline-ss::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background-color: var(--info-color);
+        z-index: 1;
+        margin-left: 0.8rem !important;
+    }
+    .add-history-grid-ss input {
+        width: 100%;
+        font-size: 1em;
+        border-radius: 14px;
+        border: 2.5px solid #e0e7ff;
+        padding: 0.5rem 0.8rem;
+        background: #fff;
+        box-shadow: 0 4px 18px rgba(99,102,241,0.10);
+        transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+        font-weight: 500;
+        color: #3730a3;
+        outline: none;
     }
 }
 

@@ -1341,6 +1341,191 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('createPackageWizardData', JSON.stringify(combinedData));
          console.log('Saved combined step 1 & 2 data to localStorage:', combinedData);
     }
+
+    sessionStorage.removeItem('sourcePageOrderDetail');
+    // --- End logic for footer button visibility ---
+
+    sessionStorage.setItem('sourcePageOrderDetail', 'create-package-step2');
+
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to load data from localStorage and populate the form
+        function loadStep2Data() {
+            console.log('Attempting to load step 2 data from localStorage...');
+            const savedDataJson = localStorage.getItem('createPackageWizardData');
+
+            if (savedDataJson) {
+                try {
+                    const savedData = JSON.parse(savedDataJson);
+                    console.log('Successfully loaded and parsed saved data:', savedData);
+                    populateSummaryColumn(savedData);
+                    populateItemTable(savedData);
+                    populateImagePreview(savedData);
+                    updateTotalOrderValue();
+                    ensureAddButtonOnLastRow();
+                } catch (error) {
+                    console.error('Error parsing saved data:', error);
+                }
+            }
+        }
+
+        // Function to populate Summary Column
+        function populateSummaryColumn(data) {
+            console.log('Populating summary column with data:', data);
+            // Hàm ánh xạ value sang tên dịch vụ
+            function getServiceName(val) {
+                const map = {
+                    'signature': 'Chữ Ký',
+                    'fumigation': 'FUMIGATION',
+                    'packing': 'Đóng kiện gỗ',
+                    'insurance': 'Bảo hiểm hàng hóa'
+                };
+                return map[val] || val;
+            }
+
+            const senderInfoDisplay = document.getElementById('sender-info-display');
+            if(senderInfoDisplay) { senderInfoDisplay.value = data.sender_name_display || ''; }
+
+            // Auto-generate Order Code and REF Code if not present in saved data
+            const orderCode = data.order_code || 'MTE' + Math.floor(Math.random() * 100000000).toString().padStart(8, '0'); // Simple placeholder generation
+            const refCode = data.ref_code || Math.floor(Math.random() * 10000000).toString().padStart(7, '0'); // Simple placeholder generation
+
+            document.getElementById('summary-order-code').textContent = orderCode;
+            document.getElementById('summary-ref-code').textContent = refCode;
+
+            // Thông tin Người gửi (using new combined fields)
+            document.getElementById('summary-sender-company').textContent = data.sender_company || '';
+            document.getElementById('summary-sender-address').textContent = data.sender_address || '';
+            document.getElementById('summary-sender-phone').textContent = data.sender_phone || ''; // Keep separate phone field for now
+            // Populate combined City, District, Ward
+            const cityDetails = [data.sender_city, data.sender_district, data.sender_ward].filter(Boolean).join(', ');
+            document.getElementById('summary-sender-city-details').textContent = cityDetails || '';
+            // Populate combined Country and Zip
+            const countryZip = [data.sender_country, data.sender_zip].filter(Boolean).join(', ');
+            document.getElementById('summary-sender-country-zip').textContent = countryZip || '';
+
+            // Thông tin Người nhận
+            document.getElementById('summary-receiver-name').textContent = data.receiver_name || '';
+            document.getElementById('summary-receiver-company').textContent = data.receiver_company || '';
+            document.getElementById('summary-receiver-address').textContent = data.receiver_address || '';
+            // Populate combined Phone 1 and Phone 2
+            let receiverPhonesDisplay = '';
+            const phone1Value = data.receiver_phone1 || '';
+            const phone1Code = data.receiver_phone1_code || '';
+            const phone2Value = data.receiver_phone2 || '';
+            const phone2Code = data.receiver_phone2_code || '';
+
+            const displayPhone1 = phone1Code + phone1Value;
+            const displayPhone2 = phone2Code + phone2Value;
+
+            if (phone1Value && phone2Value) {
+                 // Both have values
+                receiverPhonesDisplay = `${displayPhone1} / ${displayPhone2}`;
+            } else if (phone1Value) {
+                 // Only phone 1 has value
+                receiverPhonesDisplay = displayPhone1;
+            } else if (phone2Value) {
+                 // Only phone 2 has value (less likely if phone1 is required)
+                 receiverPhonesDisplay = displayPhone2;
+            }
+             document.getElementById('summary-receiver-phones').textContent = receiverPhonesDisplay;
+            // Populate combined City and State
+            const receiverCityState = [data.receiver_city, data.receiver_state].filter(Boolean).join(', ');
+            document.getElementById('summary-receiver-city-state').textContent = receiverCityState || '';
+            // Populate combined Country and Zip
+            const receiverCountryZip = [data.receiver_country, data.receiver_zip].filter(Boolean).join(', ');
+            document.getElementById('summary-receiver-country-zip').textContent = receiverCountryZip || '';
+
+            // Thông tin Dịch vụ
+            document.getElementById('summary-service-type').textContent = data.service_type || '';
+            document.getElementById('summary-branch').textContent = data.branch || '';
+
+                let addServiceArr = data['add_service[]'];
+                if (typeof addServiceArr === 'string') addServiceArr = [addServiceArr];
+                if (!Array.isArray(addServiceArr)) addServiceArr = [];
+                const addServiceText = addServiceArr.map(getServiceName).join(' / ');
+            document.getElementById('summary-add-service').textContent = addServiceText;
+
+            document.getElementById('summary-package-type').textContent = data.package_type || '';
+            document.getElementById('summary-pickup-method').textContent = data.pickup_method || '';
+
+            // Thông tin Yêu cầu
+            document.getElementById('summary-bill-status').textContent = data.bill_status || '';
+            document.getElementById('summary-agent').textContent = data.agent || '';
+            document.getElementById('summary-ops-coord').textContent = data.ops_coord || '';
+            document.getElementById('summary-cs-handler').textContent = data.cs_handler || '';
+        }
+
+        // Modify addDimensionRow to accept optional dimension data
+        function addDimensionRow(dimData = {}) {
+            const container = document.getElementById('dimension-rows');
+            if (!container) return;
+            const newIndex = Date.now(); // Use timestamp for unique ID
+            const newRowHTML = `
+                <div class="dimension-row">
+                    <label for="dim_length_${newIndex}" class="visually-hidden">Dài kiện ${newIndex}</label> <input type="number" step="any" id="dim_length_${newIndex}" name="dim_length[]" placeholder="Dài" value="${dimData.length || ''}">
+                    <label for="dim_width_${newIndex}" class="visually-hidden">Rộng kiện ${newIndex}</label> <input type="number" step="any" id="dim_width_${newIndex}" name="dim_width[]" placeholder="Rộng" value="${dimData.width || ''}">
+                    <label for="dim_height_${newIndex}" class="visually-hidden">Cao kiện ${newIndex}</label> <input type="number" step="any" id="dim_height_${newIndex}" name="dim_height[]" placeholder="Cao" value="${dimData.height || ''}">
+                    <label for="dim_weight_${newIndex}" class="visually-hidden">Nặng kiện ${newIndex}</label> <input type="number" step="any" id="dim_weight_${newIndex}" name="dim_weight[]" placeholder="Nặng" value="${dimData.weight || ''}">
+                    <div class="dim-actions"></div>
+                </div>`;
+            container.insertAdjacentHTML('beforeend', newRowHTML);
+            ensureAddButtonOnLastRow();
+        }
+
+         // Modify addItemRow to accept optional item data and event
+        function addItemRow(event = null, itemData = {}) {
+            if(event) event.preventDefault();
+            const tbody = document.getElementById('shipment-items-tbody');
+            if (!tbody) return;
+            const newIndex = Date.now(); // Use timestamp for unique ID
+            const newRowHTML = `
+                <tr>
+                    <td><button type="button" class="icon-button remove-item danger small" title="Xóa dòng"><i class="fas fa-trash-alt"></i></button></td>
+                    <td><label for="item_name_${newIndex}" class="visually-hidden">Tên hàng hóa dòng ${newIndex}</label><textarea id="item_name_${newIndex}" name="item_name[]" rows="1">${itemData.name || ''}</textarea></td>
+                    <td><label for="item_quantity_${newIndex}" class="visually-hidden">Số lượng dòng ${newIndex}</label><input type="number" id="item_quantity_${newIndex}" name="item_quantity[]" value="${itemData.quantity || '1'}" min="1"></td>
+                    <td><label for="item_unit_${newIndex}" class="visually-hidden">Loại dòng ${newIndex}</label><select id="item_unit_${newIndex}" name="item_unit[]"> ${renderUnitOptions(itemData.unit)} </select></td>
+                    <td><label for="item_price_${newIndex}" class="visually-hidden">Đơn giá dòng ${newIndex}</label><input type="number" step="any" id="item_price_${newIndex}" name="item_price[]" value="${itemData.price || '0'}"></td>
+                    <td><label for="item_total_${newIndex}" class="visually-hidden">Tổng giá dòng ${newIndex}</label><input type="number" step="any" id="item_total_${newIndex}" name="item_total[]" value="${itemData.total || '0'}" readonly></td>
+                </tr>`;
+            tbody.insertAdjacentHTML('beforeend', newRowHTML);
+        }
+
+        // Helper function to render unit select options, marking the saved one as selected
+        function renderUnitOptions(selectedValue) {
+            const options = ['PCE', 'PCS', 'PKG', 'Rolls']; // Define your unit options here
+            let optionsHTML = '';
+            options.forEach(option => {
+                const selectedAttr = (option === selectedValue) ? 'selected' : '';
+                optionsHTML += `<option value="${option}" ${selectedAttr}>${option}</option>`;
+            });
+            return optionsHTML;
+        }
+
+        // Function to populate Item Table
+        function populateItemTable(data) {
+            const items = data.items || [];
+            items.forEach((item, index) => {
+                addItemRow(null, item);
+            });
+        }
+
+        // Function to populate Image Preview
+        function populateImagePreview(data) {
+            const imageLink = data.imageLink || '';
+            if (imageLink) {
+                const img = document.createElement('img');
+                img.src = imageLink;
+                img.alt = 'Image Preview';
+                img.className = 'upload-image-preview';
+                document.getElementById('image_link').parentNode.appendChild(img);
+            }
+        }
+
+        // Load data from localStorage
+        loadStep2Data();
+    });
     </script>
 </body>
 </html>

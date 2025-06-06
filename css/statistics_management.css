@@ -865,8 +865,13 @@ body.overflow-hidden { overflow: hidden; }
     .national-details-table th, .national-details-table td { white-space: normal; }
 
     .page-header { flex-direction: column; align-items: stretch; }
-    .page-header-left { text-align: left; }
+    .page-header-left { text-align: center; }
     .page-header-right { justify-content: flex-end; margin-top: 0; }
+    .page-header-left .page-title{ font-size: 1.5rem;}
+    .breadcrumb{font-size: 0.75rem !important}
+    .report-title {font-size: 1rem !important;}
+    .kpi-title{font-size: 1rem;}
+    .kpi-change{font-size: 1rem;}
 }
 
 @media (max-width: 576px) {
@@ -878,7 +883,7 @@ body.overflow-hidden { overflow: hidden; }
     .stats-filters .date-range span { display: none; }
 
     .report-card-header { flex-direction: column; align-items: flex-start; }
-    .report-select { margin-left: 0; margin-top: 5px; width: 100%; }
+    .report-select { margin-left: 0; margin-top: 5px; width: 40%; }
 
     .personnel-overview-view .personnel-chart-container,
     .personnel-payment-view .personnel-chart-container-v3 { width: 180px; height: 180px; }
@@ -890,6 +895,7 @@ body.overflow-hidden { overflow: hidden; }
     .view-details-btn { margin-left: auto;}
     .national-details-table { font-size: 0.75rem; }
     .national-details-table th, .national-details-table td { padding: 5px; }
+    .layout-toggle-btn{ display: none;}
 }
 @media (max-width: 390px) {
     .kpi-cards-grid { grid-template-columns: 1fr; }
