@@ -138,27 +138,23 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Service Actions Buttons -->
+            <div class="actions-container">
+                <!-- Service Actions Buttons -->
             <div class="service-actions">
-                 <button class="button danger"><i class="fa-solid fa-trash-can"></i> Xóa đã chọn</button>
-                 <button class="button primary" id="addServiceBtn"><i class="fa-solid fa-plus"></i> Thêm dịch vụ mới</button>
+                <button class="button danger"><i class="fa-solid fa-trash-can"></i> Xóa đã chọn</button>
+                <button class="button primary" id="addServiceBtn"><i class="fa-solid fa-plus"></i> Thêm dịch vụ mới</button>
+           </div>
+           <div class="items-per-page-control">
+               <select id="items-per-page-select" class="form-select">
+                   <option value="5">5</option>
+                   <option value="10">10</option>
+                   <option value="20">20</option>
+                   <option value="50">50</option>
+               </select>
+               <span>dịch vụ/trang</span>
+           </div>
             </div>
-
             <section class="table-area card" aria-labelledby="service-table-heading"><div class="card-header"><h2 id="service-table-heading">Danh sách Dịch vụ</h2></div><div class="table-container"><div class="table-wrapper"><table id="serviceTable"><thead><tr><th scope="col" class="col-center"><input type="checkbox" id="select-all-checkbox" title="Chọn tất cả"></th><th scope="col" class="col-center">STT</th><th scope="col">Mã dịch vụ</th><th scope="col">Tên dịch vụ</th><th scope="col">Ngày cập nhật</th><th scope="col" class="col-center">Hiển thị</th><th scope="col" class="col-center">Thao tác</th></tr></thead><tbody id="service-table-body"></tbody></table></div></div><div class="card-footer"><nav class="pagination" aria-label="Table navigation"><span class="pagination-info" id="pagination-info">Hiển thị <b>1</b> đến <b>6</b> của <b>15</b> mục</span><div class="pagination-buttons">
-    <!-- Combobox chọn số lượng hiển thị -->
-    <div class="items-per-page-control">
-        <select id="items-per-page-select" class="form-select">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-        </select>
-        <span>dịch vụ/trang</span>
-    </div>
     <!-- Các nút phân trang sẽ được đặt trong một div riêng -->
     <div class="pagination-nav-buttons">
          <button class="button" disabled="">Trước</button>
@@ -246,7 +242,7 @@
     <div id="deleteMultipleModalOverlay" class="modal-overlay">
         <div id="deleteMultipleModal" class="modal-container small-modal">
              <div class="modal-header">
-                 <h3 class="modal-title"><i class="fa-solid fa-triangle-exclamation icon" style="color: var(--danger-color);"></i> Xác nhận xóa dịch vụ</h3>
+                 <h3 class="modal-title"><i class="fa-solid fa-triangle-exclamation icon"></i> Xác nhận xóa dịch vụ</h3>
                  <button type="button" class="modal-close-btn" id="deleteMultipleModalClose">×</button>
             </div>
             <div class="modal-body">
@@ -327,6 +323,158 @@
             }
         }
 
+        // ================== DuyKha: Hàm chuẩn hóa tiếng Việt cho tìm kiếm ==================
+        function normalizeVietnameseString(str) {
+            if (!str) return '';
+            str = str.toLowerCase();
+            str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+            str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+            str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+            str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+            str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+            str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+            str = str.replace(/đ/g, "d");
+            str = str.replace(/[^a-z0-9\s]/g, '');
+            str = str.replace(/\s+/g, ' ').trim();
+            return str;
+        }
+        // ================== END DuyKha ==================
+
+        // Helper functions for localStorage (Modified to handle full service objects) - KEEP THESE
+        function getServiceData() {
+            const data = localStorage.getItem('serviceData');
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveServiceData(data) {
+            localStorage.setItem('serviceData', JSON.stringify(data));
+        }
+
+        // --- Modal Functions (Moved to top of script) ---
+
+        // Function to close the edit/add service modal
+        function closeEditServiceModal() {
+            const modalOverlay = document.getElementById('editServiceModalOverlay');
+            const modal = document.getElementById('editServiceModal');
+            modalOverlay.classList.remove('visible');
+            modal._isAddMode = false;
+            modal._editingIndex = null;
+            modal.classList.remove('add-mode');
+            modal.classList.remove('edit-mode');
+            modal.classList.remove('modal-form-layout-2col'); // Remove layout class
+            const maDVInput = document.getElementById('editMaDV'); // Get input here
+            if(maDVInput) maDVInput.readOnly = false; // Reset readonly for maDV
+            // Clear form fields if necessary (form submission already clears inputs, but good for consistency)
+            const tenDVInput = document.getElementById('editTenDV');
+            const ngayCapNhatInput = document.getElementById('editNgayCapNhat');
+            const hienThiInput = document.getElementById('editHienThi');
+            if(maDVInput) maDVInput.value = '';
+            if(tenDVInput) tenDVInput.value = '';
+            if(ngayCapNhatInput) ngayCapNhatInput.value = '';
+            if(hienThiInput) hienThiInput.checked = true;
+         };
+
+        // Sửa dịch vụ
+        let editingMaDV = null; // Use maDV to track the service being edited
+        function openEditModalById(maDV) {
+            editingMaDV = maDV; // Store the maDV
+            const serviceData = getServiceData();
+            const service = serviceData.find(s => s.maDV === maDV); // Find service by maDV
+
+            if (!service) { // Check if service exists
+                console.error('Service not found for editing:', maDV);
+                return;
+            }
+
+            const modal = document.getElementById('editServiceModal');
+            if(modal) modal.classList.add('show');
+
+            const maDVInput = document.getElementById('editMaDV');
+            const tenDVInput = document.getElementById('editTenDV');
+            const ngayCapNhatInput = document.getElementById('editNgayCapNhat');
+            const hienThiInput = document.getElementById('editHienThi');
+
+            if(maDVInput) maDVInput.value = service.maDV;
+            if(maDVInput) maDVInput.readOnly = true; // Mã dịch vụ không cho sửa
+            if(tenDVInput) tenDVInput.value = service.tenDV;
+
+            // Convert dd-mm-yyyy to yyyy-mm-dd for input type=date
+            if(ngayCapNhatInput) {
+                const [d, m, y] = service.ngayCapNhat.split('-');
+                ngayCapNhatInput.value = `${y}-${m}-${d}`;
+            }
+
+            if(hienThiInput) hienThiInput.checked = service.hienThi;
+
+            document.getElementById('editServiceModalOverlay').classList.add('visible');
+            modal._isAddMode = false; // Explicitly set to edit mode
+            modal.classList.remove('add-mode'); // Remove add-mode class
+            modal.classList.add('edit-mode'); // Add edit-mode class for styling
+            modal.classList.add('modal-form-layout-2col'); // Add layout class
+
+            // Change modal title for Edit mode
+            const modalTitle = modal.querySelector('h3');
+            if(modalTitle) modalTitle.textContent = 'Sửa thông tin dịch vụ';
+
+            setTimeout(() => { if(tenDVInput) tenDVInput.focus(); }, 100); // Focus on name input
+        }
+
+        // Xóa dịch vụ
+        let deletingMaDV = null; // Use maDV to track the service being deleted
+        function openDeleteModalById(maDV) {
+            deletingMaDV = maDV;
+            const serviceData = getServiceData();
+            const service = serviceData.find(s => s.maDV === maDV);
+
+            if (!service) { // Check if service exists
+                console.error('Service not found for deletion:', maDV);
+                return;
+            }
+
+            const modal = document.getElementById('deleteServiceModal');
+            const info = document.getElementById('deleteServiceInfo');
+
+            if(modal && info) {
+                 info.textContent = `Bạn có chắc muốn xóa dịch vụ: ${service.maDV} - ${service.tenDV} không?`;
+                 document.getElementById('deleteServiceModalOverlay').classList.add('visible');
+            }
+        }
+
+        // Thêm dịch vụ mới opener
+        function openAddServiceModal() {
+            // Clear form for new entry
+            const maDVInput = document.getElementById('editMaDV');
+            const tenDVInput = document.getElementById('editTenDV');
+            const ngayCapNhatInput = document.getElementById('editNgayCapNhat');
+            const hienThiInput = document.getElementById('editHienThi');
+
+            if(maDVInput) maDVInput.value = '';
+            if(maDVInput) maDVInput.readOnly = false; // Ensure maDV is editable in add mode
+            if(tenDVInput) tenDVInput.value = '';
+            if(ngayCapNhatInput) ngayCapNhatInput.value = ''; // Optionally set default date
+            if(hienThiInput) hienThiInput.checked = true; // Default to visible
+
+            // Show the edit modal, marking it as add mode
+            const modalOverlay = document.getElementById('editServiceModalOverlay');
+            const modal = document.getElementById('editServiceModal');
+            const modalTitle = modal ? modal.querySelector('h3') : null;
+
+            if(modalOverlay) modalOverlay.classList.add('visible');
+            if(modal) modal._isAddMode = true; // Use a flag on the modal object
+            if(modal) modal._editingIndex = null; // Ensure no index is linked in add mode
+            // Add add-mode class and layout class
+            if(modal) modal.classList.add('add-mode');
+            if(modal) modal.classList.remove('edit-mode'); // Remove edit-mode class
+            if(modal) modal.classList.add('modal-form-layout-2col'); // Add layout class
+
+            // Change modal title for Add mode
+            if(modalTitle) modalTitle.textContent = 'Thêm dịch vụ mới';
+
+            setTimeout(() => { if(maDVInput) maDVInput.focus(); }, 100);
+        }
+
+        // --- END Modal Functions ---
+
         // Define renderServiceTable function in a broader scope
         let filterServiceName = '';
         let filterServiceStatus = ''; // Use string 'true' or 'false'
@@ -348,7 +496,8 @@
                 let statusMatch = true;
 
                 if (filterServiceName) {
-                    nameMatch = service.tenDV.toLowerCase().includes(filterServiceName.toLowerCase());
+                    // DuyKha: Áp dụng chuẩn hóa tiếng Việt cho tìm kiếm tên dịch vụ
+                    nameMatch = normalizeVietnameseString(service.tenDV).includes(normalizeVietnameseString(filterServiceName));
                 }
 
                 if (filterServiceStatus !== '') {
@@ -366,30 +515,79 @@
             const end = start + itemsPerPage;
             const itemsToShow = filteredData.slice(start, end);
 
-            // Render table rows for the current page
-            if (itemsToShow.length === 0 && totalItems > 0 && page > 1) {
-                // If no items on this page but there are total items and not page 1, go to the last page
-                currentPage = totalPages; // Update current page to the last page
-                renderServiceTable(data, currentPage, itemsPerPage); // Re-render
-                return; // Exit the current rendering process
+            // Adjust current page if it's beyond the last page after filtering
+            if (currentPage > totalPages && totalPages > 0) {
+                currentPage = totalPages;
+                renderServiceTable(data, currentPage, itemsPerPage);
+                return;
+            }
+            if (totalPages === 0) {
+                 currentPage = 1; // Reset to page 1 if no items
             }
 
             itemsToShow.forEach((service, index) => {
                 const tr = document.createElement('tr');
                 // Use the index within the *current page* for STT
                 const stt = start + index + 1; // Calculate actual STT based on start index
+                
+                // Main row for mobile (MaDV and TenDV visible)
                 tr.innerHTML = `
-                    <td class="col-center"><input type="checkbox" title="Chọn dòng ${stt}"></td>
-                    <td class="col-center">${stt}</td>
+                    <td class="col-center"><input type="checkbox" class="rowCheckbox" title="Chọn dòng ${stt}"></td>
+                    <td class="col-center service-stt">${stt}</td>
                     <td>${service.maDV}</td>
                     <td>${service.tenDV}</td>
-                    <td>${service.ngayCapNhat}</td>
-                    <td class="col-center"><input type="checkbox" ${service.hienThi ? 'checked' : ''} title="Hiển thị dịch vụ này"></td>
-                <td class="col-center action-icons">
-                  <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
-                  <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
-                </td>`;
+                    <td class="service-ngay-cap-nhat">${service.ngayCapNhat}</td>
+                    <td class="col-center service-hien-thi"><input type="checkbox" ${service.hienThi ? 'checked' : ''} title="Hiển thị dịch vụ này"></td>
+                    <td class="col-center action-icons service-actions-col">
+                        <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
+                        <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>`;
+
+                 // Detail row for mobile (initially hidden)
+                 const detailTr = document.createElement('tr');
+                 detailTr.classList.add('service-detail-row');
+                 detailTr.innerHTML = `
+                     <td colspan="${tr.cells.length}">
+                         <div class="detail-content">
+                            <div class="detail-item"><strong>STT:</strong> ${stt}</div>
+                            <div class="detail-item"><strong>Ngày cập nhật:</strong> ${service.ngayCapNhat}</div>
+                            <div class="detail-item"><strong>Hiển thị:</strong> ${service.hienThi ? 'Có' : 'Không'}</div>
+                             <div class="detail-item"><strong>Thao tác:</strong>
+                                 <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
+                                 <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
+                             </div>
+                         </div>
+                     </td>
+                 `;
+
+                // Gắn lại sự kiện cho các nút trong cả hàng chính và hàng chi tiết
+                // Events for main row icons (will be hidden on mobile by CSS)
+                tr.querySelector('.icon-edit').onclick = () => openEditModalById(service.maDV); // Use maDV to find the service
+                tr.querySelector('.icon-danger').onclick = () => openDeleteModalById(service.maDV); // Use maDV
+                 // Events for detail row icons
+                detailTr.querySelector('.icon-edit').onclick = () => openEditModalById(service.maDV); // Use maDV
+                detailTr.querySelector('.icon-danger').onclick = () => openDeleteModalById(service.maDV); // Use maDV
+                
+                // Add click listener to main row to toggle detail row
+                tr.addEventListener('click', function() {
+                    // Only toggle detail row on smaller screens (e.g., max-width: 768px)
+                    if (window.innerWidth <= 768) {
+                        // Close any currently open detail row (except the one being clicked)
+                        document.querySelectorAll('.service-detail-row.open').forEach(openDetailRow => {
+                            if (openDetailRow !== detailTr) {
+                                openDetailRow.classList.remove('open');
+                                openDetailRow.previousElementSibling.classList.remove('expanded'); // Remove expanded class from main row
+                            }
+                        });
+
+                        // Toggle the clicked detail row and its main row
+                        detailTr.classList.toggle('open');
+                        tr.classList.toggle('expanded'); // Add expanded class to main row
+                    }
+                });
+
                 tbody.appendChild(tr);
+                tbody.appendChild(detailTr); // Append detail row after main row
             });
 
             // Update pagination info count
@@ -410,7 +608,7 @@
                 // "Trước" button
                 const prevButton = document.createElement('button');
                 prevButton.classList.add('button');
-                if (currentPage === 1) {
+                if (currentPage === 1 || totalPages === 0) {
                     prevButton.disabled = true;
                 }
                 prevButton.textContent = 'Trước';
@@ -624,110 +822,60 @@
 
         });
 
-        // Use event delegation for edit and delete buttons (Logic updated to work with data array)
-        document.getElementById('serviceTable').addEventListener('click', function(e) {
-            const editButton = e.target.closest('.icon-button.icon-edit');
-            const deleteButton = e.target.closest('.icon-button.icon-danger');
-
-            if (editButton) {
-                e.preventDefault();
-                const row = editButton.closest('tr');
-                if (!row) return;
-
-                const serviceData = getServiceData();
-                // Find the service based on maDV from the clicked row
-                const clickedMaDV = row.cells[2].textContent.trim(); // Assuming maDV is in the 3rd cell
-                const serviceIndex = serviceData.findIndex(service => service.maDV === clickedMaDV);
-
-                if (serviceIndex === -1) return; // Service not found in data array (should not happen)
-
-                const service = serviceData[serviceIndex];
-
-                // Open edit modal and fill data
-                const modal = document.getElementById('editServiceModal');
-                const maDVInput = document.getElementById('editMaDV');
-                const tenDVInput = document.getElementById('editTenDV');
-                const ngayCapNhatInput = document.getElementById('editNgayCapNhat');
-                const hienThiInput = document.getElementById('editHienThi');
-
-                maDVInput.value = service.maDV;
-                maDVInput.readOnly = true; // Mã dịch vụ không cho sửa
-                tenDVInput.value = service.tenDV;
-
-                // Convert dd-mm-yyyy to yyyy-mm-dd for input type=date
-                const [d, m, y] = service.ngayCapNhat.split('-');
-                ngayCapNhatInput.value = `${y}-${m}-${d}`;
-
-                hienThiInput.checked = service.hienThi;
-
-                document.getElementById('editServiceModalOverlay').classList.add('visible');
-                modal._editingIndex = serviceIndex; // Store the index for later access
-                modal._isAddMode = false; // Explicitly set to edit mode
-                modal.classList.remove('add-mode'); // Remove add-mode class
-                modal.classList.add('edit-mode'); // Add edit-mode class for styling
-                modal.classList.add('modal-form-layout-2col'); // Add layout class
-
-                // Change modal title for Edit mode
-                modal.querySelector('h3').textContent = 'Sửa thông tin dịch vụ';
-
-                setTimeout(() => { maDVInput.focus(); }, 100);
-            }
-
-            if (deleteButton) {
-                e.preventDefault();
-                const row = deleteButton.closest('tr');
-                if (!row) return;
-
-                const serviceData = getServiceData();
-                // Find the service based on maDV from the clicked row
-                const clickedMaDV = row.cells[2].textContent.trim(); // Assuming maDV is in the 3rd cell
-                const serviceIndex = serviceData.findIndex(service => service.maDV === clickedMaDV);
-
-                 if (serviceIndex === -1) return; // Service not found
-
-                const service = serviceData[serviceIndex];
-
-                // Open delete modal
-                const modal = document.getElementById('deleteServiceModal');
-                const info = document.getElementById('deleteServiceInfo');
-
-                info.textContent = `Bạn có chắc muốn xóa dịch vụ: ${service.maDV} - ${service.tenDV} không?`;
-
-                document.getElementById('deleteServiceModalOverlay').classList.add('visible');
-
-                // Store indexes to delete on the modal object
-                deleteServiceModal._deletingIndex = serviceIndex; // Store the index
-            }
-        });
-
         // Handle delete confirmation for single row delete modal (Logic updated)
-        document.getElementById('confirmDeleteService').onclick = function() {
-            const modal = document.getElementById('deleteServiceModal');
-            const deletingIndex = modal._deletingIndex;
-            if (deletingIndex !== undefined && deletingIndex !== null) {
-                let serviceData = getServiceData();
-                serviceData.splice(deletingIndex, 1); // Remove service by index
-                saveServiceData(serviceData); // Save updated data
-                renderServiceTable(getServiceData()); // Re-render table with current filters applied
-            }
-            document.getElementById('deleteServiceModalOverlay').classList.remove('visible');
-            modal._deletingIndex = null; // Reset index
-        };
+        document.getElementById('confirmDeleteService')?.addEventListener('click', function() {
+             const modal = document.getElementById('deleteServiceModal');
+             const deletingMaDV = deletingMaDV; // Use the global deletingMaDV variable
+             if (deletingMaDV) {
+                 let serviceData = getServiceData();
+                 const indexToDelete = serviceData.findIndex(service => service.maDV === deletingMaDV);
+                 if (indexToDelete !== -1) {
+                     serviceData.splice(indexToDelete, 1); // Remove service by index
+                     saveServiceData(serviceData); // Save updated data
+                     renderServiceTable(getServiceData(), currentPage, itemsPerPage); // Re-render table with current filters and page
+                 }
+             }
+             document.getElementById('deleteServiceModalOverlay').classList.remove('visible');
+             deletingMaDV = null; // Reset maDV
+         });
 
         // Handle cancel for single row delete modal
-        document.getElementById('cancelDeleteService').onclick = function() {
-            const modal = document.getElementById('deleteServiceModal');
-            document.getElementById('deleteServiceModalOverlay').classList.remove('visible');
-            modal._deletingIndex = null;
-        };
+        document.getElementById('cancelDeleteService')?.addEventListener('click', function() {
+             document.getElementById('deleteServiceModalOverlay').classList.remove('visible');
+             deletingMaDV = null; // Reset maDV
+         });
 
-        // Close single delete modal when clicking outside
-        document.getElementById('deleteServiceModal').onclick = function(e) {
-            if (e.target === this) {
-                document.getElementById('deleteServiceModalOverlay').classList.remove('visible');
-                this._deletingIndex = null;
+        // Close modals when clicking outside the modal content (on the overlay)
+        document.getElementById('editServiceModalOverlay')?.addEventListener('click', function(e) {
+            if (e.target === this) { // Check if the click was directly on the overlay
+                closeEditServiceModal();
             }
-        };
+        });
+        document.getElementById('deleteServiceModalOverlay')?.addEventListener('click', function(e) {
+            if (e.target === this) { // Check if the click was directly on the overlay
+                document.getElementById('deleteServiceModalOverlay').classList.remove('visible');
+                deletingMaDV = null; // Reset maDV
+            }
+        });
+        document.getElementById('deleteMultipleModalOverlay')?.addEventListener('click', function(e) {
+             if (e.target === this) { // Check if the click was directly on the overlay
+                 document.getElementById('deleteMultipleModalOverlay').classList.remove('visible');
+                 // No need to reset deletingMaDV here, as it's handled by confirm/cancel
+             }
+        });
+
+        // Close modals when clicking the close button
+        document.getElementById('editServiceModal')?.querySelector('.modal-close-btn')?.addEventListener('click', function() {
+             closeEditServiceModal();
+         });
+        document.getElementById('deleteServiceModal')?.querySelector('.modal-close-btn')?.addEventListener('click', function() {
+             document.getElementById('deleteServiceModalOverlay').classList.remove('visible');
+             deletingMaDV = null; // Reset maDV
+         });
+        document.getElementById('deleteMultipleModal')?.querySelector('.modal-close-btn')?.addEventListener('click', function() {
+            document.getElementById('deleteMultipleModalOverlay').classList.remove('visible');
+             // No need to reset deletingMaDV here
+         });
 
         // Handle edit form submission (Logic updated)
         document.getElementById('editServiceForm').onsubmit = function(e) {
@@ -753,7 +901,7 @@
                 }
 
                 // Check if service name already exists
-                if (serviceData.some(service => service.tenDV.toLowerCase() === newTenDV.toLowerCase())) {
+                if (serviceData.some(service => normalizeVietnameseString(service.tenDV) === normalizeVietnameseString(newTenDV))) {
                     alert('Tên dịch vụ đã tồn tại. Vui lòng nhập tên khác.');
                     tenDVInput.focus();
                     return; // Stop the submission
@@ -778,14 +926,14 @@
             } else { // This is the EDIT mode
                 // Existing logic for updating an edited service object
                 let serviceData = getServiceData();
-                const editingIndex = modal._editingIndex;
+                const editingIndex = editingMaDV;
 
                 if (editingIndex !== undefined && editingIndex !== null) {
                     let serviceToUpdate = serviceData[editingIndex];
                     const updatedTenDV = tenDVInput.value.trim();
 
                     // Check for duplicate name, excluding the current service being edited
-                    if (serviceData.some((service, idx) => idx !== editingIndex && service.tenDV.toLowerCase() === updatedTenDV.toLowerCase())) {
+                    if (serviceData.some((service, idx) => idx !== editingIndex && normalizeVietnameseString(service.tenDV) === normalizeVietnameseString(updatedTenDV))) {
                          alert('Tên dịch vụ đã tồn tại. Vui lòng nhập tên khác.');
                          tenDVInput.focus();
                          return; // Stop the submission
@@ -821,24 +969,6 @@
             // Close the modal
             closeEditServiceModal();
         };
-
-        // Function to close the edit/add service modal
-        function closeEditServiceModal() {
-            const modalOverlay = document.getElementById('editServiceModalOverlay');
-            const modal = document.getElementById('editServiceModal');
-            modalOverlay.classList.remove('visible');
-            modal._isAddMode = false;
-            modal._editingIndex = null;
-            modal.classList.remove('add-mode');
-            modal.classList.remove('edit-mode');
-            modal.classList.remove('modal-form-layout-2col'); // Remove layout class
-            maDVInput.readOnly = false; // Reset readonly for maDV
-            // Clear form fields if necessary (form submission already clears inputs, but good for consistency)
-            document.getElementById('editMaDV').value = '';
-            document.getElementById('editTenDV').value = '';
-            document.getElementById('editNgayCapNhat').value = '';
-            document.getElementById('editHienThi').checked = true;
-         };
 
         // Thêm dịch vụ mới (Logic updated to work with data array)
         (function() {
@@ -987,7 +1117,8 @@
 
         // Cập nhật checkbox "Chọn tất cả" (Keep existing, works with rendered checkboxes)
         document.getElementById('select-all-checkbox').addEventListener('change', function() {
-            const checkboxes = document.querySelectorAll('#serviceTable tbody tr input[type="checkbox"]');
+            // Select only checkboxes in the first column of main rows
+            const checkboxes = document.querySelectorAll('#serviceTable tbody tr:not(.service-detail-row) td:first-child input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 checkbox.checked = this.checked;
             });
@@ -1061,14 +1192,14 @@
             return false;
         }
 
-        
+
         document.addEventListener('DOMContentLoaded', () => {
             // Use event delegation on the table body for "Hiển thị" checkboxes
-            document.getElementById('service-table-body').addEventListener('change', function(e) {
+            document.getElementById('serviceTable').addEventListener('change', function(e) {
                 const targetCheckbox = e.target;
 
-                // Check if the changed element is a checkbox within the 'Hiển thị' column (6th td)
-                if (targetCheckbox.type === 'checkbox' && targetCheckbox.closest('td:nth-child(6)')) {
+                // Check if the changed element is a checkbox within the 'Hiển thị' column (6th td) in a main row
+                if (targetCheckbox.type === 'checkbox' && targetCheckbox.closest('tr:not(.service-detail-row) td:nth-child(6)')) {
                     const row = targetCheckbox.closest('tr');
                     if (!row) return;
 

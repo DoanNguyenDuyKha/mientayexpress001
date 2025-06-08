@@ -939,6 +939,34 @@ footer.form-actions {
     #create-order-form {
         padding-bottom: var(--base-padding); 
     }
+
+    .address-dropdown-group select {
+        width: 100%;
+        min-width: 0;
+        font-size: 1.1em;
+        padding: 0.7em 2.2em 0.7em 0.8em;
+        border-radius: 8px;
+        margin-bottom: 0.5em;
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        border: 1.5px solid #d1d5db;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-position: right 0.8em center;
+        background-size: 1.5em 1.5em;
+    }
+    .address-dropdown-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2em;
+        width: 100%;
+    }
+    .address-dropdown-group select:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 2px #2563eb33;
+        outline: none;
+    }
 }
 
 @media (max-width: 480px) {

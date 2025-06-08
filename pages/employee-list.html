@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css/employee-list.css">
     <link rel="stylesheet" href="../css/package_manager.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <aside class="sidebar" id="sidebar">
@@ -31,9 +32,7 @@
                  </li>
                  <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
                  <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
-                 <li>
-                     <a href="#" class="submenu-parent"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span></a>
-                 </li>
+                 <li><a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span></a></li>
                   <li>
                       <a href="employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN LÝ NHÂN SỰ</span></a>
                       
@@ -126,43 +125,58 @@
                     </nav>
                 </div>
             </section>
-            <div class="customer-actions">
+            <!-- Employee Filter -->
+            <div class="filter-container">
+                <h3>Bộ lọc nhân viên</h3>
                 <div class="filter-section">
-                    <h3>Bộ lọc nhân viên</h3>
                     <div class="filter-group">
                         <div class="filter-item">
-                            <label for="employeeRole">Chức vụ</label>
-                            <select class="filter-select" id="employeeRole">
-                                <option value="">Chức vụ</option>
+                            <label for="filterEmployeeName">Họ và tên</label>
+                            <input type="text" class="filter-input" id="filterEmployeeName" placeholder="Lọc theo Họ và tên">
+                        </div>
+                        <div class="filter-item">
+                            <label for="filterEmployeeRole">Chức vụ</label>
+                            <select class="filter-select" id="filterEmployeeRole">
+                                <option value="">Tất cả</option>
                                 <option value="Nhân viên">Nhân viên</option>
                                 <option value="Quản lý">Quản lý</option>
                                 <option value="Admin">Admin</option>
                             </select>
                         </div>
                         <div class="filter-item">
-                            <label for="employeeStatus">Trạng thái</label>
-                            <select class="filter-select" id="employeeStatus">
-                                <option value="">Trạng thái</option>
+                            <label for="filterEmployeeStatus">Trạng thái</label>
+                            <select class="filter-select" id="filterEmployeeStatus">
+                                <option value="">Tất cả</option>
                                 <option value="active">Đang làm</option>
                                 <option value="inactive">Nghỉ việc</option>
                             </select>
                         </div>
-                        <div class="filter-item">
-                            <label for="employeeNameFilter">Họ và tên</label>
-                            <input type="text" class="filter-select" id="employeeNameFilter" placeholder="Lọc theo tên..."/>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="action-buttons" style="text-align: right; margin: 0.6rem 0;">
-                <button class="btn-add-employee" id="addEmployeeBtn">
-                    <i class="fa-solid fa-user-plus"></i>
-                    Thêm nhân viên
-                </button>
-                <button class="btn-add-employee danger" id="deleteSelectedBtn">
-                    <i class="fa-solid fa-trash-can"></i>
-                    Xóa đã chọn
-                </button>
+            <div class="actions-container" style="text-align: right; margin: 0.6rem 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div class="employee-actions">
+                    <button class="btn-add-employee" id="addEmployeeBtn">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Thêm nhân viên
+                    </button>
+                    <button class="btn-add-employee danger" id="deleteSelectedBtn">
+                        <i class="fa-solid fa-trash-can"></i>
+                        Xóa đã chọn
+                    </button>
+                </div>
+                <div class="items-per-page-control">
+                   <select id="items-per-page-select" class="form-select">
+                       <option value="5">5</option>
+                       <option value="10">10</option>
+                       <option value="15">15</option>
+                       <option value="20">20</option>
+                       <option value="25">25</option>
+                       <option value="50">50</option>
+                       <option value="100">100</option>
+                   </select>
+                   <span>nhân viên/trang</span>
+                </div>
             </div>
             <section class="table-area card">
                 <div class="card-header">
@@ -173,16 +187,18 @@
                         <table id="employeeTable">
                             <thead>
                                 <tr>
-                                    <th class="col-center"><input type="checkbox" id="selectAllCheckboxes" title="Chọn tất cả"></th>
-                                    <th class="col-center">STT</th>
+                                    <th class="col-center">
+                                        <input type="checkbox" id="selectAllCheckboxes" title="Chọn tất cả">
+                                    </th>
+                                    <th class="col-center mobile-hidden">STT</th>
                                     <th>Mã NV</th>
                                     <th>Họ và tên</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Email</th>
-                                    <th>Chức vụ</th>
-                                    <th>Địa chỉ</th>
-                                    <th class="col-center">Trạng thái</th>
-                                    <th class="col-center">Thao tác</th>
+                                    <th class="mobile-hidden">Số điện thoại</th>
+                                    <th class="mobile-hidden">Email</th>
+                                    <th class="mobile-hidden">Chức vụ</th>
+                                    <th class="mobile-hidden">Địa chỉ</th>
+                                    <th class="col-center mobile-hidden">Trạng thái</th>
+                                    <th class="col-center action-icons mobile-hidden">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody id="employee-table-body">
@@ -196,18 +212,7 @@
                     <nav class="pagination" aria-label="Table navigation">
                         <span class="pagination-info" id="pagination-info"></span>
                         <div class="pagination-buttons" style="display: flex; align-items: center; gap: 16px;">
-                            <div class="items-per-page-control">
-                                <select id="items-per-page-select" class="form-select">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                                <span>nhân viên/trang</span>
-                            </div>
+                            
                             <div class="pagination-nav-buttons"></div>
                         </div>
                     </nav>
@@ -247,9 +252,32 @@
                                         <option value="Admin">Admin</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="addEmployeeAddress">Địa chỉ:</label>
-                                    <input type="text" id="addEmployeeAddress" required>
+                                <div class="form-group address-group-main">
+                                     <label for="addEmployeeProvince">Địa chỉ:</label>
+                                     <div class="address-combobox-grouping">
+                                        <div class="form-group nested">
+                                            <select id="addEmployeeProvince" required>
+                                                <option value="">Tỉnh/Thành phố</option>
+                                                <!-- Options sẽ được thêm bằng JS -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group nested">
+                                            <select id="addEmployeeDistrict" required disabled>
+                                                <option value="">Quận/Huyện</option>
+                                                <!-- Options sẽ được thêm bằng JS -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group nested">
+                                            <select id="addEmployeeWard" required disabled>
+                                                <option value="">Phường/Xã</option>
+                                                <!-- Options sẽ được thêm bằng JS -->
+                                            </select>
+                                        </div>
+                                     </div>
+                                </div>
+                                <div class="form-group detailed-address-group">
+                                    <label for="addEmployeeDetailedAddress">Địa chỉ chi tiết:</label>
+                                    <input type="text" id="addEmployeeDetailedAddress" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="addEmployeeStatus">Trạng thái:</label>
@@ -301,9 +329,32 @@
                                         <option value="Admin">Admin</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="editEmployeeAddress">Địa chỉ:</label>
-                                    <input type="text" id="editEmployeeAddress" required>
+                                <div class="form-group address-group-main">
+                                     <label for="editEmployeeProvince">Địa chỉ:</label>
+                                     <div class="address-combobox-grouping">
+                                        <div class="form-group nested">
+                                            <select id="editEmployeeProvince" required>
+                                                <option value="">Tỉnh/Thành phố</option>
+                                                <!-- Options sẽ được thêm bằng JS -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group nested">
+                                            <select id="editEmployeeDistrict" required disabled>
+                                                <option value="">Quận/Huyện</option>
+                                                <!-- Options sẽ được thêm bằng JS -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group nested">
+                                            <select id="editEmployeeWard" required disabled>
+                                                <option value="">Phường/Xã</option>
+                                                <!-- Options sẽ được thêm bằng JS -->
+                                            </select>
+                                        </div>
+                                     </div>
+                                </div>
+                                <div class="form-group detailed-address-group">
+                                    <label for="editEmployeeDetailedAddress">Địa chỉ chi tiết:</label>
+                                    <input type="text" id="editEmployeeDetailedAddress" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="editEmployeeStatus">Trạng thái:</label>
@@ -421,7 +472,6 @@
     </main>
 
     <script>
-    // --- Sidebar, Header, Notification, User Dropdown, Announcement Modal ---
     document.addEventListener('DOMContentLoaded', function() {
         // --- Sidebar & Submenu ---
         const body = document.body;
@@ -666,7 +716,7 @@
     })();
     </script>
     <script>
-    // ================== DuyKha: Quản lý nhân viên động + Lọc + Modal ==================
+    // ================== DuyKha: Quản lý nhân viên động + Lọc + Modal + Địa chỉ API ==================
     // Khởi tạo mảng employees
     let employees = [];
 
@@ -683,9 +733,9 @@
         } else {
             // Nếu không có dữ liệu trong localStorage, khởi tạo với một số nhân viên mẫu
             employees = [
-                { id: 'NV001', name: 'Nguyễn Văn Nhân', phone: '0901234567', email: 'nhan.nguyen@email.com', role: 'Nhân viên', address: '123 Nguyễn Văn Linh, Q.7, TP.HCM', status: 'active' },
-                { id: 'NV002', name: 'Trần Thị Quản', phone: '0912345678', email: 'quan.tran@email.com', role: 'Quản lý', address: '456 Điện Biên Phủ, Q.3, TP.HCM', status: 'active' },
-                { id: 'NV003', name: 'Lê Văn Admin', phone: '0923456789', email: 'admin.le@email.com', role: 'Admin', address: '789 Cách Mạng Tháng 8, Q.10, TP.HCM', status: 'inactive' }
+                { id: 'NV001', name: 'Nguyễn Văn Nhân', phone: '0901234567', email: 'nhan.nguyen@email.com', role: 'Nhân viên', address: '123 Nguyễn Văn Linh, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh', status: 'active' },
+                { id: 'NV002', name: 'Trần Thị Quản', phone: '0912345678', email: 'quan.tran@email.com', role: 'Quản lý', address: '456 Điện Biên Phủ, Phường 17, Quận Bình Thạnh, TP. Hồ Chí Minh', status: 'active' },
+                { id: 'NV003', name: 'Lê Văn Admin', phone: '0923456789', email: 'admin.le@email.com', role: 'Admin', address: '789 Cách Mạng Tháng 8, Phường 11, Quận 3, TP. Hồ Chí Minh', status: 'inactive' }
             ];
             saveEmployeesToLocalStorage(); // Lưu dữ liệu mẫu vào localStorage
         }
@@ -701,6 +751,140 @@
     let itemsPerPage = 10;
     let currentPage = 1;
 
+    // ================== Logic cho dropdown địa chỉ (Helper Functions) ==================
+
+    // Helper functions for resetting dropdowns
+    function resetDistrictDropdown(districtSelectElement) {
+        if(districtSelectElement) {
+            districtSelectElement.innerHTML = '<option value="">Quận/Huyện</option>';
+            districtSelectElement.disabled = true;
+        }
+    }
+
+    function resetWardDropdown(wardSelectElement) {
+        if(wardSelectElement) {
+            wardSelectElement.innerHTML = '<option value="">Phường/Xã</option>';
+            wardSelectElement.disabled = true;
+        }
+    }
+
+    function resetAddressDropdowns(provinceSelectElement, districtSelectElement, wardSelectElement) {
+        if (provinceSelectElement) {
+            provinceSelectElement.innerHTML = '<option value="">Tỉnh/Thành phố</option>';
+        }
+        resetDistrictDropdown(districtSelectElement);
+        resetWardDropdown(wardSelectElement);
+    }
+
+    // API Calls and Population Logic
+    function populateProvinces(provinceSelectElement, selectedProvinceName, callback) {
+        if (provinceSelectElement) {
+             provinceSelectElement.innerHTML = '<option value="">Tỉnh/Thành phố</option>'; // Clear existing options first
+             $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function(data_tinh) {
+                 if (data_tinh.error == 0) {
+                     let selectedProvinceId = '';
+                     $.each(data_tinh.data, function(key_tinh, val_tinh) {
+                         const option = document.createElement('option');
+                         option.value = val_tinh.id;
+                         option.textContent = val_tinh.full_name;
+                         if(selectedProvinceName && val_tinh.full_name.trim() === selectedProvinceName.trim()) {
+                             selectedProvinceId = val_tinh.id;
+                             option.selected = true;
+                         }
+                         provinceSelectElement.appendChild(option);
+                     });
+                     if (callback) callback(selectedProvinceId);
+                 } else { console.error('API returned error for provinces:', data_tinh.error); }
+             }).fail(function(jqxhr, textStatus, error) { console.error('Failed to load provinces from API:', textStatus, error); });
+        }
+    }
+
+    function populateDistricts(districtSelectElement, wardSelectElement, provinceId, selectedDistrictName, callback) {
+        if (districtSelectElement && wardSelectElement) {
+              resetDistrictDropdown(districtSelectElement);
+              resetWardDropdown(wardSelectElement);
+              if (provinceId) {
+                  $.getJSON('https://esgoo.net/api-tinhthanh/2/' + provinceId + '.htm', function(data_quan) {
+                      if (data_quan.error == 0) {
+                          districtSelectElement.innerHTML = '<option value="">Quận/Huyện</option>';
+                          let selectedDistrictId = '';
+                          $.each(data_quan.data, function(key_quan, val_quan) {
+                              const option = document.createElement('option');
+                              option.value = val_quan.id;
+                              option.textContent = val_quan.full_name;
+                              if(selectedDistrictName && val_quan.full_name.trim() === selectedDistrictName.trim()) {
+                                   selectedDistrictId = val_quan.id;
+                                   option.selected = true;
+                               }
+                              districtSelectElement.appendChild(option);
+                          });
+                          districtSelectElement.disabled = false;
+                          if (callback) callback(selectedDistrictId);
+                      } else { console.error('API returned error for districts:', data_quan.error); }
+                  }).fail(function(jqxhr, textStatus, error) { console.error('Failed to load districts from API:', textStatus, error); });
+              } else {
+                   resetDistrictDropdown(districtSelectElement);
+               }
+           }
+       }
+
+    function populateWards(wardSelectElement, districtId, selectedWardName) {
+        if (wardSelectElement) {
+            resetWardDropdown(wardSelectElement);
+            if (districtId) {
+                $.getJSON('https://esgoo.net/api-tinhthanh/3/' + districtId + '.htm', function(data_phuong) {
+                    if (data_phuong.error == 0) {
+                        wardSelectElement.innerHTML = '<option value="">Phường/Xã</option>';
+                        $.each(data_phuong.data, function(key_phuong, val_phuong) {
+                            const option = document.createElement('option');
+                            option.value = val_phuong.id;
+                            option.textContent = val_phuong.full_name;
+                            if(selectedWardName && val_phuong.full_name.trim() === selectedWardName.trim()) {
+                                option.selected = true;
+                            }
+                            wardSelectElement.appendChild(option);
+                        });
+                        wardSelectElement.disabled = false;
+                    } else { console.error('API returned error for wards:', data_phuong.error); }
+                }).fail(function(jqxhr, textStatus, error) { console.error('Failed to load wards from API:', textStatus, error); });
+            } else {
+                resetWardDropdown(wardSelectElement);
+            }
+        }
+    }
+
+    // Function to parse address string and return components (for Edit modal)
+    function parseAddress(fullAddress) {
+        const parts = fullAddress ? fullAddress.split(',').map(part => part.trim()) : [];
+        let detailed = '', ward = '', district = '', province = '';
+
+        if (parts.length >= 4) {
+            province = parts[parts.length - 1];
+            district = parts[parts.length - 2];
+            ward = parts[parts.length - 3];
+            detailed = parts.slice(0, parts.length - 3).join(', ');
+        } else {
+            detailed = fullAddress ? fullAddress.trim() : '';
+        }
+        return { detailed, ward, district, province };
+    }
+
+    // More robust helper function to remove Vietnamese diacritics and normalize string
+    function normalizeVietnameseString(str) {
+        if (!str) return '';
+        str = str.toLowerCase();
+        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+        str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+        str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+        str = str.replace(/đ/g, "d");
+        str = str.replace(/[^a-z0-9\s]/g, '');
+        str = str.replace(/\s+/g, ' ').trim();
+        return str;
+    }
+
     function renderEmployeeTable() {
         const tbody = document.getElementById('employee-table-body');
         const paginationInfoSpan = document.getElementById('pagination-info');
@@ -712,7 +896,7 @@
             let ok = true;
             if (filterRole) ok = ok && (e.role === filterRole);
             if (filterStatus) ok = ok && (e.status === filterStatus);
-            if (filterName) ok = ok && (e.name.toLowerCase().includes(filterName.toLowerCase()));
+            if (filterName) ok = ok && normalizeVietnameseString(e.name).includes(normalizeVietnameseString(filterName));
             return ok;
         });
 
@@ -735,28 +919,70 @@
 
         itemsToShow.forEach((e, idx) => {
             const tr = document.createElement('tr');
-            // Use the index within the *current page* for STT
+            tr.classList.add('employee-row'); // Add class for main row
+            tr.setAttribute('data-employee-id', e.id); // Add data attribute to link main row to detail
             const stt = start + idx + 1; // Calculate actual STT based on start index
             tr.innerHTML = `
                 <td class="col-center"><input type="checkbox" class="rowCheckbox" data-employee-id="${e.id}"></td>
-                <td class="col-center">${stt}</td>
+                <td class="col-center mobile-hidden">${stt}</td>
                 <td>${e.id}</td>
                 <td>${e.name}</td>
-                <td>${e.phone}</td>
-                <td>${e.email}</td>
-                <td>${e.role}</td>
-                <td>${e.address}</td>
-                <td class="col-center"><span class="status-badge ${e.status==='active'?'active':'inactive'}">${e.status==='active'?'Đang làm':'Nghỉ việc'}</span></td>
-                <td class="col-center action-icons">
+                <td class="mobile-hidden">${e.phone}</td>
+                <td class="mobile-hidden">${e.email}</td>
+                <td class="mobile-hidden">${e.role}</td>
+                <td class="mobile-hidden">${e.address}</td>
+                <td class="col-center mobile-hidden"><span class="status-badge ${e.status==='active'?'active':'inactive'}">${e.status==='active'?'Đang làm':'Nghỉ việc'}</span></td>
+                <td class="col-center action-icons mobile-hidden">
                     <button class="icon-button icon-view" title="Xem chi tiết"><i class="fa-solid fa-eye"></i></button>
                     <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
                     <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
             `;
-            tr.querySelector('.icon-view').onclick = () => openDetailModalById(e.id);
-            tr.querySelector('.icon-edit').onclick = () => openEditModalById(e.id);
-            tr.querySelector('.icon-danger').onclick = () => openDeleteModalById(e.id);
+
+            // Gắn sự kiện cho các nút trong hàng chính (desktop)
+            tr.querySelector('.icon-view').onclick = (e2) => { e2.stopPropagation(); openDetailModalById(e.id); };
+            tr.querySelector('.icon-edit').onclick = (e2) => { e2.stopPropagation(); openEditModalById(e.id); };
+            tr.querySelector('.icon-danger').onclick = (e2) => { e2.stopPropagation(); openDeleteModalById(e.id); };
+
+            // Tạo hàng chi tiết cho mobile
+            const detailTr = document.createElement('tr');
+            detailTr.classList.add('employee-detail-row');
+            detailTr.style.display = 'none';
+            detailTr.innerHTML = `
+                <td colspan="10">
+                    <div class="employee-detail-content">
+                        <div class="detail-item"><strong>Số điện thoại:</strong> ${e.phone}</div>
+                        <div class="detail-item"><strong>Email:</strong> ${e.email}</div>
+                        <div class="detail-item"><strong>Chức vụ:</strong> ${e.role}</div>
+                        <div class="detail-item"><strong>Địa chỉ:</strong> ${e.address}</div>
+                        <div class="detail-item"><strong>Trạng thái:</strong> <span class="status-badge ${e.status==='active'?'active':'inactive'}">${e.status==='active'?'Đang làm':'Nghỉ việc'}</span></div>
+                        <div class="detail-item action-icons">
+                            <strong>Thao tác:</strong>
+                            <button class="icon-button icon-view" title="Xem chi tiết"><i class="fa-solid fa-eye"></i></button>
+                            <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
+                            <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                </td>
+            `;
+            // Gắn sự kiện cho các nút trong hàng chi tiết (mobile)
+            detailTr.querySelector('.icon-view').onclick = (e2) => { e2.stopPropagation(); openDetailModalById(e.id); };
+            detailTr.querySelector('.icon-edit').onclick = (e2) => { e2.stopPropagation(); openEditModalById(e.id); };
+            detailTr.querySelector('.icon-danger').onclick = (e2) => { e2.stopPropagation(); openDeleteModalById(e.id); };
+
+            // Sự kiện click vào hàng chính để xổ/ẩn hàng chi tiết (chỉ mobile)
+            tr.addEventListener('click', function(e2) {
+                // Chỉ xổ ở mobile (dựa vào window width)
+                if(window.innerWidth <= 768) {
+                    const nextRow = this.nextElementSibling;
+                    if (nextRow && nextRow.classList.contains('employee-detail-row')) {
+                        nextRow.style.display = nextRow.style.display === 'none' ? 'table-row' : 'none';
+                    }
+                }
+            });
+
             tbody.appendChild(tr);
+            tbody.appendChild(detailTr);
         });
 
         // Update pagination info count
@@ -845,9 +1071,9 @@
     });
 
     // Lọc tự động khi thay đổi select box
-    const employeeRoleSelect = document.getElementById('employeeRole');
-    const employeeStatusSelect = document.getElementById('employeeStatus');
-    const employeeNameFilterInput = document.getElementById('employeeNameFilter');
+    const employeeRoleSelect = document.getElementById('filterEmployeeRole');
+    const employeeStatusSelect = document.getElementById('filterEmployeeStatus');
+    const employeeNameFilterInput = document.getElementById('filterEmployeeName');
 
     function updateFiltersAndRender() {
         filterRole = employeeRoleSelect.value;
@@ -910,39 +1136,141 @@
     }
 
     function openAddModal() {
+        console.log('Attempting to open add employee modal');
         var modal = document.getElementById('addEmployeeModal');
-        if(modal) modal.classList.add('show');
-        document.getElementById('addEmployeeId').value = getNextEmployeeId();
-        document.getElementById('addEmployeeId').readOnly = true;
-        document.getElementById('addEmployeeName').value = '';
-        document.getElementById('addEmployeePhone').value = '';
-        document.getElementById('addEmployeeEmail').value = '';
-        document.getElementById('addEmployeeRole').value = 'Nhân viên';
-        document.getElementById('addEmployeeAddress').value = '';
-        document.getElementById('addEmployeeStatus').value = 'active';
-        
+        console.log('Result of getElementById(\'addEmployeeModal\'):', modal);
+        if (!modal) {
+            console.error('Modal addEmployeeModal not found');
+            return;
+        }
+        modal.classList.add('show');
+
+        const addEmployeeIdInput = document.getElementById('addEmployeeId');
+        console.log('Result of getElementById(\'addEmployeeId\'):', addEmployeeIdInput);
+        if (!addEmployeeIdInput) {
+            console.error('Input addEmployeeId not found');
+            return;
+        }
+        addEmployeeIdInput.value = getNextEmployeeId();
+        addEmployeeIdInput.readOnly = true;
+
+        const addEmployeeNameInput = document.getElementById('addEmployeeName');
+        if (!addEmployeeNameInput) {
+             console.error('Input addEmployeeName not found');
+             return;
+        }
+        addEmployeeNameInput.value = '';
+
+        const addEmployeePhoneInput = document.getElementById('addEmployeePhone');
+        if (!addEmployeePhoneInput) {
+            console.error('Input addEmployeePhone not found');
+            return;
+        }
+        addEmployeePhoneInput.value = '';
+
+        const addEmployeeEmailInput = document.getElementById('addEmployeeEmail');
+        if (!addEmployeeEmailInput) {
+            console.error('Input addEmployeeEmail not found');
+            return;
+        }
+        addEmployeeEmailInput.value = '';
+
+        const addEmployeeRoleSelect = document.getElementById('addEmployeeRole');
+        if (!addEmployeeRoleSelect) {
+            console.error('Select addEmployeeRole not found');
+            return;
+        }
+        addEmployeeRoleSelect.value = 'Nhân viên';
+
+        const addEmployeeStatusSelect = document.getElementById('addEmployeeStatus');
+        if (!addEmployeeStatusSelect) {
+            console.error('Select addEmployeeStatus not found');
+            return;
+        }
+        addEmployeeStatusSelect.value = 'active';
+
+        // Reset và populate các combobox địa chỉ
+        const addEmployeeProvinceSelect = document.getElementById('addEmployeeProvince');
+        const addEmployeeDistrictSelect = document.getElementById('addEmployeeDistrict');
+        const addEmployeeWardSelect = document.getElementById('addEmployeeWard');
+        const addEmployeeDetailedAddressInput = document.getElementById('addEmployeeDetailedAddress');
+
+        // Add null checks for address selects and detailed address input
+        if (!addEmployeeProvinceSelect) {
+            console.error('Select addEmployeeProvince not found');
+            return;
+        }
+        if (!addEmployeeDistrictSelect) {
+            console.error('Select addEmployeeDistrict not found');
+            return;
+        }
+        if (!addEmployeeWardSelect) {
+            console.error('Select addEmployeeWard not found');
+            return;
+        }
+         if (!addEmployeeDetailedAddressInput) {
+            console.error('Input addEmployeeDetailedAddress not found');
+            return;
+        }
+
+        // Call the actual functions to reset and populate dropdowns
+        resetAddressDropdowns(addEmployeeProvinceSelect, addEmployeeDistrictSelect, addEmployeeWardSelect);
+        populateProvinces(addEmployeeProvinceSelect, '', null); // Populate provinces when modal opens
+        if(addEmployeeDetailedAddressInput) addEmployeeDetailedAddressInput.value = ''; // Clear detailed address
+
+        // Attach event listeners for dropdown changes in Add modal
+        // Remove existing listeners first to avoid duplicates if openAddModal is called multiple times
+        addEmployeeProvinceSelect.onchange = null;
+        addEmployeeDistrictSelect.onchange = null;
+
+        addEmployeeProvinceSelect.onchange = function() {
+            populateDistricts(addEmployeeDistrictSelect, addEmployeeWardSelect, this.value, '', null);
+        };
+        addEmployeeDistrictSelect.onchange = function() {
+            populateWards(addEmployeeWardSelect, this.value, '');
+        };
+
         // Xóa tất cả thông báo lỗi
         modal.querySelectorAll('.error-message').forEach(el => el.remove());
         modal.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
     }
 
-    // Thêm lại sự kiện click cho nút thêm nhân viên
-    document.getElementById('addEmployeeBtn').onclick = openAddModal;
+    // Thêm lại sự kiện click cho nút thêm nhân viên để mở modal và populate tỉnh/thành phố
+    const addEmployeeBtn = document.getElementById('addEmployeeBtn');
+    if(addEmployeeBtn) { addEmployeeBtn.onclick = openAddModal; }
 
     // Thêm lại sự kiện đóng modal
     Array.from(document.querySelectorAll('#addEmployeeModal .modal-close, #addEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
-        btn.onclick = ()=>{ document.getElementById('addEmployeeModal').classList.remove('show'); };
+        btn.onclick = ()=>{
+            const modal = document.getElementById('addEmployeeModal');
+            if(modal) modal.classList.remove('show');
+             // Reset address dropdowns when modal is closed
+             const addProvince = document.getElementById('addEmployeeProvince');
+             const addDistrict = document.getElementById('addEmployeeDistrict');
+             const addWard = document.getElementById('addEmployeeWard');
+             resetAddressDropdowns(addProvince, addDistrict, addWard);
+             if(document.getElementById('addEmployeeDetailedAddress')) document.getElementById('addEmployeeDetailedAddress').value = '';
+        };
     });
 
     document.getElementById('addEmployeeForm').onsubmit = function(e){
         e.preventDefault();
-        
+
         // Lấy giá trị từ form
         const name = document.getElementById('addEmployeeName').value.trim();
         const phone = document.getElementById('addEmployeePhone').value.trim();
         const email = document.getElementById('addEmployeeEmail').value.trim();
         const role = document.getElementById('addEmployeeRole').value;
-        const address = document.getElementById('addEmployeeAddress').value.trim();
+        // Update to get address components from the new fields
+        const detailedAddress = document.getElementById('addEmployeeDetailedAddress').value.trim();
+        const provinceSelect = document.getElementById('addEmployeeProvince');
+        const districtSelect = document.getElementById('addEmployeeDistrict');
+        const wardSelect = document.getElementById('addEmployeeWard');
+
+        const province = provinceSelect.selectedIndex > 0 ? provinceSelect.options[provinceSelect.selectedIndex].text : '';
+        const district = districtSelect.selectedIndex > 0 ? districtSelect.options[districtSelect.selectedIndex].text : '';
+        const ward = wardSelect.selectedIndex > 0 ? wardSelect.options[wardSelect.selectedIndex].text : '';
+
         const status = document.getElementById('addEmployeeStatus').value;
 
         // Kiểm tra các trường bắt buộc
@@ -972,13 +1300,16 @@
             isValid = false;
         }
 
-        // Kiểm tra địa chỉ
-        if (address === '') {
-            showError(document.getElementById('addEmployeeAddress'), 'Vui lòng nhập địa chỉ');
-            isValid = false;
-        }
+        // Kiểm tra địa chỉ - Update validation for new address fields
+         if (!detailedAddress || province === '' || district === '' || ward === '') {
+              showError(document.getElementById('addEmployeeDetailedAddress'), 'Vui lòng nhập đầy đủ thông tin địa chỉ (bao gồm Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và Địa chỉ chi tiết).');
+              isValid = false;
+         }
 
         if (!isValid) return;
+
+        // Combine address components into a single string
+        const fullAddress = `${detailedAddress}, ${ward}, ${district}, ${province}`;
 
         // Nếu tất cả đều hợp lệ, thêm nhân viên mới
         const newEmp = {
@@ -987,14 +1318,18 @@
             phone: phone,
             email: email,
             role: role,
-            address: address,
+            address: fullAddress, // Use the combined address
             status: status
         };
         employees.push(newEmp);
         saveEmployeesToLocalStorage();
         renderEmployeeTable();
         document.getElementById('addEmployeeModal').classList.remove('show');
-        
+
+        // Reset address dropdowns and clear detailed address after successful add
+        resetAddressDropdowns(provinceSelect, districtSelect, wardSelect);
+        if(document.getElementById('addEmployeeDetailedAddress')) document.getElementById('addEmployeeDetailedAddress').value = '';
+
         // Hiển thị thông báo thành công
         showSuccessMessage(
             'Thêm nhân viên thành công',
@@ -1003,17 +1338,8 @@
     };
 
     // Thêm sự kiện validate realtime cho form thêm
-    document.getElementById('addEmployeeName').addEventListener('input', function() {
-        // if (this.value.trim() !== '') {
-        //     clearError(this);
-        // } // Remove realtime clear error logic
-    });
-
-    document.getElementById('addEmployeeAddress').addEventListener('input', function() {
-        if (this.value.trim() !== '') {
-            clearError(this);
-        }
-    });
+    // document.getElementById('addEmployeeName').addEventListener('input', function() {}); // Keep if needed
+    // document.getElementById('addEmployeeAddress').addEventListener('input', function() {}); // Remove or update if needed
 
     // Sửa nhân viên
     let editingId = null;
@@ -1021,34 +1347,98 @@
         editingId = id;
         const e = employees.find(emp => emp.id === id);
         var modal = document.getElementById('editEmployeeModal');
-        if(modal) modal.classList.add('show');
-        document.getElementById('editEmployeeId').value = e.id;
-        document.getElementById('editEmployeeName').value = e.name;
-        document.getElementById('editEmployeePhone').value = e.phone;
-        document.getElementById('editEmployeeEmail').value = e.email;
-        document.getElementById('editEmployeeRole').value = e.role;
-        document.getElementById('editEmployeeAddress').value = e.address;
-        document.getElementById('editEmployeeStatus').value = e.status;
-        
-        // Xóa tất cả thông báo lỗi
-        modal.querySelectorAll('.error-message').forEach(el => el.remove());
-        modal.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+        if(modal && e) { // Check if modal and employee exist
+            modal.classList.add('show');
+
+            const editEmployeeIdInput = document.getElementById('editEmployeeId');
+            const editEmployeeNameInput = document.getElementById('editEmployeeName');
+            const editEmployeePhoneInput = document.getElementById('editEmployeePhone');
+            const editEmployeeEmailInput = document.getElementById('editEmployeeEmail');
+            const editEmployeeRoleSelect = document.getElementById('editEmployeeRole');
+            const editEmployeeStatusSelect = document.getElementById('editEmployeeStatus');
+            const editEmployeeProvinceSelect = document.getElementById('editEmployeeProvince');
+            const editEmployeeDistrictSelect = document.getElementById('editEmployeeDistrict');
+            const editEmployeeWardSelect = document.getElementById('editEmployeeWard');
+            const editEmployeeDetailedAddressInput = document.getElementById('editEmployeeDetailedAddress');
+
+             // Gán dữ liệu cho các trường thông tin khác, kiểm tra null trước khi gán
+             if (editEmployeeIdInput) editEmployeeIdInput.value = e.id;
+             if (editEmployeeNameInput) editEmployeeNameInput.value = e.name;
+             if (editEmployeePhoneInput) editEmployeePhoneInput.value = e.phone;
+             if (editEmployeeEmailInput) editEmployeeEmailInput.value = e.email;
+             if (editEmployeeRoleSelect) editEmployeeRoleSelect.value = e.role;
+             if (editEmployeeStatusSelect) editEmployeeStatusSelect.value = e.status;
+
+            // Xóa tất cả thông báo lỗi
+            modal.querySelectorAll('.error-message').forEach(el => el.remove());
+            modal.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+
+            // Parse address to populate dropdowns
+            const addressParts = parseAddress(e.address);
+            if(editEmployeeDetailedAddressInput) editEmployeeDetailedAddressInput.value = addressParts.detailed;
+
+            resetAddressDropdowns(editEmployeeProvinceSelect, editEmployeeDistrictSelect, editEmployeeWardSelect);
+            populateProvinces(editEmployeeProvinceSelect, addressParts.province, function(provinceId) {
+                if (provinceId) {
+                    populateDistricts(editEmployeeDistrictSelect, editEmployeeWardSelect, provinceId, addressParts.district, function(districtId) {
+                        if (districtId) {
+                            populateWards(editEmployeeWardSelect, districtId, addressParts.ward);
+                        }
+                    });
+                }
+            });
+
+            // Attach event listeners for dropdown changes in Edit modal
+            // Remove existing listeners first
+            if (editEmployeeProvinceSelect) editEmployeeProvinceSelect.onchange = null;
+            if (editEmployeeDistrictSelect) editEmployeeDistrictSelect.onchange = null;
+
+            if(editEmployeeProvinceSelect && editEmployeeDistrictSelect && editEmployeeWardSelect) {
+                 editEmployeeProvinceSelect.onchange = function() {
+                     populateDistricts(editEmployeeDistrictSelect, editEmployeeWardSelect, this.value, '', null);
+                 };
+                 editEmployeeDistrictSelect.onchange = function() {
+                     populateWards(editEmployeeWardSelect, this.value, '');
+                 };
+            }
+
+        } else {
+             console.error('Không tìm thấy modal chỉnh sửa hoặc nhân viên.', { modal: modal, employee: e });
+        }
     }
 
     // Thêm lại sự kiện đóng modal sửa
     Array.from(document.querySelectorAll('#editEmployeeModal .modal-close, #editEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
-        btn.onclick = ()=>{ document.getElementById('editEmployeeModal').classList.remove('show'); };
+        btn.onclick = ()=>{
+             const modal = document.getElementById('editEmployeeModal');
+             if(modal) modal.classList.remove('show');
+             // Reset address dropdowns when modal is closed
+              const editProvince = document.getElementById('editEmployeeProvince');
+              const editDistrict = document.getElementById('editEmployeeDistrict');
+              const editWard = document.getElementById('editEmployeeWard');
+              resetAddressDropdowns(editProvince, editDistrict, editWard);
+              if(document.getElementById('editEmployeeDetailedAddress')) document.getElementById('editEmployeeDetailedAddress').value = '';
+        };
     });
 
     document.getElementById('editEmployeeForm').onsubmit = function(e){
         e.preventDefault();
-        
+
         // Lấy giá trị từ form
         const name = document.getElementById('editEmployeeName').value.trim();
         const phone = document.getElementById('editEmployeePhone').value.trim();
         const email = document.getElementById('editEmployeeEmail').value.trim();
         const role = document.getElementById('editEmployeeRole').value;
-        const address = document.getElementById('editEmployeeAddress').value.trim();
+        // Update to get address components from the new fields
+        const detailedAddress = document.getElementById('editEmployeeDetailedAddress').value.trim();
+        const provinceSelect = document.getElementById('editEmployeeProvince');
+        const districtSelect = document.getElementById('editEmployeeDistrict');
+        const wardSelect = document.getElementById('editEmployeeWard');
+
+        const province = provinceSelect.selectedIndex > 0 ? provinceSelect.options[provinceSelect.selectedIndex].text : '';
+        const district = districtSelect.selectedIndex > 0 ? districtSelect.options[districtSelect.selectedIndex].text : '';
+        const ward = wardSelect.selectedIndex > 0 ? wardSelect.options[wardSelect.selectedIndex].text : '';
+
         const status = document.getElementById('editEmployeeStatus').value;
 
         // Kiểm tra các trường bắt buộc
@@ -1078,49 +1468,50 @@
             isValid = false;
         }
 
-        // Kiểm tra địa chỉ
-        if (address === '') {
-            showError(document.getElementById('editEmployeeAddress'), 'Vui lòng nhập địa chỉ');
-            isValid = false;
-        }
+        // Kiểm tra địa chỉ - Update validation for new address fields
+         if (!detailedAddress || province === '' || district === '' || ward === '') {
+              showError(document.getElementById('editEmployeeDetailedAddress'), 'Vui lòng nhập đầy đủ thông tin địa chỉ (bao gồm Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và Địa chỉ chi tiết).');
+              isValid = false;
+         }
 
         if (!isValid) return;
 
         if(editingId!==null) {
             const idx = employees.findIndex(emp => emp.id === editingId);
-            employees[idx] = {
-                id: document.getElementById('editEmployeeId').value,
-                name: name,
-                phone: phone,
-                email: email,
-                role: role,
-                address: address,
-                status: status
-            };
-            saveEmployeesToLocalStorage();
-            renderEmployeeTable();
-            document.getElementById('editEmployeeModal').classList.remove('show');
-            
-            // Hiển thị thông báo thành công
-            showSuccessMessage(
-                'Cập nhật thành công',
-                `Đã cập nhật thông tin nhân viên ${name}.`
-            );
+            if (idx !== -1) { // Check if employee exists
+                // Combine address components into a single string
+                const fullAddress = `${detailedAddress}, ${ward}, ${district}, ${province}`;
+
+                employees[idx] = {
+                    id: document.getElementById('editEmployeeId').value,
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    role: role,
+                    address: fullAddress, // Use the combined address
+                    status: status
+                };
+                saveEmployeesToLocalStorage();
+                renderEmployeeTable();
+                document.getElementById('editEmployeeModal').classList.remove('show');
+                
+                // Reset address dropdowns and clear detailed address after successful edit
+                resetAddressDropdowns(provinceSelect, districtSelect, wardSelect);
+                if(document.getElementById('editEmployeeDetailedAddress')) document.getElementById('editEmployeeDetailedAddress').value = '';
+
+                // Hiển thị thông báo thành công
+                showSuccessMessage(
+                    'Cập nhật thành công',
+                    `Đã cập nhật thông tin nhân viên ${name}.`
+                );
+                editingId = null; // Reset editing ID
+            }
         }
     };
 
     // Thêm sự kiện validate realtime cho form sửa
-    document.getElementById('editEmployeeName').addEventListener('input', function() {
-        // if (this.value.trim() !== '') {
-        //     clearError(this);
-        // } // Remove realtime clear error logic
-    });
-
-    document.getElementById('editEmployeeAddress').addEventListener('input', function() {
-        if (this.value.trim() !== '') {
-            clearError(this);
-        }
-    });
+    // document.getElementById('editEmployeeName').addEventListener('input', function() {}); // Keep if needed
+    // document.getElementById('editEmployeeAddress').addEventListener('input', function() {}); // Remove or update if needed
 
     // Xóa nhân viên
     let deletingId = null;
@@ -1128,37 +1519,58 @@
         deletingId = id;
         const e = employees.find(emp => emp.id === id);
         var modal = document.getElementById('deleteEmployeeModal');
-        if(modal) modal.classList.add('show');
-        document.getElementById('deleteEmployeeName').textContent = e.name;
+        if(modal && e) { // Check if modal and employee exist
+            modal.classList.add('show');
+            document.getElementById('deleteEmployeeName').textContent = e.name;
+        }
     }
     document.getElementById('confirmDeleteEmployee').onclick = function(){
         if(deletingId!==null) {
             const idx = employees.findIndex(emp => emp.id === deletingId);
-            employees.splice(idx,1);
-            saveEmployeesToLocalStorage(); // Lưu vào localStorage sau khi xóa
-            renderEmployeeTable();
-            document.getElementById('deleteEmployeeModal').classList.remove('show');
+            if (idx !== -1) { // Check if employee exists
+                employees.splice(idx,1);
+                saveEmployeesToLocalStorage(); // Lưu vào localStorage sau khi xóa
+                renderEmployeeTable();
+                 const modal = document.getElementById('deleteEmployeeModal');
+                 if(modal) modal.classList.remove('show');
+            } else {
+                console.error('Employee with ID ', deletingId, ' not found for deletion.');
+                 const modal = document.getElementById('deleteEmployeeModal');
+                 if(modal) modal.classList.remove('show');
+            }
+             deletingId = null; // Reset deleting ID
         }
     };
     Array.from(document.querySelectorAll('#deleteEmployeeModal .modal-close, #deleteEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
-        btn.onclick = ()=>{ document.getElementById('deleteEmployeeModal').classList.remove('show'); };
+        btn.onclick = ()=>{
+             const modal = document.getElementById('deleteEmployeeModal');
+             if(modal) modal.classList.remove('show');
+        };
     });
 
     // Xem chi tiết
     function openDetailModalById(id) {
         const e = employees.find(emp => emp.id === id);
-        document.getElementById('detailEmployeeId').textContent = e.id;
-        document.getElementById('detailEmployeeName').textContent = e.name;
-        document.getElementById('detailEmployeePhone').textContent = e.phone;
-        document.getElementById('detailEmployeeEmail').textContent = e.email;
-        document.getElementById('detailEmployeeRole').textContent = e.role;
-        document.getElementById('detailEmployeeAddress').textContent = e.address;
-        document.getElementById('detailEmployeeStatus').textContent = e.status==='active'?'Đang làm':'Nghỉ việc';
-        document.getElementById('detailEmployeeStatus').className = 'status-badge ' + (e.status==='active'?'active':'inactive');
-        document.getElementById('employeeDetailModal').classList.add('show');
+        if (e) { // Check if employee exists
+            document.getElementById('detailEmployeeId').textContent = e.id;
+            document.getElementById('detailEmployeeName').textContent = e.name;
+            document.getElementById('detailEmployeePhone').textContent = e.phone;
+            document.getElementById('detailEmployeeEmail').textContent = e.email;
+            document.getElementById('detailEmployeeRole').textContent = e.role;
+            document.getElementById('detailEmployeeAddress').textContent = e.address;
+            document.getElementById('detailEmployeeStatus').textContent = e.status==='active'?'Đang làm':'Nghỉ việc';
+            document.getElementById('detailEmployeeStatus').className = 'status-badge ' + (e.status==='active'?'active':'inactive');
+            const modal = document.getElementById('employeeDetailModal');
+            if(modal) modal.classList.add('show');
+        } else {
+            console.error('Employee with ID ', id, ' not found for detail view.');
+        }
     }
     Array.from(document.querySelectorAll('#employeeDetailModal .modal-close, #employeeDetailModal [data-dismiss="modal"]')).forEach(btn=>{
-        btn.onclick = ()=>{ document.getElementById('employeeDetailModal').classList.remove('show'); };
+        btn.onclick = ()=>{
+             const modal = document.getElementById('employeeDetailModal');
+             if(modal) modal.classList.remove('show');
+        };
     });
 
     // Xóa nhiều nhân viên
@@ -1213,18 +1625,22 @@
         if (selectedEmployeeIds.length > 0) {
             // Lọc ra các nhân viên KHÔNG có trong danh sách ID cần xóa
             employees = employees.filter(emp => !selectedEmployeeIds.includes(emp.id));
-            
+
             selectedEmployeeIds = []; // Clear selected IDs
             saveEmployeesToLocalStorage(); // Lưu vào localStorage sau khi xóa nhiều
             renderEmployeeTable();
-            
+
             // Đóng modal xác nhận xóa nhiều
-            document.getElementById('bulkDeleteEmployeeModal').classList.remove('show');
+            const bulkDeleteModal = document.getElementById('bulkDeleteEmployeeModal');
+            if(bulkDeleteModal) bulkDeleteModal.classList.remove('show');
         }
     };
     // Sự kiện đóng modal xóa nhiều
     Array.from(document.querySelectorAll('#bulkDeleteEmployeeModal .modal-close, #bulkDeleteEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
-        btn.onclick = ()=>{ document.getElementById('bulkDeleteEmployeeModal').classList.remove('show'); };
+        btn.onclick = ()=>{
+            const bulkDeleteModal = document.getElementById('bulkDeleteEmployeeModal');
+            if(bulkDeleteModal) bulkDeleteModal.classList.remove('show');
+        };
     });
 
     // Initial render
@@ -1244,6 +1660,28 @@
             });
         }
     });
+    document.addEventListener('DOMContentLoaded', function() {
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.modal').forEach(function(modal) {
+            modal.addEventListener('mousedown', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+    // ... existing code ...
+    window.addEventListener('resize', function() {
+        if(window.innerWidth > 768) {
+            document.querySelectorAll('.employee-detail-row').forEach(function(row) {
+                row.style.display = 'none';
+            });
+        }
+    });
+    // ... existing code ...
     </script>
 </body>
 </html> 

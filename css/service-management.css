@@ -65,7 +65,24 @@
 
 .service-actions .button {
     border-radius: 18px; 
+    font-size: 0.75rem;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
 }
+.actions-container {
+    display: flex;
+    justify-content: space-between; /* hoặc 'flex-start' nếu bạn muốn chúng sát nhau bên trái */
+    align-items: center;
+    flex-wrap: wrap; /* Đảm bảo responsive nếu không đủ chỗ */
+    gap: 1rem; /* khoảng cách giữa hai khối */ /* hoặc theo thiết kế */
+}
+
+.items-per-page-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 
 .table-area.card {
     background: #fff;
@@ -87,8 +104,8 @@
 }
 
 .card-header h2 {
-    color: var(--status-processing-text);
-    font-size: 0.95rem;
+    color: #ffff;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.5px;
     margin: 0;
@@ -113,7 +130,7 @@
     border-bottom: none;
 }
 
-#serviceTable th:nth-child(1), #serviceTable td:nth-child(1) { width: 40px; text-align: center; }
+#serviceTable th:nth-child(1), #serviceTable td:nth-child(1) { width: 40px; text-align: left; }
 #serviceTable th:nth-child(2), #serviceTable td:nth-child(2) { width: 50px; text-align: center; }
 #serviceTable th:nth-child(3), #serviceTable td:nth-child(3) { width: 120px; }
 #serviceTable th:nth-child(4), #serviceTable td:nth-child(4) { width: 200px; max-width: none; }
@@ -345,62 +362,10 @@
     }
     .pagination-buttons .button {
         min-width: 18px;
-        height: 18px;
+        height: 30px;
         padding: 0 0.03rem;
         font-size: 0.65rem;
     }
-}
-
-@media (max-width: 700px) {
-    .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    #serviceTable {
-        min-width: 600px;
-    }
-    
-    #serviceTable th,
-    #serviceTable td {
-        padding: 0.6rem 0.4rem;
-        text-align: left;
-    }
-
-    #serviceTable tbody tr {
-         border: 1px solid var(--border-color);
-         border-radius: 0;
-         margin-bottom: 4px;
-    }
-
-    #serviceTable tbody tr:not(:last-child) {
-        margin-bottom: 4px;
-    }
-
-    #serviceTable tbody tr td:first-child,
-    #serviceTable tbody tr td:last-child {
-        border-radius: 0;
-    }
-
-    .action-icons {
-        justify-content: center;
-    }
-}
-
-.footer-actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 1rem;
-    border-top: 1px solid var(--border-color);
-    margin-top: auto;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.footer-actions .action-buttons {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
 }
 
 .filter-container {
@@ -432,16 +397,17 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%); 
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%);
     border-radius: 16px 16px 0 0;
 }
 
+/* Default styles for filter layout on larger screens */
 .filter-section {
     display: flex;
     gap: var(--base-padding);
     align-items: center;
     flex-wrap: wrap;
-    position: relative; 
+    position: relative;
     z-index: 2;
 }
 
@@ -450,6 +416,7 @@
     gap: 0.75rem;
     flex-wrap: wrap;
     width: 100%;
+    flex-direction: row;
 }
 
 .filter-item {
@@ -466,20 +433,11 @@
     font-weight: 500;
 }
 
-.filter-select {
-    padding: 0.6rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 18px; 
-    background: white;
-    color: var(--text-primary);
-    font-size: var(--font-size-sm);
-    width: 100%;
-}
-
+.filter-select,
 .filter-input {
     padding: 0.6rem 1rem;
     border: 1px solid var(--border-color);
-    border-radius: 18px; 
+    border-radius: 18px;
     background: white;
     color: var(--text-primary);
     font-size: var(--font-size-sm);
@@ -490,8 +448,8 @@
 .filter-input:focus,
 .filter-select:focus {
     outline: none;
-    border-color: var(--accent-color); 
-    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.1); 
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.1);
 }
 
 .btn-filter {
@@ -515,31 +473,128 @@
     color: var(--accent-color);
 }
 
+/* Media query for mobile screens (max-width: 768px) */
 @media (max-width: 768px) {
     .filter-container {
         padding: var(--base-padding);
     }
-    
+
     .filter-section {
         flex-direction: column;
         align-items: stretch;
         gap: 0.5rem;
     }
-    
+
     .filter-group {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .filter-item {
         min-width: 100%;
     }
-    
+
     .filter-select,
     .filter-input,
     .btn-filter {
         width: 100%;
         justify-content: center;
+    }
+
+    /* Mobile specific styles for table (already added) */
+    /* ... existing table mobile styles ... */
+
+     /* Hide specific columns on smaller screens in main table rows */
+     #serviceTable th:nth-child(2), /* STT */
+     #serviceTable td:nth-child(2), /* STT */
+     #serviceTable th:nth-child(5), /* Ngày cập nhật */
+     #serviceTable td:nth-child(5), /* Ngày cập nhật */
+     #serviceTable th:nth-child(6), /* Hiển thị */
+     #serviceTable td:nth-child(6), /* Hiển thị */
+     #serviceTable th:nth-child(7), /* Thao tác */
+     #serviceTable td:nth-child(7) /* Thao tác */ {
+         display: none !important;
+     }
+
+     /* Ensure checkbox, MaDV, TenDV columns are visible and adjust their padding/width if needed */
+     #serviceTable th:nth-child(1), /* Checkbox */
+     #serviceTable td:nth-child(1), /* Checkbox */
+     #serviceTable th:nth-child(3), /* Mã dịch vụ */
+     #serviceTable td:nth-child(3), /* Mã dịch vụ */
+     #serviceTable th:nth-child(4), /* Tên dịch vụ */
+     #serviceTable td:nth-child(4) /* Tên dịch vụ */ {
+         display: table-cell !important; /* Explicitly ensure these are shown */
+         padding: 0.8rem 0.4rem; /* Adjust padding for mobile */
+     }
+      #serviceTable th {
+          padding: 0.5rem 0.4rem; /* Reduce header padding */
+          font-size: 0.65rem; /* Smaller font size for headers */
+     }
+
+     /* Style for the detail row */
+     .service-detail-row {
+         /* display: none; */ /* Hidden by default */ /* Moved default display none outside media query */
+         background-color: #fffbe6; /* Light background for detail */
+         border-bottom: 1px dashed var(--border-color);
+     }
+
+     .service-detail-row.open {
+         display: table-row; /* Show when open */
+     }
+
+     .service-detail-row td {
+         padding: 0.8rem 1rem; /* Padding inside the detail cell */
+         text-align: left; /* Align detail text left */
+         border-top: 1px dashed var(--border-color); /* Add a dashed border above detail */
+     }
+
+     .service-detail-row .detail-content {
+         display: flex; /* Use flexbox for detail items */
+         flex-direction: column; /* Stack items vertically */
+         gap: 0.5rem; /* Space between detail items */
+     }
+
+     .service-detail-row .detail-item {
+         font-size: var(--font-size-sm); /* Smaller font for detail items */
+         color: var(--text-primary);
+     }
+
+     .service-detail-row .detail-item strong {
+         color: var(--text-secondary);
+         margin-right: 0.5rem; /* Space after label */
+     }
+      .service-detail-row .action-icons {
+          justify-content: flex-start; /* Align action icons left in detail */
+          margin-top: 0.5rem;
+     }
+
+     /* Add styling for the main row when the detail is open */
+     #serviceTable tbody tr.expanded {
+         border-bottom: none; /* Remove bottom border when detail is open */
+     }
+
+     /* Ensure borders look correct */
+     #serviceTable tbody tr:not(.service-detail-row):last-child {
+          border-bottom: 1px solid var(--border-color); /* Keep bottom border on the very last main row */
+     }
+      #serviceTable tbody tr.service-detail-row:last-child td {
+          border-bottom-left-radius: var(--border-radius-sm);
+          border-bottom-right-radius: var(--border-radius-sm);
+          border-bottom: 1px solid var(--border-color); /* Add bottom border to the last detail row */
+     }
+     .items-per-page-control{
+        justify-content: left !important;
+     }
+     .items-per-page-control span{
+        display: none !important;
+     }
+     .actions-container {
+        display: flex;
+        justify-content: space-between; /* hoặc 'flex-start' nếu bạn muốn chúng sát nhau bên trái */
+        align-items: center;
+        flex-wrap: wrap; /* Đảm bảo responsive nếu không đủ chỗ */
+        gap: 0.5rem; /* khoảng cách giữa hai khối */
+        margin-bottom: 0.5rem; /* hoặc theo thiết kế */
     }
 }
 
@@ -580,7 +635,7 @@
     padding: 0; 
     min-width: 320px;
     max-width: 95vw;
-    width: 500px; 
+    width: 400px; 
     max-height: 90vh;
     overflow-y: auto; 
     display: flex;
@@ -611,7 +666,7 @@
 
 .modal-title {
     font-size: var(--font-size-lg);
-    color: var(--text-primary);
+    color: #ffff;
     margin: 0;
     display: flex;
     align-items: center;
@@ -619,7 +674,7 @@
 }
 
 .modal-title .icon {
-    color: var(--accent-color);
+    color: #ffff;
 }
 
 .modal-close-btn {
@@ -678,7 +733,7 @@
 .modal-textarea {
     padding: 0.6rem 1rem;
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-sm);
+    border-radius: 18px;
     background: white;
     color: var(--text-primary);
     font-size: var(--font-size-base);
@@ -717,6 +772,7 @@
     background: var(--border-light);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
+    border-radius: 18px;
 }
 
 .modal-container .button.secondary:hover {
@@ -724,9 +780,10 @@
 }
 
 .modal-container .button.primary {
-    background: #6366f1; 
+    background: var(--accent-color); 
     color: #fff;
     border: none;
+    border-radius: 18px;
 }
 
 .modal-container .button.primary:hover {
@@ -734,7 +791,7 @@
 }
 
 .modal-container .button.danger {
-    background: var(--danger-color);
+    background: var(--accent);
     color: #fff;
     border: none;
 }
@@ -748,10 +805,6 @@
     font-size: var(--font-size-md);
     text-align: center;
     margin-bottom: var(--base-padding);
-}
-
-#deleteServiceModal .modal-header {
-    background-color: var(--danger-color); 
 }
 
 #deleteServiceModal .modal-title,
@@ -888,7 +941,7 @@ body.modal-open {
     flex-direction: row !important;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0;
 }
 
 .modal-container.modal-form-layout-2col .modal-checkbox-group label {
@@ -911,10 +964,6 @@ body.modal-open {
     width: 350px; 
 }
 
-#deleteServiceModal .modal-header {
-    background-color: var(--danger-color); 
-}
-
 #deleteServiceModal .modal-title,
 #deleteServiceModal .modal-title .icon,
 #deleteServiceModal .modal-close-btn {
@@ -922,6 +971,10 @@ body.modal-open {
 }
 
 #deleteServiceModal .modal-title .icon {
-    color: var(--accent-color); 
+    color: white; 
+}
+
+.service-detail-row {
+    display: none; /* Hidden by default on all screens */
 }
 

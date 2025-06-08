@@ -65,15 +65,23 @@
     flex-direction: column;
     align-items: stretch;
     margin-bottom: 0;
-    gap: var(--base-padding);
+    gap: 0.3rem;
     flex-wrap: wrap;
+}
+
+.actions-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
 }
 
 .action-buttons {
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
-    width: 100%;
     justify-content: flex-start;
 }
 
@@ -117,6 +125,37 @@
     background: var(--warning-hover);
 }
 
+.items-per-page-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+.items-per-page-control select {
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 0.8rem;
+    padding-right: 1.5rem;
+}
+
+.items-per-page-control select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(255, 214, 0, 0.3);
+}
 
 .filter-container {
     background: white;
@@ -129,6 +168,7 @@
     overflow: hidden;
     width: 100%;
     margin-bottom: 0;
+    border-top: 4px solid var(--accent);
 }
 
 .filter-container h3 {
@@ -404,9 +444,9 @@
 .modal-content {
     background: white;
     border-radius: 18px;
-    width: 95%;
-    max-width: 800px; 
-    max-height: 95vh;
+    width: 60%;
+    max-width: 800px !important; 
+    max-height: 85vh;
     overflow: hidden;
     position: relative;
     margin: auto;
@@ -459,14 +499,16 @@
 }
 
 #addCustomerModal .modal-header {
-    background: #ffe066; 
+    background: #FFD700; 
+    padding: 0.3rem;
+    font-size: 1rem;
 }
 #addCustomerModal .modal-header h3,
 #addCustomerModal .modal-close {
     color: var(--text-primary); 
 }
 #addCustomerModal .btn-primary {
-    background: #ffe066; 
+    background: #FFD700; 
     color: var(--text-primary); 
 }
 #addCustomerModal .btn-primary:hover {
@@ -474,14 +516,14 @@
 }
 
 #editCustomerModal .modal-header {
-    background: #ffe066; 
+    background: #FFD700; 
 }
 #editCustomerModal .modal-header h3,
 #editCustomerModal .modal-close {
     color: var(--text-primary); 
 }
 #editCustomerModal .btn-primary {
-    background: #ffe066; 
+    background: #FFD700; 
 }
 #editCustomerModal .btn-primary:hover {
     background: #ffc107; 
@@ -495,7 +537,7 @@
 }
 
 #deleteCustomerModal .modal-header {
-    background: #ff4d4d; 
+    background: #FFD700; 
     display: flex; 
     align-items: center; 
     gap: 8px; 
@@ -511,14 +553,14 @@
 }
 
 #deleteCustomerModal .btn-danger {
-    background: #f87171;
+    background: #FFD700;
 }
 #deleteCustomerModal .btn-danger:hover {
     background: #ef4444;
 }
 
 #customerDetailModal .modal-header {
-    background: #ffe066; 
+    background: #FFD700; 
 }
 #customerDetailModal .modal-header h3,
 #customerDetailModal .modal-close {
@@ -551,7 +593,7 @@
 }
 
 .modal-body {
-    padding: var(--card-padding);
+    padding: 0.5rem !important;
     background: white;
     flex-grow: 1;
     overflow-y: auto;
@@ -560,12 +602,12 @@
 .customer-info-grid {
     display: grid;
     grid-template-columns: 1fr; 
-    gap: 5px;
-    margin-bottom: var(--base-padding);
+    gap: 0;
+    margin-bottom: 0;
 }
 
 .info-group {
-    background: var(--primary-light);
+    background: #ffff;
     padding: 1rem;
     border-radius: var(--border-radius-sm);
     transition: all 0.2s ease;
@@ -653,7 +695,7 @@
     color: #64748b;
     border: 1px solid #e2e8f0;
     padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius-sm);
+    border-radius: 18px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -671,7 +713,7 @@
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius-sm);
+    border-radius: 18px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -685,7 +727,6 @@
 .form-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--base-padding);
 }
 
 .form-group {
@@ -710,7 +751,7 @@
     width: 100%;
     padding: 0.6rem 0.8rem;
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-sm);
+    border-radius: 18px;
     font-size: var(--font-size-base);
     transition: all 0.2s ease;
     flex-grow: 1;
@@ -723,48 +764,100 @@
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
+.address-grouping {
+    display: flex;
+    gap: var(--base-padding);
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: var(--base-padding);
+}
+
+.address-grouping .form-group {
+    margin-bottom: 0;
+    flex: 1 1 calc(25% - var(--base-padding) * 3 / 4); /* Distribute space evenly among 4 items */
+}
+
+.address-grouping .form-group label {
+    width: auto; /* Let label width be determined by content */
+    margin-right: 0.5rem; /* Add some space between label and input/select */
+}
+
+.address-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    text-align: left; /* Align the label to the left */
+}
+
+.address-combobox-grouping {
+    display: flex;
+    gap: 0.5rem; /* Smaller gap for comboboxes */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    flex-grow: 1; /* Allow this container to take available space */
+}
+
+.address-combobox-grouping .form-group.nested {
+    margin-bottom: 0; /* Remove default margin-bottom from form-group */
+    flex: 1 1 calc(33.333% - 0.5rem * 2 / 3); /* Distribute space among 3 items, considering gap */
+    min-width: 120px; /* Minimum width for combobox */
+}
+
 @media (max-width: 768px) {
     .customer-actions {
         flex-direction: column;
-        align-items: stretch;
+        gap: 0.8rem;
     }
-    
+
     .filter-container {
         padding: var(--base-padding);
     }
-    
+
     .action-buttons {
         flex-direction: column;
         gap: 0.5rem;
+        align-items: stretch;
     }
-    
+
     .action-buttons button {
         width: 100%;
         justify-content: center;
     }
-    
+
     .filter-section {
         flex-direction: column;
         align-items: stretch;
         gap: 0.5rem;
     }
-    
+
     .filter-group {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .filter-select {
         width: 100%;
     }
 
      .btn-filter {
-          width: 100%;
-          justify-content: center;
+        width: 100%;
+        justify-content: center;
      }
 
-    .modal-content {
-        width: 95%;
+    .items-per-page-control{
+        justify-content: left !important;
+     }
+     .items-per-page-control span{
+        display: none !important;
+     }
+     .actions-container {
+        display: flex;
+        justify-content: space-between; /* hoặc 'flex-start' nếu bạn muốn chúng sát nhau bên trái */
+        align-items: center;
+        flex-wrap: wrap; /* Đảm bảo responsive nếu không đủ chỗ */
+        gap: 0.5rem; /* khoảng cách giữa hai khối */
+        margin-bottom: 0.5rem; /* hoặc theo thiết kế */
     }
 
     .customer-info-grid,
@@ -812,6 +905,101 @@
     .action-icons {
         justify-content: center;
     }
+
+    /* Hide specific table headers on mobile */
+    #customerTable thead th.mobile-hidden,
+    #customerTable thead th.col-center:nth-child(2) { /* Also hide STT header */
+        display: none;
+    }
+
+    /* Hide specific table data cells on mobile */
+    #customerTable tbody td.mobile-hidden {
+        display: none;
+    }
+
+    /* Ensure main customer rows are block/flex on mobile if needed for layout adjustments */
+    #customerTable tbody tr.customer-row {
+         display: table-row; /* Keep as table-row for general structure */
+         border-bottom: none; /* Remove border from main row */
+         /* Add click indicator if desired */
+         cursor: pointer;
+    }
+    
+     #customerTable tbody tr.customer-row:hover {
+        background: var(--bg-color); /* Adjust hover for main row */
+     }
+
+    /* Style the detail row */
+    #customerTable tbody tr.customer-detail-row {
+        display: none; /* Hidden by default */
+        background-color: var(--primary-light); /* Light background for detail row */
+        border-bottom: 1px solid var(--border-color); /* Add border to separate entries */
+    }
+
+    #customerTable tbody tr.customer-detail-row td {
+        padding: 10px var(--base-padding); /* Padding for detail cell */
+    }
+
+    /* Style the content within the detail row */
+    .customer-detail-content {
+        display: flex; /* Use flexbox for simpler layout */
+        flex-direction: column; /* Stack items vertically */
+        gap: 5px; /* Smaller gap */
+        font-size: var(--font-size-sm); /* Smaller font size for detail items */
+    }
+
+    .customer-detail-content .detail-item {
+         padding: 0; /* Remove padding */
+         background-color: transparent; /* Remove background */
+         border: none; /* Remove border */
+         word-break: break-word; /* Break long words */
+    }
+
+     .customer-detail-content .detail-item strong {
+          color: var(--text-primary); /* Strong text color */
+          margin-right: 5px; /* Space after label */
+     }
+
+     .customer-detail-content .action-icons {
+          grid-column: auto; /* Remove grid span */
+          text-align: left; /* Align actions left */
+          display: flex;
+          justify-content: flex-start; /* Align icons to start */
+          gap: 10px;
+          margin-top: 10px; /* Add space above actions */
+     }
+
+      /* Hide action icons in main row on mobile */
+      #customerTable tbody tr.customer-row td.action-icons.mobile-hidden {
+           display: none !important;
+      }
+
+    /* Adjust padding for checkbox and STT columns on mobile */
+    #customerTable th:first-child,
+    #customerTable td:first-child { /* Checkbox column */
+        padding-left: 10px;
+        padding-right: 5px;
+    }
+    /* Hide STT header on mobile if it was not hidden by .mobile-hidden */
+    #customerTable thead th.col-center:nth-child(2) {
+        display: none;
+    }
+
+    /* Allow table to shrink and prevent horizontal scroll */
+    #customerTable {
+        min-width: auto; /* Remove minimum width */
+        width: 100%; /* Ensure it takes available width */
+    }
+
+     /* Optional: Add specific width for Mã KH and Họ và tên if needed */
+     /* Example: */
+     #customerTable th:nth-child(3), #customerTable tbody td:nth-child(3) { /* Mã KH column */
+         width: 25%;
+         white-space: nowrap; /* Prevent wrapping */
+     }
+      #customerTable th:nth-child(4), #customerTable tbody td:nth-child(4) { /* Họ và tên column */
+         width: 50%; /* Allow Họ và tên to take more space */
+      }
 }
 
 @media (max-width: 480px) {
@@ -839,12 +1027,6 @@
         padding: 0;
     }
 
-    .modal-content {
-        width: 100%;
-        height: 100%;
-        max-height: 100%;
-        border-radius: 0;
-    }
 
     .modal-header {
         border-radius: 0;
@@ -856,7 +1038,7 @@
      }
 
     .modal-body {
-        padding: 1rem;
+        padding: 10px !important;
     }
 
     .modal-footer {
@@ -874,6 +1056,9 @@
 
       .stat-label {
           font-size: var(--font-size-sm);
+      }
+      .card-footer{
+        justify-content: center !important;
       }
 }
 
@@ -1052,9 +1237,6 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
     box-sizing: border-box;
     position: relative;
     overflow: visible;
@@ -1110,4 +1292,21 @@
 .pagination-buttons .button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        background: white;
+        border-radius: 18px;
+        width: 90%;
+        max-width: 800px !important; 
+        max-height: 85vh;
+        overflow: hidden;
+        position: relative;
+        margin: auto;
+        box-shadow: var(--shadow-lg);
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
 }
