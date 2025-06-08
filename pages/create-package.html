@@ -235,23 +235,39 @@
                                    <div class="form-group">
                                        <label for="sender_city">Chọn địa chỉ<span class="required">*</span></label>
                                        <div class="input-group-3 address-dropdown-group">
-                                           <select id="sender_city" name="sender_city" required title="Chọn Tỉnh/Thành phố">
-                                               <option value="" selected>Chọn Tỉnh/Thành phố</option>
-                                               <option value="hcm">TP.HCM</option>
-                                               <option value="hn">Hà Nội</option>
-                                               <option value="ct">Cần Thơ</option>
-                                           </select>
-                                           <select id="sender_district" name="sender_district" required title="Chọn Quận/Huyện">
-                                               <option value="" selected>Chọn Quận / Huyện</option>
-                                               <option value="q1">Quận 1</option>
-                                               <option value="q12">Quận 12</option>
-                                               <option value="tp">Tân Phú</option>
-                                           </select>
-                                           <select id="sender_ward" name="sender_ward" required title="Chọn Phường/Xã">
-                                               <option value="" selected>Chọn Phường / Xã</option>
-                                               <option value="tch">Tân Chánh Hiệp</option>
-                                               <option value="tth">Tân Thới Hiệp</option>
-                                           </select>
+                                           <div class="custom-select-wrapper" id="sender_city_custom_select_wrapper">
+                                               <button type="button" class="custom-select-button" aria-haspopup="listbox" aria-expanded="false" aria-controls="sender_city_listbox" id="sender_city_button">
+                                                   <span class="selected-value">Chọn Tỉnh/Thành phố</span>
+                                                   <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                               </button>
+                                               <ul class="custom-select-dropdown hidden" role="listbox" id="sender_city_listbox" aria-labelledby="sender_city_button">
+                                                   <li role="option" data-value="" class="selected">Chọn Tỉnh/Thành phố</li>
+                                                   <!-- Options will be populated by JS -->
+                                               </ul>
+                                               <input type="hidden" id="sender_city" name="sender_city" value="" required>
+                                           </div>
+                                           <div class="custom-select-wrapper" id="sender_district_custom_select_wrapper">
+                                                <button type="button" class="custom-select-button" aria-haspopup="listbox" aria-expanded="false" aria-controls="sender_district_listbox" id="sender_district_button">
+                                                    <span class="selected-value">Chọn Quận / Huyện</span>
+                                                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                                </button>
+                                                <ul class="custom-select-dropdown hidden" role="listbox" id="sender_district_listbox" aria-labelledby="sender_district_button">
+                                                    <li role="option" data-value="" class="selected">Chọn Quận / Huyện</li>
+                                                    <!-- Options will be populated by JS -->
+                                                </ul>
+                                                <input type="hidden" id="sender_district" name="sender_district" value="" required>
+                                            </div>
+                                            <div class="custom-select-wrapper" id="sender_ward_custom_select_wrapper">
+                                                <button type="button" class="custom-select-button" aria-haspopup="listbox" aria-expanded="false" aria-controls="sender_ward_listbox" id="sender_ward_button">
+                                                    <span class="selected-value">Chọn Phường / Xã</span>
+                                                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                                </button>
+                                                <ul class="custom-select-dropdown hidden" role="listbox" id="sender_ward_listbox" aria-labelledby="sender_ward_button">
+                                                    <li role="option" data-value="" class="selected">Chọn Phường / Xã</li>
+                                                    <!-- Options will be populated by JS -->
+                                                </ul>
+                                                <input type="hidden" id="sender_ward" name="sender_ward" value="" required>
+                                            </div>
                                        </div>
                                        <span class="error-message group-error"></span>
                                    </div>
@@ -380,11 +396,18 @@
                                <div class="form-grid-2col">
                                    <div class="form-group">
                                        <label for="receiver_country">Quốc gia<span class="required">*</span></label>
-                                       <select id="receiver_country" name="receiver_country" required>
-                                           <option value="US" selected>UNITED STATES</option>
-                                           <option value="GB">UNITED KINGDOM</option>
-                                        </select>
-                                        <span class="error-message"></span>
+                                       <div class="custom-select-wrapper" id="receiver_country_custom_select_wrapper">
+                                           <button type="button" class="custom-select-button" aria-haspopup="listbox" aria-expanded="false" aria-controls="receiver_country_listbox" id="receiver_country_button">
+                                               <span class="selected-value">Chọn quốc gia</span>
+                                               <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                           </button>
+                                           <ul class="custom-select-dropdown hidden" role="listbox" id="receiver_country_listbox" aria-labelledby="receiver_country_button">
+                                               <li role="option" data-value="" class="selected">Chọn quốc gia</li>
+                                               <!-- Options will be populated by JS -->
+                                           </ul>
+                                           <input type="hidden" id="receiver_country" name="receiver_country" value="" required>
+                                       </div>
+                                       <span class="error-message"></span>
                                    </div>
                                    <div class="form-group">
                                        <label for="receiver_postcode">Postcode</label>
@@ -1172,58 +1195,277 @@
             openModal();
 
             // Address API functions
-            const senderCitySelect = $('#sender_city');
-            const senderDistrictSelect = $('#sender_district');
-            const senderWardSelect = $('#sender_ward');
+            const senderCitySelectOriginal = document.getElementById('sender_city'); // Our hidden input
+            const senderCityCustomSelectButton = document.getElementById('sender_city_button');
+            const senderCityCustomSelectDropdown = document.getElementById('sender_city_listbox');
+            const senderCitySelectedValueSpan = senderCityCustomSelectButton.querySelector('.selected-value');
 
-            // Fetch provinces
+            const senderDistrictSelectOriginal = document.getElementById('sender_district'); // Hidden input for district
+            const senderDistrictCustomSelectButton = document.getElementById('sender_district_button');
+            const senderDistrictCustomSelectDropdown = document.getElementById('sender_district_listbox');
+            const senderDistrictSelectedValueSpan = senderDistrictCustomSelectButton.querySelector('.selected-value');
+
+            const senderWardSelectOriginal = document.getElementById('sender_ward'); // Hidden input for ward
+            const senderWardCustomSelectButton = document.getElementById('sender_ward_button');
+            const senderWardCustomSelectDropdown = document.getElementById('sender_ward_listbox');
+            const senderWardSelectedValueSpan = senderWardCustomSelectButton.querySelector('.selected-value');
+
+            let provincesData = [];
+            let districtsData = [];
+            let wardsData = [];
+
+            // Function to populate custom select dropdown
+            function populateCustomSelect(dropdownElement, data, hiddenInput, selectedValue, defaultText) {
+                console.log('populateCustomSelect called with data:', data, 'selectedValue:', selectedValue, 'defaultText:', defaultText);
+                dropdownElement.innerHTML = ''; // Clear existing options
+                // Add a default option
+                const defaultOption = document.createElement('li');
+                defaultOption.setAttribute('role', 'option');
+                defaultOption.setAttribute('data-value', '');
+                defaultOption.textContent = defaultText;
+                if (!selectedValue || selectedValue === '') {
+                    defaultOption.classList.add('selected');
+                }
+                dropdownElement.appendChild(defaultOption);
+
+                data.forEach(item => {
+                    const option = document.createElement('li');
+                    option.setAttribute('role', 'option');
+                    option.setAttribute('data-value', item.id);
+                    option.textContent = item.full_name;
+                    if (item.id == selectedValue) {
+                        option.classList.add('selected');
+                        hiddenInput.previousElementSibling.querySelector('.selected-value').textContent = item.full_name;
+                    }
+                    dropdownElement.appendChild(option);
+                });
+            }
+
+            // Toggle custom select dropdown visibility
+            function toggleCustomSelectDropdown(button, dropdown, expand = null) {
+                console.log('toggleCustomSelectDropdown called. Current hidden state:', dropdown.classList.contains('hidden'));
+                const wrapper = button.closest('.custom-select-wrapper'); // Our custom-select-wrapper
+                const formGroup = wrapper ? wrapper.closest('.form-group') : null; // Get the parent form-group
+                const inputGroup3 = wrapper ? wrapper.closest('.input-group-3') : null; // Get the parent input-group-3
+                const formSection = formGroup ? formGroup.closest('.form-section') : null; // Get the parent form-section
+
+                const shouldBeActive = expand !== null ? expand : dropdown.classList.contains('hidden');
+                if (shouldBeActive) {
+                    // Close any other open custom dropdowns before opening this one
+                    document.querySelectorAll('.custom-select-dropdown.active').forEach(openDropdown => {
+                        if (openDropdown !== dropdown) {
+                            const openButton = openDropdown.previousElementSibling;
+                            const openWrapper = openButton.closest('.custom-select-wrapper');
+                            const openFormGroup = openWrapper ? openWrapper.closest('.form-group') : null;
+                            const openInputGroup3 = openWrapper ? openWrapper.closest('.input-group-3') : null;
+                            const openFormSection = openFormGroup ? openFormGroup.closest('.form-section') : null;
+
+                            openDropdown.classList.add('hidden');
+                            openDropdown.classList.remove('active');
+                            openButton.setAttribute('aria-expanded', 'false');
+                            if (openWrapper) openWrapper.classList.remove('active');
+                            if (openFormGroup) openFormGroup.classList.remove('dropdown-active');
+                            if (openInputGroup3) openInputGroup3.classList.remove('dropdown-active-group');
+                            if (openFormSection) openFormSection.classList.remove('section-dropdown-active');
+                        }
+                    });
+
+                    dropdown.classList.add('active');
+                    dropdown.classList.remove('hidden');
+                    button.setAttribute('aria-expanded', 'true');
+                    if (wrapper) wrapper.classList.add('active'); // Add active class for wrapper for its z-index
+                    if (formGroup) formGroup.classList.add('dropdown-active'); // Add class to parent form-group
+                    if (inputGroup3) inputGroup3.classList.add('dropdown-active-group'); // Add class to input-group-3
+                    if (formSection) formSection.classList.add('section-dropdown-active'); // Add class to form-section
+                    console.log('Dropdown set to active');
+                } else {
+                    dropdown.classList.add('hidden');
+                    dropdown.classList.remove('active');
+                    button.setAttribute('aria-expanded', 'false');
+                    if (wrapper) wrapper.classList.remove('active'); // Remove active class from wrapper
+                    if (formGroup) formGroup.classList.remove('dropdown-active'); // Remove class from parent form-group
+                    if (inputGroup3) inputGroup3.classList.remove('dropdown-active-group'); // Remove class from input-group-3
+                    if (formSection) formSection.classList.remove('section-dropdown-active'); // Remove class from form-section
+                    console.log('Dropdown set to hidden');
+                }
+                // updateHeaderBlur(); // Tạm thời bình luận dòng này để kiểm tra
+            }
+
+            // Handle option selection for custom select
+            function handleCustomOptionSelect(selectedValueSpan, hiddenInput, dropdownElement, selectedId, selectedText) {
+                console.log('handleCustomOptionSelect called. Selected:', selectedText, selectedId);
+                selectedValueSpan.textContent = selectedText;
+                hiddenInput.value = selectedId;
+
+                dropdownElement.querySelectorAll('li').forEach(li => {
+                    li.classList.remove('selected');
+                    if (li.dataset.value == selectedId) {
+                        li.classList.add('selected');
+                    }
+                });
+
+                // Manually trigger change event on hidden input to trigger district/ward updates
+                const event = new Event('change');
+                hiddenInput.dispatchEvent(event);
+            }
+
+            // Fetch provinces for custom select
             $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function(data_tinh) {
+                console.log('API response for provinces:', data_tinh);
                 if (data_tinh.error == 0) {
-                    senderCitySelect.html('<option value="" selected>Chọn Tỉnh/Thành phố</option>');
-                    $.each(data_tinh.data, function(key_tinh, val_tinh) {
-                        senderCitySelect.append('<option value="' + val_tinh.id + '">' + val_tinh.full_name + '</option>');
-                    });
+                    provincesData = data_tinh.data;
+                    populateCustomSelect(senderCityCustomSelectDropdown, provincesData, senderCitySelectOriginal, senderCitySelectOriginal.value, 'Chọn Tỉnh/Thành phố');
+                } else {
+                    console.error('Error fetching provinces API:', data_tinh.message);
+                }
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error('AJAX error fetching provinces:', textStatus, errorThrown);
+            });
 
-                    // Handle province change
-                    senderCitySelect.on('change', function() {
-                        const provinceId = $(this).val();
-                        if (provinceId) {
-                            // Fetch districts
-                            $.getJSON('https://esgoo.net/api-tinhthanh/2/' + provinceId + '.htm', function(data_quan) {
-                                if (data_quan.error == 0) {
-                                    senderDistrictSelect.html('<option value="" selected>Chọn Quận / Huyện</option>');
-                                    senderWardSelect.html('<option value="" selected>Chọn Phường / Xã</option>');
-                                    $.each(data_quan.data, function(key_quan, val_quan) {
-                                        senderDistrictSelect.append('<option value="' + val_quan.id + '">' + val_quan.full_name + '</option>');
-                                    });
-                                }
-                            });
-                        } else {
-                            senderDistrictSelect.html('<option value="" selected>Chọn Quận / Huyện</option>');
-                            senderWardSelect.html('<option value="" selected>Chọn Phường / Xã</option>');
-                        }
-                    });
+            // Event listener for custom city button
+            if (senderCityCustomSelectButton) {
+                console.log('senderCityCustomSelectButton found', senderCityCustomSelectButton);
+                senderCityCustomSelectButton.addEventListener('click', function(event) {
+                    console.log('Custom city button clicked!');
+                    event.stopPropagation(); // Prevent document click from closing immediately
+                    toggleCustomSelectDropdown(senderCityCustomSelectButton, senderCityCustomSelectDropdown);
+                });
+            } else {
+                console.error('senderCityCustomSelectButton not found!');
+            }
 
-                    // Handle district change
-                    senderDistrictSelect.on('change', function() {
-                        const districtId = $(this).val();
-                        if (districtId) {
-                            // Fetch wards
-                            $.getJSON('https://esgoo.net/api-tinhthanh/3/' + districtId + '.htm', function(data_phuong) {
-                                if (data_phuong.error == 0) {
-                                    senderWardSelect.html('<option value="" selected>Chọn Phường / Xã</option>');
-                                    $.each(data_phuong.data, function(key_phuong, val_phuong) {
-                                        senderWardSelect.append('<option value="' + val_phuong.id + '">' + val_phuong.full_name + '</option>');
-                                    });
-                                }
-                            });
-                        } else {
-                            senderWardSelect.html('<option value="" selected>Chọn Phường / Xã</option>');
-                        }
+            // Event listener for custom city dropdown options
+            if (senderCityCustomSelectDropdown) {
+                console.log('senderCityCustomSelectDropdown found', senderCityCustomSelectDropdown);
+                senderCityCustomSelectDropdown.addEventListener('click', function(event) {
+                    console.log('Custom city dropdown clicked!', event.target);
+                    const selectedOption = event.target.closest('li');
+                    if (selectedOption && selectedOption.hasAttribute('role', 'option')) {
+                        const selectedId = selectedOption.dataset.value;
+                        const selectedText = selectedOption.textContent;
+                        handleCustomOptionSelect(senderCitySelectedValueSpan, senderCitySelectOriginal, senderCityCustomSelectDropdown, selectedId, selectedText);
+                        toggleCustomSelectDropdown(senderCityCustomSelectButton, senderCityCustomSelectDropdown, false); // Close dropdown
+                    }
+                });
+            } else {
+                console.error('senderCityCustomSelectDropdown not found!');
+            }
+
+            // Close custom dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                // Collect all custom select wrappers
+                const customSelectWrappers = document.querySelectorAll('.custom-select-wrapper');
+
+                let isClickInsideAnyCustomSelect = false;
+                customSelectWrappers.forEach(wrapper => {
+                    if (wrapper.contains(event.target)) {
+                        isClickInsideAnyCustomSelect = true;
+                    }
+                });
+
+                if (!isClickInsideAnyCustomSelect) {
+                    // Close all open custom dropdowns
+                    document.querySelectorAll('.custom-select-dropdown.active').forEach(dropdown => {
+                        const button = dropdown.previousElementSibling;
+                        toggleCustomSelectDropdown(button, dropdown, false);
                     });
                 }
             });
 
+            // Handle city change (original logic, now triggered by hidden senderCitySelectOriginal)
+            senderCitySelectOriginal.addEventListener('change', function() {
+                console.log('Hidden senderCitySelectOriginal changed. Value:', this.value);
+                const provinceId = senderCitySelectOriginal.value;
+                // Clear district and ward dropdowns and hidden inputs
+                senderDistrictSelectOriginal.value = '';
+                senderDistrictSelectedValueSpan.textContent = 'Chọn Quận / Huyện';
+                populateCustomSelect(senderDistrictCustomSelectDropdown, [], senderDistrictSelectOriginal, '', 'Chọn Quận / Huyện');
+
+                senderWardSelectOriginal.value = '';
+                senderWardSelectedValueSpan.textContent = 'Chọn Phường / Xã';
+                populateCustomSelect(senderWardCustomSelectDropdown, [], senderWardSelectOriginal, '', 'Chọn Phường / Xã');
+
+                        if (provinceId) {
+                            // Fetch districts
+                            $.getJSON('https://esgoo.net/api-tinhthanh/2/' + provinceId + '.htm', function(data_quan) {
+                                if (data_quan.error == 0) {
+                            districtsData = data_quan.data;
+                            populateCustomSelect(senderDistrictCustomSelectDropdown, districtsData, senderDistrictSelectOriginal, senderDistrictSelectOriginal.value, 'Chọn Quận / Huyện');
+                        } else {
+                            console.error('Error fetching districts API:', data_quan.message);
+                        }
+                    }).fail(function(jqXHR, textStatus, errorThrown) {
+                        console.error('AJAX error fetching districts:', textStatus, errorThrown);
+                                    });
+                                }
+                            });
+
+            // Event listener for custom district button
+            if (senderDistrictCustomSelectButton) {
+                senderDistrictCustomSelectButton.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    toggleCustomSelectDropdown(senderDistrictCustomSelectButton, senderDistrictCustomSelectDropdown);
+                });
+            }
+
+            // Event listener for custom district dropdown options
+            if (senderDistrictCustomSelectDropdown) {
+                senderDistrictCustomSelectDropdown.addEventListener('click', function(event) {
+                    const selectedOption = event.target.closest('li');
+                    if (selectedOption && selectedOption.hasAttribute('role', 'option')) {
+                        const selectedId = selectedOption.dataset.value;
+                        const selectedText = selectedOption.textContent;
+                        handleCustomOptionSelect(senderDistrictSelectedValueSpan, senderDistrictSelectOriginal, senderDistrictCustomSelectDropdown, selectedId, selectedText);
+                        toggleCustomSelectDropdown(senderDistrictCustomSelectButton, senderDistrictCustomSelectDropdown, false);
+                        }
+                    });
+            }
+
+            // Handle district change (now triggered by hidden senderDistrictSelectOriginal)
+            senderDistrictSelectOriginal.addEventListener('change', function() {
+                console.log('Hidden senderDistrictSelectOriginal changed. Value:', this.value);
+                const districtId = senderDistrictSelectOriginal.value;
+
+                // Clear ward dropdown and hidden input
+                senderWardSelectOriginal.value = '';
+                senderWardSelectedValueSpan.textContent = 'Chọn Phường / Xã';
+                populateCustomSelect(senderWardCustomSelectDropdown, [], senderWardSelectOriginal, '', 'Chọn Phường / Xã');
+
+                        if (districtId) {
+                            // Fetch wards
+                            $.getJSON('https://esgoo.net/api-tinhthanh/3/' + districtId + '.htm', function(data_phuong) {
+                                if (data_phuong.error == 0) {
+                            wardsData = data_phuong.data;
+                            populateCustomSelect(senderWardCustomSelectDropdown, wardsData, senderWardSelectOriginal, senderWardSelectOriginal.value, 'Chọn Phường / Xã');
+                        } else {
+                            console.error('Error fetching wards API:', data_phuong.message);
+                        }
+                    }).fail(function(jqXHR, textStatus, errorThrown) {
+                        console.error('AJAX error fetching wards:', textStatus, errorThrown);
+                    });
+                }
+            });
+
+            // Event listener for custom ward button
+            if (senderWardCustomSelectButton) {
+                senderWardCustomSelectButton.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    toggleCustomSelectDropdown(senderWardCustomSelectButton, senderWardCustomSelectDropdown);
+                });
+            }
+
+            // Event listener for custom ward dropdown options
+            if (senderWardCustomSelectDropdown) {
+                senderWardCustomSelectDropdown.addEventListener('click', function(event) {
+                    const selectedOption = event.target.closest('li');
+                    if (selectedOption && selectedOption.hasAttribute('role', 'option')) {
+                        const selectedId = selectedOption.dataset.value;
+                        const selectedText = selectedOption.textContent;
+                        handleCustomOptionSelect(senderWardSelectedValueSpan, senderWardSelectOriginal, senderWardCustomSelectDropdown, selectedId, selectedText);
+                        toggleCustomSelectDropdown(senderWardCustomSelectButton, senderWardCustomSelectDropdown, false);
+                    }
+                });
+            }
 
              // render user dropdown
             function renderUserDropdown() {
@@ -1330,6 +1572,9 @@
 
             // Thêm code mới để lấy danh sách quốc gia
             const receiverCountrySelect = document.getElementById('receiver_country');
+            const receiverCountryCustomSelectButton = document.getElementById('receiver_country_button');
+            const receiverCountryCustomSelectDropdown = document.getElementById('receiver_country_listbox');
+            const receiverCountrySelectedValueSpan = receiverCountryCustomSelectButton.querySelector('.selected-value');
             
             // Hàm để lấy danh sách quốc gia từ API
             async function fetchCountries() {
@@ -1341,14 +1586,15 @@
                     countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
                     
                     // Xóa các options hiện tại
-                    receiverCountrySelect.innerHTML = '<option value="" selected>Chọn quốc gia</option>';
+                    receiverCountryCustomSelectDropdown.innerHTML = '<li role="option" data-value="" class="selected">Chọn quốc gia</li>';
                     
-                    // Thêm các quốc gia vào select
+                    // Thêm các quốc gia vào dropdown
                     countries.forEach(country => {
-                        const option = document.createElement('option');
-                        option.value = country.cca2; // Mã quốc gia 2 ký tự
-                        option.textContent = country.name.common; // Tên quốc gia
-                        receiverCountrySelect.appendChild(option);
+                        const option = document.createElement('li');
+                        option.setAttribute('role', 'option');
+                        option.setAttribute('data-value', country.cca2);
+                        option.textContent = country.name.common;
+                        receiverCountryCustomSelectDropdown.appendChild(option);
                     });
                 } catch (error) {
                     console.error('Lỗi khi lấy danh sách quốc gia:', error);
@@ -1365,18 +1611,40 @@
                         { value: 'SG', text: 'SINGAPORE' }
                     ];
                     
-                    receiverCountrySelect.innerHTML = '<option value="" selected>Chọn quốc gia</option>';
+                    receiverCountryCustomSelectDropdown.innerHTML = '<li role="option" data-value="" class="selected">Chọn quốc gia</li>';
                     fallbackCountries.forEach(country => {
-                        const option = document.createElement('option');
-                        option.value = country.value;
+                        const option = document.createElement('li');
+                        option.setAttribute('role', 'option');
+                        option.setAttribute('data-value', country.value);
                         option.textContent = country.text;
-                        receiverCountrySelect.appendChild(option);
+                        receiverCountryCustomSelectDropdown.appendChild(option);
                     });
                 }
             }
 
             // Gọi hàm lấy danh sách quốc gia khi trang được tải
             fetchCountries();
+
+            // Event listener cho custom country button
+            if (receiverCountryCustomSelectButton) {
+                receiverCountryCustomSelectButton.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    toggleCustomSelectDropdown(receiverCountryCustomSelectButton, receiverCountryCustomSelectDropdown);
+                });
+            }
+
+            // Event listener cho custom country dropdown options
+            if (receiverCountryCustomSelectDropdown) {
+                receiverCountryCustomSelectDropdown.addEventListener('click', function(event) {
+                    const selectedOption = event.target.closest('li');
+                    if (selectedOption && selectedOption.hasAttribute('role', 'option')) {
+                        const selectedId = selectedOption.dataset.value;
+                        const selectedText = selectedOption.textContent;
+                        handleCustomOptionSelect(receiverCountrySelectedValueSpan, receiverCountrySelect, receiverCountryCustomSelectDropdown, selectedId, selectedText);
+                        toggleCustomSelectDropdown(receiverCountryCustomSelectButton, receiverCountryCustomSelectDropdown, false);
+                    }
+                });
+            }
 
             // New code for Branch and Agent autocomplete
             const branchInput = document.getElementById('branch_input');
