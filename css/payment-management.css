@@ -661,6 +661,18 @@ body, .content-wrapper, .payment-content-area {
      .content-actions-original {
          bottom: 40px;
      }
+    .section-content-original {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    .payment-info-grid-original {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    .payment-history-table-wrapper {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
 }
 
 @media (max-width: 576px) {

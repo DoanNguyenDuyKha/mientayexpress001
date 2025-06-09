@@ -334,7 +334,7 @@
     }
     .card-header {
         border-radius: 3px 3px 0 0;
-        padding: 0.5rem 0.1rem 0.3rem 0.1rem;
+        /* padding: 0.5rem 0rem 0.3rem 0.1rem; */
         font-size: 0.95rem;
     }
     #serviceTable th, #serviceTable td {
@@ -367,6 +367,7 @@
         font-size: 0.65rem;
     }
 }
+
 
 .filter-container {
     background: white;
@@ -595,6 +596,23 @@
         flex-wrap: wrap; /* Đảm bảo responsive nếu không đủ chỗ */
         gap: 0.5rem; /* khoảng cách giữa hai khối */
         margin-bottom: 0.5rem; /* hoặc theo thiết kế */
+    }
+    .actions-container {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 1rem !important;
+    }
+    .service-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        gap: 0.7rem !important;
+    }
+    .service-actions .button {
+        width: 100% !important;
+        justify-content: center !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
     }
 }
 

@@ -90,7 +90,7 @@ function updateHeaderBlur() {
             <div class="header-left">
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" class="header-search-input" placeholder="Mã vận đơn / Tracking ID...">
+                    <input type="text" class="header-search-input" placeholder="Tìm kiếm...">
                 </div>
             </div>
             <div class="header-actions" style="display: flex; align-items: center; gap: 1.2rem; margin-left: auto;">
@@ -180,18 +180,22 @@ function updateHeaderBlur() {
                 </div>
                 <div class="actions-container">
                     <div class="action-buttons">
-                        <button class="btn-add-customer" id="addCustomerBtn">
-                            <i class="fa-solid fa-user-plus"></i>
-                            Thêm khách hàng
-                        </button>
-                        <button class="btn-export">
-                            <i class="fa-solid fa-file-export"></i>
-                            Xuất Excel
-                        </button>
-                        <button class="btn-import">
-                            <i class="fa-solid fa-file-import"></i>
-                            Nhập Excel
-                        </button>
+                        <div class="action-row">
+                            <button class="btn-add-customer" id="addCustomerBtn">
+                                <i class="fa-solid fa-user-plus"></i>
+                                Thêm khách hàng
+                            </button>
+                            <button class="btn-export">
+                                <i class="fa-solid fa-file-export"></i>
+                                Xuất Excel
+                            </button>
+                        </div>
+                        <div class="action-row">
+                            <button class="btn-import">
+                                <i class="fa-solid fa-file-import"></i>
+                                Nhập Excel
+                            </button>
+                        </div>
                     </div>
                     <div class="items-per-page-control">
                         <select id="items-per-page-select" class="form-select">

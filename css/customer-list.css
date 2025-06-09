@@ -265,7 +265,7 @@
 }
 
 .card-header {
-    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+    background: var(--accent);
     color: white;
     padding: 1rem var(--card-padding);
     border-bottom: 1.5px solid var(--border-color);
@@ -277,7 +277,7 @@
 
 .card-header h2 {
     color: var(--text-on-primary);
-    font-size: var(--font-size-lg);
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.5px;
     margin: 0;
@@ -807,20 +807,36 @@
 @media (max-width: 768px) {
     .customer-actions {
         flex-direction: column;
-        gap: 0.8rem;
+        gap: 1rem;
     }
 
     .filter-container {
         padding: var(--base-padding);
     }
 
-    .action-buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: stretch;
+    .actions-container {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 1rem !important;
     }
-
-    .action-buttons button {
+    .action-buttons {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+    }
+    .action-buttons .action-row {
+        display: flex;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    .action-buttons .action-row:first-child button {
+        flex: 1 1 0;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        justify-content: center;
+    }
+    .action-buttons .action-row:last-child button {
         width: 100%;
         justify-content: center;
     }
@@ -857,7 +873,7 @@
         align-items: center;
         flex-wrap: wrap; /* Đảm bảo responsive nếu không đủ chỗ */
         gap: 0.5rem; /* khoảng cách giữa hai khối */
-        margin-bottom: 0.5rem; /* hoặc theo thiết kế */
+        margin-bottom: 0; /* hoặc theo thiết kế */
     }
 
     .customer-info-grid,
@@ -1001,6 +1017,14 @@
          width: 50%; /* Allow Họ và tên to take more space */
       }
 }
+@media (max-width: 600px) {
+    .user-dropdown {
+        right: 8px;
+        min-width: 90vw;
+        border-radius: 12px;
+    }
+    .announcement-box { min-width: 90vw; }
+}
 
 @media (max-width: 480px) {
     .action-buttons button {
@@ -1060,6 +1084,20 @@
       .card-footer{
         justify-content: center !important;
       }
+      .modal-content {
+        background: white;
+        border-radius: 18px;
+        width: 90%;
+        max-width: 800px !important; 
+        max-height: 85vh;
+        overflow: hidden;
+        position: relative;
+        margin: auto;
+        box-shadow: var(--shadow-lg);
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .filter-select, .btn-filter {
@@ -1146,13 +1184,6 @@
     border: none;
     border-top: 1px solid #f1f5f9;
 }
-@media (max-width: 600px) {
-    .user-dropdown {
-        right: 8px;
-        min-width: 90vw;
-        border-radius: 12px;
-    }
-}
 
 .announcement-overlay {
     position: fixed;
@@ -1212,10 +1243,6 @@
     border-radius: 0 0 18px 18px;
     text-align: right;
 }
-@media (max-width: 600px) {
-    .announcement-box { min-width: 90vw; }
-}
-
 .header-dark-overlay {
     position: absolute;
     inset: 0;
@@ -1292,21 +1319,4 @@
 .pagination-buttons .button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-}
-
-@media (max-width: 480px) {
-    .modal-content {
-        background: white;
-        border-radius: 18px;
-        width: 90%;
-        max-width: 800px !important; 
-        max-height: 85vh;
-        overflow: hidden;
-        position: relative;
-        margin: auto;
-        box-shadow: var(--shadow-lg);
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-    }
 }
