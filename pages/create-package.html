@@ -371,11 +371,17 @@
                                    <div class="input-group">
                                        <label for="receiver_phone1">Số điện thoại 1<span class="required">*</span></label>
                                        <div class="phone-input-group">
-                                           <select id="receiver_phone1_code" name="receiver_phone1_code" title="Mã quốc gia SĐT 1">
-                                               <option value="+84" selected>+84</option>
-                                               <option value="+1">+1</option>
-                                               <option value="+44">+44</option>
-                                           </select>
+                                           <div class="custom-select-wrapper" id="receiver_phone1_code_custom_select_wrapper">
+                                               <button type="button" class="custom-select-button" aria-haspopup="listbox" aria-expanded="false" aria-controls="receiver_phone1_code_listbox" id="receiver_phone1_code_button">
+                                                   <span class="selected-value">+84 (Vietnam)</span>
+                                                   <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                               </button>
+                                               <ul class="custom-select-dropdown hidden" role="listbox" id="receiver_phone1_code_listbox" aria-labelledby="receiver_phone1_code_button">
+                                                   <li role="option" data-value="+84" class="selected">+84 (Vietnam)</li>
+                                                   <!-- Options sẽ được JS render -->
+                                               </ul>
+                                               <input type="hidden" id="receiver_phone1_code" name="receiver_phone1_code" value="+84" required>
+                                           </div>
                                            <input type="tel" id="receiver_phone1" name="receiver_phone1" value="" required autocomplete="off">
                                        </div>
                                        <span class="error-message"></span>
@@ -383,12 +389,18 @@
                                    <div class="input-group">
                                         <label for="receiver_phone2">Số điện thoại 2</label>
                                         <div class="phone-input-group">
-                                           <select id="receiver_phone2_code" name="receiver_phone2_code" title="Mã quốc gia SĐT 2">
-                                               <option value="+84" selected>+84</option>
-                                               <option value="+1">+1</option>
-                                               <option value="+44">+44</option>
-                                           </select>
-                                           <input type="tel" id="receiver_phone2" name="receiver_phone2" value="" autocomplete="off">
+                                            <div class="custom-select-wrapper" id="receiver_phone2_code_custom_select_wrapper">
+                                                <button type="button" class="custom-select-button" aria-haspopup="listbox" aria-expanded="false" aria-controls="receiver_phone2_code_listbox" id="receiver_phone2_code_button">
+                                                    <span class="selected-value">+84 (Vietnam)</span>
+                                                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                                </button>
+                                                <ul class="custom-select-dropdown hidden" role="listbox" id="receiver_phone2_code_listbox" aria-labelledby="receiver_phone2_code_button">
+                                                    <li role="option" data-value="+84" class="selected">+84 (Vietnam)</li>
+                                                    <!-- Options sẽ được JS render -->
+                                                </ul>
+                                                <input type="hidden" id="receiver_phone2_code" name="receiver_phone2_code" value="+84" required>
+                                            </div>
+                                            <input type="tel" id="receiver_phone2" name="receiver_phone2" value="" autocomplete="off">
                                         </div>
                                        <span class="error-message"></span>
                                    </div>
@@ -1716,6 +1728,219 @@
                   });
              }
         });
+    </script>
+
+    <script>
+    // --- DuyKha: Tích hợp API mã quốc gia cho 2 combobox mã điện thoại ---
+    document.addEventListener('DOMContentLoaded', function() {
+      const phoneCodeSelects = [
+        document.getElementById('receiver_phone1_code'),
+        document.getElementById('receiver_phone2_code')
+      ];
+      if (!phoneCodeSelects[0] || !phoneCodeSelects[1]) return;
+
+      fetch('https://restcountries.com/v3.1/all?fields=idd,name')
+        .then(res => res.json())
+        .then(countries => {
+          // Lọc và sắp xếp theo tên quốc gia
+          const codes = countries
+            .filter(c => c.idd && c.idd.root)
+            .map(c => {
+              // Một số quốc gia có nhiều suffix, chỉ lấy cái đầu tiên
+              const suffix = Array.isArray(c.idd.suffixes) && c.idd.suffixes.length > 0 ? c.idd.suffixes[0] : '';
+              return {
+                code: c.idd.root + suffix,
+                name: c.name.common
+              };
+            })
+            .filter(c => /^\+\d+/.test(c.code))
+            .sort((a, b) => a.name.localeCompare(b.name));
+          // Xây dựng HTML option
+          let options = codes.map(c => `<option value="${c.code}">${c.code} (${c.name})</option>`).join('');
+          // Đảm bảo +84 (Vietnam) luôn ở đầu
+          const vietnam = codes.find(c => c.code === '+84');
+          if (vietnam) {
+            options = `<option value="+84" selected>+84 (Vietnam)</option>` + options.replace(`<option value="+84">+84 (Vietnam)</option>`, '');
+          }
+          phoneCodeSelects.forEach(select => {
+            select.innerHTML = options;
+          });
+        })
+        .catch(() => {
+          // Nếu lỗi, fallback về các mã phổ biến
+          const fallback = [
+            { code: '+84', name: 'Vietnam' },
+            { code: '+1', name: 'United States' },
+            { code: '+44', name: 'United Kingdom' },
+            { code: '+61', name: 'Australia' },
+            { code: '+81', name: 'Japan' },
+            { code: '+82', name: 'South Korea' },
+            { code: '+65', name: 'Singapore' }
+          ];
+          let options = fallback.map(c => `<option value="${c.code}">${c.code} (${c.name})</option>`).join('');
+          options = `<option value="+84" selected>+84 (Vietnam)</option>` + options.replace(`<option value="+84">+84 (Vietnam)</option>`, '');
+          phoneCodeSelects.forEach(select => {
+            select.innerHTML = options;
+          });
+        });
+    });
+    // ... existing code ...
+    </script>
+
+    <script>
+    // --- DuyKha: Custom select cho mã quốc gia điện thoại ---
+    document.addEventListener('DOMContentLoaded', function() {
+        // ... existing code ...
+        // Custom select cho receiver_phone1_code và receiver_phone2_code
+        const phoneCodeCustoms = [
+            {
+                wrapper: document.getElementById('receiver_phone1_code_custom_select_wrapper'),
+                button: document.getElementById('receiver_phone1_code_button'),
+                dropdown: document.getElementById('receiver_phone1_code_listbox'),
+                selectedValueSpan: document.getElementById('receiver_phone1_code_button')?.querySelector('.selected-value'),
+                hiddenInput: document.getElementById('receiver_phone1_code'),
+            },
+            {
+                wrapper: document.getElementById('receiver_phone2_code_custom_select_wrapper'),
+                button: document.getElementById('receiver_phone2_code_button'),
+                dropdown: document.getElementById('receiver_phone2_code_listbox'),
+                selectedValueSpan: document.getElementById('receiver_phone2_code_button')?.querySelector('.selected-value'),
+                hiddenInput: document.getElementById('receiver_phone2_code'),
+            }
+        ];
+        // Lấy danh sách mã quốc gia
+        function getPhoneCodes() {
+            return fetch('https://restcountries.com/v3.1/all?fields=idd,name')
+                .then(res => res.json())
+                .then(countries => {
+                    const codes = countries
+                        .filter(c => c.idd && c.idd.root)
+                        .map(c => {
+                            const suffix = Array.isArray(c.idd.suffixes) && c.idd.suffixes.length > 0 ? c.idd.suffixes[0] : '';
+                            return {
+                                code: c.idd.root + suffix,
+                                name: c.name.common
+                            };
+                        })
+                        .filter(c => /^\+\d+/.test(c.code))
+                        .sort((a, b) => a.name.localeCompare(b.name));
+                    // Đảm bảo +84 (Vietnam) luôn ở đầu
+                    const vietnam = codes.find(c => c.code === '+84');
+                    let result = codes;
+                    if (vietnam) {
+                        result = [vietnam, ...codes.filter(c => c.code !== '+84')];
+                    }
+                    return result;
+                })
+                .catch(() => [
+                    { code: '+84', name: 'Vietnam' },
+                    { code: '+1', name: 'United States' },
+                    { code: '+44', name: 'United Kingdom' },
+                    { code: '+61', name: 'Australia' },
+                    { code: '+81', name: 'Japan' },
+                    { code: '+82', name: 'South Korea' },
+                    { code: '+65', name: 'Singapore' }
+                ]);
+        }
+        // Render options cho custom select
+        function renderPhoneCodeOptions(dropdown, codes, selectedCode) {
+            dropdown.innerHTML = '';
+            codes.forEach(c => {
+                const li = document.createElement('li');
+                li.setAttribute('role', 'option');
+                li.setAttribute('data-value', c.code);
+                li.textContent = `${c.code} (${c.name})`;
+                if (c.code === selectedCode) li.classList.add('selected');
+                dropdown.appendChild(li);
+            });
+        }
+        // Sự kiện mở/đóng custom select
+        function togglePhoneCodeDropdown(wrapper, button, dropdown, expand = null) {
+            const formGroup = wrapper.closest('.form-group');
+            const inputGroup3 = wrapper.closest('.input-group-3');
+            const formSection = formGroup ? formGroup.closest('.form-section') : null;
+            const shouldBeActive = expand !== null ? expand : dropdown.classList.contains('hidden');
+            if (shouldBeActive) {
+                document.querySelectorAll('.custom-select-dropdown.active').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) {
+                        const openButton = openDropdown.previousElementSibling;
+                        const openWrapper = openButton.closest('.custom-select-wrapper');
+                        const openFormGroup = openWrapper ? openWrapper.closest('.form-group') : null;
+                        const openInputGroup3 = openWrapper ? openWrapper.closest('.input-group-3') : null;
+                        const openFormSection = openFormGroup ? openFormGroup.closest('.form-section') : null;
+                        openDropdown.classList.add('hidden');
+                        openDropdown.classList.remove('active');
+                        openButton.setAttribute('aria-expanded', 'false');
+                        if (openWrapper) openWrapper.classList.remove('active');
+                        if (openFormGroup) openFormGroup.classList.remove('dropdown-active');
+                        if (openInputGroup3) openInputGroup3.classList.remove('dropdown-active-group');
+                        if (openFormSection) openFormSection.classList.remove('section-dropdown-active');
+                    }
+                });
+                dropdown.classList.add('active');
+                dropdown.classList.remove('hidden');
+                button.setAttribute('aria-expanded', 'true');
+                if (wrapper) wrapper.classList.add('active');
+                if (formGroup) formGroup.classList.add('dropdown-active');
+                if (inputGroup3) inputGroup3.classList.add('dropdown-active-group');
+                if (formSection) formSection.classList.add('section-dropdown-active');
+            } else {
+                dropdown.classList.add('hidden');
+                dropdown.classList.remove('active');
+                button.setAttribute('aria-expanded', 'false');
+                if (wrapper) wrapper.classList.remove('active');
+                if (formGroup) formGroup.classList.remove('dropdown-active');
+                if (inputGroup3) inputGroup3.classList.remove('dropdown-active-group');
+                if (formSection) formSection.classList.remove('section-dropdown-active');
+            }
+        }
+        // Sự kiện chọn option
+        function handlePhoneCodeSelect(selectedValueSpan, hiddenInput, dropdown, selectedCode, selectedText) {
+            // Chỉ hiện mã quốc gia khi chưa xổ
+            selectedValueSpan.textContent = selectedCode;
+            hiddenInput.value = selectedCode;
+            dropdown.querySelectorAll('li').forEach(li => {
+                li.classList.remove('selected');
+                if (li.dataset.value == selectedCode) li.classList.add('selected');
+            });
+            const event = new Event('change');
+            hiddenInput.dispatchEvent(event);
+        }
+        // Khởi tạo custom select cho cả 2 phone code
+        getPhoneCodes().then(codes => {
+            phoneCodeCustoms.forEach(({wrapper, button, dropdown, selectedValueSpan, hiddenInput}) => {
+                if (!wrapper || !button || !dropdown || !selectedValueSpan || !hiddenInput) return;
+                renderPhoneCodeOptions(dropdown, codes, hiddenInput.value || '+84');
+                // Ban đầu chỉ hiện mã quốc gia
+                selectedValueSpan.textContent = hiddenInput.value || '+84';
+                // Sự kiện mở dropdown
+                button.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    togglePhoneCodeDropdown(wrapper, button, dropdown);
+                });
+                // Sự kiện chọn option
+                dropdown.addEventListener('click', function(event) {
+                    const selectedOption = event.target.closest('li');
+                    if (selectedOption && selectedOption.hasAttribute('role', 'option')) {
+                        const selectedCode = selectedOption.dataset.value;
+                        const selectedText = selectedOption.textContent;
+                        handlePhoneCodeSelect(selectedValueSpan, hiddenInput, dropdown, selectedCode, selectedText);
+                        togglePhoneCodeDropdown(wrapper, button, dropdown, false);
+                    }
+                });
+            });
+        });
+        // Đóng dropdown khi click ngoài
+        document.addEventListener('click', function(event) {
+            phoneCodeCustoms.forEach(({wrapper, button, dropdown}) => {
+                if (!wrapper || !button || !dropdown) return;
+                if (!wrapper.contains(event.target)) {
+                    togglePhoneCodeDropdown(wrapper, button, dropdown, false);
+                }
+            });
+        });
+    });
+    // ... existing code ...
     </script>
 
 </body>

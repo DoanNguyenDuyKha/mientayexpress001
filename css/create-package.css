@@ -297,7 +297,7 @@ input[readonly], textarea[readonly] {
 }
 
 .form-section .card-header .address-book-select select {
-    font-size: 0.65rem;
+    font-size: 1rem;
     padding: 0.1rem 0.3rem;
     padding-right: 1.6rem;
     font-family: inherit;
@@ -396,12 +396,24 @@ input[readonly], textarea[readonly] {
     gap: 1px;
 }
 
-.phone-input-group select {
-    flex: 0 0 40px;
+.phone-input-group .custom-select-wrapper {
+    flex: 0 0 70px;
+    min-width: 70px;
+    max-width: 100px;
 }
 
-.phone-input-group input {
-    flex-grow: 1;
+.phone-input-group .custom-select-dropdown {
+    min-width: 180px;
+    width: max-content;
+    left: 0;
+    right: auto;
+    max-width: 320px;
+    white-space: nowrap;
+}
+
+.phone-input-group input[type="tel"] {
+    flex: 1 1 0%;
+    min-width: 0;
 }
 
 .input-group-3 {
@@ -969,7 +981,7 @@ footer.form-actions {
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        height: 31px !important;
+        height: 40px !important;
         padding: 0.35rem 0.5rem !important; 
         font-size: 1rem !important;
         border: 1px solid var(--input-border); 
@@ -1017,7 +1029,7 @@ footer.form-actions {
     }
 
     .form-section .card-header {
-        padding: 0.2rem 0.4rem;
+        padding: 0.8rem;
     }
 
     .form-section .card-header .card-title {
@@ -1361,11 +1373,12 @@ a {
 .custom-select-wrapper {
     position: relative;
     width: 100%;
-    z-index: 2;
+    z-index: 100;
 }
 
 .custom-select-wrapper.active {
-    z-index: 9999;
+    position: relative !important;
+    z-index: 10000 !important;
 }
 
 .custom-select-button {
@@ -1423,8 +1436,8 @@ a {
     padding: 0;
     margin-top: 2px;
     z-index: 9999;
-    max-height: 300px; /* Chiều cao cố định cho màn hình mobile */
-    overflow-y: auto; /* Thêm thanh cuộn khi vượt quá chiều cao */
+    max-height: 300px;
+    overflow-y: auto;
     transition: opacity 0.2s ease, transform 0.2s ease;
     opacity: 0;
     transform: translateY(5px);
@@ -1478,4 +1491,73 @@ a {
 
 .form-section.section-dropdown-active {
     z-index: 10000; /* Tăng z-index cực cao để đảm bảo form section hiển thị trên cùng */
+}
+
+@media (min-width: 992px) {
+  .phone-input-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none !important;
+    padding-right: 0.5em !important;
+  }
+}
+
+.form-group,
+.form-section .card-body,
+.input-group,
+.phone-input-group,
+.form-column-right,
+.form-layout,
+.main-content,
+.content-wrapper {
+  overflow: visible !important;
+}
+
+.custom-select-wrapper.active {
+  z-index: 10000 !important;
+}
+
+.form-group textarea,
+.input-group textarea {
+  position: static !important;
+  z-index: auto !important;
+  background: #fff;
+}
+
+.phone-input-group .custom-select-button .selected-value {
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .form-group.inline-group.multi-input {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .form-group.inline-group.multi-input .input-group {
+    width: 100%;
+    min-width: 0;
+  }
+  .phone-input-group {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .phone-input-group .custom-select-wrapper {
+    flex: 0 0 110px;
+    min-width: 90px;
+    max-width: 140px;
+  }
+  .phone-input-group input[type="tel"] {
+    flex: 1 1 0%;
+    min-width: 0;
+    font-size: 1.1rem;
+    padding: 0.5rem 0.7rem;
+  }
 }

@@ -973,6 +973,9 @@ footer.content-actions {
 }
 
 @media (max-width: 768px) {
+    .progress-steps{
+        display: none !important;
+    }
     
     .summary-codes-container .summary-grid-2col {
         display: flex;

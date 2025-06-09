@@ -328,7 +328,7 @@ body {
 
 #employeeTable th,
 #employeeTable td {
-    padding: 1.25rem 1rem;
+    padding: 0.8rem 1rem;
     word-break: break-word;
     white-space: nowrap;
     text-align: left;
@@ -339,10 +339,9 @@ body {
     color: var(--text-primary);
     font-weight: 600;
     border-bottom: 2px solid var(--border-color);
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     letter-spacing: 0.1px;
     text-transform: uppercase;
-    font-size: 0.85rem;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
