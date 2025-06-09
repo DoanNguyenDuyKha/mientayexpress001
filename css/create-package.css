@@ -943,7 +943,7 @@ footer.form-actions {
         justify-content: center;
         min-width: unset;
           width: unset; 
-        padding: 0.5rem 0.8rem;
+        padding: 0.85rem 1rem;
      }
 
      .form-actions .terms-agreement {
@@ -1343,7 +1343,7 @@ a {
     align-items: center;
     width: 100%;
     padding: 0.35rem 0.5rem; 
-    font-size: var(--form-font-size);
+    font-size: 1rem;
     border: 1px solid var(--input-border); 
     border-radius: var(--border-radius);
     background-color: var(--form-bg);
@@ -1363,6 +1363,7 @@ a {
     flex-grow: 1;
     text-align: left;
     white-space: nowrap;
+    padding: 0.35rem 0.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
 }

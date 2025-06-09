@@ -329,6 +329,7 @@ body, .straking-content-screenshot {
     justify-content: space-between;
     background-color: var(--ss-section-header-bg);
     border-bottom: 1px solid var(--ss-border-color);
+    margin-bottom: 0.3rem;
 }
 
 .straking-content-screenshot .card.collapsed .card-header {
@@ -1666,6 +1667,7 @@ label {
         margin-left: 0.8rem !important;
     }
     .add-history-grid-ss input {
+        /* width: 300px; */
         width: 100%;
         font-size: 1em;
         border-radius: 14px;
