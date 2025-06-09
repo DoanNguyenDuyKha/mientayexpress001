@@ -1196,6 +1196,7 @@ body, .straking-content-screenshot {
     align-items: center;
     gap: 0.5rem;
     font-weight: 500;
+    padding: 0.3rem 0.6rem;
     white-space: nowrap;
     border-radius: var(--section-radius);
     letter-spacing: 0.3px;
@@ -1588,7 +1589,7 @@ label {
         padding-right: 1.5rem;
     }
     .action-buttons-ss .button {
-        padding: 0.7rem 0.8rem;
+        padding: 7px 11px;
         font-size: 1em;
     }
     .progress-bar-ss {
@@ -1638,7 +1639,6 @@ label {
     }
     input, select, button {
         font-size: 16px !important;
-        padding: 0.7rem 0.8rem !important;
     }
     .history-body-ss .section-subtitle{
         font-size: 16px !important;

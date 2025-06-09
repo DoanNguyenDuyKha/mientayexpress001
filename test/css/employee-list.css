@@ -591,11 +591,10 @@ body {
     min-width: 100px;
     padding: 0.7rem 1.4rem;
     font-size: 0.9rem;
-    border-radius: 18px;
 }
 
 #deleteEmployeeModal .modal-footer .btn-secondary {
-    background: #FFD700;
+    background: var(--danger-color);
     color: #fff;
     border: none;
 }
@@ -948,7 +947,7 @@ body {
 }
 
 #deleteEmployeeModal .modal-header {
-    background: #FFD700;
+    background: var(--danger-color);
     color: #fff;
 }
 

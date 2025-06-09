@@ -825,7 +825,7 @@ footer.content-actions {
     font-weight: 600; 
     font-size: var(--form-font-size); 
     white-space: nowrap;
-    border-radius:18px; 
+    border-radius: var(--border-radius); 
     transition: all var(--transition-speed); 
     box-shadow: var(--shadow-md); 
     border: none; 
@@ -833,7 +833,6 @@ footer.content-actions {
     letter-spacing: 0.3px;
     margin-right: 0;
     flex-grow: 0; 
-    padding: 0.7rem 0.8rem;
 }
 
 .content-actions .button.secondary {

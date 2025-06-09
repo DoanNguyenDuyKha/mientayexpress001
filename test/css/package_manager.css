@@ -2622,7 +2622,7 @@ button:disabled {
   .action-row .button {
     min-width: 110px;
     font-size: 0.98em;
-    padding: 0.8rem 0;
+    padding: 0.6em 0.2em;
     margin-right: 0 !important;
     white-space: nowrap;
   }

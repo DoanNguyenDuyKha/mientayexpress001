@@ -1062,7 +1062,7 @@ input, select, button, textarea {
 .detail-footer .button,
 .order-detail-content button.button {
     font-size: var(--form-font-size);
-    /* padding: 0.4rem 0.8rem; */
+    padding: 0.4rem 0.8rem;
     margin-right: 0.5rem;
 }
 
@@ -1221,7 +1221,7 @@ input, select, button, textarea {
     }
 
     .detail-footer .footer-actions {
-        display: grid !important; 
+        display: grid; 
         grid-template-columns: 1fr 1fr; 
         gap: 10px; 
         width: 100%; 
@@ -1236,10 +1236,5 @@ input, select, button, textarea {
     .detail-footer .footer-agreement {
         width: 100%; 
         justify-content: center; 
-    }
-    .button{
-        font-size: 0.85rem !important;
-        padding: 0.8rem 1.1rem !important;
-        border-radius: 1.15rem; 
     }
 }
