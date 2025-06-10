@@ -432,10 +432,29 @@ body {
 }
 
 .content-actions .action-buttons {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+}
+
+.content-actions .action-buttons .button {
+    width: 100%;
+    margin: 0;
+    border-radius: 14px;
+    font-size: 1em;
+    justify-content: center;
+}
+
+.content-actions .action-buttons .button.secondary {
+    grid-column: span 3;
+}
+
+.content-actions .action-buttons .button.warning, 
+.content-actions .action-buttons .button.info,
+.content-actions .action-buttons .button.confirm {
+    grid-column: unset;
 }
 
 .button {
@@ -1078,10 +1097,29 @@ body {
 }
 
 .content-actions .action-buttons {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+}
+
+.content-actions .action-buttons .button {
+    width: 100%;
+    margin: 0;
+    border-radius: 14px;
+    font-size: 1em;
+    justify-content: center;
+}
+
+.content-actions .action-buttons .button.secondary {
+    grid-column: span 3;
+}
+
+.content-actions .action-buttons .button.warning, 
+.content-actions .action-buttons .button.info,
+.content-actions .action-buttons .button.confirm {
+    grid-column: unset;
 }
 
 @media (max-width: 768px) {
@@ -1204,6 +1242,10 @@ body {
         border-radius: 14px;
         font-size: 1em;
         justify-content: center;
+    }
+    .content-actions .action-buttons .button.secondary, 
+    .content-actions .action-buttons .button.confirm {
+        grid-column: span 2;
     }
 }
 

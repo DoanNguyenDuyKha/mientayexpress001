@@ -180,22 +180,18 @@ function updateHeaderBlur() {
                 </div>
                 <div class="actions-container">
                     <div class="action-buttons">
-                        <div class="action-row">
-                            <button class="btn-add-customer" id="addCustomerBtn">
-                                <i class="fa-solid fa-user-plus"></i>
-                                Thêm khách hàng
-                            </button>
-                            <button class="btn-export">
-                                <i class="fa-solid fa-file-export"></i>
-                                Xuất Excel
-                            </button>
-                        </div>
-                        <div class="action-row">
-                            <button class="btn-import">
-                                <i class="fa-solid fa-file-import"></i>
-                                Nhập Excel
-                            </button>
-                        </div>
+                        <button class="btn-add-customer" id="addCustomerBtn">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Thêm khách hàng
+                        </button>
+                        <button class="btn-export">
+                            <i class="fa-solid fa-file-export"></i>
+                            Xuất Excel
+                        </button>
+                        <button class="btn-import">
+                            <i class="fa-solid fa-file-import"></i>
+                            Nhập Excel
+                        </button>
                     </div>
                     <div class="items-per-page-control">
                         <select id="items-per-page-select" class="form-select">
@@ -247,7 +243,7 @@ function updateHeaderBlur() {
                                     <td class="mobile-hidden">Cá nhân</td>
                                     <td class="mobile-hidden">123 Nguyễn Văn Linh, Q.7, TP.HCM</td>
                                     <td class="col-center mobile-hidden"><span class="status-badge active">Hoạt động</span></td>
-                                    <td class="col-center action-icons mobile-hidden">
+                                    <td class="col-center action-icons mobile-hidden"> <!-- Hide on mobile -->
                                         <button class="icon-button icon-view" title="Xem chi tiết"><i class="fa-solid fa-eye"></i></button>
                                         <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
                                         <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>

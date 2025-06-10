@@ -820,27 +820,18 @@
         gap: 1rem !important;
     }
     .action-buttons {
-        flex-direction: column !important;
-        gap: 0.5rem !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
         width: 100% !important;
     }
-    .action-buttons .action-row {
-        display: flex;
-        gap: 0.5rem;
-        width: 100%;
-    }
-    .action-buttons .action-row:first-child button {
-        flex: 1 1 0;
-        width: 100%;
-        min-width: 0;
-        box-sizing: border-box;
+    .action-buttons button {
+        flex-grow: 1;
         justify-content: center;
     }
-    .action-buttons .action-row:last-child button {
-        width: 100%;
-        justify-content: center;
+    .action-buttons .btn-import {
+        grid-column: span 2;
     }
-
     .filter-section {
         flex-direction: column;
         align-items: stretch;

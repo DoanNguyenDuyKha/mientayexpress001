@@ -617,12 +617,37 @@
 }
 
 @media (max-width: 480px) {
-     .filter-select,
-     .filter-input,
-     .btn-filter {
-          padding: 0.5rem 0.8rem;
-          font-size: var(--font-size-sm);
-     }
+    .filter-select,
+    .filter-input,
+    .btn-filter {
+        padding: 0.5rem 0.8rem;
+        font-size: 1rem;
+    }
+    .filter-item label {
+        font-size: 1rem !important;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+    .modal-input, .modal-select, .modal-textarea{
+        font-size: 1rem;
+    }
+    .modal-label {
+        font-size: 1rem !important;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+    .modal-input, .modal-select, .modal-textarea {
+        font-size: 1rem !important;
+        padding: 0.5rem 0.8rem;
+    }
+    .modal-container .button {
+        padding: 0.6rem 1.2rem;
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        transition: all var(--transition-speed-fast);
+        font-size: 1rem !important;
+        font-weight: 500;
+    }
 }
 
 .modal-overlay {
@@ -812,6 +837,8 @@
     background: var(--accent);
     color: #fff;
     border: none;
+    border-radius: 18px;
+    width: 120px;
 }
 
 .modal-container .button.danger:hover {

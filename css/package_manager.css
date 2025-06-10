@@ -1006,7 +1006,7 @@ button:disabled {
     font-family: inherit;
     font-size: 16px;
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
+    border-radius: 18px;
     padding: 0.5rem 0.75rem;
     transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
@@ -2193,19 +2193,27 @@ button:disabled {
 
 @media (max-width: 576px) {
   .table-wrapper {
-    min-width: 100%;
+    overflow-x: auto;
   }
   .button, .tab-item {
-    font-size: 1em;
-    padding: 0.7em 1.1em;
+    padding: 0.6rem 0.8rem;
+    font-size: var(--font-size-sm);
   }
   .action-buttons {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Thêm khoảng cách giữa các nút */
+    padding: 0 10px; /* Thêm padding ngang cho nút */
+    box-sizing: border-box; /* Đảm bảo padding không làm tràn */
   }
   .tabs {
     overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
     scrollbar-width: none;
+    margin-bottom: 10px;
   }
   .tabs::-webkit-scrollbar {
     display: none;
@@ -2607,6 +2615,51 @@ button:disabled {
     background: #fff;
     box-shadow: 0 2px 8px #0001;
   }
+
+  .controls-section {
+    flex-direction: column; /* Sắp xếp các phần tử con theo chiều dọc */
+    align-items: stretch; /* Kéo dài các phần tử con để chiếm hết chiều rộng */
+    gap: 0.75rem; /* Tăng khoảng cách giữa các phần */
+  }
+
+  .mobile-status-bar {
+    display: flex;
+    flex-direction: row; /* Giữ combobox và nút lọc trên một hàng */
+    gap: 0.75rem;
+    width: 100%; /* Đảm bảo chiếm hết chiều rộng */
+    margin-bottom: 1rem; /* Thêm khoảng cách dưới cùng */
+  }
+  .mobile-status-bar > div { /* Cho combobox chiếm không gian */
+    flex: 1;
+  }
+  .mobile-status-bar .button.mobile-only { /* Điều chỉnh nút Bộ lọc */
+    min-width: 90px;
+    font-size: 0.95em;
+    padding: 0.5em 0.8em;
+  }
+
+  .action-buttons {
+    flex-direction: column; /* Đảm bảo các hàng nút xếp chồng lên nhau */
+    width: 100%; /* Chiếm hết chiều rộng */
+    gap: 0.75rem; /* Khoảng cách giữa các hàng nút */
+  }
+  .action-buttons .action-row {
+    flex-direction: row; /* Giữ các nút trong một hàng */
+    flex-wrap: wrap; /* Cho phép các nút trong hàng xuống dòng */
+    gap: 0.5rem; /* Khoảng cách giữa các nút trong một hàng */
+    width: 100%; /* Chiếm hết chiều rộng */
+    justify-content: flex-start; /* Căn chỉnh các nút về phía trái */
+  }
+  .action-row .button {
+    flex: 1 1 auto; /* Các nút sẽ tự động co giãn và xuống hàng */
+    min-width: unset; /* Bỏ giới hạn min-width */
+    font-size: 0.95em; /* Điều chỉnh font size cho mobile */
+    padding: 0.8em 0.5em; /* Tăng padding để dễ bấm */
+    margin-right: 0 !important;
+    white-space: nowrap;
+    text-align: center;
+    box-sizing: border-box; /* Quan trọng để padding không làm tràn */
+  }
 }
 @media (min-width: 577px) {
   .order-status-select-mobile {
@@ -2781,4 +2834,43 @@ button:disabled {
         min-width: 0 !important;
         box-sizing: border-box !important;
     }
+}
+
+@media (max-width: 576px) {
+  /* Ẩn nút Xuất DEBIT */
+  .action-buttons .button.secondary {
+    display: none;
+  }
+
+  /* Điều chỉnh lại layout của phần chứa các nút hành động */
+  .action-buttons {
+    flex-direction: column; /* Giữ các hàng nút chồng lên nhau */
+    gap: 0.75rem; /* Khoảng cách giữa các hàng nút */
+  }
+
+  /* Điều chỉnh từng hàng nút (.action-row) */
+  .action-buttons .action-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Giãn cách các nút ra hai bên */
+    gap: 0.5rem; /* Khoảng cách giữa các nút */
+    width: 100%;
+  }
+
+  /* Điều chỉnh các nút con bên trong .action-row */
+  .action-row .button {
+    flex: 1 1 calc(50% - 0.25rem); /* Mỗi nút chiếm gần 50% chiều rộng, tạo 2 cột */
+    min-width: unset; /* Bỏ min-width để cho flex tính toán */
+    font-size: 0.95em;
+    padding: 0.8em 0.5em;
+    margin-right: 0 !important;
+    white-space: nowrap;
+    text-align: center;
+    box-sizing: border-box; /* Quan trọng để padding không làm tràn */
+  }
+
+  /* Xử lý đặc biệt cho nút "Tạo đơn hàng" khi nó là nút duy nhất trong hàng */
+  .action-buttons .action-row:first-child .button:only-child {
+    flex: 1 1 100%; /* Cho nút này chiếm toàn bộ chiều rộng */
+  }
 }
