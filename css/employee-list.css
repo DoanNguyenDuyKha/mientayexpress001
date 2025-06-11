@@ -1316,4 +1316,7 @@ body {
       #employeeTable th:nth-child(4), #employeeTable tbody td:nth-child(4) { /* Họ và tên column */
          width: 50%; /* Allow Họ và tên to take more space */
       }
+      .table-wrapper {
+        min-width: 300px !important;
+    }
 }

@@ -443,7 +443,7 @@
 
 .modal-content {
     background: white;
-    border-radius: 18px;
+    border-radius: 21px;
     width: 60%;
     max-width: 800px !important; 
     max-height: 85vh;
@@ -530,8 +530,8 @@
 }
 
 #deleteCustomerModal .modal-content {
-    max-width: 450px; 
-    max-height: 450px; 
+    max-width: 500px !important;
+    max-height: 220px;
     width: 90%; 
     box-sizing: border-box; 
 }
@@ -542,6 +542,7 @@
     align-items: center; 
     gap: 8px; 
     justify-content: space-between; 
+    padding: 0.8rem 1.5rem;
 }
 #deleteCustomerModal .modal-header h3,
 #deleteCustomerModal .modal-close {
@@ -549,14 +550,37 @@
 }
 
 #deleteCustomerModal .modal-header i {
-    color: #fff; 
+    color: #ffff;
+}
+
+
+#deleteCustomerModal .modal-footer {
+    padding: 0.8rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--base-padding);
+    background: var(--primary-light);
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    flex-shrink: 0;
+    flex-wrap: wrap-reverse;
+}
+
+#deleteCustomerModal .btn-secondary:hover {
+    /* Revert to default .btn-secondary:hover styling */
+    background: #f8fafc;
+    border-color: #94a3b8;
+    color: #475569;
 }
 
 #deleteCustomerModal .btn-danger {
     background: #FFD700;
+    color: var(--text-primary);
 }
+
 #deleteCustomerModal .btn-danger:hover {
-    background: #ef4444;
+    background: #ffc107;
 }
 
 #customerDetailModal .modal-header {
@@ -890,7 +914,7 @@
 
     #customerTable th,
     #customerTable td {
-        padding: 0.6rem 0.8rem;
+        padding: 0.5rem 0.4rem; /* Further reduce padding */
     }
 
     #customerTable tbody tr,
@@ -984,6 +1008,7 @@
     /* Adjust padding for checkbox and STT columns on mobile */
     #customerTable th:first-child,
     #customerTable td:first-child { /* Checkbox column */
+        width: 80px !important;
         padding-left: 10px;
         padding-right: 5px;
     }
@@ -1001,12 +1026,20 @@
      /* Optional: Add specific width for Mã KH and Họ và tên if needed */
      /* Example: */
      #customerTable th:nth-child(3), #customerTable tbody td:nth-child(3) { /* Mã KH column */
-         width: 25%;
-         white-space: nowrap; /* Prevent wrapping */
+         width: 90px; /* fixed width for ID */
+         min-width: 90px;
+         max-width: 90px;
+         white-space: nowrap; /* Keep ID on one line */
+         overflow: hidden;
+         text-overflow: ellipsis;
      }
       #customerTable th:nth-child(4), #customerTable tbody td:nth-child(4) { /* Họ và tên column */
-         width: 50%; /* Allow Họ và tên to take more space */
+         width: auto; /* Take remaining space */
+         white-space: normal; /* Allow name to wrap */
       }
+      .table-wrapper {
+        min-width: 300px !important;
+    }
 }
 @media (max-width: 600px) {
     .user-dropdown {
@@ -1310,4 +1343,18 @@
 .pagination-buttons .button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+#deleteCustomerModal .modal-body {
+    padding: 1rem 1.5rem; /* Điều chỉnh padding cho body */
+}
+
+#deleteCustomerModal .modal-body p {
+    margin-bottom: 0.5rem; /* Điều chỉnh lề dưới cho các đoạn văn bản */
+    font-size: 0.95rem; /* Có thể điều chỉnh kích thước font nếu cần */
+    line-height: 1.4; /* Điều chỉnh chiều cao dòng */
+}
+
+#deleteCustomerModal .modal-body p:last-child {
+    margin-bottom: 0; /* Loại bỏ lề dưới cho đoạn cuối cùng */
 }

@@ -1098,8 +1098,8 @@
 
     // Hàm kiểm tra email hợp lệ (chỉ chấp nhận @gmail.com)
     function isValidEmail(email) {
-        // Kiểm tra email chỉ có đuôi @gmail.com
-        const emailRegex = /^[^\s@]+@gmail\.com$/;
+        // Kiểm tra email hợp lệ theo chuẩn chung
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
@@ -1293,7 +1293,7 @@
 
         // Kiểm tra email
         if (!isValidEmail(email)) {
-            showError(document.getElementById('addEmployeeEmail'), 'Email không hợp lệ. Vui lòng sử dụng địa chỉ email @gmail.com');
+            showError(document.getElementById('addEmployeeEmail'), 'Email không hợp lệ. Vui lòng nhập đúng định dạng email.');
             isValid = false;
         } else if (isEmailExists(email)) {
             showError(document.getElementById('addEmployeeEmail'), 'Email đã tồn tại');
@@ -1461,7 +1461,7 @@
 
         // Kiểm tra email
         if (!isValidEmail(email)) {
-            showError(document.getElementById('editEmployeeEmail'), 'Email không hợp lệ. Vui lòng sử dụng địa chỉ email @gmail.com');
+            showError(document.getElementById('editEmployeeEmail'), 'Email không hợp lệ. Vui lòng nhập đúng định dạng email.');
             isValid = false;
         } else if (isEmailExists(email, editingId)) {
             showError(document.getElementById('editEmployeeEmail'), 'Email đã tồn tại');

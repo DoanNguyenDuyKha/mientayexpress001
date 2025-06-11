@@ -1154,10 +1154,12 @@ function updateHeaderBlur() {
              // Gắn lại sự kiện cho các nút trên cả hàng chính và hàng chi tiết
              // Sự kiện click vào hàng chính để toggle hàng chi tiết
              tr.addEventListener('click', function() {
-                 // Toggle the next sibling row (which is the detail row)
-                 const nextRow = this.nextElementSibling;
-                 if (nextRow && nextRow.classList.contains('customer-detail-row')) {
-                     nextRow.style.display = nextRow.style.display === 'none' ? 'table-row' : 'none';
+                 // Chỉ xổ ở mobile (dựa vào window width)
+                 if(window.innerWidth <= 768) {
+                     const nextRow = this.nextElementSibling;
+                     if (nextRow && nextRow.classList.contains('customer-detail-row')) {
+                         nextRow.style.display = nextRow.style.display === 'none' ? 'table-row' : 'none';
+                     }
                  }
              });
 
@@ -1873,3 +1875,12 @@ function updateHeaderBlur() {
     </script>
 </body>
 </html>
+<script>
+    window.addEventListener('resize', function() {
+        if(window.innerWidth > 768) {
+            document.querySelectorAll('.customer-detail-row').forEach(function(row) {
+                row.style.display = 'none';
+            });
+        }
+    });
+</script>

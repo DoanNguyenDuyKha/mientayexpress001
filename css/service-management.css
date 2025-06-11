@@ -614,6 +614,9 @@
         min-width: 0 !important;
         box-sizing: border-box !important;
     }
+    .table-wrapper {
+        min-width: 300px !important;
+    }
 }
 
 @media (max-width: 480px) {
