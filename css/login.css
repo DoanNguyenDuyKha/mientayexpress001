@@ -73,6 +73,7 @@ body {
         opacity: 0;
         transform: translateY(-20px) scale(0.98);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -134,17 +135,19 @@ body {
     pointer-events: none;
     transition: all 0.3s ease;
     font-size: 15px;
-    background-color: transparent; /* Keep this as is for floating label effect */
+    background-color: transparent;
+    /* Keep this as is for floating label effect */
 }
 
 /* Floating Label Logic */
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
+.input-group input:focus+label,
+.input-group input:not(:placeholder-shown)+label {
     top: -10px;
     left: 40px;
     font-size: 12px;
     color: var(--accent-color);
-    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color)); /* Specific background for floating label */
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    /* Specific background for floating label */
     padding: 0 8px;
     border-radius: 4px;
     border: 1px solid rgba(255, 204, 0, 0.2);
@@ -157,13 +160,14 @@ body {
     box-shadow: 0 0 12px rgba(255, 204, 0, 0.2);
 }
 
-.input-group input:focus ~ .input-icon {
+.input-group input:focus~.input-icon {
     color: var(--accent-color);
     transform: translateY(-50%) scale(1.1);
 }
 
 .input-group input::placeholder {
-    color: transparent; /* Crucial for floating label */
+    color: transparent;
+    /* Crucial for floating label */
 }
 
 .input-group .eye-icon {
@@ -187,7 +191,8 @@ body {
     text-align: right;
     color: var(--accent-color);
     font-size: 14px;
-    margin-top: -5px; /* Adjusts margin after input */
+    margin-top: -5px;
+    /* Adjusts margin after input */
     margin-bottom: 25px;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -342,13 +347,16 @@ body {
     }
 
     .input-group label {
-        top: 14px; /* Adjust label position for smaller input */
+        top: 14px;
+        /* Adjust label position for smaller input */
     }
 
-    .input-group input:focus + label,
-    .input-group input:not(:placeholder-shown) + label {
-        top: -8px; /* Adjust floating label position */
-        font-size: 11px; /* Adjust floating label size */
+    .input-group input:focus+label,
+    .input-group input:not(:placeholder-shown)+label {
+        top: -8px;
+        /* Adjust floating label position */
+        font-size: 11px;
+        /* Adjust floating label size */
     }
 
     .login-btn {

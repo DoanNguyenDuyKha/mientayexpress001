@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-     const manageNotificationBodyScroll = () => {
+    const manageNotificationBodyScroll = () => {
         const isAnnounceVisible = announcementOverlay && announcementOverlay.classList.contains('visible');
         const isAnyOtherModalVisible = false;
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             notificationBody.classList.add('overflow-hidden');
         } else {
             if (!isAnyOtherModalVisible) {
-                 notificationBody.classList.remove('overflow-hidden');
+                notificationBody.classList.remove('overflow-hidden');
             }
         }
     };
@@ -75,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (activeParent !== parentLink) {
                     activeParent.classList.remove('active');
                     const activeSubmenu = activeParent.nextElementSibling;
-                    if(activeSubmenu && activeSubmenu.classList.contains('submenu')) {
-                         activeSubmenu.classList.remove('active');
+                    if (activeSubmenu && activeSubmenu.classList.contains('submenu')) {
+                        activeSubmenu.classList.remove('active');
                     }
                     const otherArrow = activeParent.querySelector('.submenu-arrow');
-                    if(otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+                    if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
                 }
             });
         }
@@ -87,29 +87,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const isActive = submenuWrapper.classList.toggle('active');
         parentLink.classList.toggle('active', isActive);
         if (arrow) {
-             arrow.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
-         }
+            arrow.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
     }
 
     function initializeActiveSubmenu() {
-         const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
-         if (activeSubmenuLink) {
-              const submenuDiv = activeSubmenuLink.closest('.submenu');
-              const parentLink = submenuDiv?.previousElementSibling;
-              if(submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
-                   if (!(body.classList.contains('sidebar-collapsed') && window.innerWidth > 768)) {
-                        submenuDiv.classList.add('active');
-                        parentLink.classList.add('active');
-                        const arrow = parentLink.querySelector('.submenu-arrow');
-                        if(arrow) arrow.style.transform = 'rotate(180deg)';
-                    } else {
-                         submenuDiv.classList.remove('active');
-                         parentLink.classList.remove('active');
-                         const arrow = parentLink.querySelector('.submenu-arrow');
-                         if(arrow) arrow.style.transform = 'rotate(0deg)';
-                    }
-              }
-         }
+        const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
+        if (activeSubmenuLink) {
+            const submenuDiv = activeSubmenuLink.closest('.submenu');
+            const parentLink = submenuDiv?.previousElementSibling;
+            if (submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
+                if (!(body.classList.contains('sidebar-collapsed') && window.innerWidth > 768)) {
+                    submenuDiv.classList.add('active');
+                    parentLink.classList.add('active');
+                    const arrow = parentLink.querySelector('.submenu-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    submenuDiv.classList.remove('active');
+                    parentLink.classList.remove('active');
+                    const arrow = parentLink.querySelector('.submenu-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                }
+            }
+        }
     }
 
     function showConfirmationModal(modalId, targetData = {}) {
@@ -146,15 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     function handleFullscreenChange() {
-         const isFullscreen = !!document.fullscreenElement;
-         const icon = fullscreenBtn?.querySelector('i');
-         if(icon){
-             icon.classList.toggle('fa-expand', !isFullscreen);
-             icon.classList.toggle('fa-compress', isFullscreen);
-         }
-          if(fullscreenBtn) {
-              fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
-          }
+        const isFullscreen = !!document.fullscreenElement;
+        const icon = fullscreenBtn?.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-expand', !isFullscreen);
+            icon.classList.toggle('fa-compress', isFullscreen);
+        }
+        if (fullscreenBtn) {
+            fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
+        }
     }
 
     function toggleSectionOriginal(buttonElement) {
@@ -183,9 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeNotificationDropdown() {
-         if (notificationDropdown) {
+        if (notificationDropdown) {
             notificationDropdown.classList.remove('visible');
-         }
+        }
     }
 
     function showAnnouncement() {
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'package_manager.html';
         });
         const resetButton = form.querySelector('button[type="reset"]');
-        if (resetButton) resetButton.addEventListener('click', () => {});
+        if (resetButton) resetButton.addEventListener('click', () => { });
     }
 
     if (currencySwitchBtn) currencySwitchBtn.addEventListener('click', () => alert('Chức năng chuyển đổi tiền tệ (demo)!'));
@@ -249,14 +249,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (customExchangeRateInput) {
-         customExchangeRateInput.addEventListener('input', calculateAndUpdateVND);
+        customExchangeRateInput.addEventListener('input', calculateAndUpdateVND);
     }
 
     document.querySelectorAll('.confirmation-modal').forEach(modal => {
         const modalId = modal.id;
         modal.querySelector('.confirm-yes')?.addEventListener('click', () => {
-             const data = JSON.parse(modal.dataset.targetData || '{}');
-             hideConfirmationModal(modalId);
+            const data = JSON.parse(modal.dataset.targetData || '{}');
+            hideConfirmationModal(modalId);
         });
         modal.querySelector('.confirm-cancel')?.addEventListener('click', () => hideConfirmationModal(modalId));
         modal.addEventListener('click', (event) => { if (event.target === modal) hideConfirmationModal(modalId); });
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 announcementTitle.textContent = title;
                 announcementBodyEl.innerHTML = '';
                 bodyText.split('||').forEach(paragraphText => {
-                    if(paragraphText.trim()) {
+                    if (paragraphText.trim()) {
                         const p = document.createElement('p');
                         p.textContent = paragraphText.trim();
                         announcementBodyEl.appendChild(p);
@@ -328,25 +328,25 @@ document.addEventListener('DOMContentLoaded', () => {
             static: false,
             position: 'auto',
             appendTo: document.body,
-            onChange: function(selectedDates, dateStr) {
+            onChange: function (selectedDates, dateStr) {
                 // You can add any additional logic here when date changes
             }
         });
     });
 });
 // --- Dropdown user & đăng nhập/đăng xuất ---
-document.addEventListener('DOMContentLoaded', function() {
-function renderUserDropdown() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const userToggle = document.getElementById('user-dropdown-toggle');
-    const userDropdown = document.getElementById('user-dropdown');
-    if (!userToggle || !userDropdown) return;
-    if (!isLoggedIn) {
-        userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
-        userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
-    } else {
-        userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
-        userDropdown.innerHTML = `
+document.addEventListener('DOMContentLoaded', function () {
+    function renderUserDropdown() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        const userToggle = document.getElementById('user-dropdown-toggle');
+        const userDropdown = document.getElementById('user-dropdown');
+        if (!userToggle || !userDropdown) return;
+        if (!isLoggedIn) {
+            userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+            userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
+        } else {
+            userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+            userDropdown.innerHTML = `
             <div class="user-info">
                 <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
                 <div class="user-details"><h4>Phạm Hoàng Đình</h4><span class="user-role">Quản trị viên</span></div>
@@ -359,92 +359,92 @@ function renderUserDropdown() {
             <div class="dropdown-divider"></div>
             <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
         `;
-    }
-    setTimeout(() => {
-        const loginItem = document.getElementById('login-menu-item');
-        if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
-        const logoutItem = document.getElementById('logout-menu-item');
-        if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
-    }, 100);
-}
-renderUserDropdown();
-window.addEventListener('storage', renderUserDropdown);
-// Dropdown show/hide
-const userToggle = document.getElementById('user-dropdown-toggle');
-const userDropdown = document.getElementById('user-dropdown');
-if(userToggle && userDropdown){
-    userToggle.addEventListener('click', function(e){
-        e.stopPropagation();
-        userDropdown.classList.toggle('show');
-    });
-    document.addEventListener('click', function(e){
-        if(!userDropdown.contains(e.target) && e.target !== userToggle){
-            userDropdown.classList.remove('show');
         }
-    });
-}
-});
-document.addEventListener('DOMContentLoaded', function() {
-// Đọc orderId từ URL parameter
-const urlParams = new URLSearchParams(window.location.search);
-const orderId = urlParams.get('orderId');
-
-// Cập nhật tiêu đề trang nếu có orderId
-const pageTitleElement = document.querySelector('.page-title');
-if (pageTitleElement && orderId) {
-    pageTitleElement.textContent = `Tình trạng thanh toán - ${orderId}`;
-    // TODO: Thêm logic để load dữ liệu thanh toán của đơn hàng này từ backend/API nếu có
-
-    // --- Thêm logic đọc trạng thái ĐL từ localStorage và set vào dropdown ---
-    const savedStatusDL = localStorage.getItem('paymentStatusDL_' + orderId);
-    const agentStatusSelect = document.querySelectorAll('.payment-details-original select')[0]; // Select của Đại lý
-    if (savedStatusDL && agentStatusSelect) {
-         // Tìm option có value tương ứng và set selected
-         const options = agentStatusSelect.options;
-         for (let i = 0; i < options.length; i++) {
-              if (options[i].value === savedStatusDL) {
-                   agentStatusSelect.selectedIndex = i;
-                   break;
-              }
-         }
+        setTimeout(() => {
+            const loginItem = document.getElementById('login-menu-item');
+            if (loginItem) loginItem.onclick = function (e) { e.preventDefault(); window.location.href = 'login.html'; };
+            const logoutItem = document.getElementById('logout-menu-item');
+            if (logoutItem) logoutItem.onclick = function (e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+        }, 100);
     }
-    // ---------------------------------------------------------------------
+    renderUserDropdown();
+    window.addEventListener('storage', renderUserDropdown);
+    // Dropdown show/hide
+    const userToggle = document.getElementById('user-dropdown-toggle');
+    const userDropdown = document.getElementById('user-dropdown');
+    if (userToggle && userDropdown) {
+        userToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', function (e) {
+            if (!userDropdown.contains(e.target) && e.target !== userToggle) {
+                userDropdown.classList.remove('show');
+            }
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    // Đọc orderId từ URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId');
 
-} else if (pageTitleElement) {
-    // Nếu không có orderId, có thể hiển thị thông báo hoặc quay về trang danh sách
-    pageTitleElement.textContent = `Tình trạng thanh toán`; // Hoặc thông báo lỗi
-    // alert('Không có mã đơn hàng được chọn.');
-    // window.history.back(); // Tùy chọn: Quay về trang trước
-}
+    // Cập nhật tiêu đề trang nếu có orderId
+    const pageTitleElement = document.querySelector('.page-title');
+    if (pageTitleElement && orderId) {
+        pageTitleElement.textContent = `Tình trạng thanh toán - ${orderId}`;
+        // TODO: Thêm logic để load dữ liệu thanh toán của đơn hàng này từ backend/API nếu có
+
+        // --- Thêm logic đọc trạng thái ĐL từ localStorage và set vào dropdown ---
+        const savedStatusDL = localStorage.getItem('paymentStatusDL_' + orderId);
+        const agentStatusSelect = document.querySelectorAll('.payment-details-original select')[0]; // Select của Đại lý
+        if (savedStatusDL && agentStatusSelect) {
+            // Tìm option có value tương ứng và set selected
+            const options = agentStatusSelect.options;
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].value === savedStatusDL) {
+                    agentStatusSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+        // ---------------------------------------------------------------------
+
+    } else if (pageTitleElement) {
+        // Nếu không có orderId, có thể hiển thị thông báo hoặc quay về trang danh sách
+        pageTitleElement.textContent = `Tình trạng thanh toán`; // Hoặc thông báo lỗi
+        // alert('Không có mã đơn hàng được chọn.');
+        // window.history.back(); // Tùy chọn: Quay về trang trước
+    }
 
 
-// Nút cập nhật trạng thái thanh toán KH (cột bên trái)
-const updateBtnKH = document.querySelectorAll('.payment-details-original .update-button-original')[0];
-if (updateBtnKH) {
-    updateBtnKH.addEventListener('click', function() {
-        // Lấy mã đơn hàng TỪ BIẾN orderId đã đọc từ URL
-        const currentOrderId = orderId; // Sử dụng biến orderId từ URL
-        if (!currentOrderId) return alert('Không tìm thấy mã đơn hàng để lưu!');
-        // Lấy trạng thái từ select của Khách hàng
-        const status = document.querySelectorAll('.payment-details-original select')[0].value;
-        // Lưu vào localStorage với key riêng cho KH
-        localStorage.setItem('paymentStatusKH_' + currentOrderId, status);
-        alert('Đã lưu trạng thái thanh toán KH cho đơn ' + currentOrderId + '!');
-    });
-}
+    // Nút cập nhật trạng thái thanh toán KH (cột bên trái)
+    const updateBtnKH = document.querySelectorAll('.payment-details-original .update-button-original')[0];
+    if (updateBtnKH) {
+        updateBtnKH.addEventListener('click', function () {
+            // Lấy mã đơn hàng TỪ BIẾN orderId đã đọc từ URL
+            const currentOrderId = orderId; // Sử dụng biến orderId từ URL
+            if (!currentOrderId) return alert('Không tìm thấy mã đơn hàng để lưu!');
+            // Lấy trạng thái từ select của Khách hàng
+            const status = document.querySelectorAll('.payment-details-original select')[0].value;
+            // Lưu vào localStorage với key riêng cho KH
+            localStorage.setItem('paymentStatusKH_' + currentOrderId, status);
+            alert('Đã lưu trạng thái thanh toán KH cho đơn ' + currentOrderId + '!');
+        });
+    }
 
-// Nút cập nhật trạng thái thanh toán ĐL (cột bên phải)
-const updateBtnDL = document.querySelectorAll('.payment-details-original .update-button-original')[1];
-if (updateBtnDL) {
-    updateBtnDL.addEventListener('click', function() {
-         // Lấy mã đơn hàng TỪ BIẾN orderId đã đọc từ URL
-        const currentOrderId = orderId; // Sử dụng biến orderId từ URL
-        if (!currentOrderId) return alert('Không tìm thấy mã đơn hàng để lưu!');
-        // Lấy trạng thái từ select của Đại lý
-        const status = document.querySelectorAll('.payment-details-original select')[0].value;
-        // Lưu vào localStorage với key riêng cho ĐL
-        localStorage.setItem('paymentStatusDL_' + currentOrderId, status);
-        alert('Đã lưu trạng thái thanh toán ĐL cho đơn ' + currentOrderId + '!');
-    });
-}
+    // Nút cập nhật trạng thái thanh toán ĐL (cột bên phải)
+    const updateBtnDL = document.querySelectorAll('.payment-details-original .update-button-original')[1];
+    if (updateBtnDL) {
+        updateBtnDL.addEventListener('click', function () {
+            // Lấy mã đơn hàng TỪ BIẾN orderId đã đọc từ URL
+            const currentOrderId = orderId; // Sử dụng biến orderId từ URL
+            if (!currentOrderId) return alert('Không tìm thấy mã đơn hàng để lưu!');
+            // Lấy trạng thái từ select của Đại lý
+            const status = document.querySelectorAll('.payment-details-original select')[0].value;
+            // Lưu vào localStorage với key riêng cho ĐL
+            localStorage.setItem('paymentStatusDL_' + currentOrderId, status);
+            alert('Đã lưu trạng thái thanh toán ĐL cho đơn ' + currentOrderId + '!');
+        });
+    }
 });

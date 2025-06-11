@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // --- Sidebar & Submenu ---
     const body = document.body;
     const sidebar = document.getElementById('sidebar');
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (activeSubmenuLink) {
             const submenuDiv = activeSubmenuLink.closest('.submenu');
             const parentLink = submenuDiv?.previousElementSibling;
-            if(submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
+            if (submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
                 submenuDiv.classList.add('active');
                 parentLink.classList.add('active');
             }
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 announcementTitle.textContent = title;
                 announcementBody.innerHTML = '';
                 bodyText.split('||').forEach(paragraphText => {
-                    if(paragraphText.trim()) {
+                    if (paragraphText.trim()) {
                         const p = document.createElement('p');
                         p.textContent = paragraphText.trim();
                         announcementBody.appendChild(p);
@@ -181,9 +181,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         setTimeout(() => {
             const loginItem = document.getElementById('login-menu-item');
-            if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
+            if (loginItem) loginItem.onclick = function (e) { e.preventDefault(); window.location.href = 'login.html'; };
             const logoutItem = document.getElementById('logout-menu-item');
-            if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+            if (logoutItem) logoutItem.onclick = function (e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
         }, 100);
     }
     renderUserDropdown();
@@ -191,13 +191,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Dropdown show/hide
     const userToggle = document.getElementById('user-dropdown-toggle');
     const userDropdown = document.getElementById('user-dropdown');
-    if(userToggle && userDropdown){
-        userToggle.addEventListener('click', function(e){
+    if (userToggle && userDropdown) {
+        userToggle.addEventListener('click', function (e) {
             e.stopPropagation();
             userDropdown.classList.toggle('show');
         });
-        document.addEventListener('click', function(e){
-            if(!userDropdown.contains(e.target) && e.target !== userToggle){
+        document.addEventListener('click', function (e) {
+            if (!userDropdown.contains(e.target) && e.target !== userToggle) {
                 userDropdown.classList.remove('show');
             }
         });
@@ -206,11 +206,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function updateHeaderBlur() {
     var header = document.querySelector('.header');
     var anyModalOpen = false;
-    document.querySelectorAll('.modal').forEach(function(modal){
+    document.querySelectorAll('.modal').forEach(function (modal) {
         var isVisible = modal.classList.contains('show') && (window.getComputedStyle(modal).visibility !== 'hidden');
-        if(isVisible) anyModalOpen = true;
+        if (isVisible) anyModalOpen = true;
     });
-    if(document.querySelector('.announcement-overlay.visible')) anyModalOpen = true;
+    if (document.querySelector('.announcement-overlay.visible')) anyModalOpen = true;
     if (header) {
         if (anyModalOpen) {
             header.classList.add('blurred');
@@ -226,16 +226,16 @@ function updateHeaderBlur() {
         }
     }
 }
-(function(){
+(function () {
     var observer = new MutationObserver(updateHeaderBlur);
-    document.querySelectorAll('.modal').forEach(function(modal){
-        modal.addEventListener('transitionend', function(event) {
+    document.querySelectorAll('.modal').forEach(function (modal) {
+        modal.addEventListener('transitionend', function (event) {
             if (event.propertyName === 'opacity' && window.getComputedStyle(modal).opacity === '0') {
-                 updateHeaderBlur();
+                updateHeaderBlur();
             }
-             if (event.propertyName === 'opacity' && window.getComputedStyle(modal).opacity === '1') {
-                 updateHeaderBlur();
-             }
+            if (event.propertyName === 'opacity' && window.getComputedStyle(modal).opacity === '1') {
+                updateHeaderBlur();
+            }
         });
     });
     updateHeaderBlur();
@@ -279,14 +279,14 @@ let currentPage = 1;
 
 // Helper functions for resetting dropdowns
 function resetDistrictDropdown(districtSelectElement) {
-    if(districtSelectElement) {
+    if (districtSelectElement) {
         districtSelectElement.innerHTML = '<option value="">Quận/Huyện</option>';
         districtSelectElement.disabled = true;
     }
 }
 
 function resetWardDropdown(wardSelectElement) {
-    if(wardSelectElement) {
+    if (wardSelectElement) {
         wardSelectElement.innerHTML = '<option value="">Phường/Xã</option>';
         wardSelectElement.disabled = true;
     }
@@ -303,74 +303,74 @@ function resetAddressDropdowns(provinceSelectElement, districtSelectElement, war
 // API Calls and Population Logic
 function populateProvinces(provinceSelectElement, selectedProvinceName, callback) {
     if (provinceSelectElement) {
-         provinceSelectElement.innerHTML = '<option value="">Tỉnh/Thành phố</option>'; // Clear existing options first
-         $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function(data_tinh) {
-             if (data_tinh.error == 0) {
-                 let selectedProvinceId = '';
-                 $.each(data_tinh.data, function(key_tinh, val_tinh) {
-                     const option = document.createElement('option');
-                     option.value = val_tinh.id;
-                     option.textContent = val_tinh.full_name;
-                     if(selectedProvinceName && val_tinh.full_name.trim() === selectedProvinceName.trim()) {
-                         selectedProvinceId = val_tinh.id;
-                         option.selected = true;
-                     }
-                     provinceSelectElement.appendChild(option);
-                 });
-                 if (callback) callback(selectedProvinceId);
-             } else { console.error('API returned error for provinces:', data_tinh.error); }
-         }).fail(function(jqxhr, textStatus, error) { console.error('Failed to load provinces from API:', textStatus, error); });
+        provinceSelectElement.innerHTML = '<option value="">Tỉnh/Thành phố</option>'; // Clear existing options first
+        $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function (data_tinh) {
+            if (data_tinh.error == 0) {
+                let selectedProvinceId = '';
+                $.each(data_tinh.data, function (key_tinh, val_tinh) {
+                    const option = document.createElement('option');
+                    option.value = val_tinh.id;
+                    option.textContent = val_tinh.full_name;
+                    if (selectedProvinceName && val_tinh.full_name.trim() === selectedProvinceName.trim()) {
+                        selectedProvinceId = val_tinh.id;
+                        option.selected = true;
+                    }
+                    provinceSelectElement.appendChild(option);
+                });
+                if (callback) callback(selectedProvinceId);
+            } else { console.error('API returned error for provinces:', data_tinh.error); }
+        }).fail(function (jqxhr, textStatus, error) { console.error('Failed to load provinces from API:', textStatus, error); });
     }
 }
 
 function populateDistricts(districtSelectElement, wardSelectElement, provinceId, selectedDistrictName, callback) {
     if (districtSelectElement && wardSelectElement) {
-          resetDistrictDropdown(districtSelectElement);
-          resetWardDropdown(wardSelectElement);
-          if (provinceId) {
-              $.getJSON('https://esgoo.net/api-tinhthanh/2/' + provinceId + '.htm', function(data_quan) {
-                  if (data_quan.error == 0) {
-                      districtSelectElement.innerHTML = '<option value="">Quận/Huyện</option>';
-                      let selectedDistrictId = '';
-                      $.each(data_quan.data, function(key_quan, val_quan) {
-                          const option = document.createElement('option');
-                          option.value = val_quan.id;
-                          option.textContent = val_quan.full_name;
-                          if(selectedDistrictName && val_quan.full_name.trim() === selectedDistrictName.trim()) {
-                               selectedDistrictId = val_quan.id;
-                               option.selected = true;
-                           }
-                          districtSelectElement.appendChild(option);
-                      });
-                      districtSelectElement.disabled = false;
-                      if (callback) callback(selectedDistrictId);
-                  } else { console.error('API returned error for districts:', data_quan.error); }
-              }).fail(function(jqxhr, textStatus, error) { console.error('Failed to load districts from API:', textStatus, error); });
-          } else {
-               resetDistrictDropdown(districtSelectElement);
-           }
-       }
-   }
+        resetDistrictDropdown(districtSelectElement);
+        resetWardDropdown(wardSelectElement);
+        if (provinceId) {
+            $.getJSON('https://esgoo.net/api-tinhthanh/2/' + provinceId + '.htm', function (data_quan) {
+                if (data_quan.error == 0) {
+                    districtSelectElement.innerHTML = '<option value="">Quận/Huyện</option>';
+                    let selectedDistrictId = '';
+                    $.each(data_quan.data, function (key_quan, val_quan) {
+                        const option = document.createElement('option');
+                        option.value = val_quan.id;
+                        option.textContent = val_quan.full_name;
+                        if (selectedDistrictName && val_quan.full_name.trim() === selectedDistrictName.trim()) {
+                            selectedDistrictId = val_quan.id;
+                            option.selected = true;
+                        }
+                        districtSelectElement.appendChild(option);
+                    });
+                    districtSelectElement.disabled = false;
+                    if (callback) callback(selectedDistrictId);
+                } else { console.error('API returned error for districts:', data_quan.error); }
+            }).fail(function (jqxhr, textStatus, error) { console.error('Failed to load districts from API:', textStatus, error); });
+        } else {
+            resetDistrictDropdown(districtSelectElement);
+        }
+    }
+}
 
 function populateWards(wardSelectElement, districtId, selectedWardName) {
     if (wardSelectElement) {
         resetWardDropdown(wardSelectElement);
         if (districtId) {
-            $.getJSON('https://esgoo.net/api-tinhthanh/3/' + districtId + '.htm', function(data_phuong) {
+            $.getJSON('https://esgoo.net/api-tinhthanh/3/' + districtId + '.htm', function (data_phuong) {
                 if (data_phuong.error == 0) {
                     wardSelectElement.innerHTML = '<option value="">Phường/Xã</option>';
-                    $.each(data_phuong.data, function(key_phuong, val_phuong) {
+                    $.each(data_phuong.data, function (key_phuong, val_phuong) {
                         const option = document.createElement('option');
                         option.value = val_phuong.id;
                         option.textContent = val_phuong.full_name;
-                        if(selectedWardName && val_phuong.full_name.trim() === selectedWardName.trim()) {
+                        if (selectedWardName && val_phuong.full_name.trim() === selectedWardName.trim()) {
                             option.selected = true;
                         }
                         wardSelectElement.appendChild(option);
                     });
                     wardSelectElement.disabled = false;
                 } else { console.error('API returned error for wards:', data_phuong.error); }
-            }).fail(function(jqxhr, textStatus, error) { console.error('Failed to load wards from API:', textStatus, error); });
+            }).fail(function (jqxhr, textStatus, error) { console.error('Failed to load wards from API:', textStatus, error); });
         } else {
             resetWardDropdown(wardSelectElement);
         }
@@ -438,7 +438,7 @@ function renderEmployeeTable() {
         return;
     }
     if (totalPages === 0) {
-         currentPage = 1; // Reset to page 1 if no items
+        currentPage = 1; // Reset to page 1 if no items
     }
 
     itemsToShow.forEach((e, idx) => {
@@ -455,7 +455,7 @@ function renderEmployeeTable() {
             <td class="mobile-hidden">${e.email}</td>
             <td class="mobile-hidden">${e.role}</td>
             <td class="mobile-hidden">${e.address}</td>
-            <td class="col-center mobile-hidden"><span class="status-badge ${e.status==='active'?'active':'inactive'}">${e.status==='active'?'Đang làm':'Nghỉ việc'}</span></td>
+            <td class="col-center mobile-hidden"><span class="status-badge ${e.status === 'active' ? 'active' : 'inactive'}">${e.status === 'active' ? 'Đang làm' : 'Nghỉ việc'}</span></td>
             <td class="col-center action-icons mobile-hidden">
                 <button class="icon-button icon-view" title="Xem chi tiết"><i class="fa-solid fa-eye"></i></button>
                 <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button>
@@ -479,7 +479,7 @@ function renderEmployeeTable() {
                     <div class="detail-item"><strong>Email:</strong> ${e.email}</div>
                     <div class="detail-item"><strong>Chức vụ:</strong> ${e.role}</div>
                     <div class="detail-item"><strong>Địa chỉ:</strong> ${e.address}</div>
-                    <div class="detail-item"><strong>Trạng thái:</strong> <span class="status-badge ${e.status==='active'?'active':'inactive'}">${e.status==='active'?'Đang làm':'Nghỉ việc'}</span></div>
+                    <div class="detail-item"><strong>Trạng thái:</strong> <span class="status-badge ${e.status === 'active' ? 'active' : 'inactive'}">${e.status === 'active' ? 'Đang làm' : 'Nghỉ việc'}</span></div>
                     <div class="detail-item action-icons">
                         <strong>Thao tác:</strong>
                         <button class="icon-button icon-view" title="Xem chi tiết"><i class="fa-solid fa-eye"></i></button>
@@ -495,9 +495,9 @@ function renderEmployeeTable() {
         detailTr.querySelector('.icon-danger').onclick = (e2) => { e2.stopPropagation(); openDeleteModalById(e.id); };
 
         // Sự kiện click vào hàng chính để xổ/ẩn hàng chi tiết (chỉ mobile)
-        tr.addEventListener('click', function(e2) {
+        tr.addEventListener('click', function (e2) {
             // Chỉ xổ ở mobile (dựa vào window width)
-            if(window.innerWidth <= 768) {
+            if (window.innerWidth <= 768) {
                 const nextRow = this.nextElementSibling;
                 if (nextRow && nextRow.classList.contains('employee-detail-row')) {
                     nextRow.style.display = nextRow.style.display === 'none' ? 'table-row' : 'none';
@@ -579,7 +579,7 @@ function renderEmployeeTable() {
 // Logic cho checkbox "Chọn tất cả"
 const selectAllCheckboxes = document.getElementById('selectAllCheckboxes');
 if (selectAllCheckboxes) {
-    selectAllCheckboxes.addEventListener('change', function() {
+    selectAllCheckboxes.addEventListener('change', function () {
         const rowCheckboxes = document.querySelectorAll('#employeeTable tbody .rowCheckbox');
         rowCheckboxes.forEach(checkbox => {
             checkbox.checked = this.checked;
@@ -588,7 +588,7 @@ if (selectAllCheckboxes) {
 }
 
 // Gắn lại sự kiện lắng nghe cho checkbox hàng khi bảng được render lại
-document.getElementById('employee-table-body').addEventListener('change', function(e) {
+document.getElementById('employee-table-body').addEventListener('change', function (e) {
     if (e.target.classList.contains('rowCheckbox')) {
         // Có thể thêm logic kiểm tra nếu tất cả các rowCheckbox đã được chọn để tự động tích selectAllCheckboxes
     }
@@ -614,10 +614,10 @@ if (employeeNameFilterInput) employeeNameFilterInput.oninput = updateFiltersAndR
 function getNextEmployeeId() {
     let max = 0;
     employees.forEach(e => {
-        const num = parseInt(e.id.replace('NV',''));
-        if(num > max) max = num;
+        const num = parseInt(e.id.replace('NV', ''));
+        if (num > max) max = num;
     });
-    return 'NV' + String(max+1).padStart(3,'0');
+    return 'NV' + String(max + 1).padStart(3, '0');
 }
 
 // Hàm kiểm tra email hợp lệ (chỉ chấp nhận @gmail.com)
@@ -680,8 +680,8 @@ function openAddModal() {
 
     const addEmployeeNameInput = document.getElementById('addEmployeeName');
     if (!addEmployeeNameInput) {
-         console.error('Input addEmployeeName not found');
-         return;
+        console.error('Input addEmployeeName not found');
+        return;
     }
     addEmployeeNameInput.value = '';
 
@@ -732,7 +732,7 @@ function openAddModal() {
         console.error('Select addEmployeeWard not found');
         return;
     }
-     if (!addEmployeeDetailedAddressInput) {
+    if (!addEmployeeDetailedAddressInput) {
         console.error('Input addEmployeeDetailedAddress not found');
         return;
     }
@@ -740,17 +740,17 @@ function openAddModal() {
     // Call the actual functions to reset and populate dropdowns
     resetAddressDropdowns(addEmployeeProvinceSelect, addEmployeeDistrictSelect, addEmployeeWardSelect);
     populateProvinces(addEmployeeProvinceSelect, '', null); // Populate provinces when modal opens
-    if(addEmployeeDetailedAddressInput) addEmployeeDetailedAddressInput.value = ''; // Clear detailed address
+    if (addEmployeeDetailedAddressInput) addEmployeeDetailedAddressInput.value = ''; // Clear detailed address
 
     // Attach event listeners for dropdown changes in Add modal
     // Remove existing listeners first to avoid duplicates if openAddModal is called multiple times
     addEmployeeProvinceSelect.onchange = null;
     addEmployeeDistrictSelect.onchange = null;
 
-    addEmployeeProvinceSelect.onchange = function() {
+    addEmployeeProvinceSelect.onchange = function () {
         populateDistricts(addEmployeeDistrictSelect, addEmployeeWardSelect, this.value, '', null);
     };
-    addEmployeeDistrictSelect.onchange = function() {
+    addEmployeeDistrictSelect.onchange = function () {
         populateWards(addEmployeeWardSelect, this.value, '');
     };
 
@@ -761,23 +761,23 @@ function openAddModal() {
 
 // Thêm lại sự kiện click cho nút thêm nhân viên để mở modal và populate tỉnh/thành phố
 const addEmployeeBtn = document.getElementById('addEmployeeBtn');
-if(addEmployeeBtn) { addEmployeeBtn.onclick = openAddModal; }
+if (addEmployeeBtn) { addEmployeeBtn.onclick = openAddModal; }
 
 // Thêm lại sự kiện đóng modal
-Array.from(document.querySelectorAll('#addEmployeeModal .modal-close, #addEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
-    btn.onclick = ()=>{
+Array.from(document.querySelectorAll('#addEmployeeModal .modal-close, #addEmployeeModal [data-dismiss="modal"]')).forEach(btn => {
+    btn.onclick = () => {
         const modal = document.getElementById('addEmployeeModal');
-        if(modal) modal.classList.remove('show');
-         // Reset address dropdowns when modal is closed
-         const addProvince = document.getElementById('addEmployeeProvince');
-         const addDistrict = document.getElementById('addEmployeeDistrict');
-         const addWard = document.getElementById('addEmployeeWard');
-         resetAddressDropdowns(addProvince, addDistrict, addWard);
-         if(document.getElementById('addEmployeeDetailedAddress')) document.getElementById('addEmployeeDetailedAddress').value = '';
+        if (modal) modal.classList.remove('show');
+        // Reset address dropdowns when modal is closed
+        const addProvince = document.getElementById('addEmployeeProvince');
+        const addDistrict = document.getElementById('addEmployeeDistrict');
+        const addWard = document.getElementById('addEmployeeWard');
+        resetAddressDropdowns(addProvince, addDistrict, addWard);
+        if (document.getElementById('addEmployeeDetailedAddress')) document.getElementById('addEmployeeDetailedAddress').value = '';
     };
 });
 
-document.getElementById('addEmployeeForm').onsubmit = function(e){
+document.getElementById('addEmployeeForm').onsubmit = function (e) {
     e.preventDefault();
 
     // Lấy giá trị từ form
@@ -825,10 +825,10 @@ document.getElementById('addEmployeeForm').onsubmit = function(e){
     }
 
     // Kiểm tra địa chỉ - Update validation for new address fields
-     if (!detailedAddress || province === '' || district === '' || ward === '') {
-          showError(document.getElementById('addEmployeeDetailedAddress'), 'Vui lòng nhập đầy đủ thông tin địa chỉ (bao gồm Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và Địa chỉ chi tiết).');
-          isValid = false;
-     }
+    if (!detailedAddress || province === '' || district === '' || ward === '') {
+        showError(document.getElementById('addEmployeeDetailedAddress'), 'Vui lòng nhập đầy đủ thông tin địa chỉ (bao gồm Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và Địa chỉ chi tiết).');
+        isValid = false;
+    }
 
     if (!isValid) return;
 
@@ -852,7 +852,7 @@ document.getElementById('addEmployeeForm').onsubmit = function(e){
 
     // Reset address dropdowns and clear detailed address after successful add
     resetAddressDropdowns(provinceSelect, districtSelect, wardSelect);
-    if(document.getElementById('addEmployeeDetailedAddress')) document.getElementById('addEmployeeDetailedAddress').value = '';
+    if (document.getElementById('addEmployeeDetailedAddress')) document.getElementById('addEmployeeDetailedAddress').value = '';
 
     // Hiển thị thông báo thành công
     showSuccessMessage(
@@ -871,7 +871,7 @@ function openEditModalById(id) {
     editingId = id;
     const e = employees.find(emp => emp.id === id);
     var modal = document.getElementById('editEmployeeModal');
-    if(modal && e) { // Check if modal and employee exist
+    if (modal && e) { // Check if modal and employee exist
         modal.classList.add('show');
 
         const editEmployeeIdInput = document.getElementById('editEmployeeId');
@@ -885,13 +885,13 @@ function openEditModalById(id) {
         const editEmployeeWardSelect = document.getElementById('editEmployeeWard');
         const editEmployeeDetailedAddressInput = document.getElementById('editEmployeeDetailedAddress');
 
-         // Gán dữ liệu cho các trường thông tin khác, kiểm tra null trước khi gán
-         if (editEmployeeIdInput) editEmployeeIdInput.value = e.id;
-         if (editEmployeeNameInput) editEmployeeNameInput.value = e.name;
-         if (editEmployeePhoneInput) editEmployeePhoneInput.value = e.phone;
-         if (editEmployeeEmailInput) editEmployeeEmailInput.value = e.email;
-         if (editEmployeeRoleSelect) editEmployeeRoleSelect.value = e.role;
-         if (editEmployeeStatusSelect) editEmployeeStatusSelect.value = e.status;
+        // Gán dữ liệu cho các trường thông tin khác, kiểm tra null trước khi gán
+        if (editEmployeeIdInput) editEmployeeIdInput.value = e.id;
+        if (editEmployeeNameInput) editEmployeeNameInput.value = e.name;
+        if (editEmployeePhoneInput) editEmployeePhoneInput.value = e.phone;
+        if (editEmployeeEmailInput) editEmployeeEmailInput.value = e.email;
+        if (editEmployeeRoleSelect) editEmployeeRoleSelect.value = e.role;
+        if (editEmployeeStatusSelect) editEmployeeStatusSelect.value = e.status;
 
         // Xóa tất cả thông báo lỗi
         modal.querySelectorAll('.error-message').forEach(el => el.remove());
@@ -899,12 +899,12 @@ function openEditModalById(id) {
 
         // Parse address to populate dropdowns
         const addressParts = parseAddress(e.address);
-        if(editEmployeeDetailedAddressInput) editEmployeeDetailedAddressInput.value = addressParts.detailed;
+        if (editEmployeeDetailedAddressInput) editEmployeeDetailedAddressInput.value = addressParts.detailed;
 
         resetAddressDropdowns(editEmployeeProvinceSelect, editEmployeeDistrictSelect, editEmployeeWardSelect);
-        populateProvinces(editEmployeeProvinceSelect, addressParts.province, function(provinceId) {
+        populateProvinces(editEmployeeProvinceSelect, addressParts.province, function (provinceId) {
             if (provinceId) {
-                populateDistricts(editEmployeeDistrictSelect, editEmployeeWardSelect, provinceId, addressParts.district, function(districtId) {
+                populateDistricts(editEmployeeDistrictSelect, editEmployeeWardSelect, provinceId, addressParts.district, function (districtId) {
                     if (districtId) {
                         populateWards(editEmployeeWardSelect, districtId, addressParts.ward);
                     }
@@ -917,35 +917,35 @@ function openEditModalById(id) {
         if (editEmployeeProvinceSelect) editEmployeeProvinceSelect.onchange = null;
         if (editEmployeeDistrictSelect) editEmployeeDistrictSelect.onchange = null;
 
-        if(editEmployeeProvinceSelect && editEmployeeDistrictSelect && editEmployeeWardSelect) {
-             editEmployeeProvinceSelect.onchange = function() {
-                 populateDistricts(editEmployeeDistrictSelect, editEmployeeWardSelect, this.value, '', null);
-             };
-             editEmployeeDistrictSelect.onchange = function() {
-                 populateWards(editEmployeeWardSelect, this.value, '');
-             };
+        if (editEmployeeProvinceSelect && editEmployeeDistrictSelect && editEmployeeWardSelect) {
+            editEmployeeProvinceSelect.onchange = function () {
+                populateDistricts(editEmployeeDistrictSelect, editEmployeeWardSelect, this.value, '', null);
+            };
+            editEmployeeDistrictSelect.onchange = function () {
+                populateWards(editEmployeeWardSelect, this.value, '');
+            };
         }
 
     } else {
-         console.error('Không tìm thấy modal chỉnh sửa hoặc nhân viên.', { modal: modal, employee: e });
+        console.error('Không tìm thấy modal chỉnh sửa hoặc nhân viên.', { modal: modal, employee: e });
     }
 }
 
 // Thêm lại sự kiện đóng modal sửa
-Array.from(document.querySelectorAll('#editEmployeeModal .modal-close, #editEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
-    btn.onclick = ()=>{
-         const modal = document.getElementById('editEmployeeModal');
-         if(modal) modal.classList.remove('show');
-         // Reset address dropdowns when modal is closed
-          const editProvince = document.getElementById('editEmployeeProvince');
-          const editDistrict = document.getElementById('editEmployeeDistrict');
-          const editWard = document.getElementById('editEmployeeWard');
-          resetAddressDropdowns(editProvince, editDistrict, editWard);
-          if(document.getElementById('editEmployeeDetailedAddress')) document.getElementById('editEmployeeDetailedAddress').value = '';
+Array.from(document.querySelectorAll('#editEmployeeModal .modal-close, #editEmployeeModal [data-dismiss="modal"]')).forEach(btn => {
+    btn.onclick = () => {
+        const modal = document.getElementById('editEmployeeModal');
+        if (modal) modal.classList.remove('show');
+        // Reset address dropdowns when modal is closed
+        const editProvince = document.getElementById('editEmployeeProvince');
+        const editDistrict = document.getElementById('editEmployeeDistrict');
+        const editWard = document.getElementById('editEmployeeWard');
+        resetAddressDropdowns(editProvince, editDistrict, editWard);
+        if (document.getElementById('editEmployeeDetailedAddress')) document.getElementById('editEmployeeDetailedAddress').value = '';
     };
 });
 
-document.getElementById('editEmployeeForm').onsubmit = function(e){
+document.getElementById('editEmployeeForm').onsubmit = function (e) {
     e.preventDefault();
 
     // Lấy giá trị từ form
@@ -993,14 +993,14 @@ document.getElementById('editEmployeeForm').onsubmit = function(e){
     }
 
     // Kiểm tra địa chỉ - Update validation for new address fields
-     if (!detailedAddress || province === '' || district === '' || ward === '') {
-          showError(document.getElementById('editEmployeeDetailedAddress'), 'Vui lòng nhập đầy đủ thông tin địa chỉ (bao gồm Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và Địa chỉ chi tiết).');
-          isValid = false;
-     }
+    if (!detailedAddress || province === '' || district === '' || ward === '') {
+        showError(document.getElementById('editEmployeeDetailedAddress'), 'Vui lòng nhập đầy đủ thông tin địa chỉ (bao gồm Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và Địa chỉ chi tiết).');
+        isValid = false;
+    }
 
     if (!isValid) return;
 
-    if(editingId!==null) {
+    if (editingId !== null) {
         const idx = employees.findIndex(emp => emp.id === editingId);
         if (idx !== -1) { // Check if employee exists
             // Combine address components into a single string
@@ -1018,10 +1018,10 @@ document.getElementById('editEmployeeForm').onsubmit = function(e){
             saveEmployeesToLocalStorage();
             renderEmployeeTable();
             document.getElementById('editEmployeeModal').classList.remove('show');
-            
+
             // Reset address dropdowns and clear detailed address after successful edit
             resetAddressDropdowns(provinceSelect, districtSelect, wardSelect);
-            if(document.getElementById('editEmployeeDetailedAddress')) document.getElementById('editEmployeeDetailedAddress').value = '';
+            if (document.getElementById('editEmployeeDetailedAddress')) document.getElementById('editEmployeeDetailedAddress').value = '';
 
             // Hiển thị thông báo thành công
             showSuccessMessage(
@@ -1043,32 +1043,32 @@ function openDeleteModalById(id) {
     deletingId = id;
     const e = employees.find(emp => emp.id === id);
     var modal = document.getElementById('deleteEmployeeModal');
-    if(modal && e) { // Check if modal and employee exist
+    if (modal && e) { // Check if modal and employee exist
         modal.classList.add('show');
         document.getElementById('deleteEmployeeName').textContent = e.name;
     }
 }
-document.getElementById('confirmDeleteEmployee').onclick = function(){
-    if(deletingId!==null) {
+document.getElementById('confirmDeleteEmployee').onclick = function () {
+    if (deletingId !== null) {
         const idx = employees.findIndex(emp => emp.id === deletingId);
         if (idx !== -1) { // Check if employee exists
-            employees.splice(idx,1);
+            employees.splice(idx, 1);
             saveEmployeesToLocalStorage(); // Lưu vào localStorage sau khi xóa
             renderEmployeeTable();
-             const modal = document.getElementById('deleteEmployeeModal');
-             if(modal) modal.classList.remove('show');
+            const modal = document.getElementById('deleteEmployeeModal');
+            if (modal) modal.classList.remove('show');
         } else {
             console.error('Employee with ID ', deletingId, ' not found for deletion.');
-             const modal = document.getElementById('deleteEmployeeModal');
-             if(modal) modal.classList.remove('show');
+            const modal = document.getElementById('deleteEmployeeModal');
+            if (modal) modal.classList.remove('show');
         }
-         deletingId = null; // Reset deleting ID
+        deletingId = null; // Reset deleting ID
     }
 };
-Array.from(document.querySelectorAll('#deleteEmployeeModal .modal-close, #deleteEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
-    btn.onclick = ()=>{
-         const modal = document.getElementById('deleteEmployeeModal');
-         if(modal) modal.classList.remove('show');
+Array.from(document.querySelectorAll('#deleteEmployeeModal .modal-close, #deleteEmployeeModal [data-dismiss="modal"]')).forEach(btn => {
+    btn.onclick = () => {
+        const modal = document.getElementById('deleteEmployeeModal');
+        if (modal) modal.classList.remove('show');
     };
 });
 
@@ -1082,25 +1082,25 @@ function openDetailModalById(id) {
         document.getElementById('detailEmployeeEmail').textContent = e.email;
         document.getElementById('detailEmployeeRole').textContent = e.role;
         document.getElementById('detailEmployeeAddress').textContent = e.address;
-        document.getElementById('detailEmployeeStatus').textContent = e.status==='active'?'Đang làm':'Nghỉ việc';
-        document.getElementById('detailEmployeeStatus').className = 'status-badge ' + (e.status==='active'?'active':'inactive');
+        document.getElementById('detailEmployeeStatus').textContent = e.status === 'active' ? 'Đang làm' : 'Nghỉ việc';
+        document.getElementById('detailEmployeeStatus').className = 'status-badge ' + (e.status === 'active' ? 'active' : 'inactive');
         const modal = document.getElementById('employeeDetailModal');
-        if(modal) modal.classList.add('show');
+        if (modal) modal.classList.add('show');
     } else {
         console.error('Employee with ID ', id, ' not found for detail view.');
     }
 }
-Array.from(document.querySelectorAll('#employeeDetailModal .modal-close, #employeeDetailModal [data-dismiss="modal"]')).forEach(btn=>{
-    btn.onclick = ()=>{
-         const modal = document.getElementById('employeeDetailModal');
-         if(modal) modal.classList.remove('show');
+Array.from(document.querySelectorAll('#employeeDetailModal .modal-close, #employeeDetailModal [data-dismiss="modal"]')).forEach(btn => {
+    btn.onclick = () => {
+        const modal = document.getElementById('employeeDetailModal');
+        if (modal) modal.classList.remove('show');
     };
 });
 
 // Xóa nhiều nhân viên
 let selectedEmployeeIds = []; // Biến để lưu ID các nhân viên được chọn
 
-document.getElementById('deleteSelectedBtn').onclick = function() {
+document.getElementById('deleteSelectedBtn').onclick = function () {
     const selectedCheckboxes = document.querySelectorAll('#employeeTable tbody .rowCheckbox:checked');
     selectedEmployeeIds = Array.from(selectedCheckboxes).map(cb => cb.dataset.employeeId);
 
@@ -1145,7 +1145,7 @@ document.getElementById('deleteSelectedBtn').onclick = function() {
 };
 
 // Sự kiện click cho nút Xác nhận Xóa trong modal xóa nhiều
-document.getElementById('confirmBulkDeleteEmployee').onclick = function() {
+document.getElementById('confirmBulkDeleteEmployee').onclick = function () {
     if (selectedEmployeeIds.length > 0) {
         // Lọc ra các nhân viên KHÔNG có trong danh sách ID cần xóa
         employees = employees.filter(emp => !selectedEmployeeIds.includes(emp.id));
@@ -1156,36 +1156,36 @@ document.getElementById('confirmBulkDeleteEmployee').onclick = function() {
 
         // Đóng modal xác nhận xóa nhiều
         const bulkDeleteModal = document.getElementById('bulkDeleteEmployeeModal');
-        if(bulkDeleteModal) bulkDeleteModal.classList.remove('show');
+        if (bulkDeleteModal) bulkDeleteModal.classList.remove('show');
     }
 };
 // Sự kiện đóng modal xóa nhiều
-Array.from(document.querySelectorAll('#bulkDeleteEmployeeModal .modal-close, #bulkDeleteEmployeeModal [data-dismiss="modal"]')).forEach(btn=>{
-    btn.onclick = ()=>{
+Array.from(document.querySelectorAll('#bulkDeleteEmployeeModal .modal-close, #bulkDeleteEmployeeModal [data-dismiss="modal"]')).forEach(btn => {
+    btn.onclick = () => {
         const bulkDeleteModal = document.getElementById('bulkDeleteEmployeeModal');
-        if(bulkDeleteModal) bulkDeleteModal.classList.remove('show');
+        if (bulkDeleteModal) bulkDeleteModal.classList.remove('show');
     };
 });
 
 // Initial render
 renderEmployeeTable();
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const itemsPerPageSelect = document.getElementById('items-per-page-select');
     if (itemsPerPageSelect) {
         itemsPerPageSelect.value = itemsPerPage;
-        itemsPerPageSelect.addEventListener('change', function() {
+        itemsPerPageSelect.addEventListener('change', function () {
             itemsPerPage = parseInt(this.value);
             currentPage = 1;
             renderEmployeeTable();
         });
     }
 });
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 });
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.modal').forEach(function(modal) {
-        modal.addEventListener('mousedown', function(e) {
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.modal').forEach(function (modal) {
+        modal.addEventListener('mousedown', function (e) {
             if (e.target === modal) {
                 modal.classList.remove('show');
             }
@@ -1193,9 +1193,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 // ... existing code ...
-window.addEventListener('resize', function() {
-    if(window.innerWidth > 768) {
-        document.querySelectorAll('.employee-detail-row').forEach(function(row) {
+window.addEventListener('resize', function () {
+    if (window.innerWidth > 768) {
+        document.querySelectorAll('.employee-detail-row').forEach(function (row) {
             row.style.display = 'none';
         });
     }

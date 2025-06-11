@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Điều chỉnh trị giá đơn hàng</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
-        
         :root {
             --form-primary-color: #FFD600;
             --form-primary-hover: #FFB300;
             --form-secondary-color: #181818;
-            --form-success-color: #16a34a; 
-            --form-danger-color: #EF4444; 
+            --form-success-color: #16a34a;
+            --form-danger-color: #EF4444;
             --form-light-gray: #f8f9fa;
             --form-input-bg: #fff;
             --form-input-readonly-bg: #e9ecef;
-            --form-border-color: #FFC107; 
-            --form-border-color-light: #eee; 
+            --form-border-color: #FFC107;
+            --form-border-color-light: #eee;
             --form-text-color: #181818;
             --form-text-muted: #64748b;
             --form-border-radius: 12px;
@@ -27,211 +27,214 @@
             --form-font-size-base: 12px;
             --form-font-size-sm: 10px;
             --form-font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            --form-shadow-lg: 0 10px 15px rgba(0,0,0,0.10);
+            --form-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10);
             --form-transition: all 0.3s ease;
-             
+
             --profit-warning-color: #f97316;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: var(--form-font-family); 
+            font-family: var(--form-font-family);
             background: transparent;
-            font-size: var(--form-font-size-base); 
+            font-size: var(--form-font-size-base);
             line-height: 1.5;
-            color: var(--form-text-color); 
+            color: var(--form-text-color);
         }
 
         .adjust-order-value-form {
-            background: var(--form-input-bg); 
+            background: var(--form-input-bg);
             padding: 0;
             margin: 0 auto;
             width: 100%;
             box-sizing: border-box;
-            border-radius: var(--form-border-radius); 
-            box-shadow: var(--form-shadow-lg); 
-            display: flex; 
-            flex-direction: column; 
-            overflow: hidden; 
+            border-radius: var(--form-border-radius);
+            box-shadow: var(--form-shadow-lg);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .form-header {
-            background: linear-gradient(90deg, var(--form-primary-color) 0%, #FFF8DC 100%); 
-            color: var(--form-secondary-color); 
-            padding: calc(var(--form-spacing-unit) * 1.8) calc(var(--form-spacing-unit) * 2.5); 
-            border-bottom: 1.5px solid var(--form-primary-color); 
+            background: linear-gradient(90deg, var(--form-primary-color) 0%, #FFF8DC 100%);
+            color: var(--form-secondary-color);
+            padding: calc(var(--form-spacing-unit) * 1.8) calc(var(--form-spacing-unit) * 2.5);
+            border-bottom: 1.5px solid var(--form-primary-color);
             border-top-left-radius: var(--form-border-radius);
             border-top-right-radius: var(--form-border-radius);
-            font-size: 1.18rem; 
-            font-weight: 700; 
+            font-size: 1.18rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 0.75rem; 
+            gap: 0.75rem;
         }
-        
+
         .form-header i.fas {
-            font-size: 1.2em; 
-            color: var(--form-secondary-color); 
+            font-size: 1.2em;
+            color: var(--form-secondary-color);
         }
 
         .form-body {
-            padding: calc(var(--form-spacing-unit) * 2.5); 
-            background: var(--form-input-bg); 
+            padding: calc(var(--form-spacing-unit) * 2.5);
+            background: var(--form-input-bg);
             flex-grow: 1;
-            overflow-y: auto; 
-            overflow-x: hidden; 
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .form-section-title {
-            color: var(--form-secondary-color); 
-            font-weight: 600; 
-            font-size: var(--form-font-size-base); 
-            margin-bottom: calc(var(--form-spacing-unit) * 1.6); 
+            color: var(--form-secondary-color);
+            font-weight: 600;
+            font-size: var(--form-font-size-base);
+            margin-bottom: calc(var(--form-spacing-unit) * 1.6);
             display: flex;
             align-items: center;
-            gap: var(--form-spacing-unit) * 0.8; 
-            padding-bottom: calc(var(--form-spacing-unit) * 0.8); 
-            border-bottom: 1px solid var(--form-border-color-light); 
+            gap: var(--form-spacing-unit) * 0.8;
+            padding-bottom: calc(var(--form-spacing-unit) * 0.8);
+            border-bottom: 1px solid var(--form-border-color-light);
         }
 
         .form-section-title i {
-            color: var(--form-primary-color); 
+            color: var(--form-primary-color);
         }
 
         .form-row {
             display: flex;
-            flex-wrap: wrap; 
-            gap: calc(var(--form-spacing-unit) * 1.6); 
-            margin-bottom: calc(var(--form-spacing-unit) * 1.6); 
-            align-items: center; 
+            flex-wrap: wrap;
+            gap: calc(var(--form-spacing-unit) * 1.6);
+            margin-bottom: calc(var(--form-spacing-unit) * 1.6);
+            align-items: center;
         }
 
         .form-row:last-child {
-            margin-bottom: 0; 
+            margin-bottom: 0;
         }
 
         .form-field-group {
             display: flex;
             flex-direction: column;
-            min-width: 200px; 
-            flex: 1 1 0; 
-            gap: calc(var(--form-spacing-unit) * 0.5); 
+            min-width: 200px;
+            flex: 1 1 0;
+            gap: calc(var(--form-spacing-unit) * 0.5);
         }
 
         .form-field-group label {
-            font-size: var(--form-font-size-base); 
-            color: var(--form-secondary-color); 
-            margin-bottom: 0; 
-            font-weight: 600; 
+            font-size: var(--form-font-size-base);
+            color: var(--form-secondary-color);
+            margin-bottom: 0;
+            font-weight: 600;
         }
 
         .input-group {
             display: flex;
             align-items: center;
-            background: var(--form-input-bg); 
-            border: 1.5px solid var(--form-border-color); 
-            border-radius: var(--form-border-radius); 
-            padding: var(--form-control-padding-y) var(--form-control-padding-x); 
-            height: auto; 
-            transition: var(--form-transition); 
-            flex-grow: 1; 
+            background: var(--form-input-bg);
+            border: 1.5px solid var(--form-border-color);
+            border-radius: var(--form-border-radius);
+            padding: var(--form-control-padding-y) var(--form-control-padding-x);
+            height: auto;
+            transition: var(--form-transition);
+            flex-grow: 1;
         }
 
         .input-group:hover {
-            border-color: var(--form-primary-color); 
+            border-color: var(--form-primary-color);
         }
 
         .input-group:focus-within {
-            border-color: var(--form-primary-color); 
-            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15); 
+            border-color: var(--form-primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15);
         }
 
         .input-group input {
             border: none;
             background: transparent;
-            padding: 0; 
-            font-size: var(--form-font-size-base); 
+            padding: 0;
+            font-size: var(--form-font-size-base);
             width: 100%;
             outline: none;
-            color: var(--form-text-color); 
+            color: var(--form-text-color);
             line-height: 1.5;
         }
 
         .input-group input[readonly] {
-            color: var(--form-text-muted); 
+            color: var(--form-text-muted);
             cursor: default;
-            background-color: var(--form-input-readonly-bg); 
-            border-radius: var(--form-border-radius); 
-            padding: var(--form-control-padding-y) var(--form-control-padding-x); 
-            border: 1px solid var(--form-border-color-light); 
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); 
+            background-color: var(--form-input-readonly-bg);
+            border-radius: var(--form-border-radius);
+            padding: var(--form-control-padding-y) var(--form-control-padding-x);
+            border: 1px solid var(--form-border-color-light);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
         }
-         
-         .input-group input[readonly] {
-             border: none; 
-             padding: 0; 
-             background: transparent; 
-             box-shadow: none; 
-             color: var(--form-text-color); 
-             cursor: text; 
-         }
-        .input-group input[readonly] + .input-addon { 
+
+        .input-group input[readonly] {
+            border: none;
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+            color: var(--form-text-color);
+            cursor: text;
+        }
+
+        .input-group input[readonly]+.input-addon {
             color: var(--form-text-color);
         }
 
         .input-addon {
-            font-size: var(--form-font-size-base); 
-            color: var(--form-text-color); 
+            font-size: var(--form-font-size-base);
+            color: var(--form-text-color);
             margin-left: 4px;
             flex-shrink: 0;
         }
 
         .input-group i:not(.fa-exchange-alt) {
-            color: var(--form-primary-color); 
+            color: var(--form-primary-color);
             margin-left: 4px;
             flex-shrink: 0;
         }
 
         .input-group .fa-exclamation-triangle {
-            color: var(--profit-warning-color); 
+            color: var(--profit-warning-color);
         }
 
         .form-actions {
             display: flex;
             justify-content: flex-end;
-            gap: var(--form-spacing-unit); 
-            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5); 
-            background: var(--form-input-bg); 
-            border-top: 1.5px solid var(--form-primary-color); 
+            gap: var(--form-spacing-unit);
+            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5);
+            background: var(--form-input-bg);
+            border-top: 1.5px solid var(--form-primary-color);
             border-bottom-left-radius: var(--form-border-radius);
             border-bottom-right-radius: var(--form-border-radius);
         }
-        @media (max-width: 600px) { 
-             .form-actions {
-                 padding: calc(var(--form-spacing-unit) * 1.5) calc(var(--form-spacing-unit) * 2); 
-                 justify-content: space-between; 
-                 gap: var(--form-spacing-unit); 
-             }
-         }
+
+        @media (max-width: 600px) {
+            .form-actions {
+                padding: calc(var(--form-spacing-unit) * 1.5) calc(var(--form-spacing-unit) * 2);
+                justify-content: space-between;
+                gap: var(--form-spacing-unit);
+            }
+        }
 
         .form-btn {
-            gap: calc(var(--form-spacing-unit) * 0.8); 
-            padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5); 
-            font-size: var(--form-font-size-base); 
-            font-weight: 600; 
-            border-radius: var(--form-border-radius); 
-            border: 1.5px solid transparent; 
+            gap: calc(var(--form-spacing-unit) * 0.8);
+            padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5);
+            font-size: var(--form-font-size-base);
+            font-weight: 600;
+            border-radius: var(--form-border-radius);
+            border: 1.5px solid transparent;
             cursor: pointer;
-            transition: var(--form-transition); 
+            transition: var(--form-transition);
             line-height: 1.4;
             white-space: nowrap;
-            min-width: 100px; 
-             display: inline-flex; 
-             align-items: center;
-             justify-content: center; 
+            min-width: 100px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
-         .form-btn i { 
+
+        .form-btn i {
             font-size: 1em;
             margin-right: 4px;
             font-family: "Font Awesome 6 Free";
@@ -240,80 +243,86 @@
         }
 
         .form-btn-cancel {
-            background-color: transparent; 
-            color: var(--form-danger-color); 
-            border-color: var(--form-danger-color); 
+            background-color: transparent;
+            color: var(--form-danger-color);
+            border-color: var(--form-danger-color);
         }
+
         .form-btn-cancel:hover {
-             background-color: var(--form-danger-color); 
-             color: white; 
-             transform: translateY(-2px); 
-             box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); 
+            background-color: var(--form-danger-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
         }
 
         .form-btn-confirm {
-            background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%); 
-            color: var(--form-secondary-color); 
+            background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%);
+            color: var(--form-secondary-color);
             border: none;
-            box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15); 
-        }
-        .form-btn-confirm:hover {
-             background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%); 
-             transform: translateY(-2px); 
-             box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); 
+            box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15);
         }
 
-         .form-btn:focus-visible {
-             outline: 1.5px solid var(--form-primary-color);
-             outline-offset: 1px;
-             box-shadow: none;
-         }
-         .form-btn:active {
-             transform: scale(0.98); 
-         }
-         @media (max-width: 600px) { 
-             .form-btn {
-                 flex-grow: 1; 
-                 max-width: 48%; 
-             }
-         }
+        .form-btn-confirm:hover {
+            background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+        }
+
+        .form-btn:focus-visible {
+            outline: 1.5px solid var(--form-primary-color);
+            outline-offset: 1px;
+            box-shadow: none;
+        }
+
+        .form-btn:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 600px) {
+            .form-btn {
+                flex-grow: 1;
+                max-width: 48%;
+            }
+        }
 
         textarea.form-control {
-            height: 80px; 
-            padding: var(--form-control-padding-y) var(--form-control-padding-x); 
+            height: 80px;
+            padding: var(--form-control-padding-y) var(--form-control-padding-x);
             width: 100%;
-            border: 1.5px solid var(--form-border-color); 
-            border-radius: var(--form-border-radius); 
-            resize: vertical; 
+            border: 1.5px solid var(--form-border-color);
+            border-radius: var(--form-border-radius);
+            resize: vertical;
             font-family: inherit;
-            font-size: var(--form-font-size-base); 
-            color: var(--form-text-color); 
-            background: var(--form-input-bg); 
-            transition: var(--form-transition); 
+            font-size: var(--form-font-size-base);
+            color: var(--form-text-color);
+            background: var(--form-input-bg);
+            transition: var(--form-transition);
         }
 
         textarea.form-control:hover {
-            border-color: var(--form-primary-color); 
+            border-color: var(--form-primary-color);
         }
 
         textarea.form-control:focus {
             outline: none;
-            border-color: var(--form-primary-color); 
-            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15); 
+            border-color: var(--form-primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15);
         }
 
-        
+
         @media (max-width: 768px) {
-             .form-body {
-                 padding: calc(var(--form-spacing-unit) * 2);
-             }
-            .form-row {
-                gap: calc(var(--form-spacing-unit) * 1.2); 
+            .form-body {
+                padding: calc(var(--form-spacing-unit) * 2);
             }
+
+            .form-row {
+                gap: calc(var(--form-spacing-unit) * 1.2);
+            }
+
             .form-field-group.span-2,
             .form-field-group.span-3,
             .form-field-group.full-width {
-                flex: 1 1 100%; 
+                flex: 1 1 100%;
                 min-width: unset;
             }
         }
@@ -322,48 +331,59 @@
             .form-header {
                 padding: calc(var(--form-spacing-unit) * 1.5) calc(var(--form-spacing-unit) * 2.5);
             }
+
             .form-body {
-                 padding: calc(var(--form-spacing-unit) * 1.5);
+                padding: calc(var(--form-spacing-unit) * 1.5);
             }
+
             .form-section-title {
                 margin-bottom: var(--form-spacing-unit);
                 padding-bottom: var(--form-spacing-unit) * 0.5;
             }
+
             .form-row {
                 flex-direction: column;
-                gap: var(--form-spacing-unit); 
+                gap: var(--form-spacing-unit);
                 margin-bottom: var(--form-spacing-unit);
             }
+
             .form-row:last-child {
                 margin-bottom: 0;
             }
+
             .form-field-group {
-                gap: calc(var(--form-spacing-unit) * 0.3); 
+                gap: calc(var(--form-spacing-unit) * 0.3);
             }
-             .input-group {
-                 padding: calc(var(--form-control-padding-y) * 0.8) calc(var(--form-control-padding-x) * 0.8); 
-                 height: auto;
-             }
-              .input-group input, textarea.form-control {
-                  font-size: 1rem; 
-                  padding: 0;
-              }
+
+            .input-group {
+                padding: calc(var(--form-control-padding-y) * 0.8) calc(var(--form-control-padding-x) * 0.8);
+                height: auto;
+            }
+
+            .input-group input,
             textarea.form-control {
-                 height: 60px; 
+                font-size: 1rem;
+                padding: 0;
             }
+
+            textarea.form-control {
+                height: 60px;
+            }
+
             .form-actions {
                 padding: calc(var(--form-spacing-unit) * 1.2) calc(var(--form-spacing-unit) * 1.5);
-                 gap: var(--form-spacing-unit);
+                gap: var(--form-spacing-unit);
             }
+
             .form-btn {
-                padding: calc(var(--form-control-padding-y) * 0.8) calc(var(--form-control-padding-x) * 1.2); 
-                 min-width: 80px;
-                 gap: calc(var(--form-spacing-unit) * 0.5);
+                padding: calc(var(--form-control-padding-y) * 0.8) calc(var(--form-control-padding-x) * 1.2);
+                min-width: 80px;
+                gap: calc(var(--form-spacing-unit) * 0.5);
             }
         }
-
     </style>
 </head>
+
 <body>
     <div class="adjust-order-value-form">
         <div class="form-header"><i class="fas fa-coins"></i> Điều chỉnh trị giá đơn hàng</div>
@@ -446,7 +466,8 @@
                     <div class="form-field-group span-2">
                         <label for="totalAgentChargesInput">Tổng cước Đại lý:</label>
                         <div class="input-group">
-                            <input type="text" id="totalAgentChargesInput" name="total_agent_charges" value="1.680.840" readonly>
+                            <input type="text" id="totalAgentChargesInput" name="total_agent_charges" value="1.680.840"
+                                readonly>
                             <span class="input-addon">VNĐ</span>
                         </div>
                     </div>
@@ -454,7 +475,8 @@
                 <div class="form-row">
                     <div class="form-field-group full-width">
                         <label for="otherChargesNoteInput">Ghi chú chi phí khác cho Sale:</label>
-                        <textarea id="otherChargesNoteInput" name="other_charges_note" rows="2">Nhớ chụp lại ảnh kiện nhé Alice</textarea>
+                        <textarea id="otherChargesNoteInput" name="other_charges_note"
+                            rows="2">Nhớ chụp lại ảnh kiện nhé Alice</textarea>
                     </div>
                 </div>
             </div>
@@ -470,7 +492,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log("Charges modal script loaded.");
 
             // Function to format number with dots
@@ -480,7 +502,7 @@
 
             // Function to parse number from formatted string
             function parseNumber(str) {
-                return parseFloat(str.replace(/[^0-9.-]+/g,"")) || 0;
+                return parseFloat(str.replace(/[^0-9.-]+/g, "")) || 0;
             }
 
             // Function to populate the form with data from localStorage
@@ -530,13 +552,13 @@
             document.getElementById('netAgentInput').addEventListener('input', calculateCharges);
 
             // Handle Cancel button
-            document.getElementById('cancelEditCharges').onclick = function() {
+            document.getElementById('cancelEditCharges').onclick = function () {
                 console.log('[Modal] Đã bấm Hủy chỉnh sửa cước phí');
                 window.parent && window.parent.closeEditModal ? window.parent.closeEditModal() : window.close();
             };
 
             // Handle form submission (Confirm button)
-            document.getElementById('editChargesForm').onsubmit = function(e) {
+            document.getElementById('editChargesForm').onsubmit = function (e) {
                 e.preventDefault();
                 console.log('[Modal] Đã bấm Xác nhận chỉnh sửa cước phí');
 
@@ -568,4 +590,5 @@
         });
     </script>
 </body>
+
 </html>

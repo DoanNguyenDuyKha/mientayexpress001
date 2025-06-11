@@ -12,9 +12,9 @@ const manageBodyScroll = () => {
     const isSidebarOpen = body.classList.contains('sidebar-mobile-open');
     const isAnyModalVisible = document.querySelector('.confirmation-modal.visible, .announcement-overlay.visible');
     if (isSidebarOpen || isAnyModalVisible) {
-         body.classList.add('overflow-hidden');
+        body.classList.add('overflow-hidden');
     } else {
-         body.classList.remove('overflow-hidden');
+        body.classList.remove('overflow-hidden');
     }
 };
 
@@ -50,25 +50,25 @@ function toggleSidebarDesktop() {
 }
 
 function toggleSubmenu(event) {
-   event.preventDefault();
-   if (body.classList.contains('sidebar-collapsed') && window.innerWidth > 768) return;
-   const parentLink = event.currentTarget;
-   const submenuWrapper = parentLink.nextElementSibling;
-   const arrow = parentLink.querySelector('.submenu-arrow');
-   if (!submenuWrapper?.classList.contains('submenu')) return;
-   const parentList = parentLink.closest('ul');
-   if (parentList) {
-       parentList.querySelectorAll(':scope > li > .submenu-parent.active').forEach(activeParent => {
-           if (activeParent !== parentLink) {
-               activeParent.classList.remove('active');
-               activeParent.nextElementSibling?.classList.remove('active');
-               activeParent.querySelector('.submenu-arrow')?.style.setProperty('transform', 'rotate(0deg)');
-           }
-       });
-   }
-   const isActive = submenuWrapper.classList.toggle('active');
-   parentLink.classList.toggle('active', isActive);
-   if (arrow) arrow.style.setProperty('transform', isActive ? 'rotate(180deg)' : 'rotate(0deg)');
+    event.preventDefault();
+    if (body.classList.contains('sidebar-collapsed') && window.innerWidth > 768) return;
+    const parentLink = event.currentTarget;
+    const submenuWrapper = parentLink.nextElementSibling;
+    const arrow = parentLink.querySelector('.submenu-arrow');
+    if (!submenuWrapper?.classList.contains('submenu')) return;
+    const parentList = parentLink.closest('ul');
+    if (parentList) {
+        parentList.querySelectorAll(':scope > li > .submenu-parent.active').forEach(activeParent => {
+            if (activeParent !== parentLink) {
+                activeParent.classList.remove('active');
+                activeParent.nextElementSibling?.classList.remove('active');
+                activeParent.querySelector('.submenu-arrow')?.style.setProperty('transform', 'rotate(0deg)');
+            }
+        });
+    }
+    const isActive = submenuWrapper.classList.toggle('active');
+    parentLink.classList.toggle('active', isActive);
+    if (arrow) arrow.style.setProperty('transform', isActive ? 'rotate(180deg)' : 'rotate(0deg)');
 }
 
 function initializeActiveSubmenu() {
@@ -76,7 +76,7 @@ function initializeActiveSubmenu() {
     if (activeSubmenuLink) {
         const submenuDiv = activeSubmenuLink.closest('.submenu');
         const parentLink = submenuDiv?.previousElementSibling;
-        if(submenuDiv && parentLink?.classList.contains('submenu-parent')) {
+        if (submenuDiv && parentLink?.classList.contains('submenu-parent')) {
             if (!(body.classList.contains('sidebar-collapsed') && window.innerWidth > 768)) {
                 submenuDiv.classList.add('active');
                 parentLink.classList.add('active');
@@ -108,15 +108,15 @@ function toggleFullscreen() {
 }
 
 function handleFullscreenChange() {
-     const isFullscreen = !!document.fullscreenElement;
-     const icon = fullscreenBtn?.querySelector('i');
-     if(icon){
-         icon.classList.toggle('fa-expand', !isFullscreen);
-         icon.classList.toggle('fa-compress', isFullscreen);
-     }
-      if(fullscreenBtn) {
-          fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
-      }
+    const isFullscreen = !!document.fullscreenElement;
+    const icon = fullscreenBtn?.querySelector('i');
+    if (icon) {
+        icon.classList.toggle('fa-expand', !isFullscreen);
+        icon.classList.toggle('fa-compress', isFullscreen);
+    }
+    if (fullscreenBtn) {
+        fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -125,9 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateDateTime, 1000);
 
     if (mobileSidebarToggleBtn) mobileSidebarToggleBtn.addEventListener('click', toggleSidebarMobileOrDesktop);
-        else console.error("Mobile toggle button not found");
+    else console.error("Mobile toggle button not found");
     if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebarMobileOrDesktop);
-        else console.error("Sidebar overlay not found");
+    else console.error("Sidebar overlay not found");
     if (desktopSidebarToggleBtn) desktopSidebarToggleBtn.addEventListener('click', toggleSidebarDesktop);
     document.querySelectorAll('.menu-items .submenu-parent').forEach(link => { link.addEventListener('click', toggleSubmenu); });
     if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => toggleCardSection(button));
         const card = button.closest('.card');
         const icon = button.querySelector('i');
-        if(card && icon){
+        if (card && icon) {
             const isCollapsed = card.classList.contains('collapsed');
             icon.classList.toggle('fa-chevron-down', isCollapsed);
             icon.classList.toggle('fa-chevron-up', !isCollapsed);
@@ -164,8 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (index < activeIndex) { step.classList.add('completed'); }
             else if (index === activeIndex) { step.classList.add('active'); }
         });
-         const progressPercent = totalSteps <= 1 ? 100 : (activeIndex / (totalSteps - 1)) * 100;
-         document.documentElement.style.setProperty('--straking-progress-width-ss', progressPercent + '%');
+        const progressPercent = totalSteps <= 1 ? 100 : (activeIndex / (totalSteps - 1)) * 100;
+        document.documentElement.style.setProperty('--straking-progress-width-ss', progressPercent + '%');
     }
 
     const statusUpdateForm = document.getElementById('tracking-status-form');
@@ -173,29 +173,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainCancelButton = statusUpdateForm?.querySelector('.btn-cancel-ss');
     const mainStatusSelect = document.getElementById('tracking_status_select');
 
-    if(mainUpdateButton && mainStatusSelect){
+    if (mainUpdateButton && mainStatusSelect) {
         mainUpdateButton.addEventListener('click', (e) => {
             e.preventDefault();
             const selectedValue = mainStatusSelect.value;
             const selectedText = mainStatusSelect.options[mainStatusSelect.selectedIndex].text;
             alert(`Cập nhật trạng thái thành: ${selectedText} (Demo)`);
             let newIndex = 0;
-             switch(selectedValue) {
-                 case 'received': newIndex = 0; break;
-                 case 'warehouse': newIndex = 1; break;
-                 case 'shipping': newIndex = 2; break;
-                 case 'delivered': newIndex = 3; break;
-                 default: newIndex = 0;
-             }
-             updateScreenshotProgressBar(newIndex);
+            switch (selectedValue) {
+                case 'received': newIndex = 0; break;
+                case 'warehouse': newIndex = 1; break;
+                case 'shipping': newIndex = 2; break;
+                case 'delivered': newIndex = 3; break;
+                default: newIndex = 0;
+            }
+            updateScreenshotProgressBar(newIndex);
         });
     }
-    if(mainCancelButton){ mainCancelButton.addEventListener('click', () => window.history.back()); }
+    if (mainCancelButton) { mainCancelButton.addEventListener('click', () => window.history.back()); }
 
     const addHistoryToggle = document.querySelector('.add-history-toggle-ss');
     const addHistoryForm = document.querySelector('.add-history-form-ss');
-    if(addHistoryForm) addHistoryForm.style.display = 'none';
-    if(addHistoryToggle && addHistoryForm) {
+    if (addHistoryForm) addHistoryForm.style.display = 'none';
+    if (addHistoryToggle && addHistoryForm) {
         addHistoryToggle.addEventListener('click', () => {
             const isHidden = addHistoryForm.style.display === 'none' || addHistoryForm.style.display === '';
             addHistoryForm.style.display = isHidden ? 'block' : 'none';
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleDeleteHistory = (e) => {
         e.stopPropagation();
-        if(confirm('Bạn có chắc muốn xóa mục lịch sử này?')){
+        if (confirm('Bạn có chắc muốn xóa mục lịch sử này?')) {
             e.target.closest(".timeline-item-ss")?.remove();
             alert('Đã xóa mục lịch sử (Demo)!');
         }
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const timelineSection = document.querySelector('.timeline-section-ss');
     const timelineList = timelineSection?.querySelector('.timeline-ss');
     const timelineToggleBtn = timelineSection?.querySelector('.timeline-toggle-btn-ss');
-    if(timelineToggleBtn && timelineList) {
+    if (timelineToggleBtn && timelineList) {
         timelineList.classList.add('collapsed');
         timelineList.style.display = 'none';
         const icon = timelineToggleBtn.querySelector('i');
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         timelineToggleBtn.addEventListener('click', () => {
             const isCollapsed = timelineList.classList.toggle('collapsed');
             const icon = timelineToggleBtn.querySelector('i');
-            if(isCollapsed) {
+            if (isCollapsed) {
                 timelineList.style.display = 'none';
                 icon.classList.remove('fa-chevron-up');
                 icon.classList.add('fa-chevron-down');
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add event listener to history time input to show picker on click
     const historyTimeInput = document.getElementById('history_time_ss');
     if (historyTimeInput) {
-        historyTimeInput.addEventListener('click', function() {
+        historyTimeInput.addEventListener('click', function () {
             // Attempt to show the picker directly
             if (typeof this.showPicker === 'function') {
                 this.showPicker();
@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
             notificationBody.classList.add('overflow-hidden');
         } else {
             if (!isAnyOtherModalVisible) {
-                 notificationBody.classList.remove('overflow-hidden');
+                notificationBody.classList.remove('overflow-hidden');
             }
         }
     };
@@ -285,9 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeNotificationDropdown() {
-         if (notificationDropdown) {
+        if (notificationDropdown) {
             notificationDropdown.classList.remove('visible');
-         }
+        }
     }
 
     function showAnnouncement() {
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 announcementTitle.textContent = title;
                 announcementBodyEl.innerHTML = '';
                 bodyText.split('||').forEach(paragraphText => {
-                    if(paragraphText.trim()) {
+                    if (paragraphText.trim()) {
                         const p = document.createElement('p');
                         p.textContent = paragraphText.trim();
                         announcementBodyEl.appendChild(p);
@@ -373,19 +373,19 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- Dropdown user ---
 const userToggle = document.getElementById('user-dropdown-toggle');
 const userDropdown = document.getElementById('user-dropdown');
-if(userToggle && userDropdown){
-    userToggle.addEventListener('click', function(e){
+if (userToggle && userDropdown) {
+    userToggle.addEventListener('click', function (e) {
         e.stopPropagation();
         userDropdown.classList.toggle('show');
     });
-    document.addEventListener('click', function(e){
-        if(!userDropdown.contains(e.target) && e.target !== userToggle){
+    document.addEventListener('click', function (e) {
+        if (!userDropdown.contains(e.target) && e.target !== userToggle) {
             userDropdown.classList.remove('show');
         }
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     function renderUserDropdown() {
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         const userToggle = document.getElementById('user-dropdown-toggle');
@@ -417,9 +417,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Gắn sự kiện cho menu
         setTimeout(() => {
             const loginItem = document.getElementById('login-menu-item');
-            if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
+            if (loginItem) loginItem.onclick = function (e) { e.preventDefault(); window.location.href = 'login.html'; };
             const logoutItem = document.getElementById('logout-menu-item');
-            if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+            if (logoutItem) logoutItem.onclick = function (e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
         }, 100);
     }
     renderUserDropdown();

@@ -467,7 +467,7 @@ body {
     background: white;
     border-radius: 18px;
     width: 60%;
-    max-width: 800px; 
+    max-width: 800px;
     max-height: 85vh;
     overflow: hidden;
     position: relative;
@@ -480,15 +480,21 @@ body {
 
 .address-combobox-grouping {
     display: flex;
-    gap: 0.5rem; /* Smaller gap for comboboxes */
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-    flex-grow: 1; /* Allow this container to take available space */
+    gap: 0.5rem;
+    /* Smaller gap for comboboxes */
+    flex-wrap: wrap;
+    /* Allow wrapping on small screens */
+    flex-grow: 1;
+    /* Allow this container to take available space */
 }
 
 .address-combobox-grouping .form-group.nested {
-    margin-bottom: 0; /* Remove default margin-bottom from form-group */
-    flex: 1 1 calc(33.333% - 0.5rem * 2 / 3); /* Distribute space among 3 items, considering gap */
-    min-width: 120px; /* Minimum width for combobox */
+    margin-bottom: 0;
+    /* Remove default margin-bottom from form-group */
+    flex: 1 1 calc(33.333% - 0.5rem * 2 / 3);
+    /* Distribute space among 3 items, considering gap */
+    min-width: 120px;
+    /* Minimum width for combobox */
 }
 
 .modal.show .modal-content {
@@ -577,7 +583,7 @@ body {
     padding: 0.5rem 1.75rem;
     font-size: 0.75rem;
     font-weight: 600;
-    cursor: pointer; 
+    cursor: pointer;
     border-radius: 18px;
 }
 
@@ -678,6 +684,7 @@ body {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -795,7 +802,8 @@ body {
 
     /* Hide specific table headers on mobile */
     #employeeTable thead th.mobile-hidden,
-    #employeeTable thead th.col-center:nth-child(2) { /* Also hide STT header */
+    #employeeTable thead th.col-center:nth-child(2) {
+        /* Also hide STT header */
         display: none;
     }
 
@@ -806,25 +814,32 @@ body {
 
     /* Ensure main employee rows are block/flex on mobile if needed for layout adjustments */
     #employeeTable tbody tr.employee-row {
-         display: table-row; /* Keep as table-row for general structure */
-         border-bottom: none; /* Remove border from main row */
-         /* Add click indicator if desired */
-         cursor: pointer;
+        display: table-row;
+        /* Keep as table-row for general structure */
+        border-bottom: none;
+        /* Remove border from main row */
+        /* Add click indicator if desired */
+        cursor: pointer;
     }
-    
-     #employeeTable tbody tr.employee-row:hover {
-        background: var(--bg-color); /* Adjust hover for main row */
-     }
+
+    #employeeTable tbody tr.employee-row:hover {
+        background: var(--bg-color);
+        /* Adjust hover for main row */
+    }
 
     /* Style the detail row */
     #employeeTable tbody tr.employee-detail-row {
-        display: none; /* Hidden by default */
-        background-color: var(--primary-light); /* Light background for detail row */
-        border-bottom: 1px solid var(--border-color); /* Add border to separate entries */
+        display: none;
+        /* Hidden by default */
+        background-color: var(--primary-light);
+        /* Light background for detail row */
+        border-bottom: 1px solid var(--border-color);
+        /* Add border to separate entries */
     }
 
     #employeeTable tbody tr.employee-detail-row td {
-        padding: 10px var(--base-padding); /* Padding for detail cell */
+        padding: 10px var(--base-padding);
+        /* Padding for detail cell */
     }
 
     /* Style the content within the detail row */
@@ -836,6 +851,7 @@ body {
         align-items: flex-start;
         text-align: left;
     }
+
     .employee-detail-content .detail-item {
         text-align: left;
         align-items: flex-start;
@@ -845,15 +861,17 @@ body {
 
     /* Hide action icons in main row on mobile */
     #employeeTable tbody tr.employee-row td.action-icons.mobile-hidden {
-         display: none !important;
+        display: none !important;
     }
 
     /* Adjust padding for checkbox and STT columns on mobile */
     #employeeTable th:first-child,
-    #employeeTable td:first-child { /* Checkbox column */
+    #employeeTable td:first-child {
+        /* Checkbox column */
         padding-left: 10px;
         padding-right: 5px;
     }
+
     /* Hide STT header on mobile if it was not hidden by .mobile-hidden */
     #employeeTable thead th.col-center:nth-child(2) {
         display: none;
@@ -861,20 +879,30 @@ body {
 
     /* Allow table to shrink and prevent horizontal scroll */
     #employeeTable {
-        min-width: auto; /* Remove minimum width */
-        width: 100%; /* Ensure it takes available width */
+        min-width: auto;
+        /* Remove minimum width */
+        width: 100%;
+        /* Ensure it takes available width */
     }
 
-     /* Optional: Add specific width for Mã NV and Họ và tên if needed */
-     /* Example: */
-     #employeeTable th:nth-child(3), #employeeTable tbody td:nth-child(3) { /* Mã NV column */
-         width: 25%;
-         white-space: nowrap; /* Prevent wrapping */
-     }
-      #employeeTable th:nth-child(4), #employeeTable tbody td:nth-child(4) { /* Họ và tên column */
-         width: 50%; /* Allow Họ và tên to take more space */
-      }
-      .filter-container {
+    /* Optional: Add specific width for Mã NV and Họ và tên if needed */
+    /* Example: */
+    #employeeTable th:nth-child(3),
+    #employeeTable tbody td:nth-child(3) {
+        /* Mã NV column */
+        width: 25%;
+        white-space: nowrap;
+        /* Prevent wrapping */
+    }
+
+    #employeeTable th:nth-child(4),
+    #employeeTable tbody td:nth-child(4) {
+        /* Họ và tên column */
+        width: 50%;
+        /* Allow Họ và tên to take more space */
+    }
+
+    .filter-container {
         padding: var(--base-padding);
     }
 
@@ -910,9 +938,9 @@ body {
         gap: 0.5rem;
     }
 
-     .pagination-info {
+    .pagination-info {
         font-size: 0.8rem;
-     }
+    }
 
     .pagination-buttons {
         gap: 0.2rem;
@@ -1103,14 +1131,14 @@ body {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.1);
     outline: none;
-} 
+}
 
 @media (max-width: 480px) {
     .modal-content {
         background: white;
         border-radius: 18px;
         width: 90%;
-        max-width: 800px !important; 
+        max-width: 800px !important;
         max-height: 85vh;
         overflow: hidden;
         position: relative;
@@ -1209,7 +1237,8 @@ body {
 
 #employeeTable thead th.mobile-hidden,
 #employeeTable tbody td.mobile-hidden {
-    display: table-cell; /* Ensure they are visible by default on larger screens */
+    display: table-cell;
+    /* Ensure they are visible by default on larger screens */
 }
 
 @media (max-width: 768px) {
@@ -1237,7 +1266,8 @@ body {
 
     /* Hide specific table headers on mobile */
     #employeeTable thead th.mobile-hidden,
-    #employeeTable thead th.col-center:nth-child(2) { /* Also hide STT header */
+    #employeeTable thead th.col-center:nth-child(2) {
+        /* Also hide STT header */
         display: none;
     }
 
@@ -1248,25 +1278,32 @@ body {
 
     /* Ensure main employee rows are block/flex on mobile if needed for layout adjustments */
     #employeeTable tbody tr.employee-row {
-         display: table-row; /* Keep as table-row for general structure */
-         border-bottom: none; /* Remove border from main row */
-         /* Add click indicator if desired */
-         cursor: pointer;
+        display: table-row;
+        /* Keep as table-row for general structure */
+        border-bottom: none;
+        /* Remove border from main row */
+        /* Add click indicator if desired */
+        cursor: pointer;
     }
-    
-     #employeeTable tbody tr.employee-row:hover {
-        background: var(--bg-color); /* Adjust hover for main row */
-     }
+
+    #employeeTable tbody tr.employee-row:hover {
+        background: var(--bg-color);
+        /* Adjust hover for main row */
+    }
 
     /* Style the detail row */
     #employeeTable tbody tr.employee-detail-row {
-        display: none; /* Hidden by default */
-        background-color: var(--primary-light); /* Light background for detail row */
-        border-bottom: 1px solid var(--border-color); /* Add border to separate entries */
+        display: none;
+        /* Hidden by default */
+        background-color: var(--primary-light);
+        /* Light background for detail row */
+        border-bottom: 1px solid var(--border-color);
+        /* Add border to separate entries */
     }
 
     #employeeTable tbody tr.employee-detail-row td {
-        padding: 10px var(--base-padding); /* Padding for detail cell */
+        padding: 10px var(--base-padding);
+        /* Padding for detail cell */
     }
 
     /* Style the content within the detail row */
@@ -1278,6 +1315,7 @@ body {
         align-items: flex-start;
         text-align: left;
     }
+
     .employee-detail-content .detail-item {
         text-align: left;
         align-items: flex-start;
@@ -1287,15 +1325,17 @@ body {
 
     /* Hide action icons in main row on mobile */
     #employeeTable tbody tr.employee-row td.action-icons.mobile-hidden {
-         display: none !important;
+        display: none !important;
     }
 
     /* Adjust padding for checkbox and STT columns on mobile */
     #employeeTable th:first-child,
-    #employeeTable td:first-child { /* Checkbox column */
+    #employeeTable td:first-child {
+        /* Checkbox column */
         padding-left: 10px;
         padding-right: 5px;
     }
+
     /* Hide STT header on mobile if it was not hidden by .mobile-hidden */
     #employeeTable thead th.col-center:nth-child(2) {
         display: none;
@@ -1303,20 +1343,30 @@ body {
 
     /* Allow table to shrink and prevent horizontal scroll */
     #employeeTable {
-        min-width: auto; /* Remove minimum width */
-        width: 100%; /* Ensure it takes available width */
+        min-width: auto;
+        /* Remove minimum width */
+        width: 100%;
+        /* Ensure it takes available width */
     }
 
-     /* Optional: Add specific width for Mã NV and Họ và tên if needed */
-     /* Example: */
-     #employeeTable th:nth-child(3), #employeeTable tbody td:nth-child(3) { /* Mã NV column */
-         width: 25%;
-         white-space: nowrap; /* Prevent wrapping */
-     }
-      #employeeTable th:nth-child(4), #employeeTable tbody td:nth-child(4) { /* Họ và tên column */
-         width: 50%; /* Allow Họ và tên to take more space */
-      }
-      .table-wrapper {
+    /* Optional: Add specific width for Mã NV and Họ và tên if needed */
+    /* Example: */
+    #employeeTable th:nth-child(3),
+    #employeeTable tbody td:nth-child(3) {
+        /* Mã NV column */
+        width: 25%;
+        white-space: nowrap;
+        /* Prevent wrapping */
+    }
+
+    #employeeTable th:nth-child(4),
+    #employeeTable tbody td:nth-child(4) {
+        /* Họ và tên column */
+        width: 50%;
+        /* Allow Họ và tên to take more space */
+    }
+
+    .table-wrapper {
         min-width: 300px !important;
     }
 }

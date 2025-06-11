@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" />
     <style>
-        
         .edit-bill-info-form {
             --form-primary-color: #FFD600;
             --form-primary-hover: #FFB300;
@@ -26,7 +27,7 @@
             --form-font-size-base: 12px;
             --form-font-size-sm: 10px;
             --form-font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            --form-shadow-lg: 0 10px 15px rgba(0,0,0,0.10);
+            --form-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10);
             --form-transition: all 0.3s ease;
             box-sizing: border-box;
             font-family: var(--form-font-family);
@@ -44,46 +45,248 @@
             overflow: hidden;
             border-radius: var(--form-border-radius);
         }
-        .edit-bill-info-form *, .edit-bill-info-form *::before, .edit-bill-info-form *::after { box-sizing: border-box; margin: 0; padding: 0; border-width: 0; border-style: solid; border-color: transparent; background: transparent; font: inherit; color: inherit; line-height: inherit; vertical-align: baseline; }
-        .edit-bill-info-form div, .edit-bill-info-form header, .edit-bill-info-form form, .edit-bill-info-form label, .edit-bill-info-form h2 { display: block; }
-        .edit-bill-info-form span, .edit-bill-info-form i { display: inline-block; vertical-align: middle; }
-        .edit-bill-info-form button { display: inline-flex; align-items: center; justify-content: center; }
-        .edit-bill-info-form input[type="text"], .edit-bill-info-form input[type="number"], .edit-bill-info-form select { display: block; width: 100%; }
-        .edit-bill-info-form label { display: block; margin-bottom: calc(var(--form-spacing-unit) * 0.5); }
-        .edit-bill-info-form .form-header { background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%); color: var(--form-primary-color) !important; padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5) !important; flex-shrink: 0; border-bottom: 1.5px solid var(--form-primary-color) !important; border-top-left-radius: var(--form-border-radius); border-top-right-radius: var(--form-border-radius); display: flex; align-items: center; }
-        .edit-bill-info-form .form-header h2 { font-size: 1.18rem !important; font-weight: 700 !important; color: var(--form-secondary-color); margin:0; display: flex; align-items: center; gap: 0.75rem; }
-        .edit-bill-info-form .form-header h2::before { content: '\f044'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 1.4em; color: var(--form-secondary-color); }
-        .edit-bill-info-form .form-body { padding: calc(var(--form-spacing-unit) * 2.5) !important; background-color: var(--form-input-bg) !important; flex-grow: 1; overflow-y: auto; }
-        .edit-bill-info-form .form-group { display: flex; flex-direction: column; gap: calc(var(--form-spacing-unit) * 0.7); margin-bottom: calc(var(--form-spacing-unit) * 2); }
-        .edit-bill-info-form .form-group .main-label { font-weight: 600; color: var(--form-secondary-color); font-size: var(--form-font-size-base); }
-        .edit-bill-info-form .form-control { width: 100%; padding: var(--form-control-padding-y) var(--form-control-padding-x); border: 1.5px solid var(--form-border-color); border-radius: var(--form-border-radius); background-color: #fff; font-size: var(--form-font-size-base); font-family: var(--form-font-family); color: var(--form-text-color); line-height: 1.5; transition: var(--form-transition); min-height: calc(1.5em + var(--form-control-padding-y) * 2 + 2px); }
-        .edit-bill-info-form .form-control:focus { border-color: #FFD600; outline: 0; box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15); }
-        .edit-bill-info-form .form-note { font-size: var(--form-font-size-sm); color: var(--form-danger-color); display: block; line-height: 1.4; padding-left: 2px; }
-        .edit-bill-info-form .form-actions { padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5); background: white; border-top: 1.5px solid var(--form-primary-color); display: flex; justify-content: flex-end; gap: var(--form-spacing-unit); flex-shrink: 0; border-bottom-left-radius: var(--form-border-radius); border-bottom-right-radius: var(--form-border-radius); }
-        .edit-bill-info-form .form-btn { gap: calc(var(--form-spacing-unit) * 0.8); padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5); font-size: var(--form-font-size-base); font-weight: 600; border-radius: var(--form-border-radius); border: 1.5px solid transparent; cursor: pointer; transition: var(--form-transition); line-height: 1.4; white-space: nowrap; min-width: 100px; }
-        .edit-bill-info-form .form-btn i { font-size: 1em; margin-right: 4px; font-family: "Font Awesome 6 Free"; font-weight: 900; line-height: 1; }
-        .edit-bill-info-form .form-btn-cancel { background-color: transparent; color: var(--form-primary-color); border-color: var(--form-primary-color); }
-        .edit-bill-info-form .form-btn-cancel:hover { background-color: var(--form-primary-color); color: var(--form-secondary-color); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); }
-        .edit-bill-info-form .form-btn-confirm { background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%); color: var(--form-secondary-color); border: none; box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15); }
-        .edit-bill-info-form .form-btn-confirm:hover { background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); }
-        .edit-bill-info-form .form-btn:focus-visible { outline: 1.5px solid var(--form-primary-color); outline-offset: 1px; box-shadow: none; }
-        .edit-bill-info-form .form-btn:active { transform: scale(0.98); }
-        @media (max-width: 600px) { .edit-bill-info-form { width: 100%; max-width: 100%; margin: 0; } .edit-bill-info-form .form-body { padding: calc(var(--form-spacing-unit) * 2) !important; } .edit-bill-info-form .form-header, .edit-bill-info-form .form-actions { padding: calc(var(--form-spacing-unit) * 1.5) calc(var(--form-spacing-unit) * 2) !important; } .edit-bill-info-form .form-actions { justify-content: space-between; gap: calc(var(--form-spacing-unit) * 1.5); } .edit-bill-info-form .form-btn { flex-grow: 1; max-width: 48%; } }
+
+        .edit-bill-info-form *,
+        .edit-bill-info-form *::before,
+        .edit-bill-info-form *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border-width: 0;
+            border-style: solid;
+            border-color: transparent;
+            background: transparent;
+            font: inherit;
+            color: inherit;
+            line-height: inherit;
+            vertical-align: baseline;
+        }
+
+        .edit-bill-info-form div,
+        .edit-bill-info-form header,
+        .edit-bill-info-form form,
+        .edit-bill-info-form label,
+        .edit-bill-info-form h2 {
+            display: block;
+        }
+
+        .edit-bill-info-form span,
+        .edit-bill-info-form i {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .edit-bill-info-form button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .edit-bill-info-form input[type="text"],
+        .edit-bill-info-form input[type="number"],
+        .edit-bill-info-form select {
+            display: block;
+            width: 100%;
+        }
+
+        .edit-bill-info-form label {
+            display: block;
+            margin-bottom: calc(var(--form-spacing-unit) * 0.5);
+        }
+
+        .edit-bill-info-form .form-header {
+            background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%);
+            color: var(--form-primary-color) !important;
+            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5) !important;
+            flex-shrink: 0;
+            border-bottom: 1.5px solid var(--form-primary-color) !important;
+            border-top-left-radius: var(--form-border-radius);
+            border-top-right-radius: var(--form-border-radius);
+            display: flex;
+            align-items: center;
+        }
+
+        .edit-bill-info-form .form-header h2 {
+            font-size: 1.18rem !important;
+            font-weight: 700 !important;
+            color: var(--form-secondary-color);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .edit-bill-info-form .form-header h2::before {
+            content: '\f044';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1.4em;
+            color: var(--form-secondary-color);
+        }
+
+        .edit-bill-info-form .form-body {
+            padding: calc(var(--form-spacing-unit) * 2.5) !important;
+            background-color: var(--form-input-bg) !important;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .edit-bill-info-form .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--form-spacing-unit) * 0.7);
+            margin-bottom: calc(var(--form-spacing-unit) * 2);
+        }
+
+        .edit-bill-info-form .form-group .main-label {
+            font-weight: 600;
+            color: var(--form-secondary-color);
+            font-size: var(--form-font-size-base);
+        }
+
+        .edit-bill-info-form .form-control {
+            width: 100%;
+            padding: var(--form-control-padding-y) var(--form-control-padding-x);
+            border: 1.5px solid var(--form-border-color);
+            border-radius: var(--form-border-radius);
+            background-color: #fff;
+            font-size: var(--form-font-size-base);
+            font-family: var(--form-font-family);
+            color: var(--form-text-color);
+            line-height: 1.5;
+            transition: var(--form-transition);
+            min-height: calc(1.5em + var(--form-control-padding-y) * 2 + 2px);
+        }
+
+        .edit-bill-info-form .form-control:focus {
+            border-color: #FFD600;
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15);
+        }
+
+        .edit-bill-info-form .form-note {
+            font-size: var(--form-font-size-sm);
+            color: var(--form-danger-color);
+            display: block;
+            line-height: 1.4;
+            padding-left: 2px;
+        }
+
+        .edit-bill-info-form .form-actions {
+            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5);
+            background: white;
+            border-top: 1.5px solid var(--form-primary-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--form-spacing-unit);
+            flex-shrink: 0;
+            border-bottom-left-radius: var(--form-border-radius);
+            border-bottom-right-radius: var(--form-border-radius);
+        }
+
+        .edit-bill-info-form .form-btn {
+            gap: calc(var(--form-spacing-unit) * 0.8);
+            padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5);
+            font-size: var(--form-font-size-base);
+            font-weight: 600;
+            border-radius: var(--form-border-radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: var(--form-transition);
+            line-height: 1.4;
+            white-space: nowrap;
+            min-width: 100px;
+        }
+
+        .edit-bill-info-form .form-btn i {
+            font-size: 1em;
+            margin-right: 4px;
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .edit-bill-info-form .form-btn-cancel {
+            background-color: transparent;
+            color: var(--form-primary-color);
+            border-color: var(--form-primary-color);
+        }
+
+        .edit-bill-info-form .form-btn-cancel:hover {
+            background-color: var(--form-primary-color);
+            color: var(--form-secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+        }
+
+        .edit-bill-info-form .form-btn-confirm {
+            background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%);
+            color: var(--form-secondary-color);
+            border: none;
+            box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15);
+        }
+
+        .edit-bill-info-form .form-btn-confirm:hover {
+            background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+        }
+
+        .edit-bill-info-form .form-btn:focus-visible {
+            outline: 1.5px solid var(--form-primary-color);
+            outline-offset: 1px;
+            box-shadow: none;
+        }
+
+        .edit-bill-info-form .form-btn:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 600px) {
+            .edit-bill-info-form {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .edit-bill-info-form .form-body {
+                padding: calc(var(--form-spacing-unit) * 2) !important;
+            }
+
+            .edit-bill-info-form .form-header,
+            .edit-bill-info-form .form-actions {
+                padding: calc(var(--form-spacing-unit) * 1.5) calc(var(--form-spacing-unit) * 2) !important;
+            }
+
+            .edit-bill-info-form .form-actions {
+                justify-content: space-between;
+                gap: calc(var(--form-spacing-unit) * 1.5);
+            }
+
+            .edit-bill-info-form .form-btn {
+                flex-grow: 1;
+                max-width: 48%;
+            }
+        }
+
         .edit-bill-info-form .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px 32px;
         }
+
         @media (max-width: 900px) {
             .edit-bill-info-form .form-grid {
                 grid-template-columns: 1fr;
             }
         }
+
         .edit-bill-info-form .form-group {
             margin-bottom: 0;
         }
     </style>
 </head>
+
 <body>
     <div class="form-container edit-bill-info-form">
         <div class="form-header">
@@ -121,29 +324,38 @@
                     <div>
                         <div class="form-group">
                             <label class="main-label" for="serviceNameInput">Chọn dịch vụ:</label>
-                            <select id="serviceNameInput" name="service_type" class="form-control" style="background: #fffbe7; border: 1.5px solid #ffe066;">
+                            <select id="serviceNameInput" name="service_type" class="form-control"
+                                style="background: #fffbe7; border: 1.5px solid #ffe066;">
                                 <option value="" selected>Chọn dịch vụ</option>
                             </select>
-                            <span class="form-note" style="color: #dc2626; margin-top: 2px;">Lưu ý: Một số dịch vụ chỉ nhận từ 20kg trở lên.</span>
+                            <span class="form-note" style="color: #dc2626; margin-top: 2px;">Lưu ý: Một số dịch vụ chỉ
+                                nhận từ 20kg trở lên.</span>
                         </div>
                         <div class="form-group">
                             <label class="main-label" for="branchInput">Chi nhánh:</label>
-                            <input type="text" id="branchInput" name="branch" class="form-control" style="background: #fffbe7; border: 1.5px solid #ffe066;" readonly>
+                            <input type="text" id="branchInput" name="branch" class="form-control"
+                                style="background: #fffbe7; border: 1.5px solid #ffe066;" readonly>
                         </div>
                         <div class="form-group">
                             <label class="main-label">Dịch vụ cộng thêm:</label>
                             <div style="display: flex; gap: 32px; flex-wrap: wrap; margin-top: 6px;">
-                                <label style="display: flex; align-items: center; gap: 6px; font-weight: 500; color: #bfa600;">
+                                <label
+                                    style="display: flex; align-items: center; gap: 6px; font-weight: 500; color: #bfa600;">
                                     <input type="checkbox" name="add_service_signature" value="Chữ ký"> Chữ ký
                                 </label>
-                                <label style="display: flex; align-items: center; gap: 6px; font-weight: 500; color: #bfa600;">
-                                    <input type="checkbox" name="add_service_insurance" value="Bảo hiểm hàng hóa"> Bảo hiểm hàng hóa
+                                <label
+                                    style="display: flex; align-items: center; gap: 6px; font-weight: 500; color: #bfa600;">
+                                    <input type="checkbox" name="add_service_insurance" value="Bảo hiểm hàng hóa"> Bảo
+                                    hiểm hàng hóa
                                 </label>
-                                <label style="display: flex; align-items: center; gap: 6px; font-weight: 500; color: #bfa600;">
+                                <label
+                                    style="display: flex; align-items: center; gap: 6px; font-weight: 500; color: #bfa600;">
                                     <input type="checkbox" name="add_service_fumigation" value="FUMIGATION"> FUMIGATION
                                 </label>
-                                <label style="display: flex; align-items: center; gap: 6px; font-weight: 500; color: #bfa600;">
-                                    <input type="checkbox" name="add_service_wood_crate" value="Đóng kiện gỗ"> Đóng kiện gỗ
+                                <label
+                                    style="display: flex; align-items: center; gap: 6px; font-weight: 500; color: #bfa600;">
+                                    <input type="checkbox" name="add_service_wood_crate" value="Đóng kiện gỗ"> Đóng kiện
+                                    gỗ
                                 </label>
                             </div>
                         </div>
@@ -155,10 +367,13 @@
                 </div>
             </div>
             <div class="form-actions">
-                <button type="button" class="form-btn form-btn-cancel modal-cancel-button"><i class="fa-solid fa-xmark"></i> Hủy</button>
-                <button type="button" class="form-btn form-btn-confirm modal-confirm-button"><i class="fa-solid fa-check"></i> Xác nhận</button>
+                <button type="button" class="form-btn form-btn-cancel modal-cancel-button"><i
+                        class="fa-solid fa-xmark"></i> Hủy</button>
+                <button type="button" class="form-btn form-btn-confirm modal-confirm-button"><i
+                        class="fa-solid fa-check"></i> Xác nhận</button>
             </div>
         </form>
     </div>
 </body>
-</html> 
+
+</html>

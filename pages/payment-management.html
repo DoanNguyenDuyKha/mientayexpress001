@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Thanh toán - Minh Khôi Logistics</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="../css/package_manager.css">
     <link rel="stylesheet" href="../css/payment-management.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/vi.js"></script>
 </head>
+
 <body>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -18,27 +22,43 @@
         </div>
         <nav class="menu-items" aria-label="Main Navigation">
             <ul>
-                <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
-                <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
+                <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG
+                            CHỦ</span></a></li>
+                <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN
+                            HÀNG</span></a></li>
                 <li>
-                    <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
+                    <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span
+                            class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
                     <div class="submenu">
                         <ul>
-                            <li><a href="package_manager.html"><i class="fa-solid fa-box-archive icon"></i><span class="menu-text">Quản lý đơn hàng</span></a></li>
-                            <li><a href="straking-bill-of-lading-status.html"><i class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng thái</span></a></li>
-                            <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận chuyển</span></a></li>
-                            <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản lý chi nhánh</span></a></li>
-                            <li><a href="payment-management.html" class="active"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
+                            <li><a href="package_manager.html"><i class="fa-solid fa-box-archive icon"></i><span
+                                        class="menu-text">Quản lý đơn hàng</span></a></li>
+                            <li><a href="straking-bill-of-lading-status.html"><i
+                                        class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng
+                                        thái</span></a></li>
+                            <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span
+                                        class="menu-text">Quản lý vận chuyển</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản
+                                        lý chi nhánh</span></a></li>
+                            <li><a href="payment-management.html" class="active"><i
+                                        class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh
+                                        toán</span></a></li>
                         </ul>
                     </div>
                 </li>
-                <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
-                <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
-                <li><a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span></a></li>
-                <li><a href="employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN LÝ NHÂN SỰ</span></a></li>
-                <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
+                <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span
+                            class="menu-text">THỐNG KÊ</span></a></li>
+                <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span
+                            class="menu-text">QL DỊCH VỤ</span></a></li>
+                <li><a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH
+                            HÀNG</span></a></li>
+                <li><a href="employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN
+                            LÝ NHÂN SỰ</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG
+                            TY</span></a></li>
                 <li>
-                    <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                    <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL
+                            CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
                     <div class="submenu">
                         <ul>
                             <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
@@ -46,9 +66,11 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ DỤNG</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ
+                            DỤNG</span></a></li>
                 <li>
-                    <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                    <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI
+                            ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
                     <div class="submenu">
                         <ul>
                             <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
@@ -64,7 +86,8 @@
 
     <main class="main-content">
         <header class="header">
-            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu" aria-controls="sidebar" aria-expanded="false"> <i class="fa-solid fa-bars"></i> </button>
+            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu"
+                aria-controls="sidebar" aria-expanded="false"> <i class="fa-solid fa-bars"></i> </button>
             <div class="header-left">
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -80,21 +103,27 @@
                     <div class="notification-dropdown" id="notification-dropdown">
                         <div class="dropdown-header">Thông báo</div>
                         <ul class="notification-list" id="notification-list">
-                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024" data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada." data-timestamp="2024-07-25 13:53:27">
+                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024"
+                                data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada."
+                                data-timestamp="2024-07-25 13:53:27">
                                 <div class="item-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
                                 <div class="item-content">
                                     <div class="item-title">Dời Cut off Canada 24/08/2024</div>
                                     <div class="item-time">25 Jul 2024</div>
                                 </div>
                             </li>
-                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống" data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này." data-timestamp="2024-07-28 10:00:00">
+                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống"
+                                data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này."
+                                data-timestamp="2024-07-28 10:00:00">
                                 <div class="item-icon"><i class="fa-solid fa-wrench"></i></div>
                                 <div class="item-content">
                                     <div class="item-title">Cập nhật hệ thống 30/07</div>
                                     <div class="item-time">28 Jul 2024</div>
                                 </div>
                             </li>
-                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới" data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ." data-timestamp="2024-07-20 09:00:00">
+                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới"
+                                data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ."
+                                data-timestamp="2024-07-20 09:00:00">
                                 <div class="item-icon"><i class="fa-solid fa-tags"></i></div>
                                 <div class="item-content">
                                     <div class="item-title">Khuyến mãi hè 2024!</div>
@@ -106,13 +135,18 @@
                     </div>
                 </div>
                 <div class="user-container" style="position: relative;">
-                    <div class="user-dropdown-toggle" id="user-dropdown-toggle" style="display: flex; align-items: center; gap: 6px; background: #6366f1; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
-                        <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
+                    <div class="user-dropdown-toggle" id="user-dropdown-toggle"
+                        style="display: flex; align-items: center; gap: 6px; background: #6366f1; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
+                        <i class="fa-regular fa-circle-user user-icon" id="user-icon"
+                            style="color: #fff; font-size: 1.25em;"></i>
                     </div>
                     <div class="user-dropdown" id="user-dropdown">
-                        <a href="#" class="user-dropdown-item" id="profile-link"><i class="fa-regular fa-user"></i> Profile</a>
-                        <a href="#" class="user-dropdown-item" id="login-link"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>
-                        <a href="#" class="user-dropdown-item" id="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                        <a href="#" class="user-dropdown-item" id="profile-link"><i class="fa-regular fa-user"></i>
+                            Profile</a>
+                        <a href="#" class="user-dropdown-item" id="login-link"><i
+                                class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>
+                        <a href="#" class="user-dropdown-item" id="logout-link"><i
+                                class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                     </div>
                 </div>
             </div>
@@ -136,9 +170,11 @@
                                 <i class="fa-solid fa-file-invoice-dollar"></i>
                                 <h2>Trị giá đơn hàng</h2>
                             </div>
-                             <div class="actions">
-                                <p class="order-value-note">Lưu ý: Tiền tệ được quy đổi theo tỷ lệ bạn nhập ở mục Tỷ giá USD/VNĐ</p>
-                                <button type="button" class="section-toggle-btn"><i class="fas fa-chevron-up"></i></button>
+                            <div class="actions">
+                                <p class="order-value-note">Lưu ý: Tiền tệ được quy đổi theo tỷ lệ bạn nhập ở mục Tỷ giá
+                                    USD/VNĐ</p>
+                                <button type="button" class="section-toggle-btn"><i
+                                        class="fas fa-chevron-up"></i></button>
                             </div>
                         </header>
                         <div class="section-content-original">
@@ -147,7 +183,8 @@
                                 <div class="input-group currency-group">
                                     <input type="number" id="exchange_rate" value="5">
                                     <span>USD</span>
-                                    <button type="button" class="currency-switch-btn"><i class="fa-solid fa-repeat"></i></button>
+                                    <button type="button" class="currency-switch-btn"><i
+                                            class="fa-solid fa-repeat"></i></button>
                                     <input type="text" id="exchange_rate_vnd" value="127.500" readonly>
                                     <span>VNĐ</span>
                                 </div>
@@ -201,11 +238,19 @@
                                 <textarea id="sale_notes" rows="1">Nhờ chụp lại ảnh kiện nhé Alice</textarea>
                             </div>
                             <div class="order-value-summary-original">
-                                 <div class="summary-item"> <label>Tổng chi phí lô hàng:</label> <span class="value value-purple"><i class="fa-solid fa-boxes-stacked"></i> 2.318.000 đ</span> </div>
-                                 <div class="summary-item"> <label>Lợi nhuận tạm tính:</label> <span class="value value-warning"><i class="fa-solid fa-wallet"></i> 2.318.000 đ</span> </div>
-                                 <div class="summary-item"> <label>Lợi nhuận công ty:</label> <span class="value value-confirm"><i class="fa-solid fa-chart-line"></i> 2.318.000 đ</span> </div>
-                                 <div class="summary-item"> <label>Tổng khấu hao phí:</label> <span class="value value-danger"><i class="fa-solid fa-calculator"></i> 390.382 đ</span> </div>
-                             </div>
+                                <div class="summary-item"> <label>Tổng chi phí lô hàng:</label> <span
+                                        class="value value-purple"><i class="fa-solid fa-boxes-stacked"></i> 2.318.000
+                                        đ</span> </div>
+                                <div class="summary-item"> <label>Lợi nhuận tạm tính:</label> <span
+                                        class="value value-warning"><i class="fa-solid fa-wallet"></i> 2.318.000
+                                        đ</span> </div>
+                                <div class="summary-item"> <label>Lợi nhuận công ty:</label> <span
+                                        class="value value-confirm"><i class="fa-solid fa-chart-line"></i> 2.318.000
+                                        đ</span> </div>
+                                <div class="summary-item"> <label>Tổng khấu hao phí:</label> <span
+                                        class="value value-danger"><i class="fa-solid fa-calculator"></i> 390.382
+                                        đ</span> </div>
+                            </div>
                         </div>
                     </section>
 
@@ -218,26 +263,58 @@
                                         <h2>Khách hàng thanh toán</h2>
                                     </div>
                                     <div class="actions">
-                                        <button type="button" class="update-button-original"><i class="fa-solid fa-check"></i> Cập nhật</button>
-                                        <button type="button" class="section-toggle-btn"><i class="fas fa-chevron-up"></i></button>
+                                        <button type="button" class="update-button-original"><i
+                                                class="fa-solid fa-check"></i> Cập nhật</button>
+                                        <button type="button" class="section-toggle-btn"><i
+                                                class="fas fa-chevron-up"></i></button>
                                     </div>
                                 </header>
                                 <div class="section-content-original">
                                     <div class="payment-info-grid-original">
                                         <label>Trạng thái:</label>
                                         <div class="date-display">
-                                            <select> <option selected>Đã thanh toán đủ</option> <option>Chưa thanh toán</option> <option>Thanh toán một phần</option></select>
-                                            <span>17/10/2024   13:24:15</span>
-                                         </div>
-                                        <label for="customer_bank">Chọn ngân hàng:</label> <select id="customer_bank"> <option selected>MB Bank</option> <option>VCB</option> <option>ACB</option> </select>
+                                            <select>
+                                                <option selected>Đã thanh toán đủ</option>
+                                                <option>Chưa thanh toán</option>
+                                                <option>Thanh toán một phần</option>
+                                            </select>
+                                            <span>17/10/2024 13:24:15</span>
+                                        </div>
+                                        <label for="customer_bank">Chọn ngân hàng:</label> <select id="customer_bank">
+                                            <option selected>MB Bank</option>
+                                            <option>VCB</option>
+                                            <option>ACB</option>
+                                        </select>
                                         <label for="customer_pay_date">Ngày thanh toán:</label>
-                                        <input type="text" id="customer_pay_date" class="date-picker" placeholder="dd/mm/yy" readonly>
-                                        <label for="customer_pay_notes">Nội dung thanh toán:</label> <textarea id="customer_pay_notes" rows="2"></textarea>
+                                        <input type="text" id="customer_pay_date" class="date-picker"
+                                            placeholder="dd/mm/yy" readonly>
+                                        <label for="customer_pay_notes">Nội dung thanh toán:</label> <textarea
+                                            id="customer_pay_notes" rows="2"></textarea>
                                     </div>
                                     <div class="payment-history-table-wrapper">
                                         <table class="payment-history-table-original">
-                                            <thead> <tr> <th>Ngày thanh toán</th> <th>Nội dung thanh toán</th> <th>Số tiền</th> <th>Ngân hàng</th> </tr> </thead>
-                                            <tbody> <tr> <td>23/08/2024</td> <td>Thanh toán 30%</td> <td>3.000.000đ</td> <td>MB Bank</td> </tr> <tr> <td>24/08/2024</td> <td>Thanh toán gối đầu công nợ tạm thời</td> <td>15.250.000đ</td> <td>MB Bank</td> </tr> </tbody>
+                                            <thead>
+                                                <tr>
+                                                    <th>Ngày thanh toán</th>
+                                                    <th>Nội dung thanh toán</th>
+                                                    <th>Số tiền</th>
+                                                    <th>Ngân hàng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>23/08/2024</td>
+                                                    <td>Thanh toán 30%</td>
+                                                    <td>3.000.000đ</td>
+                                                    <td>MB Bank</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>24/08/2024</td>
+                                                    <td>Thanh toán gối đầu công nợ tạm thời</td>
+                                                    <td>15.250.000đ</td>
+                                                    <td>MB Bank</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -246,50 +323,89 @@
 
                         <div class="payment-column-original">
                             <section class="detail-section-original payment-details-original">
-                                 <header class="section-header-original payment-details-header">
-                                     <div class="title-part">
-                                         <i class="fa-solid fa-building-columns"></i>
-                                         <h2>Đại lý thanh toán</h2>
-                                     </div>
-                                     <div class="actions">
-                                         <button type="button" class="update-button-original"><i class="fa-solid fa-check"></i> Cập nhật</button>
-                                          <button type="button" class="section-toggle-btn"><i class="fas fa-chevron-up"></i></button>
-                                     </div>
-                                 </header>
+                                <header class="section-header-original payment-details-header">
+                                    <div class="title-part">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                        <h2>Đại lý thanh toán</h2>
+                                    </div>
+                                    <div class="actions">
+                                        <button type="button" class="update-button-original"><i
+                                                class="fa-solid fa-check"></i> Cập nhật</button>
+                                        <button type="button" class="section-toggle-btn"><i
+                                                class="fas fa-chevron-up"></i></button>
+                                    </div>
+                                </header>
                                 <div class="section-content-original">
-                                     <div class="payment-info-grid-original">
-                                         <label>Trạng thái:</label>
-                                         <div class="date-display">
-                                             <select> <option selected>Chưa thanh toán</option> <option>Đã thanh toán đủ</option> <option>Thanh toán một phần</option></select>
-                                             <span>17/10/2024   13:24:15</span>
-                                         </div>
-                                         <label for="agent_bank">Chọn ngân hàng:</label> <select id="agent_bank"> <option selected>MB Bank</option> <option>VCB</option> <option>ACB</option> </select>
-                                         <label for="agent_pay_date">Ngày thanh toán:</label>
-                                         <input type="text" id="agent_pay_date" class="date-picker" placeholder="dd/mm/yy" readonly>
-                                         <label for="agent_pay_notes">Nội dung thanh toán:</label> <textarea id="agent_pay_notes" rows="2"></textarea>
-                                     </div>
+                                    <div class="payment-info-grid-original">
+                                        <label>Trạng thái:</label>
+                                        <div class="date-display">
+                                            <select>
+                                                <option selected>Chưa thanh toán</option>
+                                                <option>Đã thanh toán đủ</option>
+                                                <option>Thanh toán một phần</option>
+                                            </select>
+                                            <span>17/10/2024 13:24:15</span>
+                                        </div>
+                                        <label for="agent_bank">Chọn ngân hàng:</label> <select id="agent_bank">
+                                            <option selected>MB Bank</option>
+                                            <option>VCB</option>
+                                            <option>ACB</option>
+                                        </select>
+                                        <label for="agent_pay_date">Ngày thanh toán:</label>
+                                        <input type="text" id="agent_pay_date" class="date-picker"
+                                            placeholder="dd/mm/yy" readonly>
+                                        <label for="agent_pay_notes">Nội dung thanh toán:</label> <textarea
+                                            id="agent_pay_notes" rows="2"></textarea>
+                                    </div>
                                     <div class="payment-history-table-wrapper">
                                         <table class="payment-history-table-original">
-                                            <thead> <tr> <th>Ngày thanh toán</th> <th>Nội dung thanh toán</th> <th>Số tiền</th> <th>Ngân hàng</th> <th>Đại lý</th> </tr> </thead>
-                                            <tbody> <tr> <td>23/08/2024</td> <td>Thanh toán 30%</td> <td>3.000.000đ</td> <td>MB Bank</td> <td>Gia Phú</td> </tr> <tr> <td>24/08/2024</td> <td>Thanh toán gối đầu công nợ tạm thời</td> <td>15.250.000đ</td> <td>MB Bank</td> <td>Gia Phú</td> </tr> </tbody>
+                                            <thead>
+                                                <tr>
+                                                    <th>Ngày thanh toán</th>
+                                                    <th>Nội dung thanh toán</th>
+                                                    <th>Số tiền</th>
+                                                    <th>Ngân hàng</th>
+                                                    <th>Đại lý</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>23/08/2024</td>
+                                                    <td>Thanh toán 30%</td>
+                                                    <td>3.000.000đ</td>
+                                                    <td>MB Bank</td>
+                                                    <td>Gia Phú</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>24/08/2024</td>
+                                                    <td>Thanh toán gối đầu công nợ tạm thời</td>
+                                                    <td>15.250.000đ</td>
+                                                    <td>MB Bank</td>
+                                                    <td>Gia Phú</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </section>
                         </div>
                     </div>
-                 </form>
-             </div>
+                </form>
+            </div>
 
-             <section class="content-actions-original">
+            <section class="content-actions-original">
                 <div class="confirmation-check-original">
                     <input type="checkbox" id="confirm_payment_info" name="confirm_payment_info" required checked>
-                    <label for="confirm_payment_info">Tôi đã kiểm tra thông tin đầy đủ và hoàn toàn chịu trách nhiệm với những sai sót</label>
+                    <label for="confirm_payment_info">Tôi đã kiểm tra thông tin đầy đủ và hoàn toàn chịu trách nhiệm với
+                        những sai sót</label>
                 </div>
                 <div class="action-buttons-original">
-                    <button type="button" class="btn-danger-original" onclick="window.history.back();"> <i class="fa-solid fa-xmark"></i> Thoát </button>
-                    <button type="reset" class="btn-warning-original" form="payment-status-form"> <i class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
-                    <button type="submit" class="btn-success-original" form="payment-status-form"> <i class="fa-solid fa-check"></i> Hoàn thành </button>
+                    <button type="button" class="btn-danger-original" onclick="window.history.back();"> <i
+                            class="fa-solid fa-xmark"></i> Thoát </button>
+                    <button type="reset" class="btn-warning-original" form="payment-status-form"> <i
+                            class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
+                    <button type="submit" class="btn-success-original" form="payment-status-form"> <i
+                            class="fa-solid fa-check"></i> Hoàn thành </button>
                 </div>
             </section>
         </div>
@@ -353,7 +469,7 @@
                 }
             };
 
-             const manageNotificationBodyScroll = () => {
+            const manageNotificationBodyScroll = () => {
                 const isAnnounceVisible = announcementOverlay && announcementOverlay.classList.contains('visible');
                 const isAnyOtherModalVisible = false;
 
@@ -361,7 +477,7 @@
                     notificationBody.classList.add('overflow-hidden');
                 } else {
                     if (!isAnyOtherModalVisible) {
-                         notificationBody.classList.remove('overflow-hidden');
+                        notificationBody.classList.remove('overflow-hidden');
                     }
                 }
             };
@@ -392,11 +508,11 @@
                         if (activeParent !== parentLink) {
                             activeParent.classList.remove('active');
                             const activeSubmenu = activeParent.nextElementSibling;
-                            if(activeSubmenu && activeSubmenu.classList.contains('submenu')) {
-                                 activeSubmenu.classList.remove('active');
+                            if (activeSubmenu && activeSubmenu.classList.contains('submenu')) {
+                                activeSubmenu.classList.remove('active');
                             }
                             const otherArrow = activeParent.querySelector('.submenu-arrow');
-                            if(otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+                            if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
                         }
                     });
                 }
@@ -404,29 +520,29 @@
                 const isActive = submenuWrapper.classList.toggle('active');
                 parentLink.classList.toggle('active', isActive);
                 if (arrow) {
-                     arrow.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
-                 }
+                    arrow.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
             }
 
             function initializeActiveSubmenu() {
-                 const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
-                 if (activeSubmenuLink) {
-                      const submenuDiv = activeSubmenuLink.closest('.submenu');
-                      const parentLink = submenuDiv?.previousElementSibling;
-                      if(submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
-                           if (!(body.classList.contains('sidebar-collapsed') && window.innerWidth > 768)) {
-                                submenuDiv.classList.add('active');
-                                parentLink.classList.add('active');
-                                const arrow = parentLink.querySelector('.submenu-arrow');
-                                if(arrow) arrow.style.transform = 'rotate(180deg)';
-                            } else {
-                                 submenuDiv.classList.remove('active');
-                                 parentLink.classList.remove('active');
-                                 const arrow = parentLink.querySelector('.submenu-arrow');
-                                 if(arrow) arrow.style.transform = 'rotate(0deg)';
-                            }
-                      }
-                 }
+                const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
+                if (activeSubmenuLink) {
+                    const submenuDiv = activeSubmenuLink.closest('.submenu');
+                    const parentLink = submenuDiv?.previousElementSibling;
+                    if (submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
+                        if (!(body.classList.contains('sidebar-collapsed') && window.innerWidth > 768)) {
+                            submenuDiv.classList.add('active');
+                            parentLink.classList.add('active');
+                            const arrow = parentLink.querySelector('.submenu-arrow');
+                            if (arrow) arrow.style.transform = 'rotate(180deg)';
+                        } else {
+                            submenuDiv.classList.remove('active');
+                            parentLink.classList.remove('active');
+                            const arrow = parentLink.querySelector('.submenu-arrow');
+                            if (arrow) arrow.style.transform = 'rotate(0deg)';
+                        }
+                    }
+                }
             }
 
             function showConfirmationModal(modalId, targetData = {}) {
@@ -463,15 +579,15 @@
                 }
             }
             function handleFullscreenChange() {
-                 const isFullscreen = !!document.fullscreenElement;
-                 const icon = fullscreenBtn?.querySelector('i');
-                 if(icon){
-                     icon.classList.toggle('fa-expand', !isFullscreen);
-                     icon.classList.toggle('fa-compress', isFullscreen);
-                 }
-                  if(fullscreenBtn) {
-                      fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
-                  }
+                const isFullscreen = !!document.fullscreenElement;
+                const icon = fullscreenBtn?.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-expand', !isFullscreen);
+                    icon.classList.toggle('fa-compress', isFullscreen);
+                }
+                if (fullscreenBtn) {
+                    fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
+                }
             }
 
             function toggleSectionOriginal(buttonElement) {
@@ -500,9 +616,9 @@
             }
 
             function closeNotificationDropdown() {
-                 if (notificationDropdown) {
+                if (notificationDropdown) {
                     notificationDropdown.classList.remove('visible');
-                 }
+                }
             }
 
             function showAnnouncement() {
@@ -556,7 +672,7 @@
                     window.location.href = 'package_manager.html';
                 });
                 const resetButton = form.querySelector('button[type="reset"]');
-                if (resetButton) resetButton.addEventListener('click', () => {});
+                if (resetButton) resetButton.addEventListener('click', () => { });
             }
 
             if (currencySwitchBtn) currencySwitchBtn.addEventListener('click', () => alert('Chức năng chuyển đổi tiền tệ (demo)!'));
@@ -566,14 +682,14 @@
             }
 
             if (customExchangeRateInput) {
-                 customExchangeRateInput.addEventListener('input', calculateAndUpdateVND);
+                customExchangeRateInput.addEventListener('input', calculateAndUpdateVND);
             }
 
             document.querySelectorAll('.confirmation-modal').forEach(modal => {
                 const modalId = modal.id;
                 modal.querySelector('.confirm-yes')?.addEventListener('click', () => {
-                     const data = JSON.parse(modal.dataset.targetData || '{}');
-                     hideConfirmationModal(modalId);
+                    const data = JSON.parse(modal.dataset.targetData || '{}');
+                    hideConfirmationModal(modalId);
                 });
                 modal.querySelector('.confirm-cancel')?.addEventListener('click', () => hideConfirmationModal(modalId));
                 modal.addEventListener('click', (event) => { if (event.target === modal) hideConfirmationModal(modalId); });
@@ -595,7 +711,7 @@
                         announcementTitle.textContent = title;
                         announcementBodyEl.innerHTML = '';
                         bodyText.split('||').forEach(paragraphText => {
-                            if(paragraphText.trim()) {
+                            if (paragraphText.trim()) {
                                 const p = document.createElement('p');
                                 p.textContent = paragraphText.trim();
                                 announcementBodyEl.appendChild(p);
@@ -645,7 +761,7 @@
                     static: false,
                     position: 'auto',
                     appendTo: document.body,
-                    onChange: function(selectedDates, dateStr) {
+                    onChange: function (selectedDates, dateStr) {
                         // You can add any additional logic here when date changes
                     }
                 });
@@ -654,19 +770,19 @@
     </script>
 
     <script>
-    // --- Dropdown user & đăng nhập/đăng xuất ---
-    document.addEventListener('DOMContentLoaded', function() {
-        function renderUserDropdown() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            const userToggle = document.getElementById('user-dropdown-toggle');
-            const userDropdown = document.getElementById('user-dropdown');
-            if (!userToggle || !userDropdown) return;
-            if (!isLoggedIn) {
-                userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
-                userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
-            } else {
-                userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
-                userDropdown.innerHTML = `
+        // --- Dropdown user & đăng nhập/đăng xuất ---
+        document.addEventListener('DOMContentLoaded', function () {
+            function renderUserDropdown() {
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                const userToggle = document.getElementById('user-dropdown-toggle');
+                const userDropdown = document.getElementById('user-dropdown');
+                if (!userToggle || !userDropdown) return;
+                if (!isLoggedIn) {
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                    userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
+                } else {
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                    userDropdown.innerHTML = `
                     <div class="user-info">
                         <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
                         <div class="user-details"><h4>Phạm Hoàng Đình</h4><span class="user-role">Quản trị viên</span></div>
@@ -679,99 +795,100 @@
                     <div class="dropdown-divider"></div>
                     <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                 `;
-            }
-            setTimeout(() => {
-                const loginItem = document.getElementById('login-menu-item');
-                if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
-                const logoutItem = document.getElementById('logout-menu-item');
-                if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
-            }, 100);
-        }
-        renderUserDropdown();
-        window.addEventListener('storage', renderUserDropdown);
-        // Dropdown show/hide
-        const userToggle = document.getElementById('user-dropdown-toggle');
-        const userDropdown = document.getElementById('user-dropdown');
-        if(userToggle && userDropdown){
-            userToggle.addEventListener('click', function(e){
-                e.stopPropagation();
-                userDropdown.classList.toggle('show');
-            });
-            document.addEventListener('click', function(e){
-                if(!userDropdown.contains(e.target) && e.target !== userToggle){
-                    userDropdown.classList.remove('show');
                 }
-            });
-        }
-    });
+                setTimeout(() => {
+                    const loginItem = document.getElementById('login-menu-item');
+                    if (loginItem) loginItem.onclick = function (e) { e.preventDefault(); window.location.href = 'login.html'; };
+                    const logoutItem = document.getElementById('logout-menu-item');
+                    if (logoutItem) logoutItem.onclick = function (e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+                }, 100);
+            }
+            renderUserDropdown();
+            window.addEventListener('storage', renderUserDropdown);
+            // Dropdown show/hide
+            const userToggle = document.getElementById('user-dropdown-toggle');
+            const userDropdown = document.getElementById('user-dropdown');
+            if (userToggle && userDropdown) {
+                userToggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('show');
+                });
+                document.addEventListener('click', function (e) {
+                    if (!userDropdown.contains(e.target) && e.target !== userToggle) {
+                        userDropdown.classList.remove('show');
+                    }
+                });
+            }
+        });
     </script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Đọc orderId từ URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const orderId = urlParams.get('orderId');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Đọc orderId từ URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
 
-        // Cập nhật tiêu đề trang nếu có orderId
-        const pageTitleElement = document.querySelector('.page-title');
-        if (pageTitleElement && orderId) {
-            pageTitleElement.textContent = `Tình trạng thanh toán - ${orderId}`;
-            // TODO: Thêm logic để load dữ liệu thanh toán của đơn hàng này từ backend/API nếu có
+            // Cập nhật tiêu đề trang nếu có orderId
+            const pageTitleElement = document.querySelector('.page-title');
+            if (pageTitleElement && orderId) {
+                pageTitleElement.textContent = `Tình trạng thanh toán - ${orderId}`;
+                // TODO: Thêm logic để load dữ liệu thanh toán của đơn hàng này từ backend/API nếu có
 
-            // --- Thêm logic đọc trạng thái ĐL từ localStorage và set vào dropdown ---
-            const savedStatusDL = localStorage.getItem('paymentStatusDL_' + orderId);
-            const agentStatusSelect = document.querySelectorAll('.payment-details-original select')[0]; // Select của Đại lý
-            if (savedStatusDL && agentStatusSelect) {
-                 // Tìm option có value tương ứng và set selected
-                 const options = agentStatusSelect.options;
-                 for (let i = 0; i < options.length; i++) {
-                      if (options[i].value === savedStatusDL) {
-                           agentStatusSelect.selectedIndex = i;
-                           break;
-                      }
-                 }
+                // --- Thêm logic đọc trạng thái ĐL từ localStorage và set vào dropdown ---
+                const savedStatusDL = localStorage.getItem('paymentStatusDL_' + orderId);
+                const agentStatusSelect = document.querySelectorAll('.payment-details-original select')[0]; // Select của Đại lý
+                if (savedStatusDL && agentStatusSelect) {
+                    // Tìm option có value tương ứng và set selected
+                    const options = agentStatusSelect.options;
+                    for (let i = 0; i < options.length; i++) {
+                        if (options[i].value === savedStatusDL) {
+                            agentStatusSelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+                // ---------------------------------------------------------------------
+
+            } else if (pageTitleElement) {
+                // Nếu không có orderId, có thể hiển thị thông báo hoặc quay về trang danh sách
+                pageTitleElement.textContent = `Tình trạng thanh toán`; // Hoặc thông báo lỗi
+                // alert('Không có mã đơn hàng được chọn.');
+                // window.history.back(); // Tùy chọn: Quay về trang trước
             }
-            // ---------------------------------------------------------------------
-
-        } else if (pageTitleElement) {
-            // Nếu không có orderId, có thể hiển thị thông báo hoặc quay về trang danh sách
-            pageTitleElement.textContent = `Tình trạng thanh toán`; // Hoặc thông báo lỗi
-            // alert('Không có mã đơn hàng được chọn.');
-            // window.history.back(); // Tùy chọn: Quay về trang trước
-        }
 
 
-        // Nút cập nhật trạng thái thanh toán KH (cột bên trái)
-        const updateBtnKH = document.querySelectorAll('.payment-details-original .update-button-original')[0];
-        if (updateBtnKH) {
-            updateBtnKH.addEventListener('click', function() {
-                // Lấy mã đơn hàng TỪ BIẾN orderId đã đọc từ URL
-                const currentOrderId = orderId; // Sử dụng biến orderId từ URL
-                if (!currentOrderId) return alert('Không tìm thấy mã đơn hàng để lưu!');
-                // Lấy trạng thái từ select của Khách hàng
-                const status = document.querySelectorAll('.payment-details-original select')[0].value;
-                // Lưu vào localStorage với key riêng cho KH
-                localStorage.setItem('paymentStatusKH_' + currentOrderId, status);
-                alert('Đã lưu trạng thái thanh toán KH cho đơn ' + currentOrderId + '!');
-            });
-        }
+            // Nút cập nhật trạng thái thanh toán KH (cột bên trái)
+            const updateBtnKH = document.querySelectorAll('.payment-details-original .update-button-original')[0];
+            if (updateBtnKH) {
+                updateBtnKH.addEventListener('click', function () {
+                    // Lấy mã đơn hàng TỪ BIẾN orderId đã đọc từ URL
+                    const currentOrderId = orderId; // Sử dụng biến orderId từ URL
+                    if (!currentOrderId) return alert('Không tìm thấy mã đơn hàng để lưu!');
+                    // Lấy trạng thái từ select của Khách hàng
+                    const status = document.querySelectorAll('.payment-details-original select')[0].value;
+                    // Lưu vào localStorage với key riêng cho KH
+                    localStorage.setItem('paymentStatusKH_' + currentOrderId, status);
+                    alert('Đã lưu trạng thái thanh toán KH cho đơn ' + currentOrderId + '!');
+                });
+            }
 
-        // Nút cập nhật trạng thái thanh toán ĐL (cột bên phải)
-        const updateBtnDL = document.querySelectorAll('.payment-details-original .update-button-original')[1];
-        if (updateBtnDL) {
-            updateBtnDL.addEventListener('click', function() {
-                 // Lấy mã đơn hàng TỪ BIẾN orderId đã đọc từ URL
-                const currentOrderId = orderId; // Sử dụng biến orderId từ URL
-                if (!currentOrderId) return alert('Không tìm thấy mã đơn hàng để lưu!');
-                // Lấy trạng thái từ select của Đại lý
-                const status = document.querySelectorAll('.payment-details-original select')[0].value;
-                // Lưu vào localStorage với key riêng cho ĐL
-                localStorage.setItem('paymentStatusDL_' + currentOrderId, status);
-                alert('Đã lưu trạng thái thanh toán ĐL cho đơn ' + currentOrderId + '!');
-            });
-        }
-    });
+            // Nút cập nhật trạng thái thanh toán ĐL (cột bên phải)
+            const updateBtnDL = document.querySelectorAll('.payment-details-original .update-button-original')[1];
+            if (updateBtnDL) {
+                updateBtnDL.addEventListener('click', function () {
+                    // Lấy mã đơn hàng TỪ BIẾN orderId đã đọc từ URL
+                    const currentOrderId = orderId; // Sử dụng biến orderId từ URL
+                    if (!currentOrderId) return alert('Không tìm thấy mã đơn hàng để lưu!');
+                    // Lấy trạng thái từ select của Đại lý
+                    const status = document.querySelectorAll('.payment-details-original select')[0].value;
+                    // Lưu vào localStorage với key riêng cho ĐL
+                    localStorage.setItem('paymentStatusDL_' + currentOrderId, status);
+                    alert('Đã lưu trạng thái thanh toán ĐL cho đơn ' + currentOrderId + '!');
+                });
+            }
+        });
     </script>
 
 </body>
+
 </html>

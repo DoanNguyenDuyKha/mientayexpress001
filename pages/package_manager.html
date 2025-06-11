@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Package Manager - Minh Khôi Logistics</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/package_manager.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
+
 <body>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -19,61 +23,83 @@
             </div>
         </div>
         <nav class="menu-items" aria-label="Main Navigation">
-             <ul>
-                 <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
-                 <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
-                 <li>
-                     <a href="#" class="submenu-parent" class="active"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
-                     <div class="submenu">
-                         <ul>
-                             <li><a href="package_manager.html" class="active"><i class="fa-solid fa-box-archive icon"></i><span class="menu-text">Quản lý đơn hàng</span></a></li>
-                             <li><a href="straking-bill-of-lading-status.html"><i class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng thái</span></a></li>
-                             <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận chuyển</span></a></li>
-                             <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản lý chi nhánh</span></a></li>
-                             <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
-                         </ul>
-                     </div>
-                 </li>
-                 <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
-                 <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
-                 <li><a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span></a></li>
-                 <li><a href="employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN LÝ NHÂN SỰ</span></a></li>
-                 <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
-                  <li>
-                      <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
-                       <div class="submenu">
-                          <ul>
-                              <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
-                              <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
-                          </ul>
-                      </div>
-                  </li>
-                 <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ DỤNG</span></a></li>
-                 <li>
-                     <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
-                      <div class="submenu">
-                          <ul>
-                             <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
-                             <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
-                          </ul>
-                      </div>
-                  </li>
-             </ul>
-         </nav>
+            <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG
+                            CHỦ</span></a></li>
+                <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN
+                            HÀNG</span></a></li>
+                <li>
+                    <a href="#" class="submenu-parent" class="active"> <i class="fa-solid fa-chart-pie icon"></i><span
+                            class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
+                    <div class="submenu">
+                        <ul>
+                            <li><a href="package_manager.html" class="active"><i
+                                        class="fa-solid fa-box-archive icon"></i><span class="menu-text">Quản lý đơn
+                                        hàng</span></a></li>
+                            <li><a href="straking-bill-of-lading-status.html"><i
+                                        class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng
+                                        thái</span></a></li>
+                            <li><a href="pickup-package.html"><i class="fa-solid fa-truck-fast icon"></i><span
+                                        class="menu-text">Quản lý vận chuyển</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản
+                                        lý chi nhánh</span></a></li>
+                            <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span
+                                        class="menu-text">Quản lý thanh toán</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span
+                            class="menu-text">THỐNG KÊ</span></a></li>
+                <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span
+                            class="menu-text">QL DỊCH VỤ</span></a></li>
+                <li><a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH
+                            HÀNG</span></a></li>
+                <li><a href="employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN
+                            LÝ NHÂN SỰ</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG
+                            TY</span></a></li>
+                <li>
+                    <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL
+                            CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                    <div class="submenu">
+                        <ul>
+                            <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ
+                            DỤNG</span></a></li>
+                <li>
+                    <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI
+                            ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                    <div class="submenu">
+                        <ul>
+                            <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
     </aside>
 
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <main class="main-content">
         <header class="header">
-            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu" aria-controls="sidebar" aria-expanded="false" style="display: inline-flex;"><i class="fa-solid fa-bars"></i></button>
+            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu"
+                aria-controls="sidebar" aria-expanded="false" style="display: inline-flex;"><i
+                    class="fa-solid fa-bars"></i></button>
             <div class="header-left">
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass search-icon" id="mobile-search-toggle"></i>
                     <input type="text" class="header-search-input" placeholder=" Tìm kiếm...">
                     <div class="mobile-search-overlay" id="mobile-search-overlay" style="display:none;">
-                        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Tìm kiếm...">
-                        <button id="mobile-search-close" class="icon-button" type="button" aria-label="Đóng tìm kiếm"><i class="fa-solid fa-xmark"></i></button>
+                        <input type="text" id="mobile-search-input" class="mobile-search-input"
+                            placeholder="Tìm kiếm...">
+                        <button id="mobile-search-close" class="icon-button" type="button" aria-label="Đóng tìm kiếm"><i
+                                class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
             </div>
@@ -86,21 +112,27 @@
                     <div class="notification-dropdown" id="notification-dropdown">
                         <div class="dropdown-header">Thông báo</div>
                         <ul class="notification-list" id="notification-list">
-                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024" data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada." data-timestamp="2024-07-25 13:53:27">
+                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024"
+                                data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada."
+                                data-timestamp="2024-07-25 13:53:27">
                                 <div class="item-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
                                 <div class="item-content">
                                     <div class="item-title">Dời Cut off Canada 24/08/2024</div>
                                     <div class="item-time">25 Jul 2024</div>
                                 </div>
                             </li>
-                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống" data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này." data-timestamp="2024-07-28 10:00:00">
+                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống"
+                                data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này."
+                                data-timestamp="2024-07-28 10:00:00">
                                 <div class="item-icon"><i class="fa-solid fa-wrench"></i></div>
                                 <div class="item-content">
                                     <div class="item-title">Cập nhật hệ thống 30/07</div>
                                     <div class="item-time">28 Jul 2024</div>
                                 </div>
                             </li>
-                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới" data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ." data-timestamp="2024-07-20 09:00:00">
+                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới"
+                                data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ."
+                                data-timestamp="2024-07-20 09:00:00">
                                 <div class="item-icon"><i class="fa-solid fa-tags"></i></div>
                                 <div class="item-content">
                                     <div class="item-title">Khuyến mãi hè 2024!</div>
@@ -112,9 +144,11 @@
                     </div>
                 </div>
                 <div class="user-container" style="position: relative;">
-                    <div class="user-dropdown-toggle" id="user-dropdown-toggle" style="display: flex; align-items: center; gap: 6px; background: #6366f1; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
-                        <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
-                </div>
+                    <div class="user-dropdown-toggle" id="user-dropdown-toggle"
+                        style="display: flex; align-items: center; gap: 6px; background: #6366f1; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
+                        <i class="fa-regular fa-circle-user user-icon" id="user-icon"
+                            style="color: #fff; font-size: 1.25em;"></i>
+                    </div>
                     <div class="user-dropdown" id="user-dropdown">
                         <!--Dropdown User-->
                     </div>
@@ -126,40 +160,71 @@
             <section class="page-header">
                 <div class="page-header-left">
                     <h1 class="page-title">QUẢN LÝ ĐƠN HÀNG</h1>
-                    <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Quản lý</a> / <span>Danh sách đơn hàng</span> </nav>
+                    <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Quản lý</a> / <span>Danh sách đơn
+                            hàng</span> </nav>
                 </div>
                 <!-- Đã xóa nút Bộ lọc ở header -->
             </section>
 
             <section class="filter-bar card d-none d-md-block" aria-label="Filters">
-                 <div class="filter-controls-desktop">
-                     <div class="filter-group date-range" style="grid-column: span 2;">
-                         <label for="date-start">Date Range</label>
-                         <div style="display: flex; flex-direction: row; align-items: center; gap: 0.7rem; width: 100%;">
-                             <input type="date" id="date-start" title="Từ ngày" placeholder="yyyy-mm-dd">
-                             <span>→</span>
-                             <input type="date" id="date-end" title="Đến ngày" placeholder="yyyy-mm-dd">
-                         </div>
-                     </div>
-                     <div class="filter-group"><label for="filter-status">Status</label><select id="filter-status" title="Filter by status"><option value="">Tất cả trạng thái</option><option>Mới tạo đơn</option> <option>Đã nhận hàng</option> <option>Đang phát hàng</option> <option>Hoàn tất</option><option>Hủy</option><option>Lỗi</option><option>Chuyển hoàn</option></select></div>
-                     <div class="filter-group"><label for="filter-data">Data Filter</label><select id="filter-data" title="Data Filter"><option>Lọc dữ liệu</option></select></div>
-                     <div class="filter-group"><label for="filter-sale">Sales Rep</label><select id="filter-sale" title="Select Sales Rep"><option value="">Tất cả Sale</option><option>SALE01 - P.H. Đình</option> <option>SALE02 - N.V. An</option></select></div>
-                     <div class="filter-group"><label for="filter-customer">Customer</label><select id="filter-customer" title="Select Customer"><option value="">Tất cả khách hàng</option> <option>Alice</option></select></div>
-                     <div class="filter-group"><label for="filter-branch">Branch</label><select id="filter-branch" title="Select Branch"><option value="">Tất cả chi nhánh</option><option>CN: Tân Phú</option> <option>CN: Bình Tân</option></select></div>
-                     <div class="filter-group filter-search-input" >
-                         <label for="filter-search-input">Search</label>
-                         <div class="search-input-wrapper" style="position: relative; flex-grow: 1;">
-                             <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #64748b;"></i>
-                             <input type="text" id="filter-search-input" placeholder="Order ID, Customer..." style="width: 100%; padding-left: 2.5em;">
-                         </div>
-                     </div>
-                     <div class="filter-group filter-find-button" >
-                         <label for="desktop-apply-filter-btn" class="visually-hidden">Find Orders Button</label>
-                         <button class="button primary filter-apply-btn" id="desktop-apply-filter-btn" style="height: 30px; width: 150px; padding: 0.3rem 0.6rem; font-size: var(--font-size-sm); display: flex; align-items: center; justify-content: center; gap: 0.2rem;">
-                             <i class="fa-solid fa-search"></i> Find Orders
-                         </button>
-                     </div>
-                 </div>
+                <div class="filter-controls-desktop">
+                    <div class="filter-group date-range" style="grid-column: span 2;">
+                        <label for="date-start">Date Range</label>
+                        <div style="display: flex; flex-direction: row; align-items: center; gap: 0.7rem; width: 100%;">
+                            <input type="date" id="date-start" title="Từ ngày" placeholder="yyyy-mm-dd">
+                            <span>→</span>
+                            <input type="date" id="date-end" title="Đến ngày" placeholder="yyyy-mm-dd">
+                        </div>
+                    </div>
+                    <div class="filter-group"><label for="filter-status">Status</label><select id="filter-status"
+                            title="Filter by status">
+                            <option value="">Tất cả trạng thái</option>
+                            <option>Mới tạo đơn</option>
+                            <option>Đã nhận hàng</option>
+                            <option>Đang phát hàng</option>
+                            <option>Hoàn tất</option>
+                            <option>Hủy</option>
+                            <option>Lỗi</option>
+                            <option>Chuyển hoàn</option>
+                        </select></div>
+                    <div class="filter-group"><label for="filter-data">Data Filter</label><select id="filter-data"
+                            title="Data Filter">
+                            <option>Lọc dữ liệu</option>
+                        </select></div>
+                    <div class="filter-group"><label for="filter-sale">Sales Rep</label><select id="filter-sale"
+                            title="Select Sales Rep">
+                            <option value="">Tất cả Sale</option>
+                            <option>SALE01 - P.H. Đình</option>
+                            <option>SALE02 - N.V. An</option>
+                        </select></div>
+                    <div class="filter-group"><label for="filter-customer">Customer</label><select id="filter-customer"
+                            title="Select Customer">
+                            <option value="">Tất cả khách hàng</option>
+                            <option>Alice</option>
+                        </select></div>
+                    <div class="filter-group"><label for="filter-branch">Branch</label><select id="filter-branch"
+                            title="Select Branch">
+                            <option value="">Tất cả chi nhánh</option>
+                            <option>CN: Tân Phú</option>
+                            <option>CN: Bình Tân</option>
+                        </select></div>
+                    <div class="filter-group filter-search-input">
+                        <label for="filter-search-input">Search</label>
+                        <div class="search-input-wrapper" style="position: relative; flex-grow: 1;">
+                            <i class="fa-solid fa-magnifying-glass"
+                                style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #64748b;"></i>
+                            <input type="text" id="filter-search-input" placeholder="Order ID, Customer..."
+                                style="width: 100%; padding-left: 2.5em;">
+                        </div>
+                    </div>
+                    <div class="filter-group filter-find-button">
+                        <label for="desktop-apply-filter-btn" class="visually-hidden">Find Orders Button</label>
+                        <button class="button primary filter-apply-btn" id="desktop-apply-filter-btn"
+                            style="height: 30px; width: 150px; padding: 0.3rem 0.6rem; font-size: var(--font-size-sm); display: flex; align-items: center; justify-content: center; gap: 0.2rem;">
+                            <i class="fa-solid fa-search"></i> Find Orders
+                        </button>
+                    </div>
+                </div>
             </section>
 
             <section class="controls-section">
@@ -176,32 +241,40 @@
                 </nav>
                 <!-- Thanh chọn trạng thái và nút bộ lọc cho mobile -->
                 <div class="mobile-status-bar">
-                  <div style="flex:1;">
-                    <select id="mobile-status-select" class="form-select" style="width:100%;">
-                      <option value="Tất cả">Tất cả</option>
-                      <option value="Mới tạo">Mới tạo</option>
-                      <option value="Chờ lấy hàng">Chờ lấy hàng</option>
-                      <option value="Nhận hàng">Nhận hàng</option>
-                      <option value="Đang phát">Đang phát</option>
-                      <option value="Hủy">Hủy</option>
-                      <option value="Lỗi">Lỗi</option>
-                      <option value="Chuyển hoàn">Chuyển hoàn</option>
-                      <option value="Hoàn tất">Hoàn tất</option>
-                    </select>
-                  </div>
-                  <button class="button mobile-only" id="mobile-filter-btn" style="background: #fff; color: #4f46e5; border: 2px solid #4f46e5; font-weight: 600; min-width: 90px; padding: 0.5em 0.7em;"><i class="fa-solid fa-filter"></i> Bộ lọc</button>
+                    <div style="flex:1;">
+                        <select id="mobile-status-select" class="form-select" style="width:100%;">
+                            <option value="Tất cả">Tất cả</option>
+                            <option value="Mới tạo">Mới tạo</option>
+                            <option value="Chờ lấy hàng">Chờ lấy hàng</option>
+                            <option value="Nhận hàng">Nhận hàng</option>
+                            <option value="Đang phát">Đang phát</option>
+                            <option value="Hủy">Hủy</option>
+                            <option value="Lỗi">Lỗi</option>
+                            <option value="Chuyển hoàn">Chuyển hoàn</option>
+                            <option value="Hoàn tất">Hoàn tất</option>
+                        </select>
+                    </div>
+                    <button class="button mobile-only" id="mobile-filter-btn"
+                        style="background: #fff; color: #4f46e5; border: 2px solid #4f46e5; font-weight: 600; min-width: 90px; padding: 0.5em 0.7em;"><i
+                            class="fa-solid fa-filter"></i> Bộ lọc</button>
                 </div>
                 <div class="action-buttons" aria-label="Bulk Order Actions">
-                  <button class="button primary" onclick="window.location.href='create-package.html'"><i class="fa-solid fa-plus"></i> Tạo đơn hàng</button>
-                  <button class="button secondary"><i class="fa-solid fa-file-export"></i> Xuất DEBIT</button>
-                  <button class="button confirm" id="main-confirm-bulk-button" title="Xác nhận các đơn đã chọn hoàn tất"><i class="fa-solid fa-check-circle"></i> Xác nhận ĐH</button>
-                  <button class="button danger" id="main-delete-bulk-button" title="Xóa các đơn đã chọn"><i class="fa-solid fa-trash-can"></i> Xuất kho</button>
-                  <button class="button warning" id="main-cancel-bulk-button" title="Hủy các đơn đã chọn"><i class="fa-solid fa-ban"></i> Hủy đơn hàng</button>
+                    <button class="button primary" onclick="window.location.href='create-package.html'"><i
+                            class="fa-solid fa-plus"></i> Tạo đơn hàng</button>
+                    <button class="button secondary"><i class="fa-solid fa-file-export"></i> Xuất DEBIT</button>
+                    <button class="button confirm" id="main-confirm-bulk-button"
+                        title="Xác nhận các đơn đã chọn hoàn tất"><i class="fa-solid fa-check-circle"></i> Xác nhận
+                        ĐH</button>
+                    <button class="button danger" id="main-delete-bulk-button" title="Xóa các đơn đã chọn"><i
+                            class="fa-solid fa-trash-can"></i> Xuất kho</button>
+                    <button class="button warning" id="main-cancel-bulk-button" title="Hủy các đơn đã chọn"><i
+                            class="fa-solid fa-ban"></i> Hủy đơn hàng</button>
                 </div>
             </section>
 
             <section class="table-area card" aria-labelledby="order-table-heading">
-                <div class="card-header" style="padding: var(--card-padding) var(--card-padding) 0; display: flex; justify-content: space-between; align-items: center;">
+                <div class="card-header"
+                    style="padding: var(--card-padding) var(--card-padding) 0; display: flex; justify-content: space-between; align-items: center;">
                     <h2 id="order-table-heading" style="font-size: 1.2rem; font-weight: 600;">Danh sách đơn hàng</h2>
                 </div>
                 <div class="table-container">
@@ -210,200 +283,524 @@
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" id="select-all-checkbox" title="Select all rows"></th>
-                                    <th>STT</th><th>ID BILL</th><th>Ngày tạo</th><th>Ngày xuất</th><th>Pick up</th><th>Xử lý</th>
-                                    <th>Tên KH</th><th>Sale</th><th>Dịch vụ</th><th>Tổng cước</th><th>KH TT</th><th>ĐL TT</th>
-                                    <th>Hoa hồng</th><th>Chi nhánh</th><th>Thao tác</th>
+                                    <th>STT</th>
+                                    <th>ID BILL</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Ngày xuất</th>
+                                    <th>Pick up</th>
+                                    <th>Xử lý</th>
+                                    <th>Tên KH</th>
+                                    <th>Sale</th>
+                                    <th>Dịch vụ</th>
+                                    <th>Tổng cước</th>
+                                    <th>KH TT</th>
+                                    <th>ĐL TT</th>
+                                    <th>Hoa hồng</th>
+                                    <th>Chi nhánh</th>
+                                    <th>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody id="order-table-body">
-                                <tr id="main-row-1" class="clickable-row" data-order-id="MTE24081571254" data-status="Mới tạo">
-                                    <td><input type="checkbox" title="Select row 1"></td><td>1</td><td><a href="order_detail.html" class="order-id-link">MTE24081571254</a></td><td>15/08/24</td><td>18/08/24</td><td><span class="status-badge status-pending">Mới tạo</span></td><td>Mới tạo</td><td>Alice đối gió...</td><td>Alice H.B</td><td>DHL</td><td class="currency">3.198.840₫</td><td><span class="status-badge status-paid">Đã thanh toán</span></td><td><span class="status-badge status-paid">Đã thanh toán</span></td><td class="currency">159.942₫</td><td>Tân Phú</td>
-                                    <td class="action-icons"> <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button> <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button> <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button> <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button> <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button> </td>
+                                <tr id="main-row-1" class="clickable-row" data-order-id="MTE24081571254"
+                                    data-status="Mới tạo">
+                                    <td><input type="checkbox" title="Select row 1"></td>
+                                    <td>1</td>
+                                    <td><a href="order_detail.html" class="order-id-link">MTE24081571254</a></td>
+                                    <td>15/08/24</td>
+                                    <td>18/08/24</td>
+                                    <td><span class="status-badge status-pending">Mới tạo</span></td>
+                                    <td>Mới tạo</td>
+                                    <td>Alice đối gió...</td>
+                                    <td>Alice H.B</td>
+                                    <td>DHL</td>
+                                    <td class="currency">3.198.840₫</td>
+                                    <td><span class="status-badge status-paid">Đã thanh toán</span></td>
+                                    <td><span class="status-badge status-paid">Đã thanh toán</span></td>
+                                    <td class="currency">159.942₫</td>
+                                    <td>Tân Phú</td>
+                                    <td class="action-icons"> <button class="icon-button receive-order-btn"
+                                            title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
+                                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i
+                                                class="fa-solid fa-check-double"></i></button> <button
+                                            class="icon-button icon-edit" title="Sửa"><i
+                                                class="fa-solid fa-pencil"></i></button> <button
+                                            class="icon-button icon-danger" title="Xóa"><i
+                                                class="fa-solid fa-trash-can"></i></button> <button
+                                            class="icon-button icon-print" title="In"><i
+                                                class="fa-solid fa-print"></i></button> </td>
                                 </tr>
                                 <tr class="details-row" id="details-row-1" style="display: none;">
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
-                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF
+                                                        Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản
+                                                        phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL
+                                                        kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh
+                                                        kiện:</span><span class="detail-value">
+                                                        <div class="image-modal-trigger"><img src="../images/kien1.jpg"
+                                                                alt="Ảnh kiện"></div>
+                                                    </span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân
+                                                        nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span
+                                                        class="detail-label">Reweight:</span><span
+                                                        class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại
+                                                        lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú
+                                                        CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải
+                                                        quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
-                                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
+                                                <button class="icon-button icon-print" title="In chi tiết"><i
+                                                        class="fa-solid fa-print"></i></button>
+                                                <button class="icon-button icon-excel" title="Xuất Excel"><i
+                                                        class="fa-solid fa-file-excel"></i></button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr id="main-row-2" class="clickable-row" data-order-id="MTE24081561614" data-status="Nhận hàng">
-                                    <td><input type="checkbox" title="Select row 2"></td><td>2</td><td><a href="order_detail.html" class="order-id-link">MTE24081561614</a></td><td>15/08/24</td><td>18/08/24</td><td><span class="status-badge status-received">Nhận hàng</span></td><td>Nhận hàng</td><td>Phan Thị M.M</td><td>Trần Q.Đ</td><td>FEDEX</td><td class="currency">3.198.840₫</td><td><span class="status-badge status-unpaid">Chưa thanh toán</span></td><td><span class="status-badge status-unpaid">Chưa thanh toán</span></td><td class="currency">159.942₫</td><td>Tân Phú</td>
-                                    <td class="action-icons"> <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button> <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button> <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button> <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button> <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button> </td>
+                                <tr id="main-row-2" class="clickable-row" data-order-id="MTE24081561614"
+                                    data-status="Nhận hàng">
+                                    <td><input type="checkbox" title="Select row 2"></td>
+                                    <td>2</td>
+                                    <td><a href="order_detail.html" class="order-id-link">MTE24081561614</a></td>
+                                    <td>15/08/24</td>
+                                    <td>18/08/24</td>
+                                    <td><span class="status-badge status-received">Nhận hàng</span></td>
+                                    <td>Nhận hàng</td>
+                                    <td>Phan Thị M.M</td>
+                                    <td>Trần Q.Đ</td>
+                                    <td>FEDEX</td>
+                                    <td class="currency">3.198.840₫</td>
+                                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                                    <td class="currency">159.942₫</td>
+                                    <td>Tân Phú</td>
+                                    <td class="action-icons"> <button class="icon-button receive-order-btn"
+                                            title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
+                                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i
+                                                class="fa-solid fa-check-double"></i></button> <button
+                                            class="icon-button icon-edit" title="Sửa"><i
+                                                class="fa-solid fa-pencil"></i></button> <button
+                                            class="icon-button icon-danger" title="Xóa"><i
+                                                class="fa-solid fa-trash-can"></i></button> <button
+                                            class="icon-button icon-print" title="In"><i
+                                                class="fa-solid fa-print"></i></button> </td>
                                 </tr>
                                 <tr class="details-row" id="details-row-2" style="display: none;">
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
-                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF
+                                                        Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản
+                                                        phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL
+                                                        kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh
+                                                        kiện:</span><span class="detail-value">
+                                                        <div class="image-modal-trigger"><img src="../images/kien1.jpg"
+                                                                alt="Ảnh kiện"></div>
+                                                    </span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân
+                                                        nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span
+                                                        class="detail-label">Reweight:</span><span
+                                                        class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại
+                                                        lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú
+                                                        CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải
+                                                        quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
-                                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
+                                                <button class="icon-button icon-print" title="In chi tiết"><i
+                                                        class="fa-solid fa-print"></i></button>
+                                                <button class="icon-button icon-excel" title="Xuất Excel"><i
+                                                        class="fa-solid fa-file-excel"></i></button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr id="main-row-3" class="clickable-row" data-order-id="MTE24081571255" data-status="Mới tạo">
-                                    <td><input type="checkbox" title="Select row 3"></td><td>3</td><td><a href="order_detail.html" class="order-id-link">MTE24081571255</a></td><td>16/08/24</td><td>19/08/24</td><td><span class="status-badge status-pending">Mới tạo</span></td><td>Mới tạo đơn</td><td>Nguyễn Văn A</td><td>SALE01</td><td>DHL</td><td class="currency">2.000.000₫</td><td><span class="status-badge status-paid">Đã thanh toán</span></td><td><span class="status-badge status-unpaid">Chưa thanh toán</span></td><td class="currency">100.000₫</td><td>Bình Tân</td>
-                                    <td class="action-icons"> <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button> <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button> <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button> <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button> <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button> </td>
+                                <tr id="main-row-3" class="clickable-row" data-order-id="MTE24081571255"
+                                    data-status="Mới tạo">
+                                    <td><input type="checkbox" title="Select row 3"></td>
+                                    <td>3</td>
+                                    <td><a href="order_detail.html" class="order-id-link">MTE24081571255</a></td>
+                                    <td>16/08/24</td>
+                                    <td>19/08/24</td>
+                                    <td><span class="status-badge status-pending">Mới tạo</span></td>
+                                    <td>Mới tạo đơn</td>
+                                    <td>Nguyễn Văn A</td>
+                                    <td>SALE01</td>
+                                    <td>DHL</td>
+                                    <td class="currency">2.000.000₫</td>
+                                    <td><span class="status-badge status-paid">Đã thanh toán</span></td>
+                                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                                    <td class="currency">100.000₫</td>
+                                    <td>Bình Tân</td>
+                                    <td class="action-icons"> <button class="icon-button receive-order-btn"
+                                            title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
+                                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i
+                                                class="fa-solid fa-check-double"></i></button> <button
+                                            class="icon-button icon-edit" title="Sửa"><i
+                                                class="fa-solid fa-pencil"></i></button> <button
+                                            class="icon-button icon-danger" title="Xóa"><i
+                                                class="fa-solid fa-trash-can"></i></button> <button
+                                            class="icon-button icon-print" title="In"><i
+                                                class="fa-solid fa-print"></i></button> </td>
                                 </tr>
                                 <tr class="details-row" id="details-row-3" style="display: none;">
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
-                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF
+                                                        Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản
+                                                        phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL
+                                                        kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh
+                                                        kiện:</span><span class="detail-value">
+                                                        <div class="image-modal-trigger"><img src="../images/kien1.jpg"
+                                                                alt="Ảnh kiện"></div>
+                                                    </span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân
+                                                        nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span
+                                                        class="detail-label">Reweight:</span><span
+                                                        class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại
+                                                        lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú
+                                                        CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải
+                                                        quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
-                                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
+                                                <button class="icon-button icon-print" title="In chi tiết"><i
+                                                        class="fa-solid fa-print"></i></button>
+                                                <button class="icon-button icon-excel" title="Xuất Excel"><i
+                                                        class="fa-solid fa-file-excel"></i></button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr id="main-row-4" class="clickable-row" data-order-id="MTE24081571256" data-status="Nhận hàng">
-                                    <td><input type="checkbox" title="Select row 4"></td><td>4</td><td><a href="order_detail.html" class="order-id-link">MTE24081571256</a></td><td>16/08/24</td><td>19/08/24</td><td><span class="status-badge status-received">Nhận hàng</span></td><td>Nhận hàng</td><td>Trần Văn B</td><td>SALE02</td><td>FEDEX</td><td class="currency">1.500.000₫</td><td><span class="status-badge status-unpaid">Chưa thanh toán</span></td><td><span class="status-badge status-paid">Đã thanh toán</span></td><td class="currency">80.000₫</td><td>Tân Phú</td>
-                                    <td class="action-icons"> <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button> <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button> <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button> <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button> <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button> </td>
+                                <tr id="main-row-4" class="clickable-row" data-order-id="MTE24081571256"
+                                    data-status="Nhận hàng">
+                                    <td><input type="checkbox" title="Select row 4"></td>
+                                    <td>4</td>
+                                    <td><a href="order_detail.html" class="order-id-link">MTE24081571256</a></td>
+                                    <td>16/08/24</td>
+                                    <td>19/08/24</td>
+                                    <td><span class="status-badge status-received">Nhận hàng</span></td>
+                                    <td>Nhận hàng</td>
+                                    <td>Trần Văn B</td>
+                                    <td>SALE02</td>
+                                    <td>FEDEX</td>
+                                    <td class="currency">1.500.000₫</td>
+                                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                                    <td><span class="status-badge status-paid">Đã thanh toán</span></td>
+                                    <td class="currency">80.000₫</td>
+                                    <td>Tân Phú</td>
+                                    <td class="action-icons"> <button class="icon-button receive-order-btn"
+                                            title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
+                                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i
+                                                class="fa-solid fa-check-double"></i></button> <button
+                                            class="icon-button icon-edit" title="Sửa"><i
+                                                class="fa-solid fa-pencil"></i></button> <button
+                                            class="icon-button icon-danger" title="Xóa"><i
+                                                class="fa-solid fa-trash-can"></i></button> <button
+                                            class="icon-button icon-print" title="In"><i
+                                                class="fa-solid fa-print"></i></button> </td>
                                 </tr>
                                 <tr class="details-row" id="details-row-4" style="display: none;">
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
-                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF
+                                                        Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản
+                                                        phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL
+                                                        kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh
+                                                        kiện:</span><span class="detail-value">
+                                                        <div class="image-modal-trigger"><img src="../images/kien1.jpg"
+                                                                alt="Ảnh kiện"></div>
+                                                    </span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân
+                                                        nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span
+                                                        class="detail-label">Reweight:</span><span
+                                                        class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại
+                                                        lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú
+                                                        CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải
+                                                        quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
-                                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
+                                                <button class="icon-button icon-print" title="In chi tiết"><i
+                                                        class="fa-solid fa-print"></i></button>
+                                                <button class="icon-button icon-excel" title="Xuất Excel"><i
+                                                        class="fa-solid fa-file-excel"></i></button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr id="main-row-5" class="clickable-row" data-order-id="MTE24081571257" data-status="Đang phát">
-                                    <td><input type="checkbox" title="Select row 5"></td><td>5</td><td><a href="order_detail.html" class="order-id-link">MTE24081571257</a></td><td>17/08/24</td><td>20/08/24</td><td><span class="status-badge status-processing">Đang phát hàng</span></td><td>Đang phát hàng</td><td>Lê Thị C</td><td>SALE01</td><td>VNPost</td><td class="currency">1.800.000₫</td><td><span class="status-badge status-paid">Đã thanh toán</span></td><td><span class="status-badge status-unpaid">Chưa thanh toán</span></td><td class="currency">90.000₫</td><td>Bình Tân</td>
-                                    <td class="action-icons"> <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button> <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button> <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button> <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button> <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button> </td>
+                                <tr id="main-row-5" class="clickable-row" data-order-id="MTE24081571257"
+                                    data-status="Đang phát">
+                                    <td><input type="checkbox" title="Select row 5"></td>
+                                    <td>5</td>
+                                    <td><a href="order_detail.html" class="order-id-link">MTE24081571257</a></td>
+                                    <td>17/08/24</td>
+                                    <td>20/08/24</td>
+                                    <td><span class="status-badge status-processing">Đang phát hàng</span></td>
+                                    <td>Đang phát hàng</td>
+                                    <td>Lê Thị C</td>
+                                    <td>SALE01</td>
+                                    <td>VNPost</td>
+                                    <td class="currency">1.800.000₫</td>
+                                    <td><span class="status-badge status-paid">Đã thanh toán</span></td>
+                                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                                    <td class="currency">90.000₫</td>
+                                    <td>Bình Tân</td>
+                                    <td class="action-icons"> <button class="icon-button receive-order-btn"
+                                            title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
+                                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i
+                                                class="fa-solid fa-check-double"></i></button> <button
+                                            class="icon-button icon-edit" title="Sửa"><i
+                                                class="fa-solid fa-pencil"></i></button> <button
+                                            class="icon-button icon-danger" title="Xóa"><i
+                                                class="fa-solid fa-trash-can"></i></button> <button
+                                            class="icon-button icon-print" title="In"><i
+                                                class="fa-solid fa-print"></i></button> </td>
                                 </tr>
                                 <tr class="details-row" id="details-row-5" style="display: none;">
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
-                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF
+                                                        Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản
+                                                        phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL
+                                                        kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh
+                                                        kiện:</span><span class="detail-value">
+                                                        <div class="image-modal-trigger"><img src="../images/kien1.jpg"
+                                                                alt="Ảnh kiện"></div>
+                                                    </span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân
+                                                        nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span
+                                                        class="detail-label">Reweight:</span><span
+                                                        class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại
+                                                        lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú
+                                                        CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải
+                                                        quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
-                                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
+                                                <button class="icon-button icon-print" title="In chi tiết"><i
+                                                        class="fa-solid fa-print"></i></button>
+                                                <button class="icon-button icon-excel" title="Xuất Excel"><i
+                                                        class="fa-solid fa-file-excel"></i></button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr id="main-row-6" class="clickable-row" data-order-id="MTE24081571258" data-status="Hoàn tất">
-                                    <td><input type="checkbox" title="Select row 6"></td><td>6</td><td><a href="order_detail.html" class="order-id-link">MTE24081571258</a></td><td>17/08/24</td><td>20/08/24</td><td><span class="status-badge status-completed">Hoàn tất</span></td><td>Hoàn tất</td><td>Phạm Văn D</td><td>SALE02</td><td>J&T</td><td class="currency">2.200.000₫</td><td><span class="status-badge status-paid">Đã thanh toán</span></td><td><span class="status-badge status-paid">Đã thanh toán</span></td><td class="currency">120.000₫</td><td>Tân Phú</td>
-                                    <td class="action-icons"> <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button> <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button> <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button> <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button> <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button> </td>
+                                <tr id="main-row-6" class="clickable-row" data-order-id="MTE24081571258"
+                                    data-status="Hoàn tất">
+                                    <td><input type="checkbox" title="Select row 6"></td>
+                                    <td>6</td>
+                                    <td><a href="order_detail.html" class="order-id-link">MTE24081571258</a></td>
+                                    <td>17/08/24</td>
+                                    <td>20/08/24</td>
+                                    <td><span class="status-badge status-completed">Hoàn tất</span></td>
+                                    <td>Hoàn tất</td>
+                                    <td>Phạm Văn D</td>
+                                    <td>SALE02</td>
+                                    <td>J&T</td>
+                                    <td class="currency">2.200.000₫</td>
+                                    <td><span class="status-badge status-paid">Đã thanh toán</span></td>
+                                    <td><span class="status-badge status-paid">Đã thanh toán</span></td>
+                                    <td class="currency">120.000₫</td>
+                                    <td>Tân Phú</td>
+                                    <td class="action-icons"> <button class="icon-button receive-order-btn"
+                                            title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
+                                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i
+                                                class="fa-solid fa-check-double"></i></button> <button
+                                            class="icon-button icon-edit" title="Sửa"><i
+                                                class="fa-solid fa-pencil"></i></button> <button
+                                            class="icon-button icon-danger" title="Xóa"><i
+                                                class="fa-solid fa-trash-can"></i></button> <button
+                                            class="icon-button icon-print" title="In"><i
+                                                class="fa-solid fa-print"></i></button> </td>
                                 </tr>
                                 <tr class="details-row" id="details-row-6" style="display: none;">
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
-                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF
+                                                        Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản
+                                                        phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL
+                                                        kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh
+                                                        kiện:</span><span class="detail-value">
+                                                        <div class="image-modal-trigger"><img src="../images/kien1.jpg"
+                                                                alt="Ảnh kiện"></div>
+                                                    </span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân
+                                                        nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span
+                                                        class="detail-label">Reweight:</span><span
+                                                        class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại
+                                                        lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú
+                                                        CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải
+                                                        quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
-                                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
+                                                <button class="icon-button icon-print" title="In chi tiết"><i
+                                                        class="fa-solid fa-print"></i></button>
+                                                <button class="icon-button icon-excel" title="Xuất Excel"><i
+                                                        class="fa-solid fa-file-excel"></i></button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr id="main-row-7" class="clickable-row" data-order-id="MTE24081571259" data-status="Hủy">
-                                    <td><input type="checkbox" title="Select row 7"></td><td>7</td><td><a href="order_detail.html" class="order-id-link">MTE24081571259</a></td><td>18/08/24</td><td>21/08/24</td><td><span class="status-badge status-cancelled">Hủy</span></td><td>Hủy</td><td>Ngô Thị E</td><td>SALE01</td><td>GHN</td><td class="currency">1.000.000₫</td><td><span class="status-badge status-unpaid">Chưa thanh toán</span></td><td><span class="status-badge status-unpaid">Chưa thanh toán</span></td><td class="currency">50.000₫</td><td>Bình Tân</td>
-                                    <td class="action-icons"> <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button> <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button> <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button> <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button> <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button> </td>
+                                <tr id="main-row-7" class="clickable-row" data-order-id="MTE24081571259"
+                                    data-status="Hủy">
+                                    <td><input type="checkbox" title="Select row 7"></td>
+                                    <td>7</td>
+                                    <td><a href="order_detail.html" class="order-id-link">MTE24081571259</a></td>
+                                    <td>18/08/24</td>
+                                    <td>21/08/24</td>
+                                    <td><span class="status-badge status-cancelled">Hủy</span></td>
+                                    <td>Hủy</td>
+                                    <td>Ngô Thị E</td>
+                                    <td>SALE01</td>
+                                    <td>GHN</td>
+                                    <td class="currency">1.000.000₫</td>
+                                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                                    <td class="currency">50.000₫</td>
+                                    <td>Bình Tân</td>
+                                    <td class="action-icons"> <button class="icon-button receive-order-btn"
+                                            title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
+                                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i
+                                                class="fa-solid fa-check-double"></i></button> <button
+                                            class="icon-button icon-edit" title="Sửa"><i
+                                                class="fa-solid fa-pencil"></i></button> <button
+                                            class="icon-button icon-danger" title="Xóa"><i
+                                                class="fa-solid fa-trash-can"></i></button> <button
+                                            class="icon-button icon-print" title="In"><i
+                                                class="fa-solid fa-print"></i></button> </td>
                                 </tr>
                                 <tr class="details-row" id="details-row-7" style="display: none;">
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
-                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF
+                                                        Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản
+                                                        phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL
+                                                        kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh
+                                                        kiện:</span><span class="detail-value">
+                                                        <div class="image-modal-trigger"><img src="../images/kien1.jpg"
+                                                                alt="Ảnh kiện"></div>
+                                                    </span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân
+                                                        nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span
+                                                        class="detail-label">Reweight:</span><span
+                                                        class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại
+                                                        lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú
+                                                        CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải
+                                                        quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
-                                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
+                                                <button class="icon-button icon-print" title="In chi tiết"><i
+                                                        class="fa-solid fa-print"></i></button>
+                                                <button class="icon-button icon-excel" title="Xuất Excel"><i
+                                                        class="fa-solid fa-file-excel"></i></button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr id="main-row-8" class="clickable-row" data-order-id="MTE24081571260" data-status="Lỗi">
-                                    <td><input type="checkbox" title="Select row 8"></td><td>8</td><td><a href="order_detail.html" class="order-id-link">MTE24081571260</a></td><td>18/08/24</td><td>21/08/24</td><td><span class="status-badge status-unpaid">Lỗi</span></td><td>Lỗi</td><td>Đặng Văn F</td><td>SALE02</td><td>VNPost</td><td class="currency">1.200.000₫</td><td><span class="status-badge status-unpaid">Chưa thanh toán</span></td><td><span class="status-badge status-unpaid">Chưa thanh toán</span></td><td class="currency">60.000₫</td><td>Tân Phú</td>
-                                    <td class="action-icons"> <button class="icon-button receive-order-btn" title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button> <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i class="fa-solid fa-check-double"></i></button> <button class="icon-button icon-edit" title="Sửa"><i class="fa-solid fa-pencil"></i></button> <button class="icon-button icon-danger" title="Xóa"><i class="fa-solid fa-trash-can"></i></button> <button class="icon-button icon-print" title="In"><i class="fa-solid fa-print"></i></button> </td>
+                                <tr id="main-row-8" class="clickable-row" data-order-id="MTE24081571260"
+                                    data-status="Lỗi">
+                                    <td><input type="checkbox" title="Select row 8"></td>
+                                    <td>8</td>
+                                    <td><a href="order_detail.html" class="order-id-link">MTE24081571260</a></td>
+                                    <td>18/08/24</td>
+                                    <td>21/08/24</td>
+                                    <td><span class="status-badge status-unpaid">Lỗi</span></td>
+                                    <td>Lỗi</td>
+                                    <td>Đặng Văn F</td>
+                                    <td>SALE02</td>
+                                    <td>VNPost</td>
+                                    <td class="currency">1.200.000₫</td>
+                                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                                    <td><span class="status-badge status-unpaid">Chưa thanh toán</span></td>
+                                    <td class="currency">60.000₫</td>
+                                    <td>Tân Phú</td>
+                                    <td class="action-icons"> <button class="icon-button receive-order-btn"
+                                            title="Nhận hàng về kho"><i class="fa-solid fa-warehouse"></i></button>
+                                        <button class="icon-button complete-order-btn" title="Hoàn tất đơn hàng"><i
+                                                class="fa-solid fa-check-double"></i></button> <button
+                                            class="icon-button icon-edit" title="Sửa"><i
+                                                class="fa-solid fa-pencil"></i></button> <button
+                                            class="icon-button icon-danger" title="Xóa"><i
+                                                class="fa-solid fa-trash-can"></i></button> <button
+                                            class="icon-button icon-print" title="In"><i
+                                                class="fa-solid fa-print"></i></button> </td>
                                 </tr>
                                 <tr class="details-row" id="details-row-8" style="display: none;">
                                     <td colspan="16">
                                         <div class="details-inner-wrapper">
                                             <div class="order-details-content">
-                                                <div class="detail-item"><span class="detail-label">REF Code:</span><span class="detail-value">3012659134</span></div>
-                                                <div class="detail-item"><span class="detail-label">Tên sản phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
-                                                <div class="detail-item"><span class="detail-label">SL kiện/gói:</span><span class="detail-value">1</span></div>
-                                                <div class="detail-item"><span class="detail-label">Ảnh kiện:</span><span class="detail-value"><div class="image-modal-trigger"><img src="../images/kien1.jpg" alt="Ảnh kiện"></div></span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">45 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">42 KG</span></div>
-                                                <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">43 KG</span></div>
-                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải quan / Phụ phí đóng gói</span></div>
+                                                <div class="detail-item"><span class="detail-label">REF
+                                                        Code:</span><span class="detail-value">3012659134</span></div>
+                                                <div class="detail-item"><span class="detail-label">Tên sản
+                                                        phẩm:</span><span class="detail-value">Hàng cá nhân</span></div>
+                                                <div class="detail-item"><span class="detail-label">SL
+                                                        kiện/gói:</span><span class="detail-value">1</span></div>
+                                                <div class="detail-item"><span class="detail-label">Ảnh
+                                                        kiện:</span><span class="detail-value">
+                                                        <div class="image-modal-trigger"><img src="../images/kien1.jpg"
+                                                                alt="Ảnh kiện"></div>
+                                                    </span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân
+                                                        nặng:</span><span class="detail-value">45 KG</span></div>
+                                                <div class="detail-item"><span
+                                                        class="detail-label">Reweight:</span><span
+                                                        class="detail-value">42 KG</span></div>
+                                                <div class="detail-item"><span class="detail-label">Cân nặng đại
+                                                        lý:</span><span class="detail-value">43 KG</span></div>
+                                                <div class="detail-item full-width"><span class="detail-label">Ghi chú
+                                                        CPK:</span><span class="detail-value">Đóng kiện Pallet / Phí hải
+                                                        quan / Phụ phí đóng gói</span></div>
                                             </div>
                                             <div class="details-action-icons">
-                                                <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
-                                                <button class="icon-button icon-excel" title="Xuất Excel"><i class="fa-solid fa-file-excel"></i></button>
+                                                <button class="icon-button icon-print" title="In chi tiết"><i
+                                                        class="fa-solid fa-print"></i></button>
+                                                <button class="icon-button icon-excel" title="Xuất Excel"><i
+                                                        class="fa-solid fa-file-excel"></i></button>
                                             </div>
                                         </div>
                                     </td>
@@ -414,7 +811,8 @@
                 </div>
 
                 <nav class="pagination" aria-label="Table navigation">
-                    <span class="pagination-info">Hiển thị <b id="start-index">1</b> cho tới <b id="end-index">8</b> của <b id="total-entries">127</b> Đơn hàng</span>
+                    <span class="pagination-info">Hiển thị <b id="start-index">1</b> cho tới <b id="end-index">8</b> của
+                        <b id="total-entries">127</b> Đơn hàng</span>
                     <div class="pagination-buttons">
                         <div class="items-per-page-control">
                             <select id="items-per-page-select" class="form-select">
@@ -427,17 +825,17 @@
                             <span>đơn hàng/trang</span>
                         </div>
                         <div class="pagination-nav-buttons">
-                             <button class="button" id="prev-page" disabled>Trước</button>
-                             <div id="page-numbers" class="page-numbers"></div>
-                             <button class="button" id="next-page">Sau</button>
+                            <button class="button" id="prev-page" disabled>Trước</button>
+                            <div id="page-numbers" class="page-numbers"></div>
+                            <button class="button" id="next-page">Sau</button>
                         </div>
                     </div>
                 </nav>
             </section>
 
-             <footer class="site-footer">
+            <footer class="site-footer">
                 Minh Khôi Logistics © <span id="current-year"></span>. All rights reserved. Design by Nina Co.,Ltd
-             </footer>
+            </footer>
         </div>
 
         <!-- Thêm vùng hiển thị đơn hàng mới -->
@@ -448,28 +846,133 @@
         <div class="filter-modal-content card">
             <div class="filter-modal-header">
                 <h3><i class="fa-solid fa-filter"></i> Bộ lọc đơn hàng</h3>
-                <button class="filter-modal-close-btn icon-button" aria-label="Close Filters"> <i class="fa-solid fa-xmark"></i> </button>
+                <button class="filter-modal-close-btn icon-button" aria-label="Close Filters"> <i
+                        class="fa-solid fa-xmark"></i> </button>
             </div>
             <div class="filter-modal-body">
-                <div class="filter-group date-range"><label for="modal-date-start">Date Range</label><input type="date" id="modal-date-start" title="From Date" placeholder="yyyy-mm-dd"><span>→</span><input type="date" id="modal-date-end" title="To Date" placeholder="yyyy-mm-dd"></div>
-                <div class="filter-group"><label for="modal-filter-status">Status</label><select id="modal-filter-status" title="Filter by status"><option value="">Tất cả trạng thái</option><option>Mới tạo đơn</option> <option>Đã nhận hàng</option> <option>Đang phát hàng</option> <option>Hoàn tất</option><option>Hủy</option><option>Lỗi</option><option>Chuyển hoàn</option></select></div>
-                <div class="filter-group"><label for="modal-filter-data">Data Filter</label><select id="modal-filter-data" title="Data Filter"><option>Lọc dữ liệu</option></select></div>
-                <div class="filter-group"><label for="modal-filter-sale">Sales Rep</label><select id="modal-filter-sale" title="Select Sales Rep"><option value="">Tất cả Sale</option><option>SALE01 - P.H. Đình</option> <option>SALE02 - N.V. An</option></select></div>
-                <div class="filter-group"><label for="modal-filter-branch">Branch</label><select id="modal-filter-branch" title="Select Branch"><option value="">Tất cả chi nhánh</option><option>CN: Tân Phú</option> <option>CN: Bình Tân</option></select></div>
-                <div class="filter-group"><label for="modal-filter-customer">Customer</label><select id="modal-filter-customer" title="Select Customer"><option value="">Tất cả khách hàng</option> <option>Alice</option></select></div>
-                <div class="filter-group filter-search"><label for="modal-filter-search-input">Search</label><div class="search-input-wrapper"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="modal-filter-search-input" placeholder="Order ID, Customer..."></div></div>
+                <div class="filter-group date-range"><label for="modal-date-start">Date Range</label><input type="date"
+                        id="modal-date-start" title="From Date" placeholder="yyyy-mm-dd"><span>→</span><input
+                        type="date" id="modal-date-end" title="To Date" placeholder="yyyy-mm-dd"></div>
+                <div class="filter-group"><label for="modal-filter-status">Status</label><select
+                        id="modal-filter-status" title="Filter by status">
+                        <option value="">Tất cả trạng thái</option>
+                        <option>Mới tạo đơn</option>
+                        <option>Đã nhận hàng</option>
+                        <option>Đang phát hàng</option>
+                        <option>Hoàn tất</option>
+                        <option>Hủy</option>
+                        <option>Lỗi</option>
+                        <option>Chuyển hoàn</option>
+                    </select></div>
+                <div class="filter-group"><label for="modal-filter-data">Data Filter</label><select
+                        id="modal-filter-data" title="Data Filter">
+                        <option>Lọc dữ liệu</option>
+                    </select></div>
+                <div class="filter-group"><label for="modal-filter-sale">Sales Rep</label><select id="modal-filter-sale"
+                        title="Select Sales Rep">
+                        <option value="">Tất cả Sale</option>
+                        <option>SALE01 - P.H. Đình</option>
+                        <option>SALE02 - N.V. An</option>
+                    </select></div>
+                <div class="filter-group"><label for="modal-filter-branch">Branch</label><select
+                        id="modal-filter-branch" title="Select Branch">
+                        <option value="">Tất cả chi nhánh</option>
+                        <option>CN: Tân Phú</option>
+                        <option>CN: Bình Tân</option>
+                    </select></div>
+                <div class="filter-group"><label for="modal-filter-customer">Customer</label><select
+                        id="modal-filter-customer" title="Select Customer">
+                        <option value="">Tất cả khách hàng</option>
+                        <option>Alice</option>
+                    </select></div>
+                <div class="filter-group filter-search"><label for="modal-filter-search-input">Search</label>
+                    <div class="search-input-wrapper"><i class="fa-solid fa-magnifying-glass"></i><input type="text"
+                            id="modal-filter-search-input" placeholder="Order ID, Customer..."></div>
+                </div>
             </div>
             <div class="filter-modal-footer">
-                 <button class="button secondary" id="modal-reset-filter-btn">Reset</button>
-                 <button class="button primary" id="modal-apply-filter-btn">Áp dụng</button>
+                <button class="button secondary" id="modal-reset-filter-btn">Reset</button>
+                <button class="button primary" id="modal-apply-filter-btn">Áp dụng</button>
             </div>
         </div>
     </div>
 
-    <div class="confirmation-modal" id="complete-order-modal"> <div class="modal-content"> <div class="modal-header"> <i class="fa-solid fa-triangle-exclamation"></i> <span>Xác nhận Hoàn Tất</span> </div> <div class="modal-body"> <div class="confirmation-body-content"> <i class="fa-solid fa-check-circle confirmation-icon" style="color: var(--confirm-color)"></i> <div class="confirmation-text"> <p>Bạn xác nhận <strong class="modal-target-count"></strong> đơn hàng đã <strong class="highlight-confirm">hoàn tất</strong> và cập nhật đầy đủ thông tin?</p> <p class="modal-target-ids"></p> </div> </div> </div> <div class="modal-footer"> <button class="button confirm-cancel">Hủy</button> <button class="button confirm-yes confirm">Có, tôi xác nhận</button> </div> </div> </div>
-    <div class="confirmation-modal" id="cancel-order-modal"> <div class="modal-content"> <div class="modal-header" style="background-color: var(--warning-color);"> <i class="fa-solid fa-triangle-exclamation"></i> <span>Xác nhận Hủy Đơn</span> </div> <div class="modal-body"> <div class="confirmation-body-content"> <i class="fa-solid fa-ban confirmation-icon" style="color: var(--warning-color)"></i> <div class="confirmation-text"> <p>Bạn xác nhận muốn <strong class="highlight-cancel">Hủy</strong> <strong class="modal-target-count"></strong> đơn hàng này?</p> <p class="modal-target-ids"></p> <p style="font-size: 0.85em; color: var(--danger-color); margin-top: 5px;">Hành động này có thể không thể hoàn tác.</p> </div> </div> </div> <div class="modal-footer"> <button class="button confirm-cancel">Không hủy</button> <button class="button confirm-yes warning">Có, Hủy đơn</button> </div> </div> </div>
-    <div class="confirmation-modal" id="receive-order-modal"> <div class="modal-content"> <div class="modal-header" style="background-color: var(--receive-color);"> <i class="fa-solid fa-triangle-exclamation"></i> <span>Xác nhận Nhận Hàng</span> </div> <div class="modal-body"> <div class="confirmation-body-content"> <i class="fa-solid fa-warehouse confirmation-icon" style="color: var(--receive-color)"></i> <div class="confirmation-text"> <p>Bạn xác nhận <strong class="modal-target-count"></strong> đơn hàng này đã được <strong class="highlight-receive">nhận hàng về kho</strong>?</p> <p class="modal-target-ids"></p> </div> </div> </div> <div class="modal-footer"> <button class="button confirm-cancel">Hủy</button> <button class="button confirm-yes primary">Có, đã nhận</button> </div> </div> </div>
-    <div class="confirmation-modal" id="delete-order-modal"> <div class="modal-content"> <div class="modal-header" style="background-color: var(--danger-color);"> <i class="fa-solid fa-triangle-exclamation"></i> <span>Xác nhận Xuất Kho</span> </div> <div class="modal-body"> <div class="confirmation-body-content"> <i class="fa-solid fa-box-archive confirmation-icon" style="color: var(--danger-color)"></i> <div class="confirmation-text"> <p>Bạn xác nhận <strong class="modal-target-count"></strong> đơn hàng này đã đủ điều kiện <strong class="highlight-confirm">Xuất kho</strong>?</p> <p class="modal-target-ids"></p> <p style="font-size: 0.9em; color: var(--danger-color); margin-top: 10px; font-weight: bold;">HÀNH ĐỘNG NÀY KHÔNG THỂ HOÀN TÁC!</p> </div> </div> </div> <div class="modal-footer"> <button class="button confirm-cancel">Không xuất kho</button> <button class="button confirm-yes danger">Có, Xuất kho</button> </div> </div> </div>
+    <div class="confirmation-modal" id="complete-order-modal">
+        <div class="modal-content">
+            <div class="modal-header"> <i class="fa-solid fa-triangle-exclamation"></i> <span>Xác nhận Hoàn Tất</span>
+            </div>
+            <div class="modal-body">
+                <div class="confirmation-body-content"> <i class="fa-solid fa-check-circle confirmation-icon"
+                        style="color: var(--confirm-color)"></i>
+                    <div class="confirmation-text">
+                        <p>Bạn xác nhận <strong class="modal-target-count"></strong> đơn hàng đã <strong
+                                class="highlight-confirm">hoàn tất</strong> và cập nhật đầy đủ thông tin?</p>
+                        <p class="modal-target-ids"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"> <button class="button confirm-cancel">Hủy</button> <button
+                    class="button confirm-yes confirm">Có, tôi xác nhận</button> </div>
+        </div>
+    </div>
+    <div class="confirmation-modal" id="cancel-order-modal">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: var(--warning-color);"> <i
+                    class="fa-solid fa-triangle-exclamation"></i> <span>Xác nhận Hủy Đơn</span> </div>
+            <div class="modal-body">
+                <div class="confirmation-body-content"> <i class="fa-solid fa-ban confirmation-icon"
+                        style="color: var(--warning-color)"></i>
+                    <div class="confirmation-text">
+                        <p>Bạn xác nhận muốn <strong class="highlight-cancel">Hủy</strong> <strong
+                                class="modal-target-count"></strong> đơn hàng này?</p>
+                        <p class="modal-target-ids"></p>
+                        <p style="font-size: 0.85em; color: var(--danger-color); margin-top: 5px;">Hành động này có thể
+                            không thể hoàn tác.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"> <button class="button confirm-cancel">Không hủy</button> <button
+                    class="button confirm-yes warning">Có, Hủy đơn</button> </div>
+        </div>
+    </div>
+    <div class="confirmation-modal" id="receive-order-modal">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: var(--receive-color);"> <i
+                    class="fa-solid fa-triangle-exclamation"></i> <span>Xác nhận Nhận Hàng</span> </div>
+            <div class="modal-body">
+                <div class="confirmation-body-content"> <i class="fa-solid fa-warehouse confirmation-icon"
+                        style="color: var(--receive-color)"></i>
+                    <div class="confirmation-text">
+                        <p>Bạn xác nhận <strong class="modal-target-count"></strong> đơn hàng này đã được <strong
+                                class="highlight-receive">nhận hàng về kho</strong>?</p>
+                        <p class="modal-target-ids"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"> <button class="button confirm-cancel">Hủy</button> <button
+                    class="button confirm-yes primary">Có, đã nhận</button> </div>
+        </div>
+    </div>
+    <div class="confirmation-modal" id="delete-order-modal">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: var(--danger-color);"> <i
+                    class="fa-solid fa-triangle-exclamation"></i> <span>Xác nhận Xuất Kho</span> </div>
+            <div class="modal-body">
+                <div class="confirmation-body-content"> <i class="fa-solid fa-box-archive confirmation-icon"
+                        style="color: var(--danger-color)"></i>
+                    <div class="confirmation-text">
+                        <p>Bạn xác nhận <strong class="modal-target-count"></strong> đơn hàng này đã đủ điều kiện
+                            <strong class="highlight-confirm">Xuất kho</strong>?</p>
+                        <p class="modal-target-ids"></p>
+                        <p style="font-size: 0.9em; color: var(--danger-color); margin-top: 10px; font-weight: bold;">
+                            HÀNH ĐỘNG NÀY KHÔNG THỂ HOÀN TÁC!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"> <button class="button confirm-cancel">Không xuất kho</button> <button
+                    class="button confirm-yes danger">Có, Xuất kho</button> </div>
+        </div>
+    </div>
     <div class="announcement-overlay" id="announcement-overlay">
         <div class="announcement-box" id="announcement-box">
             <div class="announcement-header">
@@ -578,16 +1081,16 @@
         }
 
         function initializeActiveSubmenu() {
-             const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
-             if (activeSubmenuLink) {
-                  const submenuDiv = activeSubmenuLink.closest('.submenu');
-                  const parentLink = submenuDiv?.previousElementSibling;
-                  if(submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
-                      submenuDiv.classList.add('active');
-                      parentLink.classList.add('active');
-                  }
-             }
-         }
+            const activeSubmenuLink = document.querySelector('.sidebar .submenu a.active');
+            if (activeSubmenuLink) {
+                const submenuDiv = activeSubmenuLink.closest('.submenu');
+                const parentLink = submenuDiv?.previousElementSibling;
+                if (submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
+                    submenuDiv.classList.add('active');
+                    parentLink.classList.add('active');
+                }
+            }
+        }
 
         function toggleFilterModal() {
             if (filterModal) {
@@ -604,13 +1107,13 @@
             // Trạng thái ưu tiên từ statusTab (khi click tab), nếu không thì lấy từ dropdown filter
             let filterStatus = statusTab && statusTab !== 'Tất cả' ? statusTab : '';
             if (!filterStatus) { // Nếu không có trạng thái từ tab, lấy từ dropdown nếu không phải từ tab
-                 filterStatus = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}filter-status`)?.value : '';
+                filterStatus = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}filter-status`)?.value : '';
             }
 
             const sale = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}filter-sale`)?.value : '';
             const customer = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}filter-customer`)?.value : '';
             const branch = (source !== 'tab' && source !== 'mobile-select') ? document.getElementById(`${formPrefix}filter-branch`)?.value : '';
-            
+
             // Ô search input vẫn luôn được sử dụng bất kể source nào
             const search = document.getElementById(`${formPrefix}filter-search-input`)?.value?.toLowerCase().trim();
 
@@ -706,17 +1209,17 @@
                 if (show && search && search.length > 0) {
                     const searchTerms = search.split(' ').filter(term => term.length > 0); // Loại bỏ khoảng trắng thừa
                     if (searchTerms.length > 0) { // Chỉ lọc nếu có ít nhất một từ khóa search
-                         const cellsToSearch = [
+                        const cellsToSearch = [
                             row.children[2]?.textContent || '', // ID
                             row.children[7]?.textContent || '', // Tên KH
                             row.children[8]?.textContent || '', // Sale
                             row.children[9]?.textContent || '', // Dịch vụ
                             row.children[2]?.textContent || ''  // Mã vận đơn
-                         ];
-                         const normalizedCells = cellsToSearch.map(cell => normalizeText(cell));
-                         // Kiểm tra xem TẤT CẢ các từ khóa search có tồn tại trong BẤT KỲ ô nào không
-                         const hasMatch = searchTerms.every(term => normalizedCells.some(cell => cell.includes(term)));
-                         if (!hasMatch) show = false;
+                        ];
+                        const normalizedCells = cellsToSearch.map(cell => normalizeText(cell));
+                        // Kiểm tra xem TẤT CẢ các từ khóa search có tồn tại trong BẤT KỲ ô nào không
+                        const hasMatch = searchTerms.every(term => normalizedCells.some(cell => cell.includes(term)));
+                        if (!hasMatch) show = false;
                     }
                 }
                 // Thêm dòng vào danh sách filteredRows nếu nó được hiển thị
@@ -806,12 +1309,12 @@
             const detailsRowId = 'details-row-' + clickedRow.id.substring('main-row-'.length); // Lấy phần sau 'main-row-'
             console.log('Đang tìm dòng chi tiết với ID:', detailsRowId);
             const detailsRow = document.getElementById(detailsRowId);
-            
+
             if (!detailsRow) {
                 console.warn('Không tìm thấy dòng chi tiết với ID:', detailsRowId);
                 return;
             }
-            
+
             console.log('Tìm thấy dòng chi tiết:', detailsRow.id);
             const isCurrentlyActive = clickedRow.classList.contains('active');
             const currentlyVisibleDetails = document.querySelector('tbody tr.details-row[style*="display: table-row"]');
@@ -866,9 +1369,9 @@
             const rowCheckboxes = orderTableBody.querySelectorAll('tr:not(.details-row) > td:first-child input[type="checkbox"]');
             const totalRows = rowCheckboxes.length;
             if (totalRows === 0) {
-                 selectAllCheckbox.checked = false;
-                 selectAllCheckbox.indeterminate = false;
-                 return;
+                selectAllCheckbox.checked = false;
+                selectAllCheckbox.indeterminate = false;
+                return;
             }
             const checkedRows = Array.from(rowCheckboxes).filter(checkbox => checkbox.checked).length;
             selectAllCheckbox.checked = checkedRows === totalRows;
@@ -893,15 +1396,15 @@
         }
 
         function handleFullscreenChange() {
-             const isFullscreen = !!document.fullscreenElement;
-             const icon = fullscreenBtn?.querySelector('i');
-             if(icon){
-                 icon.classList.toggle('fa-expand', !isFullscreen);
-                 icon.classList.toggle('fa-compress', isFullscreen);
-             }
-              if(fullscreenBtn) {
-                  fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
-              }
+            const isFullscreen = !!document.fullscreenElement;
+            const icon = fullscreenBtn?.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-expand', !isFullscreen);
+                icon.classList.toggle('fa-compress', isFullscreen);
+            }
+            if (fullscreenBtn) {
+                fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -935,7 +1438,7 @@
             if (mainDeleteBulkBtn) mainDeleteBulkBtn.addEventListener('click', () => { const ids = getSelectedOrderIds(); if (ids.length === 0) alert("Vui lòng chọn đơn hàng."); else showConfirmationModal('delete-order-modal', ids); });
 
             // Giữ nguyên hoặc điều chỉnh trình xử lý click trên orderTableBody để sử dụng event delegation
-            if (orderTableBody) orderTableBody.addEventListener('click', function(event) {
+            if (orderTableBody) orderTableBody.addEventListener('click', function (event) {
                 const clickedRow = event.target.closest('tr.clickable-row');
                 const targetElement = event.target;
 
@@ -947,41 +1450,41 @@
                         showOrderDetails(clickedRow); // Gọi showOrderDetails với phần tử hàng
                     } else {
                         // Xử lý click trên các phần tử tương tác (nút, ảnh, checkbox)
-                         const targetButton = targetElement.closest('.icon-button');
-                         if (targetButton) {
-                              const mainRow = targetButton.closest('tr.clickable-row');
-                              const detailsRow = targetButton.closest('tr.details-row'); // Có thể click nút trên details row
-                              let orderId;
-                              // Lấy orderId từ mainRow hoặc detailsRow nếu click trên nút trong detailsRow
-                              if(mainRow) orderId = mainRow.dataset.orderId;
-                              else if(detailsRow) {
-                                   // Tìm main row tương ứng từ details row ID
-                                   const mainRowId = 'main-row-' + detailsRow.id.substring('details-row-'.length);
-                                   orderId = document.getElementById(mainRowId)?.dataset.orderId;
-                              }
+                        const targetButton = targetElement.closest('.icon-button');
+                        if (targetButton) {
+                            const mainRow = targetButton.closest('tr.clickable-row');
+                            const detailsRow = targetButton.closest('tr.details-row'); // Có thể click nút trên details row
+                            let orderId;
+                            // Lấy orderId từ mainRow hoặc detailsRow nếu click trên nút trong detailsRow
+                            if (mainRow) orderId = mainRow.dataset.orderId;
+                            else if (detailsRow) {
+                                // Tìm main row tương ứng từ details row ID
+                                const mainRowId = 'main-row-' + detailsRow.id.substring('details-row-'.length);
+                                orderId = document.getElementById(mainRowId)?.dataset.orderId;
+                            }
 
-                              if (!orderId) return;
-                              event.stopPropagation(); // Ngăn sự kiện lan ra ngoài
+                            if (!orderId) return;
+                            event.stopPropagation(); // Ngăn sự kiện lan ra ngoài
 
-                              if (targetButton.classList.contains('receive-order-btn')) showConfirmationModal('receive-order-modal', orderId);
-                              else if (targetButton.classList.contains('complete-order-btn')) showConfirmationModal('complete-order-modal', orderId);
-                              else if (targetButton.classList.contains('icon-danger')) showConfirmationModal('delete-order-modal', orderId);
-                              else if (targetButton.classList.contains('icon-edit')) alert(`Edit order: ${orderId}`);
-                              else if (targetButton.classList.contains('icon-print')) alert(`Print order: ${orderId}`);
-                              else if (targetButton.classList.contains('icon-excel') && detailsRow) alert(`Export DETAILS to Excel for order: ${orderId}`);
-                         }
-                         // Thêm xử lý cho các phần tử tương tác khác nếu có (checkbox được xử lý riêng)
-                         else if (targetElement.matches('input[type="checkbox"]')) {
-                              // Logic đã có trong checkSelectAllState listener
-                         } else if (targetElement.closest('.image-modal-trigger img')) {
-                              event.stopPropagation(); // Ngăn sự kiện lan ra ngoài
-                              const imageUrl = targetElement.closest('.image-modal-trigger img').src;
-                              if (imageUrl) {
-                                  showImageModal(imageUrl);
-                              } else {
-                                   console.warn("Image URL not found for modal trigger");
-                               }
-                         }
+                            if (targetButton.classList.contains('receive-order-btn')) showConfirmationModal('receive-order-modal', orderId);
+                            else if (targetButton.classList.contains('complete-order-btn')) showConfirmationModal('complete-order-modal', orderId);
+                            else if (targetButton.classList.contains('icon-danger')) showConfirmationModal('delete-order-modal', orderId);
+                            else if (targetButton.classList.contains('icon-edit')) alert(`Edit order: ${orderId}`);
+                            else if (targetButton.classList.contains('icon-print')) alert(`Print order: ${orderId}`);
+                            else if (targetButton.classList.contains('icon-excel') && detailsRow) alert(`Export DETAILS to Excel for order: ${orderId}`);
+                        }
+                        // Thêm xử lý cho các phần tử tương tác khác nếu có (checkbox được xử lý riêng)
+                        else if (targetElement.matches('input[type="checkbox"]')) {
+                            // Logic đã có trong checkSelectAllState listener
+                        } else if (targetElement.closest('.image-modal-trigger img')) {
+                            event.stopPropagation(); // Ngăn sự kiện lan ra ngoài
+                            const imageUrl = targetElement.closest('.image-modal-trigger img').src;
+                            if (imageUrl) {
+                                showImageModal(imageUrl);
+                            } else {
+                                console.warn("Image URL not found for modal trigger");
+                            }
+                        }
                     }
                 }
             });
@@ -993,18 +1496,18 @@
                 modal.addEventListener('click', (event) => { if (event.target === modal) hideConfirmationModal(modalId); });
             });
 
-             if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
-             document.addEventListener('fullscreenchange', handleFullscreenChange);
+            if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
 
             const userToggle = document.getElementById('user-dropdown-toggle');
             const userDropdown = document.getElementById('user-dropdown');
-            if(userToggle && userDropdown){
-                userToggle.addEventListener('click', function(e){
+            if (userToggle && userDropdown) {
+                userToggle.addEventListener('click', function (e) {
                     e.stopPropagation();
                     userDropdown.classList.toggle('show');
                 });
-                document.addEventListener('click', function(e){
-                    if(!userDropdown.contains(e.target) && e.target !== userToggle){
+                document.addEventListener('click', function (e) {
+                    if (!userDropdown.contains(e.target) && e.target !== userToggle) {
                         userDropdown.classList.remove('show');
                     }
                 });
@@ -1032,7 +1535,7 @@
                     notificationBody.classList.add('overflow-hidden');
                 } else {
                     if (!isAnyOtherModalVisible) {
-                         notificationBody.classList.remove('overflow-hidden');
+                        notificationBody.classList.remove('overflow-hidden');
                     }
                 }
             };
@@ -1044,9 +1547,9 @@
             }
 
             function closeNotificationDropdown() {
-                 if (notificationDropdown) {
+                if (notificationDropdown) {
                     notificationDropdown.classList.remove('visible');
-                 }
+                }
             }
 
             function showAnnouncement() {
@@ -1085,7 +1588,7 @@
                         announcementTitle.textContent = title;
                         announcementBodyEl.innerHTML = '';
                         bodyText.split('||').forEach(paragraphText => {
-                            if(paragraphText.trim()) {
+                            if (paragraphText.trim()) {
                                 const p = document.createElement('p');
                                 p.textContent = paragraphText.trim();
                                 announcementBodyEl.appendChild(p);
@@ -1129,7 +1632,7 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const images = document.querySelectorAll('img[data-src]');
             const imageObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -1267,59 +1770,59 @@
         // Thêm filter cho tabs trạng thái đơn hàng
         const tabItems = document.querySelectorAll('.tab-item');
         tabItems.forEach(tab => {
-          tab.addEventListener('click', function() {
-            // Xóa lớp 'active' khỏi tất cả các tab
-            tabItems.forEach(t => t.classList.remove('active'));
-            // Thêm lớp 'active' cho tab được click
-            tab.classList.add('active');
-            
-            // Lấy trạng thái từ text tab (bỏ số lượng đi)
-            const status = this.textContent.replace(/\s*\(\d+\)/, '').trim();
-            
-            // Thay vì hiển thị trực tiếp, gọi hàm applyFilters với trạng thái từ tab
-            // applyFilters sẽ tự động gọi updatePagination và goToPage(1)
-            applyFilters('tab', status); 
-          });
+            tab.addEventListener('click', function () {
+                // Xóa lớp 'active' khỏi tất cả các tab
+                tabItems.forEach(t => t.classList.remove('active'));
+                // Thêm lớp 'active' cho tab được click
+                tab.classList.add('active');
+
+                // Lấy trạng thái từ text tab (bỏ số lượng đi)
+                const status = this.textContent.replace(/\s*\(\d+\)/, '').trim();
+
+                // Thay vì hiển thị trực tiếp, gọi hàm applyFilters với trạng thái từ tab
+                // applyFilters sẽ tự động gọi updatePagination và goToPage(1)
+                applyFilters('tab', status);
+            });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-          var mobileStatusSelect = document.getElementById('mobile-status-select');
-          if(mobileStatusSelect) {
-            mobileStatusSelect.addEventListener('change', function() {
-              var status = this.value;
-              // Thay vì hiển thị trực tiếp, gọi hàm applyFilters với trạng thái từ select mobile
-              // applyFilters sẽ tự động gọi updatePagination và goToPage(1)
-              applyFilters('mobile-select', status);
-            });
-          }
+        document.addEventListener('DOMContentLoaded', function () {
+            var mobileStatusSelect = document.getElementById('mobile-status-select');
+            if (mobileStatusSelect) {
+                mobileStatusSelect.addEventListener('change', function () {
+                    var status = this.value;
+                    // Thay vì hiển thị trực tiếp, gọi hàm applyFilters với trạng thái từ select mobile
+                    // applyFilters sẽ tự động gọi updatePagination và goToPage(1)
+                    applyFilters('mobile-select', status);
+                });
+            }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-          var searchToggle = document.getElementById('mobile-search-toggle');
-          var searchOverlay = document.getElementById('mobile-search-overlay');
-          var searchInput = document.getElementById('mobile-search-input');
-          var searchClose = document.getElementById('mobile-search-close');
-          if(searchToggle && searchOverlay && searchInput && searchClose) {
-            searchToggle.onclick = function(e) {
-              e.stopPropagation();
-              searchOverlay.style.display = 'flex';
-              searchOverlay.style.zIndex = '9999';
-              setTimeout(function() { searchInput.focus(); }, 100);
-            };
-            searchClose.onclick = function() {
-              searchOverlay.style.display = 'none';
-            };
-            document.addEventListener('click', function(e) {
-              if(window.innerWidth > 576) return;
-              if(searchOverlay.style.display==='flex' && !searchOverlay.contains(e.target) && e.target!==searchToggle) searchOverlay.style.display = 'none';
-            });
-            searchInput.addEventListener('keydown', function(e){
-              if(e.key==='Escape') searchOverlay.style.display = 'none';
-            });
-          }
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchToggle = document.getElementById('mobile-search-toggle');
+            var searchOverlay = document.getElementById('mobile-search-overlay');
+            var searchInput = document.getElementById('mobile-search-input');
+            var searchClose = document.getElementById('mobile-search-close');
+            if (searchToggle && searchOverlay && searchInput && searchClose) {
+                searchToggle.onclick = function (e) {
+                    e.stopPropagation();
+                    searchOverlay.style.display = 'flex';
+                    searchOverlay.style.zIndex = '9999';
+                    setTimeout(function () { searchInput.focus(); }, 100);
+                };
+                searchClose.onclick = function () {
+                    searchOverlay.style.display = 'none';
+                };
+                document.addEventListener('click', function (e) {
+                    if (window.innerWidth > 576) return;
+                    if (searchOverlay.style.display === 'flex' && !searchOverlay.contains(e.target) && e.target !== searchToggle) searchOverlay.style.display = 'none';
+                });
+                searchInput.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') searchOverlay.style.display = 'none';
+                });
+            }
         });
 
-        
+
 
         function updateOrderStatus(orderIds, newStatus, badgeClass, statusText, dlttText) {
             orderIds.forEach(orderId => {
@@ -1346,7 +1849,7 @@
                         } else if (dlttText === 'Unpaid' || dlttText === 'Chưa thanh toán') { // Added || 'Chưa thanh toán'
                             dlttCell.innerHTML = '<span class="status-badge status-unpaid">Chưa thanh toán</span>'; // Changed text to 'Chưa thanh toán'
                         } else if (dlttText === 'Thanh toán một phần') { // Added partial payment handling
-                             dlttCell.innerHTML = '<span class="status-badge status-warning">Thanh toán một phần</span>';
+                            dlttCell.innerHTML = '<span class="status-badge status-warning">Thanh toán một phần</span>';
                         }
                         // Các trạng thái khác như 'Đã nhận', 'Hủy' có thể không nên áp dụng cho cột thanh toán này,
                         // nhưng giữ lại fallback nếu cần
@@ -1355,9 +1858,9 @@
                         } else if (dlttText === 'Hủy') {
                             dlttCell.innerHTML = '<span class="status-badge status-cancelled">Hủy</span>';
                         }
-                         else {
-                             dlttCell.textContent = dlttText; // Fallback
-                         }
+                        else {
+                            dlttCell.textContent = dlttText; // Fallback
+                        }
                     }
                 }
             });
@@ -1368,7 +1871,7 @@
         // Hoàn tất
         const completeOrderModal = document.getElementById('complete-order-modal');
         if (completeOrderModal) {
-            completeOrderModal.querySelector('.button.confirm-yes')?.addEventListener('click', function() {
+            completeOrderModal.querySelector('.button.confirm-yes')?.addEventListener('click', function () {
                 const ids = JSON.parse(completeOrderModal.dataset.targetIds || '[]');
                 updateOrderStatus(ids, 'Hoàn tất', 'status-completed', 'Hoàn tất', 'Paid');
             });
@@ -1376,7 +1879,7 @@
         // Nhận hàng
         const receiveOrderModal = document.getElementById('receive-order-modal');
         if (receiveOrderModal) {
-            receiveOrderModal.querySelector('.button.confirm-yes')?.addEventListener('click', function() {
+            receiveOrderModal.querySelector('.button.confirm-yes')?.addEventListener('click', function () {
                 const ids = JSON.parse(receiveOrderModal.dataset.targetIds || '[]');
                 updateOrderStatus(ids, 'Đã nhận hàng', 'status-received', 'Đã nhận', 'Đã nhận');
             });
@@ -1384,7 +1887,7 @@
         // Hủy đơn
         const cancelOrderModal = document.getElementById('cancel-order-modal');
         if (cancelOrderModal) {
-            cancelOrderModal.querySelector('.button.confirm-yes')?.addEventListener('click', function() {
+            cancelOrderModal.querySelector('.button.confirm-yes')?.addEventListener('click', function () {
                 const ids = JSON.parse(cancelOrderModal.dataset.targetIds || '[]');
                 updateOrderStatus(ids, 'Hủy', 'status-cancelled', 'Hủy', 'Unpaid');
             });
@@ -1392,7 +1895,7 @@
         // Xóa đơn (ẩn dòng khỏi bảng)
         const deleteOrderModal = document.getElementById('delete-order-modal');
         if (deleteOrderModal) {
-            deleteOrderModal.querySelector('.button.confirm-yes')?.addEventListener('click', function() {
+            deleteOrderModal.querySelector('.button.confirm-yes')?.addEventListener('click', function () {
                 const ids = JSON.parse(deleteOrderModal.dataset.targetIds || '[]');
                 ids.forEach(orderId => {
                     const row = document.querySelector(`tr.clickable-row[data-order-id=\"${orderId}\"]`);
@@ -1404,21 +1907,21 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-          function renderUserDropdown() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            const userToggle = document.getElementById('user-dropdown-toggle');
-            const userDropdown = document.getElementById('user-dropdown');
-            if (!userToggle || !userDropdown) return;
-            if (!isLoggedIn) {
-              // Chưa đăng nhập: chỉ hiện icon user và 1 mục Đăng nhập
-              userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
-              userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
-              document.getElementById('username-display')?.classList.add('d-none');
-            } else {
-              // Đã đăng nhập: hiện đủ menu
-              userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
-              userDropdown.innerHTML = `
+        document.addEventListener('DOMContentLoaded', function () {
+            function renderUserDropdown() {
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                const userToggle = document.getElementById('user-dropdown-toggle');
+                const userDropdown = document.getElementById('user-dropdown');
+                if (!userToggle || !userDropdown) return;
+                if (!isLoggedIn) {
+                    // Chưa đăng nhập: chỉ hiện icon user và 1 mục Đăng nhập
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                    userDropdown.innerHTML = '<a href="#" class="user-dropdown-item" id="login-menu-item"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>';
+                    document.getElementById('username-display')?.classList.add('d-none');
+                } else {
+                    // Đã đăng nhập: hiện đủ menu
+                    userToggle.innerHTML = '<i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #64748b; font-size: 1.6em;"></i>';
+                    userDropdown.innerHTML = `
                 <div class="user-info">
                   <div class="user-avatar"><i class="fa-regular fa-circle-user"></i></div>
                   <div class="user-details"><h4>Phạm Hoàng Đình</h4><span class="user-role">Quản trị viên</span></div>
@@ -1431,66 +1934,66 @@
                 <div class="dropdown-divider"></div>
                 <a href="#" class="user-dropdown-item" id="logout-menu-item"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
               `;
-              document.getElementById('username-display')?.classList.remove('d-none');
+                    document.getElementById('username-display')?.classList.remove('d-none');
+                }
+                // Gắn sự kiện cho menu
+                setTimeout(() => {
+                    const loginItem = document.getElementById('login-menu-item');
+                    if (loginItem) loginItem.onclick = function (e) { e.preventDefault(); window.location.href = 'login.html'; };
+                    const logoutItem = document.getElementById('logout-menu-item');
+                    if (logoutItem) logoutItem.onclick = function (e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+                }, 100);
             }
-            // Gắn sự kiện cho menu
-            setTimeout(() => {
-              const loginItem = document.getElementById('login-menu-item');
-              if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
-              const logoutItem = document.getElementById('logout-menu-item');
-              if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
-            }, 100);
-          }
-          renderUserDropdown();
-          window.addEventListener('storage', renderUserDropdown);
+            renderUserDropdown();
+            window.addEventListener('storage', renderUserDropdown);
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-          var mobileStatusSelect = document.getElementById('mobile-status-select');
-          var orderRows = document.querySelectorAll('#order-table-body tr.clickable-row');
-          if(mobileStatusSelect) {
-            mobileStatusSelect.addEventListener('change', function() {
-              var status = this.value;
-              // Đã chuyển logic sang applyFilters
-              // orderRows.forEach(function(row) {
-              //   if (status === 'Tất cả') {
-              //     row.style.display = '';
-              //   } else {
-              //     var rowStatus = row.getAttribute('data-status') || '';
-              //     row.style.display = rowStatus === status ? '' : 'none';
-              //   }
-              // });
-            });
-          }
+        document.addEventListener('DOMContentLoaded', function () {
+            var mobileStatusSelect = document.getElementById('mobile-status-select');
+            var orderRows = document.querySelectorAll('#order-table-body tr.clickable-row');
+            if (mobileStatusSelect) {
+                mobileStatusSelect.addEventListener('change', function () {
+                    var status = this.value;
+                    // Đã chuyển logic sang applyFilters
+                    // orderRows.forEach(function(row) {
+                    //   if (status === 'Tất cả') {
+                    //     row.style.display = '';
+                    //   } else {
+                    //     var rowStatus = row.getAttribute('data-status') || '';
+                    //     row.style.display = rowStatus === status ? '' : 'none';
+                    //   }
+                    // });
+                });
+            }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-          var filterBtn = document.getElementById('mobile-filter-btn');
-          var filterModal = document.getElementById('filter-modal');
-          if(filterBtn && filterModal) {
-            filterBtn.addEventListener('click', function() {
-              filterModal.classList.add('visible');
-              document.body.classList.add('overflow-hidden');
-            });
-          }
+        document.addEventListener('DOMContentLoaded', function () {
+            var filterBtn = document.getElementById('mobile-filter-btn');
+            var filterModal = document.getElementById('filter-modal');
+            if (filterBtn && filterModal) {
+                filterBtn.addEventListener('click', function () {
+                    filterModal.classList.add('visible');
+                    document.body.classList.add('overflow-hidden');
+                });
+            }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // ... các code khác ...
             updateTabCounts();
         });
 
         const filterSearchInput = document.getElementById('filter-search-input');
         if (filterSearchInput) {
-            filterSearchInput.addEventListener('input', debounce(function() {
+            filterSearchInput.addEventListener('input', debounce(function () {
                 applyFilters('desktop');
             }, 300));
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
 
         });
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Sau khi thêm tất cả các dòng từ localStorage, cập nhật lại UI
             reindexOrderRows(); // Đánh số lại STT
             // Lấy lại tất cả các dòng clickable-row từ DOM sau khi thêm dòng mới
@@ -1514,7 +2017,7 @@
             rows.forEach(row => {
                 // Kiểm tra lại để đảm bảo chỉ đánh số cho dòng hiển thị
                 if (row.style.display !== 'none') {
-                     row.children[1].textContent = stt++;
+                    row.children[1].textContent = stt++;
                 }
             });
         }
@@ -1528,22 +2031,22 @@
             if (imageModalOverlay && largePackageImage) {
                 largePackageImage.src = imageUrl;
                 imageModalOverlay.classList.add('visible');
-                 manageBodyScroll(); // Manage body scroll when modal is open
+                manageBodyScroll(); // Manage body scroll when modal is open
             }
         }
 
         function hideImageModal() {
             if (imageModalOverlay) {
                 imageModalOverlay.classList.remove('visible');
-                 manageBodyScroll(); // Manage body scroll when modal is closed
+                manageBodyScroll(); // Manage body scroll when modal is closed
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Add event listeners to image triggers AFTER rows are potentially added/rendered
             // Using event delegation on the table body
             // Note: Need to select from the document or a static container if orderTableBody is dynamic
-            document.body.addEventListener('click', function(event) {
+            document.body.addEventListener('click', function (event) {
                 const imageTrigger = event.target.closest('.image-modal-trigger img');
                 if (imageTrigger) {
                     event.stopPropagation(); // Prevent row click handler
@@ -1555,7 +2058,7 @@
             });
 
             // Add event listener for clicking on Order ID links to set sourcePage in sessionStorage
-            document.body.addEventListener('click', function(event) {
+            document.body.addEventListener('click', function (event) {
                 const orderLink = event.target.closest('a.order-id-link');
                 if (orderLink) {
                     // Set the source page flag before navigating
@@ -1569,32 +2072,32 @@
                 imageModalCloseBtn.addEventListener('click', hideImageModal);
             }
             if (imageModalOverlay) {
-                imageModalOverlay.addEventListener('click', function(event) {
+                imageModalOverlay.addEventListener('click', function (event) {
                     if (event.target === imageModalOverlay) {
                         hideImageModal();
                     }
                 });
             }
 
-             // Close modal with Escape key
-             document.addEventListener('keydown', function(event) {
-                 if (event.key === 'Escape' && imageModalOverlay.classList.contains('visible')) {
-                     hideImageModal();
-                 }
-             });
+            // Close modal with Escape key
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && imageModalOverlay.classList.contains('visible')) {
+                    hideImageModal();
+                }
+            });
         });
 
         // Override default manageBodyScroll to include the new image modal
         const originalManageBodyScroll = typeof manageBodyScroll !== 'undefined' ? manageBodyScroll : null;
         manageBodyScroll = () => {
-             const isSidebarOpen = document.body.classList.contains('sidebar-mobile-open');
-             const isAnyModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
-             const isImageModalVisible = imageModalOverlay && imageModalOverlay.classList.contains('visible');
-             if (isSidebarOpen || isAnyModalVisible || isImageModalVisible) {
-                 document.body.classList.add('overflow-hidden');
-             } else {
-                 document.body.classList.remove('overflow-hidden');
-             }
+            const isSidebarOpen = document.body.classList.contains('sidebar-mobile-open');
+            const isAnyModalVisible = document.querySelector('.filter-modal.visible, .confirmation-modal.visible');
+            const isImageModalVisible = imageModalOverlay && imageModalOverlay.classList.contains('visible');
+            if (isSidebarOpen || isAnyModalVisible || isImageModalVisible) {
+                document.body.classList.add('overflow-hidden');
+            } else {
+                document.body.classList.remove('overflow-hidden');
+            }
         };
         // End Image Modal Logic
 
@@ -1610,13 +2113,13 @@
             if (select) {
                 // Lấy giá trị mới từ select
                 const newItemsPerPage = parseInt(select.value);
-                
+
                 // Cập nhật biến itemsPerPage
                 itemsPerPage = newItemsPerPage;
-                
+
                 // Reset về trang 1
                 currentPage = 1;
-                
+
                 // Cập nhật lại phân trang
                 updatePagination();
                 goToPage(1);
@@ -1624,44 +2127,44 @@
         }
 
         function updatePagination() {
-             totalItems = filteredRows.length; // Tổng số đơn hàng là số lượng trong filteredRows
-             totalPages = Math.ceil(totalItems / itemsPerPage);
+            totalItems = filteredRows.length; // Tổng số đơn hàng là số lượng trong filteredRows
+            totalPages = Math.ceil(totalItems / itemsPerPage);
 
-             // Cập nhật thông tin hiển thị
-             const startIndex = (totalItems === 0) ? 0 : (currentPage - 1) * itemsPerPage + 1; // Nếu không có đơn hàng, hiển thị 0
-             const endIndex = Math.min(currentPage * itemsPerPage, totalItems);
+            // Cập nhật thông tin hiển thị
+            const startIndex = (totalItems === 0) ? 0 : (currentPage - 1) * itemsPerPage + 1; // Nếu không có đơn hàng, hiển thị 0
+            const endIndex = Math.min(currentPage * itemsPerPage, totalItems);
 
-             document.getElementById('start-index').textContent = startIndex;
-             document.getElementById('end-index').textContent = endIndex;
-             document.getElementById('total-entries').textContent = totalItems;
+            document.getElementById('start-index').textContent = startIndex;
+            document.getElementById('end-index').textContent = endIndex;
+            document.getElementById('total-entries').textContent = totalItems;
 
-             // Cập nhật trạng thái nút Previous/Next
-             document.getElementById('prev-page').disabled = currentPage === 1 || totalItems === 0;
-             document.getElementById('next-page').disabled = currentPage === totalPages || totalItems === 0;
+            // Cập nhật trạng thái nút Previous/Next
+            document.getElementById('prev-page').disabled = currentPage === 1 || totalItems === 0;
+            document.getElementById('next-page').disabled = currentPage === totalPages || totalItems === 0;
 
-             // Tạo các nút số trang
-             const pageNumbers = document.getElementById('page-numbers');
-             pageNumbers.innerHTML = '';
+            // Tạo các nút số trang
+            const pageNumbers = document.getElementById('page-numbers');
+            pageNumbers.innerHTML = '';
 
-             // Hiển thị tối đa 5 trang xung quanh trang hiện tại, hoặc ít hơn nếu gần đầu/cuối
-             let startPage = Math.max(1, currentPage - 2);
-             let endPage = Math.min(totalPages, startPage + 4);
+            // Hiển thị tối đa 5 trang xung quanh trang hiện tại, hoặc ít hơn nếu gần đầu/cuối
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
 
-             // Điều chỉnh lại startPage nếu totalPages < 5 hoặc endPage bị giới hạn
-             if (endPage - startPage < 4) {
-                 startPage = Math.max(1, endPage - 4);
-             }
+            // Điều chỉnh lại startPage nếu totalPages < 5 hoặc endPage bị giới hạn
+            if (endPage - startPage < 4) {
+                startPage = Math.max(1, endPage - 4);
+            }
 
-             // Nếu không có trang nào (totalItems === 0), không hiển thị nút số trang
-             if (totalPages > 0) {
-                  for (let i = startPage; i <= endPage; i++) {
-                      const pageButton = document.createElement('button');
-                      pageButton.className = `button ${i === currentPage ? 'active' : ''}`;
-                      pageButton.textContent = i;
-                      pageButton.onclick = () => goToPage(i);
-                      pageNumbers.appendChild(pageButton);
-                 }
-             }
+            // Nếu không có trang nào (totalItems === 0), không hiển thị nút số trang
+            if (totalPages > 0) {
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.className = `button ${i === currentPage ? 'active' : ''}`;
+                    pageButton.textContent = i;
+                    pageButton.onclick = () => goToPage(i);
+                    pageNumbers.appendChild(pageButton);
+                }
+            }
 
         }
 
@@ -1686,9 +2189,9 @@
             // console.log(`Showing rows from index ${startIndex} to ${endIndex-1} from filteredRows.`);
             // Chỉ hiển thị các dòng trong filteredRows cho trang hiện tại
             for (let i = startIndex; i < endIndex; i++) {
-                 if (filteredRows[i]) { // Kiểm tra tồn tại
-                      filteredRows[i].style.display = '';
-                 }
+                if (filteredRows[i]) { // Kiểm tra tồn tại
+                    filteredRows[i].style.display = '';
+                }
             }
 
             updatePagination(); // Cập nhật thông tin phân trang và nút dựa trên trạng thái hiện tại (bao gồm filteredRows.length)
@@ -1700,7 +2203,7 @@
         document.getElementById('next-page').addEventListener('click', () => goToPage(currentPage + 1));
 
         // Cập nhật phân trang khi DOM đã load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Lấy tất cả các dòng đơn hàng ban đầu
             const initialRows = Array.from(document.querySelectorAll('#order-table-body tr.clickable-row'));
             // Khởi tạo filteredRows với tất cả các dòng khi load trang lần đầu
@@ -1722,28 +2225,28 @@
             // Gắn lại sự kiện click cho các tab sau khi DOMContentLoaded
             const tabItems = document.querySelectorAll('.tabs .tab-item');
             tabItems.forEach(tab => {
-              tab.addEventListener('click', function() {
-                // Xóa lớp 'active' khỏi tất cả các tab
-                tabItems.forEach(t => t.classList.remove('active'));
-                // Thêm lớp 'active' cho tab được click
-                tab.classList.add('active');
+                tab.addEventListener('click', function () {
+                    // Xóa lớp 'active' khỏi tất cả các tab
+                    tabItems.forEach(t => t.classList.remove('active'));
+                    // Thêm lớp 'active' cho tab được click
+                    tab.classList.add('active');
 
-                // Lấy trạng thái từ text tab (bỏ số lượng đi)
-                const status = this.textContent.replace(/\s*\(\d+\)/, '').trim();
+                    // Lấy trạng thái từ text tab (bỏ số lượng đi)
+                    const status = this.textContent.replace(/\s*\(\d+\)/, '').trim();
 
-                // Gọi applyFilters với source là 'tab'
-                applyFilters('tab', status); // Truyền source là 'tab'
-              });
+                    // Gọi applyFilters với source là 'tab'
+                    applyFilters('tab', status); // Truyền source là 'tab'
+                });
             });
 
-             var mobileStatusSelect = document.getElementById('mobile-status-select');
-             if(mobileStatusSelect) {
-               mobileStatusSelect.addEventListener('change', function() {
-                 var status = this.value;
-                 // Gọi applyFilters với source là 'mobile-select'
-                 applyFilters('mobile-select', status); // Truyền source là 'mobile-select'
-               });
-             }
+            var mobileStatusSelect = document.getElementById('mobile-status-select');
+            if (mobileStatusSelect) {
+                mobileStatusSelect.addEventListener('change', function () {
+                    var status = this.value;
+                    // Gọi applyFilters với source là 'mobile-select'
+                    applyFilters('mobile-select', status); // Truyền source là 'mobile-select'
+                });
+            }
 
             // === Basic JS to focus date inputs on click ===
             flatpickr("#date-start", { /* options */ });
@@ -1793,11 +2296,11 @@
             });
 
         }
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Kiểm tra xem có dữ liệu từ create-package-step2 không
             const orderData = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
             console.log('Retrieved order data:', orderData);
-            
+
             if (Object.keys(orderData).length > 0) {
                 // Tạo một hàng mới trong bảng
                 const tbody = document.getElementById('order-table-body');
@@ -1808,7 +2311,7 @@
 
                 const newRowId = 'main-row-new';
                 const newDetailsRowId = 'details-row-new';
-                
+
                 // Tạo HTML cho hàng chính
                 const mainRowHTML = `
                     <tr id="${newRowId}" class="clickable-row" data-order-id="${orderData.bill_code}" data-status="Mới tạo">
@@ -1816,7 +2319,7 @@
                         <td>1</td>
                         <td><a href="order_detail.html" class="order-id-link">${orderData.bill_code}</a></td>
                         <td>${new Date().toLocaleDateString('vi-VN')}</td>
-                        <td>${new Date(Date.now() + 3*24*60*60*1000).toLocaleDateString('vi-VN')}</td>
+                        <td>${new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toLocaleDateString('vi-VN')}</td>
                         <td><span class="status-badge status-pending">Mới tạo</span></td>
                         <td>Mới tạo</td>
                         <td>${orderData.sender_name || ''}</td>
@@ -1853,7 +2356,7 @@
                                     <div class="detail-item"><span class="detail-label">Cân nặng:</span><span class="detail-value">${orderData.dimensions ? orderData.dimensions.reduce((sum, dim) => sum + parseFloat(dim.weight), 0) : (orderData.totalWeight || orderData.weight || '')} KG</span></div>
                                     <div class="detail-item"><span class="detail-label">Reweight:</span><span class="detail-value">${orderData.reweight || ''} KG</span></div>
                                     <div class="detail-item"><span class="detail-label">Cân nặng đại lý:</span><span class="detail-value">${orderData.agentWeight || ''} KG</span></div>
-                                    <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">${(orderData.add_service && Array.isArray(orderData.add_service) && orderData.add_service.length > 0 ? orderData.add_service.map(service => { const serviceMap = {'signature': 'Chữ Ký','fumigation': 'FUMIGATION','packing': 'Đóng kiện gỗ','insurance': 'Bảo hiểm hàng hóa'}; return serviceMap[service] || service; }).join(' / ') : 'Không có ghi chú')}</span></div>
+                                    <div class="detail-item full-width"><span class="detail-label">Ghi chú CPK:</span><span class="detail-value">${(orderData.add_service && Array.isArray(orderData.add_service) && orderData.add_service.length > 0 ? orderData.add_service.map(service => { const serviceMap = { 'signature': 'Chữ Ký', 'fumigation': 'FUMIGATION', 'packing': 'Đóng kiện gỗ', 'insurance': 'Bảo hiểm hàng hóa' }; return serviceMap[service] || service; }).join(' / ') : 'Không có ghi chú')}</span></div>
                                 </div>
                                 <div class="details-action-icons">
                                     <button class="icon-button icon-print" title="In chi tiết"><i class="fa-solid fa-print"></i></button>
@@ -1870,9 +2373,9 @@
                 // Thêm sự kiện click cho hàng mới
                 const newRow = document.getElementById(newRowId);
                 const newDetailsRow = document.getElementById(newDetailsRowId);
-                
+
                 if (newRow && newDetailsRow) {
-                    newRow.addEventListener('click', function() {
+                    newRow.addEventListener('click', function () {
                         const isVisible = newDetailsRow.style.display !== 'none';
                         newDetailsRow.style.display = isVisible ? 'none' : 'table-row';
                     });
@@ -1885,12 +2388,12 @@
                 updatePagination();
                 goToPage(1);
 
-                
+
             }
         });
         // ... existing code ...
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Cập nhật trạng thái thanh toán từ localStorage cho cả KH và ĐL
             const rows = document.querySelectorAll('#order-table-body tr.clickable-row');
             rows.forEach(row => {
@@ -1918,7 +2421,7 @@
             });
 
             // Tùy chọn: Tự động reload khi có thay đổi trạng thái từ tab khác
-            window.addEventListener('storage', function(e) {
+            window.addEventListener('storage', function (e) {
                 // Reload khi có thay đổi trạng thái KH hoặc ĐL
                 if (e.key && (e.key.startsWith('paymentStatusKH_') || e.key.startsWith('paymentStatusDL_'))) {
                     location.reload();
@@ -1926,7 +2429,7 @@
             });
         });
 
-        if (orderTableBody) orderTableBody.addEventListener('click', function(event) {
+        if (orderTableBody) orderTableBody.addEventListener('click', function (event) {
             // ... existing code ...
             const targetElement = event.target;
 
@@ -1950,21 +2453,22 @@
                 alert('Không tìm thấy bảng đơn hàng!');
                 return;
             }
-            var wb = XLSX.utils.table_to_book(table, {sheet: "Đơn hàng"});
+            var wb = XLSX.utils.table_to_book(table, { sheet: "Đơn hàng" });
             XLSX.writeFile(wb, 'danh_sach_don_hang.xlsx');
         }
 
         // Gắn sự kiện cho nút Xuất DEBIT
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var exportBtn = document.querySelector('.action-row .button.secondary');
-            if(exportBtn && exportBtn.textContent.includes('Xuất DEBIT')) {
-                exportBtn.addEventListener('click', function(e) {
+            if (exportBtn && exportBtn.textContent.includes('Xuất DEBIT')) {
+                exportBtn.addEventListener('click', function (e) {
                     e.preventDefault();
                     exportOrderTableToExcel();
                 });
             }
         });
     </script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
+
 </html>

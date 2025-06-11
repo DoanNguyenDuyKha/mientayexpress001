@@ -1,34 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #0891b2; 
+    --primary-color: #0891b2;
     --primary-hover: #0e7490;
-    --primary-light: #ecfeff; 
-    --secondary-color: #64748b; 
+    --primary-light: #ecfeff;
+    --secondary-color: #64748b;
     --secondary-hover: #475569;
-    --confirm-color: #16a34a; 
+    --confirm-color: #16a34a;
     --confirm-hover: #15803d;
-    --warning-color: #f97316; 
+    --warning-color: #f97316;
     --warning-hover: #ea580c;
-    --danger-color: #dc2626; 
+    --danger-color: #dc2626;
     --danger-hover: #b91c1c;
     --info-color: #3b82f6;
-    --receive-color: #2563eb; 
-    --text-primary: #1e293b; 
-    --text-secondary: #64748b; 
+    --receive-color: #2563eb;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
     --text-on-primary: #ffffff;
-    --bg-color: #f8fafc; 
-    --card-bg: #ffffff; 
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
     --form-bg: #ffffff;
-    --border-color: #d1d5db; 
-    --border-light: #e5e7eb; 
-    --input-border: #d1d5db; 
-    --text-gray-label: #4b5563; 
+    --border-color: #d1d5db;
+    --border-light: #e5e7eb;
+    --input-border: #d1d5db;
+    --text-gray-label: #4b5563;
     --label-color: var(--text-gray-label);
     --success-color: var(--confirm-color);
     --text-read-only: #374151;
-    --input-readonly-bg: #e5e7eb; 
-    --border-gold: #FFD700; 
+    --input-readonly-bg: #e5e7eb;
+    --border-gold: #FFD700;
     --font-family: 'Inter', sans-serif;
     --base-font-size: 0.65rem;
     --form-font-size: 0.7rem;
@@ -78,7 +78,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #FFD700; 
+    background-color: #FFD700;
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
 }
@@ -183,14 +183,14 @@
 }
 
 .detail-section .agent-invoice-dim-grid {
-   width: 100%;
-   display: grid;
-   grid-template-columns: auto 2fr 1fr 1fr;
-   gap: var(--form-gap);
-   align-items: baseline;
-   margin-bottom: var(--form-gap);
-   padding: var(--form-padding) 0;
-   background-color: var(--card-bg);
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 2fr 1fr 1fr;
+    gap: var(--form-gap);
+    align-items: baseline;
+    margin-bottom: var(--form-gap);
+    padding: var(--form-padding) 0;
+    background-color: var(--card-bg);
 }
 
 .detail-section .agent-invoice-dim-grid .grid-header {
@@ -253,7 +253,8 @@
         gap: var(--form-gap);
     }
 
-    .detail-column-left, .detail-column-right {
+    .detail-column-left,
+    .detail-column-right {
         gap: var(--form-gap);
     }
 
@@ -295,7 +296,7 @@
     transform: rotate(180deg);
 }
 
-.detail-section .section-body.collapsed + .header-actions .edit-section {
+.detail-section .section-body.collapsed+.header-actions .edit-section {
     display: none;
 }
 
@@ -309,9 +310,9 @@ body {
 
 .content-wrapper {
     padding: var(--base-padding);
-    flex-grow: 1; 
+    flex-grow: 1;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     width: 100%;
     box-sizing: border-box;
     position: relative;
@@ -325,7 +326,7 @@ body {
     padding: 0.8rem;
     background-color: var(--card-bg);
     border-top: 1px solid var(--border-light);
-    margin-top: auto; 
+    margin-top: auto;
     flex-wrap: wrap;
     gap: var(--base-padding);
 }
@@ -348,6 +349,7 @@ body {
     color: var(--text-primary);
     cursor: pointer;
 }
+
 .site-footer {
     text-align: center;
     padding: var(--base-padding);
@@ -362,8 +364,8 @@ body {
     background-color: var(--bg-color);
     min-height: calc(100vh - 60px);
     padding: var(--base-padding);
-    --base-font-size: 0.65rem; 
-    --form-gap: 0.1rem; 
+    --base-font-size: 0.65rem;
+    --form-gap: 0.1rem;
 }
 
 .order-detail-content .page-header {
@@ -371,14 +373,14 @@ body {
 }
 
 .order-detail-content .page-title {
-    font-size: 1rem; 
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.3rem;
 }
 
 .order-detail-content .breadcrumb {
-    font-size: 0.7rem; 
+    font-size: 0.7rem;
     color: var(--text-secondary);
 }
 
@@ -392,128 +394,137 @@ body {
 }
 
 .order-detail-content .status-trigger {
-    font-size: var(--base-font-size); 
+    font-size: var(--base-font-size);
 }
 
 .order-detail-content .status-badge {
-    font-size: var(--base-font-size); 
+    font-size: var(--base-font-size);
 }
 
 .order-detail-content select.form-select,
 .order-detail-content button.button {
-    font-size: var(--base-font-size); 
+    font-size: var(--base-font-size);
 }
 
 .order-detail-content .detail-section .card-header .card-title {
-    font-size: 0.8rem; 
+    font-size: 0.8rem;
     margin-left: 10px;
 }
 
 .order-detail-content .detail-section .card-body.section-body {
-    padding: 0.3rem; 
+    padding: 0.3rem;
 }
 
 .data-pair .edit-value-icon {
-    flex-shrink: 0; 
-    margin-left: auto; 
-    display: flex; 
-    align-items: center; 
+    flex-shrink: 0;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
 .order-detail-content .toggle-arrow i {
-    font-size: var(--base-font-size); 
-}
- 
-.order-detail-content .edit-value-icon {
-    font-size: var(--base-font-size); 
-    padding: 1px 2px; 
-    box-sizing: border-box; 
-    color: var(--primary-color); 
-    cursor: pointer; 
+    font-size: var(--base-font-size);
 }
 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')), 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) + .inline-buttons { 
-    background-color: #fffacd; 
-    padding: 2px 5px; 
-    margin: 2px 0; 
-    border-radius: 3px; 
+.order-detail-content .edit-value-icon {
+    font-size: var(--base-font-size);
+    padding: 1px 2px;
+    box-sizing: border-box;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')),
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):'))+.inline-buttons {
+    background-color: #fffacd;
+    padding: 2px 5px;
+    margin: 2px 0;
+    border-radius: 3px;
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) {
-    flex-wrap: nowrap; 
-    gap: normal; 
-    align-items: center; 
+    flex-wrap: nowrap;
+    gap: normal;
+    align-items: center;
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .inline-buttons {
-    margin-left: auto; 
-    flex-shrink: 0; 
+    margin-left: auto;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
-    gap: 2px; 
+    gap: 2px;
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .edit-value-icon {
-    margin-left: 5px; 
-    flex-shrink: 0; 
+    margin-left: 5px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value {
-    line-height: 1.4; 
-    flex-grow: 1; 
-    margin-right: 10px; 
+    line-height: 1.4;
+    flex-grow: 1;
+    margin-right: 10px;
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span {
-    display: inline-block; 
-    padding: 2px 5px; 
-    border-radius: 3px; 
-    font-weight: 500; 
-    color: var(--text-primary); 
-    margin-right: 5px; 
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-right: 5px;
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:last-of-type {
-    margin-right: 0; 
+    margin-right: 0;
 }
 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(1) { 
-    background-color: var(--primary-light); 
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(1) {
+    background-color: var(--primary-light);
 }
 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(2) { 
-    background-color: #fed7aa; 
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(2) {
+    background-color: #fed7aa;
 }
 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(3) { 
-    background-color: #dcfce7; 
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(3) {
+    background-color: #dcfce7;
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-inline {
-    font-size: var(--base-font-size); 
-    padding: 3px 6px; 
+    font-size: var(--base-font-size);
+    padding: 3px 6px;
     border-radius: 3px;
     cursor: pointer;
     font-weight: bold;
-    color: var(--text-on-primary); 
-    display: inline-block; 
+    color: var(--text-on-primary);
+    display: inline-block;
 }
 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-blue { background-color: var(--info-color); }
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-teal { background-color: var(--warning-color); } 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-green { background-color: var(--confirm-color); }
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-blue {
+    background-color: var(--info-color);
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-teal {
+    background-color: var(--warning-color);
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-green {
+    background-color: var(--confirm-color);
+}
+
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .inv-mte-badge {
-    font-size: var(--base-font-size); 
-    margin-left: 10px; 
+    font-size: var(--base-font-size);
+    margin-left: 10px;
     padding: 3px 8px;
-    border-radius: 15px; 
-    background-color: var(--confirm-color); 
-    color: var(--text-on-primary); 
+    border-radius: 15px;
+    background-color: var(--confirm-color);
+    color: var(--text-on-primary);
     font-weight: 500;
     flex-shrink: 0;
 }
@@ -557,7 +568,7 @@ body {
 .modal-content-wrapper .form-header {
     padding: var(--form-padding);
     border-bottom: 1px solid var(--border-color);
-    
+
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
     display: flex;
@@ -807,7 +818,7 @@ body {
     position: absolute;
     top: 24px;
     left: 60px;
-    width: 91%; 
+    width: 91%;
     height: 2px;
     background: #2563eb;
     z-index: 1;
@@ -923,6 +934,7 @@ body {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1041,7 +1053,10 @@ body {
     }
 }
 
-input, select, button, textarea {
+input,
+select,
+button,
+textarea {
     font-family: inherit;
     font-size: var(--form-font-size);
     padding: 0.4rem 0.6rem;
@@ -1051,9 +1066,11 @@ input, select, button, textarea {
     background-color: var(--form-bg);
     line-height: 1.3;
 }
+
 .data-pair textarea {
-    min-height: 40px; 
+    min-height: 40px;
 }
+
 .detail-section .card-header .card-title,
 .order-detail-content .detail-section .card-header .card-title {
     font-size: 0.9rem;
@@ -1071,29 +1088,29 @@ input, select, button, textarea {
     padding: 0;
     background-color: transparent;
     border-radius: 0;
-    margin-bottom: var(--form-gap);   
+    margin-bottom: var(--form-gap);
     flex-direction: column;
 }
 
 .data-pair.note-highlight .label {
-    margin-bottom: var(--form-gap); 
-    font-weight: 500; 
-    font-size: var(--form-font-size); 
+    margin-bottom: var(--form-gap);
+    font-weight: 500;
+    font-size: var(--form-font-size);
 }
 
 .data-pair.note-highlight .value.multiline {
-    
+
     border: 1px solid var(--border-color);
-    padding: 0.4rem; 
-    background-color: var(--card-bg); 
-    border-radius: var(--border-radius); 
+    padding: 0.4rem;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
     width: 100%;
     box-sizing: border-box;
-    min-height: 30px; 
+    min-height: 30px;
 }
 
 .summary-table.charges-table {
-    table-layout: auto; 
+    table-layout: auto;
 }
 
 .summary-table.charges-table th,
@@ -1105,31 +1122,31 @@ input, select, button, textarea {
     vertical-align: top;
 }
 
-.summary-table.charges-table th:nth-child(1), 
+.summary-table.charges-table th:nth-child(1),
 .summary-table.charges-table td:nth-child(1) {
     text-align: left;
-    width: 40%; 
+    width: 40%;
 }
 
-.summary-table.charges-table th:nth-child(2), 
+.summary-table.charges-table th:nth-child(2),
 .summary-table.charges-table td:nth-child(2) {
     text-align: right;
-    width: 30%; 
+    width: 30%;
 }
 
-.summary-table.charges-table th:nth-child(3), 
+.summary-table.charges-table th:nth-child(3),
 .summary-table.charges-table td:nth-child(3) {
     text-align: right;
-    width: 30%; 
+    width: 30%;
 }
 
 .summary-table.charges-table td.highlight {
     font-weight: 600;
-    color: var(--primary-color); 
+    color: var(--primary-color);
 }
 
 .summary-table.profit-table {
-    table-layout: auto; 
+    table-layout: auto;
 }
 
 .summary-table.profit-table th,
@@ -1141,105 +1158,115 @@ input, select, button, textarea {
     vertical-align: top;
 }
 
-.summary-table.profit-table th:nth-child(1), 
+.summary-table.profit-table th:nth-child(1),
 .summary-table.profit-table td:nth-child(1) {
     text-align: left;
-    width: 40%; 
+    width: 40%;
 }
 
-.summary-table.profit-table th:nth-child(2), 
+.summary-table.profit-table th:nth-child(2),
 .summary-table.profit-table td:nth-child(2) {
     text-align: right;
-    width: 30%; 
+    width: 30%;
 }
 
-.summary-table.profit-table th:nth-child(3), 
+.summary-table.profit-table th:nth-child(3),
 .summary-table.profit-table td:nth-child(3) {
     text-align: right;
-    width: 30%; 
+    width: 30%;
 }
 
 .summary-table.profit-table td.highlight {
     font-weight: 600;
-    color: var(--primary-color); 
+    color: var(--primary-color);
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span {
-    display: inline-block; 
-    padding: 2px 5px; 
-    border-radius: 3px; 
-    font-weight: 500; 
-    color: var(--text-primary); 
-    margin-right: 5px; 
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-right: 5px;
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:last-of-type {
-    margin-right: 0; 
+    margin-right: 0;
 }
 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(1) { 
-    background-color: var(--primary-light); 
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(1) {
+    background-color: var(--primary-light);
 }
 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(2) { 
-    background-color: #fed7aa; 
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(2) {
+    background-color: #fed7aa;
 }
 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(3) { 
-    background-color: #dcfce7; 
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .value span:nth-of-type(3) {
+    background-color: #dcfce7;
 }
 
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-inline {
-    font-size: var(--base-font-size); 
-    padding: 3px 6px; 
+    font-size: var(--base-font-size);
+    padding: 3px 6px;
     border-radius: 3px;
     cursor: pointer;
     font-weight: bold;
-    color: var(--text-on-primary); 
-    display: inline-block; 
+    color: var(--text-on-primary);
+    display: inline-block;
 }
 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-blue { background-color: var(--info-color); }
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-teal { background-color: var(--warning-color); } 
-.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-green { background-color: var(--confirm-color); }
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-blue {
+    background-color: var(--info-color);
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-teal {
+    background-color: var(--warning-color);
+}
+
+.order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .btn-green {
+    background-color: var(--confirm-color);
+}
+
 .order-detail-content .detail-section .card-body .data-pair:has(span.label:contains('Khối lượng đại lý (KG):')) .inv-mte-badge {
-    font-size: var(--base-font-size); 
-    margin-left: 10px; 
+    font-size: var(--base-font-size);
+    margin-left: 10px;
     padding: 3px 8px;
-    border-radius: 15px; 
-    background-color: var(--confirm-color); 
-    color: var(--text-on-primary); 
+    border-radius: 15px;
+    background-color: var(--confirm-color);
+    color: var(--text-on-primary);
     font-weight: 500;
     flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
     .detail-footer {
-        flex-direction: column; 
-        align-items: center; 
-        gap: 10px; 
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
     }
 
     .detail-footer .footer-actions {
-        display: grid !important; 
-        grid-template-columns: 1fr 1fr; 
-        gap: 10px; 
-        width: 100%; 
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 100%;
     }
 
     .detail-footer .footer-actions .button {
-        width: 100%; 
-        text-align: center; 
-        margin: 0; 
+        width: 100%;
+        text-align: center;
+        margin: 0;
     }
 
     .detail-footer .footer-agreement {
-        width: 100%; 
-        justify-content: center; 
+        width: 100%;
+        justify-content: center;
     }
-    .button{
+
+    .button {
         font-size: 0.85rem !important;
         padding: 0.8rem 1.1rem !important;
-        border-radius: 1.15rem; 
+        border-radius: 1.15rem;
     }
 }

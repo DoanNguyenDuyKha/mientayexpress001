@@ -1,12 +1,12 @@
-document.getElementById('loginForm').addEventListener('submit', function(event) {
+document.getElementById('loginForm').addEventListener('submit', function (event) {
     event.preventDefault();
     const button = this.querySelector('.login-btn');
     button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
     button.disabled = true;
-    
+
     setTimeout(() => {
         localStorage.setItem('isLoggedIn', 'true');
-        
+
         const redirectUrl = localStorage.getItem('redirectAfterLogin');
         if (redirectUrl) {
             localStorage.removeItem('redirectAfterLogin');

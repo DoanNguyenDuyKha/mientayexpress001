@@ -10,8 +10,10 @@
 :root {
     --primary-color: #FFD600;
     --primary-hover: #FFC107;
-    --danger-color: #FFD600; /* Note: Danger color is set to primary */
-    --danger-hover: #FFC107; /* Note: Danger hover is set to primary hover */
+    --danger-color: #FFD600;
+    /* Note: Danger color is set to primary */
+    --danger-hover: #FFC107;
+    /* Note: Danger hover is set to primary hover */
     --text-primary: #000000;
     --text-secondary: #333333;
     --text-on-primary: #000000;
@@ -32,12 +34,16 @@
     --transition-speed: 0.3s;
     --transition-speed-fast: 0.15s;
     --font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    --reduced-padding: 0.6rem; /* Used for denser layout */
-    --reduced-gap: 0.8rem;     /* Used for denser layout */
+    --reduced-padding: 0.6rem;
+    /* Used for denser layout */
+    --reduced-gap: 0.8rem;
+    /* Used for denser layout */
 }
 
 /* --- Global Reset --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -139,7 +145,8 @@ body {
 
 .stat-card {
     background: var(--accent);
-    border-radius: 16px !important; /* Using !important as in original */
+    border-radius: 16px !important;
+    /* Using !important as in original */
     padding: var(--reduced-padding);
     border: 1px solid #DDDDDD;
     box-shadow: var(--shadow-sm);
@@ -166,9 +173,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em !important; /* Using !important as in original */
+    font-size: 1.5em !important;
+    /* Using !important as in original */
     color: var(--text-primary);
-    background: var(--primary-light); /* Note: var(--primary-light) is not defined, resolves to transparent/default */
+    background: var(--primary-light);
+    /* Note: var(--primary-light) is not defined, resolves to transparent/default */
     box-shadow: var(--shadow-sm);
     border: 2px solid var(--text-primary);
     padding: 0.4em;
@@ -202,7 +211,8 @@ body {
 /* --- Components: Quick Actions --- */
 .quick-actions {
     margin-bottom: var(--reduced-gap);
-    animation: fadeIn 1.2s; /* Staggered animation */
+    animation: fadeIn 1.2s;
+    /* Staggered animation */
 }
 
 .quick-actions h2 {
@@ -248,8 +258,8 @@ body {
 }
 
 .action-buttons-group .button:nth-of-type(1):hover {
-     background: #FFC107;
-     border-color: #FFC107;
+    background: #FFC107;
+    border-color: #FFC107;
 }
 
 .action-buttons-group .button:nth-of-type(2) {
@@ -293,7 +303,8 @@ body {
     background: #ffffff;
     border-radius: 20px;
     overflow: hidden;
-    animation: fadeIn 1.4s; /* Staggered animation */
+    animation: fadeIn 1.4s;
+    /* Staggered animation */
     margin-bottom: var(--reduced-gap);
 }
 
@@ -310,7 +321,8 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 250px; /* Fixed height with scroll */
+    max-height: 250px;
+    /* Fixed height with scroll */
     overflow-y: auto;
 }
 
@@ -320,7 +332,8 @@ body {
     gap: 0.6rem;
     padding: 0.6em 0.8em;
     border-radius: 8px;
-    margin-bottom: 0.4em; /* Margin between items */
+    margin-bottom: 0.4em;
+    /* Margin between items */
     background: #f8fafc;
     box-shadow: 0 1px 6px #6366f111;
     transition: background 0.2s, box-shadow 0.2s;
@@ -329,7 +342,8 @@ body {
 
 #activity-list li:hover {
     background: #e0e7ff;
-    box-shadow: 0 2px 12px #FFD60033; /* Custom shadow on hover */
+    box-shadow: 0 2px 12px #FFD60033;
+    /* Custom shadow on hover */
 }
 
 #activity-list li:last-child {
@@ -346,15 +360,31 @@ body {
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    background: #64748b; /* Default icon background */
+    background: #64748b;
+    /* Default icon background */
     box-shadow: var(--shadow-sm);
 }
 
 /* Specific Activity Icon Colors */
-.activity-icon.icon-new { background: #FFD600; color: #000000; }
-.activity-icon.icon-update { background: #0891b2; color: #ffffff; }
-.activity-icon.icon-complete { background: #10b981; color: #ffffff; }
-.activity-icon.icon-alert { background: #ef4444; color: #ffffff; }
+.activity-icon.icon-new {
+    background: #FFD600;
+    color: #000000;
+}
+
+.activity-icon.icon-update {
+    background: #0891b2;
+    color: #ffffff;
+}
+
+.activity-icon.icon-complete {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.activity-icon.icon-alert {
+    background: #ef4444;
+    color: #ffffff;
+}
 
 .activity-desc {
     flex-grow: 1;
@@ -378,7 +408,8 @@ body {
     flex-shrink: 0;
     font-size: 1.08em;
     color: var(--text-secondary);
-    white-space: nowrap; /* Prevent wrapping */
+    white-space: nowrap;
+    /* Prevent wrapping */
     font-weight: 600;
 }
 
@@ -447,7 +478,8 @@ body {
     border-radius: 50%;
     padding: 0.2rem 0.5rem;
     font-size: 0.8rem;
-    position: absolute; /* Requires parent with relative/absolute/fixed position */
+    position: absolute;
+    /* Requires parent with relative/absolute/fixed position */
     top: -5px;
     right: -5px;
 }
@@ -459,35 +491,51 @@ body {
 }
 
 .notification-item:hover {
-    background: var(--primary-light); /* Note: var(--primary-light) is not defined */
+    background: var(--primary-light);
+    /* Note: var(--primary-light) is not defined */
 }
 
 /* --- Animations --- */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* --- Responsive Styles --- */
 @media (max-width: 1200px) {
     .main-content {
-        padding-left: 0; /* Sidebar hides or collapses */
+        padding-left: 0;
+        /* Sidebar hides or collapses */
     }
 }
 
 @media (max-width: 900px) {
+
     .stats-grid,
-    /* .charts-section, */ /* Commented out from original */
-    .recent-activity.card { /* Added this here based on mobile styles below */
-        grid-template-columns: 1fr; /* Stack items */
+    /* .charts-section, */
+    /* Commented out from original */
+    .recent-activity.card {
+        /* Added this here based on mobile styles below */
+        grid-template-columns: 1fr;
+        /* Stack items */
         gap: 1rem;
     }
+
     .main-content {
-        padding-left: 0 !important; /* Ensure padding-left is removed */
+        padding-left: 0 !important;
+        /* Ensure padding-left is removed */
     }
 }
 
 @media (max-width: 600px) {
+
     /*
     .header {
         padding: 0 0.5rem;
@@ -498,38 +546,51 @@ body {
         padding: 1em 0.7em;
         border-radius: 12px;
     }
+
     /* Combined card padding/radius adjustments */
     .stat-card,
-    /* .chart-container.card, */ /* Commented out from original */
+    /* .chart-container.card, */
+    /* Commented out from original */
     .recent-activity.card {
-        border-radius: 16px !important; /* Using !important as in original */
-        padding: 1.1em !important; /* Using !important as in original */
+        border-radius: 16px !important;
+        /* Using !important as in original */
+        padding: 1.1em !important;
+        /* Using !important as in original */
     }
+
     .stat-icon {
         width: 44px;
         height: 44px;
         font-size: 1.3rem;
     }
+
     .stat-value {
         font-size: 1.3rem;
     }
+
     .stat-label {
         font-size: 0.9rem;
     }
+
     .action-buttons-group {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 buttons per row */
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 buttons per row */
         gap: 1rem;
     }
+
     .action-buttons-group .button {
         font-size: 1em;
         padding: 0.7em 1.2em;
         border-radius: 10px;
         margin: 0;
-        width: 100%; /* Make buttons fill grid column */
+        width: 100%;
+        /* Make buttons fill grid column */
         text-align: center;
-        box-sizing: border-box; /* Include padding/border in element's total width/height */
+        box-sizing: border-box;
+        /* Include padding/border in element's total width/height */
     }
+
     /*
     .charts-section { // Commented out from original
         gap: 1rem;
@@ -542,24 +603,30 @@ body {
         font-size: 1.1rem;
         padding: 0.7rem 1rem;
     }
+
     #activity-list li {
         padding: 0.7rem 1rem;
         font-size: 0.95em;
     }
+
     .activity-icon {
         width: 28px;
         height: 28px;
         font-size: 1rem;
     }
+
     .activity-time {
         font-size: 0.85em;
     }
+
     .card-footer-link {
         padding: 0.7rem 1rem;
     }
+
     .card-footer-link a {
         font-size: 0.95em;
     }
+
     .site-footer {
         border-radius: 0 0 12px 12px;
         font-size: 0.98em;
@@ -569,11 +636,15 @@ body {
 
 /* --- Potential Overrides/Adjustments (Kept at the end as in original) --- */
 /* Note: These rules might be overriding previous settings */
-.main-content, .content-wrapper {
-    font-size: 10px; /* This sets the base font size for these elements and descendants */
+.main-content,
+.content-wrapper {
+    font-size: 10px;
+    /* This sets the base font size for these elements and descendants */
 }
 
 .action-buttons-group .button {
-    font-size: 1.15em; /* Overrides previous font-size for buttons */
-    padding: 0.8em 1.6em; /* Overrides previous padding for buttons */
+    font-size: 1.15em;
+    /* Overrides previous font-size for buttons */
+    padding: 0.8em 1.6em;
+    /* Overrides previous padding for buttons */
 }

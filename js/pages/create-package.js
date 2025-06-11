@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeSubmenuLink) {
             const submenuDiv = activeSubmenuLink.closest('.submenu');
             const parentLink = submenuDiv?.previousElementSibling;
-            if(submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
+            if (submenuDiv && parentLink && parentLink.classList.contains('submenu-parent')) {
                 submenuDiv.classList.add('active');
                 parentLink.classList.add('active');
             }
@@ -92,21 +92,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleFullscreen() {
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(err => {});
+            document.documentElement.requestFullscreen().catch(err => { });
         } else if (document.exitFullscreen) {
             document.exitFullscreen();
         }
     }
     function handleFullscreenChange() {
-         const isFullscreen = !!document.fullscreenElement;
-         const icon = fullscreenBtn?.querySelector('i');
-         if(icon){
-             icon.classList.toggle('fa-expand', !isFullscreen);
-             icon.classList.toggle('fa-compress', isFullscreen);
-         }
-          if(fullscreenBtn) {
-              fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
-          }
+        const isFullscreen = !!document.fullscreenElement;
+        const icon = fullscreenBtn?.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-expand', !isFullscreen);
+            icon.classList.toggle('fa-compress', isFullscreen);
+        }
+        if (fullscreenBtn) {
+            fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
+        }
     }
 
     function openModal(forceOpen = false) {
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
             document.getElementById('sender_preset')?.focus();
         } else {
-             if (agreeButton) agreeButton.disabled = true;
+            if (agreeButton) agreeButton.disabled = true;
         }
     }
 
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (groupContainer) {
                 errorSpan.classList.add('group-error');
                 errorSpan.dataset.group = field.name || field.id;
-                if(groupContainer.classList.contains('terms-agreement')) {
+                if (groupContainer.classList.contains('terms-agreement')) {
                     groupContainer.appendChild(errorSpan);
                 } else {
                     groupContainer.parentNode.appendChild(errorSpan);
@@ -198,40 +198,40 @@ document.addEventListener('DOMContentLoaded', () => {
         field.classList.remove('error');
 
         if (field.type === 'radio' || field.type === 'checkbox') {
-             const groupContainer = field.closest('.radio-group, .checkbox-group, .terms-agreement');
-             if (groupContainer) {
-                  let isGroupValid = false;
-                  if (field.type === 'radio') {
-                      isGroupValid = !!form.querySelector(`input[name="${field.name}"]:checked`);
-                  } else {
-                      isGroupValid = field.checked || !field.required;
-                      if (field.id === 'terms_agree') isGroupValid = field.checked;
-                  }
-                  if (isGroupValid) {
-                      const groupError = container.parentNode.querySelector(`.error-message.group-error[data-group="${fieldIdentifier}"]`) || groupContainer.querySelector('.error-message');
-                      if (groupError) groupError.remove();
-                      const mainLabel = groupContainer.closest('.form-group')?.querySelector('.form-label');
-                      if (mainLabel) mainLabel.classList.remove('error');
-                       const termsLabel = groupContainer.querySelector('label[for="terms_agree"]');
-                       if(termsLabel) termsLabel.classList.remove('error');
-                  }
-             }
+            const groupContainer = field.closest('.radio-group, .checkbox-group, .terms-agreement');
+            if (groupContainer) {
+                let isGroupValid = false;
+                if (field.type === 'radio') {
+                    isGroupValid = !!form.querySelector(`input[name="${field.name}"]:checked`);
+                } else {
+                    isGroupValid = field.checked || !field.required;
+                    if (field.id === 'terms_agree') isGroupValid = field.checked;
+                }
+                if (isGroupValid) {
+                    const groupError = container.parentNode.querySelector(`.error-message.group-error[data-group="${fieldIdentifier}"]`) || groupContainer.querySelector('.error-message');
+                    if (groupError) groupError.remove();
+                    const mainLabel = groupContainer.closest('.form-group')?.querySelector('.form-label');
+                    if (mainLabel) mainLabel.classList.remove('error');
+                    const termsLabel = groupContainer.querySelector('label[for="terms_agree"]');
+                    if (termsLabel) termsLabel.classList.remove('error');
+                }
+            }
         } else {
-              const label = container.querySelector(`label[for="${field.id}"]`);
-              if (label) label.classList.remove('error');
+            const label = container.querySelector(`label[for="${field.id}"]`);
+            if (label) label.classList.remove('error');
         }
     }
 
-     function toggleNotificationDropdown() {
+    function toggleNotificationDropdown() {
         if (notificationDropdown) {
             notificationDropdown.classList.toggle('visible');
         }
     }
 
     function closeNotificationDropdown() {
-         if (notificationDropdown) {
+        if (notificationDropdown) {
             notificationDropdown.classList.remove('visible');
-         }
+        }
     }
 
     function showAnnouncement() {
@@ -262,25 +262,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeHandler = () => closeModal();
     if (exitButtonX) exitButtonX.addEventListener('click', closeHandler);
     if (exitButtonFooter) exitButtonFooter.addEventListener('click', closeHandler);
-    document.getElementById('open-terms-modal-footer')?.addEventListener('click', function(e) {
+    document.getElementById('open-terms-modal-footer')?.addEventListener('click', function (e) {
         e.preventDefault(); // Ngăn chặn hành vi mặc định (chuyển hướng)
         console.log('Link "Điều khoản quy định" clicked'); // Debug log
         openModal(true); // Gọi hàm mở modal, buộc mở (bỏ qua localStorage check)
     });
-    document.getElementById('exit-btn')?.addEventListener('click', function() {
+    document.getElementById('exit-btn')?.addEventListener('click', function () {
         window.location.href = '../index.html'; // Or wherever you want to navigate on exit
     });
-    document.getElementById('reset-btn')?.addEventListener('click', function() {
+    document.getElementById('reset-btn')?.addEventListener('click', function () {
         form.reset();
         localStorage.removeItem('createPackageStep1');
         localStorage.removeItem('wizardData'); // Remove old wizard data
     });
-    document.getElementById('view-terms-btn')?.addEventListener('click', function() {
+    document.getElementById('view-terms-btn')?.addEventListener('click', function () {
         openModal();
     });
 
     if (form) {
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function (event) {
             event.preventDefault();
             const hasAgreedTerms = localStorage.getItem('hasAgreedTerms') === 'true';
             if (!hasAgreedTerms) {
@@ -318,53 +318,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 return true;
             }
 
-             // Hàm kiểm tra định dạng số điện thoại quốc tế cơ bản (chỉ kiểm tra có phải là số và không rỗng)
-             function validateInternationalPhoneNumberBasic(phone) {
+            // Hàm kiểm tra định dạng số điện thoại quốc tế cơ bản (chỉ kiểm tra có phải là số và không rỗng)
+            function validateInternationalPhoneNumberBasic(phone) {
                 phone = phone.replace(/[\s-()]/g, ''); // Loại bỏ khoảng trắng, dấu gạch ngang, ngoặc đơn
-                 return phone.length > 0 && /^\d+$/.test(phone);
-             }
+                return phone.length > 0 && /^\d+$/.test(phone);
+            }
 
             // Hàm hiển thị lỗi cho trường cụ thể
             function displayFieldError(field, message) {
-                 const container = field.closest('.input-group') || field.closest('.form-group');
-                 if (!container) return;
+                const container = field.closest('.input-group') || field.closest('.form-group');
+                if (!container) return;
 
-                 let errorSpan = container.querySelector('.error-message');
-                 if (!errorSpan) {
-                      // If the span doesn't exist, create it (should exist based on HTML)
-                     errorSpan = document.createElement('span');
-                     errorSpan.className = 'error-message';
-                     errorSpan.style.color = 'var(--danger-color)';
-                     errorSpan.style.fontSize = '0.8em';
-                     errorSpan.style.marginTop = '4px';
-                     errorSpan.style.display = 'block';
-                      // Append it after the input or the phone-input-group
-                     const phoneInputGroup = field.closest('.phone-input-group');
-                     if(phoneInputGroup) {
-                          phoneInputGroup.parentNode.insertBefore(errorSpan, phoneInputGroup.nextSibling);
-                     } else {
-                         field.parentNode.insertBefore(errorSpan, field.nextSibling);
-                     }
-                 }
+                let errorSpan = container.querySelector('.error-message');
+                if (!errorSpan) {
+                    // If the span doesn't exist, create it (should exist based on HTML)
+                    errorSpan = document.createElement('span');
+                    errorSpan.className = 'error-message';
+                    errorSpan.style.color = 'var(--danger-color)';
+                    errorSpan.style.fontSize = '0.8em';
+                    errorSpan.style.marginTop = '4px';
+                    errorSpan.style.display = 'block';
+                    // Append it after the input or the phone-input-group
+                    const phoneInputGroup = field.closest('.phone-input-group');
+                    if (phoneInputGroup) {
+                        phoneInputGroup.parentNode.insertBefore(errorSpan, phoneInputGroup.nextSibling);
+                    } else {
+                        field.parentNode.insertBefore(errorSpan, field.nextSibling);
+                    }
+                }
 
-                 errorSpan.textContent = message;
-                 field.classList.add('error');
-                 const label = container.querySelector('label');
-                 if (label) label.classList.add('error');
+                errorSpan.textContent = message;
+                field.classList.add('error');
+                const label = container.querySelector('label');
+                if (label) label.classList.add('error');
             }
 
-             // Hàm xóa lỗi cho trường cụ thể
+            // Hàm xóa lỗi cho trường cụ thể
             function clearFieldError(field) {
-                 const container = field.closest('.input-group') || field.closest('.form-group');
-                  if (!container) return;
+                const container = field.closest('.input-group') || field.closest('.form-group');
+                if (!container) return;
 
-                 const errorSpan = container.querySelector('.error-message');
-                 if (errorSpan) {
-                     errorSpan.textContent = '';
-                 }
-                 field.classList.remove('error');
-                  const label = container.querySelector('label');
-                 if (label) label.classList.remove('error');
+                const errorSpan = container.querySelector('.error-message');
+                if (errorSpan) {
+                    errorSpan.textContent = '';
+                }
+                field.classList.remove('error');
+                const label = container.querySelector('label');
+                if (label) label.classList.remove('error');
             }
 
             // Thêm event listeners cho các trường số điện thoại để validate ngay khi nhập
@@ -375,92 +375,92 @@ document.addEventListener('DOMContentLoaded', () => {
             const receiverPhone2CodeSelect = document.getElementById('receiver_phone2_code');
             const senderNameInput = document.getElementById('sender_name_input'); // Get sender name input
 
-             if (senderPhoneInput) {
-                 senderPhoneInput.addEventListener('input', function() {
-                     const value = this.value.trim();
-                     if (!value) {
+            if (senderPhoneInput) {
+                senderPhoneInput.addEventListener('input', function () {
+                    const value = this.value.trim();
+                    if (!value) {
                         clearFieldError(this);
-                         return;
-                     }
-                     if (!validateVietnamesePhoneNumber(value)) {
-                         displayFieldError(this, 'Vui lòng nhập số điện thoại 10-11 số bắt đầu bằng số 0');
-                     } else {
+                        return;
+                    }
+                    if (!validateVietnamesePhoneNumber(value)) {
+                        displayFieldError(this, 'Vui lòng nhập số điện thoại 10-11 số bắt đầu bằng số 0');
+                    } else {
                         clearFieldError(this);
-                     }
-                 });
-                  senderPhoneInput.addEventListener('focus', function() {
-                      clearFieldError(this);
-                 });
+                    }
+                });
+                senderPhoneInput.addEventListener('focus', function () {
+                    clearFieldError(this);
+                });
 
-                  // Add change listener for select elements
-                 if(senderPhoneInput.tagName === 'SELECT') {
-                     senderPhoneInput.addEventListener('change', function() {
-                         if (!this.value.trim()) {
-                              displayFieldError(this, 'Trường này là bắt buộc.');
-                         } else {
-                              clearFieldError(this);
-                         }
-                     });
-                 }
+                // Add change listener for select elements
+                if (senderPhoneInput.tagName === 'SELECT') {
+                    senderPhoneInput.addEventListener('change', function () {
+                        if (!this.value.trim()) {
+                            displayFieldError(this, 'Trường này là bắt buộc.');
+                        } else {
+                            clearFieldError(this);
+                        }
+                    });
+                }
 
-             }
+            }
 
             function validateReceiverPhone(phoneInput, countryCodeSelect, isRequired) {
-                 const value = phoneInput.value.trim();
-                 const countryCode = countryCodeSelect.value;
+                const value = phoneInput.value.trim();
+                const countryCode = countryCodeSelect.value;
 
-                 if (isRequired && !value) {
-                     displayFieldError(phoneInput, 'Trường này là bắt buộc.');
-                     return false;
-                 } else if (!isRequired && !value) {
-                     clearFieldError(phoneInput);
-                      return true;
-                 }
+                if (isRequired && !value) {
+                    displayFieldError(phoneInput, 'Trường này là bắt buộc.');
+                    return false;
+                } else if (!isRequired && !value) {
+                    clearFieldError(phoneInput);
+                    return true;
+                }
 
-                 // If not empty, validate based on country code
-                 if (countryCode === '+84') {
-                     if (!validateVietnamesePhoneNumber(value)) {
-                         displayFieldError(phoneInput, 'Vui lòng nhập số điện thoại 10-11 số bắt đầu bằng số 0');
-                         return false;
-                     } else {
-                         clearFieldError(phoneInput);
-                         return true;
-                     }
-                 } else {
-                     // Basic validation for international numbers (just check if it's not empty and is numeric)
-                     if (!validateInternationalPhoneNumberBasic(value)){
-                         displayFieldError(phoneInput, 'Vui lòng nhập số điện thoại hợp lệ.');
-                         return false;
-                     } else {
-                         clearFieldError(phoneInput);
-                          return true;
-                     }
-                 }
+                // If not empty, validate based on country code
+                if (countryCode === '+84') {
+                    if (!validateVietnamesePhoneNumber(value)) {
+                        displayFieldError(phoneInput, 'Vui lòng nhập số điện thoại 10-11 số bắt đầu bằng số 0');
+                        return false;
+                    } else {
+                        clearFieldError(phoneInput);
+                        return true;
+                    }
+                } else {
+                    // Basic validation for international numbers (just check if it's not empty and is numeric)
+                    if (!validateInternationalPhoneNumberBasic(value)) {
+                        displayFieldError(phoneInput, 'Vui lòng nhập số điện thoại hợp lệ.');
+                        return false;
+                    } else {
+                        clearFieldError(phoneInput);
+                        return true;
+                    }
+                }
             }
 
 
             if (receiverPhone1Input && receiverPhone1CodeSelect) {
-                 receiverPhone1Input.addEventListener('input', function() {
-                     validateReceiverPhone(this, receiverPhone1CodeSelect, true);
-                 });
-                 receiverPhone1Input.addEventListener('focus', function() {
-                      clearFieldError(this);
-                 });
-                 receiverPhone1CodeSelect.addEventListener('change', function() {
-                      validateReceiverPhone(receiverPhone1Input, this, true);
-                 });
+                receiverPhone1Input.addEventListener('input', function () {
+                    validateReceiverPhone(this, receiverPhone1CodeSelect, true);
+                });
+                receiverPhone1Input.addEventListener('focus', function () {
+                    clearFieldError(this);
+                });
+                receiverPhone1CodeSelect.addEventListener('change', function () {
+                    validateReceiverPhone(receiverPhone1Input, this, true);
+                });
             }
 
             if (receiverPhone2Input && receiverPhone2CodeSelect) {
-                receiverPhone2Input.addEventListener('input', function() {
-                     validateReceiverPhone(this, receiverPhone2CodeSelect, false);
-                 });
-                receiverPhone2Input.addEventListener('focus', function() {
-                      clearFieldError(this);
-                 });
-                receiverPhone2CodeSelect.addEventListener('change', function() {
-                     validateReceiverPhone(receiverPhone2Input, this, false);
-                 });
+                receiverPhone2Input.addEventListener('input', function () {
+                    validateReceiverPhone(this, receiverPhone2CodeSelect, false);
+                });
+                receiverPhone2Input.addEventListener('focus', function () {
+                    clearFieldError(this);
+                });
+                receiverPhone2CodeSelect.addEventListener('change', function () {
+                    validateReceiverPhone(receiverPhone2Input, this, false);
+                });
             }
 
             // Validate on submit
@@ -471,23 +471,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     isFormValid = false;
                     displayFieldError(senderPhoneInput, 'Vui lòng nhập số điện thoại 10-11 số bắt đầu bằng số 0');
                 } else {
-                   clearFieldError(senderPhoneInput);
+                    clearFieldError(senderPhoneInput);
                 }
             }
 
             // Kiểm tra số điện thoại người nhận 1
             if (receiverPhone1Input && receiverPhone1CodeSelect) {
-                 if (!validateReceiverPhone(receiverPhone1Input, receiverPhone1CodeSelect, true)){
-                     isFormValid = false;
-                 }
+                if (!validateReceiverPhone(receiverPhone1Input, receiverPhone1CodeSelect, true)) {
+                    isFormValid = false;
+                }
             }
 
             // Kiểm tra số điện thoại người nhận 2
             if (receiverPhone2Input && receiverPhone2CodeSelect) {
                 // validateReceiverPhone handles the optional nature and validation based on code
-                 if (!validateReceiverPhone(receiverPhone2Input, receiverPhone2CodeSelect, false)){
-                     isFormValid = false;
-                 }
+                if (!validateReceiverPhone(receiverPhone2Input, receiverPhone2CodeSelect, false)) {
+                    isFormValid = false;
+                }
             }
 
 
@@ -514,16 +514,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         clearFieldError(input);
                     }
-                     // Add event listener for immediate validation feedback
-                    input.addEventListener('input', function() {
+                    // Add event listener for immediate validation feedback
+                    input.addEventListener('input', function () {
                         if (!this.value.trim()) {
-                             displayFieldError(this, 'Trường này là bắt buộc.');
+                            displayFieldError(this, 'Trường này là bắt buộc.');
                         } else {
-                             clearFieldError(this);
+                            clearFieldError(this);
                         }
                     });
-                     // Add focus listener to clear error on focus
-                    input.addEventListener('focus', function() {
+                    // Add focus listener to clear error on focus
+                    input.addEventListener('focus', function () {
                         clearFieldError(this);
                     });
                 }
@@ -535,12 +535,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!checkedRadio) {
                             isFormValid = false;
                             // Find the first radio in the group to attach the error
-                             const firstRadioInGroup = form.querySelector(`input[name="${groupName}"]`);
-                            if(firstRadioInGroup) addErrorMessage(firstRadioInGroup, 'Vui lòng chọn một tùy chọn.');
-                        } else {
-                             // Find the first radio in the group to remove the error
                             const firstRadioInGroup = form.querySelector(`input[name="${groupName}"]`);
-                            if(firstRadioInGroup) removeErrorMessage(firstRadioInGroup);
+                            if (firstRadioInGroup) addErrorMessage(firstRadioInGroup, 'Vui lòng chọn một tùy chọn.');
+                        } else {
+                            // Find the first radio in the group to remove the error
+                            const firstRadioInGroup = form.querySelector(`input[name="${groupName}"]`);
+                            if (firstRadioInGroup) removeErrorMessage(firstRadioInGroup);
                         }
                         radioGroupsValidated[groupName] = true;
                     }
@@ -593,10 +593,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        form.addEventListener('reset', function() {
-             form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-             form.querySelectorAll('.error-message').forEach(el => el.remove());
-             form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
+        form.addEventListener('reset', function () {
+            form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+            form.querySelectorAll('.error-message').forEach(el => el.remove());
+            form.querySelectorAll('.form-label.error, label.error').forEach(lbl => lbl.classList.remove('error'));
         });
     }
 
@@ -615,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 announcementTitle.textContent = title;
                 announcementBodyEl.innerHTML = '';
                 bodyText.split('||').forEach(paragraphText => {
-                    if(paragraphText.trim()) {
+                    if (paragraphText.trim()) {
                         const p = document.createElement('p');
                         p.textContent = paragraphText.trim();
                         announcementBodyEl.appendChild(p);
@@ -641,7 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
             if (termsModal && termsModal.classList.contains('active')) {
-                 closeModal();
+                closeModal();
             } else if (announcementOverlay && announcementOverlay.classList.contains('visible')) {
                 closeAnnouncement();
             } else if (notificationDropdown && notificationDropdown.classList.contains('visible')) {
@@ -653,7 +653,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listener cho liên kết "Điều khoản quy định" bên trong modal
     const modalTermsLink = document.querySelector('#terms-modal .modal-link-underline');
     if (modalTermsLink) {
-        modalTermsLink.addEventListener('click', function(e) {
+        modalTermsLink.addEventListener('click', function (e) {
             e.preventDefault();
             openModal(); // Gọi hàm mở modal (sẽ không có hiệu quả nếu modal đã mở)
         });
@@ -778,7 +778,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fetch provinces for custom select
-    $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function(data_tinh) {
+    $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function (data_tinh) {
         console.log('API response for provinces:', data_tinh);
         if (data_tinh.error == 0) {
             provincesData = data_tinh.data;
@@ -786,14 +786,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.error('Error fetching provinces API:', data_tinh.message);
         }
-    }).fail(function(jqXHR, textStatus, errorThrown) {
+    }).fail(function (jqXHR, textStatus, errorThrown) {
         console.error('AJAX error fetching provinces:', textStatus, errorThrown);
     });
 
     // Event listener for custom city button
     if (senderCityCustomSelectButton) {
         console.log('senderCityCustomSelectButton found', senderCityCustomSelectButton);
-        senderCityCustomSelectButton.addEventListener('click', function(event) {
+        senderCityCustomSelectButton.addEventListener('click', function (event) {
             console.log('Custom city button clicked!');
             event.stopPropagation(); // Prevent document click from closing immediately
             toggleCustomSelectDropdown(senderCityCustomSelectButton, senderCityCustomSelectDropdown);
@@ -805,7 +805,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener for custom city dropdown options
     if (senderCityCustomSelectDropdown) {
         console.log('senderCityCustomSelectDropdown found', senderCityCustomSelectDropdown);
-        senderCityCustomSelectDropdown.addEventListener('click', function(event) {
+        senderCityCustomSelectDropdown.addEventListener('click', function (event) {
             console.log('Custom city dropdown clicked!', event.target);
             const selectedOption = event.target.closest('li');
             if (selectedOption && selectedOption.hasAttribute('role', 'option')) {
@@ -820,7 +820,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Close custom dropdown when clicking outside
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         // Collect all custom select wrappers
         const customSelectWrappers = document.querySelectorAll('.custom-select-wrapper');
 
@@ -841,7 +841,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Handle city change (original logic, now triggered by hidden senderCitySelectOriginal)
-    senderCitySelectOriginal.addEventListener('change', function() {
+    senderCitySelectOriginal.addEventListener('change', function () {
         console.log('Hidden senderCitySelectOriginal changed. Value:', this.value);
         const provinceId = senderCitySelectOriginal.value;
         // Clear district and ward dropdowns and hidden inputs
@@ -853,24 +853,24 @@ document.addEventListener('DOMContentLoaded', () => {
         senderWardSelectedValueSpan.textContent = 'Chọn Phường / Xã';
         populateCustomSelect(senderWardCustomSelectDropdown, [], senderWardSelectOriginal, '', 'Chọn Phường / Xã');
 
-                if (provinceId) {
-                    // Fetch districts
-                    $.getJSON('https://esgoo.net/api-tinhthanh/2/' + provinceId + '.htm', function(data_quan) {
-                        if (data_quan.error == 0) {
+        if (provinceId) {
+            // Fetch districts
+            $.getJSON('https://esgoo.net/api-tinhthanh/2/' + provinceId + '.htm', function (data_quan) {
+                if (data_quan.error == 0) {
                     districtsData = data_quan.data;
                     populateCustomSelect(senderDistrictCustomSelectDropdown, districtsData, senderDistrictSelectOriginal, senderDistrictSelectOriginal.value, 'Chọn Quận / Huyện');
                 } else {
                     console.error('Error fetching districts API:', data_quan.message);
                 }
-            }).fail(function(jqXHR, textStatus, errorThrown) {
+            }).fail(function (jqXHR, textStatus, errorThrown) {
                 console.error('AJAX error fetching districts:', textStatus, errorThrown);
-                            });
-                        }
-                    });
+            });
+        }
+    });
 
     // Event listener for custom district button
     if (senderDistrictCustomSelectButton) {
-        senderDistrictCustomSelectButton.addEventListener('click', function(event) {
+        senderDistrictCustomSelectButton.addEventListener('click', function (event) {
             event.stopPropagation();
             toggleCustomSelectDropdown(senderDistrictCustomSelectButton, senderDistrictCustomSelectDropdown);
         });
@@ -878,19 +878,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener for custom district dropdown options
     if (senderDistrictCustomSelectDropdown) {
-        senderDistrictCustomSelectDropdown.addEventListener('click', function(event) {
+        senderDistrictCustomSelectDropdown.addEventListener('click', function (event) {
             const selectedOption = event.target.closest('li');
             if (selectedOption && selectedOption.hasAttribute('role', 'option')) {
                 const selectedId = selectedOption.dataset.value;
                 const selectedText = selectedOption.textContent;
                 handleCustomOptionSelect(senderDistrictSelectedValueSpan, senderDistrictSelectOriginal, senderDistrictCustomSelectDropdown, selectedId, selectedText);
                 toggleCustomSelectDropdown(senderDistrictCustomSelectButton, senderDistrictCustomSelectDropdown, false);
-                }
-            });
+            }
+        });
     }
 
     // Handle district change (now triggered by hidden senderDistrictSelectOriginal)
-    senderDistrictSelectOriginal.addEventListener('change', function() {
+    senderDistrictSelectOriginal.addEventListener('change', function () {
         console.log('Hidden senderDistrictSelectOriginal changed. Value:', this.value);
         const districtId = senderDistrictSelectOriginal.value;
 
@@ -899,16 +899,16 @@ document.addEventListener('DOMContentLoaded', () => {
         senderWardSelectedValueSpan.textContent = 'Chọn Phường / Xã';
         populateCustomSelect(senderWardCustomSelectDropdown, [], senderWardSelectOriginal, '', 'Chọn Phường / Xã');
 
-                if (districtId) {
-                    // Fetch wards
-                    $.getJSON('https://esgoo.net/api-tinhthanh/3/' + districtId + '.htm', function(data_phuong) {
-                        if (data_phuong.error == 0) {
+        if (districtId) {
+            // Fetch wards
+            $.getJSON('https://esgoo.net/api-tinhthanh/3/' + districtId + '.htm', function (data_phuong) {
+                if (data_phuong.error == 0) {
                     wardsData = data_phuong.data;
                     populateCustomSelect(senderWardCustomSelectDropdown, wardsData, senderWardSelectOriginal, senderWardSelectOriginal.value, 'Chọn Phường / Xã');
                 } else {
                     console.error('Error fetching wards API:', data_phuong.message);
                 }
-            }).fail(function(jqXHR, textStatus, errorThrown) {
+            }).fail(function (jqXHR, textStatus, errorThrown) {
                 console.error('AJAX error fetching wards:', textStatus, errorThrown);
             });
         }
@@ -916,7 +916,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener for custom ward button
     if (senderWardCustomSelectButton) {
-        senderWardCustomSelectButton.addEventListener('click', function(event) {
+        senderWardCustomSelectButton.addEventListener('click', function (event) {
             event.stopPropagation();
             toggleCustomSelectDropdown(senderWardCustomSelectButton, senderWardCustomSelectDropdown);
         });
@@ -924,7 +924,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener for custom ward dropdown options
     if (senderWardCustomSelectDropdown) {
-        senderWardCustomSelectDropdown.addEventListener('click', function(event) {
+        senderWardCustomSelectDropdown.addEventListener('click', function (event) {
             const selectedOption = event.target.closest('li');
             if (selectedOption && selectedOption.hasAttribute('role', 'option')) {
                 const selectedId = selectedOption.dataset.value;
@@ -935,7 +935,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-     // render user dropdown
+    // render user dropdown
     function renderUserDropdown() {
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         const userToggle = document.getElementById('user-dropdown-toggle');
@@ -977,9 +977,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         setTimeout(() => {
             const loginItem = document.getElementById('login-menu-item');
-            if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
+            if (loginItem) loginItem.onclick = function (e) { e.preventDefault(); window.location.href = 'login.html'; };
             const logoutItem = document.getElementById('logout-menu-item');
-            if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+            if (logoutItem) logoutItem.onclick = function (e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
         }, 100);
     }
     renderUserDropdown();
@@ -988,13 +988,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dropdown show/hide
     const userToggle = document.getElementById('user-dropdown-toggle');
     const userDropdown = document.getElementById('user-dropdown');
-    if(userToggle && userDropdown){
-        userToggle.addEventListener('click', function(e){
+    if (userToggle && userDropdown) {
+        userToggle.addEventListener('click', function (e) {
             e.stopPropagation();
             userDropdown.classList.toggle('show');
         });
-        document.addEventListener('click', function(e){
-            if(!userDropdown.contains(e.target) && e.target !== userToggle){
+        document.addEventListener('click', function (e) {
+            if (!userDropdown.contains(e.target) && e.target !== userToggle) {
                 userDropdown.classList.remove('show');
             }
         });
@@ -1043,19 +1043,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const receiverCountryCustomSelectButton = document.getElementById('receiver_country_button');
     const receiverCountryCustomSelectDropdown = document.getElementById('receiver_country_listbox');
     const receiverCountrySelectedValueSpan = receiverCountryCustomSelectButton.querySelector('.selected-value');
-    
+
     // Hàm để lấy danh sách quốc gia từ API
     async function fetchCountries() {
         try {
             const response = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2');
             const countries = await response.json();
-            
+
             // Sắp xếp quốc gia theo tên
             countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
-            
+
             // Xóa các options hiện tại
             receiverCountryCustomSelectDropdown.innerHTML = '<li role="option" data-value="" class="selected">Chọn quốc gia</li>';
-            
+
             // Thêm các quốc gia vào dropdown
             countries.forEach(country => {
                 const option = document.createElement('li');
@@ -1078,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { value: 'KR', text: 'SOUTH KOREA' },
                 { value: 'SG', text: 'SINGAPORE' }
             ];
-            
+
             receiverCountryCustomSelectDropdown.innerHTML = '<li role="option" data-value="" class="selected">Chọn quốc gia</li>';
             fallbackCountries.forEach(country => {
                 const option = document.createElement('li');
@@ -1095,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener cho custom country button
     if (receiverCountryCustomSelectButton) {
-        receiverCountryCustomSelectButton.addEventListener('click', function(event) {
+        receiverCountryCustomSelectButton.addEventListener('click', function (event) {
             event.stopPropagation();
             toggleCustomSelectDropdown(receiverCountryCustomSelectButton, receiverCountryCustomSelectDropdown);
         });
@@ -1103,7 +1103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener cho custom country dropdown options
     if (receiverCountryCustomSelectDropdown) {
-        receiverCountryCustomSelectDropdown.addEventListener('click', function(event) {
+        receiverCountryCustomSelectDropdown.addEventListener('click', function (event) {
             const selectedOption = event.target.closest('li');
             if (selectedOption && selectedOption.hasAttribute('role', 'option')) {
                 const selectedId = selectedOption.dataset.value;
@@ -1152,35 +1152,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const branchDatalist = document.getElementById('branch_suggestions');
     const agentDatalist = document.getElementById('agent_suggestions');
 
-    if(branchDatalist) populateDatalist(branchDatalist, branchSuggestions);
-    if(agentDatalist) populateDatalist(agentDatalist, agentSuggestions);
+    if (branchDatalist) populateDatalist(branchDatalist, branchSuggestions);
+    if (agentDatalist) populateDatalist(agentDatalist, agentSuggestions);
 
     // Add event listeners to save new entries on input blur
-    if(branchInput) {
-        branchInput.addEventListener('blur', function() {
+    if (branchInput) {
+        branchInput.addEventListener('blur', function () {
             addSuggestion('branchSuggestions', this.value);
         });
     }
-    if(agentInput) {
-         agentInput.addEventListener('blur', function() {
+    if (agentInput) {
+        agentInput.addEventListener('blur', function () {
             addSuggestion('agentSuggestions', this.value);
         });
     }
 
-     // Update form submit to ensure latest values are saved before leaving the page
-     if (form) {
-          form.addEventListener('submit', function(event) {
-               // ... existing submit logic ...
-               // Save the current values of branch and agent inputs
-               if(branchInput) addSuggestion('branchSuggestions', branchInput.value);
-               if(agentInput) addSuggestion('agentSuggestions', agentInput.value);
+    // Update form submit to ensure latest values are saved before leaving the page
+    if (form) {
+        form.addEventListener('submit', function (event) {
+            // ... existing submit logic ...
+            // Save the current values of branch and agent inputs
+            if (branchInput) addSuggestion('branchSuggestions', branchInput.value);
+            if (agentInput) addSuggestion('agentSuggestions', agentInput.value);
 
-               // The rest of the form submit logic remains
-          });
-          // Also save on beforeunload in case the form is not submitted but the page is left
-          window.addEventListener('beforeunload', function() {
-              if(branchInput) addSuggestion('branchSuggestions', branchInput.value);
-              if(agentInput) addSuggestion('agentSuggestions', agentInput.value);
-          });
-     }
+            // The rest of the form submit logic remains
+        });
+        // Also save on beforeunload in case the form is not submitted but the page is left
+        window.addEventListener('beforeunload', function () {
+            if (branchInput) addSuggestion('branchSuggestions', branchInput.value);
+            if (agentInput) addSuggestion('agentSuggestions', agentInput.value);
+        });
+    }
 });

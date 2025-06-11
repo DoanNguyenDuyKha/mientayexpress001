@@ -1,70 +1,94 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pickup Đơn Hàng - Minh Khôi Logistics</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/package_manager.css">
     <link rel="stylesheet" href="../css/pickup-package.css">
-    <link href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.6/dist/css/tempus-dominus.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.6/dist/css/tempus-dominus.min.css"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.6/dist/js/tempus-dominus.min.js"></script>
 </head>
+
 <body>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <img src="../images/newlogo2-removebg.png" alt="Mien Tay Express Logo" class="logo">
         </div>
         <nav class="menu-items" aria-label="Main Navigation">
-             <ul>
-                 <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG CHỦ</span></a></li>
-                 <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN HÀNG</span></a></li>
-                 <li>
-                     <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
-                     <div class="submenu">
-                         <ul>
-                             <li><a href="package_manager.html"><i class="fa-solid fa-box-archive icon"></i><span class="menu-text">Quản lý đơn hàng</span></a></li>
-                             <li><a href="straking-bill-of-lading-status.html"><i class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng thái</span></a></li>
-                             <li><a href="pickup-package.html" class="active"><i class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận chuyển</span></a></li>
-                             <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản lý chi nhánh</span></a></li>
-                             <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span class="menu-text">Quản lý thanh toán</span></a></li>
-                         </ul>
-                     </div>
-                 </li>
-                 <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span class="menu-text">THỐNG KÊ</span></a></li>
-                 <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span class="menu-text">QL DỊCH VỤ</span></a></li>
-                 <li><a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH HÀNG</span></a></li>
-                 <li><a href="employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN LÝ NHÂN SỰ</span></a></li>
-                 <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG TY</span></a></li>
-                  <li>
-                      <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
-                       <div class="submenu">
-                          <ul>
-                              <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
-                              <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
-                          </ul>
-                      </div>
-                  </li>
-                 <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ DỤNG</span></a></li>
-                 <li>
-                     <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
-                      <div class="submenu">
-                          <ul>
-                             <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
-                             <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
-                          </ul>
-                      </div>
-                  </li>
-             </ul>
-         </nav>
+            <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house icon"></i><span class="menu-text">TRANG
+                            CHỦ</span></a></li>
+                <li><a href="create-package.html"><i class="fa-solid fa-plus icon"></i><span class="menu-text">TẠO ĐƠN
+                            HÀNG</span></a></li>
+                <li>
+                    <a href="#" class="submenu-parent"> <i class="fa-solid fa-chart-pie icon"></i><span
+                            class="menu-text">QUẢN LÝ</span><i class="fa-solid fa-chevron-down submenu-arrow"></i> </a>
+                    <div class="submenu">
+                        <ul>
+                            <li><a href="package_manager.html"><i class="fa-solid fa-box-archive icon"></i><span
+                                        class="menu-text">Quản lý đơn hàng</span></a></li>
+                            <li><a href="straking-bill-of-lading-status.html"><i
+                                        class="fa-solid fa-list-check icon"></i><span class="menu-text">Quản lý trạng
+                                        thái</span></a></li>
+                            <li><a href="pickup-package.html" class="active"><i
+                                        class="fa-solid fa-truck-fast icon"></i><span class="menu-text">Quản lý vận
+                                        chuyển</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-building-user icon"></i><span class="menu-text">Quản
+                                        lý chi nhánh</span></a></li>
+                            <li><a href="payment-management.html"><i class="fa-solid fa-dollar-sign icon"></i><span
+                                        class="menu-text">Quản lý thanh toán</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="statistics_management.html"><i class="fa-solid fa-chart-line icon"></i><span
+                            class="menu-text">THỐNG KÊ</span></a></li>
+                <li><a href="service-management.html"><i class="fa-solid fa-screwdriver-wrench icon"></i><span
+                            class="menu-text">QL DỊCH VỤ</span></a></li>
+                <li><a href="customer-list.html"><i class="fa-solid fa-users icon"></i><span class="menu-text">QL KHÁCH
+                            HÀNG</span></a></li>
+                <li><a href="employee-list.html"><i class="fa-solid fa-user-tie icon"></i><span class="menu-text">QUẢN
+                            LÝ NHÂN SỰ</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-info icon"></i><span class="menu-text">THÔNG TIN CÔNG
+                            TY</span></a></li>
+                <li>
+                    <a href="#" class="submenu-parent"><i class="fa-solid fa-scroll icon"></i><span class="menu-text">QL
+                            CHÍNH SÁCH</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                    <div class="submenu">
+                        <ul>
+                            <li><a href="#"><span class="menu-text">Chính sách A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Chính sách B</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#"><i class="fa-solid fa-circle-question icon"></i><span class="menu-text">HƯỚNG DẪN SỬ
+                            DỤNG</span></a></li>
+                <li>
+                    <a href="#" class="submenu-parent"><i class="fa-solid fa-gear icon"></i><span class="menu-text">CÀI
+                            ĐẶT CHUNG</span><i class="fa-solid fa-chevron-down submenu-arrow"></i></a>
+                    <div class="submenu">
+                        <ul>
+                            <li><a href="#"><span class="menu-text">Cài đặt A</span></a></li>
+                            <li><a href="#"><span class="menu-text">Cài đặt B</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
     </aside>
 
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <main class="main-content">
         <header class="header">
-            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu" aria-controls="sidebar" aria-expanded="false"> <i class="fa-solid fa-bars"></i> </button>
+            <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Toggle Navigation Menu"
+                aria-controls="sidebar" aria-expanded="false"> <i class="fa-solid fa-bars"></i> </button>
             <div class="header-left">
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -80,21 +104,27 @@
                     <div class="notification-dropdown" id="notification-dropdown">
                         <div class="dropdown-header">Thông báo</div>
                         <ul class="notification-list" id="notification-list">
-                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024" data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada." data-timestamp="2024-07-25 13:53:27">
+                            <li class="notification-item" data-title="Thông báo: DỜI CUT OFF CANADA 24/08/2024"
+                                data-body="Do lượng hàng T7 (24/08/2024) không đủ tải, chuyến tuyến MTE-CAD sẽ kết nối hàng vào chuyến bay sớm nhất (Cs sẽ update giờ cut off mới)||MTE xin lỗi Quý khách vì sự chậm trễ gây ra bất tiện cho khách hàng.||Rất mong nhận sự thông cảm của Quý khách hàng.||Cs tuyến Canada."
+                                data-timestamp="2024-07-25 13:53:27">
                                 <div class="item-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
                                 <div class="item-content">
                                     <div class="item-title">Dời Cut off Canada 24/08/2024</div>
                                     <div class="item-time">25 Jul 2024</div>
                                 </div>
                             </li>
-                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống" data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này." data-timestamp="2024-07-28 10:00:00">
+                            <li class="notification-item" data-title="Thông báo: Cập nhật hệ thống"
+                                data-body="Hệ thống sẽ được bảo trì vào lúc 02:00 AM ngày 30/07/2024. Vui lòng lưu lại công việc trước thời gian này."
+                                data-timestamp="2024-07-28 10:00:00">
                                 <div class="item-icon"><i class="fa-solid fa-wrench"></i></div>
                                 <div class="item-content">
                                     <div class="item-title">Cập nhật hệ thống 30/07</div>
                                     <div class="item-time">28 Jul 2024</div>
                                 </div>
                             </li>
-                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới" data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ." data-timestamp="2024-07-20 09:00:00">
+                            <li class="notification-item" data-title="Thông báo: Khuyến mãi mới"
+                                data-body="Chương trình khuyến mãi hè 2024 đã bắt đầu! Giảm giá 10% cho các tuyến đi Mỹ."
+                                data-timestamp="2024-07-20 09:00:00">
                                 <div class="item-icon"><i class="fa-solid fa-tags"></i></div>
                                 <div class="item-content">
                                     <div class="item-title">Khuyến mãi hè 2024!</div>
@@ -106,13 +136,18 @@
                     </div>
                 </div>
                 <div class="user-container" style="position: relative;">
-                    <div class="user-dropdown-toggle" id="user-dropdown-toggle" style="display: flex; align-items: center; gap: 6px; background: #6366f1; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
-                        <i class="fa-regular fa-circle-user user-icon" id="user-icon" style="color: #fff; font-size: 1.25em;"></i>
+                    <div class="user-dropdown-toggle" id="user-dropdown-toggle"
+                        style="display: flex; align-items: center; gap: 6px; background: #6366f1; border-radius: 7px; padding: 6px 14px; cursor: pointer;">
+                        <i class="fa-regular fa-circle-user user-icon" id="user-icon"
+                            style="color: #fff; font-size: 1.25em;"></i>
                     </div>
                     <div class="user-dropdown" id="user-dropdown">
-                        <a href="#" class="user-dropdown-item" id="profile-link"><i class="fa-regular fa-user"></i> Profile</a>
-                        <a href="#" class="user-dropdown-item" id="login-link"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>
-                        <a href="#" class="user-dropdown-item" id="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                        <a href="#" class="user-dropdown-item" id="profile-link"><i class="fa-regular fa-user"></i>
+                            Profile</a>
+                        <a href="#" class="user-dropdown-item" id="login-link"><i
+                                class="fa-solid fa-right-to-bracket"></i> Đăng nhập</a>
+                        <a href="#" class="user-dropdown-item" id="logout-link"><i
+                                class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                     </div>
                 </div>
             </div>
@@ -122,38 +157,69 @@
             <section class="page-header">
                 <div class="page-header-left">
                     <h1 class="page-title">PICKUP ĐƠN HÀNG</h1>
-                    <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Quản lý</a> / <span>Quản lý vận chuyển</span> / <span>Pickup Đơn Hàng</span> </nav>
+                    <nav class="breadcrumb" aria-label="breadcrumb"> <a href="#">Quản lý</a> / <span>Quản lý vận
+                            chuyển</span> / <span>Pickup Đơn Hàng</span> </nav>
                 </div>
             </section>
             <form id="pickup-order-form">
                 <div class="content-layout card">
                     <div class="content-column-left">
-                         <div class="data-section">
-                            <div class="section-header"><span><i class="fa-solid fa-truck"></i> Hình thức lấy hàng</span></div>
-                            <div class="form-group"> <label for="pickup_vehicle">Hình thức vận chuyển:</label> <select id="pickup_vehicle" name="pickup_vehicle"> <option value="minivan" selected>Xe bán tải / Minivan</option> <option value="motorbike">Xe máy</option> <option value="truck">Xe tải</option> </select> </div>
-                            <div class="form-group"> <label for="pickup_time">Thời gian Pickup:</label> <div class="input-with-icon"> <input type="text" id="pickup_time" name="pickup_time"> </div> </div>
-                            <div class="form-group"> <label for="pickup_address">Địa chỉ lấy hàng:</label> <textarea id="pickup_address" name="pickup_address" rows="3"></textarea> </div>
-                            <div class="form-group"> <label for="pickup_notes">Ghi chú lấy hàng:</label> <textarea id="pickup_notes" name="pickup_notes" rows="2"></textarea> </div>
-                         </div>
-                         <div class="data-section">
-                             <div class="section-header"><span><i class="fa-solid fa-clipboard-check"></i> Trạng thái lấy hàng</span></div>
-                             <div class="form-grid-2col">
-                                <div class="form-group"> <label for="pickup_status">Trạng thái lấy hàng:</label> <select id="pickup_status" name="pickup_status"> <option value="pending" selected>Chờ lấy hàng</option> <option value="picked_up">Đã lấy hàng</option> <option value="failed">Lấy thất bại</option> </select> </div>
-                                <div class="form-group"> <label for="pickup_cs">CS xử lý:</label> <select id="pickup_cs" name="pickup_cs"> <option value="alice" selected>Alice in the Wonder La...</option> </select> </div>
+                        <div class="data-section">
+                            <div class="section-header"><span><i class="fa-solid fa-truck"></i> Hình thức lấy
+                                    hàng</span></div>
+                            <div class="form-group"> <label for="pickup_vehicle">Hình thức vận chuyển:</label> <select
+                                    id="pickup_vehicle" name="pickup_vehicle">
+                                    <option value="minivan" selected>Xe bán tải / Minivan</option>
+                                    <option value="motorbike">Xe máy</option>
+                                    <option value="truck">Xe tải</option>
+                                </select> </div>
+                            <div class="form-group"> <label for="pickup_time">Thời gian Pickup:</label>
+                                <div class="input-with-icon"> <input type="text" id="pickup_time" name="pickup_time">
+                                </div>
                             </div>
-                            <div class="form-group"> <label for="received_time">Thời gian nhận hàng:</label> <div class="input-with-icon"> <input type="text" id="received_time" name="received_time"> </div> </div>
-                            <div class="form-group"> <label for="export_time">Thời gian xuất hàng:</label> <div class="input-with-icon"> <input type="text" id="export_time" name="export_time"> </div> </div>
-                            <div class="form-group"> <label for="status_notes">Ghi chú:</label> <textarea id="status_notes" name="status_notes" rows="2"></textarea> </div>
+                            <div class="form-group"> <label for="pickup_address">Địa chỉ lấy hàng:</label> <textarea
+                                    id="pickup_address" name="pickup_address" rows="3"></textarea> </div>
+                            <div class="form-group"> <label for="pickup_notes">Ghi chú lấy hàng:</label> <textarea
+                                    id="pickup_notes" name="pickup_notes" rows="2"></textarea> </div>
+                        </div>
+                        <div class="data-section">
+                            <div class="section-header"><span><i class="fa-solid fa-clipboard-check"></i> Trạng thái lấy
+                                    hàng</span></div>
+                            <div class="form-grid-2col">
+                                <div class="form-group"> <label for="pickup_status">Trạng thái lấy hàng:</label> <select
+                                        id="pickup_status" name="pickup_status">
+                                        <option value="pending" selected>Chờ lấy hàng</option>
+                                        <option value="picked_up">Đã lấy hàng</option>
+                                        <option value="failed">Lấy thất bại</option>
+                                    </select> </div>
+                                <div class="form-group"> <label for="pickup_cs">CS xử lý:</label> <select id="pickup_cs"
+                                        name="pickup_cs">
+                                        <option value="alice" selected>Alice in the Wonder La...</option>
+                                    </select> </div>
+                            </div>
+                            <div class="form-group"> <label for="received_time">Thời gian nhận hàng:</label>
+                                <div class="input-with-icon"> <input type="text" id="received_time"
+                                        name="received_time"> </div>
+                            </div>
+                            <div class="form-group"> <label for="export_time">Thời gian xuất hàng:</label>
+                                <div class="input-with-icon"> <input type="text" id="export_time" name="export_time">
+                                </div>
+                            </div>
+                            <div class="form-group"> <label for="status_notes">Ghi chú:</label> <textarea
+                                    id="status_notes" name="status_notes" rows="2"></textarea> </div>
                             <div class="form-group">
                                 <label>Ảnh đính kèm:</label>
                                 <div class="attachment-group">
-                                    <button type="button" class="file-trigger-button button secondary" id="select_images_btn"> <i class="fa-solid fa-image"></i> Chọn ảnh </button>
-                                    <input type="file" id="pickup_images" name="pickup_images[]" multiple accept="image/jpeg, image="image/png", image="image/gif" style="display: none;">
+                                    <button type="button" class="file-trigger-button button secondary"
+                                        id="select_images_btn"> <i class="fa-solid fa-image"></i> Chọn ảnh </button>
+                                    <input type="file" id="pickup_images" name="pickup_images[]" multiple
+                                        accept="image/jpeg, image=" image/png", image="image/gif"
+                                        style="display: none;">
                                     <span class="file-type-note">(.jpg/.png/.jpeg)</span>
                                 </div>
                                 <div id="selected_files_list"><i>Chưa chọn file nào.</i></div>
                             </div>
-                         </div>
+                        </div>
                     </div>
 
                     <div class="content-column-right">
@@ -175,10 +241,14 @@
                         <label for="confirm_info_pickup">Tôi đã đọc kỹ và kiểm tra thông tin đầy đủ</label>
                     </div>
                     <div class="action-buttons">
-                        <button type="button" class="button secondary" onclick="window.history.back();"> <i class="fa-solid fa-xmark"></i> Thoát </button>
-                        <button type="reset" class="button warning" form="pickup-order-form"> <i class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
-                        <button type="button" class="button info btn-save-draft"> <i class="fa-solid fa-floppy-disk"></i> Lưu nháp </button>
-                        <button type="submit" class="button confirm btn-complete" form="pickup-order-form"> <i class="fa-solid fa-check"></i> Hoàn thành </button>
+                        <button type="button" class="button secondary" onclick="window.history.back();"> <i
+                                class="fa-solid fa-xmark"></i> Thoát </button>
+                        <button type="reset" class="button warning" form="pickup-order-form"> <i
+                                class="fa-solid fa-arrows-rotate"></i> Làm mới </button>
+                        <button type="button" class="button info btn-save-draft"> <i
+                                class="fa-solid fa-floppy-disk"></i> Lưu nháp </button>
+                        <button type="submit" class="button confirm btn-complete" form="pickup-order-form"> <i
+                                class="fa-solid fa-check"></i> Hoàn thành </button>
                     </div>
                 </div>
             </form>
@@ -258,13 +328,13 @@
                 document.querySelectorAll('.menu-items .submenu.active').forEach(submenu => {
                     submenu.classList.remove('active');
                     const parentLink = submenu.previousElementSibling;
-                    if(parentLink && parentLink.classList.contains('submenu-parent')) {
+                    if (parentLink && parentLink.classList.contains('submenu-parent')) {
                         parentLink.classList.remove('active');
                         parentLink.querySelector('.submenu-arrow')?.style.setProperty('transform', 'rotate(0deg)');
                     }
                 });
             } else {
-                 initializeActiveSubmenu();
+                initializeActiveSubmenu();
             }
         }
 
@@ -283,31 +353,31 @@
                 if (activeParent !== parentLink) {
                     activeParent.classList.remove('active');
                     const otherSubmenu = activeParent.nextElementSibling;
-                     if (otherSubmenu && otherSubmenu.classList.contains('submenu')) {
-                         otherSubmenu.classList.remove('active');
-                     }
-                     const otherArrow = activeParent.querySelector('.submenu-arrow');
-                     if (otherArrow) otherArrow.style.setProperty('transform', 'rotate(0deg)');
+                    if (otherSubmenu && otherSubmenu.classList.contains('submenu')) {
+                        otherSubmenu.classList.remove('active');
+                    }
+                    const otherArrow = activeParent.querySelector('.submenu-arrow');
+                    if (otherArrow) otherArrow.style.setProperty('transform', 'rotate(0deg)');
                 }
             });
 
             submenuWrapper.classList.toggle('active');
             parentLink.classList.toggle('active', !isActive);
-             if (arrow) arrow.style.setProperty('transform', !isActive ? 'rotate(180deg)' : 'rotate(0deg)');
+            if (arrow) arrow.style.setProperty('transform', !isActive ? 'rotate(180deg)' : 'rotate(0deg)');
         }
 
         function initializeActiveSubmenu() {
             document.querySelectorAll('.menu-items .submenu-parent').forEach(parentLink => {
-                 const submenuDiv = parentLink.nextElementSibling;
-                 const arrow = parentLink.querySelector('.submenu-arrow');
-                 if (submenuDiv?.classList.contains('submenu')) {
-                     const hasActiveChild = submenuDiv.querySelector('a.active');
-                     const shouldBeActive = hasActiveChild && (!body.classList.contains('sidebar-collapsed') || window.innerWidth <= 768);
+                const submenuDiv = parentLink.nextElementSibling;
+                const arrow = parentLink.querySelector('.submenu-arrow');
+                if (submenuDiv?.classList.contains('submenu')) {
+                    const hasActiveChild = submenuDiv.querySelector('a.active');
+                    const shouldBeActive = hasActiveChild && (!body.classList.contains('sidebar-collapsed') || window.innerWidth <= 768);
 
-                     submenuDiv.classList.toggle('active', shouldBeActive);
-                     parentLink.classList.toggle('active', shouldBeActive);
-                     if (arrow) arrow.style.setProperty('transform', shouldBeActive ? 'rotate(180deg)' : 'rotate(0deg)');
-                 }
+                    submenuDiv.classList.toggle('active', shouldBeActive);
+                    parentLink.classList.toggle('active', shouldBeActive);
+                    if (arrow) arrow.style.setProperty('transform', shouldBeActive ? 'rotate(180deg)' : 'rotate(0deg)');
+                }
             });
         }
 
@@ -343,118 +413,118 @@
         }
 
         function toggleFullscreen() {
-             if (!document.fullscreenElement) {
-                 document.documentElement.requestFullscreen().catch(err => console.error(`Fullscreen error: ${err.message} (${err.name})`));
-             } else if (document.exitFullscreen) {
-                 document.exitFullscreen();
-             }
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => console.error(`Fullscreen error: ${err.message} (${err.name})`));
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
         }
 
         function handleFullscreenChange() {
-             const isFullscreen = !!document.fullscreenElement;
-             const icon = fullscreenBtn?.querySelector('i');
-             if(icon){
-                 icon.classList.toggle('fa-expand', !isFullscreen);
-                 icon.classList.toggle('fa-compress', isFullscreen);
-             }
-              if(fullscreenBtn) {
-                  fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
-              }
+            const isFullscreen = !!document.fullscreenElement;
+            const icon = fullscreenBtn?.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-expand', !isFullscreen);
+                icon.classList.toggle('fa-compress', isFullscreen);
+            }
+            if (fullscreenBtn) {
+                fullscreenBtn.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Fullscreen');
+            }
         }
 
         function handleFormSubmit(event) {
-             event.preventDefault();
-             const form = document.getElementById('pickup-order-form');
-             const confirmCheckbox = document.getElementById('confirm_info_pickup');
-             if (!form.checkValidity()) { form.reportValidity(); return; }
-             if (!confirmCheckbox.checked) { alert('Vui lòng xác nhận đã đọc kỹ và kiểm tra thông tin.'); return false; }
-             const formData = new FormData(form);
-             const fileInput = document.getElementById('pickup_images');
-             const displayedFilesList = document.getElementById('selected_files_list');
-             const currentFiles = Array.from(fileInput.files);
-             const displayedFileNames = Array.from(displayedFilesList.querySelectorAll('li [data-file-name]')).map(btn => btn.dataset.fileName);
-             currentFiles.forEach(file => { if (displayedFileNames.includes(file.name)) { formData.append(fileInput.name, file); } });
-             console.log('Submitting form data:');
-             for (let [key, value] of formData.entries()) { if (value instanceof File) { console.log(`${key}: ${value.name}`); } else { console.log(`${key}: ${value}`); } }
-              alert('Thông tin Pickup đã được hoàn thành (demo)!');
+            event.preventDefault();
+            const form = document.getElementById('pickup-order-form');
+            const confirmCheckbox = document.getElementById('confirm_info_pickup');
+            if (!form.checkValidity()) { form.reportValidity(); return; }
+            if (!confirmCheckbox.checked) { alert('Vui lòng xác nhận đã đọc kỹ và kiểm tra thông tin.'); return false; }
+            const formData = new FormData(form);
+            const fileInput = document.getElementById('pickup_images');
+            const displayedFilesList = document.getElementById('selected_files_list');
+            const currentFiles = Array.from(fileInput.files);
+            const displayedFileNames = Array.from(displayedFilesList.querySelectorAll('li [data-file-name]')).map(btn => btn.dataset.fileName);
+            currentFiles.forEach(file => { if (displayedFileNames.includes(file.name)) { formData.append(fileInput.name, file); } });
+            console.log('Submitting form data:');
+            for (let [key, value] of formData.entries()) { if (value instanceof File) { console.log(`${key}: ${value.name}`); } else { console.log(`${key}: ${value}`); } }
+            alert('Thông tin Pickup đã được hoàn thành (demo)!');
         }
 
         function handleSaveDraft() {
-              console.log('Save Draft clicked');
-              const form = document.getElementById('pickup-order-form');
-              const formData = new FormData(form);
-              console.log('Saving draft data:', Object.fromEntries(formData));
-              alert('Đã lưu nháp thông tin (demo)!');
+            console.log('Save Draft clicked');
+            const form = document.getElementById('pickup-order-form');
+            const formData = new FormData(form);
+            console.log('Saving draft data:', Object.fromEntries(formData));
+            alert('Đã lưu nháp thông tin (demo)!');
         }
 
         function handleFileSelection(event) {
-             const fileListDisplay = document.getElementById('selected_files_list');
-             const files = event.target.files;
-             let existingFileNames = [];
-             if (fileListDisplay.querySelector('ul')) { existingFileNames = Array.from(fileListDisplay.querySelectorAll('li [data-file-name]')).map(btn => btn.dataset.fileName); }
-             const uniqueFilesMap = new Map();
-             const originalFileInput = document.getElementById('pickup_images');
-             Array.from(originalFileInput.files).forEach(file => { if (existingFileNames.includes(file.name)) { uniqueFilesMap.set(file.name, file); } });
-             Array.from(files).forEach(file => { uniqueFilesMap.set(file.name, file); });
-             fileListDisplay.innerHTML = '';
-             if (uniqueFilesMap.size > 0) {
-                 const list = document.createElement('ul');
-                 uniqueFilesMap.forEach((file) => {
-                     const listItem = document.createElement('li');
-                     listItem.textContent = file.name;
-                     const removeBtn = document.createElement('button');
-                     removeBtn.type = 'button'; removeBtn.className = 'remove-file-btn'; removeBtn.innerHTML = '×'; removeBtn.title = 'Gỡ bỏ file này'; removeBtn.dataset.fileName = file.name; listItem.appendChild(removeBtn);
-                     
-                     // Create image preview element
-                     const imgPreview = document.createElement('img');
-                     imgPreview.style.maxWidth = '50px'; // Set max width for preview
-                     imgPreview.style.maxHeight = '50px'; // Set max height for preview
-                     imgPreview.style.marginRight = '10px'; // Add some space
-                     imgPreview.style.verticalAlign = 'middle';
-                     imgPreview.style.border = '1px solid #ddd'; // Optional border
-                     imgPreview.style.borderRadius = '4px'; // Optional border radius
-                     imgPreview.style.objectFit = 'cover'; // Cover the area without stretching
-                     
-                     // Use FileReader to read the image file
-                     const reader = new FileReader();
-                     reader.onload = function(e) {
-                         imgPreview.src = e.target.result;
-                     }
-                     // Check if the file is an image before reading
-                     if (file.type.startsWith('image/')) {
-                         reader.readAsDataURL(file);
-                         listItem.prepend(imgPreview); // Add image before text
-                     } else {
-                          // Optionally handle non-image files, maybe show a file icon
-                          // For now, just add text content if not an image
-                     }
-                     
-                     list.appendChild(listItem);
-                 });
-                 fileListDisplay.appendChild(list);
-                 const dataTransfer = new DataTransfer();
-                 uniqueFilesMap.forEach(file => dataTransfer.items.add(file));
-                 originalFileInput.files = dataTransfer.files;
-             } else {
-                 fileListDisplay.innerHTML = '<i>Chưa chọn file nào.</i>';
-                 originalFileInput.value = '';
-             }
+            const fileListDisplay = document.getElementById('selected_files_list');
+            const files = event.target.files;
+            let existingFileNames = [];
+            if (fileListDisplay.querySelector('ul')) { existingFileNames = Array.from(fileListDisplay.querySelectorAll('li [data-file-name]')).map(btn => btn.dataset.fileName); }
+            const uniqueFilesMap = new Map();
+            const originalFileInput = document.getElementById('pickup_images');
+            Array.from(originalFileInput.files).forEach(file => { if (existingFileNames.includes(file.name)) { uniqueFilesMap.set(file.name, file); } });
+            Array.from(files).forEach(file => { uniqueFilesMap.set(file.name, file); });
+            fileListDisplay.innerHTML = '';
+            if (uniqueFilesMap.size > 0) {
+                const list = document.createElement('ul');
+                uniqueFilesMap.forEach((file) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = file.name;
+                    const removeBtn = document.createElement('button');
+                    removeBtn.type = 'button'; removeBtn.className = 'remove-file-btn'; removeBtn.innerHTML = '×'; removeBtn.title = 'Gỡ bỏ file này'; removeBtn.dataset.fileName = file.name; listItem.appendChild(removeBtn);
+
+                    // Create image preview element
+                    const imgPreview = document.createElement('img');
+                    imgPreview.style.maxWidth = '50px'; // Set max width for preview
+                    imgPreview.style.maxHeight = '50px'; // Set max height for preview
+                    imgPreview.style.marginRight = '10px'; // Add some space
+                    imgPreview.style.verticalAlign = 'middle';
+                    imgPreview.style.border = '1px solid #ddd'; // Optional border
+                    imgPreview.style.borderRadius = '4px'; // Optional border radius
+                    imgPreview.style.objectFit = 'cover'; // Cover the area without stretching
+
+                    // Use FileReader to read the image file
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        imgPreview.src = e.target.result;
+                    }
+                    // Check if the file is an image before reading
+                    if (file.type.startsWith('image/')) {
+                        reader.readAsDataURL(file);
+                        listItem.prepend(imgPreview); // Add image before text
+                    } else {
+                        // Optionally handle non-image files, maybe show a file icon
+                        // For now, just add text content if not an image
+                    }
+
+                    list.appendChild(listItem);
+                });
+                fileListDisplay.appendChild(list);
+                const dataTransfer = new DataTransfer();
+                uniqueFilesMap.forEach(file => dataTransfer.items.add(file));
+                originalFileInput.files = dataTransfer.files;
+            } else {
+                fileListDisplay.innerHTML = '<i>Chưa chọn file nào.</i>';
+                originalFileInput.value = '';
+            }
         }
 
         function handleRemoveFile(event) {
-              if (event.target.classList.contains('remove-file-btn')) {
-                  const fileNameToRemove = event.target.dataset.fileName;
-                  const fileInput = document.getElementById('pickup_images');
-                  const fileListDisplay = document.getElementById('selected_files_list');
-                  const currentFiles = Array.from(fileInput.files);
-                  const dataTransfer = new DataTransfer();
-                  let fileRemoved = false;
-                  currentFiles.forEach(file => { if (file.name !== fileNameToRemove) { dataTransfer.items.add(file); } else { fileRemoved = true; } });
-                  fileInput.files = dataTransfer.files;
-                  if (fileRemoved) { event.target.closest('li').remove(); }
-                  if (!fileListDisplay.querySelector('li')) { fileListDisplay.innerHTML = '<i>Chưa chọn file nào.</i>'; }
-                  console.log(`Removed ${fileNameToRemove}. Updated FileList:`, fileInput.files);
-              }
+            if (event.target.classList.contains('remove-file-btn')) {
+                const fileNameToRemove = event.target.dataset.fileName;
+                const fileInput = document.getElementById('pickup_images');
+                const fileListDisplay = document.getElementById('selected_files_list');
+                const currentFiles = Array.from(fileInput.files);
+                const dataTransfer = new DataTransfer();
+                let fileRemoved = false;
+                currentFiles.forEach(file => { if (file.name !== fileNameToRemove) { dataTransfer.items.add(file); } else { fileRemoved = true; } });
+                fileInput.files = dataTransfer.files;
+                if (fileRemoved) { event.target.closest('li').remove(); }
+                if (!fileListDisplay.querySelector('li')) { fileListDisplay.innerHTML = '<i>Chưa chọn file nào.</i>'; }
+                console.log(`Removed ${fileNameToRemove}. Updated FileList:`, fileInput.files);
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -473,13 +543,13 @@
                     const info = JSON.parse(modal.dataset.targetInfo || '{}');
                     console.log(`CONFIRMED: ${modalId}`, info);
                     hideConfirmationModal(modalId);
-                 });
+                });
                 modal.querySelector('.confirm-cancel')?.addEventListener('click', () => hideConfirmationModal(modalId));
                 modal.addEventListener('click', (event) => { if (event.target === modal) hideConfirmationModal(modalId); });
             });
 
-             if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
-             document.addEventListener('fullscreenchange', handleFullscreenChange);
+            if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
 
             const form = document.getElementById('pickup-order-form');
             const saveDraftButton = document.querySelector('.btn-save-draft');
@@ -489,18 +559,18 @@
 
             if (form) form.addEventListener('submit', handleFormSubmit);
             if (saveDraftButton) saveDraftButton.addEventListener('click', handleSaveDraft);
-            if (selectImagesBtn && fileInput) selectImagesBtn.addEventListener('click', () => fileInput.click() );
+            if (selectImagesBtn && fileInput) selectImagesBtn.addEventListener('click', () => fileInput.click());
             if (fileInput && fileListDisplay) fileInput.addEventListener('change', handleFileSelection);
             if (fileListDisplay) fileListDisplay.addEventListener('click', handleRemoveFile);
 
-             if (window.innerWidth > 768 && desktopSidebarToggleBtn) {
-                  const isCollapsed = body.classList.contains('sidebar-collapsed');
-                  const icon = desktopSidebarToggleBtn.querySelector('i');
-                  if (icon) {
+            if (window.innerWidth > 768 && desktopSidebarToggleBtn) {
+                const isCollapsed = body.classList.contains('sidebar-collapsed');
+                const icon = desktopSidebarToggleBtn.querySelector('i');
+                if (icon) {
                     icon.classList.toggle('fa-arrow-left', !isCollapsed);
                     icon.classList.toggle('fa-arrow-right', isCollapsed);
-                  }
-             }
+                }
+            }
         });
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -523,7 +593,7 @@
                     notificationBody.classList.add('overflow-hidden');
                 } else {
                     if (!isAnyOtherModalVisible) {
-                         notificationBody.classList.remove('overflow-hidden');
+                        notificationBody.classList.remove('overflow-hidden');
                     }
                 }
             };
@@ -535,9 +605,9 @@
             }
 
             function closeNotificationDropdown() {
-                 if (notificationDropdown) {
+                if (notificationDropdown) {
                     notificationDropdown.classList.remove('visible');
-                 }
+                }
             }
 
             function showAnnouncement() {
@@ -576,7 +646,7 @@
                         announcementTitle.textContent = title;
                         announcementBodyEl.innerHTML = '';
                         bodyText.split('||').forEach(paragraphText => {
-                            if(paragraphText.trim()) {
+                            if (paragraphText.trim()) {
                                 const p = document.createElement('p');
                                 p.textContent = paragraphText.trim();
                                 announcementBodyEl.appendChild(p);
@@ -623,18 +693,18 @@
         // --- Dropdown user ---
         const userToggle = document.getElementById('user-dropdown-toggle');
         const userDropdown = document.getElementById('user-dropdown');
-        if(userToggle && userDropdown){
-            userToggle.addEventListener('click', function(e){
+        if (userToggle && userDropdown) {
+            userToggle.addEventListener('click', function (e) {
                 e.stopPropagation();
                 userDropdown.classList.toggle('show');
             });
-            document.addEventListener('click', function(e){
-                if(!userDropdown.contains(e.target) && e.target !== userToggle){
+            document.addEventListener('click', function (e) {
+                if (!userDropdown.contains(e.target) && e.target !== userToggle) {
                     userDropdown.classList.remove('show');
                 }
             });
         }
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             function renderUserDropdown() {
                 const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
                 const userToggle = document.getElementById('user-dropdown-toggle');
@@ -661,9 +731,9 @@
                 }
                 setTimeout(() => {
                     const loginItem = document.getElementById('login-menu-item');
-                    if (loginItem) loginItem.onclick = function(e) { e.preventDefault(); window.location.href = 'login.html'; };
+                    if (loginItem) loginItem.onclick = function (e) { e.preventDefault(); window.location.href = 'login.html'; };
                     const logoutItem = document.getElementById('logout-menu-item');
-                    if (logoutItem) logoutItem.onclick = function(e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
+                    if (logoutItem) logoutItem.onclick = function (e) { e.preventDefault(); localStorage.removeItem('isLoggedIn'); window.location.reload(); };
                 }, 100);
             }
             renderUserDropdown();
@@ -671,7 +741,7 @@
         });
 
         // --- Render thông tin đơn hàng động từ localStorage ---
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const data = JSON.parse(localStorage.getItem('currentOrderDetail') || '{}');
             const infoSection = document.getElementById('order-info-dynamic');
             const creatorInfo = document.getElementById('order-creator-info');
@@ -684,7 +754,7 @@
             let totalWeight = '';
             let soKien = '';
             if (Array.isArray(data.dimensions) && data.dimensions.length > 0) {
-                totalWeight = data.dimensions.reduce((sum, d) => sum + (parseFloat(d.weight)||0), 0).toFixed(1) + ' Kg';
+                totalWeight = data.dimensions.reduce((sum, d) => sum + (parseFloat(d.weight) || 0), 0).toFixed(1) + ' Kg';
                 soKien = data.dimensions.length;
             }
             // Số điện thoại: chỉ lấy 1 số người gửi
@@ -713,7 +783,7 @@
         });
 
         // --- Lưu toàn bộ dữ liệu form (bao gồm ảnh) vào localStorage khi submit ---
-        document.getElementById('pickup-order-form').addEventListener('submit', function(e) {
+        document.getElementById('pickup-order-form').addEventListener('submit', function (e) {
             e.preventDefault();
 
             // Lấy dữ liệu từ các bước trước (nếu có)
@@ -764,7 +834,7 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Khởi tạo datetime picker cho pickup_time
             const pickupTimeInput = document.getElementById('pickup_time');
             if (pickupTimeInput) {
@@ -920,4 +990,5 @@
         });
     </script>
 </body>
+
 </html>

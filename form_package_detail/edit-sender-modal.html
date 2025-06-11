@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chỉnh sửa Người gửi</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" />
     <style>
         .edit-sender-form {
             --form-primary-color: #FFD600;
@@ -26,7 +28,7 @@
             --form-font-size-base: 12px;
             --form-font-size-sm: 10px;
             --form-font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            --form-shadow-lg: 0 10px 15px rgba(0,0,0,0.10);
+            --form-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10);
             --form-transition: all 0.3s ease;
             box-sizing: border-box;
             font-family: var(--form-font-family);
@@ -45,6 +47,7 @@
             border-radius: 0;
             box-shadow: none;
         }
+
         .edit-sender-form .form-header {
             background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 100%);
             color: var(--form-primary-color) !important;
@@ -56,18 +59,59 @@
             display: flex;
             align-items: center;
         }
+
         .edit-sender-form .form-header h2 {
             font-size: 1.18rem !important;
             font-weight: 700 !important;
             color: var(--form-secondary-color);
-            margin:0; display: flex; align-items: center; gap: 0.75rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
-        .edit-sender-form .form-header h2::before { content: '\f044'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 1.4em; color: var(--form-secondary-color); }
-        .edit-sender-form .form-body { padding: calc(var(--form-spacing-unit) * 1.5) !important; background-color: var(--form-input-bg) !important; flex-grow: 1; overflow-y: auto; }
-        .edit-sender-form .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px 20px; } 
-        @media (max-width: 600px) { .edit-sender-form .form-grid { grid-template-columns: 1fr; gap: 15px 0; } }
-        .edit-sender-form .form-group { display: flex; flex-direction: column; gap: calc(var(--form-spacing-unit) * 0.6); margin-bottom: 12px; } 
-        .edit-sender-form .form-label { font-weight: 600; color: var(--form-secondary-color); font-size: var(--form-font-size-base); margin-bottom: 2px; }
+
+        .edit-sender-form .form-header h2::before {
+            content: '\f044';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1.4em;
+            color: var(--form-secondary-color);
+        }
+
+        .edit-sender-form .form-body {
+            padding: calc(var(--form-spacing-unit) * 1.5) !important;
+            background-color: var(--form-input-bg) !important;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .edit-sender-form .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px 20px;
+        }
+
+        @media (max-width: 600px) {
+            .edit-sender-form .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px 0;
+            }
+        }
+
+        .edit-sender-form .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--form-spacing-unit) * 0.6);
+            margin-bottom: 12px;
+        }
+
+        .edit-sender-form .form-label {
+            font-weight: 600;
+            color: var(--form-secondary-color);
+            font-size: var(--form-font-size-base);
+            margin-bottom: 2px;
+        }
+
         .edit-sender-form .form-control {
             width: 95%;
             padding: var(--form-control-padding-y) var(--form-control-padding-x);
@@ -82,17 +126,77 @@
             min-height: calc(1.5em + var(--form-control-padding-y) * 2 + 2px);
             box-sizing: border-box;
         }
-        .edit-sender-form .form-control:focus { border-color: #FFD600; outline: 0; box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15); }
-        .edit-sender-form .form-actions { padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5); background: white; border-top: 1.5px solid var(--form-primary-color); display: flex; justify-content: flex-end; gap: var(--form-spacing-unit); flex-shrink: 0; border-bottom-left-radius: var(--form-border-radius); border-bottom-right-radius: var(--form-border-radius); }
-        .edit-sender-form .form-btn { gap: calc(var(--form-spacing-unit) * 0.8); padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5); font-size: var(--form-font-size-base); font-weight: 600; border-radius: var(--form-border-radius); border: 1.5px solid transparent; cursor: pointer; transition: var(--form-transition); line-height: 1.4; white-space: nowrap; min-width: 100px; }
-        .edit-sender-form .form-btn-cancel { background-color: transparent; color: var(--form-primary-color); border-color: var(--form-primary-color); }
-        .edit-sender-form .form-btn-cancel:hover { background-color: var(--form-primary-color); color: var(--form-secondary-color); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); }
-        .edit-sender-form .form-btn-confirm { background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%); color: var(--form-secondary-color); border: none; box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15); }
-        .edit-sender-form .form-btn-confirm:hover { background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2); }
-        .edit-sender-form .form-btn:focus-visible { outline: 1.5px solid var(--form-primary-color); outline-offset: 1px; box-shadow: none; }
-        .edit-sender-form .form-btn:active { transform: scale(0.98); }
+
+        .edit-sender-form .form-control:focus {
+            border-color: #FFD600;
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15);
+        }
+
+        .edit-sender-form .form-actions {
+            padding: calc(var(--form-spacing-unit) * 2) calc(var(--form-spacing-unit) * 2.5);
+            background: white;
+            border-top: 1.5px solid var(--form-primary-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--form-spacing-unit);
+            flex-shrink: 0;
+            border-bottom-left-radius: var(--form-border-radius);
+            border-bottom-right-radius: var(--form-border-radius);
+        }
+
+        .edit-sender-form .form-btn {
+            gap: calc(var(--form-spacing-unit) * 0.8);
+            padding: calc(var(--form-control-padding-y) + 2px) calc(var(--form-control-padding-x) * 1.5);
+            font-size: var(--form-font-size-base);
+            font-weight: 600;
+            border-radius: var(--form-border-radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: var(--form-transition);
+            line-height: 1.4;
+            white-space: nowrap;
+            min-width: 100px;
+        }
+
+        .edit-sender-form .form-btn-cancel {
+            background-color: transparent;
+            color: var(--form-primary-color);
+            border-color: var(--form-primary-color);
+        }
+
+        .edit-sender-form .form-btn-cancel:hover {
+            background-color: var(--form-primary-color);
+            color: var(--form-secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+        }
+
+        .edit-sender-form .form-btn-confirm {
+            background: linear-gradient(90deg, var(--form-primary-color) 0%, var(--form-primary-hover) 100%);
+            color: var(--form-secondary-color);
+            border: none;
+            box-shadow: 0 2px 8px rgba(255, 214, 0, 0.15);
+        }
+
+        .edit-sender-form .form-btn-confirm:hover {
+            background: linear-gradient(90deg, var(--form-primary-hover) 0%, var(--form-primary-color) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+        }
+
+        .edit-sender-form .form-btn:focus-visible {
+            outline: 1.5px solid var(--form-primary-color);
+            outline-offset: 1px;
+            box-shadow: none;
+        }
+
+        .edit-sender-form .form-btn:active {
+            transform: scale(0.98);
+        }
     </style>
 </head>
+
 <body>
     <div class="edit-sender-form">
         <div class="form-header">
@@ -119,7 +223,8 @@
                     </div>
                     <div class="form-group" style="grid-column: span 2;">
                         <label class="form-label" for="senderAddressInput">Địa chỉ:</label>
-                        <textarea id="senderAddressInput" class="form-control" name="sender_address" rows="3"></textarea>
+                        <textarea id="senderAddressInput" class="form-control" name="sender_address"
+                            rows="3"></textarea>
                     </div>
                 </div>
             </div>
@@ -142,13 +247,13 @@
         }
 
         // Handle Cancel button
-        document.getElementById('cancelEditSender').onclick = function() {
+        document.getElementById('cancelEditSender').onclick = function () {
             // Close the modal (assuming it's loaded in an iframe)
             window.parent && window.parent.closeEditModal ? window.parent.closeEditModal() : window.close();
         };
 
         // Handle form submission (Confirm button)
-        document.getElementById('editSenderForm').onsubmit = function(e) {
+        document.getElementById('editSenderForm').onsubmit = function (e) {
             e.preventDefault();
 
             // Get data from form
@@ -183,4 +288,5 @@
 
     </script>
 </body>
-</html> 
+
+</html>

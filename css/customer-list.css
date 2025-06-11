@@ -1,5 +1,5 @@
 :root {
-    
+
     --primary-color: #000000;
     --primary-hover: #1a1a1a;
     --primary-light: #f8f9fa;
@@ -339,8 +339,8 @@
 
 #customerTable tbody tr:hover {
     background: #eef2ff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+
 }
 
 #customerTable tbody tr td:first-child {
@@ -445,7 +445,7 @@
     background: white;
     border-radius: 21px;
     width: 60%;
-    max-width: 800px !important; 
+    max-width: 800px !important;
     max-height: 85vh;
     overflow: hidden;
     position: relative;
@@ -457,11 +457,11 @@
 }
 
 #customerDetailModal .modal-content {
-    max-width: 600px; 
+    max-width: 600px;
 }
 
 #editCustomerModal .modal-content {
-    max-width: 800px; 
+    max-width: 800px;
 }
 
 .modal-content::-webkit-scrollbar {
@@ -499,51 +499,58 @@
 }
 
 #addCustomerModal .modal-header {
-    background: #FFD700; 
+    background: #FFD700;
     padding: 0.3rem;
     font-size: 1rem;
 }
+
 #addCustomerModal .modal-header h3,
 #addCustomerModal .modal-close {
-    color: var(--text-primary); 
+    color: var(--text-primary);
 }
+
 #addCustomerModal .btn-primary {
-    background: #FFD700; 
-    color: var(--text-primary); 
+    background: #FFD700;
+    color: var(--text-primary);
 }
+
 #addCustomerModal .btn-primary:hover {
-    background: #ffc107; 
+    background: #ffc107;
 }
 
 #editCustomerModal .modal-header {
-    background: #FFD700; 
+    background: #FFD700;
 }
+
 #editCustomerModal .modal-header h3,
 #editCustomerModal .modal-close {
-    color: var(--text-primary); 
+    color: var(--text-primary);
 }
+
 #editCustomerModal .btn-primary {
-    background: #FFD700; 
+    background: #FFD700;
 }
+
 #editCustomerModal .btn-primary:hover {
-    background: #ffc107; 
+    background: #ffc107;
 }
 
 #deleteCustomerModal .modal-content {
     max-width: 500px !important;
     max-height: 220px;
-    width: 90%; 
-    box-sizing: border-box; 
+    width: 90%;
+    box-sizing: border-box;
 }
 
 #deleteCustomerModal .modal-header {
-    background: #FFD700; 
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-    justify-content: space-between; 
+    background: #FFD700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: space-between;
     padding: 0.8rem 1.5rem;
 }
+
 #deleteCustomerModal .modal-header h3,
 #deleteCustomerModal .modal-close {
     color: #fff;
@@ -584,17 +591,20 @@
 }
 
 #customerDetailModal .modal-header {
-    background: #FFD700; 
+    background: #FFD700;
 }
+
 #customerDetailModal .modal-header h3,
 #customerDetailModal .modal-close {
-    color: var(--text-primary); 
+    color: var(--text-primary);
 }
+
 #customerDetailModal .btn-primary {
-    background: var(--accent); 
+    background: var(--accent);
 }
+
 #customerDetailModal .btn-primary:hover {
-    background: var(--accent-hover); 
+    background: var(--accent-hover);
 }
 
 .modal-close {
@@ -609,11 +619,12 @@
     transition: all var(--transition-speed-fast);
     line-height: 1;
 }
+
 .modal-close:hover {
     background: none;
     color: #fff;
     opacity: 1;
-    
+
 }
 
 .modal-body {
@@ -625,7 +636,7 @@
 
 .customer-info-grid {
     display: grid;
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     gap: 0;
     margin-bottom: 0;
 }
@@ -635,13 +646,13 @@
     padding: 1rem;
     border-radius: var(--border-radius-sm);
     transition: all 0.2s ease;
-    display: flex; 
-    align-items: center; 
-    gap: var(--base-padding); 
+    display: flex;
+    align-items: center;
+    gap: var(--base-padding);
 }
 
 .info-group:hover {
-    
+
     box-shadow: var(--shadow-sm);
 }
 
@@ -649,10 +660,10 @@
     display: block;
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
-    margin-bottom: 0; 
+    margin-bottom: 0;
     font-weight: 500;
-    flex-shrink: 0; 
-    width: 120px; 
+    flex-shrink: 0;
+    width: 120px;
 }
 
 .info-group span {
@@ -660,7 +671,7 @@
     color: var(--text-primary);
     font-size: var(--font-size-base);
     font-weight: 600;
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
 .customer-stats {
@@ -733,7 +744,8 @@
 }
 
 
-.btn-primary, .btn-danger {
+.btn-primary,
+.btn-danger {
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -744,7 +756,8 @@
     font-size: var(--font-size-base);
 }
 
-.btn-primary:hover, .btn-danger:hover {
+.btn-primary:hover,
+.btn-danger:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -798,12 +811,15 @@
 
 .address-grouping .form-group {
     margin-bottom: 0;
-    flex: 1 1 calc(25% - var(--base-padding) * 3 / 4); /* Distribute space evenly among 4 items */
+    flex: 1 1 calc(25% - var(--base-padding) * 3 / 4);
+    /* Distribute space evenly among 4 items */
 }
 
 .address-grouping .form-group label {
-    width: auto; /* Let label width be determined by content */
-    margin-right: 0.5rem; /* Add some space between label and input/select */
+    width: auto;
+    /* Let label width be determined by content */
+    margin-right: 0.5rem;
+    /* Add some space between label and input/select */
 }
 
 .address-label {
@@ -812,20 +828,27 @@
     font-weight: 500;
     margin-bottom: 0.5rem;
     width: 100%;
-    text-align: left; /* Align the label to the left */
+    text-align: left;
+    /* Align the label to the left */
 }
 
 .address-combobox-grouping {
     display: flex;
-    gap: 0.5rem; /* Smaller gap for comboboxes */
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-    flex-grow: 1; /* Allow this container to take available space */
+    gap: 0.5rem;
+    /* Smaller gap for comboboxes */
+    flex-wrap: wrap;
+    /* Allow wrapping on small screens */
+    flex-grow: 1;
+    /* Allow this container to take available space */
 }
 
 .address-combobox-grouping .form-group.nested {
-    margin-bottom: 0; /* Remove default margin-bottom from form-group */
-    flex: 1 1 calc(33.333% - 0.5rem * 2 / 3); /* Distribute space among 3 items, considering gap */
-    min-width: 120px; /* Minimum width for combobox */
+    margin-bottom: 0;
+    /* Remove default margin-bottom from form-group */
+    flex: 1 1 calc(33.333% - 0.5rem * 2 / 3);
+    /* Distribute space among 3 items, considering gap */
+    min-width: 120px;
+    /* Minimum width for combobox */
 }
 
 @media (max-width: 768px) {
@@ -843,19 +866,23 @@
         align-items: stretch !important;
         gap: 1rem !important;
     }
+
     .action-buttons {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;
         width: 100% !important;
     }
+
     .action-buttons button {
         flex-grow: 1;
         justify-content: center;
     }
+
     .action-buttons .btn-import {
         grid-column: span 2;
     }
+
     .filter-section {
         flex-direction: column;
         align-items: stretch;
@@ -871,24 +898,30 @@
         width: 100%;
     }
 
-     .btn-filter {
+    .btn-filter {
         width: 100%;
         justify-content: center;
-     }
+    }
 
-    .items-per-page-control{
+    .items-per-page-control {
         justify-content: left !important;
-     }
-     .items-per-page-control span{
+    }
+
+    .items-per-page-control span {
         display: none !important;
-     }
-     .actions-container {
+    }
+
+    .actions-container {
         display: flex;
-        justify-content: space-between; /* hoặc 'flex-start' nếu bạn muốn chúng sát nhau bên trái */
+        justify-content: space-between;
+        /* hoặc 'flex-start' nếu bạn muốn chúng sát nhau bên trái */
         align-items: center;
-        flex-wrap: wrap; /* Đảm bảo responsive nếu không đủ chỗ */
-        gap: 0.5rem; /* khoảng cách giữa hai khối */
-        margin-bottom: 0; /* hoặc theo thiết kế */
+        flex-wrap: wrap;
+        /* Đảm bảo responsive nếu không đủ chỗ */
+        gap: 0.5rem;
+        /* khoảng cách giữa hai khối */
+        margin-bottom: 0;
+        /* hoặc theo thiết kế */
     }
 
     .customer-info-grid,
@@ -914,7 +947,8 @@
 
     #customerTable th,
     #customerTable td {
-        padding: 0.5rem 0.4rem; /* Further reduce padding */
+        padding: 0.5rem 0.4rem;
+        /* Further reduce padding */
     }
 
     #customerTable tbody tr,
@@ -923,9 +957,9 @@
     }
 
     #customerTable tbody tr {
-         border-bottom: 1px solid var(--border-color);
-         border-radius: 0;
-         margin-bottom: 0;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        margin-bottom: 0;
     }
 
     #customerTable tbody tr td:first-child,
@@ -939,7 +973,8 @@
 
     /* Hide specific table headers on mobile */
     #customerTable thead th.mobile-hidden,
-    #customerTable thead th.col-center:nth-child(2) { /* Also hide STT header */
+    #customerTable thead th.col-center:nth-child(2) {
+        /* Also hide STT header */
         display: none;
     }
 
@@ -950,68 +985,91 @@
 
     /* Ensure main customer rows are block/flex on mobile if needed for layout adjustments */
     #customerTable tbody tr.customer-row {
-         display: table-row; /* Keep as table-row for general structure */
-         border-bottom: none; /* Remove border from main row */
-         /* Add click indicator if desired */
-         cursor: pointer;
+        display: table-row;
+        /* Keep as table-row for general structure */
+        border-bottom: none;
+        /* Remove border from main row */
+        /* Add click indicator if desired */
+        cursor: pointer;
     }
-    
-     #customerTable tbody tr.customer-row:hover {
-        background: var(--bg-color); /* Adjust hover for main row */
-     }
+
+    #customerTable tbody tr.customer-row:hover {
+        background: var(--bg-color);
+        /* Adjust hover for main row */
+    }
 
     /* Style the detail row */
     #customerTable tbody tr.customer-detail-row {
-        display: none; /* Hidden by default */
-        background-color: var(--primary-light); /* Light background for detail row */
-        border-bottom: 1px solid var(--border-color); /* Add border to separate entries */
+        display: none;
+        /* Hidden by default */
+        background-color: var(--primary-light);
+        /* Light background for detail row */
+        border-bottom: 1px solid var(--border-color);
+        /* Add border to separate entries */
     }
 
     #customerTable tbody tr.customer-detail-row td {
-        padding: 10px var(--base-padding); /* Padding for detail cell */
+        padding: 10px var(--base-padding);
+        /* Padding for detail cell */
     }
 
     /* Style the content within the detail row */
     .customer-detail-content {
-        display: flex; /* Use flexbox for simpler layout */
-        flex-direction: column; /* Stack items vertically */
-        gap: 5px; /* Smaller gap */
-        font-size: var(--font-size-sm); /* Smaller font size for detail items */
+        display: flex;
+        /* Use flexbox for simpler layout */
+        flex-direction: column;
+        /* Stack items vertically */
+        gap: 5px;
+        /* Smaller gap */
+        font-size: var(--font-size-sm);
+        /* Smaller font size for detail items */
     }
 
     .customer-detail-content .detail-item {
-         padding: 0; /* Remove padding */
-         background-color: transparent; /* Remove background */
-         border: none; /* Remove border */
-         word-break: break-word; /* Break long words */
+        padding: 0;
+        /* Remove padding */
+        background-color: transparent;
+        /* Remove background */
+        border: none;
+        /* Remove border */
+        word-break: break-word;
+        /* Break long words */
     }
 
-     .customer-detail-content .detail-item strong {
-          color: var(--text-primary); /* Strong text color */
-          margin-right: 5px; /* Space after label */
-     }
+    .customer-detail-content .detail-item strong {
+        color: var(--text-primary);
+        /* Strong text color */
+        margin-right: 5px;
+        /* Space after label */
+    }
 
-     .customer-detail-content .action-icons {
-          grid-column: auto; /* Remove grid span */
-          text-align: left; /* Align actions left */
-          display: flex;
-          justify-content: flex-start; /* Align icons to start */
-          gap: 10px;
-          margin-top: 10px; /* Add space above actions */
-     }
+    .customer-detail-content .action-icons {
+        grid-column: auto;
+        /* Remove grid span */
+        text-align: left;
+        /* Align actions left */
+        display: flex;
+        justify-content: flex-start;
+        /* Align icons to start */
+        gap: 10px;
+        margin-top: 10px;
+        /* Add space above actions */
+    }
 
-      /* Hide action icons in main row on mobile */
-      #customerTable tbody tr.customer-row td.action-icons.mobile-hidden {
-           display: none !important;
-      }
+    /* Hide action icons in main row on mobile */
+    #customerTable tbody tr.customer-row td.action-icons.mobile-hidden {
+        display: none !important;
+    }
 
     /* Adjust padding for checkbox and STT columns on mobile */
     #customerTable th:first-child,
-    #customerTable td:first-child { /* Checkbox column */
+    #customerTable td:first-child {
+        /* Checkbox column */
         width: 80px !important;
         padding-left: 10px;
         padding-right: 5px;
     }
+
     /* Hide STT header on mobile if it was not hidden by .mobile-hidden */
     #customerTable thead th.col-center:nth-child(2) {
         display: none;
@@ -1019,35 +1077,51 @@
 
     /* Allow table to shrink and prevent horizontal scroll */
     #customerTable {
-        min-width: auto; /* Remove minimum width */
-        width: 100%; /* Ensure it takes available width */
+        min-width: auto;
+        /* Remove minimum width */
+        width: 100%;
+        /* Ensure it takes available width */
     }
 
-     /* Optional: Add specific width for Mã KH and Họ và tên if needed */
-     /* Example: */
-     #customerTable th:nth-child(3), #customerTable tbody td:nth-child(3) { /* Mã KH column */
-         width: 90px; /* fixed width for ID */
-         min-width: 90px;
-         max-width: 90px;
-         white-space: nowrap; /* Keep ID on one line */
-         overflow: hidden;
-         text-overflow: ellipsis;
-     }
-      #customerTable th:nth-child(4), #customerTable tbody td:nth-child(4) { /* Họ và tên column */
-         width: auto; /* Take remaining space */
-         white-space: normal; /* Allow name to wrap */
-      }
-      .table-wrapper {
+    /* Optional: Add specific width for Mã KH and Họ và tên if needed */
+    /* Example: */
+    #customerTable th:nth-child(3),
+    #customerTable tbody td:nth-child(3) {
+        /* Mã KH column */
+        width: 90px;
+        /* fixed width for ID */
+        min-width: 90px;
+        max-width: 90px;
+        white-space: nowrap;
+        /* Keep ID on one line */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #customerTable th:nth-child(4),
+    #customerTable tbody td:nth-child(4) {
+        /* Họ và tên column */
+        width: auto;
+        /* Take remaining space */
+        white-space: normal;
+        /* Allow name to wrap */
+    }
+
+    .table-wrapper {
         min-width: 300px !important;
     }
 }
+
 @media (max-width: 600px) {
     .user-dropdown {
         right: 8px;
         min-width: 90vw;
         border-radius: 12px;
     }
-    .announcement-box { min-width: 90vw; }
+
+    .announcement-box {
+        min-width: 90vw;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1055,7 +1129,7 @@
         padding: 0.6rem 1rem;
         font-size: var(--font-size-sm);
     }
-    
+
     .filter-select {
         padding: 0.5rem 0.8rem;
         font-size: var(--font-size-sm);
@@ -1066,10 +1140,10 @@
         font-size: var(--font-size-sm);
     }
 
-     .btn-filter {
-          padding: 0.5rem 0.8rem;
-          font-size: var(--font-size-sm);
-     }
+    .btn-filter {
+        padding: 0.5rem 0.8rem;
+        font-size: var(--font-size-sm);
+    }
 
     .modal {
         padding: 0;
@@ -1081,9 +1155,9 @@
         padding: 1rem;
     }
 
-     .modal-header h3 {
-          font-size: var(--font-size-lg);
-     }
+    .modal-header h3 {
+        font-size: var(--font-size-lg);
+    }
 
     .modal-body {
         padding: 10px !important;
@@ -1094,25 +1168,27 @@
         padding: 1rem;
     }
 
-     .customer-stats h4 {
-          font-size: var(--font-size-base);
-     }
+    .customer-stats h4 {
+        font-size: var(--font-size-base);
+    }
 
-     .stat-value {
-          font-size: var(--font-size-md);
-     }
+    .stat-value {
+        font-size: var(--font-size-md);
+    }
 
-      .stat-label {
-          font-size: var(--font-size-sm);
-      }
-      .card-footer{
+    .stat-label {
+        font-size: var(--font-size-sm);
+    }
+
+    .card-footer {
         justify-content: center !important;
-      }
-      .modal-content {
+    }
+
+    .modal-content {
         background: white;
         border-radius: 18px;
         width: 90%;
-        max-width: 800px !important; 
+        max-width: 800px !important;
         max-height: 85vh;
         overflow: hidden;
         position: relative;
@@ -1124,11 +1200,13 @@
     }
 }
 
-.filter-select, .btn-filter {
+.filter-select,
+.btn-filter {
     transition: all 0.2s ease;
 }
 
-.filter-select:focus, .btn-filter:hover {
+.filter-select:focus,
+.btn-filter:hover {
     border-color: var(--accent);
     box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
 }
@@ -1149,21 +1227,24 @@
     min-width: 270px;
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(30,41,59,0.13);
+    box-shadow: 0 8px 32px rgba(30, 41, 59, 0.13);
     padding: 0;
     z-index: 100;
     display: none;
     transition: all 0.2s;
 }
+
 .user-dropdown.show {
     display: block;
 }
+
 .user-info {
     display: flex;
     align-items: center;
     gap: 1rem;
     padding: 1rem 1.2rem 0.5rem 1.2rem;
 }
+
 .user-info .user-avatar {
     background: linear-gradient(135deg, #ffe066 0%, #a78bfa 100%);
     border-radius: 50%;
@@ -1173,22 +1254,27 @@
     align-items: center;
     justify-content: center;
 }
+
 .user-info .user-avatar i {
     color: #4F46E5;
     font-size: 2em;
 }
+
 .user-details {
     display: flex;
     flex-direction: column;
 }
+
 .user-details div:first-child {
     font-weight: 700;
     font-size: 1.1em;
 }
+
 .user-details div:last-child {
     font-size: 0.95em;
     color: #64748b;
 }
+
 .user-dropdown-item {
     display: flex;
     align-items: center;
@@ -1200,9 +1286,11 @@
     border-radius: 8px;
     transition: background 0.15s;
 }
+
 .user-dropdown-item:hover {
     background: #f1f5f9;
 }
+
 .user-dropdown hr {
     margin: 0.5rem 0 0.2rem 0;
     border: none;
@@ -1213,27 +1301,37 @@
     position: fixed;
     inset: 0;
     z-index: 2000;
-    background: rgba(30,41,59,0.18);
+    background: rgba(30, 41, 59, 0.18);
     display: flex !important;
     align-items: center;
     justify-content: center;
 }
+
 .announcement-box {
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(30,41,59,0.18);
+    box-shadow: 0 8px 32px rgba(30, 41, 59, 0.18);
     width: 90%;
     max-width: 560px;
     padding: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    max-height: 85vh; 
+    max-height: 85vh;
 }
+
 @keyframes modal-pop {
-    from { opacity: 0; transform: scale(0.95);}
-    to   { opacity: 1; transform: scale(1);}
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
+
 .announcement-header {
     background: #4F46E5;
     color: #fff;
@@ -1244,6 +1342,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
 .announcement-close-btn {
     background: none;
     border: none;
@@ -1253,28 +1352,33 @@
     margin-left: 1em;
     transition: color 0.15s;
 }
+
 .announcement-close-btn:hover {
     color: #ffe066;
 }
+
 .announcement-body {
     padding: 1.2em 1.5em 0.5em 1.5em;
     color: #334155;
     font-size: 1.05em;
 }
+
 .announcement-footer {
     padding: 0.7em 1.5em 1em 1.5em;
     background: #f8fafc;
     border-radius: 0 0 18px 18px;
     text-align: right;
 }
+
 .header-dark-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(30,41,59,0.38);
+    background: rgba(30, 41, 59, 0.38);
     z-index: 99;
     pointer-events: none;
     border-radius: inherit;
 }
+
 .header.blurred {
     filter: blur(2.5px);
     pointer-events: none;
@@ -1346,15 +1450,20 @@
 }
 
 #deleteCustomerModal .modal-body {
-    padding: 1rem 1.5rem; /* Điều chỉnh padding cho body */
+    padding: 1rem 1.5rem;
+    /* Điều chỉnh padding cho body */
 }
 
 #deleteCustomerModal .modal-body p {
-    margin-bottom: 0.5rem; /* Điều chỉnh lề dưới cho các đoạn văn bản */
-    font-size: 0.95rem; /* Có thể điều chỉnh kích thước font nếu cần */
-    line-height: 1.4; /* Điều chỉnh chiều cao dòng */
+    margin-bottom: 0.5rem;
+    /* Điều chỉnh lề dưới cho các đoạn văn bản */
+    font-size: 0.95rem;
+    /* Có thể điều chỉnh kích thước font nếu cần */
+    line-height: 1.4;
+    /* Điều chỉnh chiều cao dòng */
 }
 
 #deleteCustomerModal .modal-body p:last-child {
-    margin-bottom: 0; /* Loại bỏ lề dưới cho đoạn cuối cùng */
+    margin-bottom: 0;
+    /* Loại bỏ lề dưới cho đoạn cuối cùng */
 }

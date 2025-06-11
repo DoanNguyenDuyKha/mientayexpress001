@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const trackingForm = document.getElementById('tracking-form');
     const trackButton = document.getElementById('track-button');
     const buttonText = trackButton.querySelector('.button-text');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (trackingForm) {
-        trackingForm.addEventListener('submit', function(event) {
+        trackingForm.addEventListener('submit', function (event) {
             event.preventDefault();
             const trackingId = trackingIdInput.value.trim();
             if (!trackingId) {
